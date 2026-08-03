@@ -21,7 +21,7 @@ This is a UX specification only. It does not authorize Angular implementation an
 - `docs/audits/current-site-url-inventory.csv`
 - Current Omaya homepage crawl from `https://omayatravel.com/`
 - Customer brief from project owner: US/UK travelers, ages 20-45, medium budget, solo/couples/friends, motivated by depth and real connection, afraid of forced fun, outsider feeling and not being adventurous enough
-- Competitor reference: Flash Pack, especially age-fit framing, review prominence, confidence messaging and practical payment/deposit reassurance
+- Competitor reference: Flash Pack, especially age-fit framing, review prominence, confidence messaging and practical payment/deposit reassurance patterns
 
 ## Page Objective
 
@@ -85,7 +85,7 @@ Above the fold must contain:
 - Key facts: destination, duration, price from, difficulty if present, group style, availability state.
 - Primary CTA: `Enquire about this tour`.
 - Secondary CTA: `View available dates`.
-- Trust line: `Small-group journeys for curious travelers, with a response within 24 hours.`
+- Trust line: `Small-group journeys for curious travelers, with a clear response after enquiry.`
 
 Above the fold should not include a full booking form. The first step is confidence and qualification, not data entry.
 
@@ -140,7 +140,7 @@ Required content:
 - Age fit: `For curious travelers in their 20s-40s`.
 - Group promise: `Small groups, no forced fun`.
 - Depth promise: `Local encounters and cultural context`.
-- Operational promise: `We reply within 24 hours`.
+- Operational promise: `We explain the next steps after enquiry`.
 
 Trust elements:
 
@@ -313,8 +313,8 @@ Enquiry journey:
 1. Visitor clicks primary CTA.
 2. If no departure selected, they land on or open enquiry with the tour preselected.
 3. If a departure is selected, selected date/status/price are carried forward.
-4. Form explains response within 24 hours.
-5. Form explains deposit is typically around 20-30% after confirmation, not during initial enquiry.
+4. Form explains when the traveler should expect a response, using only approved business content.
+5. Form explains that payment and deposit terms are confirmed after enquiry, not during an immediate checkout.
 6. Success state confirms what happens next.
 
 Recommended form fields:
@@ -350,7 +350,7 @@ Recommended questions:
 - How adventurous do I need to be?
 - What happens after I enquire?
 - Is the departure guaranteed?
-- What deposit is required?
+- When are payment and deposit terms confirmed?
 - Can this tour be private?
 - What is included in the price?
 
@@ -445,8 +445,8 @@ UX notes:
 Required trust elements:
 
 - License link: `/omaya-travel-license/`
-- Response time: within 24 hours
-- Clear deposit expectation: usually around 20-30% after confirmation
+- Clear response expectation when approved business content supports a specific timeframe
+- Payment and deposit terms are confirmed after enquiry
 - Contact options: email and phone when global company content is approved
 - Transparent included/excluded lists
 - Visible sold-out/on-request states
