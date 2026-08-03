@@ -2,6 +2,8 @@
 
 Requester: <!-- e.g. Angular Wizard, UI/UX Expert, SEO Expert, Migration Expert, DevOps Expert, Backend Expert, QA Expert, Lead Architect -->
 
+I will check this PR for comments at least once per hour while it is open: <!-- yes/no -->
+
 ## Linked issue
 
 Closes #

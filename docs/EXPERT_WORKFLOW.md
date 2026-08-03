@@ -164,6 +164,21 @@ Requester: Lead Architect
 
 The requester is the expert role responsible for the PR, not necessarily the GitHub account that opened it.
 
+## Requester comment checks
+
+After opening a PR, the requester must check the PR for comments, requested changes and failed checks at least once per hour while they are actively working or waiting for review.
+
+The requester is responsible for:
+
+- responding to Lead Architect comments
+- responding to specialist review comments
+- fixing requested changes
+- updating the PR when blockers are resolved
+- commenting when a requested change cannot be completed
+- moving the linked issue status when the workflow requires it
+
+If the requester will be unavailable for more than one working day, they should leave a PR comment with the expected return time or name the expert taking over.
+
 Specialist PRs must also state whether they include:
 
 - recommendations

@@ -91,6 +91,7 @@ Only the Lead Architect can move architecture, approved specification or major i
 - Implementation issues must link to one approved specification.
 - Every specialist proposal, approved specification and implementation change should have a PR linked to its issue.
 - Every PR must identify the requester / expert role, for example `Requester: UI/UX Expert` or `Requester: Angular Wizard`.
+- Every PR requester must check their open PR for comments, requested changes and failed checks at least once per hour while the PR is awaiting review or revision.
 - Specialist proposal PRs are reviewed as inputs; implementation PRs are reviewed against approved specs.
 - Architecture decisions must link to `docs/DECISIONS.md` or a full ADR.
 - Migration issues must identify source URLs, target routes and redirect requirements.
