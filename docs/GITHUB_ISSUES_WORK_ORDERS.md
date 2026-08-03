@@ -1,0 +1,113 @@
+# GitHub Issues Work Orders
+
+GitHub Issues are the execution system for the Omaya Travel rebuild.
+
+Every meaningful task must have one GitHub issue before implementation begins.
+Docs can describe strategy, but Issues own work assignment, status, dependencies and completion tracking.
+
+## Required labels
+
+### Area
+
+- `area:architecture`
+- `area:frontend`
+- `area:ux`
+- `area:seo`
+- `area:content`
+- `area:migration`
+- `area:devops`
+- `area:backend`
+- `area:qa`
+
+### Status
+
+- `status:ready`
+- `status:blocked`
+- `status:review`
+- `status:approved`
+
+### Priority
+
+- `priority:critical`
+- `priority:high`
+- `priority:medium`
+- `priority:low`
+
+### Type
+
+- `type:feature`
+- `type:decision`
+- `type:bug`
+- `type:research`
+- `type:migration`
+
+## Issue title format
+
+```text
+[Area] Imperative task title
+```
+
+Examples:
+
+```text
+[UX] Define tour-details page structure
+[SEO] Inventory current WordPress URLs
+[Architecture] Approve tour content model
+[Frontend] Implement tour-details page
+```
+
+## Dependency format
+
+Use explicit issue references:
+
+```text
+Depends on:
+#12 Approve tour content model
+
+Blocks:
+#24 Implement tour-details page
+#31 Add TouristTrip structured data
+```
+
+Before real issue numbers exist, use temporary IDs from `docs/ISSUE_BACKLOG.md`.
+
+## Status rules
+
+- `status:ready`: Requirements are clear and dependencies are satisfied.
+- `status:blocked`: Work cannot proceed because a dependency, decision or external input is missing.
+- `status:review`: Work is complete and awaiting architect or specialist review.
+- `status:approved`: The Lead Architect has accepted the result.
+
+Only the Lead Architect can move architecture, approved specification or major implementation issues to `status:approved`.
+
+## Work order rules
+
+- One issue should represent one meaningful deliverable.
+- Large issues must be split when they span multiple owners or acceptance paths.
+- Specialist proposal issues produce proposal files, not implementation instructions.
+- Approved specification issues produce `docs/specifications/*-approved.md`.
+- Implementation issues must link to one approved specification.
+- Architecture decisions must link to `docs/DECISIONS.md` or a full ADR.
+- Migration issues must identify source URLs, target routes and redirect requirements.
+- QA issues must identify the exact checks, tools and pass/fail criteria.
+
+## GitHub setup checklist
+
+When the GitHub repository exists:
+
+1. Create the required labels.
+2. Add `.github/ISSUE_TEMPLATE/work-order.yml`.
+3. Use `.github/labels.yml` as the canonical label list.
+4. Create issues from `docs/ISSUE_BACKLOG.md`.
+5. Replace temporary dependency IDs with real issue numbers.
+6. Link approved specs and ADRs from their corresponding issues.
+
+## Repository
+
+GitHub repository:
+
+```text
+AntoniTomov/OmayaTravel-Angular
+```
+
+The initial work-order issues have been created in this repository.

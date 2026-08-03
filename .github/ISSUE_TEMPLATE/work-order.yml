@@ -1,0 +1,67 @@
+name: Work order
+description: Standard Omaya Travel rebuild task
+title: "[Area] Short task title"
+labels:
+  - status:ready
+body:
+  - type: input
+    id: owner
+    attributes:
+      label: Owner
+      description: Responsible role or specialist
+      placeholder: Lead Architect, UX specialist, Angular frontend specialist
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What outcome should this issue produce?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included?
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: What should this issue explicitly avoid?
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Depends on
+      description: GitHub issue numbers or decisions required before work starts.
+      placeholder: "#12 Approve tour content model"
+  - type: textarea
+    id: blocks
+    attributes:
+      label: Blocks
+      description: GitHub issue numbers or workstreams blocked by this issue.
+      placeholder: "#24 Implement tour-details page"
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: Files, specs, code, decisions or outputs expected.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Concrete checks required for completion.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and notes
+      description: Known risks, assumptions or open questions.
+

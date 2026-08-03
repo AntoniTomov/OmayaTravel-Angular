@@ -1,0 +1,67 @@
+- name: area:architecture
+  color: "5319e7"
+  description: Architecture, ADRs, contracts and approved specs
+- name: area:frontend
+  color: "1d76db"
+  description: Angular website implementation
+- name: area:ux
+  color: "fbca04"
+  description: UX structure, flows and interaction design
+- name: area:seo
+  color: "0e8a16"
+  description: SEO, metadata, schema, indexing and redirects
+- name: area:content
+  color: "c2e0c6"
+  description: Content modeling and writing
+- name: area:migration
+  color: "d4c5f9"
+  description: WordPress content, media and URL migration
+- name: area:devops
+  color: "0052cc"
+  description: Hosting, CI/CD, Cloudflare and environments
+- name: area:backend
+  color: "006b75"
+  description: NestJS API, forms, email and integrations
+- name: area:qa
+  color: "b60205"
+  description: Quality, testing, accessibility and launch checks
+- name: status:ready
+  color: "0e8a16"
+  description: Ready to start
+- name: status:blocked
+  color: "b60205"
+  description: Blocked by dependency or decision
+- name: status:review
+  color: "fbca04"
+  description: Awaiting review
+- name: status:approved
+  color: "5319e7"
+  description: Accepted by the Lead Architect
+- name: priority:critical
+  color: "b60205"
+  description: Launch-critical or blocks major work
+- name: priority:high
+  color: "d93f0b"
+  description: High priority
+- name: priority:medium
+  color: "fbca04"
+  description: Medium priority
+- name: priority:low
+  color: "cfd3d7"
+  description: Low priority
+- name: type:feature
+  color: "1d76db"
+  description: Implementation feature
+- name: type:decision
+  color: "5319e7"
+  description: Architecture or product decision
+- name: type:bug
+  color: "d73a4a"
+  description: Defect or regression
+- name: type:research
+  color: "f9d0c4"
+  description: Research, audit or specification work
+- name: type:migration
+  color: "d4c5f9"
+  description: Migration task
+
