@@ -6,6 +6,8 @@ The Lead Architect owns the technical direction of the Omaya Travel rebuild and 
 
 Specialist recommendations are treated as proposals until approved in `docs/DECISIONS.md` or in an ADR under `docs/adr/`.
 
+Architecture Decision Records are required for decisions that affect multiple experts or create long-lived constraints. See `docs/ADR_GUIDELINES.md`.
+
 Implementation teams work from architect-approved specification files, not from raw specialist proposals. See `docs/SPECIFICATION_WORKFLOW.md`.
 
 GitHub Issues are the project work-order system. Every meaningful task must have an issue before implementation begins. See `docs/GITHUB_ISSUES_WORK_ORDERS.md`.
@@ -22,6 +24,7 @@ Pull requests are the review and approval channel for specialist handoffs and im
 - Treat SEO migration as a launch-critical workstream, not a cleanup task.
 - Optimize image-heavy pages from the beginning.
 - Defer features that create permanent maintenance cost without launch value.
+- Record cross-expert decisions in ADRs so accepted decisions are not repeatedly debated without new evidence.
 
 ## Proposal intake process
 
@@ -59,3 +62,16 @@ Every major technical change must answer:
 - Does it alter public URLs or canonical metadata?
 - Does it increase maintenance cost after launch?
 - Is there a rollback path?
+
+## ADR trigger checklist
+
+Create or update an ADR when the change affects:
+
+- Multiple experts or workstreams.
+- Public URLs, redirects, canonical URLs or structured data.
+- Rendering mode, hosting, caching or deployment.
+- Content representation, validation or migration.
+- API contracts, authentication, rate limits or persistence.
+- Media storage, transformations or URL conventions.
+- Security, privacy, analytics or compliance.
+- Third-party services, paid services or major dependencies.

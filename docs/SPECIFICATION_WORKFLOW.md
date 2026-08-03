@@ -100,6 +100,7 @@ Each approved specification must include:
 - Files or modules expected to be touched.
 - Acceptance criteria.
 - Dependencies and blocked items.
+- Relevant expert-to-expert contracts from `docs/INTERFACE_CONTRACTS.md`.
 
 ## Approval states
 

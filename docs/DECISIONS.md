@@ -3,6 +3,8 @@
 No specialist recommendation is accepted until it appears here with status `Accepted`
 or is captured in a full ADR under `docs/adr/`.
 
+Use `docs/ADR_GUIDELINES.md` when creating or reviewing ADRs.
+
 ## Decision statuses
 
 - `Proposed`: Under review. Do not implement as a project standard.
@@ -43,4 +45,3 @@ or is captured in a full ADR under `docs/adr/`.
 | Proposal | Source file | Status | Architect verdict | Required follow-up |
 | --- | --- | --- | --- | --- |
 | Homepage UX handoff | `docs/HANDOFFS.md` | Proposed | Not accepted yet because it lists deliverables but not enough implementation-ready detail. | UX specialist must provide section order, mobile navigation behavior, CTA hierarchy and tour-card behavior in a spec file. |
-

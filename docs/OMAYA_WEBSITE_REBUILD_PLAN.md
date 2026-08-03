@@ -1229,6 +1229,7 @@ The following documents govern implementation:
 
 - `docs/ARCHITECTURE_GOVERNANCE.md` defines how specialist proposals become accepted decisions.
 - `docs/DECISIONS.md` is the ADR index and decision approval log.
+- `docs/ADR_GUIDELINES.md` defines when ADRs are required and how they are written.
 - `docs/INTERFACE_CONTRACTS.md` defines boundaries between content, website, API, media and SEO.
 - `docs/RISK_REGISTER.md` tracks project risks and mitigations.
 - `docs/IMPLEMENTATION_ORDER.md` defines the approved build sequence.

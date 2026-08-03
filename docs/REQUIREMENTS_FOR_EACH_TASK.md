@@ -37,3 +37,7 @@ Before opening the PR, confirm:
 - The output file follows the naming convention.
 - Any proposed architecture change is clearly marked.
 - Blockers and questions for the Lead Architect are explicit.
+
+If your recommendation affects multiple experts, routes, rendering, content models, APIs, media, hosting, caching, SEO, security, privacy, analytics, dependencies or costs, include a `Proposed architecture change` section and request an ADR review.
+
+When handing work to another expert, satisfy the relevant contract in `docs/INTERFACE_CONTRACTS.md`.
