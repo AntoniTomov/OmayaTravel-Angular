@@ -40,6 +40,7 @@ Required to pass:
 
 - Current WordPress website audit.
 - Hosting capability confirmation for Hostinger and Cloudflare.
+- DevOps hosting, deployment and worldwide delivery playbook drafted in `docs/devops/HOSTING_DEPLOYMENT_EDGE_DELIVERY.md`.
 - Media delivery decision between Cloudflare R2 transformations and Cloudflare Images.
 - Specialist proposal intake and review.
 - Live GitHub issue creation completed for the initial backlog.
@@ -56,11 +57,12 @@ Required to pass:
 1. Crawl and inventory `https://omayatravel.com`.
 2. Export or otherwise collect WordPress pages, posts, media, metadata and redirects.
 3. Confirm Hostinger plan capabilities for Angular SSR and NestJS.
-4. Confirm media pricing/feature choice.
-5. Request full UX spec files for homepage, navigation, tour cards and tour details.
-6. Convert accepted specialist proposals into ADRs or implementation tasks.
-7. Sync GitHub label colors and descriptions from `.github/labels.yml`.
-8. Create the first specialist PRs for SEO URL inventory, Hostinger/Cloudflare feasibility and QA launch checklist.
+4. Review and approve or revise `docs/devops/HOSTING_DEPLOYMENT_EDGE_DELIVERY.md`.
+5. Confirm media pricing/feature choice.
+6. Request full UX spec files for homepage, navigation, tour cards and tour details.
+7. Convert accepted specialist proposals into ADRs or implementation tasks.
+8. Sync GitHub label colors and descriptions from `.github/labels.yml`.
+9. Create the first specialist PRs for SEO URL inventory, Hostinger/Cloudflare feasibility and QA launch checklist.
 
 ## Owners
 
