@@ -55,7 +55,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 - Recommendation: `.gitignore` excludes `.migration-local/` to reduce the chance of committing private exports or bulky media.
 - Recommendation: `scripts/migration/Inventory-WordPressExport.ps1` inventories WordPress export content and local media files.
-- Recommendation: `docs/audits/wordpress-export-and-media-runbook.md` documents the workflow, boundaries, reports and open decisions.
+- Recommendation: `docs/content-migration/wordpress-export-and-media-runbook.md` documents the workflow, boundaries, reports and open decisions.
 
 ## Decisions requested
 
