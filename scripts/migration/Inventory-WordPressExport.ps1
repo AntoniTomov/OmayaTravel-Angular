@@ -24,15 +24,41 @@ function New-DirectoryIfMissing {
 function Get-NodeText {
   param(
     [System.Xml.XmlNode]$Node,
-    [string]$Name
+    [string]$Name,
+    [string]$NamespaceUri = ""
   )
 
-  $child = $Node.ChildNodes | Where-Object { $_.LocalName -eq $Name } | Select-Object -First 1
+  $child = $Node.ChildNodes |
+    Where-Object {
+      $_.LocalName -eq $Name -and
+      ([string]::IsNullOrWhiteSpace($NamespaceUri) -or $_.NamespaceURI -eq $NamespaceUri)
+    } |
+    Select-Object -First 1
   if ($null -eq $child) {
     return ""
   }
 
   return [System.Net.WebUtility]::HtmlDecode($child.InnerText.Trim())
+}
+
+function Get-CompatibleRelativePath {
+  param(
+    [string]$BasePath,
+    [string]$TargetPath
+  )
+
+  $baseFullPath = (Resolve-Path -LiteralPath $BasePath).Path
+  $targetFullPath = (Resolve-Path -LiteralPath $TargetPath).Path
+
+  if (-not $baseFullPath.EndsWith([System.IO.Path]::DirectorySeparatorChar)) {
+    $baseFullPath = $baseFullPath + [System.IO.Path]::DirectorySeparatorChar
+  }
+
+  $baseUri = [System.Uri]::new($baseFullPath)
+  $targetUri = [System.Uri]::new($targetFullPath)
+  $relativeUri = $baseUri.MakeRelativeUri($targetUri)
+
+  return [System.Uri]::UnescapeDataString($relativeUri.ToString()).Replace("/", [System.IO.Path]::DirectorySeparatorChar)
 }
 
 function Get-PostMetaValues {
@@ -48,9 +74,9 @@ function Get-PostMetaValues {
 
   $metaNodes = $Item.ChildNodes | Where-Object { $_.LocalName -eq "postmeta" }
   foreach ($metaNode in $metaNodes) {
-    $metaKey = Get-NodeText -Node $metaNode -Name "meta_key"
+    $metaKey = Get-NodeText -Node $metaNode -Name "meta_key" -NamespaceUri "http://wordpress.org/export/1.2/"
     if ($Keys -contains $metaKey) {
-      $values[$metaKey] = Get-NodeText -Node $metaNode -Name "meta_value"
+      $values[$metaKey] = Get-NodeText -Node $metaNode -Name "meta_value" -NamespaceUri "http://wordpress.org/export/1.2/"
     }
   }
 
@@ -147,20 +173,20 @@ $internalLinks = New-Object System.Collections.Generic.List[object]
 $seoPostmeta = New-Object System.Collections.Generic.List[object]
 
 foreach ($item in $items) {
-  $postId = Get-NodeText -Node $item -Name "post_id"
-  $postType = Get-NodeText -Node $item -Name "post_type"
-  $status = Get-NodeText -Node $item -Name "status"
+  $postId = Get-NodeText -Node $item -Name "post_id" -NamespaceUri "http://wordpress.org/export/1.2/"
+  $postType = Get-NodeText -Node $item -Name "post_type" -NamespaceUri "http://wordpress.org/export/1.2/"
+  $status = Get-NodeText -Node $item -Name "status" -NamespaceUri "http://wordpress.org/export/1.2/"
   $title = Get-NodeText -Node $item -Name "title"
-  $slug = Get-NodeText -Node $item -Name "post_name"
+  $slug = Get-NodeText -Node $item -Name "post_name" -NamespaceUri "http://wordpress.org/export/1.2/"
   $link = Get-NodeText -Node $item -Name "link"
   $pubDate = Get-NodeText -Node $item -Name "pubDate"
-  $postDate = Get-NodeText -Node $item -Name "post_date"
-  $postModified = Get-NodeText -Node $item -Name "post_modified"
-  $parent = Get-NodeText -Node $item -Name "post_parent"
-  $creator = Get-NodeText -Node $item -Name "creator"
-  $encodedContent = Get-NodeText -Node $item -Name "encoded"
-  $excerpt = Get-NodeText -Node $item -Name "excerpt"
-  $attachmentUrl = Get-NodeText -Node $item -Name "attachment_url"
+  $postDate = Get-NodeText -Node $item -Name "post_date" -NamespaceUri "http://wordpress.org/export/1.2/"
+  $postModified = Get-NodeText -Node $item -Name "post_modified" -NamespaceUri "http://wordpress.org/export/1.2/"
+  $parent = Get-NodeText -Node $item -Name "post_parent" -NamespaceUri "http://wordpress.org/export/1.2/"
+  $creator = Get-NodeText -Node $item -Name "creator" -NamespaceUri "http://purl.org/dc/elements/1.1/"
+  $encodedContent = Get-NodeText -Node $item -Name "encoded" -NamespaceUri "http://purl.org/rss/1.0/modules/content/"
+  $excerpt = Get-NodeText -Node $item -Name "encoded" -NamespaceUri "http://wordpress.org/export/1.2/excerpt/"
+  $attachmentUrl = Get-NodeText -Node $item -Name "attachment_url" -NamespaceUri "http://wordpress.org/export/1.2/"
   $seo = Get-PostMetaValues -Item $item -Keys $seoKeys
 
   $urls = Get-ContentUrls -Html $encodedContent
@@ -243,7 +269,7 @@ if (-not [string]::IsNullOrWhiteSpace($MediaRoot) -and (Test-Path -LiteralPath $
   $files = Get-ChildItem -LiteralPath $mediaRootFullPath -Recurse -File
 
   foreach ($file in $files) {
-    $relativePath = [System.IO.Path]::GetRelativePath($mediaRootFullPath, $file.FullName)
+    $relativePath = Get-CompatibleRelativePath -BasePath $mediaRootFullPath -TargetPath $file.FullName
     $hash = Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256
     $dimensions = Get-ImageDimensions -Path $file.FullName
 
