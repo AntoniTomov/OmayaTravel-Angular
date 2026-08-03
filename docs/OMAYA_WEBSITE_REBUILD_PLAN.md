@@ -1241,5 +1241,6 @@ The following documents govern implementation:
 - `docs/MILESTONE_GATES.md` defines approval gates for architecture, design, vertical slice, migration and launch.
 - `docs/CODEX_AUTOMATION.md` defines how Codex should implement from approved issues and specs.
 - `docs/CONSISTENCY_CHECKS.md` defines automated validation rules to add to CI.
+- `docs/devops/HOSTING_DEPLOYMENT_EDGE_DELIVERY.md` defines the proposed hosting, deployment, Cloudflare delivery, launch and rollback playbook.
 
 No specialist recommendation becomes an accepted project decision until it is recorded and approved in the decision log or in a full ADR.
