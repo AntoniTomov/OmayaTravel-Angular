@@ -4,6 +4,8 @@ Requester: <!-- e.g. Angular Wizard, UI/UX Expert, SEO Expert, Migration Expert,
 
 I will check this PR for comments at least once per hour while it is open: <!-- yes/no -->
 
+I have informed the Lead Architect that this PR is ready for review: <!-- yes/no -->
+
 ## Linked issue
 
 Closes #
@@ -35,6 +37,10 @@ Closes #
 ## Verification performed
 
 <!-- Commands run, manual checks, screenshots, generated reports, or "Not run" with reason. -->
+
+## Review notification status
+
+<!-- After resolving Architect comments, leave a PR conversation comment and update this if useful. Example: "Architect comments resolved in commit abc123; ready for re-review." -->
 
 ## Acceptance criteria
 
