@@ -8,6 +8,20 @@ Phase 0: Discovery and audit
 
 Milestone 0: Discovery and control plane
 
+## Next approval gate
+
+Gate 1: Architecture Ready
+
+Required to pass:
+
+- Repository structure approved.
+- Rendering strategy approved.
+- Content strategy approved.
+- Hosting feasibility confirmed.
+- Media strategy approved.
+- Initial ADR set current.
+- GitHub issue workflow active.
+
 ## Completed work
 
 - Master rebuild plan created.
@@ -18,6 +32,9 @@ Milestone 0: Discovery and control plane
 - Initial risk register created.
 - Approved implementation order created.
 - GitHub Issues work-order policy and initial issue backlog created.
+- Expert PR handoff workflow created.
+- ADR guidelines created.
+- Expert-to-expert interface contracts created.
 
 ## Work in progress
 
@@ -43,6 +60,7 @@ Milestone 0: Discovery and control plane
 5. Request full UX spec files for homepage, navigation, tour cards and tour details.
 6. Convert accepted specialist proposals into ADRs or implementation tasks.
 7. Sync GitHub label colors and descriptions from `.github/labels.yml`.
+8. Create the first specialist PRs for SEO URL inventory, Hostinger/Cloudflare feasibility and QA launch checklist.
 
 ## Owners
 
@@ -68,3 +86,15 @@ Milestone 0: Discovery and control plane
 ## Latest accepted decisions
 
 See `docs/DECISIONS.md`.
+
+## Active work orders
+
+| Issue | Task | Expert | Status | Depends on |
+| --- | --- | --- | --- | --- |
+| #2 | Inventory current WordPress URLs | SEO | Ready | None |
+| #3 | Confirm Hostinger and Cloudflare deployment constraints | DevOps | Ready | None |
+| #4 | Approve media delivery strategy | Architecture | Blocked | #3 |
+| #5 | Approve final route and redirect strategy | Architecture | Blocked | #2 |
+| #6 | Export WordPress content and media inventory | Migration | Blocked | #2 |
+| #7 | Initialize pnpm monorepo workspace | DevOps | Blocked | #3 |
+| #20 | Define launch quality checklist | QA | Ready | None |

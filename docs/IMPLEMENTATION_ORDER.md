@@ -2,6 +2,32 @@
 
 This is the approved implementation sequence. Do not promote a specialist task into active development until its dependencies are satisfied.
 
+Use `docs/MILESTONE_GATES.md` to decide when a milestone is ready to close.
+
+## Dependency-based execution model
+
+Do not ask every expert to work simultaneously from day one.
+
+Preferred sequence:
+
+1. Architect defines foundations.
+2. SEO and migration audit the current site.
+3. UI/UX defines page experience.
+4. Architect approves page specification.
+5. Content expert prepares content model and data.
+6. Angular expert implements.
+7. Backend expert implements dynamic functions.
+8. DevOps deploys the vertical slice.
+9. SEO validates rendered output.
+10. QA verifies acceptance criteria.
+11. Architect closes the milestone.
+
+Allowed parallel work:
+
+- SEO audit and content inventory may run in parallel before route approval.
+- UI design and content model work may run in parallel before Angular implementation.
+- Backend enquiry API and frontend enquiry form work may run in parallel before integrated form testing, once the API contract is approved.
+
 ## Milestone 0: Discovery and control plane
 
 Status: Active
@@ -18,6 +44,7 @@ Exit criteria:
 - Redirect draft exists.
 - Hosting decision is accepted or fallback is chosen.
 - Initial route map is approved.
+- Gate 1 requirements are satisfied or explicitly deferred by the Lead Architect.
 
 ## Milestone 1: Repository foundation
 
@@ -34,6 +61,7 @@ Status: Pending
 Dependencies:
 
 - Milestone 0 hosting constraints known.
+- Gate 1 architecture readiness.
 
 ## Milestone 2: Content and SEO foundation
 
@@ -49,6 +77,7 @@ Status: Pending
 Dependencies:
 
 - Milestone 1 workspace exists.
+- Approved content-model work order.
 
 ## Milestone 3: Site shell and design system
 
@@ -64,6 +93,7 @@ Dependencies:
 
 - Brand direction and typography confirmed.
 - Content models stable enough for cards and navigation.
+- Gate 2 design readiness for any page-specific implementation.
 
 ## Milestone 4: First vertical slice
 
@@ -81,6 +111,7 @@ Dependencies:
 
 - Milestones 1, 2 and 3.
 - Media decision accepted.
+- Gate 3 closes after this milestone is deployed and verified.
 
 ## Milestone 5: Forms and API
 
@@ -98,6 +129,7 @@ Dependencies:
 - Email provider chosen.
 - Turnstile keys available.
 - API deployment target confirmed.
+- Approved API contract.
 
 ## Milestone 6: Content buildout and migration
 
@@ -115,6 +147,7 @@ Dependencies:
 
 - WordPress export and media backup.
 - Final content models.
+- Gate 4 migration readiness.
 
 ## Milestone 7: Launch readiness
 
@@ -132,4 +165,4 @@ Status: Pending
 Dependencies:
 
 - Milestone 6 complete.
-
+- Gate 5 launch readiness.

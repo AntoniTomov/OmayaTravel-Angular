@@ -1,12 +1,14 @@
 # Specification Workflow
 
-Specialists communicate through files. The Lead Architect turns specialist proposals into one approved implementation specification.
+Specialists communicate through files, issues and pull requests. The Lead Architect turns reviewed specialist proposals into one approved implementation specification.
 
 ## Core rule
 
 Implementation teams must build only from approved specifications.
 
 Specialist proposal files are inputs. They are not implementation contracts.
+
+Specialist proposal files should arrive through pull requests. A proposal merged to `develop` is accepted as an input for architecture review; it is still not an implementation contract until the Lead Architect produces the matching `*-approved.md` file.
 
 ## File pattern
 
@@ -41,6 +43,35 @@ apps/website/src/app/features/tours/
 
 The Angular expert should not interpret conflicting specialist recommendations. If the approved spec is unclear, implementation pauses and the question goes back to the Lead Architect.
 
+## Pull request flow
+
+```text
+Specialist issue
+        |
+        v
+Specialist branch from develop
+        |
+        v
+Proposal file
+        |
+        v
+Pull request to develop
+        |
+        v
+Architect review
+        |
+        v
+Proposal merged as accepted input
+        |
+        v
+Architect-approved specification
+        |
+        v
+Implementation issue becomes ready
+```
+
+See `docs/EXPERT_WORKFLOW.md` for the full expert workflow.
+
 ## Specialist proposal rules
 
 Specialist files must:
@@ -69,6 +100,7 @@ Each approved specification must include:
 - Files or modules expected to be touched.
 - Acceptance criteria.
 - Dependencies and blocked items.
+- Relevant expert-to-expert contracts from `docs/INTERFACE_CONTRACTS.md`.
 
 ## Approval states
 
@@ -86,4 +118,3 @@ Each approved specification must include:
 | UX wants many above-the-fold images, performance wants smaller payload | Keep one prioritized hero image and lazy-load supporting media. |
 | Backend proposes database-backed content, architecture says Git-managed content | Reject database for v1 content unless operational data requires it. |
 | SEO wants indexable filters, frontend wants client-only filters | Use prerendered landing/category pages for valuable indexable combinations and client filters for exploratory combinations. |
-

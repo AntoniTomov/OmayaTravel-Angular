@@ -6,9 +6,17 @@ The Lead Architect owns the technical direction of the Omaya Travel rebuild and 
 
 Specialist recommendations are treated as proposals until approved in `docs/DECISIONS.md` or in an ADR under `docs/adr/`.
 
+Architecture Decision Records are required for decisions that affect multiple experts or create long-lived constraints. See `docs/ADR_GUIDELINES.md`.
+
 Implementation teams work from architect-approved specification files, not from raw specialist proposals. See `docs/SPECIFICATION_WORKFLOW.md`.
 
 GitHub Issues are the project work-order system. Every meaningful task must have an issue before implementation begins. See `docs/GITHUB_ISSUES_WORK_ORDERS.md`.
+
+Pull requests are the review and approval channel for specialist handoffs and implementation work. See `docs/EXPERT_WORKFLOW.md`.
+
+Milestone gates define when phases may close. See `docs/MILESTONE_GATES.md`.
+
+Automated consistency checks should enforce content, route, redirect, media, SEO, schema and environment rules as the codebase matures. See `docs/CONSISTENCY_CHECKS.md`.
 
 ## Operating principles
 
@@ -20,18 +28,21 @@ GitHub Issues are the project work-order system. Every meaningful task must have
 - Treat SEO migration as a launch-critical workstream, not a cleanup task.
 - Optimize image-heavy pages from the beginning.
 - Defer features that create permanent maintenance cost without launch value.
+- Record cross-expert decisions in ADRs so accepted decisions are not repeatedly debated without new evidence.
 
 ## Proposal intake process
 
-1. Specialist creates or updates a Markdown proposal using `docs/REQUIREMENTS_FOR_EACH_TASK.md`.
-2. Proposal is added to `docs/HANDOFFS.md` with status `Received`.
-3. Lead Architect reviews for scope, dependencies, contradictions, cost, security, SEO and implementation impact.
-4. Lead Architect combines relevant specialist proposals into `docs/specifications/[feature]-approved.md`.
-5. Verdict is recorded as `Accepted`, `Accepted with changes`, `Rejected` or `Deferred`.
-6. Any architectural change is recorded in `docs/DECISIONS.md` or a full ADR.
-7. Implementation tasks are added to `docs/IMPLEMENTATION_ORDER.md` only after approval.
-8. A GitHub issue is created or updated with labels, dependencies, blockers and acceptance criteria.
-9. Implementers use the approved specification and linked GitHub issue as the single source of truth.
+1. A GitHub issue is created or updated with labels, dependencies, blockers and acceptance criteria.
+2. Specialist creates a branch from `develop`.
+3. Specialist creates or updates a Markdown proposal using `docs/REQUIREMENTS_FOR_EACH_TASK.md`.
+4. Specialist opens a pull request back to `develop`.
+5. Proposal is added to `docs/HANDOFFS.md` with status `Received` or `Review`.
+6. Lead Architect reviews the PR for scope, dependencies, contradictions, cost, security, SEO and implementation impact.
+7. Verdict is recorded as `Accepted`, `Accepted with changes`, `Rejected` or `Deferred`.
+8. Any architectural change is recorded in `docs/DECISIONS.md` or a full ADR.
+9. Lead Architect combines relevant specialist proposals into `docs/specifications/[feature]-approved.md`.
+10. Implementation tasks are added to `docs/IMPLEMENTATION_ORDER.md` only after approval.
+11. Implementers use the approved specification and linked GitHub issue as the single source of truth.
 
 ## Contradiction resolution rules
 
@@ -55,3 +66,16 @@ Every major technical change must answer:
 - Does it alter public URLs or canonical metadata?
 - Does it increase maintenance cost after launch?
 - Is there a rollback path?
+
+## ADR trigger checklist
+
+Create or update an ADR when the change affects:
+
+- Multiple experts or workstreams.
+- Public URLs, redirects, canonical URLs or structured data.
+- Rendering mode, hosting, caching or deployment.
+- Content representation, validation or migration.
+- API contracts, authentication, rate limits or persistence.
+- Media storage, transformations or URL conventions.
+- Security, privacy, analytics or compliance.
+- Third-party services, paid services or major dependencies.
