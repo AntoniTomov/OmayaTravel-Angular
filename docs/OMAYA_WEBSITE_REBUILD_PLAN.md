@@ -1238,5 +1238,8 @@ The following documents govern implementation:
 - `docs/GITHUB_ISSUES_WORK_ORDERS.md` defines GitHub Issues as the work-order system.
 - `docs/ISSUE_BACKLOG.md` lists the initial issues to create when the GitHub repository is configured.
 - `docs/EXPERT_WORKFLOW.md` defines the issue, branch, file and pull-request workflow for all specialists and implementers.
+- `docs/MILESTONE_GATES.md` defines approval gates for architecture, design, vertical slice, migration and launch.
+- `docs/CODEX_AUTOMATION.md` defines how Codex should implement from approved issues and specs.
+- `docs/CONSISTENCY_CHECKS.md` defines automated validation rules to add to CI.
 
 No specialist recommendation becomes an accepted project decision until it is recorded and approved in the decision log or in a full ADR.

@@ -125,3 +125,18 @@ The initial work-order issues have been created in this repository.
 - `develop` is merged to `master` only when the project owner approves release readiness.
 
 See `docs/EXPERT_WORKFLOW.md` for branch naming and PR expectations.
+
+## Codex-ready issues
+
+Implementation issues should include enough context for Codex to work safely:
+
+- Exact issue objective.
+- Approved specification files to read first.
+- Relevant ADRs.
+- Constraints.
+- Files or modules expected to change.
+- Files, contracts or architecture areas that must not change.
+- Required verification commands.
+- What unresolved issues must be documented in the PR.
+
+See `docs/CODEX_AUTOMATION.md`.

@@ -14,6 +14,10 @@ GitHub Issues are the project work-order system. Every meaningful task must have
 
 Pull requests are the review and approval channel for specialist handoffs and implementation work. See `docs/EXPERT_WORKFLOW.md`.
 
+Milestone gates define when phases may close. See `docs/MILESTONE_GATES.md`.
+
+Automated consistency checks should enforce content, route, redirect, media, SEO, schema and environment rules as the codebase matures. See `docs/CONSISTENCY_CHECKS.md`.
+
 ## Operating principles
 
 - Prefer the simplest architecture that meets performance, SEO, security and maintainability requirements.
