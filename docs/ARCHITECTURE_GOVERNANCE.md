@@ -10,6 +10,8 @@ Implementation teams work from architect-approved specification files, not from 
 
 GitHub Issues are the project work-order system. Every meaningful task must have an issue before implementation begins. See `docs/GITHUB_ISSUES_WORK_ORDERS.md`.
 
+Pull requests are the review and approval channel for specialist handoffs and implementation work. See `docs/EXPERT_WORKFLOW.md`.
+
 ## Operating principles
 
 - Prefer the simplest architecture that meets performance, SEO, security and maintainability requirements.
@@ -23,15 +25,17 @@ GitHub Issues are the project work-order system. Every meaningful task must have
 
 ## Proposal intake process
 
-1. Specialist creates or updates a Markdown proposal using `docs/REQUIREMENTS_FOR_EACH_TASK.md`.
-2. Proposal is added to `docs/HANDOFFS.md` with status `Received`.
-3. Lead Architect reviews for scope, dependencies, contradictions, cost, security, SEO and implementation impact.
-4. Lead Architect combines relevant specialist proposals into `docs/specifications/[feature]-approved.md`.
-5. Verdict is recorded as `Accepted`, `Accepted with changes`, `Rejected` or `Deferred`.
-6. Any architectural change is recorded in `docs/DECISIONS.md` or a full ADR.
-7. Implementation tasks are added to `docs/IMPLEMENTATION_ORDER.md` only after approval.
-8. A GitHub issue is created or updated with labels, dependencies, blockers and acceptance criteria.
-9. Implementers use the approved specification and linked GitHub issue as the single source of truth.
+1. A GitHub issue is created or updated with labels, dependencies, blockers and acceptance criteria.
+2. Specialist creates a branch from `develop`.
+3. Specialist creates or updates a Markdown proposal using `docs/REQUIREMENTS_FOR_EACH_TASK.md`.
+4. Specialist opens a pull request back to `develop`.
+5. Proposal is added to `docs/HANDOFFS.md` with status `Received` or `Review`.
+6. Lead Architect reviews the PR for scope, dependencies, contradictions, cost, security, SEO and implementation impact.
+7. Verdict is recorded as `Accepted`, `Accepted with changes`, `Rejected` or `Deferred`.
+8. Any architectural change is recorded in `docs/DECISIONS.md` or a full ADR.
+9. Lead Architect combines relevant specialist proposals into `docs/specifications/[feature]-approved.md`.
+10. Implementation tasks are added to `docs/IMPLEMENTATION_ORDER.md` only after approval.
+11. Implementers use the approved specification and linked GitHub issue as the single source of truth.
 
 ## Contradiction resolution rules
 

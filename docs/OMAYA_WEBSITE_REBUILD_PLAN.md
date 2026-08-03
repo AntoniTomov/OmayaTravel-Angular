@@ -1236,5 +1236,6 @@ The following documents govern implementation:
 - `docs/SPECIFICATION_WORKFLOW.md` defines how specialist proposal files become one approved implementation specification.
 - `docs/GITHUB_ISSUES_WORK_ORDERS.md` defines GitHub Issues as the work-order system.
 - `docs/ISSUE_BACKLOG.md` lists the initial issues to create when the GitHub repository is configured.
+- `docs/EXPERT_WORKFLOW.md` defines the issue, branch, file and pull-request workflow for all specialists and implementers.
 
 No specialist recommendation becomes an accepted project decision until it is recorded and approved in the decision log or in a full ADR.

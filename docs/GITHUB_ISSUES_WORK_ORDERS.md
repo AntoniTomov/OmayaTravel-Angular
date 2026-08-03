@@ -5,6 +5,8 @@ GitHub Issues are the execution system for the Omaya Travel rebuild.
 Every meaningful task must have one GitHub issue before implementation begins.
 Docs can describe strategy, but Issues own work assignment, status, dependencies and completion tracking.
 
+Pull requests are the review channel for those issues. Specialist proposals, approved specifications and implementation work should all arrive through PRs into `develop`.
+
 ## Required labels
 
 ### Area
@@ -87,6 +89,8 @@ Only the Lead Architect can move architecture, approved specification or major i
 - Specialist proposal issues produce proposal files, not implementation instructions.
 - Approved specification issues produce `docs/specifications/*-approved.md`.
 - Implementation issues must link to one approved specification.
+- Every specialist proposal, approved specification and implementation change should have a PR linked to its issue.
+- Specialist proposal PRs are reviewed as inputs; implementation PRs are reviewed against approved specs.
 - Architecture decisions must link to `docs/DECISIONS.md` or a full ADR.
 - Migration issues must identify source URLs, target routes and redirect requirements.
 - QA issues must identify the exact checks, tools and pass/fail criteria.
@@ -111,3 +115,13 @@ AntoniTomov/OmayaTravel-Angular
 ```
 
 The initial work-order issues have been created in this repository.
+
+## Branch policy
+
+- `develop` is the active integration branch.
+- `master` is the stable release branch.
+- Specialist, architecture, migration, QA and feature branches are created from `develop`.
+- Pull requests target `develop` during rebuild work.
+- `develop` is merged to `master` only when the project owner approves release readiness.
+
+See `docs/EXPERT_WORKFLOW.md` for branch naming and PR expectations.
