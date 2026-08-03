@@ -144,12 +144,12 @@ Allowed in Git:
 - Media metadata and content references.
 - Migration mapping reports after privacy review, if the Architect approves committing them.
 
-## Image Metadata Contract
+## Media Metadata Contract
 
-Every meaningful image reference consumed by Angular should include:
+Every meaningful media reference consumed by Angular must use the approved `MediaReference` contract from ADR-012 and `docs/specifications/core-content-models-approved.md`:
 
 ```typescript
-export interface ImageReference {
+export interface MediaReference {
   key: string;
   alt: string;
   width: number;
@@ -159,8 +159,7 @@ export interface ImageReference {
     x: number;
     y: number;
   };
-  sourceWordPressUrl?: string;
-  contentHash?: string;
+  sourceUrl?: string;
 }
 ```
 
@@ -171,7 +170,9 @@ Required fields:
 - `width`
 - `height`
 
-`sourceWordPressUrl` and `contentHash` are recommended for migration evidence and duplicate detection but do not need to be rendered publicly.
+`sourceUrl` may hold the old WordPress media URL during migration. Do not introduce `sourceWordPressUrl` as a separate Angular/public content field.
+
+Content hashes are useful for duplicate detection and migration verification, but they belong in migration manifests or media inventory reports, not in the public `MediaReference` contract unless a later ADR changes the model.
 
 ## Allowed Variants
 
@@ -352,7 +353,7 @@ Angular should receive:
 - Final transformation URL builder convention.
 - Width allowlist.
 - Quality defaults by image use.
-- Required `ImageReference` fields.
+- Required `MediaReference` fields.
 - Loading rules:
   - hero/LCP images eager and prioritized
   - below-fold images lazy
@@ -378,6 +379,7 @@ Migration should produce:
 - Original-vs-derivative classification.
 - Width and height for each accepted original.
 - Alt text, caption and source ownership notes where available.
+- Media inventory fields such as `contentHash`, byte size, derivative guess and duplicate group outside the public content contract.
 - List of missing alt text for manual review.
 - Upload manifest for staging and production.
 - Rejected media report for thumbnails, duplicates, broken files and unsafe/private files.
