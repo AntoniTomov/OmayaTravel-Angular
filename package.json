@@ -1,0 +1,17 @@
+{
+  "name": "omaya-travel-angular",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Omaya Travel Angular rebuild monorepo.",
+  "packageManager": "pnpm@10.11.1",
+  "scripts": {
+    "build": "node -e \"console.log('No build targets configured yet.')\"",
+    "lint": "node -e \"console.log('No lint targets configured yet.')\"",
+    "type-check": "node -e \"console.log('No type-check targets configured yet.')\"",
+    "test": "node -e \"console.log('No test targets configured yet.')\""
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  }
+}
