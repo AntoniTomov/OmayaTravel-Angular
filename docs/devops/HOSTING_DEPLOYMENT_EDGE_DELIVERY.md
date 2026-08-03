@@ -174,7 +174,18 @@ Preferred rendering split:
 
 For v1, prefer all public SEO pages as prerendered/static files deployed to Hostinger.
 
-Angular client-side routing needs an Apache fallback so direct visits and refreshes on Angular routes do not return `404`:
+Angular client-side routing may need an Apache fallback so direct visits and refreshes on approved Angular routes do not return `404`.
+
+The fallback must be ordered after the approved #5 redirect map and after explicit missing-page handling. It must not turn unknown URLs, old WordPress utility URLs or mistyped paths into soft-200 responses that serve `index.html`.
+
+Required order:
+
+1. Canonical host and HTTPS normalization.
+2. Approved #5 single-hop redirects for old WordPress URLs.
+3. Explicit 404 handling for unknown, excluded or intentionally removed URLs.
+4. SPA fallback only for approved Angular client routes that are not emitted as physical prerendered files.
+
+Example fallback shape, to be finalized after #5:
 
 ```apache
 <IfModule mod_rewrite.c>
@@ -187,7 +198,15 @@ Angular client-side routing needs an Apache fallback so direct visits and refres
 </IfModule>
 ```
 
-The `.htaccess` file should be generated into or copied with the deployed Angular browser output.
+The `.htaccess` file should be generated into or copied with the deployed Angular browser output only after the final route/redirect strategy is approved.
+
+Deployment verification must prove:
+
+- approved Angular routes return the intended HTML
+- approved old URLs return the intended single-hop `301`
+- unknown URLs do not return `200 index.html`
+- excluded WordPress admin, preview, account, cart, checkout and plugin utility URLs do not become indexable soft-200 pages
+- the not-found page returns a real `404` status where Hostinger/Apache allows it
 
 ---
 
