@@ -133,14 +133,36 @@ Implementation experts must not interpret multiple conflicting specialist propos
 
 Every PR must include:
 
+- requester / expert role
 - linked issue number
 - summary of changes
 - files changed
+- expert role and handoff type
 - decisions requested, if any
 - dependencies
 - risks
 - acceptance criteria
 - testing or verification performed
+
+Use this format near the top of the PR body:
+
+```text
+Requester: Angular Wizard
+```
+
+Examples:
+
+```text
+Requester: UI/UX Expert
+Requester: SEO Expert
+Requester: Migration Expert
+Requester: DevOps Expert
+Requester: Backend Expert
+Requester: QA Expert
+Requester: Lead Architect
+```
+
+The requester is the expert role responsible for the PR, not necessarily the GitHub account that opened it.
 
 Specialist PRs must also state whether they include:
 
@@ -154,4 +176,3 @@ Specialist PRs must also state whether they include:
 Experts communicate durable project knowledge through files, issues and pull requests.
 
 Chat can clarify or coordinate, but chat is not the source of truth.
-
