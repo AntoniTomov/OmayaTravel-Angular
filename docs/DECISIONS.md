@@ -27,6 +27,7 @@ Use `docs/ADR_GUIDELINES.md` when creating or reviewing ADRs.
 | ADR-008 | Use pnpm workspace monorepo structure | Accepted | Lead Architect | 2026-08-03 | Master plan | Keep root workspace files synchronized. |
 | ADR-009 | Keep English as the v1 primary language | Accepted | Lead Architect | 2026-08-03 | Master plan | Add i18n only after business demand is confirmed. |
 | ADR-010 | Use Hostinger only if it supports the required Angular SSR/API deployment model cleanly | Proposed | Lead Architect | 2026-08-03 | Project brief | Must be confirmed during Phase 0. |
+| ADR-011 | Preserve high-value existing public URLs for v1 and redirect/exclude WordPress utility URLs | Accepted | Lead Architect | 2026-08-03 | Issue #5, PR #25, PR #28 | Do not normalize tour URLs to `/tours/` at launch. |
 
 ## Rejected or deferred complexity
 
