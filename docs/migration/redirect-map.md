@@ -8,7 +8,9 @@ Date: 2026-08-03
 ## Source Documents
 
 - `docs/specifications/routing-and-redirects-approved.md`
+- `docs/specifications/core-content-models-approved.md`
 - `docs/adr/ADR-011-public-routing-and-redirects.md`
+- `docs/adr/ADR-012-core-content-models.md`
 - `docs/audits/current-site-url-inventory.md`
 - `docs/audits/current-site-url-inventory.csv`
 
@@ -16,7 +18,24 @@ Date: 2026-08-03
 
 This file maps the current WordPress URL surface to the approved v1 public route strategy.
 
-It is not a Cloudflare, Hostinger, Angular or `.htaccess` configuration file. No structured redirect file is included because no Architect-approved redirect-file format exists yet.
+It is not a Cloudflare, Hostinger, Angular or `.htaccess` configuration file. No structured redirect file is included because the approved `content/redirects/` path becomes active only after #7 initializes the workspace.
+
+## Approved Redirect Model Alignment
+
+ADR-012 approves `RedirectRule` as the future normalized redirect contract:
+
+```ts
+export interface RedirectRule {
+  sourcePath: string;
+  targetPath?: string;
+  status: 301 | 302 | 404 | 410;
+  reason: string;
+}
+```
+
+When the workspace exists, this map should be translated into structured redirect records under the approved `content/redirects/` location. Permanent migrations use `301`, exclusions use `404` or `410` when approved, and redirect chains remain disallowed.
+
+Raw WordPress exports, Search Console exports, analytics exports and redirect-plugin exports must stay out of Git unless the Lead Architect approves a storage location.
 
 ## Global Redirect Rules
 
