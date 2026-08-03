@@ -116,23 +116,23 @@ These URLs were visible or route-sensitive in the audit, but the approved route 
 
 | Current URL | Outcome | Target | Notes |
 | --- | --- | --- | --- |
-| `/3122-2/` | `301` preferred | `/contact/` | Numeric slug for "Let's Create Your Ideal Tour"; redirect to `/contact/` unless a named private-tour enquiry page is approved. |
+| `/3122-2/` | `301` | `/contact/` | Numeric slug for "Let's Create Your Ideal Tour"; v1 redirects to `/contact/` unless a future approved enquiry route replaces it. |
 | `/not-yet-but-soon/` | `404` or noindex/exclude | None | Placeholder page; do not launch as indexable content. |
 | `/title-subtitle/` | `404` or noindex/exclude | None | Theme/demo utility page. |
-| `/blog-list/` | `404` or noindex/exclude | None | Redirect only if an approved blog listing route exists. |
-| `/blog-list-2/` | `404` or noindex/exclude | None | Duplicate/demo blog listing; redirect only if an approved blog listing route exists. |
-| `/blog-masonry/` | `404` or noindex/exclude | None | Demo blog listing; redirect only if an approved blog listing route exists. |
-| `/tour-item/` | `404` or noindex/exclude | None | Redirect only if an approved tour listing/category route exists. |
-| `/tour-list/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-list-2/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-list-carousel/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-list-gallery/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-list-masonry/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-list-standard-2/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-carousel/` | `404` or noindex/exclude | None | Demo tour listing; redirect only if an approved tour listing route exists. |
-| `/tour-filter/` | `404` or noindex/exclude | None | Filter page must not become a crawl trap. |
-| `/tour-search-page/` | `404` or noindex/exclude | None | Search results are not indexable v1 pages. |
-| `/tour-checkout/` | `301` preferred | `/contact/` | No booking checkout in v1; redirect to `/contact/` or future approved enquiry route. |
+| `/blog-list/` | `404` | None | Demo blog-list route; v1 excludes it unless Architecture later approves a real blog listing route. |
+| `/blog-list-2/` | `404` | None | Duplicate/demo blog-list route; v1 excludes it unless Architecture later approves a real blog listing route. |
+| `/blog-masonry/` | `404` | None | Demo blog-list route; v1 excludes it unless Architecture later approves a real blog listing route. |
+| `/tour-item/` | `404` | None | Empty WordPress tour archive; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-list/` | `404` | None | Demo tour-list route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-list-2/` | `404` | None | Demo tour-list route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-list-carousel/` | `404` | None | Demo tour-list route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-list-gallery/` | `404` | None | Demo tour-list route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-list-masonry/` | `404` | None | Demo tour-list route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-list-standard-2/` | `404` | None | Demo tour-list route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-carousel/` | `404` | None | Demo tour carousel route; v1 excludes it unless Architecture later approves a tours hub or indexable landing page. |
+| `/tour-filter/` | `404` | None | Filter page must not become a crawl trap; v1 excludes it unless Architecture later approves an indexable landing page. |
+| `/tour-search-page/` | `404` | None | Search results are not indexable v1 pages; v1 excludes it unless Architecture later approves an indexable search landing page. |
+| `/tour-checkout/` | `301` | `/contact/` | No checkout or booking flow is approved for v1; redirect to `/contact/` unless a future approved enquiry route replaces it. |
 | `/wp-content/uploads/2018/03/Sofia-City-Tour-Bulgaria.webp` | Media migration only | Media key TBD | Not a page route; keep or map through media migration, not Angular routing. |
 
 ## Category Exclusions
@@ -144,7 +144,7 @@ These URL categories must not return indexable `200` responses.
 | WordPress admin/login | `/wp-admin/`, `/wp-login.php*` | `404`, blocked response, or noindex exclusion; never sitemap. |
 | WordPress previews | `?preview=true`, `?preview_id=*` | `404` or noindex exclusion. |
 | Account/cart/shop/wishlist | `/cart/`, `/checkout/`, `/my-account/`, `/shop/`, `/wishlist/` | `404` unless a useful approved redirect target exists. |
-| Booking plugin pages | `/wp-booking-calendar-*`, `/wpbc-*`, `/calendar/`, `/calendar-2027/` | `404` unless redirected to `/contact/` or future approved enquiry route. |
+| Booking plugin pages | `/wp-booking-calendar-*`, `/wpbc-*`, `/calendar/`, `/calendar-2027/` | Default `404`; only exact high-value URLs with Search Console, analytics, internal-link or export evidence may redirect to `/contact/`. |
 | Theme/demo utility pages | `/accordions-and-toogles/`, `/blockquote/`, `/buttons/`, `/columns/`, `/dropcaps/`, `/headings/`, `/icon-list/`, `/icon-with-text/`, `/image-gallery/`, `/parallax-sections/`, `/progress-bar/`, `/separators/`, `/tabs/`, `/video-button/` | `404` unless Search Console proves value and Architect approves a target. |
 | Filtered tour URLs | `/tour-item/?type[]=...` and encoded equivalents | `301` to clean canonical when known; otherwise noindex or `404`. |
 | Unknown URLs | Any non-approved route | Real `404`; never homepage redirect. |
@@ -159,15 +159,15 @@ These URL categories must not return indexable `200` responses.
 | 4 | Hostinger fallback | Only after redirects and explicit 404 handling. |
 | 5 | Angular not-found route | Client navigation support only; not a substitute for server 404s. |
 
-## Architect Review Questions
+## Implementation-Critical V1 Decisions
 
-| Question | Reason |
-| --- | --- |
-| Is `/3122-2/` approved for immediate `301` to `/contact/`, or should it wait for a named private-tour enquiry route? | The approved spec allows either path depending on content model. |
-| Should `/tour-checkout/` redirect to `/contact/` now, or wait for a future enquiry route? | No booking checkout exists in v1. |
-| Is there an approved blog listing route for `/blog-list/`, `/blog-list-2/`, and `/blog-masonry/` redirects? | No blog listing public route is approved in the routing spec. |
-| Is there an approved tour listing route for the demo tour-list URLs? | No generic tour listing public route is approved in the routing spec. |
-| Should any booking/calendar utility URL redirect to `/contact/`, or should they all be excluded until enquiry flow is approved? | The spec allows useful redirects but does not name exact targets for all booking/plugin URLs. |
+| URL or category | V1 decision | Future change rule |
+| --- | --- | --- |
+| `/3122-2/` | `301` to `/contact/`. | May change only if a future approved enquiry route exists. |
+| `/tour-checkout/` | `301` to `/contact/`. | May change only if a future approved checkout, booking or enquiry route exists. |
+| Demo blog-list routes | `404`. | May change only if Architecture approves a real blog listing route. |
+| Demo tour-list, filter and search routes | `404`. | May change only if Architecture approves a tours hub or indexable landing page. |
+| Booking/calendar utility URLs | Default `404`. | Exact high-value URLs may redirect to `/contact/` only with Search Console, analytics, internal-link or export evidence. |
 
 ## Verification Checklist
 
