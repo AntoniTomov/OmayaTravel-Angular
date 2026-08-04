@@ -210,3 +210,5 @@ Specialist PRs must also state whether they include:
 Experts communicate durable project knowledge through files, issues and pull requests.
 
 Chat can clarify or coordinate, but chat is not the source of truth.
+
+Use `docs/EXPERT_COMMUNICATION_PROTOCOL.md` for the required low-token notification format, PR notification loop, hourly check rule and problematic PR escalation process.
