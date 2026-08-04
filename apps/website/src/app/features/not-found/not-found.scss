@@ -1,0 +1,17 @@
+.not-found {
+  display: grid;
+  min-height: 100svh;
+  place-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  color: #17211f;
+  background: #f6f1e8;
+}
+
+.not-found > * {
+  margin: 0;
+}
+
+.not-found a {
+  color: #0f5f57;
+}
