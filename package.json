@@ -5,12 +5,13 @@
   "description": "Omaya Travel Angular rebuild monorepo.",
   "packageManager": "pnpm@10.11.1",
   "scripts": {
-    "build": "node -e \"console.log('No build targets configured yet.')\"",
-    "lint": "node -e \"console.log('No lint targets configured yet.')\"",
-    "type-check": "node -e \"console.log('No type-check targets configured yet.')\"",
-    "test": "node -e \"console.log('No test targets configured yet.')\""
+    "build": "pnpm --dir apps/website run build",
+    "lint": "pnpm --filter website run format:check",
+    "type-check": "pnpm --dir apps/website run build --configuration development",
+    "test": "pnpm --dir apps/website run test"
   },
   "engines": {
+    "node": ">=22.22.3",
     "pnpm": ">=10.0.0"
   }
 }
