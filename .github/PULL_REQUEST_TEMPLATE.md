@@ -6,6 +6,8 @@ I will check this PR for comments at least once per hour while it is open: <!-- 
 
 I have informed the Lead Architect that this PR is ready for review: <!-- yes/no -->
 
+Use `docs/EXPERT_COMMUNICATION_PROTOCOL.md` for the required lean notification format. Do not paste long diffs, full specs or copied chat histories into Codex task messages.
+
 ## Linked issue
 
 Closes #
@@ -41,6 +43,8 @@ Closes #
 ## Review notification status
 
 <!-- After resolving Architect comments, leave a PR conversation comment and update this if useful. Example: "Architect comments resolved in commit abc123; ready for re-review." -->
+
+<!-- If Architect comments were resolved, include the resolving commit SHA and send the Lead Architect a short notification using the protocol template. -->
 
 ## Acceptance criteria
 
