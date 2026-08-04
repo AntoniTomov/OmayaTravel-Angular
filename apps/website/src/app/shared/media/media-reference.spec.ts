@@ -19,6 +19,25 @@ describe('media reference helper', () => {
     );
   });
 
+  it('uses only the approved media key and never sourceUrl as a runtime fallback', () => {
+    const attributes = buildMediaImageAttributes(
+      {
+        ...heroImage,
+        sourceUrl: 'https://omayatravel.com/wp-content/uploads/legacy-song-kul-lake.webp',
+      },
+      {
+        use: 'content',
+        sizes: '100vw',
+      },
+    );
+
+    expect(attributes.src).toContain(
+      'https://media.omayatravel.com/cdn-cgi/image/width=1200,quality=78,format=auto/tours/kyrgyzstan-tour/song-kul-lake.webp',
+    );
+    expect(attributes.src).not.toContain('wp-content');
+    expect(attributes.srcset).not.toContain('wp-content');
+  });
+
   it('builds layout-stable prioritized hero attributes', () => {
     const attributes = buildMediaImageAttributes(heroImage, {
       use: 'hero',
@@ -69,20 +88,33 @@ describe('media reference helper', () => {
     ).toThrow('MediaReference.key must be a stable media key, not a URL.');
   });
 
-  it('requires meaningful alt text and dimensions', () => {
-    expect(() =>
-      buildMediaImageAttributes(
-        {
-          ...heroImage,
-          alt: '',
-        },
-        {
-          use: 'content',
-          sizes: '100vw',
-        },
-      ),
-    ).toThrow('MediaReference.alt is required for meaningful images.');
+  it.each([
+    ['uppercase characters', 'tours/kyrgyzstan-tour/Song-Kul-Lake.webp'],
+    ['unknown top-level folder', 'uploads/kyrgyzstan-tour/song-kul-lake.webp'],
+    ['whitespace', 'tours/kyrgyzstan-tour/song kul lake.webp'],
+    ['backslashes', 'tours\\kyrgyzstan-tour\\song-kul-lake.webp'],
+    ['query string', 'tours/kyrgyzstan-tour/song-kul-lake.webp?width=1200'],
+    ['fragment', 'tours/kyrgyzstan-tour/song-kul-lake.webp#hero'],
+    ['repeated slash', 'tours//kyrgyzstan-tour/song-kul-lake.webp'],
+    ['dot segment', 'tours/./song-kul-lake.webp'],
+    ['parent segment', 'tours/../song-kul-lake.webp'],
+    ['underscore segment', 'tours/kyrgyzstan_tour/song-kul-lake.webp'],
+    ['missing descriptive folder', 'shared/song-kul-lake.webp'],
+  ])('rejects media keys with %s', (_caseName, key) => {
+    expect(() => buildTransformedMediaUrl(key, 1200, 84)).toThrow();
+  });
 
+  it.each([
+    'destinations/kyrgyzstan/song-kul-lake.webp',
+    'tours/kyrgyzstan-tour/song-kul-lake.jpeg',
+    'blog/silk-road-guide/bishkek-market.jpg',
+    'company/about-us/omaya-travel-team.webp',
+    'shared/logo/omaya-travel-mark.png',
+  ])('accepts approved media key %s', (key) => {
+    expect(() => buildTransformedMediaUrl(key, 1200, 84)).not.toThrow();
+  });
+
+  it('requires dimensions for meaningful images', () => {
     expect(() =>
       buildMediaImageAttributes(
         {
@@ -95,5 +127,53 @@ describe('media reference helper', () => {
         },
       ),
     ).toThrow('MediaReference.width must be a positive integer.');
+  });
+
+  it('requires non-empty alt text for meaningful images', () => {
+    expect(() =>
+      buildMediaImageAttributes(
+        {
+          ...heroImage,
+          alt: '',
+        },
+        {
+          use: 'content',
+          sizes: '100vw',
+        },
+      ),
+    ).toThrow('MediaReference.alt is required for meaningful images.');
+  });
+
+  it.each(['image', 'photo', 'picture', 'tour image', 'hero image', 'destination photo'])(
+    'rejects generic alt text "%s"',
+    (alt) => {
+      expect(() =>
+        buildMediaImageAttributes(
+          {
+            ...heroImage,
+            alt,
+          },
+          {
+            use: 'content',
+            sizes: '100vw',
+          },
+        ),
+      ).toThrow('MediaReference.alt must describe the meaningful image content.');
+    },
+  );
+
+  it('accepts descriptive alt text for meaningful images', () => {
+    expect(() =>
+      buildMediaImageAttributes(
+        {
+          ...heroImage,
+          alt: 'Travellers walking beside Song Kul Lake at sunrise',
+        },
+        {
+          use: 'content',
+          sizes: '100vw',
+        },
+      ),
+    ).not.toThrow();
   });
 });

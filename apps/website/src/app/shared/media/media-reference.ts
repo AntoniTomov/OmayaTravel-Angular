@@ -39,6 +39,11 @@ export const MEDIA_VARIANT_WIDTHS = [320, 480, 720, 960, 1200, 1600, 1920] as co
 
 export type MediaVariantWidth = (typeof MEDIA_VARIANT_WIDTHS)[number];
 
+const MEDIA_KEY_TOP_LEVEL_FOLDERS = new Set(['destinations', 'tours', 'blog', 'company', 'shared']);
+
+const MEDIA_KEY_PATH_SEGMENT_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const MEDIA_KEY_FILENAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+$/;
+
 const MEDIA_QUALITY_BY_USE: Record<MediaImageUse, number> = {
   thumbnail: 72,
   card: 74,
@@ -57,6 +62,29 @@ const MEDIA_WIDTHS_BY_USE: Record<MediaImageUse, readonly MediaVariantWidth[]> =
 
 const ALLOWED_WIDTHS = new Set<number>(MEDIA_VARIANT_WIDTHS);
 
+const GENERIC_ALT_TEXTS = new Set([
+  'image',
+  'photo',
+  'picture',
+  'img',
+  'tour image',
+  'tour photo',
+  'hero image',
+  'hero photo',
+  'destination image',
+  'destination photo',
+  'gallery image',
+  'gallery photo',
+  'travel image',
+  'travel photo',
+  'thumbnail',
+  'placeholder',
+]);
+
+/**
+ * Builds production media attributes from the approved media key only.
+ * `sourceUrl` is migration metadata and is intentionally never used as a runtime fallback.
+ */
 export function buildMediaImageAttributes(
   media: MediaReference,
   options: MediaImageOptions,
@@ -108,8 +136,14 @@ export function buildTransformedMediaUrl(
 export function assertValidMediaReference(media: MediaReference): void {
   assertValidMediaKey(media.key);
 
-  if (media.alt.trim().length === 0) {
+  const alt = normalizeAltText(media.alt);
+
+  if (alt.length === 0) {
     throw new Error('MediaReference.alt is required for meaningful images.');
+  }
+
+  if (GENERIC_ALT_TEXTS.has(alt)) {
+    throw new Error('MediaReference.alt must describe the meaningful image content.');
   }
 
   if (!Number.isInteger(media.width) || media.width <= 0) {
@@ -147,12 +181,41 @@ function assertValidMediaKey(key: string): void {
     throw new Error('MediaReference.key is required.');
   }
 
-  if (/^https?:\/\//i.test(key)) {
+  if (/^[a-z][a-z0-9+.-]*:\/?/i.test(key)) {
     throw new Error('MediaReference.key must be a stable media key, not a URL.');
   }
 
-  if (key.includes('..') || key.startsWith('/') || key.endsWith('/')) {
+  if (
+    key !== key.trim() ||
+    /\s/.test(key) ||
+    key.includes('\\') ||
+    key.includes('?') ||
+    key.includes('#') ||
+    key.includes('//') ||
+    key.startsWith('/') ||
+    key.endsWith('/')
+  ) {
     throw new Error('MediaReference.key must be a normalized relative media key.');
+  }
+
+  const segments = key.split('/');
+
+  if (segments.length !== 3 || segments.some((segment) => segment === '.' || segment === '..')) {
+    throw new Error('MediaReference.key must follow the approved media key convention.');
+  }
+
+  const [topLevelFolder, slugSegment, filename] = segments;
+
+  if (!MEDIA_KEY_TOP_LEVEL_FOLDERS.has(topLevelFolder)) {
+    throw new Error('MediaReference.key must use an approved top-level media folder.');
+  }
+
+  if (
+    !MEDIA_KEY_PATH_SEGMENT_PATTERN.test(topLevelFolder) ||
+    !MEDIA_KEY_PATH_SEGMENT_PATTERN.test(slugSegment) ||
+    !MEDIA_KEY_FILENAME_PATTERN.test(filename)
+  ) {
+    throw new Error('MediaReference.key must use lowercase ASCII hyphen-separated path segments.');
   }
 }
 
@@ -166,4 +229,8 @@ function assertAllowedQuality(quality: number): void {
   if (!Number.isInteger(quality) || quality < 1 || quality > 100) {
     throw new Error('Media quality must be an integer from 1 to 100.');
   }
+}
+
+function normalizeAltText(alt: string): string {
+  return alt.trim().replace(/\s+/g, ' ').toLowerCase();
 }
