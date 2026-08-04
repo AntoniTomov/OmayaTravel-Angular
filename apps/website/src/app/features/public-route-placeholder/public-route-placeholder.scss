@@ -1,0 +1,22 @@
+.route-placeholder {
+  display: grid;
+  min-height: 100svh;
+  place-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: #17211f;
+  background: #f6f1e8;
+}
+
+.route-placeholder > * {
+  margin: 0;
+}
+
+.route-placeholder h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.route-placeholder a {
+  color: #0f5f57;
+}
