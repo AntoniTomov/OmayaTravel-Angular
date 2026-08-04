@@ -1,7 +1,12 @@
 import { PrerenderFallback, RenderMode } from '@angular/ssr';
+import { provideRouter, Router } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { routes } from './app.routes';
+import { destinationDetailCanMatch, routes, tourDetailCanMatch } from './app.routes';
 import { serverRoutes } from './app.routes.server';
+import { NotFound } from './features/not-found/not-found';
+import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import {
   PUBLIC_DESTINATION_SLUGS,
   PUBLIC_STATIC_PRERENDER_ROUTES,
@@ -16,6 +21,12 @@ describe('app routes', () => {
     expect(routePaths).toContain('destinations');
     expect(routePaths).toContain('destinations/:destinationSlug');
     expect(routePaths).toContain('tour-item/:tourSlug');
+    expect(routes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ canMatch: [destinationDetailCanMatch] }),
+        expect.objectContaining({ canMatch: [tourDetailCanMatch] }),
+      ]),
+    );
     expect(routePaths).not.toContain('tours/:tourSlug');
   });
 
@@ -81,5 +92,37 @@ describe('app routes', () => {
     }
 
     expect(wildcardRoute.status).toBe(404);
+  });
+
+  it('resolves approved destination and tour slugs to the placeholder route', async () => {
+    TestBed.configureTestingModule({
+      providers: [provideRouter(routes)],
+    });
+
+    const harness = await RouterTestingHarness.create();
+
+    await expect(
+      harness.navigateByUrl('/destinations/kyrgyzstan/', PublicRoutePlaceholder),
+    ).resolves.toBeInstanceOf(PublicRoutePlaceholder);
+    await expect(
+      harness.navigateByUrl('/tour-item/kyrgyzstan-tour/', PublicRoutePlaceholder),
+    ).resolves.toBeInstanceOf(PublicRoutePlaceholder);
+  });
+
+  it('resolves unknown destination and tour slugs to not-found behavior', async () => {
+    TestBed.configureTestingModule({
+      providers: [provideRouter(routes)],
+    });
+
+    const harness = await RouterTestingHarness.create();
+
+    await expect(
+      harness.navigateByUrl('/destinations/not-real/', NotFound),
+    ).resolves.toBeInstanceOf(NotFound);
+    await expect(harness.navigateByUrl('/tour-item/not-real/', NotFound)).resolves.toBeInstanceOf(
+      NotFound,
+    );
+
+    expect(TestBed.inject(Router).url).toBe('/tour-item/not-real/');
   });
 });

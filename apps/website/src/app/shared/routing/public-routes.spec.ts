@@ -53,4 +53,21 @@ describe('public route definitions', () => {
       ]),
     );
   });
+
+  it('keeps approved exact redirects centralized for future edge generation', () => {
+    expect(PUBLIC_REDIRECTS).toEqual(
+      expect.arrayContaining([
+        {
+          from: '/3122-2/',
+          to: '/contact/',
+          statusCode: 301,
+        },
+        {
+          from: '/tour-checkout/',
+          to: '/contact/',
+          statusCode: 301,
+        },
+      ]),
+    );
+  });
 });

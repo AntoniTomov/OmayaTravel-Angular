@@ -1,10 +1,12 @@
-import { Routes } from '@angular/router';
+import { CanMatchFn, Routes, UrlMatcher, UrlSegment } from '@angular/router';
 
 import { NotFound } from './features/not-found/not-found';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
+  PUBLIC_DESTINATION_SLUGS,
   PUBLIC_STATIC_PAGE_ROUTES,
+  PUBLIC_TOUR_SLUGS,
   PUBLIC_TOUR_CATEGORY_ROUTES,
 } from './shared/routing/public-routes';
 
@@ -14,6 +16,7 @@ const rootSlugRoutes: Routes = [
   ...PUBLIC_STATIC_PAGE_ROUTES,
 ].map((route) => ({
   path: route.path,
+  pathMatch: 'full' as const,
   component: PublicRoutePlaceholder,
   data: {
     routeKey: route.key,
@@ -21,6 +24,23 @@ const rootSlugRoutes: Routes = [
     canonicalPath: route.canonicalPath,
   },
 }));
+
+export const destinationDetailCanMatch: CanMatchFn = (_route, segments) =>
+  matchesApprovedSlugRoute(segments, 'destinations', PUBLIC_DESTINATION_SLUGS);
+
+export const tourDetailCanMatch: CanMatchFn = (_route, segments) =>
+  matchesApprovedSlugRoute(segments, 'tour-item', PUBLIC_TOUR_SLUGS);
+
+export const destinationDetailCanonicalMatcher: UrlMatcher = (segments) =>
+  matchApprovedCanonicalRoute(
+    segments,
+    'destinations',
+    'destinationSlug',
+    PUBLIC_DESTINATION_SLUGS,
+  );
+
+export const tourDetailCanonicalMatcher: UrlMatcher = (segments) =>
+  matchApprovedCanonicalRoute(segments, 'tour-item', 'tourSlug', PUBLIC_TOUR_SLUGS);
 
 export const routes: Routes = [
   {
@@ -35,6 +55,7 @@ export const routes: Routes = [
   },
   {
     path: 'destinations',
+    pathMatch: 'full',
     component: PublicRoutePlaceholder,
     data: {
       routeKey: 'destination-hub',
@@ -43,7 +64,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'destinations/:destinationSlug',
+    matcher: destinationDetailCanonicalMatcher,
     component: PublicRoutePlaceholder,
     data: {
       routeKey: 'destination-detail',
@@ -52,13 +73,45 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'tour-item/:tourSlug',
+    path: 'destinations/:destinationSlug',
+    canMatch: [destinationDetailCanMatch],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: PublicRoutePlaceholder,
+        data: {
+          routeKey: 'destination-detail',
+          routeType: 'destination-detail',
+          canonicalPathPattern: '/destinations/:destinationSlug/',
+        },
+      },
+    ],
+  },
+  {
+    matcher: tourDetailCanonicalMatcher,
     component: PublicRoutePlaceholder,
     data: {
       routeKey: 'tour-detail',
       routeType: 'tour-detail',
       canonicalPathPattern: '/tour-item/:tourSlug/',
     },
+  },
+  {
+    path: 'tour-item/:tourSlug',
+    canMatch: [tourDetailCanMatch],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: PublicRoutePlaceholder,
+        data: {
+          routeKey: 'tour-detail',
+          routeType: 'tour-detail',
+          canonicalPathPattern: '/tour-item/:tourSlug/',
+        },
+      },
+    ],
   },
   ...rootSlugRoutes,
   {
@@ -78,3 +131,46 @@ export const routes: Routes = [
     },
   },
 ];
+
+function matchesApprovedSlugRoute(
+  segments: UrlSegment[],
+  section: string,
+  approvedSlugs: readonly string[],
+): boolean {
+  const [sectionSegment, slugSegment, ...remainingSegments] = segments;
+  const candidateSlug = sectionSegment?.path === section ? slugSegment?.path : sectionSegment?.path;
+  const extraSegments = sectionSegment?.path === section ? remainingSegments : segments.slice(1);
+
+  return (
+    candidateSlug !== undefined &&
+    extraSegments.every((segment) => segment.path.length === 0) &&
+    approvedSlugs.includes(candidateSlug)
+  );
+}
+
+function matchApprovedCanonicalRoute(
+  segments: UrlSegment[],
+  section: string,
+  slugParam: string,
+  approvedSlugs: readonly string[],
+) {
+  const [sectionSegment, slugSegment, ...remainingSegments] = segments;
+  const trailingSlashSegments = remainingSegments.filter((segment) => segment.path.length === 0);
+
+  if (
+    sectionSegment === undefined ||
+    slugSegment === undefined ||
+    remainingSegments.some((segment) => segment.path.length > 0) ||
+    sectionSegment.path !== section ||
+    !approvedSlugs.includes(slugSegment.path)
+  ) {
+    return null;
+  }
+
+  return {
+    consumed: [sectionSegment, slugSegment, ...trailingSlashSegments],
+    posParams: {
+      [slugParam]: slugSegment,
+    },
+  };
+}

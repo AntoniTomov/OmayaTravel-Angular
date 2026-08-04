@@ -117,9 +117,15 @@ export const PUBLIC_QUERY_REDIRECTS: readonly PublicRedirectDefinition[] = [
   defineRedirect('/?page_id=910', '/why-book-with-us/'),
 ];
 
+export const PUBLIC_EXACT_REDIRECTS: readonly PublicRedirectDefinition[] = [
+  defineRedirect('/3122-2/', '/contact/'),
+  defineRedirect('/tour-checkout/', '/contact/'),
+];
+
 export const PUBLIC_REDIRECTS: readonly PublicRedirectDefinition[] = [
   ...PUBLIC_DUPLICATE_TOUR_REDIRECTS,
   ...PUBLIC_QUERY_REDIRECTS,
+  ...PUBLIC_EXACT_REDIRECTS,
 ];
 
 export function canonicalUrl(canonicalPath: string): string {
