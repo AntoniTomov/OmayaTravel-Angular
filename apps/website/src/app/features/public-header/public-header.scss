@@ -1,10 +1,12 @@
+@use '../../../styles/tokens' as tokens;
+
 :host {
   display: contents;
 }
 
 .public-header {
-  --fg: #fff;
-  --hover: #f7b500;
+  --fg: #{tokens.$omaya-color-white};
+  --hover: #{tokens.$omaya-color-gold};
   position: fixed;
   inset: 0 0 auto;
   z-index: 20;
@@ -14,9 +16,9 @@
 
 .public-header--scrolled,
 .public-header--menu-open {
-  --fg: #141414;
-  background: #fff;
-  box-shadow: 0 8px 20px rgb(20 20 20 / 8%);
+  --fg: #{tokens.$omaya-color-ink};
+  background: tokens.$omaya-color-white;
+  box-shadow: tokens.$omaya-shadow-header;
 }
 
 .public-header__top {
@@ -25,8 +27,8 @@
   gap: 0.8rem;
   min-height: 2.2rem;
   align-items: center;
-  color: #fff;
-  background: #171717;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -74,7 +76,7 @@
   color: inherit;
   background: transparent;
   border: 0;
-  font: inherit;
+  font: tokens.$omaya-font-body;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -101,8 +103,11 @@
   min-width: 13rem;
   padding: 0.7rem 0;
   visibility: hidden;
-  background: #fff;
+  background: tokens.$omaya-color-white;
   opacity: 0;
+  transition:
+    opacity tokens.$omaya-transition-fast,
+    visibility tokens.$omaya-transition-fast;
 }
 
 .public-header__dropdown--open {
@@ -112,7 +117,7 @@
 
 .public-header__dropdown a {
   padding: 0.8rem 1rem;
-  color: #1d1d1d;
+  color: tokens.$omaya-color-text;
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -171,8 +176,8 @@
   width: min(42rem, 100%);
   gap: 1rem;
   padding: 1.5rem;
-  color: #1b1b1b;
-  background: #fff;
+  color: tokens.$omaya-color-text;
+  background: tokens.$omaya-color-white;
 }
 
 .public-header__search-panel > div {
@@ -190,20 +195,23 @@
 .public-header__search-panel input {
   min-height: 3rem;
   padding: 0 0.9rem;
-  border: 1px solid #ccc7bd;
+  border: 1px solid tokens.$omaya-color-soft-border;
 }
 
 .public-header__search-panel button {
   min-height: 2.75rem;
   padding: 0 1rem;
-  color: #171717;
+  color: tokens.$omaya-color-dark;
   font-weight: 800;
-  background: #f7b500;
+  background: tokens.$omaya-color-gold;
   border: 0;
+  transition:
+    color tokens.$omaya-transition-fast,
+    background tokens.$omaya-transition-fast;
 }
 
 .public-header__search-error {
-  color: #a3261d;
+  color: tokens.$omaya-color-error;
   font-weight: 700;
 }
 
@@ -230,8 +238,8 @@
     display: none;
     align-items: stretch;
     padding: 1rem;
-    color: #171717;
-    background: #fff;
+    color: tokens.$omaya-color-dark;
+    background: tokens.$omaya-color-white;
   }
 
   .public-header__links--open {
