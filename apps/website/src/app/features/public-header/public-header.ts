@@ -15,6 +15,8 @@ import {
   PUBLIC_NAVIGATION_GROUPS,
   PUBLIC_NAVIGATION_LINKS,
   PUBLIC_HEADER_LOGO,
+  PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC,
+  PUBLIC_HEADER_LOGO_VISUAL_SRC,
 } from '../../shared/content/homepage-content';
 import { buildMediaImageAttributes } from '../../shared/media';
 
@@ -29,15 +31,26 @@ export class PublicHeader implements AfterViewInit {
   private readonly document = inject(DOCUMENT);
   private readonly host = inject(ElementRef<HTMLElement>);
 
-  protected readonly navigationGroups = PUBLIC_NAVIGATION_GROUPS;
-  protected readonly navigationLinks = PUBLIC_NAVIGATION_LINKS;
-  protected readonly logo = buildMediaImageAttributes(PUBLIC_HEADER_LOGO, {
-    use: 'thumbnail',
-    sizes: '88px',
-    widths: [320],
-  });
   protected readonly isScrolled = signal(false);
   protected readonly isMobileMenuOpen = signal(false);
+  protected readonly navigationGroups = PUBLIC_NAVIGATION_GROUPS;
+  protected readonly navigationLinks = PUBLIC_NAVIGATION_LINKS;
+  protected readonly logo = computed(() => {
+    const visualSrc =
+      this.isScrolled() || this.isMobileMenuOpen()
+        ? PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC
+        : PUBLIC_HEADER_LOGO_VISUAL_SRC;
+
+    return {
+      ...buildMediaImageAttributes(PUBLIC_HEADER_LOGO, {
+        use: 'thumbnail',
+        sizes: '92px',
+        widths: [320],
+      }),
+      src: visualSrc,
+      srcset: `${visualSrc} ${PUBLIC_HEADER_LOGO.width}w`,
+    };
+  });
   protected readonly activeDropdown = signal<string | null>(null);
   protected readonly isSearchOpen = signal(false);
   protected readonly searchQuery = signal('');
