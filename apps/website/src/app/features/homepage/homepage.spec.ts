@@ -36,8 +36,12 @@ describe('Homepage', () => {
     const image = fixture.nativeElement.querySelector('.homepage__hero-image') as HTMLImageElement;
 
     expect(image).toBeTruthy();
-    expect(image.getAttribute('src')).toContain('shared/homepage/home-hero-carousel-1.webp');
-    expect(image.getAttribute('srcset')).toContain('1200w');
+    expect(image.getAttribute('src')).toBe(
+      'https://omayatravel.com/wp-content/uploads/2026/04/HomePageCoverPhoto-5.webp',
+    );
+    expect(image.getAttribute('srcset')).toBe(
+      'https://omayatravel.com/wp-content/uploads/2026/04/HomePageCoverPhoto-5.webp 1920w',
+    );
     expect(image.getAttribute('sizes')).toBe('100vw');
     expect(image.getAttribute('width')).toBe('1920');
     expect(image.getAttribute('height')).toBe('1080');

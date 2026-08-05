@@ -12,6 +12,7 @@ export interface NavigationGroup {
 
 export interface HeroSlide {
   image: MediaReference;
+  visualSrc?: string;
 }
 
 export interface TripSearchDestination {
@@ -30,9 +31,17 @@ export interface SearchIndexItem {
 export const PUBLIC_HEADER_LOGO: MediaReference = {
   key: 'shared/logo/omaya-travel-mark.png',
   alt: 'Omaya Travel',
-  width: 220,
-  height: 120,
+  width: 150,
+  height: 84,
 };
+
+// Temporary #55 bridge: direct omayatravel.com/wp-content URLs keep #53 visual parity
+// until approved media.omayatravel.com pipeline assets exist for the homepage/logo.
+export const PUBLIC_HEADER_LOGO_VISUAL_SRC =
+  'https://omayatravel.com/wp-content/uploads/2026/04/Omaya-Travel-Logo-e1780484928941.webp';
+
+export const PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC =
+  'https://omayatravel.com/wp-content/uploads/2026/04/Black_logo-e1781169999413.webp';
 
 export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
   {
@@ -123,6 +132,9 @@ export const HOMEPAGE_HERO = {
         width: 1920,
         height: 1080,
       },
+      // Temporary #55 bridge: replace this current-site WordPress fallback with
+      // the approved `shared/homepage/home-hero-carousel-1.webp` media key URL before production launch.
+      visualSrc: 'https://omayatravel.com/wp-content/uploads/2026/04/HomePageCoverPhoto-5.webp',
     },
     {
       image: {

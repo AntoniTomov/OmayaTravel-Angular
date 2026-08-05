@@ -28,13 +28,24 @@ export class Homepage implements OnDestroy {
   protected readonly selectedMonth = signal('');
   protected readonly searchError = signal('');
   protected readonly activeSlide = computed(() => this.hero.slides[this.activeSlideIndex()]);
-  protected readonly activeSlideImage = computed(() =>
-    buildMediaImageAttributes(this.activeSlide().image, {
+  protected readonly activeSlideImage = computed(() => {
+    const slide = this.activeSlide();
+    const attributes = buildMediaImageAttributes(slide.image, {
       use: 'hero',
       sizes: '100vw',
       priority: this.activeSlideIndex() === 0,
-    }),
-  );
+    });
+
+    if (!slide.visualSrc) {
+      return attributes;
+    }
+
+    return {
+      ...attributes,
+      src: slide.visualSrc,
+      srcset: `${slide.visualSrc} ${slide.image.width}w`,
+    };
+  });
 
   constructor() {
     this.intervalId = this.reducedMotion ? null : this.createAutoAdvance();

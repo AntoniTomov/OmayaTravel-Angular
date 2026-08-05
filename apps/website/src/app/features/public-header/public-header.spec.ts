@@ -39,10 +39,30 @@ describe('PublicHeader', () => {
     ) as HTMLImageElement;
 
     expect(logo).toBeTruthy();
-    expect(logo.getAttribute('src')).toContain('shared/logo/omaya-travel-mark.png');
+    expect(logo.getAttribute('src')).toBe(
+      'https://omayatravel.com/wp-content/uploads/2026/04/Omaya-Travel-Logo-e1780484928941.webp',
+    );
+    expect(logo.getAttribute('srcset')).toBe(
+      'https://omayatravel.com/wp-content/uploads/2026/04/Omaya-Travel-Logo-e1780484928941.webp 150w',
+    );
     expect(logo.getAttribute('alt')).toBe('Omaya Travel');
-    expect(logo.getAttribute('width')).toBe('220');
-    expect(logo.getAttribute('height')).toBe('120');
+    expect(logo.getAttribute('width')).toBe('150');
+    expect(logo.getAttribute('height')).toBe('84');
+  });
+
+  it('switches to the dark current-site logo in the scrolled header state', () => {
+    fixture.detectChanges();
+
+    component['isScrolled'].set(true);
+    fixture.detectChanges();
+
+    const logo = fixture.nativeElement.querySelector(
+      '.public-header__logo img',
+    ) as HTMLImageElement;
+
+    expect(logo.getAttribute('src')).toBe(
+      'https://omayatravel.com/wp-content/uploads/2026/04/Black_logo-e1781169999413.webp',
+    );
   });
 
   it('opens the site search and validates empty submit', () => {
