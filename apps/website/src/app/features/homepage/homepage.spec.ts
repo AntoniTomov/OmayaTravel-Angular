@@ -30,6 +30,21 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Find now');
   });
 
+  it('renders the active hero as a real prioritized image', () => {
+    fixture.detectChanges();
+
+    const image = fixture.nativeElement.querySelector('.homepage__hero-image') as HTMLImageElement;
+
+    expect(image).toBeTruthy();
+    expect(image.getAttribute('src')).toContain('shared/homepage/home-hero-carousel-1.webp');
+    expect(image.getAttribute('srcset')).toContain('1200w');
+    expect(image.getAttribute('sizes')).toBe('100vw');
+    expect(image.getAttribute('width')).toBe('1920');
+    expect(image.getAttribute('height')).toBe('1080');
+    expect(image.getAttribute('loading')).toBe('eager');
+    expect(image.getAttribute('fetchpriority')).toBe('high');
+  });
+
   it('shows the required error when destination is missing', () => {
     fixture.detectChanges();
 

@@ -14,7 +14,9 @@ import { Router, RouterLink } from '@angular/router';
 import {
   PUBLIC_NAVIGATION_GROUPS,
   PUBLIC_NAVIGATION_LINKS,
+  PUBLIC_HEADER_LOGO,
 } from '../../shared/content/homepage-content';
+import { buildMediaImageAttributes } from '../../shared/media';
 
 @Component({
   selector: 'app-public-header',
@@ -29,6 +31,11 @@ export class PublicHeader implements AfterViewInit {
 
   protected readonly navigationGroups = PUBLIC_NAVIGATION_GROUPS;
   protected readonly navigationLinks = PUBLIC_NAVIGATION_LINKS;
+  protected readonly logo = buildMediaImageAttributes(PUBLIC_HEADER_LOGO, {
+    use: 'thumbnail',
+    sizes: '88px',
+    widths: [320],
+  });
   protected readonly isScrolled = signal(false);
   protected readonly isMobileMenuOpen = signal(false);
   protected readonly activeDropdown = signal<string | null>(null);

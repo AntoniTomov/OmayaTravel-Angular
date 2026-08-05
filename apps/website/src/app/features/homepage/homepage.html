@@ -1,5 +1,16 @@
 <main class="homepage">
-  <section class="homepage__hero" [ngStyle]="{ 'background-image': backgroundImage() }">
+  <section class="homepage__hero">
+    <img
+      class="homepage__hero-image"
+      [src]="activeSlideImage().src"
+      [srcset]="activeSlideImage().srcset"
+      [sizes]="activeSlideImage().sizes"
+      [width]="activeSlideImage().width"
+      [height]="activeSlideImage().height"
+      [alt]="activeSlideImage().alt"
+      [attr.loading]="activeSlideImage().loading"
+      [attr.fetchpriority]="activeSlideImage().fetchPriority"
+    />
     <div class="homepage__hero-content">
       <h1>{{ hero.title }}</h1>
       <p>{{ hero.subtitle }}</p>

@@ -31,6 +31,20 @@ describe('PublicHeader', () => {
     expect(text).toContain('Enquire Now');
   });
 
+  it('renders an image-ready logo from the media contract', () => {
+    fixture.detectChanges();
+
+    const logo = fixture.nativeElement.querySelector(
+      '.public-header__logo img',
+    ) as HTMLImageElement;
+
+    expect(logo).toBeTruthy();
+    expect(logo.getAttribute('src')).toContain('shared/logo/omaya-travel-mark.png');
+    expect(logo.getAttribute('alt')).toBe('Omaya Travel');
+    expect(logo.getAttribute('width')).toBe('220');
+    expect(logo.getAttribute('height')).toBe('120');
+  });
+
   it('opens the site search and validates empty submit', () => {
     component['openSearch']();
     fixture.detectChanges();

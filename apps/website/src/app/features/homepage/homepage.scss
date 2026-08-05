@@ -14,7 +14,25 @@
   background-size: cover;
 }
 
+.homepage__hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgb(0 0 0 / 46%);
+  content: '';
+}
+
+.homepage__hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .homepage__hero-content {
+  position: relative;
+  z-index: 2;
   display: grid;
   width: min(64rem, 100%);
   gap: 1.5rem;
@@ -98,6 +116,7 @@
 
 .homepage__carousel-controls {
   position: absolute;
+  z-index: 2;
   bottom: 2rem;
   left: 50%;
   display: flex;

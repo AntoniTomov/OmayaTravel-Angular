@@ -17,7 +17,16 @@
       (click)="closeMenus()"
       aria-label="Omaya Travel home"
     >
-      <span>Omaya</span>
+      <img
+        [src]="logo.src"
+        [srcset]="logo.srcset"
+        [sizes]="logo.sizes"
+        [width]="logo.width"
+        [height]="logo.height"
+        [alt]="logo.alt"
+        [attr.loading]="logo.loading"
+        [attr.fetchpriority]="logo.fetchPriority"
+      />
     </a>
 
     <button

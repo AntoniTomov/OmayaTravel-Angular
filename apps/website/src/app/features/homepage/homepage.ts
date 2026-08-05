@@ -1,4 +1,4 @@
-import { DOCUMENT, NgStyle } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,6 @@ import { buildMediaImageAttributes } from '../../shared/media';
 
 @Component({
   selector: 'app-homepage',
-  imports: [NgStyle],
   templateUrl: './homepage.html',
   styleUrl: './homepage.scss',
 })
@@ -35,10 +34,6 @@ export class Homepage implements OnDestroy {
       sizes: '100vw',
       priority: this.activeSlideIndex() === 0,
     }),
-  );
-  protected readonly backgroundImage = computed(
-    () =>
-      `linear-gradient(rgb(0 0 0 / 44%), rgb(0 0 0 / 48%)), url("${this.activeSlideImage().src}")`,
   );
 
   constructor() {

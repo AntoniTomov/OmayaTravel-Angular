@@ -49,21 +49,11 @@
   width: 5.4rem;
   min-height: 3.5rem;
   place-items: center;
-  font-family: Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
-.public-header__logo span {
-  color: #fff;
-  text-shadow: 0 1px 8px rgb(0 0 0 / 35%);
-}
-
-.public-header--scrolled .public-header__logo span,
-.public-header--menu-open .public-header__logo span {
-  color: #292929;
-  text-shadow: none;
+.public-header__logo img {
+  width: 5.4rem;
+  height: auto;
 }
 
 .public-header__links {

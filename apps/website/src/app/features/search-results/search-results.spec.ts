@@ -53,6 +53,28 @@ describe('SearchResults', () => {
     expect(fixture.nativeElement.textContent).toContain('Type a search term.');
   });
 
+  it('includes the query in no-results copy', async () => {
+    await TestBed.configureTestingModule({
+      imports: [SearchResults],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              queryParamMap: convertToParamMap({ s: 'zzzz' }),
+            },
+          },
+        },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(SearchResults);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('No results found for "zzzz".');
+  });
+
   it('submits non-empty trimmed queries to the static search route', async () => {
     await TestBed.configureTestingModule({
       imports: [SearchResults],

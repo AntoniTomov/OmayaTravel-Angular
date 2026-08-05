@@ -27,6 +27,13 @@ export interface SearchIndexItem {
   thumbnail?: MediaReference;
 }
 
+export const PUBLIC_HEADER_LOGO: MediaReference = {
+  key: 'shared/logo/omaya-travel-mark.png',
+  alt: 'Omaya Travel',
+  width: 220,
+  height: 120,
+};
+
 export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
   {
     label: 'Destinations',
