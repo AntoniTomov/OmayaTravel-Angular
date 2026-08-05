@@ -1,0 +1,122 @@
+<header class="public-header" [ngClass]="headerClasses()">
+  <div class="public-header__top">
+    <span>Follow us:</span>
+    <a href="https://www.instagram.com/omayatravel/" aria-label="Omaya Travel on Instagram">Ig</a>
+    <a href="https://www.facebook.com/omayatravel/" aria-label="Omaya Travel on Facebook">Fb</a>
+    <a href="https://www.linkedin.com/company/omaya-travel/" aria-label="Omaya Travel on LinkedIn"
+      >In</a
+    >
+    <a href="tel:+359879965946">+359 87 996 5946</a>
+    <a href="tel:+359889735274">+359 88 973 5274</a>
+  </div>
+
+  <nav class="public-header__nav" aria-label="Primary navigation">
+    <a
+      class="public-header__logo"
+      routerLink="/"
+      (click)="closeMenus()"
+      aria-label="Omaya Travel home"
+    >
+      <img
+        [src]="logo.src"
+        [srcset]="logo.srcset"
+        [sizes]="logo.sizes"
+        [width]="logo.width"
+        [height]="logo.height"
+        [alt]="logo.alt"
+        [attr.loading]="logo.loading"
+        [attr.fetchpriority]="logo.fetchPriority"
+      />
+    </a>
+
+    <button
+      class="public-header__menu-button"
+      type="button"
+      aria-label="Open navigation menu"
+      [attr.aria-expanded]="isMobileMenuOpen()"
+      (click)="toggleMobileMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="public-header__links" [class.public-header__links--open]="isMobileMenuOpen()">
+      @for (group of navigationGroups; track group.label) {
+        <div
+          class="public-header__group"
+          (mouseenter)="openDropdown(group.label)"
+          (mouseleave)="activeDropdown.set(null)"
+        >
+          <button
+            class="public-header__link"
+            type="button"
+            [attr.aria-expanded]="activeDropdown() === group.label"
+            (focus)="openDropdown(group.label)"
+            (click)="toggleDropdown(group.label)"
+          >
+            {{ group.label }}
+          </button>
+
+          <div
+            class="public-header__dropdown"
+            [class.public-header__dropdown--open]="activeDropdown() === group.label"
+          >
+            @for (link of group.links; track link.target) {
+              <a [routerLink]="link.target" (click)="closeMenus()">{{ link.label }}</a>
+            }
+          </div>
+        </div>
+      }
+
+      @for (link of navigationLinks; track link.target) {
+        <a class="public-header__link" [routerLink]="link.target" (click)="closeMenus()">{{
+          link.label
+        }}</a>
+      }
+
+      <button
+        class="public-header__search-button"
+        type="button"
+        aria-label="Open site search"
+        (click)="openSearch()"
+      >
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+  </nav>
+
+  @if (isSearchOpen()) {
+    <div
+      class="public-header__search"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="site-search-title"
+    >
+      <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
+        <div>
+          <h2 id="site-search-title">Search Omaya Travel</h2>
+          <button type="button" aria-label="Close search" (click)="closeSearch()">Close</button>
+        </div>
+
+        <label for="site-search-input">Search term</label>
+        <input
+          #searchInput
+          id="site-search-input"
+          name="site-search"
+          type="search"
+          [value]="searchQuery()"
+          [attr.aria-invalid]="searchError().length > 0"
+          aria-describedby="site-search-error"
+          (input)="updateSearchQuery($any($event.target).value)"
+        />
+
+        @if (searchError()) {
+          <p id="site-search-error" class="public-header__search-error">{{ searchError() }}</p>
+        }
+
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  }
+</header>

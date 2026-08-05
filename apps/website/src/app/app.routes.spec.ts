@@ -18,6 +18,8 @@ describe('app routes', () => {
     const routePaths = routes.map((route) => route.path);
 
     expect(routePaths).toContain('');
+    expect(routePaths).toContain('search');
+    expect(routePaths).toContain('enquire-now');
     expect(routePaths).toContain('destinations');
     expect(routePaths).toContain('destinations/:destinationSlug');
     expect(routePaths).toContain('tour-item/:tourSlug');

@@ -1,7 +1,9 @@
 import { CanMatchFn, Routes, UrlMatcher, UrlSegment } from '@angular/router';
 
+import { Homepage } from './features/homepage/homepage';
 import { NotFound } from './features/not-found/not-found';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
+import { SearchResults } from './features/search-results/search-results';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
   PUBLIC_DESTINATION_SLUGS,
@@ -45,12 +47,31 @@ export const tourDetailCanonicalMatcher: UrlMatcher = (segments) =>
 export const routes: Routes = [
   {
     path: '',
-    component: PublicRoutePlaceholder,
+    component: Homepage,
     pathMatch: 'full',
     data: {
       routeKey: 'home',
       routeType: 'home',
       canonicalPath: '/',
+    },
+  },
+  {
+    path: 'search',
+    component: SearchResults,
+    pathMatch: 'full',
+    data: {
+      routeKey: 'search',
+      noindex: true,
+    },
+  },
+  {
+    path: 'enquire-now',
+    pathMatch: 'full',
+    component: PublicRoutePlaceholder,
+    data: {
+      routeKey: 'enquire-now',
+      routeType: 'static-page',
+      canonicalPath: '/enquire-now/',
     },
   },
   {

@@ -1,0 +1,256 @@
+:host {
+  display: contents;
+}
+
+.public-header {
+  --fg: #fff;
+  --hover: #f7b500;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  color: var(--fg);
+}
+
+.public-header--scrolled,
+.public-header--menu-open {
+  --fg: #141414;
+  background: #fff;
+  box-shadow: 0 8px 20px rgb(20 20 20 / 8%);
+}
+
+.public-header__top {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  min-height: 2.2rem;
+  align-items: center;
+  color: #fff;
+  background: #171717;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.public-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.public-header__nav {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  width: min(72rem, calc(100% - 2rem));
+  min-height: 4.5rem;
+  margin: 0 auto;
+}
+
+.public-header__logo {
+  display: grid;
+  width: 5.4rem;
+  min-height: 3.5rem;
+  place-items: center;
+}
+
+.public-header__logo img {
+  width: 5.4rem;
+  height: auto;
+}
+
+.public-header__links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.9rem;
+}
+
+.public-header__group {
+  position: relative;
+}
+
+.public-header__link,
+.public-header__search-button {
+  min-height: 2.75rem;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.public-header__link:is(:hover, :focus-visible),
+.public-header__search-button:is(:hover, :focus-visible),
+.public-header__dropdown a:is(:hover, :focus-visible) {
+  color: var(--hover);
+}
+
+.public-header :is(a, button):focus-visible {
+  outline: 2px solid var(--hover);
+  outline-offset: 4px;
+}
+
+.public-header__dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  display: grid;
+  min-width: 13rem;
+  padding: 0.7rem 0;
+  visibility: hidden;
+  background: #fff;
+  opacity: 0;
+}
+
+.public-header__dropdown--open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.public-header__dropdown a {
+  padding: 0.8rem 1rem;
+  color: #1d1d1d;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.public-header__search-button {
+  display: grid;
+  width: 2.75rem;
+  place-items: center;
+}
+
+.public-header__search-button span {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentcolor;
+  border-radius: 999px;
+}
+
+.public-header__search-button span::after {
+  display: block;
+  width: 0.55rem;
+  height: 2px;
+  margin: 0.68rem 0 0 0.68rem;
+  background: currentcolor;
+  content: '';
+  transform: rotate(135deg);
+}
+
+.public-header__menu-button {
+  display: none;
+  justify-self: end;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: transparent;
+  border: 0;
+}
+
+.public-header__menu-button span {
+  display: block;
+  width: 1.35rem;
+  height: 2px;
+  margin: 0.28rem auto;
+  background: currentcolor;
+}
+
+.public-header__search {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: start center;
+  padding: 8rem 1rem 1rem;
+  background: rgb(17 17 17 / 72%);
+}
+
+.public-header__search-panel {
+  display: grid;
+  width: min(42rem, 100%);
+  gap: 1rem;
+  padding: 1.5rem;
+  color: #1b1b1b;
+  background: #fff;
+}
+
+.public-header__search-panel > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.public-header__search-panel h2,
+.public-header__search-error {
+  margin: 0;
+}
+
+.public-header__search-panel input {
+  min-height: 3rem;
+  padding: 0 0.9rem;
+  border: 1px solid #ccc7bd;
+}
+
+.public-header__search-panel button {
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  color: #171717;
+  font-weight: 800;
+  background: #f7b500;
+  border: 0;
+}
+
+.public-header__search-error {
+  color: #a3261d;
+  font-weight: 700;
+}
+
+@media (max-width: 56rem) {
+  .public-header__top {
+    display: none;
+  }
+
+  .public-header__nav {
+    width: 100%;
+    min-height: 4rem;
+    padding: 0 1rem;
+  }
+
+  .public-header__menu-button {
+    display: block;
+  }
+
+  .public-header__links {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    left: 0;
+    display: none;
+    align-items: stretch;
+    padding: 1rem;
+    color: #171717;
+    background: #fff;
+  }
+
+  .public-header__links--open {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .public-header__link {
+    width: 100%;
+    text-align: left;
+  }
+
+  .public-header__dropdown {
+    position: static;
+    display: none;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .public-header__dropdown--open {
+    display: grid;
+  }
+}
