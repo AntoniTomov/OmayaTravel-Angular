@@ -1,0 +1,60 @@
+<main class="homepage">
+  <section class="homepage__hero" [ngStyle]="{ 'background-image': backgroundImage() }">
+    <div class="homepage__hero-content">
+      <h1>{{ hero.title }}</h1>
+      <p>{{ hero.subtitle }}</p>
+
+      <form class="homepage__trip-search" (submit)="$event.preventDefault(); submitTripSearch()">
+        <div>
+          <label for="trip-destination">Where to?</label>
+          <select
+            id="trip-destination"
+            name="destination"
+            [value]="selectedDestination()"
+            [attr.aria-invalid]="searchError().length > 0"
+            aria-describedby="trip-search-error"
+            (change)="updateDestination($any($event.target).value)"
+          >
+            <option value="">Where to?</option>
+            @for (destination of destinations; track destination.target) {
+              <option [value]="destination.target">{{ destination.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div>
+          <label for="trip-month">When?</label>
+          <select
+            id="trip-month"
+            name="month"
+            [value]="selectedMonth()"
+            (change)="updateMonth($any($event.target).value)"
+          >
+            <option value="">When?</option>
+            @for (month of months; track month) {
+              <option [value]="month">{{ month }}</option>
+            }
+          </select>
+        </div>
+
+        <button type="submit">Find now</button>
+
+        @if (searchError()) {
+          <p id="trip-search-error" class="homepage__trip-error">{{ searchError() }}</p>
+        }
+      </form>
+    </div>
+
+    <div class="homepage__carousel-controls" aria-label="Homepage carousel">
+      @for (slide of hero.slides; track slide.image.key; let index = $index) {
+        <button
+          type="button"
+          [class.homepage__carousel-button--active]="activeSlideIndex() === index"
+          [attr.aria-label]="'Show slide ' + (index + 1)"
+          [attr.aria-current]="activeSlideIndex() === index"
+          (click)="setSlide(index)"
+        ></button>
+      }
+    </div>
+  </section>
+</main>

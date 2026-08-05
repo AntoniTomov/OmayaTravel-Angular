@@ -1,0 +1,137 @@
+:host {
+  display: block;
+}
+
+.homepage__hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 10rem 1rem 5rem;
+  color: #ffffff;
+  background-color: #26342f;
+  background-position: center;
+  background-size: cover;
+}
+
+.homepage__hero-content {
+  display: grid;
+  width: min(64rem, 100%);
+  gap: 1.5rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.homepage__hero h1 {
+  max-width: 52rem;
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 4.5rem;
+  line-height: 1.05;
+}
+
+.homepage__hero p {
+  max-width: 54rem;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.homepage__trip-search {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(12rem, 1fr);
+  width: min(61rem, 100%);
+  margin-top: 0.8rem;
+  padding: 1.6rem;
+  color: #171717;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgb(0 0 0 / 20%);
+}
+
+.homepage__trip-search > div {
+  display: grid;
+}
+
+.homepage__trip-search label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.homepage__trip-search select,
+.homepage__trip-search button {
+  min-height: 3.6rem;
+  padding: 0 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.homepage__trip-search select {
+  color: #171717;
+  background: #ffffff;
+  border: 1px solid #e0dbd2;
+}
+
+.homepage__trip-search button {
+  color: #ffffff;
+  background: #f7b500;
+  border: 1px solid #f7b500;
+  cursor: pointer;
+}
+
+.homepage__trip-search button:hover,
+.homepage__trip-search button:focus-visible {
+  color: #171717;
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.homepage__trip-error {
+  grid-column: 1 / -1;
+  margin: 0.8rem 0 0;
+  color: #a3261d;
+  font-weight: 700;
+  text-align: left;
+}
+
+.homepage__carousel-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  display: flex;
+  gap: 0.7rem;
+  transform: translateX(-50%);
+}
+
+.homepage__carousel-controls button {
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  background: rgb(255 255 255 / 55%);
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.homepage__carousel-button--active {
+  background: #f7b500 !important;
+}
+
+@media (max-width: 48rem) {
+  .homepage__hero {
+    min-height: 48rem;
+    padding-top: 7rem;
+  }
+
+  .homepage__trip-search {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .homepage__hero h1 {
+    font-size: 3rem;
+  }
+}

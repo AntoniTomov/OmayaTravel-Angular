@@ -1,0 +1,63 @@
+<main class="search-results">
+  <section class="search-results__hero">
+    <h1>{{ title() }}</h1>
+  </section>
+
+  <section class="search-results__content" aria-labelledby="new-search-title">
+    <h2 id="new-search-title">New search:</h2>
+
+    <form class="search-results__form" (submit)="$event.preventDefault(); submitSearch()">
+      <label for="search-results-input">Search term</label>
+      <input
+        id="search-results-input"
+        name="search"
+        type="search"
+        placeholder="Type here"
+        [value]="draftQuery()"
+        [attr.aria-invalid]="error().length > 0"
+        aria-describedby="search-results-error"
+        (input)="updateDraftQuery($any($event.target).value)"
+      />
+      <button type="submit" aria-label="Submit search"><span aria-hidden="true"></span></button>
+      @if (error()) {
+        <p id="search-results-error" class="search-results__error">{{ error() }}</p>
+      } @else {
+        <p id="search-results-error">
+          If you are not happy with the results below please do another search
+        </p>
+      }
+    </form>
+
+    @if (query() && results().length > 0) {
+      <ul class="search-results__list">
+        @for (result of results(); track result.canonicalPath) {
+          <li>
+            @if (thumbnailSrc(result); as thumbnail) {
+              <img
+                [src]="thumbnail"
+                [alt]="result.thumbnail?.alt"
+                width="96"
+                height="72"
+                loading="lazy"
+              />
+            }
+            <div>
+              <span>{{ result.type }}</span>
+              <h3>
+                <a [routerLink]="result.canonicalPath">{{ result.title }}</a>
+              </h3>
+              <p>{{ result.excerpt }}</p>
+            </div>
+          </li>
+        }
+      </ul>
+    } @else if (query()) {
+      <div class="search-results__empty">
+        <p>No results found.</p>
+        <a routerLink="/destinations/">Destinations</a>
+        <a routerLink="/enquire-now/">Enquire Now</a>
+        <a routerLink="/contact/">Contact</a>
+      </div>
+    }
+  </section>
+</main>

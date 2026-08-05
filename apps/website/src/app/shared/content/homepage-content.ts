@@ -1,0 +1,219 @@
+import { MediaReference } from '../media';
+
+export interface NavigationLink {
+  label: string;
+  target: string;
+}
+
+export interface NavigationGroup {
+  label: string;
+  links: readonly NavigationLink[];
+}
+
+export interface HeroSlide {
+  image: MediaReference;
+}
+
+export interface TripSearchDestination {
+  label: string;
+  target: string;
+}
+
+export interface SearchIndexItem {
+  type: 'Destination' | 'Tour' | 'Page' | 'Article';
+  title: string;
+  excerpt: string;
+  canonicalPath: string;
+  thumbnail?: MediaReference;
+}
+
+export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
+  {
+    label: 'Destinations',
+    links: [
+      {
+        label: 'Algeria',
+        target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+      },
+      {
+        label: 'Bulgaria',
+        target: '/tour-item/bulgaria-beyond-the-ordinary/',
+      },
+      {
+        label: 'Kyrgyzstan',
+        target: '/tour-item/kyrgyzstan-tour/',
+      },
+      {
+        label: 'Morocco',
+        target: '/tour-item/morocco-tour/',
+      },
+    ],
+  },
+  {
+    label: 'Tours',
+    links: [
+      {
+        label: 'Classic Tours',
+        target: '/classic-tours/',
+      },
+      {
+        label: 'Women Only',
+        target: '/women-only-tours/',
+      },
+      {
+        label: 'Solo Travellers',
+        target: '/solo-travellers-tours/',
+      },
+      {
+        label: 'Private Tours',
+        target: '/private-tours-your-trip-your-rules/',
+      },
+    ],
+  },
+  {
+    label: 'About Us',
+    links: [
+      {
+        label: 'Our Story',
+        target: '/our-story/',
+      },
+      {
+        label: 'Why book with us?',
+        target: '/why-book-with-us/',
+      },
+      {
+        label: 'Contact',
+        target: '/contact/',
+      },
+      {
+        label: 'FAQ',
+        target: '/faq/',
+      },
+    ],
+  },
+];
+
+export const PUBLIC_NAVIGATION_LINKS: readonly NavigationLink[] = [
+  {
+    label: 'Inspiring Stories',
+    target: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
+  },
+  {
+    label: 'Enquire Now',
+    target: '/enquire-now/',
+  },
+];
+
+export const HOMEPAGE_HERO = {
+  title: 'See the world. Meet its people',
+  subtitle:
+    "Explore the world's wonders through small-group travel - meaningful, immersive, and carefully curated",
+  slides: [
+    {
+      image: {
+        key: 'shared/homepage/home-hero-carousel-1.webp',
+        alt: 'Small group of travellers sitting together in a mountain village',
+        width: 1920,
+        height: 1080,
+      },
+    },
+    {
+      image: {
+        key: 'shared/homepage/home-hero-carousel-2.webp',
+        alt: 'Travellers looking across a mountain lake at sunset',
+        width: 1920,
+        height: 1080,
+      },
+    },
+    {
+      image: {
+        key: 'shared/homepage/home-hero-carousel-3.webp',
+        alt: 'Small group walking through a dramatic mountain landscape',
+        width: 1920,
+        height: 1080,
+      },
+    },
+  ] satisfies readonly HeroSlide[],
+};
+
+export const TRIP_SEARCH_DESTINATIONS: readonly TripSearchDestination[] = [
+  {
+    label: 'Algeria',
+    target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+  },
+  {
+    label: 'Bulgaria',
+    target: '/tour-item/bulgaria-beyond-the-ordinary/',
+  },
+  {
+    label: 'Kyrgyzstan',
+    target: '/tour-item/kyrgyzstan-tour/',
+  },
+  {
+    label: 'Morocco',
+    target: '/tour-item/morocco-tour/',
+  },
+];
+
+export const TRIP_SEARCH_MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+] as const;
+
+export const SITE_SEARCH_INDEX: readonly SearchIndexItem[] = [
+  {
+    type: 'Tour',
+    title: 'Kyrgyzstan Discovery Tour | Women only',
+    excerpt:
+      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive.",
+    canonicalPath: '/tour-item/women-only-tour-kyrgyzstan/',
+    thumbnail: {
+      key: 'tours/women-only-tour-kyrgyzstan/song-kul-lake.webp',
+      alt: 'Mountain lake landscape in Kyrgyzstan',
+      width: 1200,
+      height: 800,
+    },
+  },
+  {
+    type: 'Tour',
+    title: 'Bulgaria Beyond the Ordinary',
+    excerpt:
+      'A carefully curated journey through monasteries, mountains, villages and local traditions in Bulgaria.',
+    canonicalPath: '/tour-item/bulgaria-beyond-the-ordinary/',
+  },
+  {
+    type: 'Tour',
+    title: 'Morocco Tour',
+    excerpt:
+      'Explore Moroccan cities, desert landscapes and cultural encounters through a small-group itinerary.',
+    canonicalPath: '/tour-item/morocco-tour/',
+  },
+  {
+    type: 'Page',
+    title: 'Private Tours',
+    excerpt: 'Create a private journey shaped around your pace, interests and travel style.',
+    canonicalPath: '/private-tours-your-trip-your-rules/',
+  },
+  {
+    type: 'Article',
+    title: 'How to visit Song Kul Lake in Kyrgyzstan',
+    excerpt: 'A practical guide to reaching and experiencing Song Kul Lake.',
+    canonicalPath: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
+  },
+  {
+    type: 'Page',
+    title: 'Contact',
+    excerpt: 'Get in touch with Omaya Travel to discuss your next small-group journey.',
+    canonicalPath: '/contact/',
+  },
+];
