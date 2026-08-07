@@ -37,33 +37,33 @@
   position: relative;
   z-index: 2;
   display: grid;
-  width: min(68rem, 100%);
-  gap: 1rem;
+  width: min(64rem, 100%);
+  gap: 0.9rem;
   justify-items: center;
   text-align: center;
-  transform: translateY(-5rem);
+  transform: translateY(-10rem);
 }
 
 .homepage__hero h1 {
-  max-width: 64rem;
+  max-width: 58rem;
   margin: 0;
   font-family: tokens.$omaya-font-heading;
-  font-size: 3.75rem;
-  line-height: 1.08;
+  font-size: 3.45rem;
+  line-height: 1.05;
 }
 
 .homepage__hero p {
   max-width: 54rem;
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .homepage__trip-search {
   display: grid;
   grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(12rem, 1fr);
-  width: min(58.5rem, 100%);
-  margin-top: 1.25rem;
-  padding: 1.5rem 1.7rem;
+  width: min(60rem, 100%);
+  margin-top: 1.7rem;
+  padding: 1.45rem;
   color: tokens.$omaya-color-dark;
   background: tokens.$omaya-color-white;
   box-shadow: tokens.$omaya-shadow-search-panel;
@@ -84,7 +84,7 @@
 
 .homepage__trip-search select,
 .homepage__trip-search button {
-  min-height: 3.35rem;
+  min-height: 3.25rem;
   padding: 0 1rem;
   font-weight: 800;
   text-transform: uppercase;

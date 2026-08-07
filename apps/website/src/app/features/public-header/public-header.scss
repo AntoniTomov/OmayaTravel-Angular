@@ -42,7 +42,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  width: min(74rem, calc(100% - 2rem));
+  width: min(71rem, calc(100% - 2rem));
   min-height: 4rem;
   margin: 0 auto;
 }
@@ -63,7 +63,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1.9rem;
+  gap: 1.65rem;
 }
 
 .public-header__group {
