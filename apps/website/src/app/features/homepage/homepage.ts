@@ -8,12 +8,15 @@ import {
   TRIP_SEARCH_MONTHS,
 } from '../../shared/content/homepage-content';
 import { buildMediaImageAttributes } from '../../shared/media';
+import { BlogPosts } from './blog-posts/blog-posts';
 import { FeaturedTrips } from './featured-trips/featured-trips';
+import { MissionSection } from './mission-section/mission-section';
+import { PrivateTours } from './private-tours/private-tours';
 import { TravelMatch } from './travel-match/travel-match';
 
 @Component({
   selector: 'app-homepage',
-  imports: [TravelMatch, FeaturedTrips],
+  imports: [TravelMatch, FeaturedTrips, MissionSection, PrivateTours, BlogPosts],
   templateUrl: './homepage.html',
   styleUrl: './homepage.scss',
 })

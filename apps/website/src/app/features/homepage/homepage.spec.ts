@@ -75,10 +75,21 @@ describe('Homepage', () => {
     ] as HTMLImageElement[];
 
     expect(images.map((image) => image.getAttribute('src'))).toEqual([
-      '/assets/images/home-page/Tour-feature-image-1.webp',
-      '/assets/images/home-page/Tour-feature-image-2.webp',
-      '/assets/images/home-page/Tour-feature-image-3.webp',
+      '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
+      '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp',
+      '/assets/images/home-page/trips-carousel/Tour-feature-image-3.webp',
     ]);
+  });
+
+  it('renders the mission, private tours, and blog sections', () => {
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.textContent).toContain('Our mission');
+    expect(compiled.textContent).toContain('Private tours');
+    expect(compiled.textContent).toContain('Blog Posts');
+    expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
   });
 
   it('shows the required error when destination is missing', () => {

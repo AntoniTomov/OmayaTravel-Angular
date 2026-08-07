@@ -9,34 +9,9 @@
   overflow: hidden;
   padding: 1.25rem 1.7rem 4.4rem 1.7rem;
   color: tokens.$omaya-color-text;
-  background: tokens.$omaya-color-white;
-}
-
-.featured-trips::before {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse at 15% 20%,
-      transparent 0 28%,
-      tokens.$omaya-color-muted-border 28.3% 28.7%,
-      transparent 29%
-    ),
-    radial-gradient(
-      ellipse at 72% 18%,
-      transparent 0 30%,
-      tokens.$omaya-color-muted-border 30.3% 30.7%,
-      transparent 31%
-    ),
-    radial-gradient(
-      ellipse at 92% 86%,
-      transparent 0 24%,
-      tokens.$omaya-color-muted-border 24.3% 24.7%,
-      transparent 25%
-    );
-  opacity: 0.45;
-  content: '';
+  background: tokens.$omaya-color-white
+    url('/assets/images/home-page/trips-carousel/trips-carousel-bgr.webp') center top / cover
+    no-repeat;
 }
 
 .featured-trips__inner {

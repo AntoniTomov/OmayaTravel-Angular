@@ -21,19 +21,19 @@ interface FeaturedTrip {
 
 const FEATURED_TRIP_IMAGES = [
   {
-    src: '/assets/images/home-page/Tour-feature-image-1.webp',
+    src: '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
     alt: 'Rila Monastery with striped arches and domed church towers in Bulgaria',
     width: 1200,
     height: 900,
   },
   {
-    src: '/assets/images/home-page/Tour-feature-image-2.webp',
+    src: '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp',
     alt: 'Blue painted street and local craft displays in Chefchaouen Morocco',
     width: 1200,
     height: 900,
   },
   {
-    src: '/assets/images/home-page/Tour-feature-image-3.webp',
+    src: '/assets/images/home-page/trips-carousel/Tour-feature-image-3.webp',
     alt: 'Orange desert dune and sandstone rock formations in Tadrart Rouge Algeria',
     width: 1200,
     height: 900,

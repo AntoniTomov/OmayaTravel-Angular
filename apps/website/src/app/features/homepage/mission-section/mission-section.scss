@@ -1,0 +1,82 @@
+@use '../../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.mission-section {
+  padding: 6.5rem 1.5rem 5.3rem;
+  color: tokens.$omaya-color-text;
+  background: tokens.$omaya-color-white
+    url('/assets/images/home-page/trips-carousel/trips-carousel-bgr.webp') center top / cover
+    no-repeat;
+}
+
+.mission-section__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(20rem, 0.85fr);
+  gap: 4rem;
+  align-items: center;
+  width: min(76rem, 100%);
+  margin: 0 auto;
+}
+
+.mission-section img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.44 / 1;
+  object-fit: cover;
+}
+
+.mission-section__content {
+  display: grid;
+  gap: 1.55rem;
+  justify-items: start;
+}
+
+.mission-section h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 2.75rem;
+  line-height: 1.1;
+}
+
+.mission-section p {
+  max-width: 30rem;
+  margin: 0;
+  color: #747474;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.mission-section a {
+  display: inline-grid;
+  min-width: 11.8rem;
+  min-height: 3rem;
+  place-items: center;
+  margin-top: 0.7rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.mission-section a:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-dark;
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 4px;
+}
+
+@media (max-width: 58rem) {
+  .mission-section {
+    padding: 4rem 1rem;
+  }
+
+  .mission-section__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

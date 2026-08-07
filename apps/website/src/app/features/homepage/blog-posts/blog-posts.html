@@ -1,0 +1,31 @@
+<section class="blog-posts" aria-labelledby="blog-posts-title">
+  <div class="blog-posts__inner">
+    <header class="blog-posts__header">
+      <h2 id="blog-posts-title">Blog Posts</h2>
+      <p>
+        One inspiring story is worth traveling. Discover more about local food, tradition and
+        history. Read the stories that make you want to travel.
+      </p>
+    </header>
+
+    <div class="blog-posts__grid">
+      @for (post of posts; track post.target) {
+        <article class="blog-posts__card">
+          <a [routerLink]="post.target" class="blog-posts__image">
+            <img
+              [src]="post.image.src"
+              [alt]="post.image.alt"
+              width="550"
+              height="550"
+              loading="lazy"
+            />
+          </a>
+          <h3>
+            <a [routerLink]="post.target">{{ post.title }}</a>
+          </h3>
+          <p class="blog-posts__date">{{ post.date }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
