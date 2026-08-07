@@ -37,16 +37,48 @@ describe('Homepage', () => {
 
     expect(image).toBeTruthy();
     expect(image.getAttribute('src')).toBe(
-      'https://omayatravel.com/wp-content/uploads/2026/04/HomePageCoverPhoto-5.webp',
+      '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp',
     );
     expect(image.getAttribute('srcset')).toBe(
-      'https://omayatravel.com/wp-content/uploads/2026/04/HomePageCoverPhoto-5.webp 1920w',
+      '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp 1920w',
     );
     expect(image.getAttribute('sizes')).toBe('100vw');
     expect(image.getAttribute('width')).toBe('1920');
     expect(image.getAttribute('height')).toBe('1080');
     expect(image.getAttribute('loading')).toBe('eager');
     expect(image.getAttribute('fetchpriority')).toBe('high');
+  });
+
+  it('uses real image fallbacks for every carousel slide', () => {
+    fixture.detectChanges();
+
+    const image = fixture.nativeElement.querySelector('.homepage__hero-image') as HTMLImageElement;
+
+    component['setSlide'](1);
+    fixture.detectChanges();
+    expect(image.getAttribute('src')).toBe(
+      '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp',
+    );
+
+    component['setSlide'](2);
+    fixture.detectChanges();
+    expect(image.getAttribute('src')).toBe(
+      '/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp',
+    );
+  });
+
+  it('renders featured trip images from local assets', () => {
+    fixture.detectChanges();
+
+    const images = [
+      ...fixture.nativeElement.querySelectorAll('.featured-trips__image-link img'),
+    ] as HTMLImageElement[];
+
+    expect(images.map((image) => image.getAttribute('src'))).toEqual([
+      '/assets/images/home-page/Tour-feature-image-1.webp',
+      '/assets/images/home-page/Tour-feature-image-2.webp',
+      '/assets/images/home-page/Tour-feature-image-3.webp',
+    ]);
   });
 
   it('shows the required error when destination is missing', () => {

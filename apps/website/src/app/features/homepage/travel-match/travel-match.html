@@ -1,0 +1,23 @@
+<section class="travel-match" aria-labelledby="travel-match-title">
+  <div class="travel-match__inner">
+    <header class="travel-match__header">
+      <h2 id="travel-match-title">Are we your travel match?</h2>
+      <p>What stays the same, no matter which destination you pick.</p>
+    </header>
+
+    <div class="travel-match__grid">
+      @for (feature of features; track feature.title) {
+        <article class="travel-match__item">
+          <div
+            class="travel-match__icon travel-match__icon--{{ feature.icon }}"
+            aria-hidden="true"
+          >
+            <span></span>
+          </div>
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

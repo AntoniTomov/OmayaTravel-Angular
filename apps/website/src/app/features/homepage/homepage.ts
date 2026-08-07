@@ -8,9 +8,12 @@ import {
   TRIP_SEARCH_MONTHS,
 } from '../../shared/content/homepage-content';
 import { buildMediaImageAttributes } from '../../shared/media';
+import { FeaturedTrips } from './featured-trips/featured-trips';
+import { TravelMatch } from './travel-match/travel-match';
 
 @Component({
   selector: 'app-homepage',
+  imports: [TravelMatch, FeaturedTrips],
   templateUrl: './homepage.html',
   styleUrl: './homepage.scss',
 })

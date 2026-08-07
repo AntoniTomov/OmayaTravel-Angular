@@ -132,9 +132,7 @@ export const HOMEPAGE_HERO = {
         width: 1920,
         height: 1080,
       },
-      // Temporary #55 bridge: replace this current-site WordPress fallback with
-      // the approved `shared/homepage/home-hero-carousel-1.webp` media key URL before production launch.
-      visualSrc: 'https://omayatravel.com/wp-content/uploads/2026/04/HomePageCoverPhoto-5.webp',
+      visualSrc: '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp',
     },
     {
       image: {
@@ -143,6 +141,7 @@ export const HOMEPAGE_HERO = {
         width: 1920,
         height: 1080,
       },
+      visualSrc: '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp',
     },
     {
       image: {
@@ -151,6 +150,7 @@ export const HOMEPAGE_HERO = {
         width: 1920,
         height: 1080,
       },
+      visualSrc: '/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp',
     },
   ] satisfies readonly HeroSlide[],
 };
