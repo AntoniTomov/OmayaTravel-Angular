@@ -1,0 +1,61 @@
+<footer class="public-footer">
+  <div class="public-footer__columns">
+    <section class="public-footer__contact" aria-labelledby="footer-contact-title">
+      <a class="public-footer__brand" routerLink="/" aria-label="Omaya Travel home">
+        <img
+          src="/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1778610523515.webp"
+          width="150"
+          height="84"
+          alt="Omaya Travel"
+        />
+      </a>
+      <h2 id="footer-contact-title">See the World. Meet Its People.</h2>
+      <p class="public-footer__label">Contact us:</p>
+      <a href="tel:+359889735274">☎ <span>+359 88 973 5274</span></a>
+      <a href="tel:+359879965946">☎ <span>+359 87 996 5946</span></a>
+      <a href="mailto:info@omayatravel.com">✉ <span>info@omayatravel.com</span></a>
+      <p class="public-footer__label">Follow us:</p>
+      <div class="public-footer__socials">
+        <a href="https://www.instagram.com/omayatravel/" aria-label="Instagram">Ig</a>
+        <a href="https://www.facebook.com/omayatravel/" aria-label="Facebook">f</a>
+        <a href="https://www.linkedin.com/company/omaya-travel/" aria-label="LinkedIn">in</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="footer-posts-title">
+      <h2 id="footer-posts-title">Latest Posts</h2>
+      @for (post of latestPosts; track post.target) {
+        <a class="public-footer__post" [routerLink]="post.target">
+          <span>{{ post.title }}</span>
+          <small>{{ post.date }}</small>
+        </a>
+      }
+    </section>
+
+    <section aria-labelledby="footer-about-title">
+      <h2 id="footer-about-title">About</h2>
+      <a routerLink="/why-book-with-us/">Why book with us?</a>
+      <a routerLink="/our-story/">Our story</a>
+      <a routerLink="/faq/">FAQs</a>
+      <h2 class="public-footer__payment-title">Payment Methods</h2>
+      <div class="public-footer__payments">
+        @for (provider of paymentProviders; track provider.name) {
+          <img [src]="provider.src" [alt]="provider.name" loading="lazy" />
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="footer-legal-title">
+      <h2 id="footer-legal-title">Legal &amp; Privacy</h2>
+      <a routerLink="/cookie-policy/">Cookie Policy</a>
+      <a routerLink="/privacy-policy/">Privacy Policy</a>
+      <a routerLink="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a routerLink="/omaya-travel-license/">Omaya Travel License</a>
+    </section>
+  </div>
+
+  <div class="public-footer__bottom">
+    <span>© 2018 Omaya Travel, All Rights Reserved</span>
+    <button type="button" aria-label="Back to top" (click)="scrollToTop()">⌃</button>
+  </div>
+</footer>

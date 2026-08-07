@@ -43,7 +43,6 @@
   grid-template-columns: auto 1fr;
   align-items: center;
   width: min(71rem, calc(100% - 2rem));
-  min-height: 6.9rem;
   margin: 0 auto;
 }
 
@@ -221,7 +220,7 @@
   }
 
   .public-header__nav {
-    width: 100%;
+    width: calc(100% - 2rem);
     min-height: 4rem;
     padding: 0 1rem;
   }

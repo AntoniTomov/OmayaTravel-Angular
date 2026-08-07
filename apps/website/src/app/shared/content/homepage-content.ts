@@ -35,13 +35,11 @@ export const PUBLIC_HEADER_LOGO: MediaReference = {
   height: 84,
 };
 
-// Temporary #55 bridge: direct omayatravel.com/wp-content URLs keep #53 visual parity
-// until approved media.omayatravel.com pipeline assets exist for the homepage/logo.
 export const PUBLIC_HEADER_LOGO_VISUAL_SRC =
-  'https://omayatravel.com/wp-content/uploads/2026/04/Omaya-Travel-Logo-e1780484928941.webp';
+  '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp';
 
 export const PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC =
-  'https://omayatravel.com/wp-content/uploads/2026/04/Black_logo-e1781169999413.webp';
+  '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp';
 
 export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
   {

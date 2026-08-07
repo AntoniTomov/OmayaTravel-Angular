@@ -24,7 +24,7 @@ export class BlogPosts {
       date: 'February 26, 2026',
       target: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
       image: {
-        src: 'https://i0.wp.com/omayatravel.com/wp-content/uploads/2026/04/Yurt-Camp-at-SongKul-Lake-Opt.webp?resize=550%2C550&ssl=1',
+        src: '/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp',
         alt: 'Yurt camp at Song Kul Lake at sunset',
       },
     },
@@ -33,7 +33,7 @@ export class BlogPosts {
       date: 'April 1, 2026',
       target: '/10-unmissable-places-to-visit-on-your-bulgaria-trip/',
       image: {
-        src: 'https://i0.wp.com/omayatravel.com/wp-content/uploads/2026/04/pexels-bkrustev-225203.jpg?resize=550%2C550&ssl=1',
+        src: '/assets/images/home-page/blog-posts/pexels-bkrustev-225203.jpg',
         alt: 'Green lake and hills in Bulgaria',
       },
     },
@@ -42,7 +42,7 @@ export class BlogPosts {
       date: 'April 16, 2026',
       target: '/the-complete-visitor-guide-to-rila-monastery/',
       image: {
-        src: 'https://i0.wp.com/omayatravel.com/wp-content/uploads/2026/04/Rila-Monastery-Article-2-Opt.webp?resize=550%2C550&ssl=1',
+        src: '/assets/images/home-page/blog-posts/Rila-Monastery-Article-2-Opt.webp',
         alt: 'Rila Monastery courtyard in Bulgaria',
       },
     },

@@ -40,10 +40,10 @@ describe('PublicHeader', () => {
 
     expect(logo).toBeTruthy();
     expect(logo.getAttribute('src')).toBe(
-      'https://omayatravel.com/wp-content/uploads/2026/04/Omaya-Travel-Logo-e1780484928941.webp',
+      '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp',
     );
     expect(logo.getAttribute('srcset')).toBe(
-      'https://omayatravel.com/wp-content/uploads/2026/04/Omaya-Travel-Logo-e1780484928941.webp 150w',
+      '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp 150w',
     );
     expect(logo.getAttribute('alt')).toBe('Omaya Travel');
     expect(logo.getAttribute('width')).toBe('150');
@@ -61,7 +61,7 @@ describe('PublicHeader', () => {
     ) as HTMLImageElement;
 
     expect(logo.getAttribute('src')).toBe(
-      'https://omayatravel.com/wp-content/uploads/2026/04/Black_logo-e1781169999413.webp',
+      '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp',
     );
   });
 

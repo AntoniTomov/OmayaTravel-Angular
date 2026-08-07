@@ -90,6 +90,9 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Private tours');
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
+    expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
+      '/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp',
+    );
   });
 
   it('shows the required error when destination is missing', () => {
