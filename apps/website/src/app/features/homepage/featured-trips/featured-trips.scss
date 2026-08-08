@@ -19,22 +19,88 @@
   width: 100%;
 }
 
+.featured-trips__heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
 .featured-trips h2 {
-  margin: 0 0 2rem;
+  margin: 0;
   font-family: tokens.$omaya-font-heading;
   font-size: 3rem;
   line-height: 1.1;
   text-align: center;
 }
 
-.featured-trips__grid {
+.featured-trips__controls {
+  position: absolute;
+  right: 0;
+  display: flex;
+  gap: 0.55rem;
+}
+
+.featured-trips__controls button {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border: 1px solid rgb(23 23 23 / 26%);
+  border-radius: 50%;
+  color: tokens.$omaya-color-dark;
+  background: rgb(255 255 255 / 78%);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color tokens.$omaya-transition-fast,
+    color tokens.$omaya-transition-fast,
+    background tokens.$omaya-transition-fast;
+}
+
+.featured-trips__controls button:is(:hover, :focus-visible) {
+  border-color: tokens.$omaya-color-gold;
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+}
+
+.featured-trips__controls button:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 3px;
+}
+
+.featured-trips__controls button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.featured-trips__carousel {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.featured-trips__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-trips__carousel:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 6px;
+}
+
+.featured-trips__track {
+  display: flex;
   gap: 1.7rem;
 }
 
 .featured-trips__card {
+  flex: 0 0 calc((100% - 3.4rem) / 3);
   min-width: 0;
+  scroll-snap-align: start;
 }
 
 .featured-trips__image-link {
@@ -83,6 +149,7 @@
 
 .featured-trips__content h3,
 .featured-trips__price,
+.featured-trips__duration,
 .featured-trips__description {
   margin: 0;
 }
@@ -114,6 +181,14 @@
   font-weight: 700;
 }
 
+.featured-trips__duration {
+  color: tokens.$omaya-color-dark;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
 .featured-trips__description {
   color: #777777;
   font-size: 0.92rem;
@@ -129,8 +204,8 @@
     width: min(54rem, 100%);
   }
 
-  .featured-trips__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .featured-trips__card {
+    flex-basis: calc((100% - 1.7rem) / 2);
   }
 }
 
@@ -139,14 +214,29 @@
     padding: 1.5rem 1rem 3.5rem;
   }
 
-  .featured-trips h2 {
+  .featured-trips__heading {
+    align-items: flex-start;
+    justify-content: space-between;
     margin-bottom: 1.6rem;
-    font-size: 2.35rem;
   }
 
-  .featured-trips__grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .featured-trips h2 {
+    max-width: 13rem;
+    font-size: 2.35rem;
+    text-align: left;
+  }
+
+  .featured-trips__controls {
+    position: static;
+    padding-top: 0.25rem;
+  }
+
+  .featured-trips__track {
+    gap: 1rem;
+  }
+
+  .featured-trips__card {
+    flex-basis: 100%;
   }
 
   .featured-trips__image-link {
