@@ -5,7 +5,7 @@
 }
 
 .blog-posts {
-  padding: 1.35rem 1.7rem 6.4rem;
+  padding: 0 4.5rem 6.4rem;
   color: tokens.$omaya-color-text;
   background: tokens.$omaya-color-white
     url('/assets/images/home-page/trips-carousel/trips-carousel-bgr.webp') center top / cover
@@ -32,7 +32,7 @@
 }
 
 .blog-posts__header p {
-  max-width: 65rem;
+  max-width: 42rem;
   margin: 0;
   color: #747474;
   font-size: 1.05rem;
@@ -42,7 +42,7 @@
 .blog-posts__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 7.3rem;
+  gap: 4.5rem;
   margin-top: 4.1rem;
 }
 
