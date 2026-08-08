@@ -9,9 +9,9 @@ import { RouterLink } from '@angular/router';
 })
 export class MissionSection {
   protected readonly image = {
-    src: 'https://omayatravel.com/wp-content/uploads/2026/03/Untitled-design-17.png',
+    src: '/assets/images/home-page/our-mission-image.webp',
     alt: 'Traveller sitting in a cave opening overlooking mountains',
-    width: 900,
-    height: 625,
+    width: 1080,
+    height: 1080,
   };
 }

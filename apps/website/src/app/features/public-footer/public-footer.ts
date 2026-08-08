@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map, startWith } from 'rxjs';
 
 interface FooterPost {
   title: string;
@@ -19,6 +21,16 @@ interface PaymentProvider {
   styleUrl: './public-footer.scss',
 })
 export class PublicFooter {
+  private readonly router = inject(Router);
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event) => event.urlAfterRedirects),
+      startWith(this.router.url),
+    ),
+  );
+  protected readonly isHomepage = computed(() => this.currentUrl() === '/');
+
   protected readonly latestPosts: readonly FooterPost[] = [
     {
       title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',

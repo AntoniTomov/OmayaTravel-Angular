@@ -56,6 +56,13 @@
 
   <div class="public-footer__bottom">
     <span>© 2018 Omaya Travel, All Rights Reserved</span>
-    <button type="button" aria-label="Back to top" (click)="scrollToTop()">⌃</button>
+    <button
+      type="button"
+      aria-label="Back to top"
+      [class.public-footer__back-to-top--home]="isHomepage()"
+      (click)="scrollToTop()"
+    >
+      ^
+    </button>
   </div>
 </footer>

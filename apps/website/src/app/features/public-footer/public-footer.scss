@@ -109,6 +109,8 @@
   color: #888;
 }
 .public-footer__bottom button {
+  display: grid;
+  place-items: center;
   position: absolute;
   right: -1.6rem;
   bottom: 0;
@@ -118,7 +120,21 @@
   background: tokens.$omaya-color-gold;
   border: 0;
   font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
   cursor: pointer;
+}
+
+.public-footer__bottom button.public-footer__back-to-top--home {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: auto;
+  z-index: 15;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
 }
 
 @media (max-width: 60rem) {
