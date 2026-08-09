@@ -63,16 +63,20 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  height: 100%;
   gap: 1.65rem;
 }
 
 .public-header__group {
   position: relative;
+  height: 100%;
 }
 
 .public-header__link,
 .public-header__search-button {
-  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
   color: inherit;
   background: transparent;
   border: 0;
@@ -82,11 +86,13 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
+  padding: 0;
 }
 
 .public-header__link:is(:hover, :focus-visible),
 .public-header__search-button:is(:hover, :focus-visible),
-.public-header__dropdown a:is(:hover, :focus-visible) {
+.public-header__dropdown a:is(:hover, :focus-visible),
+.public-header__links .public-header__link:is(:hover) {
   color: var(--hover);
 }
 
@@ -97,7 +103,7 @@
 
 .public-header__dropdown {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: 100%;
   left: 0;
   display: grid;
   min-width: 13rem;
@@ -126,23 +132,6 @@
   display: grid;
   width: 2.75rem;
   place-items: center;
-}
-
-.public-header__search-button span {
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid currentcolor;
-  border-radius: 999px;
-}
-
-.public-header__search-button span::after {
-  display: block;
-  width: 0.55rem;
-  height: 2px;
-  margin: 0.68rem 0 0 0.68rem;
-  background: currentcolor;
-  content: '';
-  transform: rotate(135deg);
 }
 
 .public-header__menu-button {

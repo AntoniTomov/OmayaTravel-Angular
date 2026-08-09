@@ -50,6 +50,19 @@ describe('PublicHeader', () => {
     expect(logo.getAttribute('height')).toBe('84');
   });
 
+  it('renders the site search icon button', () => {
+    fixture.detectChanges();
+
+    const searchButton = fixture.nativeElement.querySelector(
+      '.public-header__search-button',
+    ) as HTMLButtonElement;
+    const searchIcon = searchButton.querySelector('mat-icon');
+
+    expect(searchButton.getAttribute('aria-label')).toBe('Open site search');
+    expect(searchIcon).toBeTruthy();
+    expect(searchIcon?.getAttribute('aria-hidden')).toBe('true');
+  });
+
   it('switches to the dark current-site logo in the scrolled header state', () => {
     fixture.detectChanges();
 

@@ -10,7 +10,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import {
   PUBLIC_NAVIGATION_GROUPS,
   PUBLIC_NAVIGATION_LINKS,
@@ -20,9 +21,21 @@ import {
 } from '../../shared/content/homepage-content';
 import { buildMediaImageAttributes } from '../../shared/media';
 
+const SEARCH_ICON_SVG = `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <path
+      d="m21 21-4.35-4.35m1.35-5.15a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+`;
+
 @Component({
   selector: 'app-public-header',
-  imports: [NgClass, RouterLink],
+  imports: [NgClass, RouterLink, MatIconModule],
   templateUrl: './public-header.html',
   styleUrl: './public-header.scss',
 })
@@ -30,6 +43,8 @@ export class PublicHeader implements AfterViewInit {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly iconRegistry = inject(MatIconRegistry);
+  private readonly sanitizer = inject(DomSanitizer);
 
   protected readonly isScrolled = signal(false);
   protected readonly isMobileMenuOpen = signal(false);
@@ -62,6 +77,13 @@ export class PublicHeader implements AfterViewInit {
 
   private readonly searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
   private lastFocusedElement: HTMLElement | null = null;
+
+  constructor() {
+    this.iconRegistry.addSvgIconLiteral(
+      'search',
+      this.sanitizer.bypassSecurityTrustHtml(SEARCH_ICON_SVG),
+    );
+  }
 
   ngAfterViewInit(): void {
     this.updateScrolledState();

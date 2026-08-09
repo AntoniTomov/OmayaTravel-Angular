@@ -20,9 +20,8 @@
       <img
         [src]="logo().src"
         [srcset]="logo().srcset"
-        /* [sizes]="logo().sizes" */
-        width="auto"
-        [height]="78"
+        [width]="logo().width"
+        [height]="logo().height"
         [alt]="logo().alt"
         [attr.loading]="logo().loading"
         [attr.fetchpriority]="logo().fetchPriority"
@@ -81,7 +80,7 @@
         aria-label="Open site search"
         (click)="openSearch()"
       >
-        <span aria-hidden="true"></span>
+        <mat-icon svgIcon="search" aria-hidden="true"></mat-icon>
       </button>
     </div>
   </nav>
