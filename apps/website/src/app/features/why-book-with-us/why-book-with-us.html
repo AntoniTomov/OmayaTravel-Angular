@@ -1,0 +1,57 @@
+<main class="why-book">
+  <section class="why-book__hero">
+    <img
+      [src]="content.hero.image.src"
+      [width]="content.hero.image.width"
+      [height]="content.hero.image.height"
+      [alt]="content.hero.image.alt"
+      fetchpriority="high"
+    />
+    <div class="why-book__hero-copy">
+      <p>Omaya Travel</p>
+      <h1>{{ content.title }}</h1>
+    </div>
+  </section>
+
+  <section class="why-book__intro" aria-labelledby="why-book-heading">
+    <p>Travel with intent</p>
+    <h2 id="why-book-heading">{{ content.introduction[0] }}</h2>
+    @for (paragraph of content.introduction.slice(1); track paragraph) {
+      <p>{{ paragraph }}</p>
+    }
+  </section>
+
+  <section class="why-book__cards" aria-label="Reasons to book with Omaya Travel">
+    @for (card of content.cards; track card.id) {
+      <article class="why-book__card" tabindex="0">
+        <div class="why-book__card-inner">
+          <div class="why-book__card-face why-book__card-front">
+            <img
+              [src]="card.image.src"
+              [width]="card.image.width"
+              [height]="card.image.height"
+              [alt]="card.image.alt"
+              loading="lazy"
+            />
+            <div>
+              <span>Read more</span>
+              <h3>{{ card.title }}</h3>
+            </div>
+          </div>
+
+          <div class="why-book__card-face why-book__card-back">
+            <h3>{{ card.title }}</h3>
+            @for (paragraph of card.paragraphs; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="why-book__closing" aria-label="Explore journeys">
+    <p>{{ content.closing }}</p>
+    <a routerLink="/classic-tours/">Explore our journeys</a>
+  </section>
+</main>

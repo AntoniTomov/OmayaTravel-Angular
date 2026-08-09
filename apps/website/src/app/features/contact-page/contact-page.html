@@ -1,0 +1,21 @@
+<main class="contact-page">
+  <section class="contact-page__layout" aria-labelledby="contact-page-title">
+    <form class="contact-page__form" (submit)="$event.preventDefault()">
+      <h1 id="contact-page-title">{{ content.title }}</h1>
+      <input type="text" name="name" placeholder="Name*" autocomplete="name" />
+      <input type="email" name="email" placeholder="Email Address*" autocomplete="email" />
+      <input type="text" name="subject" placeholder="Subject" />
+      <textarea name="comment" rows="8" placeholder="Comment"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="contact-page__details">
+      <h2>{{ content.intro.heading }}</h2>
+      <p>{{ content.intro.text }}</p>
+
+      <h3>{{ content.location }}</h3>
+      <p>Phone/WhatsApp: <a [href]="'tel:' + content.phone.replaceAll(' ', '')">{{ content.phone }}</a></p>
+      <p>Email: <a [href]="'mailto:' + content.email">{{ content.email }}</a></p>
+    </div>
+  </section>
+</main>

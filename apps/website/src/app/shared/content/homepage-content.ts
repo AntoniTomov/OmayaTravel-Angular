@@ -96,6 +96,10 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
         target: '/why-book-with-us/',
       },
       {
+        label: 'Your DMC Partner in Bulgaria',
+        target: '/your-dmc-partner-in-bulgaria/',
+      },
+      {
         label: 'Contact',
         target: '/contact/',
       },

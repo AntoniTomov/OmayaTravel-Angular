@@ -1,10 +1,15 @@
 import { CanMatchFn, Routes, UrlMatcher, UrlSegment } from '@angular/router';
 
+import { ContactPage } from './features/contact-page/contact-page';
+import { DmcPartnerBulgaria } from './features/dmc-partner-bulgaria/dmc-partner-bulgaria';
+import { FaqPage } from './features/faq-page/faq-page';
 import { Homepage } from './features/homepage/homepage';
 import { NotFound } from './features/not-found/not-found';
+import { OurStory } from './features/our-story/our-story';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import { SearchResults } from './features/search-results/search-results';
 import { TourDetail } from './features/tour-detail/tour-detail';
+import { WhyBookWithUs } from './features/why-book-with-us/why-book-with-us';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
   PUBLIC_DESTINATION_SLUGS,
@@ -73,6 +78,56 @@ export const routes: Routes = [
       routeKey: 'enquire-now',
       routeType: 'static-page',
       canonicalPath: '/enquire-now/',
+    },
+  },
+  {
+    path: 'contact',
+    pathMatch: 'full',
+    component: ContactPage,
+    data: {
+      routeKey: 'static-contact',
+      routeType: 'static-page',
+      canonicalPath: '/contact/',
+    },
+  },
+  {
+    path: 'faq',
+    pathMatch: 'full',
+    component: FaqPage,
+    data: {
+      routeKey: 'static-faq',
+      routeType: 'static-page',
+      canonicalPath: '/faq/',
+    },
+  },
+  {
+    path: 'our-story',
+    pathMatch: 'full',
+    component: OurStory,
+    data: {
+      routeKey: 'static-our-story',
+      routeType: 'static-page',
+      canonicalPath: '/our-story/',
+    },
+  },
+  {
+    path: 'your-dmc-partner-in-bulgaria',
+    pathMatch: 'full',
+    component: DmcPartnerBulgaria,
+    data: {
+      routeKey: 'static-your-dmc-partner-in-bulgaria',
+      routeType: 'static-page',
+      canonicalPath: '/your-dmc-partner-in-bulgaria/',
+    },
+  },
+  {
+    path: 'why-book-with-us',
+    pathMatch: 'full',
+    component: WhyBookWithUs,
+    data: {
+      routeKey: 'static-why-book-with-us',
+      routeType: 'static-page',
+      canonicalPath: '/why-book-with-us/',
     },
   },
   {

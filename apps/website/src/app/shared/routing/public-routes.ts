@@ -54,6 +54,7 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'contact',
   'why-book-with-us',
   'our-story',
+  'your-dmc-partner-in-bulgaria',
   'omaya-travel-license',
   'faq',
   'privacy-policy',

@@ -5,9 +5,14 @@ import { TestBed } from '@angular/core/testing';
 
 import { destinationDetailCanMatch, routes, tourDetailCanMatch } from './app.routes';
 import { serverRoutes } from './app.routes.server';
+import { ContactPage } from './features/contact-page/contact-page';
+import { DmcPartnerBulgaria } from './features/dmc-partner-bulgaria/dmc-partner-bulgaria';
+import { FaqPage } from './features/faq-page/faq-page';
 import { NotFound } from './features/not-found/not-found';
+import { OurStory } from './features/our-story/our-story';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import { TourDetail } from './features/tour-detail/tour-detail';
+import { WhyBookWithUs } from './features/why-book-with-us/why-book-with-us';
 import {
   PUBLIC_DESTINATION_SLUGS,
   PUBLIC_STATIC_PRERENDER_ROUTES,
@@ -110,6 +115,46 @@ describe('app routes', () => {
     await expect(
       harness.navigateByUrl('/tour-item/algeria-desert-expedition-tadrart-rouge/', TourDetail),
     ).resolves.toBeInstanceOf(TourDetail);
+  });
+
+  it('resolves the our-story static page to its dedicated component', async () => {
+    TestBed.configureTestingModule({
+      providers: [provideRouter(routes)],
+    });
+
+    const harness = await RouterTestingHarness.create();
+
+    await expect(harness.navigateByUrl('/our-story/', OurStory)).resolves.toBeInstanceOf(
+      OurStory,
+    );
+  });
+
+  it('resolves the why-book-with-us static page to its dedicated component', async () => {
+    TestBed.configureTestingModule({
+      providers: [provideRouter(routes)],
+    });
+
+    const harness = await RouterTestingHarness.create();
+
+    await expect(
+      harness.navigateByUrl('/why-book-with-us/', WhyBookWithUs),
+    ).resolves.toBeInstanceOf(WhyBookWithUs);
+  });
+
+  it('resolves contact, faq, and DMC static pages to dedicated components', async () => {
+    TestBed.configureTestingModule({
+      providers: [provideRouter(routes)],
+    });
+
+    const harness = await RouterTestingHarness.create();
+
+    await expect(harness.navigateByUrl('/contact/', ContactPage)).resolves.toBeInstanceOf(
+      ContactPage,
+    );
+    await expect(harness.navigateByUrl('/faq/', FaqPage)).resolves.toBeInstanceOf(FaqPage);
+    await expect(
+      harness.navigateByUrl('/your-dmc-partner-in-bulgaria/', DmcPartnerBulgaria),
+    ).resolves.toBeInstanceOf(DmcPartnerBulgaria);
   });
 
   it('resolves unknown destination and tour slugs to not-found behavior', async () => {

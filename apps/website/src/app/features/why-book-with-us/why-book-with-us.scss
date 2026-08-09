@@ -1,0 +1,244 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.why-book {
+  color: #606b76;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.why-book__hero {
+  position: relative;
+  display: grid;
+  min-height: 38rem;
+  place-items: center;
+  overflow: hidden;
+  padding: 10rem 1.5rem 6rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.why-book__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.why-book__hero::after {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 42%);
+  content: '';
+}
+
+.why-book__hero-copy {
+  position: relative;
+  z-index: 1;
+  width: min(58rem, 100%);
+  text-align: center;
+}
+
+.why-book__hero-copy p,
+.why-book__intro > p:first-child,
+.why-book__card-front span {
+  margin: 0 0 0.7rem;
+  color: tokens.$omaya-color-gold;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.why-book h1,
+.why-book h2,
+.why-book h3 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  line-height: 1.12;
+}
+
+.why-book h1 {
+  font-size: clamp(3rem, 6vw, 5.25rem);
+}
+
+.why-book h2 {
+  color: #101820;
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
+}
+
+.why-book h3 {
+  font-size: 1.55rem;
+}
+
+.why-book__intro,
+.why-book__cards,
+.why-book__closing {
+  width: min(76rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.why-book__intro {
+  max-width: 58rem;
+  padding: 5.5rem 0 3.8rem;
+  text-align: center;
+}
+
+.why-book__intro p {
+  margin: 1rem 0 0;
+}
+
+.why-book__cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-bottom: 5.5rem;
+}
+
+.why-book__card {
+  min-height: 25rem;
+  perspective: 72rem;
+}
+
+.why-book__card:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 5px;
+}
+
+.why-book__card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 520ms ease;
+  transform-style: preserve-3d;
+}
+
+.why-book__card:is(:hover, :focus) .why-book__card-inner,
+.why-book__card:focus-within .why-book__card-inner {
+  transform: rotateY(180deg);
+}
+
+.why-book__card-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.why-book__card-front {
+  align-items: end;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.why-book__card-front::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 12%), rgb(0 0 0 / 68%));
+  content: '';
+}
+
+.why-book__card-front img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.why-book__card-front div,
+.why-book__card-back {
+  position: relative;
+  z-index: 1;
+  padding: 1.4rem;
+}
+
+.why-book__card-back {
+  align-content: center;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+  transform: rotateY(180deg);
+}
+
+.why-book__card-back h3 {
+  margin-bottom: 1rem;
+  color: tokens.$omaya-color-gold;
+}
+
+.why-book__card-back p {
+  margin: 0 0 0.85rem;
+}
+
+.why-book__closing {
+  display: grid;
+  justify-items: center;
+  gap: 1.35rem;
+  margin-bottom: 6rem;
+  padding: 3rem 1rem;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  text-align: center;
+}
+
+.why-book__closing p {
+  max-width: 46rem;
+  margin: 0;
+  color: #101820;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.6rem;
+}
+
+.why-book__closing a {
+  display: inline-grid;
+  min-height: 3rem;
+  align-items: center;
+  padding: 0 1.4rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.why-book__closing a:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-dark;
+}
+
+.why-book a:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 4px;
+}
+
+@media (max-width: 70rem) {
+  .why-book__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+  .why-book__hero {
+    min-height: 32rem;
+    padding-top: 8rem;
+  }
+
+  .why-book__intro {
+    padding: 4rem 0 3rem;
+  }
+
+  .why-book__cards {
+    grid-template-columns: 1fr;
+    padding-bottom: 4rem;
+  }
+
+  .why-book__card {
+    min-height: 24rem;
+  }
+}

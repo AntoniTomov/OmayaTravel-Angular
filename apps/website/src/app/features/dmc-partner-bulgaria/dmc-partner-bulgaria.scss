@@ -1,0 +1,173 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.dmc-page {
+  color: #657080;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.dmc-page__intro {
+  display: grid;
+  grid-template-columns: minmax(18rem, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+  width: min(76rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 7rem 0 3.4rem;
+}
+
+.dmc-page__intro img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.dmc-page h1,
+.dmc-page h2,
+.dmc-page h3 {
+  margin: 0;
+  color: #101820;
+  font-family: tokens.$omaya-font-heading;
+  line-height: 1.13;
+}
+
+.dmc-page h1 {
+  font-size: clamp(2.5rem, 4vw, 3.7rem);
+}
+
+.dmc-page__intro p {
+  margin: 1.6rem 0 2rem;
+}
+
+.dmc-page__intro a {
+  display: inline-grid;
+  min-height: 3.3rem;
+  align-items: center;
+  padding: 0 2rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dmc-page__benefits {
+  padding: 2.6rem 1rem 3rem;
+  color: tokens.$omaya-color-white;
+  background:
+    linear-gradient(rgb(0 0 0 / 18%), rgb(0 0 0 / 18%)),
+    url('/assets/images/dmc-partner-bulgaria/partner-with-omaya-bgr.webp') center / cover;
+  text-align: center;
+}
+
+.dmc-page__benefits h2 {
+  color: tokens.$omaya-color-white;
+  font-size: 2.65rem;
+}
+
+.dmc-page__benefits > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  width: min(92rem, 100%);
+  margin: 3rem auto 0;
+}
+
+.dmc-page__benefits article {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+}
+
+.dmc-page__benefits span {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 2px solid tokens.$omaya-color-white;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.dmc-page__benefits h3 {
+  color: tokens.$omaya-color-white;
+  font-size: 1.3rem;
+}
+
+.dmc-page__benefits p {
+  margin: 0;
+  color: tokens.$omaya-color-white;
+  font-weight: 700;
+}
+
+.dmc-page__faq {
+  width: min(76rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 5.5rem 0 6rem;
+}
+
+.dmc-page__faq h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.dmc-page__faq details {
+  border-top: 1px solid #e9e9e9;
+  padding: 1.2rem 0;
+}
+
+.dmc-page__faq details:last-child {
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.dmc-page__faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #303030;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.12rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dmc-page__faq summary::after {
+  color: tokens.$omaya-color-gold;
+  content: '+';
+}
+
+.dmc-page__faq details[open] summary {
+  color: tokens.$omaya-color-gold;
+}
+
+.dmc-page__faq details[open] summary::after {
+  content: '^';
+}
+
+.dmc-page__faq p {
+  margin: 1rem 0 0;
+}
+
+.dmc-page :is(a, summary):focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 4px;
+}
+
+@media (max-width: 56rem) {
+  .dmc-page__intro,
+  .dmc-page__benefits > div {
+    grid-template-columns: 1fr;
+  }
+
+  .dmc-page__intro {
+    padding-top: 6rem;
+  }
+}
