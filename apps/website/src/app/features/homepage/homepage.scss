@@ -15,7 +15,7 @@
   display: grid;
   min-height: 100svh;
   place-items: center;
-  padding: 10.5rem 1rem 6rem;
+  padding: 10.5rem 1.5rem 6rem;
   color: tokens.$omaya-color-white;
   background-color: tokens.$omaya-color-dark;
   background-position: center;
@@ -66,7 +66,8 @@
 .homepage__trip-search {
   display: grid;
   grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(16rem, 1.28fr);
-  width: min(60rem, 100%);
+  width: 100%;
+  box-sizing: border-box;
   margin-top: 1.7rem;
   padding: 1.55rem 2.85rem;
   color: tokens.$omaya-color-dark;
@@ -161,7 +162,7 @@
 
 @media (max-width: 48rem) {
   .homepage__hero {
-    min-height: 48rem;
+    min-height: 43rem;
     padding-top: 7rem;
   }
 

@@ -14,7 +14,7 @@
         <button
           type="button"
           aria-label="Show next trip"
-          [disabled]="activeTripIndex() === lastTripIndex - 2"
+          [disabled]="activeTripIndex() === lastTripIndex"
           (click)="shiftTrip(1)"
         >
           &gt;

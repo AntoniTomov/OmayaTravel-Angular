@@ -113,7 +113,7 @@ export class PublicHeader implements AfterViewInit {
   }
 
   protected openDropdown(label: string): void {
-    this.activeDropdown.set(label);
+    setTimeout(() => this.activeDropdown.set(label), 0);
   }
 
   protected toggleDropdown(label: string): void {

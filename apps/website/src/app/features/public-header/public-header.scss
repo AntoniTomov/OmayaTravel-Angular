@@ -45,6 +45,8 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .public-header__logo {
@@ -69,7 +71,7 @@
 
 .public-header__group {
   position: relative;
-  height: 100%;
+  height: auto;
 }
 
 .public-header__link,
@@ -107,7 +109,6 @@
   left: 0;
   display: grid;
   min-width: 13rem;
-  padding: 0.7rem 0;
   visibility: hidden;
   background: tokens.$omaya-color-white;
   opacity: 0;
@@ -122,7 +123,7 @@
 }
 
 .public-header__dropdown a {
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 0.5rem;
   color: tokens.$omaya-color-text;
   font-size: 0.82rem;
   font-weight: 700;
@@ -217,9 +218,15 @@
     display: block;
   }
 
+  .public-header__link {
+    min-height: auto;
+  }
+
   .public-header__links {
     position: absolute;
-    top: 4rem;
+    justify-content: flex-start;
+    min-height: auto;
+    top: 3.8rem;
     right: 0;
     left: 0;
     display: none;
@@ -232,11 +239,14 @@
   .public-header__links--open {
     display: grid;
     gap: 0.35rem;
+    min-height: auto;
+    height: auto;
   }
 
   .public-header__link {
     width: 100%;
     text-align: left;
+    padding: 0.5rem 0;
   }
 
   .public-header__dropdown {

@@ -22,9 +22,13 @@
 .featured-trips__heading {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.featured-trips__heading h2 {
+  width: 100%;
 }
 
 .featured-trips h2 {
@@ -36,8 +40,6 @@
 }
 
 .featured-trips__controls {
-  position: absolute;
-  right: 0;
   display: flex;
   gap: 0.55rem;
 }
@@ -200,10 +202,6 @@
     padding: 2rem 1rem 4rem;
   }
 
-  .featured-trips__inner {
-    width: min(54rem, 100%);
-  }
-
   .featured-trips__card {
     flex-basis: calc((100% - 1.7rem) / 2);
   }
@@ -211,19 +209,19 @@
 
 @media (max-width: 44rem) {
   .featured-trips {
-    padding: 1.5rem 1rem 3.5rem;
+    padding: 4rem 1.5rem;
   }
 
   .featured-trips__heading {
-    align-items: flex-start;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 1.6rem;
   }
 
   .featured-trips h2 {
-    max-width: 13rem;
+    width: 100%;
+    text-align: center;
     font-size: 2.35rem;
-    text-align: left;
   }
 
   .featured-trips__controls {
