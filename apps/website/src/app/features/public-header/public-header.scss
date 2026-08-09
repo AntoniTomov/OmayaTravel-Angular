@@ -21,14 +21,21 @@
   box-shadow: tokens.$omaya-shadow-header;
 }
 
+.public-header__top__wrapper {
+  background: tokens.$omaya-color-dark;
+}
+
 .public-header__top {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.8rem;
   min-height: 2.2rem;
+  max-width: 1400px;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 0 1.5rem;
   align-items: center;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-dark;
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -71,7 +78,7 @@
 
 .public-header__group {
   position: relative;
-  height: auto;
+  height: 100%;
 }
 
 .public-header__link,
@@ -120,10 +127,11 @@
 .public-header__dropdown--open {
   visibility: visible;
   opacity: 1;
+  box-shadow: 1px 8px 11px 1px #0000006e;
 }
 
 .public-header__dropdown a {
-  padding: 0.5rem 0.5rem;
+  padding: 0.75rem 1rem;
   color: tokens.$omaya-color-text;
   font-size: 0.82rem;
   font-weight: 700;

@@ -1,0 +1,181 @@
+@if (tour(); as tour) {
+  <main class="tour-detail">
+    <section class="tour-detail__hero">
+      <img
+        [src]="tour.heroImage.src"
+        [width]="tour.heroImage.width"
+        [height]="tour.heroImage.height"
+        [alt]="tour.heroImage.alt"
+        fetchpriority="high"
+      />
+      <h1>{{ tour.title }}</h1>
+    </section>
+
+    <nav class="tour-detail__tabs" aria-label="Tour detail sections">
+      @for (tab of tabs; track tab.id) {
+        <button
+          type="button"
+          [ngClass]="{ 'tour-detail__tab--active': activeTab() === tab.id }"
+          [attr.aria-current]="activeTab() === tab.id ? 'page' : null"
+          (click)="setTab(tab.id)"
+        >
+          <span>{{ tab.icon }}</span>
+          {{ tab.label }}
+        </button>
+      }
+    </nav>
+
+    <div class="tour-detail__layout">
+      <div class="tour-detail__content" [ngClass]="contentClasses()">
+        @if (activeTab() === 'information') {
+          <section class="tour-detail__section">
+            <div class="tour-detail__summary">
+              <div>
+                <h2>{{ tour.title }}</h2>
+                <ul class="tour-detail__meta">
+                  <li>{{ durationLabel(tour) }}</li>
+                  <li>{{ tour.category }}</li>
+                </ul>
+              </div>
+              <p class="tour-detail__price">
+                {{ priceLabel(tour) }} <span>/ per {{ tour.price.unit }}</span>
+              </p>
+            </div>
+
+            <p class="tour-detail__fact">
+              <strong>Available dates:</strong>
+              @for (departure of tour.departures; track departure) {
+                <span>{{ departure | date: 'd MMMM y' }}</span>
+              }
+            </p>
+            <p class="tour-detail__fact">
+              <strong>Group size:</strong> {{ groupSizeLabel(tour) }}
+            </p>
+
+            @for (paragraph of tour.introduction; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          </section>
+
+          <section class="tour-detail__section">
+            <h2>Tour Highlights</h2>
+            <div class="tour-detail__highlights">
+              @for (highlight of tour.highlights; track highlight.title) {
+                <article>
+                  <img
+                    [src]="highlight.image.src"
+                    [width]="highlight.image.width"
+                    [height]="highlight.image.height"
+                    [alt]="highlight.image.alt"
+                    loading="lazy"
+                  />
+                  <h3>{{ highlight.title }}</h3>
+                </article>
+              }
+            </div>
+            <p class="tour-detail__rating" aria-label="No tour reviews yet">
+              ***** <span>(0 Reviews)</span>
+            </p>
+          </section>
+
+          <section class="tour-detail__section tour-detail__lists">
+            <h2>Included</h2>
+            <ul>
+              @for (item of tour.included; track item) {
+                <li class="tour-detail__included">{{ item }}</li>
+              }
+            </ul>
+          </section>
+
+          <section class="tour-detail__section tour-detail__lists">
+            <h2>Not Included</h2>
+            <ul>
+              @for (item of tour.notIncluded; track item) {
+                <li class="tour-detail__not-included">{{ item }}</li>
+              }
+            </ul>
+          </section>
+
+          <section class="tour-detail__section">
+            <h2>From our gallery</h2>
+            <div class="tour-detail__gallery-preview">
+              @for (image of tour.gallery.slice(0, 3); track image.src) {
+                <img
+                  [src]="image.src"
+                  [width]="image.width"
+                  [height]="image.height"
+                  [alt]="image.alt"
+                  loading="lazy"
+                />
+              }
+            </div>
+          </section>
+        }
+
+        @if (activeTab() === 'tour-plan') {
+          <section class="tour-detail__section">
+            <h2>Tour Plan</h2>
+            <div class="tour-detail__itinerary">
+              @for (day of tour.itinerary; track day.day) {
+                <article>
+                  <span class="tour-detail__day">{{ day.day }}</span>
+                  <div>
+                    <h3>{{ day.title }}</h3>
+                    <p>{{ day.description }}</p>
+                    @if (day.accommodation) {
+                      <p class="tour-detail__day-detail">{{ day.accommodation }}</p>
+                    }
+                    @if (day.meals.length > 0) {
+                      <p class="tour-detail__day-detail">{{ mealsLabel(day) }}</p>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
+        @if (activeTab() === 'gallery') {
+          <section class="tour-detail__gallery" aria-label="Tour gallery">
+            @for (image of tour.gallery; track image.src) {
+              <img
+                [src]="image.src"
+                [width]="image.width"
+                [height]="image.height"
+                [alt]="image.alt"
+                loading="lazy"
+              />
+            }
+          </section>
+        }
+      </div>
+
+      <aside class="tour-detail__sidebar" aria-label="Tour booking">
+        <form class="tour-detail__booking" (submit)="$event.preventDefault()">
+          <h2>Book this tour</h2>
+          <input type="text" name="name" placeholder="Name*" autocomplete="name" />
+          <input type="email" name="email" placeholder="Email*" autocomplete="email" />
+          <input type="email" name="confirmEmail" placeholder="Confirm Email*" autocomplete="email" />
+          <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
+          <input type="text" name="date" placeholder="dd-mm-yy*" />
+          <input type="number" name="tickets" min="1" placeholder="Number of tickets" />
+          <textarea name="message" rows="7" placeholder="Message"></textarea>
+          <button class="tour-detail__availability" type="button">{{ tour.enquiry.cta }}</button>
+          <button class="tour-detail__book" type="submit">Book Now</button>
+        </form>
+
+        <a class="tour-detail__discover" routerLink="/classic-tours/">
+          <span>Discover more tours...</span>
+        </a>
+      </aside>
+    </div>
+  </main>
+} @else {
+  <main class="tour-detail tour-detail--empty">
+    <section>
+      <h1>Tour details coming soon</h1>
+      <p>This tour route is ready, and the reusable tour page will render here once its content object is added.</p>
+      <a routerLink="/">Return home</a>
+    </section>
+  </main>
+}

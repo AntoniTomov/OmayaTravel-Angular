@@ -1,0 +1,442 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.tour-detail {
+  color: #657080;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.tour-detail__hero {
+  position: relative;
+  display: grid;
+  min-height: 34rem;
+  place-items: center;
+  overflow: hidden;
+  padding: 10rem 1.5rem 7rem;
+  color: tokens.$omaya-color-white;
+  background-color: tokens.$omaya-color-dark;
+}
+
+.tour-detail__hero::after {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 12%);
+  content: '';
+}
+
+.tour-detail__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour-detail__hero h1 {
+  position: relative;
+  z-index: 1;
+  width: min(76rem, 100%);
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(2.55rem, 5vw, 4.8rem);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.tour-detail__tabs {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(76rem, calc(100% - 2rem));
+  margin: -3.25rem auto 0;
+  background: #f6f6f6;
+}
+
+.tour-detail__tabs button {
+  min-height: 4.3rem;
+  padding: 0 1.1rem;
+  border-left: 1px solid #e6e6e6;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  color: tokens.$omaya-color-dark;
+  background: #f6f6f6;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.tour-detail__tabs button:first-child {
+  border-left: 0;
+}
+
+.tour-detail__tabs span,
+.tour-detail__fact::before,
+.tour-detail__included::before,
+.tour-detail__day-detail::before {
+  color: tokens.$omaya-color-gold;
+  font-weight: 900;
+}
+
+.tour-detail__tab--active {
+  background: tokens.$omaya-color-white !important;
+}
+
+.tour-detail__tabs button:focus-visible,
+.tour-detail__booking :is(input, textarea, button):focus-visible,
+.tour-detail__discover:focus-visible,
+.tour-detail--empty a:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 3px;
+}
+
+.tour-detail__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: 3rem;
+  width: min(76rem, calc(100% - 2rem));
+  margin: 5rem auto 6rem;
+}
+
+.tour-detail__content {
+  min-width: 0;
+}
+
+.tour-detail__section {
+  padding-bottom: 2.2rem;
+  margin-bottom: 2.2rem;
+  border-bottom: 1px solid #ececec;
+}
+
+.tour-detail h2,
+.tour-detail h3 {
+  color: #101820;
+}
+
+.tour-detail h2 {
+  margin: 0 0 1.45rem;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.75rem;
+  line-height: 1.16;
+}
+
+.tour-detail h3 {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
+.tour-detail__summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tour-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #a9adb5;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tour-detail__meta li::before {
+  margin-right: 0.45rem;
+  color: tokens.$omaya-color-gold;
+  content: '+';
+}
+
+.tour-detail__price {
+  flex: 0 0 auto;
+  color: tokens.$omaya-color-dark;
+  font-size: 1.65rem;
+  line-height: 1.2;
+}
+
+.tour-detail__price span {
+  color: #b8b8b8;
+  font-size: 0.78rem;
+}
+
+.tour-detail__fact::before {
+  margin-right: 0.35rem;
+  content: '+';
+}
+
+.tour-detail__fact span:not(:last-child)::after {
+  margin: 0 0.35rem;
+  content: '|';
+}
+
+.tour-detail__highlights {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+.tour-detail__highlights img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.tour-detail__highlights h3 {
+  margin-top: 0.7rem;
+  color: #626a75;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.tour-detail__rating {
+  margin-top: 1.5rem;
+  color: tokens.$omaya-color-gold;
+  letter-spacing: 0.16rem;
+}
+
+.tour-detail__rating span {
+  color: #c5c5c5;
+  letter-spacing: 0;
+}
+
+.tour-detail__lists {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.tour-detail__lists ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tour-detail__lists li::before {
+  margin-right: 0.45rem;
+}
+
+.tour-detail__included::before {
+  content: '+';
+}
+
+.tour-detail__not-included::before {
+  color: tokens.$omaya-color-dark;
+  content: 'x';
+}
+
+.tour-detail__gallery-preview,
+.tour-detail__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.tour-detail :is(.tour-detail__gallery-preview, .tour-detail__gallery) img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.tour-detail__gallery-preview img {
+  aspect-ratio: 4 / 3;
+}
+
+.tour-detail__gallery img {
+  aspect-ratio: 0.75;
+}
+
+.tour-detail__itinerary {
+  display: grid;
+  gap: 2.65rem;
+}
+
+.tour-detail__itinerary article {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1.8rem;
+}
+
+.tour-detail__day {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tour-detail__day-detail {
+  margin-top: 0.85rem;
+}
+
+.tour-detail__day-detail::before {
+  margin-right: 0.45rem;
+  content: '+';
+}
+
+.tour-detail__sidebar {
+  display: grid;
+  align-content: start;
+  gap: 3.2rem;
+}
+
+.tour-detail__booking {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.35rem 1.1rem;
+  background: #f8f8f8;
+}
+
+.tour-detail__booking h2 {
+  font-size: 1.35rem;
+}
+
+.tour-detail__booking :is(input, textarea) {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #e1e1e1;
+  padding: 0.75rem;
+  color: #657080;
+  background: tokens.$omaya-color-white;
+  font: inherit;
+}
+
+.tour-detail__booking button {
+  min-height: 3.2rem;
+  border: 0;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.tour-detail__availability {
+  color: #657080;
+  background: #eeeeee;
+  text-transform: none !important;
+}
+
+.tour-detail__book {
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  letter-spacing: 0.18rem;
+}
+
+.tour-detail__discover {
+  display: grid;
+  min-height: 18rem;
+  align-items: end;
+  padding: 1.2rem;
+  color: tokens.$omaya-color-white;
+  background:
+    linear-gradient(rgb(0 0 0 / 8%), rgb(0 0 0 / 8%)),
+    url('/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp') center / cover;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 2rem;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.tour-detail--empty {
+  display: grid;
+  min-height: 34rem;
+  place-items: center;
+  padding: 8rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.tour-detail--empty h1 {
+  margin: 0 0 1rem;
+  color: #101820;
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.tour-detail--empty a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.4rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 64rem) {
+  .tour-detail__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-detail__sidebar {
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+  }
+}
+
+@media (max-width: 48rem) {
+  .tour-detail__hero {
+    min-height: 28rem;
+    padding-top: 7rem;
+  }
+
+  .tour-detail__tabs,
+  .tour-detail__layout {
+    width: min(100% - 1rem, 76rem);
+  }
+
+  .tour-detail__tabs {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .tour-detail__layout {
+    margin-top: 3rem;
+  }
+
+  .tour-detail__summary,
+  .tour-detail__lists {
+    display: block;
+  }
+
+  .tour-detail__price {
+    margin-top: 1rem;
+  }
+
+  .tour-detail__highlights,
+  .tour-detail__gallery-preview,
+  .tour-detail__gallery,
+  .tour-detail__lists ul,
+  .tour-detail__sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-detail__itinerary article {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .tour-detail__day {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.3rem;
+  }
+}

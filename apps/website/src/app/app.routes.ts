@@ -4,6 +4,7 @@ import { Homepage } from './features/homepage/homepage';
 import { NotFound } from './features/not-found/not-found';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import { SearchResults } from './features/search-results/search-results';
+import { TourDetail } from './features/tour-detail/tour-detail';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
   PUBLIC_DESTINATION_SLUGS,
@@ -111,7 +112,7 @@ export const routes: Routes = [
   },
   {
     matcher: tourDetailCanonicalMatcher,
-    component: PublicRoutePlaceholder,
+    component: TourDetail,
     data: {
       routeKey: 'tour-detail',
       routeType: 'tour-detail',
@@ -125,7 +126,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: PublicRoutePlaceholder,
+        component: TourDetail,
         data: {
           routeKey: 'tour-detail',
           routeType: 'tour-detail',

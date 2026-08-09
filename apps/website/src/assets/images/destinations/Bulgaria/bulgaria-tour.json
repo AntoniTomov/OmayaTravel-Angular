@@ -1,0 +1,181 @@
+{
+  "id": "tour-item-bulgaria-tour",
+  "slug": "tour-item-bulgaria-tour",
+  "title": "Bulgaria Beyond the Ordinary",
+  "destination": {
+    "country": "Bulgaria",
+    "region": null,
+    "startLocation": "Sofia",
+    "endLocation": "Sofia"
+  },
+  "category": "Classic Tours",
+  "duration": {
+    "days": 8,
+    "nights": 7
+  },
+  "price": {
+    "amount": 1050,
+    "currency": "EUR",
+    "unit": "person"
+  },
+  "groupSize": {
+    "min": 6,
+    "max": 12
+  },
+  "departures": [
+    "2027-05-14",
+    "2027-09-10"
+  ],
+  "heroImage": {
+    "src": "/assets/images/tours/bulgaria-beyond-the-ordinary/hero.webp",
+    "source": "https://omayatravel.com/wp-content/uploads/2018/03/Bulgaria-Title-Image.webp",
+    "alt": "Monument in the Bulgarian mountains"
+  },
+  "introduction": [
+    "An eight-day journey through Bulgaria focused on places and experiences beyond the usual visitor route, from mountain monasteries and historic towns to Rhodope villages and communist-era landmarks.",
+    "The tour combines local hospitality, regional food and wine, traditional customs, historic cities and distinctive landscapes."
+  ],
+  "highlights": [
+    {
+      "title": "Exploring Rila Monastery",
+      "image": {
+        "src": "/assets/images/tours/bulgaria-beyond-the-ordinary/rila-monastery.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2018/03/Bulgaria-tour-2.png",
+        "alt": "Frescoes at Rila Monastery"
+      }
+    },
+    {
+      "title": "Tasting wine in Melnik",
+      "image": {
+        "src": "/assets/images/tours/bulgaria-beyond-the-ordinary/melnik.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2018/03/Bulgaria-tour-9.png",
+        "alt": "Vineyards near Melnik, Bulgaria"
+      }
+    },
+    {
+      "title": "The Bridal Face Painting Ritual",
+      "image": {
+        "src": "/assets/images/tours/bulgaria-beyond-the-ordinary/bridal-face-painting.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2018/03/Bulgaria-tour-11.png",
+        "alt": "Traditional bridal face painting from the Rhodope region"
+      }
+    },
+    {
+      "title": "Walking Plovdiv's Old Town",
+      "image": {
+        "src": "/assets/images/tours/bulgaria-beyond-the-ordinary/plovdiv.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2018/03/Bulgaria-tour-.png",
+        "alt": "Historic Plovdiv, Bulgaria"
+      }
+    },
+    {
+      "title": "Exploring the forgotten Buzludzha",
+      "image": {
+        "src": "/assets/images/tours/bulgaria-beyond-the-ordinary/buzludzha.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2018/03/Bulgaria-tour-10.png",
+        "alt": "Buzludzha monument in Bulgaria"
+      }
+    }
+  ],
+  "included": [
+    "Accommodation as described",
+    "Entry fees for the mentioned sites",
+    "Ground transport",
+    "Local guide",
+    "Meals according to the daily description",
+    "Omaya Travel representative"
+  ],
+  "notIncluded": [
+    "Activities as mentioned",
+    "Flights",
+    "Insurance",
+    "Meals not mentioned",
+    "Single room supplement"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Arrival in Sofia",
+      "description": "Arrive in Sofia and transfer from the airport to the hotel. Remaining time is free to settle in and explore independently.",
+      "accommodation": "3* hotel in Sofia",
+      "meals": []
+    },
+    {
+      "day": 2,
+      "title": "Sofia City Tour & Surroundings",
+      "description": "Explore central Sofia and its Roman, religious and architectural layers, then continue to Pancharevo Lake and the Bells Monument. Evening at leisure.",
+      "accommodation": "3* hotel in Sofia",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Sofia - Rila Monastery - Melnik",
+      "description": "Travel into the Rila Mountains to visit Rila Monastery, then continue to Melnik for its sandstone scenery and winemaking heritage, including a local wine tasting.",
+      "accommodation": "Local boutique hotel/guesthouse",
+      "meals": [
+        "breakfast",
+        "wine tasting"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Melnik - Ribnovo - Leshten",
+      "description": "Continue into the Rhodopes, share lunch with a local family in Ribnovo and experience a demonstration of the region's traditional bridal face-painting ritual. Continue through mountain villages to Leshten or Kovachevitsa.",
+      "accommodation": "Local boutique hotel/guesthouse",
+      "meals": [
+        "breakfast",
+        "lunch by local family"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Leshten - Plovdiv",
+      "description": "Transfer to Plovdiv and explore its historic Old Town, traditional merchant houses and Roman Theatre. Evening free.",
+      "accommodation": "3* hotel in Plovdiv",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Plovdiv - Veliko Tarnovo",
+      "description": "Visit Asen's Fortress, then stop at either the Kazanluk Thracian Tomb or Damascena Rose Complex. Continue via Buzludzha to Veliko Tarnovo.",
+      "accommodation": "Local boutique hotel/guesthouse",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Veliko Tarnovo - Krushuna Waterfalls - Devetashka Cave - Sofia",
+      "description": "Tour Veliko Tarnovo and Tsarevets Fortress, then visit Krushuna Waterfalls and Devetashka Cave before returning to Sofia.",
+      "accommodation": "3* hotel in Sofia",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Departure",
+      "description": "Transfer to Sofia Airport according to the flight schedule.",
+      "accommodation": null,
+      "meals": [
+        "breakfast"
+      ]
+    }
+  ],
+  "gallery": [],
+  "enquiry": {
+    "enabled": true,
+    "cta": "Check Availability"
+  },
+  "seo": {
+    "title": "Bulgaria Tour: Ultimate 8-Day Hidden Gems Adventure | Omaya Travel",
+    "description": "Eight-day Bulgaria tour through Sofia, Rila Monastery, Melnik, the Rhodopes, Plovdiv, Veliko Tarnovo, Buzludzha and other lesser-visited highlights."
+  },
+  "source": {
+    "legacyUrl": "https://omayatravel.com/tour-item/tour-item-bulgaria-tour/"
+  }
+}

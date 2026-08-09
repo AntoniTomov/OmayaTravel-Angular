@@ -7,6 +7,7 @@ import { destinationDetailCanMatch, routes, tourDetailCanMatch } from './app.rou
 import { serverRoutes } from './app.routes.server';
 import { NotFound } from './features/not-found/not-found';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
+import { TourDetail } from './features/tour-detail/tour-detail';
 import {
   PUBLIC_DESTINATION_SLUGS,
   PUBLIC_STATIC_PRERENDER_ROUTES,
@@ -96,7 +97,7 @@ describe('app routes', () => {
     expect(wildcardRoute.status).toBe(404);
   });
 
-  it('resolves approved destination and tour slugs to the placeholder route', async () => {
+  it('resolves approved destination slugs to the placeholder route and tour slugs to tour detail', async () => {
     TestBed.configureTestingModule({
       providers: [provideRouter(routes)],
     });
@@ -107,8 +108,8 @@ describe('app routes', () => {
       harness.navigateByUrl('/destinations/kyrgyzstan/', PublicRoutePlaceholder),
     ).resolves.toBeInstanceOf(PublicRoutePlaceholder);
     await expect(
-      harness.navigateByUrl('/tour-item/kyrgyzstan-tour/', PublicRoutePlaceholder),
-    ).resolves.toBeInstanceOf(PublicRoutePlaceholder);
+      harness.navigateByUrl('/tour-item/algeria-desert-expedition-tadrart-rouge/', TourDetail),
+    ).resolves.toBeInstanceOf(TourDetail);
   });
 
   it('resolves unknown destination and tour slugs to not-found behavior', async () => {

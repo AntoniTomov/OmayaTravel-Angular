@@ -1,0 +1,211 @@
+{
+  "id": "kyrgyzstan-tour",
+  "slug": "kyrgyzstan-tour",
+  "title": "Kyrgyzstan Discovery Tour",
+  "destination": {
+    "country": "Kyrgyzstan",
+    "region": null,
+    "startLocation": "Bishkek",
+    "endLocation": "Bishkek"
+  },
+  "category": "Classic Tours",
+  "duration": {
+    "days": 10,
+    "nights": 9
+  },
+  "price": {
+    "amount": 1320,
+    "currency": "EUR",
+    "unit": "person"
+  },
+  "groupSize": {
+    "min": 6,
+    "max": 12
+  },
+  "departures": [
+    "2027-07-23",
+    "2027-08-06"
+  ],
+  "heroImage": {
+    "src": "/assets/images/tours/kyrgyzstan-discovery-tour/hero.webp",
+    "source": "https://omayatravel.com/wp-content/uploads/2026/04/Kyrgyzstan-Title-Image-1.webp",
+    "alt": "Mountain landscape in Kyrgyzstan"
+  },
+  "introduction": [
+    "A ten-day route through Kyrgyzstan combining Bishkek, alpine lakes, nomadic culture, yurt stays, mountain scenery and local hospitality.",
+    "Highlights include Song Kul, traditional eagle hunting, Skazka Canyon, Altyn Arashan hot springs, Issyk-Kul and historic sites around the Chuy Valley."
+  ],
+  "highlights": [
+    {
+      "title": "Sleeping at Song Kul Lake",
+      "image": {
+        "src": "/assets/images/tours/kyrgyzstan-discovery-tour/song-kul-yurt.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/Kyrgyzstan-tour-11.webp",
+        "alt": "Yurt near Song Kul Lake"
+      }
+    },
+    {
+      "title": "Eagle hunting demonstration",
+      "image": {
+        "src": "/assets/images/tours/kyrgyzstan-discovery-tour/eagle-hunting.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/Kyrgyzstan-tour-10.webp",
+        "alt": "Traditional eagle hunting demonstration in Kyrgyzstan"
+      }
+    },
+    {
+      "title": "Horse riding on the alpine steppe",
+      "image": {
+        "src": "/assets/images/tours/kyrgyzstan-discovery-tour/horse-riding.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/Kyrgyzstan-tour-12.webp",
+        "alt": "Horses on Kyrgyz alpine grassland"
+      }
+    },
+    {
+      "title": "The hot springs of Altyn Arashan",
+      "image": {
+        "src": "/assets/images/tours/kyrgyzstan-discovery-tour/altyn-arashan.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2018/03/Kyrgyzstan-tour-9.webp",
+        "alt": "Mountain valley at Altyn Arashan"
+      }
+    },
+    {
+      "title": "Sharing meals with local families",
+      "image": {
+        "src": "/assets/images/tours/kyrgyzstan-discovery-tour/local-food.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/Kyrgyzstan-tour-13.webp",
+        "alt": "Traditional food in Kyrgyzstan"
+      }
+    }
+  ],
+  "included": [
+    "Accommodation as described",
+    "Activities as mentioned",
+    "Entry fees for the mentioned sites",
+    "Ground transport",
+    "Local guide",
+    "Meals according to the daily description",
+    "Omaya Travel representative"
+  ],
+  "notIncluded": [
+    "Flights",
+    "Insurance",
+    "Meals not mentioned",
+    "Single room supplement"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Arrival in Bishkek",
+      "description": "Arrive in Bishkek, meet the guide for a welcome briefing and orientation, enjoy free time, then join an evening dinner and traditional folklore concert.",
+      "accommodation": "3* hotel in Bishkek (TWIN/DBL room)",
+      "meals": [
+        "dinner"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Ala Archa & Bishkek City Tour",
+      "description": "Visit Ala Archa National Park for mountain scenery and glacial landscapes, then return to Bishkek for a city tour covering markets, monuments and Soviet-era boulevards.",
+      "accommodation": "3* hotel in Bishkek (TWIN/DBL room)",
+      "meals": [
+        "breakfast",
+        "lunch"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Bishkek - Kochkor - Song Kul",
+      "description": "Travel south through Kochkor and climb toward high-altitude Song Kul Lake, where nomadic summer camps spread across the surrounding grasslands.",
+      "accommodation": "Yurt camp (up to 4 people per yurt)",
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Full Day at Song Kul",
+      "description": "Spend the day around Song Kul, including a two-hour horse ride and free time for relaxing or optional hiking along the lakeshore.",
+      "accommodation": "Yurt camp (up to 4 people per yurt)",
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Song Kul - Kochkor - Bokonbaevo",
+      "description": "Descend from Song Kul, see a traditional yurt-building demonstration, share lunch in a Kochkor homestay and continue along Issyk-Kul toward Bokonbaevo.",
+      "accommodation": "Yurt camp (up to 4 people per yurt)",
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Eagle Hunting - Skazka Canyon - Barskoon - Karakol",
+      "description": "Experience an eagle-hunting demonstration, visit Skazka Canyon and Barskoon Valley, then continue to Karakol for a city tour and local meals.",
+      "accommodation": "Local hotel/guesthouse in Karakol (DBL/TWIN room)",
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Altyn Arashan Hot Springs",
+      "description": "Travel into the Altyn Arashan valley for an overnight mountain stay and time at its natural thermal springs.",
+      "accommodation": "Local guesthouse/homestay",
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Altyn Arashan - Cholpon-Ata",
+      "description": "Descend to the northern shore of Issyk-Kul and visit Cholpon-Ata, including the open-air Petroglyphs Museum and time by the lake.",
+      "accommodation": null,
+      "meals": [
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 9,
+      "title": "Cholpon-Ata - Burana - Bishkek",
+      "description": "Return toward Bishkek via Burana Tower, with an opportunity to experience Kok Boru and share lunch in a homestay before the final overnight in Bishkek.",
+      "accommodation": null,
+      "meals": [
+        "lunch"
+      ]
+    },
+    {
+      "day": 10,
+      "title": "Departure from Bishkek",
+      "description": "Transfer to the airport for the departure flight.",
+      "accommodation": null,
+      "meals": [
+        "breakfast"
+      ]
+    }
+  ],
+  "gallery": [],
+  "enquiry": {
+    "enabled": true,
+    "cta": "Check Availability"
+  },
+  "seo": {
+    "title": "Kyrgyzstan Discovery Tour | Omaya Travel",
+    "description": "Ten-day Kyrgyzstan discovery tour featuring Bishkek, Song Kul, Issyk-Kul, yurt camps, eagle hunting, horse riding and Altyn Arashan."
+  },
+  "source": {
+    "legacyUrl": "https://omayatravel.com/tour-item/kyrgyzstan-tour/"
+  }
+}

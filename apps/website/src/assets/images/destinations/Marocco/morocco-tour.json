@@ -1,0 +1,219 @@
+{
+  "id": "morocco-tour",
+  "slug": "morocco-tour",
+  "title": "Morocco – Blue Cities & Golden Dunes",
+  "destination": {
+    "country": "Morocco",
+    "region": null,
+    "startLocation": "Casablanca",
+    "endLocation": "Marrakech"
+  },
+  "category": "Classic Tours",
+  "duration": {
+    "days": 12,
+    "nights": 11
+  },
+  "price": {
+    "amount": 2300,
+    "currency": "EUR",
+    "unit": "person"
+  },
+  "groupSize": {
+    "min": 6,
+    "max": 12
+  },
+  "departures": [
+    "2026-10-01",
+    "2027-04-08"
+  ],
+  "heroImage": {
+    "src": "/assets/images/tours/morocco-blue-cities-golden-dunes/hero.webp",
+    "source": "https://omayatravel.com/wp-content/uploads/2026/04/Morocco-title-photo.webp",
+    "alt": "Traditional Moroccan architecture and decorative tilework"
+  },
+  "introduction": [
+    "A twelve-day journey from Casablanca to Marrakech through Morocco's Atlantic coast, blue mountain towns, imperial cities, Roman ruins, desert landscapes and High Atlas scenery.",
+    "The route includes Chefchaouen, Fes, the Erg Chebbi dunes, Todra Gorge, the Dades Valley, Aït Ben Haddou and Marrakech."
+  ],
+  "highlights": [
+    {
+      "title": "Wander through Chefchaouen's blue-washed alleyways",
+      "image": {
+        "src": "/assets/images/tours/morocco-blue-cities-golden-dunes/chefchaouen.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/pexels-diego-f-parra-33199-25070516.jpg",
+        "alt": "Blue alleyway in Chefchaouen"
+      }
+    },
+    {
+      "title": "Visit the Hassan II Mosque beside the Atlantic",
+      "image": {
+        "src": "/assets/images/tours/morocco-blue-cities-golden-dunes/hassan-ii-mosque.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/mauro-lima-kWn_vuJV5VQ-unsplash.jpg",
+        "alt": "Hassan II Mosque in Casablanca"
+      }
+    },
+    {
+      "title": "Walk through the Roman ruins of Volubilis",
+      "image": {
+        "src": "/assets/images/tours/morocco-blue-cities-golden-dunes/volubilis.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/framopia-3UYnyInKqK8-unsplash.jpg",
+        "alt": "Roman ruins at Volubilis"
+      }
+    },
+    {
+      "title": "Explore medieval Fes el Bali",
+      "image": {
+        "src": "/assets/images/tours/morocco-blue-cities-golden-dunes/fes.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/aleks-IK9TN_fX2rs-unsplash.jpg",
+        "alt": "Historic medina and tanneries in Fes"
+      }
+    },
+    {
+      "title": "Watch sunrise over Aït Ben Haddou",
+      "image": {
+        "src": "/assets/images/tours/morocco-blue-cities-golden-dunes/ait-ben-haddou.webp",
+        "source": "https://omayatravel.com/wp-content/uploads/2026/04/ansgar-scheffold-vQBzESXYCnE-unsplash.jpg",
+        "alt": "Aït Ben Haddou at sunrise"
+      }
+    }
+  ],
+  "included": [
+    "Accommodation as described",
+    "Activities as mentioned",
+    "Ground transport",
+    "Local guide",
+    "Meals according to the daily description",
+    "Omaya Travel representative"
+  ],
+  "notIncluded": [
+    "Entry fees for the mentioned sites",
+    "Flights",
+    "Insurance",
+    "Meals not mentioned",
+    "Single room supplement"
+  ],
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Arrival in Casablanca",
+      "description": "Arrive at Mohammed V International Airport, coordinate with the group, visit Hassan II Mosque and walk along the Atlantic Corniche.",
+      "accommodation": "Traditional riad in the heart of the city",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Casablanca - Rabat - Chefchaouen",
+      "description": "Visit Rabat's Hassan Tower and Kasbah of the Udayas, then drive through the Rif Mountains to Chefchaouen.",
+      "accommodation": "Hotel in the heart of the blue city",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Chefchaouen",
+      "description": "Take a guided walk through Chefchaouen's blue medina, then use the afternoon for independent exploration, Ras El-Ma or an optional hike toward the Spanish Mosque.",
+      "accommodation": "Hotel in the heart of the blue city",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Chefchaouen - Fes",
+      "description": "Travel south via the Roman ruins of Volubilis and imperial Meknes before arriving in Fes.",
+      "accommodation": "Traditional riad",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Fes",
+      "description": "Explore Fes el Bali with a guide, including the Chouara Tanneries, artisan souks and the area around Al Quaraouiyine, then enjoy free time.",
+      "accommodation": "Traditional riad",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Fes - Merzouga",
+      "description": "Drive south through the Middle Atlas, stop near Azrou's cedar forest and continue toward Merzouga and the Erg Chebbi dunes for a sunset camel ride.",
+      "accommodation": "Hotel in Merzouga",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Merzouga",
+      "description": "Visit Khamlia for a Gnawa music experience, then return to the dunes for free time and another night in the Sahara.",
+      "accommodation": "Desert camp",
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Merzouga - Boumalne Dades",
+      "description": "Leave the Sahara and visit Todra Gorge before continuing through the Dades Valley and its unusual sandstone formations.",
+      "accommodation": "Traditional riad",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 9,
+      "title": "Dades Valley - Aït Ben Haddou",
+      "description": "Travel west through kasbah country, visit Skoura, the Tawabil cooperative and Atlas Film Studios, then stay at Aït Ben Haddou.",
+      "accommodation": "Traditional riad",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 10,
+      "title": "Aït Ben Haddou - Marrakech",
+      "description": "See Aït Ben Haddou around sunrise, then cross the High Atlas Mountains via Tizi n'Tichka before descending into Marrakech.",
+      "accommodation": "Traditional riad",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 11,
+      "title": "Marrakech",
+      "description": "Visit Jardin Majorelle and Le Jardin Secret, have lunch at the Amal Women's Training Center, then spend the afternoon exploring independently.",
+      "accommodation": "Traditional riad",
+      "meals": [
+        "breakfast"
+      ]
+    },
+    {
+      "day": 12,
+      "title": "Departure",
+      "description": "Free time in Marrakech before transfers to Marrakech Menara Airport according to individual flight times.",
+      "accommodation": null,
+      "meals": [
+        "breakfast"
+      ]
+    }
+  ],
+  "gallery": [],
+  "enquiry": {
+    "enabled": true,
+    "cta": "Check Availability"
+  },
+  "seo": {
+    "title": "Morocco - Blue Cities & Golden Dunes | Omaya Travel",
+    "description": "Twelve-day Morocco tour from Casablanca to Marrakech through Chefchaouen, Fes, Erg Chebbi, Todra Gorge, Aït Ben Haddou and the High Atlas."
+  },
+  "source": {
+    "legacyUrl": "https://omayatravel.com/tour-item/morocco-tour/"
+  }
+}
