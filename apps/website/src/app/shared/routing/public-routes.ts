@@ -51,6 +51,12 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
 ] as const;
 
 export const PUBLIC_STATIC_PAGE_SLUGS = [
+  'blog-list-2',
+  'tours-list',
+  'calendar',
+  'calendar-2027',
+  'september-2027',
+  'private-tour-planning',
   'contact',
   'why-book-with-us',
   'our-story',

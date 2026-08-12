@@ -1,0 +1,62 @@
+<main class="enquire-page">
+  <section class="enquire-page__hero" aria-labelledby="enquire-page-title">
+    <img [src]="heroImage" alt="" width="1920" height="1080" fetchpriority="high" />
+    <h1 id="enquire-page-title">Enquire Now</h1>
+  </section>
+
+  <section class="enquire-page__form-section" aria-label="Enquiry form">
+    <form class="enquire-page__form" (submit)="$event.preventDefault()">
+      <label>
+        <span>Your Full Name <small>(required)</small></span>
+        <input type="text" name="name" autocomplete="name" required />
+      </label>
+
+      <label>
+        <span>Email <small>(required)</small></span>
+        <input type="email" name="email" autocomplete="email" required />
+      </label>
+
+      <label>
+        <span>Phone number</span>
+        <span class="enquire-page__phone">
+          <select name="country-code" aria-label="Country code">
+            <option>US</option>
+            <option>BG</option>
+            <option>GB</option>
+          </select>
+          <input type="tel" name="phone" value="+1" autocomplete="tel" />
+        </span>
+      </label>
+
+      <fieldset>
+        <legend>Preferred contact method</legend>
+        <label>
+          <input type="checkbox" name="email-me" />
+          <span>Email me</span>
+        </label>
+        <label>
+          <input type="checkbox" name="whatsapp" />
+          <span>Call me via WhatsApp</span>
+        </label>
+      </fieldset>
+
+      <label>
+        <span>Date of Travel (YYYY-MM-DD)</span>
+        <input type="text" name="travel-date" inputmode="numeric" />
+      </label>
+
+      <label>
+        <span>Additional information</span>
+        <textarea name="additional-information" rows="8"></textarea>
+      </label>
+
+      <p>
+        By submitting your enquiry, you agree to receive travel inspiration and tour updates from
+        Omaya Travel. You can unsubscribe at any time. You can view our
+        <a routerLink="/privacy-policy/">privacy policy here.</a>
+      </p>
+
+      <button type="submit">Contact us</button>
+    </form>
+  </section>
+</main>

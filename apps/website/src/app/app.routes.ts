@@ -18,18 +18,67 @@ import {
   PUBLIC_TOUR_CATEGORY_ROUTES,
 } from './shared/routing/public-routes';
 
-const rootSlugRoutes: Routes = [
-  ...PUBLIC_TOUR_CATEGORY_ROUTES,
-  ...PUBLIC_BLOG_ARTICLE_ROUTES,
-  ...PUBLIC_STATIC_PAGE_ROUTES,
-].map((route) => ({
+const blogArticleRoutes: Routes = PUBLIC_BLOG_ARTICLE_ROUTES.map((route) => ({
   path: route.path,
   pathMatch: 'full' as const,
-  component: PublicRoutePlaceholder,
+  loadComponent: () =>
+    import('./features/blog-article/blog-article').then((module) => module.BlogArticle),
   data: {
     routeKey: route.key,
     routeType: route.type,
     canonicalPath: route.canonicalPath,
+  },
+}));
+
+const rootSlugRoutes: Routes = [...PUBLIC_TOUR_CATEGORY_ROUTES, ...PUBLIC_STATIC_PAGE_ROUTES].map(
+  (route) => ({
+    path: route.path,
+    pathMatch: 'full' as const,
+    component: PublicRoutePlaceholder,
+    data: {
+      routeKey: route.key,
+      routeType: route.type,
+      canonicalPath: route.canonicalPath,
+    },
+  }),
+);
+
+const tourListingPageRoutes: Routes = [
+  'tours-list',
+  'classic-tours',
+  'women-only-tours',
+  'solo-travellers-tours',
+  'private-tours-your-trip-your-rules',
+  'private-tour-planning',
+  'september-2027',
+].map((path) => ({
+  path,
+  pathMatch: 'full' as const,
+  loadComponent: () =>
+    import('./features/tour-listing-page/tour-listing-page').then(
+      (module) => module.TourListingPage,
+    ),
+  data: {
+    routeKey: `tour-listing-${path}`,
+    routeType:
+      path === 'september-2027' || path === 'private-tour-planning'
+        ? 'static-page'
+        : 'tour-category',
+    canonicalPath: `/${path}/`,
+  },
+}));
+
+const tourCalendarPageRoutes: Routes = ['calendar', 'calendar-2027'].map((path) => ({
+  path,
+  pathMatch: 'full' as const,
+  loadComponent: () =>
+    import('./features/tour-calendar-page/tour-calendar-page').then(
+      (module) => module.TourCalendarPage,
+    ),
+  data: {
+    routeKey: `tour-calendar-${path}`,
+    routeType: 'static-page',
+    canonicalPath: `/${path}/`,
   },
 }));
 
@@ -73,11 +122,22 @@ export const routes: Routes = [
   {
     path: 'enquire-now',
     pathMatch: 'full',
-    component: PublicRoutePlaceholder,
+    loadComponent: () =>
+      import('./features/enquire-page/enquire-page').then((module) => module.EnquirePage),
     data: {
       routeKey: 'enquire-now',
       routeType: 'static-page',
       canonicalPath: '/enquire-now/',
+    },
+  },
+  {
+    path: 'blog-list-2',
+    pathMatch: 'full',
+    loadComponent: () => import('./features/blog-list/blog-list').then((module) => module.BlogList),
+    data: {
+      routeKey: 'blog-list',
+      routeType: 'static-page',
+      canonicalPath: '/blog-list-2/',
     },
   },
   {
@@ -140,6 +200,8 @@ export const routes: Routes = [
       canonicalPath: '/destinations/',
     },
   },
+  ...tourListingPageRoutes,
+  ...tourCalendarPageRoutes,
   {
     matcher: destinationDetailCanonicalMatcher,
     component: PublicRoutePlaceholder,
@@ -190,6 +252,7 @@ export const routes: Routes = [
       },
     ],
   },
+  ...blogArticleRoutes,
   ...rootSlugRoutes,
   {
     path: '404',

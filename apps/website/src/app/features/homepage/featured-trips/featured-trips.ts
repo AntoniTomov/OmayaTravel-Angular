@@ -79,7 +79,7 @@ export class FeaturedTrips {
     },
     {
       eyebrow: 'Classic Tours',
-      title: 'Morocco - Blue Cities & Golden Dunes',
+      title: 'Morocco – Blue Cities & Golden Dunes',
       price: 'EUR2300',
       duration: '10 Days 9 Nights',
       description:

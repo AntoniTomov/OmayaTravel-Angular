@@ -67,6 +67,18 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
     label: 'Tours',
     links: [
       {
+        label: 'Tours List',
+        target: '/tours-list/',
+      },
+      {
+        label: 'Calendar 2026',
+        target: '/calendar/',
+      },
+      {
+        label: 'Calendar 2027',
+        target: '/calendar-2027/',
+      },
+      {
         label: 'Classic Tours',
         target: '/classic-tours/',
       },
@@ -114,7 +126,7 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
 export const PUBLIC_NAVIGATION_LINKS: readonly NavigationLink[] = [
   {
     label: 'Inspiring Stories',
-    target: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
+    target: '/blog-list-2/',
   },
   {
     label: 'Enquire Now',

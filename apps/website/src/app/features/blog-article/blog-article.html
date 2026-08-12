@@ -1,0 +1,105 @@
+@if (post(); as post) {
+  <main class="blog-article">
+    <section class="blog-article__hero" aria-labelledby="blog-article-title">
+      <img
+        [src]="post.heroImage?.src ?? post.image.src"
+        width="1920"
+        height="1080"
+        [alt]="post.heroImage?.alt ?? post.image.alt"
+        fetchpriority="high"
+      />
+      <div>
+        <h1 id="blog-article-title">{{ post.title }}</h1>
+      </div>
+    </section>
+
+    <div class="blog-article__layout">
+      <article class="blog-article__content">
+        <header class="blog-article__intro">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.preview }}</p>
+        </header>
+
+        @for (
+          section of post.sections;
+          track section.title ?? section.text?.[0] ?? section.image?.alt
+        ) {
+          <app-blog-post-section [section]="section" />
+        }
+
+        <footer class="blog-article__post-footer">
+          <div class="blog-article__meta" aria-label="Post details">
+            <span>{{ post.date }}</span>
+            <span>{{ post.comments }}</span>
+            <span>{{ post.category }}</span>
+          </div>
+
+          @if (previousPost(); as previousPost) {
+            <nav class="blog-article__previous" aria-label="Previous post">
+              <a [routerLink]="'/' + previousPost.slug + '/'">
+                <span aria-hidden="true"></span>
+                <strong>{{ previousPost.title }}</strong>
+              </a>
+            </nav>
+          }
+
+          <section class="blog-article__related-posts" aria-labelledby="related-posts-title">
+            <h2 id="related-posts-title">Related Posts</h2>
+            <div>
+              @for (relatedPost of relatedPosts(); track relatedPost.slug) {
+                <article>
+                  <h3>
+                    <a [routerLink]="'/' + relatedPost.slug + '/'">{{ relatedPost.title }}</a>
+                  </h3>
+                  <p>{{ relatedPost.date }} / By nesi</p>
+                </article>
+              }
+            </div>
+          </section>
+        </footer>
+      </article>
+
+      <aside class="blog-article__sidebar" aria-label="Blog sidebar">
+        <section>
+          <h2>Suggested Blog Posts</h2>
+          @for (suggestedPost of suggestedPosts; track suggestedPost.slug) {
+            <a [routerLink]="'/' + suggestedPost.slug + '/'" class="blog-article__suggestion">
+              <img
+                [src]="suggestedPost.sidebarImage?.src ?? suggestedPost.image.src"
+                width="92"
+                height="64"
+                [alt]="suggestedPost.sidebarImage?.alt ?? suggestedPost.image.alt"
+                loading="lazy"
+              />
+              <span>
+                <strong>{{ suggestedPost.title }}</strong>
+                <small>{{ suggestedPost.date }}</small>
+              </span>
+            </a>
+          }
+        </section>
+
+        <a class="blog-article__tour-card" routerLink="/tour-item/kyrgyzstan-tour/">
+          <img
+            [src]="discoverToursImage"
+            width="540"
+            height="720"
+            alt="Horse riders in Kyrgyzstan"
+            loading="lazy"
+          />
+          <span>Discover more tours...</span>
+        </a>
+
+        <section class="blog-article__follow">
+          <h2>Follow Us</h2>
+          <p>For more travel inspiration, follow us on Instagram: <b>@omayatravel</b></p>
+        </section>
+      </aside>
+    </div>
+  </main>
+} @else {
+  <main class="blog-article blog-article--missing">
+    <h1>Article not found</h1>
+    <a routerLink="/blog-list-2/">Back to all stories</a>
+  </main>
+}

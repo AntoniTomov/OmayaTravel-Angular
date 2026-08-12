@@ -1,0 +1,177 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.enquire-page {
+  color: #657080;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.enquire-page__hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(27rem, 40vw, 31rem);
+  place-items: center;
+  overflow: hidden;
+  color: tokens.$omaya-color-white;
+  text-align: center;
+}
+
+.enquire-page__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.enquire-page__hero::after {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 42%);
+  content: '';
+}
+
+.enquire-page h1 {
+  position: relative;
+  z-index: 1;
+  margin: 4.5rem 0 0;
+  color: tokens.$omaya-color-white;
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1.1;
+}
+
+.enquire-page__form-section {
+  width: min(76.2rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(4.2rem, 7vw, 5.6rem) 0 9rem;
+}
+
+.enquire-page__form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.enquire-page label,
+.enquire-page fieldset {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 700;
+}
+
+.enquire-page small,
+.enquire-page legend {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.enquire-page :is(input, textarea, select) {
+  width: 100%;
+  min-height: 2.95rem;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  color: #657080;
+  background: #f7f7f7;
+  font: inherit;
+}
+
+.enquire-page input,
+.enquire-page select {
+  padding: 0 1rem;
+}
+
+.enquire-page textarea {
+  min-height: 11.7rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #8c8c8c;
+  resize: vertical;
+}
+
+.enquire-page__phone {
+  display: grid;
+  grid-template-columns: 4.1rem 1fr;
+  background: #f7f7f7;
+}
+
+.enquire-page__phone select,
+.enquire-page__phone input {
+  padding-inline: 1rem 0;
+}
+
+.enquire-page fieldset {
+  grid-template-columns: 7rem 10rem;
+  gap: 1rem 1.15rem;
+  margin: 0.25rem 0 0.15rem;
+}
+
+.enquire-page fieldset legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.enquire-page fieldset label {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  gap: 0.45rem;
+  align-items: start;
+  font-weight: 400;
+}
+
+.enquire-page input[type='checkbox'] {
+  width: 0.9rem;
+  min-height: 0.9rem;
+  margin-top: 0.2rem;
+  accent-color: tokens.$omaya-color-gold;
+}
+
+.enquire-page p {
+  margin: -0.1rem 0 0;
+  font-weight: 400;
+}
+
+.enquire-page a {
+  color: #151515;
+  text-decoration: none;
+}
+
+.enquire-page button {
+  justify-self: start;
+  min-width: 7rem;
+  min-height: 3.25rem;
+  margin-top: 0.2rem;
+  padding: 0 1.45rem;
+  color: tokens.$omaya-color-white;
+  background: #2e3439;
+  border: 0;
+  border-radius: 1.7rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.enquire-page :is(input, textarea, select, button, a):focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 3px;
+}
+
+@media (max-width: 42rem) {
+  .enquire-page__form-section {
+    padding-bottom: 6rem;
+  }
+
+  .enquire-page fieldset {
+    grid-template-columns: 1fr;
+  }
+}

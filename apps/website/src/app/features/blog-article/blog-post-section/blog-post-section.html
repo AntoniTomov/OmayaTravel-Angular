@@ -1,0 +1,49 @@
+<section class="blog-post-section">
+  @if (section.title) {
+    <h2>{{ section.title }}</h2>
+  }
+
+  @for (paragraph of section.text ?? []; track paragraph) {
+    <p>{{ paragraph }}</p>
+  }
+
+  @if (section.list) {
+    <ul>
+      @for (item of section.list; track item) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+  }
+
+  @if (section.timeline) {
+    <dl class="blog-post-section__timeline">
+      @for (item of section.timeline; track item.period) {
+        <div>
+          <dt>{{ item.period }}</dt>
+          <dd>{{ item.event }}</dd>
+        </div>
+      }
+    </dl>
+  }
+
+  @if (section.items) {
+    <div class="blog-post-section__items">
+      @for (item of section.items; track item.name) {
+        <article>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.details }}</p>
+        </article>
+      }
+    </div>
+  }
+
+  @if (section.image) {
+    <img
+      [src]="section.image.src"
+      width="1920"
+      height="1080"
+      [alt]="section.image.alt"
+      loading="lazy"
+    />
+  }
+</section>

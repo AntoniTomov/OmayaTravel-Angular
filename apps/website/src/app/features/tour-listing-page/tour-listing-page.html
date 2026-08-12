@@ -1,0 +1,76 @@
+<main class="tour-listing" [ngClass]="{ 'tour-listing--compact': !page().heroImage }">
+  @if (page().heroImage) {
+    <section class="tour-listing__hero">
+      <img [src]="page().heroImage" [alt]="page().heroAlt ?? page().title" fetchpriority="high" />
+      <div>
+        <h1>{{ page().title }}</h1>
+        <p>{{ page().subtitle }}</p>
+      </div>
+    </section>
+  } @else {
+    <header class="tour-listing__heading">
+      <p>All</p>
+      <h1>{{ page().title }}</h1>
+      <span>{{ page().subtitle }}</span>
+    </header>
+  }
+
+  <section class="tour-listing__body">
+    @if (page().showFilters) {
+      <nav class="tour-listing__filters" aria-label="Tour filters">
+        @for (filter of filters; track filter) {
+          <button
+            type="button"
+            [ngClass]="{ 'tour-listing__filter--active': activeFilter() === filter }"
+            (click)="setFilter(filter)"
+          >
+            {{ filter }}
+          </button>
+        }
+      </nav>
+    } @else {
+      <p class="tour-listing__all">All</p>
+    }
+
+    @if (page().introSections?.length) {
+      <div class="tour-listing__intro">
+        @for (section of page().introSections; track section.title; let index = $index) {
+          <article [ngClass]="{ 'tour-listing__intro-row--reverse': index % 2 === 1 }">
+            <img [src]="section.image" [alt]="section.alt" loading="lazy" />
+            <div>
+              <h2>{{ section.title }}</h2>
+              <p>{{ section.body }}</p>
+              <a routerLink="/enquire-now/">Enquire Now</a>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+    <div class="tour-listing__grid">
+      @for (card of cards(); track card.target) {
+        <article class="tour-listing__card">
+          <a [routerLink]="card.target">
+            <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+            <div class="tour-listing__card-body">
+              <p>{{ card.category }}</p>
+              <h2>{{ card.title }}</h2>
+              <span>{{ card.destination }}</span>
+              <p>{{ card.excerpt }}</p>
+              <dl>
+                <div>
+                  <dt>Price</dt>
+                  <dd>{{ card.price }}</dd>
+                </div>
+                <div>
+                  <dt>Duration</dt>
+                  <dd>{{ card.duration }}</dd>
+                </div>
+              </dl>
+            </div>
+          </a>
+        </article>
+      }
+    </div>
+  </section>
+</main>

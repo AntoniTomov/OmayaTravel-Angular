@@ -1,0 +1,75 @@
+<main class="blog-list">
+  <section class="blog-list__hero" aria-labelledby="blog-list-title">
+    <img [src]="heroImage" alt="" width="1920" height="1080" fetchpriority="high" />
+    <div>
+      <h1 id="blog-list-title">Blog List</h1>
+      <p>Dive into our collection of travel tales, destination guides, and insider advice.</p>
+    </div>
+  </section>
+
+  <div class="blog-list__layout">
+    <section class="blog-list__posts" aria-label="Blog posts">
+      @for (post of posts; track post.slug) {
+        <article class="blog-list__card">
+          <a [routerLink]="'/' + post.slug + '/'" class="blog-list__image">
+            <img
+              [src]="post.image.src"
+              width="1200"
+              height="760"
+              [alt]="post.image.alt"
+              loading="lazy"
+            />
+          </a>
+          <div class="blog-list__card-body">
+            <h2>
+              <a [routerLink]="'/' + post.slug + '/'">{{ post.title }}</a>
+            </h2>
+            <p>{{ post.preview }}</p>
+            <div class="blog-list__meta" aria-label="Post details">
+              <span>{{ post.date }}</span>
+              <span>{{ post.comments }}</span>
+              <span>{{ post.category }}</span>
+            </div>
+          </div>
+        </article>
+      }
+    </section>
+
+    <aside class="blog-list__sidebar" aria-label="Blog sidebar">
+      <section>
+        <h2>Suggested Blog Posts</h2>
+        @for (post of featuredPosts; track post.slug) {
+          <a [routerLink]="'/' + post.slug + '/'" class="blog-list__suggestion">
+            <img
+              [src]="post.sidebarImage?.src ?? post.image.src"
+              width="92"
+              height="64"
+              [alt]="post.sidebarImage?.alt ?? post.image.alt"
+              loading="lazy"
+            />
+            <span>
+              <strong>{{ post.title }}</strong>
+              <small>{{ post.date }}</small>
+            </span>
+          </a>
+        }
+      </section>
+
+      <a class="blog-list__tour-card" routerLink="/tour-item/kyrgyzstan-tour/">
+        <img
+          [src]="discoverToursImage"
+          width="540"
+          height="720"
+          alt="Horse riders in Kyrgyzstan"
+          loading="lazy"
+        />
+        <span>Discover more tours...</span>
+      </a>
+
+      <section class="blog-list__follow">
+        <h2>Follow Us</h2>
+        <p>For more travel inspiration, follow us on Instagram: <b>@omayatravel</b></p>
+      </section>
+    </aside>
+  </div>
+</main>

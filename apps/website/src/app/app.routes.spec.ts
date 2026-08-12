@@ -1,3 +1,5 @@
+import '@angular/compiler';
+
 import { PrerenderFallback, RenderMode } from '@angular/ssr';
 import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
@@ -7,6 +9,7 @@ import { destinationDetailCanMatch, routes, tourDetailCanMatch } from './app.rou
 import { serverRoutes } from './app.routes.server';
 import { ContactPage } from './features/contact-page/contact-page';
 import { DmcPartnerBulgaria } from './features/dmc-partner-bulgaria/dmc-partner-bulgaria';
+import { EnquirePage } from './features/enquire-page/enquire-page';
 import { FaqPage } from './features/faq-page/faq-page';
 import { NotFound } from './features/not-found/not-found';
 import { OurStory } from './features/our-story/our-story';
@@ -124,9 +127,7 @@ describe('app routes', () => {
 
     const harness = await RouterTestingHarness.create();
 
-    await expect(harness.navigateByUrl('/our-story/', OurStory)).resolves.toBeInstanceOf(
-      OurStory,
-    );
+    await expect(harness.navigateByUrl('/our-story/', OurStory)).resolves.toBeInstanceOf(OurStory);
   });
 
   it('resolves the why-book-with-us static page to its dedicated component', async () => {
@@ -155,6 +156,18 @@ describe('app routes', () => {
     await expect(
       harness.navigateByUrl('/your-dmc-partner-in-bulgaria/', DmcPartnerBulgaria),
     ).resolves.toBeInstanceOf(DmcPartnerBulgaria);
+  });
+
+  it('resolves enquire-now to its dedicated component', async () => {
+    TestBed.configureTestingModule({
+      providers: [provideRouter(routes)],
+    });
+
+    const harness = await RouterTestingHarness.create();
+
+    await expect(harness.navigateByUrl('/enquire-now/', EnquirePage)).resolves.toBeInstanceOf(
+      EnquirePage,
+    );
   });
 
   it('resolves unknown destination and tour slugs to not-found behavior', async () => {

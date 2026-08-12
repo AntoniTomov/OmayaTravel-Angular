@@ -12,7 +12,7 @@
     </section>
 
     <nav class="tour-detail__tabs" aria-label="Tour detail sections">
-      @for (tab of tabs; track tab.id) {
+      @for (tab of tabs(); track tab.id) {
         <button
           type="button"
           [ngClass]="{ 'tour-detail__tab--active': activeTab() === tab.id }"
@@ -48,9 +48,7 @@
                 <span>{{ departure | date: 'd MMMM y' }}</span>
               }
             </p>
-            <p class="tour-detail__fact">
-              <strong>Group size:</strong> {{ groupSizeLabel(tour) }}
-            </p>
+            <p class="tour-detail__fact"><strong>Group size:</strong> {{ groupSizeLabel(tour) }}</p>
 
             @for (paragraph of tour.introduction; track paragraph) {
               <p>{{ paragraph }}</p>
@@ -60,7 +58,7 @@
           <section class="tour-detail__section">
             <h2>Tour Highlights</h2>
             <div class="tour-detail__highlights">
-              @for (highlight of tour.highlights; track highlight.title) {
+              @for (highlight of tour.highlights; track highlightTitleText(highlight)) {
                 <article>
                   <img
                     [src]="highlight.image.src"
@@ -69,7 +67,14 @@
                     [alt]="highlight.image.alt"
                     loading="lazy"
                   />
-                  <h3>{{ highlight.title }}</h3>
+                  <h3>
+                    {{ highlight.title.text }}
+                    @if (highlight.title.link) {
+                      <a [routerLink]="highlight.title.link">{{ highlight.title.linkText }}</a>
+                    } @else {
+                      {{ highlight.title.linkText }}
+                    }
+                  </h3>
                 </article>
               }
             </div>
@@ -77,6 +82,16 @@
               ***** <span>(0 Reviews)</span>
             </p>
           </section>
+
+          @if (tour.departureReturn) {
+            <section class="tour-detail__section tour-detail__lists">
+              <h2>Departure/Return Location</h2>
+              <p><strong>Departure:</strong> {{ tour.departureReturn?.departure }}</p>
+              @if (tour.departureReturn?.departure !== tour.departureReturn?.return) {
+                <p><strong>Return:</strong> {{ tour.departureReturn?.return }}</p>
+              }
+            </section>
+          }
 
           <section class="tour-detail__section tour-detail__lists">
             <h2>Included</h2>
@@ -148,6 +163,23 @@
             }
           </section>
         }
+
+        @if (activeTab() === 'faq' && tour.faq; as faq) {
+          <section class="tour-detail__section tour-detail__faq">
+            <h2>{{ faq.heading }}</h2>
+            <p>{{ faq.intro }}</p>
+            <div class="tour-detail__faq-list">
+              @for (item of faq.items; track item.question; let index = $index) {
+                <details [attr.id]="faqAnswerId(item, index)">
+                  <summary>{{ item.question }}</summary>
+                  @for (paragraph of item.answer; track paragraph) {
+                    <p>{{ paragraph }}</p>
+                  }
+                </details>
+              }
+            </div>
+          </section>
+        }
       </div>
 
       <aside class="tour-detail__sidebar" aria-label="Tour booking">
@@ -155,7 +187,12 @@
           <h2>Book this tour</h2>
           <input type="text" name="name" placeholder="Name*" autocomplete="name" />
           <input type="email" name="email" placeholder="Email*" autocomplete="email" />
-          <input type="email" name="confirmEmail" placeholder="Confirm Email*" autocomplete="email" />
+          <input
+            type="email"
+            name="confirmEmail"
+            placeholder="Confirm Email*"
+            autocomplete="email"
+          />
           <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
           <input type="text" name="date" placeholder="dd-mm-yy*" />
           <input type="number" name="tickets" min="1" placeholder="Number of tickets" />
@@ -174,7 +211,10 @@
   <main class="tour-detail tour-detail--empty">
     <section>
       <h1>Tour details coming soon</h1>
-      <p>This tour route is ready, and the reusable tour page will render here once its content object is added.</p>
+      <p>
+        This tour route is ready, and the reusable tour page will render here once its content
+        object is added.
+      </p>
       <a routerLink="/">Return home</a>
     </section>
   </main>
