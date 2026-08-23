@@ -26,7 +26,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgb(0 0 0 / 46%);
+  background: rgb(var(--omaya-color-overlay-rgb) / 46%);
   content: '';
 }
 
@@ -150,7 +150,7 @@
   width: 0.7rem;
   height: 0.7rem;
   padding: 0;
-  background: rgb(255 255 255 / 55%);
+  background: rgb(var(--omaya-color-surface-rgb, 255 255 255) / 55%);
   border: 1px solid tokens.$omaya-color-white;
   border-radius: 999px;
   cursor: pointer;

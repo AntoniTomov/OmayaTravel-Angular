@@ -49,10 +49,10 @@
   width: 2.6rem;
   height: 2.6rem;
   place-items: center;
-  border: 1px solid rgb(23 23 23 / 26%);
+  border: 1px solid rgb(var(--omaya-color-overlay-rgb) / 26%);
   border-radius: 50%;
   color: tokens.$omaya-color-dark;
-  background: rgb(255 255 255 / 78%);
+  background: rgb(var(--omaya-color-surface-rgb, 255 255 255) / 78%);
   font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
@@ -140,7 +140,7 @@
   font-size: 1.45rem;
   font-style: italic;
   line-height: 1;
-  text-shadow: 0 1px 2px rgb(0 0 0 / 32%);
+  text-shadow: 0 1px 2px rgb(var(--omaya-color-overlay-rgb) / 32%);
 }
 
 .featured-trips__content {
@@ -178,7 +178,7 @@
 }
 
 .featured-trips__price span {
-  color: #b7b7b7;
+  color: var(--omaya-color-subtle);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -192,7 +192,7 @@
 }
 
 .featured-trips__description {
-  color: #777777;
+  color: var(--omaya-color-muted);
   font-size: 0.92rem;
   line-height: 1.65;
 }

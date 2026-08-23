@@ -4,8 +4,8 @@
   place-content: center;
   gap: 1rem;
   padding: 2rem;
-  color: #17211f;
-  background: #f6f1e8;
+  color: var(--omaya-color-heading);
+  background: var(--omaya-color-surface-warm);
 }
 
 .not-found > * {
@@ -13,5 +13,5 @@
 }
 
 .not-found a {
-  color: #0f5f57;
+  color: var(--omaya-color-accent);
 }

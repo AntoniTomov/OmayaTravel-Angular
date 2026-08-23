@@ -3,6 +3,7 @@ import { MediaReference } from '../media';
 export interface NavigationLink {
   label: string;
   target: string;
+  children?: readonly NavigationLink[];
 }
 
 export interface NavigationGroup {
@@ -67,18 +68,6 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
     label: 'Tours',
     links: [
       {
-        label: 'Tours List',
-        target: '/tours-list/',
-      },
-      {
-        label: 'Calendar 2026',
-        target: '/calendar/',
-      },
-      {
-        label: 'Calendar 2027',
-        target: '/calendar-2027/',
-      },
-      {
         label: 'Classic Tours',
         target: '/classic-tours/',
       },
@@ -87,12 +76,30 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
         target: '/women-only-tours/',
       },
       {
-        label: 'Solo Travellers',
+        label: 'Solo Travelers',
         target: '/solo-travellers-tours/',
       },
       {
         label: 'Private Tours',
         target: '/private-tours-your-trip-your-rules/',
+      },
+      {
+        label: 'All Tours',
+        target: '/tours-list/',
+        children: [
+          {
+            label: 'Tour List',
+            target: '/tours-list/',
+          },
+          {
+            label: 'Calendar 2026',
+            target: '/calendar/',
+          },
+          {
+            label: 'Calendar 2027',
+            target: '/calendar-2027/',
+          },
+        ],
       },
     ],
   },

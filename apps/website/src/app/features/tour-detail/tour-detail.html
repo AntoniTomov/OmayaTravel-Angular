@@ -114,14 +114,21 @@
           <section class="tour-detail__section">
             <h2>From our gallery</h2>
             <div class="tour-detail__gallery-preview">
-              @for (image of tour.gallery.slice(0, 3); track image.src) {
-                <img
-                  [src]="image.src"
-                  [width]="image.width"
-                  [height]="image.height"
-                  [alt]="image.alt"
-                  loading="lazy"
-                />
+              @for (image of tour.gallery.slice(0, 3); track image.src; let index = $index) {
+                <button
+                  class="tour-detail__gallery-button"
+                  type="button"
+                  [attr.aria-label]="'Preview gallery image: ' + image.alt"
+                  (click)="openGallery(index)"
+                >
+                  <img
+                    [src]="image.src"
+                    [width]="image.width"
+                    [height]="image.height"
+                    [alt]="image.alt"
+                    loading="lazy"
+                  />
+                </button>
               }
             </div>
           </section>
@@ -152,14 +159,21 @@
 
         @if (activeTab() === 'gallery') {
           <section class="tour-detail__gallery" aria-label="Tour gallery">
-            @for (image of tour.gallery; track image.src) {
-              <img
-                [src]="image.src"
-                [width]="image.width"
-                [height]="image.height"
-                [alt]="image.alt"
-                loading="lazy"
-              />
+            @for (image of tour.gallery; track image.src; let index = $index) {
+              <button
+                class="tour-detail__gallery-button"
+                type="button"
+                [attr.aria-label]="'Preview gallery image: ' + image.alt"
+                (click)="openGallery(index)"
+              >
+                <img
+                  [src]="image.src"
+                  [width]="image.width"
+                  [height]="image.height"
+                  [alt]="image.alt"
+                  loading="lazy"
+                />
+              </button>
             }
           </section>
         }
@@ -206,6 +220,49 @@
         </a>
       </aside>
     </div>
+
+    @if (activeGalleryImage(); as image) {
+      <div
+        class="tour-detail__lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Tour gallery preview"
+        (click)="closeGallery()"
+      >
+        <div class="tour-detail__lightbox-panel" (click)="$event.stopPropagation()">
+          <button
+            class="tour-detail__lightbox-close"
+            type="button"
+            aria-label="Close gallery preview"
+            (click)="closeGallery()"
+          >
+            x
+          </button>
+          <button
+            class="tour-detail__lightbox-nav tour-detail__lightbox-nav--previous"
+            type="button"
+            aria-label="Show previous gallery image"
+            (click)="showPreviousGalleryImage()"
+          >
+            <
+          </button>
+          <img
+            [src]="image.src"
+            [width]="image.width"
+            [height]="image.height"
+            [alt]="image.alt"
+          />
+          <button
+            class="tour-detail__lightbox-nav tour-detail__lightbox-nav--next"
+            type="button"
+            aria-label="Show next gallery image"
+            (click)="showNextGalleryImage()"
+          >
+            >
+          </button>
+        </div>
+      </div>
+    }
   </main>
 } @else {
   <main class="tour-detail tour-detail--empty">

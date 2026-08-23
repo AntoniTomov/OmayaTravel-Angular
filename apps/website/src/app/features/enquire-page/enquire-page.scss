@@ -6,7 +6,7 @@
 }
 
 .enquire-page {
-  color: #657080;
+  color: var(--omaya-color-body);
   font-size: 0.95rem;
   line-height: 1.55;
 }
@@ -32,7 +32,7 @@
 .enquire-page__hero::after {
   position: absolute;
   inset: 0;
-  background: rgb(0 0 0 / 42%);
+  background: rgb(var(--omaya-color-overlay-rgb) / 42%);
   content: '';
 }
 
@@ -47,13 +47,19 @@
 }
 
 .enquire-page__form-section {
-  width: min(76.2rem, calc(100% - 2rem));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 76.2rem;
   margin: 0 auto;
-  padding: clamp(4.2rem, 7vw, 5.6rem) 0 9rem;
+  padding: clamp(4.2rem, 7vw, 5.6rem) 1rem 9rem;
 }
 
 .enquire-page__form {
   display: grid;
+  width: 100%;
+  max-width: 48rem;
+  box-sizing: border-box;
+  margin: 0 auto;
   gap: 0.9rem;
 }
 
@@ -79,8 +85,8 @@
   box-sizing: border-box;
   border: 0;
   border-radius: 0;
-  color: #657080;
-  background: #f7f7f7;
+  color: var(--omaya-color-body);
+  background: var(--omaya-color-surface-alt);
   font: inherit;
 }
 
@@ -92,14 +98,14 @@
 .enquire-page textarea {
   min-height: 11.7rem;
   padding: 0.85rem 1rem;
-  border: 1px solid #8c8c8c;
+  border: 1px solid var(--omaya-color-border-soft);
   resize: vertical;
 }
 
 .enquire-page__phone {
   display: grid;
   grid-template-columns: 4.1rem 1fr;
-  background: #f7f7f7;
+  background: var(--omaya-color-surface-alt);
 }
 
 .enquire-page__phone select,
@@ -142,7 +148,7 @@
 }
 
 .enquire-page a {
-  color: #151515;
+  color: var(--omaya-color-ink);
   text-decoration: none;
 }
 
@@ -153,7 +159,7 @@
   margin-top: 0.2rem;
   padding: 0 1.45rem;
   color: tokens.$omaya-color-white;
-  background: #2e3439;
+  background: var(--omaya-color-dark);
   border: 0;
   border-radius: 1.7rem;
   font: inherit;

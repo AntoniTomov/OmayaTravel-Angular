@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface TravelMatchFeature {
-  icon: 'people' | 'globe' | 'luggage' | 'guide';
+  icon: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
   title: string;
   description: string;
 }
@@ -12,29 +18,37 @@ interface TravelMatchFeature {
   styleUrl: './travel-match.scss',
 })
 export class TravelMatch {
-  protected readonly features: readonly TravelMatchFeature[] = [
+  protected readonly i18n = inject(OmayaI18n);
+  private readonly icons: readonly TravelMatchFeature['icon'][] = [
     {
-      icon: 'people',
-      title: 'Travel with people your age',
-      description: 'People in their 20-45s who are genuinely curious about where they are.',
+      src: '/assets/images/home-page/travel-match/group-icon.webp',
+      alt: '',
+      width: 81,
+      height: 74,
     },
     {
-      icon: 'globe',
-      title: 'Carefully Crafted Journeys',
-      description:
-        'Each itinerary is designed to blend iconic highlights with cultural local experiences.',
+      src: '/assets/images/home-page/travel-match/globe-icon.webp',
+      alt: '',
+      width: 81,
+      height: 81,
     },
     {
-      icon: 'luggage',
-      title: 'Small groups',
-      description:
-        'With intentionally small groups, our journeys allow for better connections with people and places',
+      src: '/assets/images/home-page/travel-match/luggage-icon.webp',
+      alt: '',
+      width: 81,
+      height: 81,
     },
     {
-      icon: 'guide',
-      title: 'Experienced team',
-      description:
-        'From booking to the journey itself, our experienced team and local guides ensure everything runs smoothly.',
+      src: '/assets/images/home-page/travel-match/tour-guide-icon.webp',
+      alt: '',
+      width: 81,
+      height: 81,
     },
   ];
+  protected readonly features = computed<readonly TravelMatchFeature[]>(() =>
+    this.i18n.travelMatch().map((feature, index) => ({
+      ...feature,
+      icon: this.icons[index],
+    })),
+  );
 }

@@ -2,11 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  HOMEPAGE_HERO,
-  TRIP_SEARCH_DESTINATIONS,
-  TRIP_SEARCH_MONTHS,
-} from '../../shared/content/homepage-content';
+import { HOMEPAGE_HERO } from '../../shared/content/homepage-content';
+import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { buildMediaImageAttributes } from '../../shared/media';
 import { BlogPosts } from './blog-posts/blog-posts';
 import { FeaturedTrips } from './featured-trips/featured-trips';
@@ -23,12 +20,13 @@ import { TravelMatch } from './travel-match/travel-match';
 export class Homepage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
+  protected readonly i18n = inject(OmayaI18n);
   private intervalId: ReturnType<typeof setInterval> | null;
   private readonly reducedMotion = this.prefersReducedMotion();
 
   protected readonly hero = HOMEPAGE_HERO;
-  protected readonly destinations = TRIP_SEARCH_DESTINATIONS;
-  protected readonly months = TRIP_SEARCH_MONTHS;
+  protected readonly destinations = computed(() => this.i18n.destinations());
+  protected readonly months = computed(() => this.i18n.months());
   protected readonly activeSlideIndex = signal(0);
   protected readonly selectedDestination = signal('');
   protected readonly selectedMonth = signal('');
@@ -83,17 +81,17 @@ export class Homepage implements OnDestroy {
   }
 
   protected submitTripSearch(): void {
-    const destination = this.destinations.find(
+    const destination = this.destinations().find(
       (item) => item.target === this.selectedDestination(),
     );
 
     if (!destination && this.selectedMonth()) {
-      this.searchError.set('Choose a destination to find a trip.');
+      this.searchError.set(this.i18n.t('homepage.chooseDestinationWithMonth'));
       return;
     }
 
     if (!destination) {
-      this.searchError.set('Choose where you want to go.');
+      this.searchError.set(this.i18n.t('homepage.chooseDestination'));
       return;
     }
 

@@ -6,7 +6,7 @@
 }
 
 .our-story {
-  color: #5f6874;
+  color: var(--omaya-color-body);
   font-size: 1rem;
   line-height: 1.75;
 }
@@ -19,7 +19,7 @@
   overflow: hidden;
   padding: 11rem max(1.5rem, calc((100vw - 76rem) / 2)) 6rem;
   color: tokens.$omaya-color-dark;
-  background: #efedf1;
+  background: var(--omaya-color-surface-cool);
 }
 
 .our-story__hero img {
@@ -34,7 +34,7 @@
 .our-story__hero::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgb(239 237 241 / 0%) 0 46%, rgb(239 237 241 / 78%) 68%);
+  background: linear-gradient(90deg, rgb(var(--omaya-color-surface-cool-rgb, 239 237 241) / 0%) 0 46%, rgb(var(--omaya-color-surface-cool-rgb, 239 237 241) / 78%) 68%);
   content: '';
 }
 
@@ -61,7 +61,7 @@
 .our-story h2,
 .our-story h3 {
   margin: 0;
-  color: #101820;
+  color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
   line-height: 1.1;
 }
@@ -81,15 +81,19 @@
 .our-story__intro,
 .our-story__team,
 .our-story__contact {
-  width: min(76rem, calc(100% - 2rem));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 76rem;
   margin: 0 auto;
+  padding-inline: 1rem;
 }
 
 .our-story__intro {
   display: grid;
   grid-template-columns: minmax(13rem, 0.82fr) minmax(0, 1.5fr);
   gap: 4rem;
-  padding: 6rem 0 5rem;
+  padding-top: 6rem;
+  padding-bottom: 5rem;
 }
 
 .our-story__copy p {
@@ -97,15 +101,16 @@
 }
 
 .our-story__lead {
-  color: #101820;
+  color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
   font-size: 1.45rem;
   line-height: 1.45;
 }
 
 .our-story__team {
-  padding: 5rem 0 6rem;
-  border-top: 1px solid #ececec;
+  padding-top: 5rem;
+  padding-bottom: 6rem;
+  border-top: 1px solid var(--omaya-color-border-light);
 }
 
 .our-story__section-heading {
@@ -156,13 +161,13 @@
   align-items: center;
   margin-bottom: 6rem;
   padding: 2rem;
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  border-top: 1px solid var(--omaya-color-border-light);
+  border-bottom: 1px solid var(--omaya-color-border-light);
 }
 
 .our-story__contact p {
   margin: 0;
-  color: #101820;
+  color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
   font-size: 1.55rem;
 }
@@ -206,7 +211,7 @@
   }
 
   .our-story__hero::after {
-    background: rgb(239 237 241 / 60%);
+    background: rgb(var(--omaya-color-surface-cool-rgb, 239 237 241) / 60%);
   }
 
   .our-story__hero-copy {
@@ -223,7 +228,8 @@
 
   .our-story__intro,
   .our-story__team {
-    padding: 4rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .our-story__member:nth-child(even) img,

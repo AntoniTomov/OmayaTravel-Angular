@@ -4,8 +4,8 @@
   place-content: center;
   gap: 0.75rem;
   padding: 2rem;
-  color: #17211f;
-  background: #f6f1e8;
+  color: var(--omaya-color-heading);
+  background: var(--omaya-color-surface-warm);
 }
 
 .route-placeholder > * {
@@ -18,5 +18,5 @@
 }
 
 .route-placeholder a {
-  color: #0f5f57;
+  color: var(--omaya-color-accent);
 }

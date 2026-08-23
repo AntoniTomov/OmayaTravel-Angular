@@ -1,11 +1,10 @@
 <section class="private-tours" aria-labelledby="private-tours-title">
   <div class="private-tours__content">
-    <h2 id="private-tours-title">Private tours</h2>
-    <p>
-      Prefer to travel on your own schedule? We also offer private journeys in all our
-      destinations-perfect for traveling with friends, family, or on dates that suit you.
-    </p>
-    <a routerLink="/private-tours-your-trip-your-rules/">Contact us for more details</a>
+    <h2 id="private-tours-title">{{ i18n.t('homepage.privateToursTitle') }}</h2>
+    <p>{{ i18n.t('homepage.privateToursCopy') }}</p>
+    <a routerLink="/private-tours-your-trip-your-rules/">{{
+      i18n.t('homepage.privateToursCta')
+    }}</a>
   </div>
   <div class="private-tours__image" aria-hidden="true"></div>
 </section>

@@ -6,7 +6,7 @@
 }
 
 .why-book {
-  color: #606b76;
+  color: var(--omaya-color-body);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -33,7 +33,7 @@
 .why-book__hero::after {
   position: absolute;
   inset: 0;
-  background: rgb(0 0 0 / 42%);
+  background: rgb(var(--omaya-color-overlay-rgb) / 42%);
   content: '';
 }
 
@@ -68,7 +68,7 @@
 }
 
 .why-book h2 {
-  color: #101820;
+  color: var(--omaya-color-heading);
   font-size: clamp(2.1rem, 4vw, 3.25rem);
 }
 
@@ -79,13 +79,17 @@
 .why-book__intro,
 .why-book__cards,
 .why-book__closing {
-  width: min(76rem, calc(100% - 2rem));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 76rem;
   margin: 0 auto;
+  padding-inline: 1rem;
 }
 
 .why-book__intro {
   max-width: 58rem;
-  padding: 5.5rem 0 3.8rem;
+  padding-top: 5.5rem;
+  padding-bottom: 3.8rem;
   text-align: center;
 }
 
@@ -140,7 +144,7 @@
 .why-book__card-front::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(0 0 0 / 12%), rgb(0 0 0 / 68%));
+  background: linear-gradient(180deg, rgb(var(--omaya-color-overlay-rgb) / 12%), rgb(var(--omaya-color-overlay-rgb) / 68%));
   content: '';
 }
 
@@ -180,16 +184,17 @@
   justify-items: center;
   gap: 1.35rem;
   margin-bottom: 6rem;
-  padding: 3rem 1rem;
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--omaya-color-border-light);
+  border-bottom: 1px solid var(--omaya-color-border-light);
   text-align: center;
 }
 
 .why-book__closing p {
   max-width: 46rem;
   margin: 0;
-  color: #101820;
+  color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
   font-size: 1.6rem;
 }
@@ -230,7 +235,8 @@
   }
 
   .why-book__intro {
-    padding: 4rem 0 3rem;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
   }
 
   .why-book__cards {

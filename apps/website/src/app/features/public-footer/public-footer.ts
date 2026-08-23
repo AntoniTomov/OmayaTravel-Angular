@@ -1,7 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
+import { registerSocialIcons } from '../../shared/icons/social-icons';
+import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
 interface FooterPost {
   title: string;
@@ -16,12 +20,15 @@ interface PaymentProvider {
 
 @Component({
   selector: 'app-public-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './public-footer.html',
   styleUrl: './public-footer.scss',
 })
 export class PublicFooter {
   private readonly router = inject(Router);
+  private readonly iconRegistry = inject(MatIconRegistry);
+  private readonly sanitizer = inject(DomSanitizer);
+  protected readonly i18n = inject(OmayaI18n);
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -56,6 +63,10 @@ export class PublicFooter {
       src: '/assets/images/home-page/payment-providers/AmricanExpressLogo.png',
     },
   ];
+
+  constructor() {
+    registerSocialIcons(this.iconRegistry, this.sanitizer);
+  }
 
   protected scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

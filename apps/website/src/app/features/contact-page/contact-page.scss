@@ -8,7 +8,7 @@
 .contact-page {
   min-height: 48rem;
   padding: 10rem 1rem 6rem;
-  color: #657080;
+  color: var(--omaya-color-body);
   font-size: 0.95rem;
   line-height: 1.7;
 }
@@ -30,7 +30,7 @@
 .contact-page h2,
 .contact-page h3 {
   margin: 0;
-  color: #101820;
+  color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
   line-height: 1.2;
 }
@@ -55,8 +55,8 @@
   box-sizing: border-box;
   border: 0;
   padding: 1rem 1.1rem;
-  color: #657080;
-  background: #f7f7f7;
+  color: var(--omaya-color-body);
+  background: var(--omaya-color-surface-alt);
   font: inherit;
 }
 

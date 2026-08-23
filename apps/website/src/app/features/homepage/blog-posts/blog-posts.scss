@@ -34,7 +34,7 @@
 .blog-posts__header p {
   max-width: 42rem;
   margin: 0;
-  color: #747474;
+  color: var(--omaya-color-muted);
   font-size: 1.05rem;
   line-height: 1.55;
 }
@@ -84,7 +84,7 @@
 
 .blog-posts__date {
   margin: 0;
-  color: #b7b7b7;
+  color: var(--omaya-color-subtle);
   font-size: 0.88rem;
 }
 

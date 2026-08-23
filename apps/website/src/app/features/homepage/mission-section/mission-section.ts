@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 @Component({
   selector: 'app-mission-section',
@@ -8,6 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './mission-section.scss',
 })
 export class MissionSection {
+  protected readonly i18n = inject(OmayaI18n);
   protected readonly image = {
     src: '/assets/images/home-page/our-mission-image.webp',
     alt: 'Traveller sitting in a cave opening overlooking mountains',

@@ -12,12 +12,12 @@
       [attr.fetchpriority]="activeSlideImage().fetchPriority"
     />
     <div class="homepage__hero-content">
-      <h1>{{ hero.title }}</h1>
-      <p>{{ hero.subtitle }}</p>
+      <h1>{{ i18n.t('homepage.heroTitle') }}</h1>
+      <p>{{ i18n.t('homepage.heroSubtitle') }}</p>
 
       <form class="homepage__trip-search" (submit)="$event.preventDefault(); submitTripSearch()">
         <div>
-          <label for="trip-destination">Where to?</label>
+          <label for="trip-destination">{{ i18n.t('homepage.whereTo') }}</label>
           <select
             id="trip-destination"
             name="destination"
@@ -26,29 +26,29 @@
             aria-describedby="trip-search-error"
             (change)="updateDestination($any($event.target).value)"
           >
-            <option value="">Where to?</option>
-            @for (destination of destinations; track destination.target) {
+            <option value="">{{ i18n.t('homepage.whereTo') }}</option>
+            @for (destination of destinations(); track destination.target) {
               <option [value]="destination.target">{{ destination.label }}</option>
             }
           </select>
         </div>
 
         <div>
-          <label for="trip-month">When?</label>
+          <label for="trip-month">{{ i18n.t('homepage.when') }}</label>
           <select
             id="trip-month"
             name="month"
             [value]="selectedMonth()"
             (change)="updateMonth($any($event.target).value)"
           >
-            <option value="">When?</option>
-            @for (month of months; track month) {
+            <option value="">{{ i18n.t('homepage.when') }}</option>
+            @for (month of months(); track month) {
               <option [value]="month">{{ month }}</option>
             }
           </select>
         </div>
 
-        <button type="submit">Find now</button>
+        <button type="submit">{{ i18n.t('homepage.findNow') }}</button>
 
         @if (searchError()) {
           <p id="trip-search-error" class="homepage__trip-error">{{ searchError() }}</p>
@@ -56,12 +56,12 @@
       </form>
     </div>
 
-    <div class="homepage__carousel-controls" aria-label="Homepage carousel">
+    <div class="homepage__carousel-controls" [attr.aria-label]="i18n.t('homepage.carouselLabel')">
       @for (slide of hero.slides; track slide.image.key; let index = $index) {
         <button
           type="button"
           [class.homepage__carousel-button--active]="activeSlideIndex() === index"
-          [attr.aria-label]="'Show slide ' + (index + 1)"
+          [attr.aria-label]="i18n.t('homepage.showSlide') + ' ' + (index + 1)"
           [attr.aria-current]="activeSlideIndex() === index"
           (click)="setSlide(index)"
         ></button>

@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, PLATFORM_ID, effect, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { PublicHeader } from './features/public-header/public-header';
 import { PublicFooter } from './features/public-footer/public-footer';
+import { OmayaI18n } from './shared/i18n/omaya-i18n';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +12,22 @@ import { PublicFooter } from './features/public-footer/public-footer';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly document = inject(DOCUMENT);
+  private readonly i18n = inject(OmayaI18n);
+
+  constructor(router: Router) {
+    effect(() => {
+      this.document.documentElement.lang = this.i18n.locale();
+    });
+
+    router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this.isBrowser) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+  }
+}

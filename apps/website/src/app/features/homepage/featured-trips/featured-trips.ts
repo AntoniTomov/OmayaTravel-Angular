@@ -1,5 +1,6 @@
-import { Component, ElementRef, QueryList, ViewChildren, signal } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface FeaturedTrip {
   eyebrow: string;
@@ -55,65 +56,57 @@ const FEATURED_TRIP_IMAGES = [
 })
 export class FeaturedTrips {
   @ViewChildren('tripCard') private readonly tripCards!: QueryList<ElementRef<HTMLElement>>;
+  protected readonly i18n = inject(OmayaI18n);
 
-  protected readonly trips: readonly FeaturedTrip[] = [
-    {
-      eyebrow: 'Classic Tours',
-      title: 'Kyrgyzstan Tour',
-      price: 'EUR1490',
-      duration: '9 Days 8 Nights',
-      description:
-        "Travel through Kyrgyzstan's mountain passes, alpine lakes, yurt camps, and nomadic traditions on a small-group journey shaped by wild landscapes.",
-      target: '/tour-item/kyrgyzstan-tour/',
-      image: this.buildCardImage(0),
-    },
-    {
-      eyebrow: 'Classic Tours',
-      title: 'Bulgaria Beyond the Ordinary',
-      price: 'EUR1050',
-      duration: '8 Days 7 Nights',
-      description:
-        'Ancient monasteries, Rhodope village rituals, Roman ruins, and a brutalist monument lost in the clouds - this 8-day Bulgaria journey goes far beyond the surface.',
-      target: '/tour-item/bulgaria-beyond-the-ordinary/',
-      image: this.buildCardImage(1),
-    },
-    {
-      eyebrow: 'Classic Tours',
-      title: 'Morocco – Blue Cities & Golden Dunes',
-      price: 'EUR2300',
-      duration: '10 Days 9 Nights',
-      description:
-        "Somewhere between the blue-washed walls of Chefchaouen and a Berber family's tent deep in the Sahara, this journey becomes something more than travel.",
-      target: '/tour-item/morocco-tour/',
-      image: this.buildCardImage(2),
-    },
-    {
-      eyebrow: 'Classic Tours',
-      title: 'Algeria Desert Expedition (Tadrart Rouge)',
-      price: 'EUR1450',
-      duration: '8 Days 7 Nights',
-      description:
-        "Explore Algeria's Tassili n'Ajjer on an 8-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
-      target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
-      image: this.buildCardImage(3),
-    },
-  ];
+  protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
+    this.i18n.featuredTrips().map((trip, index) => ({
+      ...trip,
+      target: [
+        '/tour-item/kyrgyzstan-tour/',
+        '/tour-item/bulgaria-beyond-the-ordinary/',
+        '/tour-item/morocco-tour/',
+        '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+      ][index],
+      image: this.buildCardImage(index),
+    })),
+  );
   protected readonly activeTripIndex = signal(0);
-  protected readonly lastTripIndex = this.trips.length - 1;
+  protected readonly lastTripIndex = computed(() => this.trips().length - 1);
 
   protected shiftTrip(direction: -1 | 1): void {
     this.goToTrip(this.activeTripIndex() + direction);
-    console.log(this.lastTripIndex);
-    console.log(this.activeTripIndex());
   }
 
   protected goToTrip(index: number): void {
-    const nextIndex = Math.min(Math.max(index, 0), this.lastTripIndex);
+    const nextIndex = Math.min(Math.max(index, 0), this.lastTripIndex());
 
     this.activeTripIndex.set(nextIndex);
     this.tripCards
       .get(nextIndex)
       ?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+
+  protected syncActiveTripFromScroll(event: Event): void {
+    const carousel = event.currentTarget as HTMLElement | null;
+
+    if (!carousel) {
+      return;
+    }
+
+    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+
+    if (maxScrollLeft <= 0) {
+      this.activeTripIndex.set(0);
+      return;
+    }
+
+    if (carousel.scrollLeft >= maxScrollLeft - 1) {
+      this.activeTripIndex.set(this.lastTripIndex());
+      return;
+    }
+
+    const nextIndex = Math.round((carousel.scrollLeft / maxScrollLeft) * this.lastTripIndex());
+    this.activeTripIndex.set(Math.min(Math.max(nextIndex, 0), this.lastTripIndex()));
   }
 
   private buildCardImage(index: number): FeaturedTrip['image'] {

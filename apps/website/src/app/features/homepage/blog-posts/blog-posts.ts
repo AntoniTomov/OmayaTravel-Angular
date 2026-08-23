@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { BLOG_POST_SUMMARIES } from '../../../shared/content/blog-summary-content';
+import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 @Component({
   selector: 'app-blog-posts',
@@ -10,5 +11,6 @@ import { BLOG_POST_SUMMARIES } from '../../../shared/content/blog-summary-conten
   styleUrl: './blog-posts.scss',
 })
 export class BlogPosts {
+  protected readonly i18n = inject(OmayaI18n);
   protected readonly posts = BLOG_POST_SUMMARIES.slice(1);
 }

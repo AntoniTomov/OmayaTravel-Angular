@@ -5,8 +5,8 @@
 .blog-post-section h2,
 .blog-post-section h3 {
   margin: 0;
-  color: #151515;
-  font-family: Georgia, serif;
+  color: var(--omaya-color-ink);
+  font-family: 'Playfair Display', serif;
   line-height: 1.16;
 }
 
@@ -44,11 +44,11 @@
   grid-template-columns: minmax(7rem, 0.28fr) minmax(0, 1fr);
   gap: 1rem;
   padding-bottom: 0.8rem;
-  border-bottom: 1px solid #ebe6dc;
+  border-bottom: 1px solid var(--omaya-color-border-warm);
 }
 
 .blog-post-section__timeline dt {
-  color: #151515;
+  color: var(--omaya-color-ink);
   font-weight: 800;
 }
 
@@ -64,7 +64,7 @@
 
 .blog-post-section__items article {
   padding-bottom: 1rem;
-  border-bottom: 1px solid #ebe6dc;
+  border-bottom: 1px solid var(--omaya-color-border-warm);
 }
 
 .blog-post-section__items p {

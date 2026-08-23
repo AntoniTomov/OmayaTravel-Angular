@@ -1,7 +1,7 @@
 :host {
   display: block;
-  color: #252525;
-  background: #ffffff;
+  color: var(--omaya-color-text);
+  background: var(--omaya-color-surface);
 }
 
 .search-results__hero {
@@ -9,27 +9,29 @@
   min-height: 30rem;
   place-items: center;
   padding: 8rem 1rem 4rem;
-  color: #ffffff;
-  background: #303030;
+  color: var(--omaya-color-surface);
+  background: var(--omaya-color-dark);
 }
 
 .search-results__hero h1 {
   margin: 0;
-  font-family: Georgia, serif;
+  font-family: 'Playfair Display', serif;
   font-size: 3.6rem;
   line-height: 1.1;
   text-align: center;
 }
 
 .search-results__content {
-  width: min(76rem, calc(100% - 2rem));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 76rem;
   margin: 0 auto;
-  padding: 5rem 0;
+  padding: 5rem 1rem;
 }
 
 .search-results__content h2 {
   margin: 0 0 1.5rem;
-  font-family: Georgia, serif;
+  font-family: 'Playfair Display', serif;
   font-size: 2.8rem;
 }
 
@@ -51,7 +53,7 @@
 .search-results__form input {
   min-height: 3rem;
   border: 0;
-  border-bottom: 1px solid #d8d3ca;
+  border-bottom: 1px solid var(--omaya-color-border-muted);
 }
 
 .search-results__form button {
@@ -66,7 +68,7 @@
 .search-results__form button span {
   width: 1rem;
   height: 1rem;
-  border: 2px solid #4c5b69;
+  border: 2px solid var(--omaya-color-muted);
   border-radius: 999px;
 }
 
@@ -75,7 +77,7 @@
   width: 0.55rem;
   height: 2px;
   margin: 0.68rem 0 0 0.68rem;
-  background: #4c5b69;
+  background: var(--omaya-color-muted);
   content: '';
   transform: rotate(135deg);
 }
@@ -83,12 +85,12 @@
 .search-results__form p {
   grid-column: 1 / -1;
   margin: 0.6rem 0 0;
-  color: #586575;
+  color: var(--omaya-color-muted);
   font-size: 0.85rem;
 }
 
 .search-results__error {
-  color: #a3261d !important;
+  color: var(--omaya-color-error) !important;
   font-weight: 700;
 }
 
@@ -105,7 +107,7 @@
   grid-template-columns: 6rem 1fr;
   gap: 1.2rem;
   padding-bottom: 1.8rem;
-  border-bottom: 1px solid #e1ddd5;
+  border-bottom: 1px solid var(--omaya-color-border-light);
 }
 
 .search-results__list img {
@@ -115,7 +117,7 @@
 }
 
 .search-results__list span {
-  color: #88744f;
+  color: var(--omaya-color-accent);
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -129,12 +131,12 @@
 
 .search-results__list h3 {
   margin-top: 0.25rem;
-  font-family: Georgia, serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .search-results__list a,
 .search-results__empty a {
-  color: #252525;
+  color: var(--omaya-color-text);
   font-weight: 700;
 }
 

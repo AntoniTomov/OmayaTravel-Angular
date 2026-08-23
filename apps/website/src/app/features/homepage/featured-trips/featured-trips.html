@@ -1,11 +1,11 @@
 <section class="featured-trips" aria-labelledby="featured-trips-title">
   <div class="featured-trips__inner">
     <div class="featured-trips__heading">
-      <h2 id="featured-trips-title">Trips worth talking about</h2>
-      <div class="featured-trips__controls" aria-label="Featured trips carousel">
+      <h2 id="featured-trips-title">{{ i18n.t('homepage.featuredTripsTitle') }}</h2>
+      <div class="featured-trips__controls" [attr.aria-label]="i18n.t('homepage.featuredTripsControls')">
         <button
           type="button"
-          aria-label="Show previous trip"
+          [attr.aria-label]="i18n.t('homepage.previousTrip')"
           [disabled]="activeTripIndex() === 0"
           (click)="shiftTrip(-1)"
         >
@@ -13,8 +13,8 @@
         </button>
         <button
           type="button"
-          aria-label="Show next trip"
-          [disabled]="activeTripIndex() === lastTripIndex"
+          [attr.aria-label]="i18n.t('homepage.nextTrip')"
+          [disabled]="activeTripIndex() === lastTripIndex()"
           (click)="shiftTrip(1)"
         >
           &gt;
@@ -22,9 +22,9 @@
       </div>
     </div>
 
-    <div class="featured-trips__carousel" tabindex="0">
+    <div class="featured-trips__carousel" tabindex="0" (scroll)="syncActiveTripFromScroll($event)">
       <div class="featured-trips__track">
-        @for (trip of trips; track trip.target; let index = $index) {
+        @for (trip of trips(); track trip.target; let index = $index) {
           <article
             #tripCard
             class="featured-trips__card"
@@ -48,7 +48,9 @@
               <h3>
                 <a [routerLink]="trip.target">{{ trip.title }}</a>
               </h3>
-              <p class="featured-trips__price">{{ trip.price }} <span>/ per person</span></p>
+              <p class="featured-trips__price">
+                {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
+              </p>
               <p class="featured-trips__duration">{{ trip.duration }}</p>
               <p class="featured-trips__description">{{ trip.description }}</p>
             </div>

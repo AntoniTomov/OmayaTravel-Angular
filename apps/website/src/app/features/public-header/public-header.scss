@@ -45,6 +45,19 @@
   text-decoration: none;
 }
 
+.public-header__social-link {
+  display: inline-grid;
+  width: 1rem;
+  height: 1rem;
+  place-items: center;
+}
+
+.public-header__social-link mat-icon {
+  width: 0.78rem;
+  height: 0.78rem;
+  font-size: 0.78rem;
+}
+
 .public-header__nav {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -73,7 +86,7 @@
   justify-content: flex-end;
   align-items: center;
   height: 100%;
-  gap: 1.65rem;
+  gap: 1.35rem;
 }
 
 .public-header__group {
@@ -119,22 +132,67 @@
   visibility: hidden;
   background: tokens.$omaya-color-white;
   opacity: 0;
+  transform: translateY(0.9rem);
+  transform-origin: top left;
   transition:
-    opacity tokens.$omaya-transition-fast,
-    visibility tokens.$omaya-transition-fast;
+    opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0ms linear 280ms;
 }
 
 .public-header__dropdown--open {
   visibility: visible;
   opacity: 1;
-  box-shadow: 1px 8px 11px 1px #0000006e;
+  transform: translateY(0);
+  transition-delay: 0ms;
+  box-shadow: var(--omaya-shadow-dropdown);
 }
 
 .public-header__dropdown a {
+  display: block;
   padding: 0.75rem 1rem;
   color: tokens.$omaya-color-text;
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.public-header__dropdown-item {
+  position: relative;
+  min-width: 100%;
+}
+
+.public-header__dropdown-item--has-submenu > a {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.public-header__dropdown-item--has-submenu > a::after {
+  content: '>';
+}
+
+.public-header__submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  display: grid;
+  min-width: 11rem;
+  visibility: hidden;
+  background: tokens.$omaya-color-white;
+  opacity: 0;
+  transform: translateX(0.65rem);
+  transition:
+    opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0ms linear 240ms;
+  box-shadow: var(--omaya-shadow-dropdown);
+}
+
+.public-header__dropdown-item--has-submenu:is(:hover, :focus-within) .public-header__submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0ms;
 }
 
 .public-header__search-button {
@@ -148,8 +206,10 @@
   justify-self: end;
   width: 2.75rem;
   height: 2.75rem;
+  color: inherit;
   background: transparent;
   border: 0;
+  cursor: pointer;
 }
 
 .public-header__menu-button span {
@@ -166,7 +226,7 @@
   display: grid;
   place-items: start center;
   padding: 8rem 1rem 1rem;
-  background: rgb(17 17 17 / 72%);
+  background: rgb(var(--omaya-color-overlay-rgb) / 72%);
 }
 
 .public-header__search-panel {
@@ -259,12 +319,36 @@
 
   .public-header__dropdown {
     position: static;
-    display: none;
+    display: grid;
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
     visibility: visible;
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(-0.45rem);
+    transition:
+      max-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 260ms ease,
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .public-header__dropdown--open {
-    display: grid;
+    max-height: 18rem;
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
   }
+
+  .public-header__submenu {
+    position: static;
+    max-height: none;
+    margin-left: 0.75rem;
+    border-left: 1px solid var(--omaya-color-border-light);
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+    transition: none;
+  }
+
 }

@@ -13,12 +13,12 @@ import { Router, RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import {
-  PUBLIC_NAVIGATION_GROUPS,
-  PUBLIC_NAVIGATION_LINKS,
   PUBLIC_HEADER_LOGO,
   PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC,
   PUBLIC_HEADER_LOGO_VISUAL_SRC,
 } from '../../shared/content/homepage-content';
+import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
+import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { buildMediaImageAttributes } from '../../shared/media';
 
 const SEARCH_ICON_SVG = `
@@ -45,11 +45,12 @@ export class PublicHeader implements AfterViewInit {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
+  protected readonly i18n = inject(OmayaI18n);
 
   protected readonly isScrolled = signal(false);
   protected readonly isMobileMenuOpen = signal(false);
-  protected readonly navigationGroups = PUBLIC_NAVIGATION_GROUPS;
-  protected readonly navigationLinks = PUBLIC_NAVIGATION_LINKS;
+  protected readonly navigationGroups = computed(() => this.i18n.navigationGroups());
+  protected readonly navigationLinks = computed(() => this.i18n.navigationLinks());
   protected readonly logo = computed(() => {
     const visualSrc =
       this.isScrolled() || this.isMobileMenuOpen()
@@ -83,6 +84,7 @@ export class PublicHeader implements AfterViewInit {
       'search',
       this.sanitizer.bypassSecurityTrustHtml(SEARCH_ICON_SVG),
     );
+    registerSocialIcons(this.iconRegistry, this.sanitizer);
   }
 
   ngAfterViewInit(): void {
@@ -153,7 +155,7 @@ export class PublicHeader implements AfterViewInit {
     const query = this.searchQuery().trim();
 
     if (query.length === 0) {
-      this.searchError.set('Type a search term.');
+      this.searchError.set(this.i18n.t('header.emptySearch'));
       return;
     }
 

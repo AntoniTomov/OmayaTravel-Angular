@@ -1,7 +1,7 @@
 :host {
   display: block;
-  background: #fff;
-  color: #1e1d1a;
+  background: var(--omaya-color-surface);
+  color: var(--omaya-color-text);
 }
 
 .tour-calendar__hero {
@@ -10,14 +10,14 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  color: #fff;
+  color: var(--omaya-color-surface);
 }
 
 .tour-calendar__hero::after {
   position: absolute;
   inset: 0;
   content: '';
-  background: rgba(0, 0, 0, 0.34);
+  background: rgb(var(--omaya-color-overlay-rgb) / 34%);
 }
 
 .tour-calendar__hero img {
@@ -32,16 +32,18 @@
   position: relative;
   z-index: 1;
   margin: 70px 24px 0;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(52px, 8vw, 104px);
   font-weight: 400;
   text-align: center;
 }
 
 .tour-calendar__body {
-  width: min(1180px, calc(100% - 48px));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 70px 0 96px;
+  padding: 70px 24px 96px;
 }
 
 .tour-calendar__grid {
@@ -58,8 +60,8 @@
   overflow: hidden;
   border: 0;
   padding: 24px;
-  background: #1d1d1d;
-  color: #fff;
+  background: var(--omaya-color-text);
+  color: var(--omaya-color-surface);
   text-align: left;
   cursor: pointer;
 }
@@ -68,7 +70,11 @@
   position: absolute;
   inset: 0;
   content: '';
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.68));
+  background: linear-gradient(
+    180deg,
+    rgb(var(--omaya-color-overlay-rgb) / 10%),
+    rgb(var(--omaya-color-overlay-rgb) / 68%)
+  );
 }
 
 .tour-calendar__month img {
@@ -87,14 +93,14 @@
 }
 
 .tour-calendar__month span {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 30px;
   line-height: 1;
 }
 
 .tour-calendar__month small {
   margin-top: 8px;
-  color: #f1e9d9;
+  color: var(--omaya-color-surface-warm);
   font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -125,7 +131,8 @@
   }
 
   .tour-calendar__body {
-    width: min(100% - 32px, 1180px);
+    width: 100%;
+    padding-inline: 16px;
     padding-top: 42px;
   }
 

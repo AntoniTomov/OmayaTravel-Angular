@@ -13,10 +13,69 @@ html {
         primary: mat.$cyan-palette,
         tertiary: mat.$orange-palette,
       ),
-      typography: Roboto,
       density: 0,
     )
   );
+}
+
+:root,
+[data-theme='omaya'] {
+  --omaya-color-accent: #f7b500;
+  --omaya-color-dark: #303030;
+  --omaya-color-ink: #141414;
+  --omaya-color-text: #1d1d1d;
+  --omaya-color-heading: #101820;
+  --omaya-color-body: #657080;
+  --omaya-color-muted: #747474;
+  --omaya-color-subtle: #aeb2b8;
+  --omaya-color-page: #ffffff;
+  --omaya-color-surface: #ffffff;
+  --omaya-color-surface-rgb: 255 255 255;
+  --omaya-color-surface-alt: #f7f7f7;
+  --omaya-color-surface-muted: #f4f1ec;
+  --omaya-color-surface-warm: #f6f1e8;
+  --omaya-color-surface-cool: #efedf1;
+  --omaya-color-surface-cool-rgb: 239 237 241;
+  --omaya-color-border-muted: #e0dbd2;
+  --omaya-color-border-soft: #ccc7bd;
+  --omaya-color-border-light: #ececec;
+  --omaya-color-border-warm: #ebe6dc;
+  --omaya-color-footer: #171717;
+  --omaya-color-footer-text: #f3f3f3;
+  --omaya-color-footer-muted: #888888;
+  --omaya-color-error: #a3261d;
+  --omaya-color-overlay-rgb: 0 0 0;
+  --omaya-shadow-header: 0 8px 20px rgb(20 20 20 / 8%);
+  --omaya-shadow-search-panel: 0 18px 45px rgb(0 0 0 / 20%);
+  --omaya-shadow-dropdown: 1px 8px 11px 1px rgb(0 0 0 / 43%);
+}
+
+[data-theme='partner'] {
+  --omaya-color-accent: #0f5f57;
+  --omaya-color-dark: #22302f;
+  --omaya-color-ink: #17211f;
+  --omaya-color-text: #22302f;
+  --omaya-color-heading: #17211f;
+  --omaya-color-body: #5f6874;
+  --omaya-color-muted: #747474;
+  --omaya-color-subtle: #aeb2b8;
+  --omaya-color-page: #ffffff;
+  --omaya-color-surface: #ffffff;
+  --omaya-color-surface-rgb: 255 255 255;
+  --omaya-color-surface-alt: #f7f7f7;
+  --omaya-color-surface-muted: #f4f1ec;
+  --omaya-color-surface-warm: #f6f1e8;
+  --omaya-color-surface-cool: #efedf1;
+  --omaya-color-surface-cool-rgb: 239 237 241;
+  --omaya-color-border-muted: #e0dbd2;
+  --omaya-color-border-soft: #ccc7bd;
+  --omaya-color-border-light: #ececec;
+  --omaya-color-border-warm: #ebe6dc;
+  --omaya-color-footer: #17211f;
+  --omaya-color-footer-text: #f3f3f3;
+  --omaya-color-footer-muted: #aeb2b8;
+  --omaya-color-error: #a3261d;
+  --omaya-color-overlay-rgb: 0 0 0;
 }
 
 body {
@@ -28,9 +87,9 @@ body {
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
+  background-color: var(--omaya-color-page);
+  color: var(--omaya-color-text);
+  font-family: 'Playfair Display', serif;
 
   // Reset the user agent margin.
   margin: 0;
@@ -38,5 +97,5 @@ body {
 }
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Playfair Display', serif;
 }
