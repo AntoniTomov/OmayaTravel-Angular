@@ -13,14 +13,22 @@ const allowedHosts = [
   'www.omayatravel.com',
   'localhost',
   '127.0.0.1',
+  ...(process.env['NG_ALLOWED_HOSTS'] ?? '')
+    .split(',')
+    .map((host) => host.trim())
+    .filter(Boolean),
   ...(process.env['OMAYA_ALLOWED_HOSTS'] ?? '')
     .split(',')
     .map((host) => host.trim())
     .filter(Boolean),
 ];
+const trustProxyHeaders =
+  process.env['OMAYA_TRUST_PROXY_HEADERS'] === 'true'
+    ? ['x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port', 'x-forwarded-prefix']
+    : false;
 
 const app = express();
-const angularApp = new AngularNodeAppEngine({ allowedHosts });
+const angularApp = new AngularNodeAppEngine({ allowedHosts, trustProxyHeaders });
 
 /**
  * Example Express Rest API endpoints can be defined here.
