@@ -8,7 +8,16 @@ import express from 'express';
 import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
-const allowedHosts = ['omayatravel.com', 'www.omayatravel.com', 'localhost', '127.0.0.1'];
+const allowedHosts = [
+  'omayatravel.com',
+  'www.omayatravel.com',
+  'localhost',
+  '127.0.0.1',
+  ...(process.env['OMAYA_ALLOWED_HOSTS'] ?? '')
+    .split(',')
+    .map((host) => host.trim())
+    .filter(Boolean),
+];
 
 const app = express();
 const angularApp = new AngularNodeAppEngine({ allowedHosts });
