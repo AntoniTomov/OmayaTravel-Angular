@@ -1,6 +1,7 @@
 import { DatePipe, NgClass } from '@angular/common';
 import { Component, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
@@ -23,7 +24,7 @@ interface TourTabDefinition {
 
 @Component({
   selector: 'app-tour-detail',
-  imports: [DatePipe, NgClass, RouterLink],
+  imports: [DatePipe, NgClass, MatIconModule, RouterLink],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
 })
@@ -49,13 +50,13 @@ export class TourDetail {
   });
   protected readonly tabs = computed<readonly TourTabDefinition[]>(() => {
     const tabs: TourTabDefinition[] = [
-      { id: 'information', label: 'Information', icon: 'i' },
-      { id: 'tour-plan', label: 'Tour Plan', icon: 'book' },
-      { id: 'gallery', label: 'Gallery', icon: 'cam' },
+      { id: 'information', label: 'Information', icon: 'info' },
+      { id: 'tour-plan', label: 'Tour Plan', icon: 'menu_book' },
+      { id: 'gallery', label: 'Gallery', icon: 'photo_camera' },
     ];
 
     if (this.tour()?.faq) {
-      tabs.push({ id: 'faq', label: 'FAQ', icon: '?' });
+      tabs.push({ id: 'faq', label: 'FAQ', icon: 'help_outline' });
     }
 
     return tabs;
@@ -119,8 +120,24 @@ export class TourDetail {
     return `${tour.groupSize.min} - ${tour.groupSize.max} people`;
   }
 
+  protected departureReturnLabel(tour: TourDetailContent): string {
+    if (!tour.departureReturn) {
+      return '';
+    }
+
+    return tour.departureReturn.departure === tour.departureReturn.return
+      ? tour.departureReturn.departure
+      : `${tour.departureReturn.departure}/${tour.departureReturn.return}`;
+  }
+
   protected mealsLabel(day: TourItineraryDay): string {
     return day.meals.join(', ');
+  }
+
+  protected highlightsHeading(tour: TourDetailContent): string {
+    return tour.slug === 'bulgaria-beyond-the-ordinary'
+      ? 'Highlights of our Bulgaria Tour'
+      : 'Tour Highlights';
   }
 
   protected highlightTitleText(highlight: TourHighlight): string {

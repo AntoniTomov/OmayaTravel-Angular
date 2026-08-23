@@ -1,0 +1,154 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.planning-form {
+  min-height: 100vh;
+  padding: 9rem 24px 5rem;
+  color: tokens.$omaya-color-text;
+  background: tokens.$omaya-color-white;
+}
+
+.planning-form__hero {
+  max-width: 58rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.planning-form__hero p {
+  margin: 0 0 0.8rem;
+  color: tokens.$omaya-color-gold;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.planning-form__hero h1 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: 1;
+}
+
+.planning-form__panel {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 48rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid var(--omaya-color-border-light);
+}
+
+.planning-form__steps,
+.planning-form__actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.planning-form__steps {
+  justify-content: center;
+}
+
+.planning-form__steps button {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--omaya-color-border-light);
+  border-radius: 50%;
+  background: transparent;
+  color: tokens.$omaya-color-text;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.planning-form__steps button.is-active {
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+  border-color: tokens.$omaya-color-gold;
+}
+
+.planning-form fieldset {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.planning-form legend {
+  margin-bottom: 1rem;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.planning-form label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 800;
+}
+
+.planning-form :is(input, select, textarea) {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 3rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--omaya-color-border-light);
+  font: inherit;
+}
+
+.planning-form textarea {
+  resize: vertical;
+}
+
+.planning-form__button {
+  min-height: 3rem;
+  padding: 0 1.15rem;
+  border: 0;
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+
+.planning-form__button:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.planning-form__button--secondary {
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.planning-form__sent {
+  margin: 0;
+  color: tokens.$omaya-color-gold;
+  font-weight: 900;
+}
+
+.planning-form__back {
+  justify-self: start;
+  color: var(--omaya-color-muted);
+  font-weight: 800;
+}
+
+@media (max-width: 40rem) {
+  .planning-form {
+    padding-top: 7rem;
+  }
+
+  .planning-form__panel {
+    padding: 1.25rem;
+  }
+}

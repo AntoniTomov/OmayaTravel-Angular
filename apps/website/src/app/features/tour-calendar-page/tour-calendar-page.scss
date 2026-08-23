@@ -32,7 +32,7 @@
   position: relative;
   z-index: 1;
   margin: 70px 24px 0;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: clamp(52px, 8vw, 104px);
   font-weight: 400;
   text-align: center;
@@ -93,7 +93,7 @@
 }
 
 .tour-calendar__month span {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 30px;
   line-height: 1;
 }
@@ -112,7 +112,7 @@
 }
 
 .tour-calendar__month--empty {
-  cursor: default;
+  cursor: pointer;
 }
 
 .tour-calendar__month--empty img {

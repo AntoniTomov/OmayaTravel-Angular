@@ -62,7 +62,7 @@ const EN: TranslationDictionary = {
     privacyPolicy: 'Privacy Policy',
     terms: 'Terms & Conditions',
     license: 'Omaya Travel License',
-    copyright: '© 2018 Omaya Travel, All Rights Reserved',
+    copyright: '© 2026 Omaya Travel, All Rights Reserved',
     backToTop: 'Back to top',
   },
   homepage: {
@@ -77,7 +77,8 @@ const EN: TranslationDictionary = {
     carouselLabel: 'Homepage carousel',
     showSlide: 'Show slide',
     travelMatchTitle: 'Are we your travel match?',
-    travelMatchSubtitle: 'What stays the same, no matter which destination you pick.',
+    travelMatchSubtitle:
+      "If you’re nodding along, you might have just found your travel community.",
     featuredTripsTitle: 'Trips worth talking about',
     featuredTripsControls: 'Featured trips carousel',
     previousTrip: 'Show previous trip',
@@ -163,23 +164,23 @@ const EN: TranslationDictionary = {
   ],
   travelMatch: [
     {
-      title: 'Travel with people your age',
-      description: 'People in their 20-45s who are genuinely curious about where they are.',
+      title: 'Curious about the world',
+      description: 'You want to go beyond the highlights and get to know the places you visit.',
     },
     {
-      title: 'Carefully Crafted Journeys',
+      title: 'Conversations over bar crawls',
       description:
-        'Each itinerary is designed to blend iconic highlights with cultural local experiences.',
+        'You’d rather share a beer at a local spot and have a deep conversation than spend the night partying.',
+    },
+    {
+      title: 'Your kind of people',
+      description:
+        'You want to travel with people in their 20s to 40s who share your curiosity, openness and mindset.',
     },
     {
       title: 'Small groups',
       description:
-        'With intentionally small groups, our journeys allow for better connections with people and places',
-    },
-    {
-      title: 'Experienced team',
-      description:
-        'From booking to the journey itself, our experienced team and local guides ensure everything runs smoothly.',
+        'You prefer travelling in groups of up to 12, where there’s room to connect with the people you’re travelling with.',
     },
   ],
   featuredTrips: [
@@ -250,7 +251,7 @@ const BG: TranslationDictionary = {
     privacyPolicy: 'Политика за поверителност',
     terms: 'Общи условия',
     license: 'Лиценз на Omaya Travel',
-    copyright: '© 2018 Omaya Travel, всички права запазени',
+    copyright: '© 2026 Omaya Travel, всички права запазени',
     backToTop: 'Обратно нагоре',
   },
   homepage: {

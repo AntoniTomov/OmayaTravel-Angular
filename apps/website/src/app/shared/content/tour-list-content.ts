@@ -30,10 +30,10 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
   {
     title: 'Algeria Desert Expedition (Tadrart Rouge)',
     category: 'Classic Tours',
-    destination: 'Algeria',
+    destination: 'EUR1450 / per person',
     excerpt:
-      "Explore Algeria's Tassili n'Ajjer on an 8-day guided desert expedition into the Tadrart – one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
-    image: '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp',
+      "Explore Algeria's Tassili n'Ajjer on an 9-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
+    image: '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
     alt: 'Red dunes and rock formations in Algeria',
     price: 'EUR1450',
     duration: '8 Days 7 Nights',
@@ -45,19 +45,19 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     destination: 'Bulgaria',
     excerpt:
       'Ancient monasteries, Rhodope village rituals, Roman ruins, and a brutalist monument lost in the clouds - this 8-day Bulgaria journey goes far beyond the surface, into the living traditions and hidden landscapes that make the Balkans unlike anywhere else in Europe.',
-    image: '/assets/images/women-tours/beautiful-bulgaria-women/thumbnails/Bulgaria-tour-2.webp',
+    image: '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp',
     alt: 'Rila Monastery in Bulgaria',
     price: 'EUR1050',
     duration: '8 Days 7 Nights',
     target: '/tour-item/bulgaria-beyond-the-ordinary/',
   },
   {
-    title: 'Kyrgyzstan Tour',
+    title: 'Kyrgyzstan Discovery Tour',
     category: 'Classic Tours',
     destination: 'Kyrgyzstan',
     excerpt:
       "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
-    image: '/assets/images/Kyrgystan_women_only_tour_cover-1.webp',
+    image: '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
     alt: 'Kyrgyzstan mountain landscape',
     price: 'EUR1320',
     duration: '10 Days 9 Nights',
@@ -69,7 +69,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     destination: 'Morocco',
     excerpt:
       "Somewhere between the blue-washed walls of Chefchaouen and a Berber family's tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth.",
-    image: '/assets/images/destinations/classic-tours-bgr.webp',
+    image: '/assets/images/home-page/trips-carousel/Tour-feature-image-3.webp',
     alt: 'Travellers in a desert landscape',
     price: 'EUR2300',
     duration: '12 Days 11 Nights',
@@ -129,7 +129,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
   {
     slug: 'tours-list',
     title: 'Tours List',
-    subtitle: 'Small-group journeys by Omaya Travel.',
+    subtitle: "Somewhere on this page is a journey you'll spend the next year dreaming about. Take your time.",
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
     heroAlt: 'Small group travellers on a remote road',
     cards: TOUR_CARDS,
@@ -138,7 +138,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
   {
     slug: 'classic-tours',
     title: 'Classic Tours',
-    subtitle: 'Signature small-group journeys through places with deep stories and generous hosts.',
+    subtitle: '',
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
     heroAlt: 'Classic tours landscape',
     cards: TOUR_CARDS.filter((card) => card.category === 'Classic Tours'),
@@ -147,7 +147,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
   {
     slug: 'women-only-tours',
     title: 'Women Only Tours',
-    subtitle: 'Thoughtfully paced small-group tours created for women travelling together.',
+    subtitle: '',
     heroImage: '/assets/images/women-tours/women-tours-bgr.webp',
     heroAlt: 'Women-only tour group',
     cards: TOUR_CARDS.filter((card) => card.category === 'Women-Only'),
@@ -156,7 +156,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
   {
     slug: 'solo-travellers-tours',
     title: 'Solo Travellers Tours',
-    subtitle: 'Small-group trips that make joining independently feel easy and natural.',
+    subtitle: '',
     heroImage: '/assets/images/20220622_174014-scaled.jpg',
     heroAlt: 'Solo travellers tour landscape',
     cards: TOUR_CARDS.filter((card) => card.category === 'Solo Travellers'),

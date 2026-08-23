@@ -6,7 +6,6 @@
         <button
           type="button"
           [attr.aria-label]="i18n.t('homepage.previousTrip')"
-          [disabled]="activeTripIndex() === 0"
           (click)="shiftTrip(-1)"
         >
           &lt;
@@ -14,7 +13,6 @@
         <button
           type="button"
           [attr.aria-label]="i18n.t('homepage.nextTrip')"
-          [disabled]="activeTripIndex() === lastTripIndex()"
           (click)="shiftTrip(1)"
         >
           &gt;
@@ -22,37 +20,47 @@
       </div>
     </div>
 
-    <div class="featured-trips__carousel" tabindex="0" (scroll)="syncActiveTripFromScroll($event)">
+    <div
+      #carousel
+      class="featured-trips__carousel"
+      tabindex="0"
+      (scroll)="syncActiveTripFromScroll($event)"
+      (pointerdown)="startDrag($event)"
+      (pointermove)="drag($event)"
+      (pointerup)="endDrag($event)"
+      (pointercancel)="endDrag($event)"
+      (pointerleave)="endDrag($event)"
+    >
       <div class="featured-trips__track">
-        @for (trip of trips(); track trip.target; let index = $index) {
+        @for (entry of tempTours(); track entry.tempId) {
           <article
             #tripCard
             class="featured-trips__card"
-            [class.featured-trips__card--active]="activeTripIndex() === index"
+            [class.featured-trips__card--active]="activeTripIndex() === entry.originalIndex"
           >
-            <a class="featured-trips__image-link" [routerLink]="trip.target">
+            <a class="featured-trips__image-link" [routerLink]="entry.trip.target">
               <img
-                [src]="trip.image.src"
-                [srcset]="trip.image.srcset"
-                [sizes]="trip.image.sizes"
-                [width]="trip.image.width"
-                [height]="trip.image.height"
-                [alt]="trip.image.alt"
-                [attr.loading]="trip.image.loading"
-                [attr.fetchpriority]="trip.image.fetchPriority"
+                [src]="entry.trip.image.src"
+                [srcset]="entry.trip.image.srcset"
+                [sizes]="entry.trip.image.sizes"
+                [width]="entry.trip.image.width"
+                [height]="entry.trip.image.height"
+                [alt]="entry.trip.image.alt"
+                [attr.loading]="entry.trip.image.loading"
+                [attr.fetchpriority]="entry.trip.image.fetchPriority"
               />
-              <span>{{ trip.eyebrow }}</span>
+              <span>{{ entry.trip.eyebrow }}</span>
             </a>
 
             <div class="featured-trips__content">
               <h3>
-                <a [routerLink]="trip.target">{{ trip.title }}</a>
+                <a [routerLink]="entry.trip.target">{{ entry.trip.title }}</a>
               </h3>
               <p class="featured-trips__price">
-                {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
+                {{ entry.trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
               </p>
-              <p class="featured-trips__duration">{{ trip.duration }}</p>
-              <p class="featured-trips__description">{{ trip.description }}</p>
+              <p class="featured-trips__duration">{{ entry.trip.duration }}</p>
+              <p class="featured-trips__description">{{ entry.trip.description }}</p>
             </div>
           </article>
         }

@@ -81,9 +81,24 @@
           >
             @for (link of group.links; track link.target) {
               @if (link.children?.length) {
-                <div class="public-header__dropdown-item public-header__dropdown-item--has-submenu">
-                  <a [routerLink]="link.target" (click)="closeMenus()">{{ link.label }}</a>
-                  <div class="public-header__submenu">
+                <div
+                  class="public-header__dropdown-item public-header__dropdown-item--has-submenu"
+                  (mouseenter)="openSubmenu(link.label)"
+                  (mouseleave)="activeSubmenu.set(null)"
+                >
+                  <button
+                    class="public-header__submenu-button"
+                    type="button"
+                    [attr.aria-expanded]="activeSubmenu() === link.label"
+                    (focus)="openSubmenu(link.label)"
+                    (click)="ignoreSubmenuClick($event)"
+                  >
+                    {{ link.label }}
+                  </button>
+                  <div
+                    class="public-header__submenu"
+                    [class.public-header__submenu--open]="activeSubmenu() === link.label"
+                  >
                     @for (childLink of link.children; track childLink.target) {
                       <a [routerLink]="childLink.target" (click)="closeMenus()">{{
                         childLink.label

@@ -9,9 +9,11 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { filter, map, startWith } from 'rxjs';
 import {
   PUBLIC_HEADER_LOGO,
   PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC,
@@ -33,6 +35,13 @@ const SEARCH_ICON_SVG = `
   </svg>
 `;
 
+const SOLID_HEADER_PATHS = new Set([
+  '/our-story',
+  '/your-dmc-partner-in-bulgaria',
+  '/contact',
+  '/private-tours-your-trip-your-rules/describe',
+]);
+
 @Component({
   selector: 'app-public-header',
   imports: [NgClass, RouterLink, MatIconModule],
@@ -48,12 +57,23 @@ export class PublicHeader implements AfterViewInit {
   protected readonly i18n = inject(OmayaI18n);
 
   protected readonly isScrolled = signal(false);
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event) => event.urlAfterRedirects),
+      startWith(this.router.url),
+    ),
+  );
+  private readonly shouldUseSolidHeader = computed(() =>
+    SOLID_HEADER_PATHS.has(this.normalizedPath(this.currentUrl() ?? '/')),
+  );
+  private readonly isSolidHeader = computed(() => this.isScrolled() || this.shouldUseSolidHeader());
   protected readonly isMobileMenuOpen = signal(false);
   protected readonly navigationGroups = computed(() => this.i18n.navigationGroups());
   protected readonly navigationLinks = computed(() => this.i18n.navigationLinks());
   protected readonly logo = computed(() => {
     const visualSrc =
-      this.isScrolled() || this.isMobileMenuOpen()
+      this.isSolidHeader() || this.isMobileMenuOpen()
         ? PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC
         : PUBLIC_HEADER_LOGO_VISUAL_SRC;
 
@@ -68,11 +88,12 @@ export class PublicHeader implements AfterViewInit {
     };
   });
   protected readonly activeDropdown = signal<string | null>(null);
+  protected readonly activeSubmenu = signal<string | null>(null);
   protected readonly isSearchOpen = signal(false);
   protected readonly searchQuery = signal('');
   protected readonly searchError = signal('');
   protected readonly headerClasses = computed(() => ({
-    'public-header--scrolled': this.isScrolled(),
+    'public-header--scrolled': this.isSolidHeader(),
     'public-header--menu-open': this.isMobileMenuOpen(),
   }));
 
@@ -100,6 +121,7 @@ export class PublicHeader implements AfterViewInit {
   onDocumentClick(event: MouseEvent): void {
     if (!this.host.nativeElement.contains(event.target as Node)) {
       this.activeDropdown.set(null);
+      this.activeSubmenu.set(null);
     }
   }
 
@@ -111,6 +133,7 @@ export class PublicHeader implements AfterViewInit {
     }
 
     this.activeDropdown.set(null);
+    this.activeSubmenu.set(null);
     this.isMobileMenuOpen.set(false);
   }
 
@@ -119,17 +142,36 @@ export class PublicHeader implements AfterViewInit {
   }
 
   protected toggleDropdown(label: string): void {
-    this.activeDropdown.update((activeLabel) => (activeLabel === label ? null : label));
+    this.activeDropdown.update((activeLabel) => {
+      const nextLabel = activeLabel === label ? null : label;
+
+      if (nextLabel !== label) {
+        this.activeSubmenu.set(null);
+      }
+
+      return nextLabel;
+    });
+  }
+
+  protected openSubmenu(label: string): void {
+    this.activeSubmenu.set(label);
+  }
+
+  protected ignoreSubmenuClick(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   protected closeMenus(): void {
     this.activeDropdown.set(null);
+    this.activeSubmenu.set(null);
     this.isMobileMenuOpen.set(false);
   }
 
   protected toggleMobileMenu(): void {
     this.isMobileMenuOpen.update((isOpen) => !isOpen);
     this.activeDropdown.set(null);
+    this.activeSubmenu.set(null);
   }
 
   protected openSearch(): void {
@@ -168,6 +210,12 @@ export class PublicHeader implements AfterViewInit {
   }
 
   private updateScrolledState(): void {
-    this.isScrolled.set(this.document.defaultView?.scrollY !== 0);
+    this.isScrolled.set((this.document.defaultView?.scrollY ?? 0) !== 0);
+  }
+
+  private normalizedPath(url: string): string {
+    const path = url.split(/[?#]/)[0]?.replace(/\/+$/, '') || '/';
+
+    return path === '' ? '/' : path;
   }
 }

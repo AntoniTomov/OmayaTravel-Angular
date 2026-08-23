@@ -31,13 +31,6 @@
   object-position: left center;
 }
 
-.our-story__hero::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgb(var(--omaya-color-surface-cool-rgb, 239 237 241) / 0%) 0 46%, rgb(var(--omaya-color-surface-cool-rgb, 239 237 241) / 78%) 68%);
-  content: '';
-}
-
 .our-story__hero-copy {
   position: relative;
   z-index: 1;
@@ -78,7 +71,7 @@
   font-size: 1.7rem;
 }
 
-.our-story__intro,
+.our-story__text,
 .our-story__team,
 .our-story__contact {
   box-sizing: border-box;
@@ -88,34 +81,72 @@
   padding-inline: 1rem;
 }
 
-.our-story__intro {
+.our-story__text {
   display: grid;
-  grid-template-columns: minmax(13rem, 0.82fr) minmax(0, 1.5fr);
   gap: 4rem;
-  padding-top: 6rem;
-  padding-bottom: 5rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 }
 
-.our-story__copy p {
-  margin: 0 0 1rem;
+.our-story__text-section {
+  display: grid;
+  gap: 1.1rem;
 }
 
-.our-story__lead {
+.our-story__text-section h2 {
+  display: grid;
+  gap: 1.35rem;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+}
+
+.our-story__text-section h2::after {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  background: var(--omaya-color-muted);
+  content: '';
+}
+
+.our-story__text-section p {
+  max-width: 72rem;
+  margin: 0;
+  color: var(--omaya-color-muted);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.our-story__callout {
+  width: min(66rem, 100%);
+  box-sizing: border-box;
+  justify-self: center;
+  margin: 0.5rem 0 1rem;
+  padding: 3.4rem 2rem;
   color: var(--omaya-color-heading);
+  background: var(--omaya-color-surface-muted);
   font-family: tokens.$omaya-font-heading;
-  font-size: 1.45rem;
-  line-height: 1.45;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
 }
 
 .our-story__team {
-  padding-top: 5rem;
+  padding-top: 2rem;
   padding-bottom: 6rem;
-  border-top: 1px solid var(--omaya-color-border-light);
 }
 
 .our-story__section-heading {
-  max-width: 42rem;
+  max-width: 100%;
   margin-bottom: 3rem;
+  text-align: center;
+}
+
+.our-story__faces-title {
+  color: tokens.$omaya-color-gold;
+  font-family: 'Kristi', cursive;
+  font-size: clamp(3.25rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
 }
 
 .our-story__members {
@@ -154,29 +185,6 @@
   margin: 0 0 0.8rem;
 }
 
-.our-story__contact {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 6rem;
-  padding: 2rem;
-  border-top: 1px solid var(--omaya-color-border-light);
-  border-bottom: 1px solid var(--omaya-color-border-light);
-}
-
-.our-story__contact p {
-  margin: 0;
-  color: var(--omaya-color-heading);
-  font-family: tokens.$omaya-font-heading;
-  font-size: 1.55rem;
-}
-
-.our-story__contact div {
-  display: grid;
-  gap: 0.2rem;
-}
-
 .our-story a {
   color: inherit;
   text-decoration: none;
@@ -210,23 +218,20 @@
     padding-top: 8rem;
   }
 
-  .our-story__hero::after {
-    background: rgb(var(--omaya-color-surface-cool-rgb, 239 237 241) / 60%);
-  }
-
   .our-story__hero-copy {
     justify-self: start;
     width: min(30rem, 100%);
   }
 
   .our-story__intro,
+  .our-story__text,
   .our-story__member,
   .our-story__member:nth-child(even),
   .our-story__contact {
     grid-template-columns: 1fr;
   }
 
-  .our-story__intro,
+  .our-story__text,
   .our-story__team {
     padding-top: 4rem;
     padding-bottom: 4rem;

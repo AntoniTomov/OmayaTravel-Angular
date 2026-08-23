@@ -55,7 +55,7 @@
       <h2 id="footer-legal-title">{{ i18n.t('footer.legalPrivacy') }}</h2>
       <a routerLink="/cookie-policy/">{{ i18n.t('footer.cookiePolicy') }}</a>
       <a routerLink="/privacy-policy/">{{ i18n.t('footer.privacyPolicy') }}</a>
-      <a routerLink="/terms-and-conditions/">{{ i18n.t('footer.terms') }}</a>
+      <a routerLink="/termsconditions/">{{ i18n.t('footer.terms') }}</a>
       <a routerLink="/omaya-travel-license/">{{ i18n.t('footer.license') }}</a>
     </section>
   </div>
@@ -65,7 +65,6 @@
     <button
       type="button"
       [attr.aria-label]="i18n.t('footer.backToTop')"
-      [class.public-footer__back-to-top--home]="isHomepage()"
       (click)="scrollToTop()"
     >
       ^

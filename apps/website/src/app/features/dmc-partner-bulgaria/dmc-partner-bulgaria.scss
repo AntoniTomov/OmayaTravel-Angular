@@ -58,6 +58,13 @@
   letter-spacing: 0.15em;
   text-decoration: none;
   text-transform: uppercase;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+
+.dmc-page__intro a:is(:hover, :focus-visible) {
+  background: tokens.$omaya-color-dark;
 }
 
 .dmc-page__benefits {

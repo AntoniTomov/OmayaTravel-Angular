@@ -7,7 +7,7 @@
 
     <div class="travel-match__grid">
       @for (feature of features(); track feature.title) {
-        <article class="travel-match__item">
+        <a class="travel-match__item" [routerLink]="calendarTarget">
           <img
             class="travel-match__icon"
             [src]="feature.icon.src"
@@ -18,7 +18,7 @@
           />
           <h3>{{ feature.title }}</h3>
           <p>{{ feature.description }}</p>
-        </article>
+        </a>
       }
     </div>
   </div>

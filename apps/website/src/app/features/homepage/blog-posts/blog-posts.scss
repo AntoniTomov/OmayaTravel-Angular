@@ -31,8 +31,8 @@
   line-height: 1.1;
 }
 
-.blog-posts__header p {
-  max-width: 42rem;
+.blog-post__text {
+  max-width: 960px;
   margin: 0;
   color: var(--omaya-color-muted);
   font-size: 1.05rem;
@@ -44,6 +44,12 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4.5rem;
   margin-top: 4.1rem;
+}
+
+.blog-posts__card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .blog-posts__image {
@@ -60,7 +66,7 @@
   transition: transform 220ms ease;
 }
 
-.blog-posts__image:is(:hover, :focus-visible) img {
+.blog-posts__card-link:is(:hover, :focus-visible) img {
   transform: scale(1.035);
 }
 
@@ -71,21 +77,25 @@
   line-height: 1.35;
 }
 
-.blog-posts a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.blog-posts a:is(:hover, :focus-visible) {
+.blog-posts__card-link:is(:hover, :focus-visible) {
   color: tokens.$omaya-color-gold;
   outline: tokens.$omaya-border-focus;
   outline-offset: 4px;
 }
 
 .blog-posts__date {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
   margin: 0;
   color: var(--omaya-color-subtle);
   font-size: 0.88rem;
+}
+
+.blog-posts__date .material-icons {
+  color: tokens.$omaya-color-gold;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 @media (max-width: 72rem) {

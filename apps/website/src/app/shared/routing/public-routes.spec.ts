@@ -58,16 +58,12 @@ describe('public route definitions', () => {
     expect(PUBLIC_REDIRECTS).toEqual(
       expect.arrayContaining([
         {
-          from: '/3122-2/',
-          to: '/contact/',
-          statusCode: 301,
-        },
-        {
           from: '/tour-checkout/',
           to: '/contact/',
           statusCode: 301,
         },
       ]),
     );
+    expect(PUBLIC_REDIRECTS.some((redirect) => redirect.from === '/3122-2/')).toBe(false);
   });
 });

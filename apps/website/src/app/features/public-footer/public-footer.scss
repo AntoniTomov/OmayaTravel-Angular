@@ -96,6 +96,8 @@
   margin-bottom: 1.45rem !important;
 }
 .public-footer__post small {
+  display: block;
+  margin-top: 0.35rem;
   color: var(--omaya-color-footer-muted);
 }
 .public-footer__payment-title {
@@ -104,14 +106,14 @@
 }
 .public-footer__payments {
   display: grid;
-  grid-template-columns: repeat(3, 3.25rem);
-  gap: 0.25rem;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.6rem 0.75rem;
   align-items: center;
 }
 .public-footer__payments img {
   display: block;
-  width: 3.25rem;
-  height: 1.85rem;
+  width: auto;
+  height: 60px;
   object-fit: contain;
 }
 .public-footer__bottom {
@@ -125,40 +127,29 @@
 .public-footer__bottom button {
   display: grid;
   place-items: center;
-  position: absolute;
-  right: -1.6rem;
-  bottom: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  color: tokens.$omaya-color-dark;
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: auto;
+  z-index: 35;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  color: tokens.$omaya-color-white;
   background: tokens.$omaya-color-gold;
   border: 0;
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1;
   padding: 0;
-  cursor: pointer;
-}
-
-.public-footer__bottom button.public-footer__back-to-top--home {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  left: auto;
-  z-index: 15;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
   padding-top: 0.4rem;
+  cursor: pointer;
 }
 
 @media (max-width: 60rem) {
   .public-footer__columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 3rem 2rem;
-  }
-  .public-footer__bottom button {
-    right: 0;
   }
 }
 

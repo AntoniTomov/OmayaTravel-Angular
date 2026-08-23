@@ -1,4 +1,18 @@
-import { Component, ElementRef, QueryList, ViewChildren, computed, inject, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  PLATFORM_ID,
+  ViewChild,
+  ViewChildren,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
@@ -19,6 +33,12 @@ interface FeaturedTrip {
     loading: 'lazy';
     fetchPriority: 'auto';
   };
+}
+
+interface TempFeaturedTrip {
+  trip: FeaturedTrip;
+  originalIndex: number;
+  tempId: string;
 }
 
 const FEATURED_TRIP_IMAGES = [
@@ -54,9 +74,17 @@ const FEATURED_TRIP_IMAGES = [
   templateUrl: './featured-trips.html',
   styleUrl: './featured-trips.scss',
 })
-export class FeaturedTrips {
+export class FeaturedTrips implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('carousel') private readonly carousel?: ElementRef<HTMLElement>;
   @ViewChildren('tripCard') private readonly tripCards!: QueryList<ElementRef<HTMLElement>>;
   protected readonly i18n = inject(OmayaI18n);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly bufferSize = 3;
+  private dragStartX = 0;
+  private dragStartScrollLeft = 0;
+  private isDragging = false;
+  private isCommittingMove = false;
+  private resizeHandler?: () => void;
 
   protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
     this.i18n.featuredTrips().map((trip, index) => ({
@@ -70,43 +98,222 @@ export class FeaturedTrips {
       image: this.buildCardImage(index),
     })),
   );
+  protected readonly tempTours = signal<readonly TempFeaturedTrip[]>([]);
   protected readonly activeTripIndex = signal(0);
-  protected readonly lastTripIndex = computed(() => this.trips().length - 1);
+  private readonly visibleStartIndex = signal(0);
+  private readonly visibleCount = signal(3);
 
-  protected shiftTrip(direction: -1 | 1): void {
-    this.goToTrip(this.activeTripIndex() + direction);
+  ngOnInit(): void {
+    this.visibleCount.set(this.getVisibleCount());
+    this.rebuildTempTours();
   }
 
-  protected goToTrip(index: number): void {
-    const nextIndex = Math.min(Math.max(index, 0), this.lastTripIndex());
+  ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
 
-    this.activeTripIndex.set(nextIndex);
-    this.tripCards
-      .get(nextIndex)
-      ?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    this.resizeHandler = () => {
+      this.visibleCount.set(this.getVisibleCount());
+      this.rebuildTempTours();
+      queueMicrotask(() => this.resetCarouselToBuffer());
+    };
+    window.addEventListener('resize', this.resizeHandler);
+
+    queueMicrotask(() => {
+      this.rebuildTempTours();
+      this.resetCarouselToBuffer();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+  }
+
+  protected shiftTrip(direction: -1 | 1): void {
+    this.moveBy(direction, true);
+  }
+
+  private moveBy(offset: number, smooth: boolean): void {
+    const carousel = this.carousel?.nativeElement;
+    const targetIndex = this.bufferSize + offset;
+    const targetCard = this.tripCards.get(targetIndex)?.nativeElement;
+
+    if (!carousel || !targetCard || this.isCommittingMove || offset === 0) {
+      return;
+    }
+
+    this.isCommittingMove = true;
+
+    carousel.scrollTo?.({
+      left: targetCard.offsetLeft,
+      behavior: smooth ? 'smooth' : 'auto',
+    });
+
+    window.setTimeout(() => this.commitMove(offset), smooth ? 260 : 0);
   }
 
   protected syncActiveTripFromScroll(event: Event): void {
+    const carousel = event.currentTarget as HTMLElement | null;
+
+    if (!carousel || this.isCommittingMove) {
+      return;
+    }
+
+    const nearestIndex = this.findNearestTempIndex(carousel);
+
+    if (nearestIndex === null) {
+      return;
+    }
+
+    const nearestTour = this.tempTours()[nearestIndex];
+
+    if (nearestTour) {
+      this.activeTripIndex.set(nearestTour.originalIndex);
+    }
+  }
+
+  protected startDrag(event: PointerEvent): void {
+    const carousel = event.currentTarget as HTMLElement | null;
+
+    if (!carousel || event.button !== 0) {
+      return;
+    }
+
+    this.isDragging = true;
+    this.dragStartX = event.clientX;
+    this.dragStartScrollLeft = carousel.scrollLeft;
+    carousel.setPointerCapture(event.pointerId);
+    carousel.classList.add('featured-trips__carousel--dragging');
+  }
+
+  protected drag(event: PointerEvent): void {
+    const carousel = event.currentTarget as HTMLElement | null;
+
+    if (!carousel || !this.isDragging) {
+      return;
+    }
+
+    event.preventDefault();
+    carousel.scrollLeft = this.dragStartScrollLeft - (event.clientX - this.dragStartX);
+  }
+
+  protected endDrag(event: PointerEvent): void {
     const carousel = event.currentTarget as HTMLElement | null;
 
     if (!carousel) {
       return;
     }
 
-    const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+    this.isDragging = false;
+    carousel.classList.remove('featured-trips__carousel--dragging');
 
-    if (maxScrollLeft <= 0) {
-      this.activeTripIndex.set(0);
+    if (carousel.hasPointerCapture(event.pointerId)) {
+      carousel.releasePointerCapture(event.pointerId);
+    }
+
+    const nearestIndex = this.findNearestTempIndex(carousel);
+
+    if (nearestIndex === null) {
       return;
     }
 
-    if (carousel.scrollLeft >= maxScrollLeft - 1) {
-      this.activeTripIndex.set(this.lastTripIndex());
+    this.moveBy(nearestIndex - this.bufferSize, false);
+  }
+
+  private findNearestTempIndex(carousel: HTMLElement): number | null {
+    let nearestIndex: number | null = null;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    this.tripCards.forEach((card, index) => {
+      const distance = Math.abs(card.nativeElement.offsetLeft - carousel.scrollLeft);
+
+      if (distance < nearestDistance) {
+        nearestIndex = index;
+        nearestDistance = distance;
+      }
+    });
+
+    return nearestIndex;
+  }
+
+  private commitMove(offset: number): void {
+    const trips = this.trips();
+
+    if (trips.length === 0) {
+      this.isCommittingMove = false;
       return;
     }
 
-    const nextIndex = Math.round((carousel.scrollLeft / maxScrollLeft) * this.lastTripIndex());
-    this.activeTripIndex.set(Math.min(Math.max(nextIndex, 0), this.lastTripIndex()));
+    const nextStartIndex = this.normalizeIndex(this.visibleStartIndex() + offset, trips.length);
+    this.visibleStartIndex.set(nextStartIndex);
+    this.activeTripIndex.set(nextStartIndex);
+    this.rebuildTempTours();
+
+    queueMicrotask(() => {
+      this.resetCarouselToBuffer();
+      this.isCommittingMove = false;
+    });
+  }
+
+  private rebuildTempTours(): void {
+    const trips = this.trips();
+
+    if (trips.length === 0) {
+      this.tempTours.set([]);
+      return;
+    }
+
+    const startIndex = this.visibleStartIndex();
+    const itemCount = this.bufferSize + this.visibleCount() + this.bufferSize;
+    const firstIndex = startIndex - this.bufferSize;
+
+    this.tempTours.set(
+      Array.from({ length: itemCount }, (_, tempIndex) => {
+        const originalIndex = this.normalizeIndex(firstIndex + tempIndex, trips.length);
+
+        return {
+          trip: trips[originalIndex],
+          originalIndex,
+          tempId: `${firstIndex + tempIndex}:${originalIndex}`,
+        };
+      }),
+    );
+  }
+
+  private resetCarouselToBuffer(): void {
+    const carousel = this.carousel?.nativeElement;
+    const targetCard = this.tripCards.get(this.bufferSize)?.nativeElement;
+
+    if (!carousel || !targetCard) {
+      return;
+    }
+
+    carousel.style.scrollBehavior = 'auto';
+    carousel.scrollLeft = targetCard.offsetLeft;
+    carousel.style.scrollBehavior = '';
+  }
+
+  private getVisibleCount(): number {
+    if (!this.isBrowser) {
+      return 3;
+    }
+
+    if (window.matchMedia('(max-width: 44rem)').matches) {
+      return 1;
+    }
+
+    if (window.matchMedia('(max-width: 70rem)').matches) {
+      return 2;
+    }
+
+    return 3;
+  }
+
+  private normalizeIndex(index: number, length: number): number {
+    return ((index % length) + length) % length;
   }
 
   private buildCardImage(index: number): FeaturedTrip['image'] {

@@ -37,7 +37,6 @@ export const PUBLIC_TOUR_SLUGS = [
 ] as const;
 
 export const PUBLIC_TOUR_CATEGORY_SLUGS = [
-  'private-tours-your-trip-your-rules',
   'solo-travellers-tours',
   'women-only-tours',
   'classic-tours',
@@ -51,12 +50,16 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
 ] as const;
 
 export const PUBLIC_STATIC_PAGE_SLUGS = [
+  '3122-2',
+  'private-tours-your-trip-your-rules/describe',
   'blog-list-2',
   'tours-list',
   'calendar',
   'calendar-2027',
   'september-2027',
   'private-tour-planning',
+  'private-tours-your-trip-your-rules',
+  'not-yet-but-soon',
   'contact',
   'why-book-with-us',
   'our-story',
@@ -125,7 +128,6 @@ export const PUBLIC_QUERY_REDIRECTS: readonly PublicRedirectDefinition[] = [
 ];
 
 export const PUBLIC_EXACT_REDIRECTS: readonly PublicRedirectDefinition[] = [
-  defineRedirect('/3122-2/', '/contact/'),
   defineRedirect('/tour-checkout/', '/contact/'),
 ];
 

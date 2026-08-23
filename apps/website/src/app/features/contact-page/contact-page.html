@@ -1,11 +1,11 @@
 <main class="contact-page">
   <section class="contact-page__layout" aria-labelledby="contact-page-title">
-    <form class="contact-page__form" (submit)="$event.preventDefault()">
+    <form class="contact-page__form" (submit)="sendContactEmail($event)">
       <h1 id="contact-page-title">{{ content.title }}</h1>
-      <input type="text" name="name" placeholder="Name*" autocomplete="name" />
-      <input type="email" name="email" placeholder="Email Address*" autocomplete="email" />
+      <input type="text" name="name" placeholder="Name*" autocomplete="name" required />
+      <input type="email" name="email" placeholder="Email Address*" autocomplete="email" required />
       <input type="text" name="subject" placeholder="Subject" />
-      <textarea name="comment" rows="8" placeholder="Comment"></textarea>
+      <textarea name="comment" rows="8" placeholder="Comment" required></textarea>
       <button type="submit">Submit</button>
     </form>
 

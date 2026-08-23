@@ -19,7 +19,7 @@
           [attr.aria-current]="activeTab() === tab.id ? 'page' : null"
           (click)="setTab(tab.id)"
         >
-          <span>{{ tab.icon }}</span>
+          <mat-icon aria-hidden="true">{{ tab.icon }}</mat-icon>
           {{ tab.label }}
         </button>
       }
@@ -33,8 +33,14 @@
               <div>
                 <h2>{{ tour.title }}</h2>
                 <ul class="tour-detail__meta">
-                  <li>{{ durationLabel(tour) }}</li>
-                  <li>{{ tour.category }}</li>
+                  <li>
+                    <mat-icon aria-hidden="true">schedule</mat-icon>
+                    {{ durationLabel(tour) }}
+                  </li>
+                  <li>
+                    <mat-icon aria-hidden="true">explore</mat-icon>
+                    {{ tour.category }}
+                  </li>
                 </ul>
               </div>
               <p class="tour-detail__price">
@@ -43,20 +49,31 @@
             </div>
 
             <p class="tour-detail__fact">
+              <mat-icon aria-hidden="true">calendar_month</mat-icon>
               <strong>Available dates:</strong>
               @for (departure of tour.departures; track departure) {
                 <span>{{ departure | date: 'd MMMM y' }}</span>
               }
             </p>
-            <p class="tour-detail__fact"><strong>Group size:</strong> {{ groupSizeLabel(tour) }}</p>
+            <p class="tour-detail__fact">
+              <mat-icon aria-hidden="true">groups_2</mat-icon>
+              <strong>Group size:</strong> {{ groupSizeLabel(tour) }}
+            </p>
 
             @for (paragraph of tour.introduction; track paragraph) {
               <p>{{ paragraph }}</p>
             }
+
+            @if (tour.departureReturn) {
+              <div class="tour-detail__departure">
+                <h2>Departure/Return Location</h2>
+                <p>{{ departureReturnLabel(tour) }}</p>
+              </div>
+            }
           </section>
 
           <section class="tour-detail__section">
-            <h2>Tour Highlights</h2>
+            <h2>{{ highlightsHeading(tour) }}</h2>
             <div class="tour-detail__highlights">
               @for (highlight of tour.highlights; track highlightTitleText(highlight)) {
                 <article>
@@ -68,6 +85,9 @@
                     loading="lazy"
                   />
                   <h3>
+                    @if (highlight.icon) {
+                      <mat-icon aria-hidden="true">{{ highlight.icon }}</mat-icon>
+                    }
                     {{ highlight.title.text }}
                     @if (highlight.title.link) {
                       <a [routerLink]="highlight.title.link">{{ highlight.title.linkText }}</a>
@@ -78,20 +98,7 @@
                 </article>
               }
             </div>
-            <p class="tour-detail__rating" aria-label="No tour reviews yet">
-              ***** <span>(0 Reviews)</span>
-            </p>
           </section>
-
-          @if (tour.departureReturn) {
-            <section class="tour-detail__section tour-detail__lists">
-              <h2>Departure/Return Location</h2>
-              <p><strong>Departure:</strong> {{ tour.departureReturn?.departure }}</p>
-              @if (tour.departureReturn?.departure !== tour.departureReturn?.return) {
-                <p><strong>Return:</strong> {{ tour.departureReturn?.return }}</p>
-              }
-            </section>
-          }
 
           <section class="tour-detail__section tour-detail__lists">
             <h2>Included</h2>
@@ -145,10 +152,16 @@
                     <h3>{{ day.title }}</h3>
                     <p>{{ day.description }}</p>
                     @if (day.accommodation) {
-                      <p class="tour-detail__day-detail">{{ day.accommodation }}</p>
+                      <p class="tour-detail__day-detail">
+                        <mat-icon aria-hidden="true">home</mat-icon>
+                        {{ day.accommodation }}
+                      </p>
                     }
                     @if (day.meals.length > 0) {
-                      <p class="tour-detail__day-detail">{{ mealsLabel(day) }}</p>
+                      <p class="tour-detail__day-detail">
+                        <mat-icon aria-hidden="true">restaurant</mat-icon>
+                        {{ mealsLabel(day) }}
+                      </p>
                     }
                   </div>
                 </article>
@@ -199,17 +212,35 @@
       <aside class="tour-detail__sidebar" aria-label="Tour booking">
         <form class="tour-detail__booking" (submit)="$event.preventDefault()">
           <h2>Book this tour</h2>
-          <input type="text" name="name" placeholder="Name*" autocomplete="name" />
-          <input type="email" name="email" placeholder="Email*" autocomplete="email" />
-          <input
-            type="email"
-            name="confirmEmail"
-            placeholder="Confirm Email*"
-            autocomplete="email"
-          />
-          <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
-          <input type="text" name="date" placeholder="dd-mm-yy*" />
-          <input type="number" name="tickets" min="1" placeholder="Number of tickets" />
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">edit_square</mat-icon>
+            <input type="text" name="name" placeholder="Name*" autocomplete="name" />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">mail</mat-icon>
+            <input type="email" name="email" placeholder="Email*" autocomplete="email" />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">mail</mat-icon>
+            <input
+              type="email"
+              name="confirmEmail"
+              placeholder="Confirm Email*"
+              autocomplete="email"
+            />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">phone</mat-icon>
+            <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">calendar_month</mat-icon>
+            <input type="text" name="date" placeholder="dd-mm-yy*" />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">groups_2</mat-icon>
+            <input type="number" name="tickets" min="1" placeholder="Number of tickets" />
+          </label>
           <textarea name="message" rows="7" placeholder="Message"></textarea>
           <button class="tour-detail__availability" type="button">{{ tour.enquiry.cta }}</button>
           <button class="tour-detail__book" type="submit">Book Now</button>
@@ -217,6 +248,13 @@
 
         <a class="tour-detail__discover" routerLink="/classic-tours/">
           <span>Discover more tours...</span>
+          <img
+            src="/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp"
+            alt="Omaya Travel"
+            width="112"
+            height="63"
+            loading="lazy"
+          />
         </a>
       </aside>
     </div>

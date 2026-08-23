@@ -5,7 +5,9 @@ import { DmcPartnerBulgaria } from './features/dmc-partner-bulgaria/dmc-partner-
 import { FaqPage } from './features/faq-page/faq-page';
 import { Homepage } from './features/homepage/homepage';
 import { NotFound } from './features/not-found/not-found';
+import { NotYetButSoon } from './features/not-yet-but-soon/not-yet-but-soon';
 import { OurStory } from './features/our-story/our-story';
+import { PrivateToursPage } from './features/private-tours-page/private-tours-page';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import { SearchResults } from './features/search-results/search-results';
 import { TourDetail } from './features/tour-detail/tour-detail';
@@ -48,7 +50,6 @@ const tourListingPageRoutes: Routes = [
   'classic-tours',
   'women-only-tours',
   'solo-travellers-tours',
-  'private-tours-your-trip-your-rules',
   'private-tour-planning',
   'september-2027',
 ].map((path) => ({
@@ -141,6 +142,15 @@ export const routes: Routes = [
     },
   },
   {
+    matcher: staticPageMatcher('not-yet-but-soon'),
+    component: NotYetButSoon,
+    data: {
+      routeKey: 'static-not-yet-but-soon',
+      routeType: 'static-page',
+      canonicalPath: '/not-yet-but-soon/',
+    },
+  },
+  {
     path: 'contact',
     pathMatch: 'full',
     component: ContactPage,
@@ -188,6 +198,74 @@ export const routes: Routes = [
       routeKey: 'static-why-book-with-us',
       routeType: 'static-page',
       canonicalPath: '/why-book-with-us/',
+    },
+  },
+  {
+    path: 'private-tours-your-trip-your-rules',
+    pathMatch: 'full',
+    component: PrivateToursPage,
+    data: {
+      routeKey: 'static-private-tours-your-trip-your-rules',
+      routeType: 'static-page',
+      canonicalPath: '/private-tours-your-trip-your-rules/',
+    },
+  },
+  {
+    path: 'private-tours-your-trip-your-rules/describe',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./features/private-tour-planning-form/private-tour-planning-form').then(
+        (module) => module.PrivateTourPlanningForm,
+      ),
+    data: {
+      routeKey: 'static-private-tour-form',
+      routeType: 'static-page',
+      canonicalPath: '/private-tours-your-trip-your-rules/describe/',
+    },
+  },
+  {
+    path: '3122-2',
+    redirectTo: 'private-tours-your-trip-your-rules/describe',
+    pathMatch: 'full',
+  },
+  {
+    matcher: staticPageMatcher('omaya-travel-license'),
+    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    data: {
+      routeKey: 'static-omaya-travel-license',
+      routeType: 'static-page',
+      canonicalPath: '/omaya-travel-license/',
+      pageSlug: 'omaya-travel-license',
+    },
+  },
+  {
+    matcher: staticPageMatcher('termsconditions'),
+    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    data: {
+      routeKey: 'static-termsconditions',
+      routeType: 'static-page',
+      canonicalPath: '/termsconditions/',
+      pageSlug: 'termsconditions',
+    },
+  },
+  {
+    matcher: staticPageMatcher('privacy-policy'),
+    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    data: {
+      routeKey: 'static-privacy-policy',
+      routeType: 'static-page',
+      canonicalPath: '/privacy-policy/',
+      pageSlug: 'privacy-policy',
+    },
+  },
+  {
+    matcher: staticPageMatcher('cookie-policy'),
+    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    data: {
+      routeKey: 'static-cookie-policy',
+      routeType: 'static-page',
+      canonicalPath: '/cookie-policy/',
+      pageSlug: 'cookie-policy',
     },
   },
   {
@@ -312,5 +390,22 @@ function matchApprovedCanonicalRoute(
     posParams: {
       [slugParam]: slugSegment,
     },
+  };
+}
+
+function staticPageMatcher(path: string): UrlMatcher {
+  return (segments) => {
+    const [pageSegment, ...remainingSegments] = segments;
+
+    if (
+      pageSegment?.path !== path ||
+      remainingSegments.some((segment) => segment.path.length > 0)
+    ) {
+      return null;
+    }
+
+    return {
+      consumed: [pageSegment, ...remainingSegments],
+    };
   };
 }

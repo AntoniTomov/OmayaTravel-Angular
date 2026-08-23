@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 interface StoryImage {
   src: string;
@@ -20,7 +19,7 @@ interface TeamMember {
 const OUR_STORY = {
   id: 'our-story',
   slug: 'our-story',
-  title: 'Who we are',
+  title: 'Our Story',
   hero: {
     image: {
       src: '/assets/images/our-story/Our-story-16.webp',
@@ -96,7 +95,6 @@ const OUR_STORY = {
 
 @Component({
   selector: 'app-our-story',
-  imports: [RouterLink],
   templateUrl: './our-story.html',
   styleUrl: './our-story.scss',
 })

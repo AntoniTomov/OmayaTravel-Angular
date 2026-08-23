@@ -73,16 +73,18 @@
   outline-offset: 3px;
 }
 
-.featured-trips__controls button:disabled {
-  opacity: 0.38;
-  cursor: not-allowed;
-}
-
 .featured-trips__carousel {
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.featured-trips__carousel--dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
 }
 
 .featured-trips__carousel::-webkit-scrollbar {
@@ -136,10 +138,21 @@
   bottom: 1.1rem;
   left: 1.45rem;
   color: tokens.$omaya-color-gold;
-  font-family: tokens.$omaya-font-heading;
-  font-size: 1.45rem;
-  font-style: italic;
+  background-color: rgb(0 0 0 / 50%);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: 'Kristi', cursive;
+  font-size: 40px;
+  font-weight: 400;
   line-height: 1;
+  mask-image:
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-composite: source-in;
   text-shadow: 0 1px 2px rgb(var(--omaya-color-overlay-rgb) / 32%);
 }
 

@@ -1,21 +1,5 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-
 html {
   height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$cyan-palette,
-        tertiary: mat.$orange-palette,
-      ),
-      density: 0,
-    )
-  );
 }
 
 :root,
@@ -79,23 +63,18 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
   color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
   background-color: var(--omaya-color-page);
   color: var(--omaya-color-text);
-  font-family: 'Playfair Display', serif;
-
-  // Reset the user agent margin.
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   height: 100%;
 }
-body {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
+
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+:is(a, button, input, textarea, select) {
+  font-family: 'Roboto', sans-serif;
 }

@@ -21,8 +21,8 @@ $omaya-overlay-medium: rgb(var(--omaya-color-overlay-rgb) / 32%);
 $omaya-overlay-strong: rgb(var(--omaya-color-overlay-rgb) / 46%);
 $omaya-overlay-hero: rgb(var(--omaya-color-overlay-rgb) / 42%);
 
-$omaya-font-heading: 'Playfair Display', serif;
-$omaya-font-body: inherit;
+$omaya-font-heading: 'Roboto Condensed', sans-serif;
+$omaya-font-body: 'Roboto', sans-serif;
 
 $omaya-border-focus: 2px solid $omaya-color-gold;
 $omaya-transition-fast: 160ms ease;

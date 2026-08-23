@@ -41,15 +41,21 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 3.75rem;
+  align-items: start;
   margin-top: 4.1rem;
   padding: 0 1rem;
 }
 
 .travel-match__item {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
-  justify-items: center;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: start;
+  color: inherit;
   text-align: center;
+  text-decoration: none;
 }
 
 .travel-match__item h3 {
@@ -57,6 +63,16 @@
   font-family: tokens.$omaya-font-heading;
   font-size: 1.25rem;
   line-height: 1.2;
+  transition: color tokens.$omaya-transition-fast;
+}
+
+.travel-match__item:is(:hover, :focus-visible) h3 {
+  color: tokens.$omaya-color-gold;
+}
+
+.travel-match__item:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 6px;
 }
 
 .travel-match__item p {
@@ -65,8 +81,8 @@
 
 .travel-match__icon {
   display: block;
-  width: 5.0625rem;
-  height: auto;
+  width: auto;
+  height: 81px;
   object-fit: contain;
 }
 

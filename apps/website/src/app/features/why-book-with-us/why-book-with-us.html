@@ -8,13 +8,11 @@
       fetchpriority="high"
     />
     <div class="why-book__hero-copy">
-      <p>Omaya Travel</p>
       <h1>{{ content.title }}</h1>
     </div>
   </section>
 
   <section class="why-book__intro" aria-labelledby="why-book-heading">
-    <p>Travel with intent</p>
     <h2 id="why-book-heading">{{ content.introduction[0] }}</h2>
     @for (paragraph of content.introduction.slice(1); track paragraph) {
       <p>{{ paragraph }}</p>

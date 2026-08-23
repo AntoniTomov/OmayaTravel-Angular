@@ -38,6 +38,11 @@ export class TourCalendarPage {
   protected readonly months = computed(() => this.buildMonths(this.year()));
 
   protected openMonth(month: CalendarMonth): void {
+    if (month.tours.length === 0) {
+      void this.router.navigateByUrl('/not-yet-but-soon/');
+      return;
+    }
+
     if (month.tours.length === 1) {
       void this.router.navigateByUrl(month.tours[0]);
       return;

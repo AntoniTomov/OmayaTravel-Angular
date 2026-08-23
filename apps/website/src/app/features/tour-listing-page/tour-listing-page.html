@@ -4,7 +4,9 @@
       <img [src]="page().heroImage" [alt]="page().heroAlt ?? page().title" fetchpriority="high" />
       <div>
         <h1>{{ page().title }}</h1>
-        <p>{{ page().subtitle }}</p>
+        @if (page().subtitle) {
+          <p>{{ page().subtitle }}</p>
+        }
       </div>
     </section>
   } @else {
@@ -16,21 +18,18 @@
   }
 
   <section class="tour-listing__body">
-    @if (page().showFilters) {
-      <nav class="tour-listing__filters" aria-label="Tour filters">
-        @for (filter of filters; track filter) {
-          <button
-            type="button"
-            [ngClass]="{ 'tour-listing__filter--active': activeFilter() === filter }"
-            (click)="setFilter(filter)"
-          >
-            {{ filter }}
-          </button>
-        }
-      </nav>
-    } @else {
-      <p class="tour-listing__all">All</p>
-    }
+    <nav class="tour-listing__filters" aria-label="Tour sorting">
+      @for (sort of sorts; track sort.id) {
+        <button
+          type="button"
+          [ngClass]="{ 'tour-listing__filter--active': activeSort() === sort.id }"
+          (click)="setSort(sort.id)"
+        >
+          <mat-icon aria-hidden="true">{{ sort.icon }}</mat-icon>
+          {{ sort.label }}
+        </button>
+      }
+    </nav>
 
     @if (page().introSections?.length) {
       <div class="tour-listing__intro">
@@ -47,29 +46,44 @@
       </div>
     }
 
-    <div class="tour-listing__grid">
-      @for (card of cards(); track card.target) {
-        <article class="tour-listing__card">
-          <a [routerLink]="card.target">
-            <img [src]="card.image" [alt]="card.alt" loading="lazy" />
-            <div class="tour-listing__card-body">
-              <p>{{ card.category }}</p>
-              <h2>{{ card.title }}</h2>
-              <span>{{ card.destination }}</span>
-              <p>{{ card.excerpt }}</p>
-              <dl>
-                <div>
-                  <dt>Price</dt>
-                  <dd>{{ card.price }}</dd>
+    <div class="tour-listing__content">
+      <div class="tour-listing__grid">
+        @for (card of cards(); track card.target) {
+          <article class="tour-listing__card">
+            <a [routerLink]="card.target">
+              <div class="tour-listing__card-image">
+                <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+                <div class="tour-listing__card-overlay">
+                  <span class="tour-listing__card-category">{{ card.category }}</span>
+                  <h2>{{ card.title }}</h2>
+                  <strong>{{ card.price }}</strong>
                 </div>
-                <div>
-                  <dt>Duration</dt>
-                  <dd>{{ card.duration }}</dd>
-                </div>
-              </dl>
-            </div>
-          </a>
-        </article>
+              </div>
+              <div class="tour-listing__card-body">
+                <p>{{ card.excerpt }}</p>
+                <span class="tour-listing__duration">
+                  <mat-icon aria-hidden="true">schedule</mat-icon>
+                  {{ card.duration }}
+                </span>
+              </div>
+            </a>
+          </article>
+        }
+      </div>
+
+      @if (page().showFilters) {
+        <aside class="tour-listing__sidebar" aria-label="Find your destination">
+          <h2>Find Your Destination</h2>
+          <label><mat-icon aria-hidden="true">search</mat-icon><input placeholder="Search Tour" /></label>
+          <label><mat-icon aria-hidden="true">location_on</mat-icon><input placeholder="Where To?" /></label>
+          <label><mat-icon aria-hidden="true">calendar_month</mat-icon><select><option>Month</option></select></label>
+          <div class="tour-listing__range">EUR1050 - EUR2650</div>
+          <label class="tour-listing__check"><input type="checkbox" />Classic Tours</label>
+          <label class="tour-listing__check"><input type="checkbox" />Women-Only</label>
+          <label class="tour-listing__check"><input type="checkbox" />Solo Travellers</label>
+          <button type="button">Search</button>
+          <a class="tour-listing__discover" routerLink="/classic-tours/">Discover more tours...</a>
+        </aside>
       }
     </div>
   </section>

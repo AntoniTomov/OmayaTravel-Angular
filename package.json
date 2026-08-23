@@ -7,6 +7,7 @@
   "scripts": {
     "build": "pnpm --dir apps/website run build",
     "lint": "pnpm --filter website run format:check",
+    "preview:phone": "powershell -ExecutionPolicy Bypass -File scripts/phone-preview.ps1",
     "type-check": "pnpm --dir apps/website run build --configuration development",
     "test": "pnpm --dir apps/website run test"
   },

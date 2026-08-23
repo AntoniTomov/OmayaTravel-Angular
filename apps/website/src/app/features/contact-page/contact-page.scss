@@ -76,6 +76,13 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+
+.contact-page button:is(:hover, :focus-visible) {
+  background: tokens.$omaya-color-dark;
 }
 
 .contact-page a {
