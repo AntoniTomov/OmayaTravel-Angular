@@ -3,7 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import {
   TOUR_CARDS,
   TourCardContent,
@@ -68,7 +68,7 @@ const TOUR_MONTHS: Readonly<Record<string, readonly string[]>> = {
 })
 export class TourListingPage {
   private readonly route = inject(ActivatedRoute);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
 
   protected readonly sorts = SORTS;
   protected readonly categories = CATEGORIES;

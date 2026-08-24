@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import {
   TourDetailContent,
   TourFaqItem,
@@ -31,7 +31,7 @@ interface TourTabDefinition {
 })
 export class TourDetail {
   private readonly route = inject(ActivatedRoute);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   private readonly tourSlug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('tourSlug'))),
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
@@ -39,6 +39,7 @@ export class TourDetail {
 
   protected readonly activeTab = signal<TourTab>('information');
   protected readonly activeGalleryIndex = signal<number | null>(null);
+  protected readonly openFaqIndex = signal<number | null>(null);
   protected readonly tour = computed(() => findTourBySlug(this.tourSlug()));
   protected readonly activeGalleryImage = computed<TourImage | null>(() => {
     const tour = this.tour();
@@ -73,6 +74,7 @@ export class TourDetail {
       this.tourSlug();
       this.activeTab.set('information');
       this.activeGalleryIndex.set(null);
+      this.openFaqIndex.set(null);
     });
 
     effect(() => {
@@ -184,6 +186,14 @@ export class TourDetail {
 
   protected faqAnswerId(item: TourFaqItem, index: number): string {
     return `${item.question.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${index}`;
+  }
+
+  protected toggleFaq(index: number, event: Event): void {
+    const details = event.currentTarget as HTMLDetailsElement;
+
+    this.openFaqIndex.set(
+      details.open ? index : this.openFaqIndex() === index ? null : this.openFaqIndex(),
+    );
   }
 
   private updateGalleryIndex(direction: -1 | 1): void {

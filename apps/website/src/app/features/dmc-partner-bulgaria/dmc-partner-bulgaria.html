@@ -19,7 +19,9 @@
     <div>
       @for (benefit of content.benefits; track benefit.title) {
         <article>
-          <span><mat-icon aria-hidden="true">{{ benefit.icon }}</mat-icon></span>
+          <span
+            ><mat-icon aria-hidden="true">{{ benefit.icon }}</mat-icon></span
+          >
           <h3>{{ benefit.title }}</h3>
           <p>{{ benefit.text }}</p>
         </article>
@@ -28,9 +30,9 @@
   </section>
 
   <section class="dmc-page__faq" aria-labelledby="dmc-faq-title">
-    <h2 id="dmc-faq-title">Have an idea? Here’s what people usually ask us</h2>
-    @for (item of content.faq; track item.question) {
-      <details>
+    <h2 id="dmc-faq-title">Have an idea? Here's what people usually ask us</h2>
+    @for (item of content.faq; track item.question; let index = $index) {
+      <details [open]="openFaqIndex() === index" (toggle)="toggleFaq(index, $event)">
         <summary>{{ item.question }}</summary>
         <p>{{ item.answer }}</p>
       </details>

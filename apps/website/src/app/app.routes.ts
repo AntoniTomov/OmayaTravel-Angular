@@ -1,17 +1,7 @@
 import { CanMatchFn, Routes, UrlMatcher, UrlSegment } from '@angular/router';
 
-import { ContactPage } from './features/contact-page/contact-page';
-import { DmcPartnerBulgaria } from './features/dmc-partner-bulgaria/dmc-partner-bulgaria';
-import { FaqPage } from './features/faq-page/faq-page';
 import { Homepage } from './features/homepage/homepage';
-import { NotFound } from './features/not-found/not-found';
-import { NotYetButSoon } from './features/not-yet-but-soon/not-yet-but-soon';
-import { OurStory } from './features/our-story/our-story';
-import { PrivateToursPage } from './features/private-tours-page/private-tours-page';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
-import { SearchResults } from './features/search-results/search-results';
-import { TourDetail } from './features/tour-detail/tour-detail';
-import { WhyBookWithUs } from './features/why-book-with-us/why-book-with-us';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
   PUBLIC_DESTINATION_SLUGS,
@@ -113,7 +103,8 @@ export const routes: Routes = [
   },
   {
     path: 'search',
-    component: SearchResults,
+    loadComponent: () =>
+      import('./features/search-results/search-results').then((module) => module.SearchResults),
     pathMatch: 'full',
     data: {
       routeKey: 'search',
@@ -143,7 +134,8 @@ export const routes: Routes = [
   },
   {
     matcher: staticPageMatcher('not-yet-but-soon'),
-    component: NotYetButSoon,
+    loadComponent: () =>
+      import('./features/not-yet-but-soon/not-yet-but-soon').then((module) => module.NotYetButSoon),
     data: {
       routeKey: 'static-not-yet-but-soon',
       routeType: 'static-page',
@@ -153,7 +145,8 @@ export const routes: Routes = [
   {
     path: 'contact',
     pathMatch: 'full',
-    component: ContactPage,
+    loadComponent: () =>
+      import('./features/contact-page/contact-page').then((module) => module.ContactPage),
     data: {
       routeKey: 'static-contact',
       routeType: 'static-page',
@@ -163,7 +156,7 @@ export const routes: Routes = [
   {
     path: 'faq',
     pathMatch: 'full',
-    component: FaqPage,
+    loadComponent: () => import('./features/faq-page/faq-page').then((module) => module.FaqPage),
     data: {
       routeKey: 'static-faq',
       routeType: 'static-page',
@@ -173,7 +166,7 @@ export const routes: Routes = [
   {
     path: 'our-story',
     pathMatch: 'full',
-    component: OurStory,
+    loadComponent: () => import('./features/our-story/our-story').then((module) => module.OurStory),
     data: {
       routeKey: 'static-our-story',
       routeType: 'static-page',
@@ -183,7 +176,10 @@ export const routes: Routes = [
   {
     path: 'your-dmc-partner-in-bulgaria',
     pathMatch: 'full',
-    component: DmcPartnerBulgaria,
+    loadComponent: () =>
+      import('./features/dmc-partner-bulgaria/dmc-partner-bulgaria').then(
+        (module) => module.DmcPartnerBulgaria,
+      ),
     data: {
       routeKey: 'static-your-dmc-partner-in-bulgaria',
       routeType: 'static-page',
@@ -193,7 +189,8 @@ export const routes: Routes = [
   {
     path: 'why-book-with-us',
     pathMatch: 'full',
-    component: WhyBookWithUs,
+    loadComponent: () =>
+      import('./features/why-book-with-us/why-book-with-us').then((module) => module.WhyBookWithUs),
     data: {
       routeKey: 'static-why-book-with-us',
       routeType: 'static-page',
@@ -203,7 +200,10 @@ export const routes: Routes = [
   {
     path: 'private-tours-your-trip-your-rules',
     pathMatch: 'full',
-    component: PrivateToursPage,
+    loadComponent: () =>
+      import('./features/private-tours-page/private-tours-page').then(
+        (module) => module.PrivateToursPage,
+      ),
     data: {
       routeKey: 'static-private-tours-your-trip-your-rules',
       routeType: 'static-page',
@@ -230,7 +230,8 @@ export const routes: Routes = [
   },
   {
     matcher: staticPageMatcher('omaya-travel-license'),
-    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    loadComponent: () =>
+      import('./features/legal-page/legal-page').then((module) => module.LegalPage),
     data: {
       routeKey: 'static-omaya-travel-license',
       routeType: 'static-page',
@@ -240,7 +241,8 @@ export const routes: Routes = [
   },
   {
     matcher: staticPageMatcher('termsconditions'),
-    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    loadComponent: () =>
+      import('./features/legal-page/legal-page').then((module) => module.LegalPage),
     data: {
       routeKey: 'static-termsconditions',
       routeType: 'static-page',
@@ -250,7 +252,8 @@ export const routes: Routes = [
   },
   {
     matcher: staticPageMatcher('privacy-policy'),
-    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    loadComponent: () =>
+      import('./features/legal-page/legal-page').then((module) => module.LegalPage),
     data: {
       routeKey: 'static-privacy-policy',
       routeType: 'static-page',
@@ -260,7 +263,8 @@ export const routes: Routes = [
   },
   {
     matcher: staticPageMatcher('cookie-policy'),
-    loadComponent: () => import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    loadComponent: () =>
+      import('./features/legal-page/legal-page').then((module) => module.LegalPage),
     data: {
       routeKey: 'static-cookie-policy',
       routeType: 'static-page',
@@ -307,7 +311,8 @@ export const routes: Routes = [
   },
   {
     matcher: tourDetailCanonicalMatcher,
-    component: TourDetail,
+    loadComponent: () =>
+      import('./features/tour-detail/tour-detail').then((module) => module.TourDetail),
     data: {
       routeKey: 'tour-detail',
       routeType: 'tour-detail',
@@ -321,7 +326,8 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: TourDetail,
+        loadComponent: () =>
+          import('./features/tour-detail/tour-detail').then((module) => module.TourDetail),
         data: {
           routeKey: 'tour-detail',
           routeType: 'tour-detail',
@@ -334,7 +340,7 @@ export const routes: Routes = [
   ...rootSlugRoutes,
   {
     path: '404',
-    component: NotFound,
+    loadComponent: () => import('./features/not-found/not-found').then((module) => module.NotFound),
     data: {
       routeKey: 'not-found',
       routeStatus: 404,
@@ -342,7 +348,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFound,
+    loadComponent: () => import('./features/not-found/not-found').then((module) => module.NotFound),
     data: {
       routeKey: 'unknown',
       routeStatus: 404,

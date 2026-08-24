@@ -6,18 +6,11 @@
       <input type="email" name="email" placeholder="Email Address*" autocomplete="email" required />
       <input type="text" name="subject" placeholder="Subject" />
       <textarea name="comment" rows="8" placeholder="Comment" required></textarea>
-      <label class="form-honeypot" aria-hidden="true">
-        Website
-        <input type="text" name="website" autocomplete="off" tabindex="-1" />
-      </label>
+      <app-form-honeypot />
       <button type="submit" [disabled]="submitStatus() === 'sending'">
         {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
       </button>
-      @if (submitMessage()) {
-        <p class="form-status" [class.form-status--error]="submitStatus() === 'error'">
-          {{ submitMessage() }}
-        </p>
-      }
+      <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
     </form>
 
     <div class="contact-page__details">

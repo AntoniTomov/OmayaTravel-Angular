@@ -19,7 +19,7 @@ import {
   PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC,
   PUBLIC_HEADER_LOGO_VISUAL_SRC,
 } from '../../shared/content/homepage-content';
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { buildMediaImageAttributes } from '../../shared/media';
@@ -55,7 +55,7 @@ export class PublicHeader implements AfterViewInit {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   protected readonly i18n = inject(OmayaI18n);
 
   protected readonly isScrolled = signal(false);

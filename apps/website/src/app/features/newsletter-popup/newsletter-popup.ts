@@ -1,7 +1,9 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
 
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormHoneypot } from '../../shared/forms/form-honeypot';
+import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
 
 const POPUP_DELAY_MS = 5000;
@@ -10,13 +12,14 @@ const SUBSCRIBED_KEY = 'omaya-newsletter-popup-subscribed';
 
 @Component({
   selector: 'app-newsletter-popup',
+  imports: [FormHoneypot, FormStatus],
   templateUrl: './newsletter-popup.html',
   styleUrl: './newsletter-popup.scss',
 })
 export class NewsletterPopup implements OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly document = inject(DOCUMENT);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   private readonly timerId: ReturnType<typeof setTimeout> | null = this.createTimer();
 
   protected readonly isOpen = signal(false);

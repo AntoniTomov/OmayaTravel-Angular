@@ -5,7 +5,7 @@ import { filter } from 'rxjs';
 import { PublicHeader } from './features/public-header/public-header';
 import { PublicFooter } from './features/public-footer/public-footer';
 import { NewsletterPopup } from './features/newsletter-popup/newsletter-popup';
-import { GoogleAnalytics } from './shared/analytics/google-analytics';
+import { OmayaAnalytics } from './shared/analytics/omaya-analytics';
 import { OmayaI18n } from './shared/i18n/omaya-i18n';
 
 @Component({
@@ -17,7 +17,7 @@ import { OmayaI18n } from './shared/i18n/omaya-i18n';
 export class App {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly document = inject(DOCUMENT);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   private readonly i18n = inject(OmayaI18n);
 
   constructor(router: Router) {

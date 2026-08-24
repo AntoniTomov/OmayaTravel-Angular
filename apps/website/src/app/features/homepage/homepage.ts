@@ -3,7 +3,9 @@ import { Component, OnDestroy, computed, effect, inject, signal } from '@angular
 import { Router } from '@angular/router';
 
 import { HOMEPAGE_HERO } from '../../shared/content/homepage-content';
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormHoneypot } from '../../shared/forms/form-honeypot';
+import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { buildMediaImageAttributes } from '../../shared/media';
@@ -15,14 +17,22 @@ import { TravelMatch } from './travel-match/travel-match';
 
 @Component({
   selector: 'app-homepage',
-  imports: [TravelMatch, FeaturedTrips, MissionSection, PrivateTours, BlogPosts],
+  imports: [
+    TravelMatch,
+    FeaturedTrips,
+    MissionSection,
+    PrivateTours,
+    BlogPosts,
+    FormHoneypot,
+    FormStatus,
+  ],
   templateUrl: './homepage.html',
   styleUrl: './homepage.scss',
 })
 export class Homepage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   protected readonly i18n = inject(OmayaI18n);
   private intervalId: ReturnType<typeof setInterval> | null;
   private readonly reducedMotion = this.prefersReducedMotion();

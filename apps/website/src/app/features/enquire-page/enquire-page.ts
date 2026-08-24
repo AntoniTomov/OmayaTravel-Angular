@@ -1,19 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormHoneypot } from '../../shared/forms/form-honeypot';
+import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 const ENQUIRE_HERO_IMAGE = '/assets/images/enquire-us/enquire-us-bgr.webp';
 
 @Component({
   selector: 'app-enquire-page',
-  imports: [RouterLink],
+  imports: [RouterLink, FormHoneypot, FormStatus],
   templateUrl: './enquire-page.html',
   styleUrl: './enquire-page.scss',
 })
 export class EnquirePage {
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
 
   protected readonly heroImage = ENQUIRE_HERO_IMAGE;
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');

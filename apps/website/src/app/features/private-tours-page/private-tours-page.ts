@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 
 @Component({
   selector: 'app-private-tours-page',
@@ -9,7 +9,7 @@ import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
   styleUrl: './private-tours-page.scss',
 })
 export class PrivateToursPage {
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
 
   protected trackPlanTourClick(): void {
     this.analytics.trackEvent('click_enquire', {

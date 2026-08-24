@@ -2,7 +2,6 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 
 import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from './google-analytics.config';
-import { MetaPixel } from './meta-pixel';
 
 type GtagCommand = 'config' | 'event' | 'js';
 type Gtag = (command: GtagCommand, target: string | Date, params?: Record<string, unknown>) => void;
@@ -18,13 +17,10 @@ declare global {
 export class GoogleAnalytics {
   private readonly document = inject(DOCUMENT);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly metaPixel = inject(MetaPixel);
   private readonly measurementId = GOOGLE_ANALYTICS_MEASUREMENT_ID.trim();
   private initialized = false;
 
   trackPageView(path: string, title = this.document.title): void {
-    this.metaPixel.trackPageView();
-
     if (!this.ensureInitialized()) {
       return;
     }
@@ -37,8 +33,6 @@ export class GoogleAnalytics {
   }
 
   trackEvent(name: string, params: Record<string, unknown> = {}): void {
-    this.metaPixel.trackEvent(name, params);
-
     if (!this.ensureInitialized()) {
       return;
     }

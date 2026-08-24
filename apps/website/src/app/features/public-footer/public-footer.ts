@@ -4,7 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
@@ -29,7 +29,7 @@ export class PublicFooter {
   private readonly router = inject(Router);
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   protected readonly i18n = inject(OmayaI18n);
   private readonly currentUrl = toSignal(
     this.router.events.pipe(

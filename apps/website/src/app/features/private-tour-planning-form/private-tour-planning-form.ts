@@ -4,7 +4,8 @@ import {
   PrivateTourPlanningFormState,
   PrivateTourPlanningFormStateService,
 } from './private-tour-planning-form-state';
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 const COUNTRY_CODES = [
@@ -22,12 +23,13 @@ const COUNTRY_CODES = [
 
 @Component({
   selector: 'app-private-tour-planning-form',
+  imports: [FormHoneypot],
   templateUrl: './private-tour-planning-form.html',
   styleUrl: './private-tour-planning-form.scss',
 })
 export class PrivateTourPlanningForm {
   private readonly formState = inject(PrivateTourPlanningFormStateService);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
 
   protected readonly step = signal(1);
   protected readonly submitted = signal(false);

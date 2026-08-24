@@ -8,10 +8,7 @@
   </section>
 
   <form class="planning-form__panel" (submit)="submitPlan($event)">
-    <label class="form-honeypot" aria-hidden="true">
-      Website
-      <input type="text" name="website" autocomplete="off" tabindex="-1" />
-    </label>
+    <app-form-honeypot />
 
     <div class="planning-form__steps" aria-label="Private tour planning steps">
       @for (item of [1, 2, 3, 4]; track item) {

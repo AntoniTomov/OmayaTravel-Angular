@@ -1,0 +1,8 @@
+.omaya-section {
+  width: 100%;
+}
+
+.omaya-section__inner {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+}

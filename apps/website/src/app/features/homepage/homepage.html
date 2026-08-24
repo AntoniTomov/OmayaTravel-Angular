@@ -90,18 +90,14 @@
           autocomplete="email"
           required
         />
-        <label class="form-honeypot" aria-hidden="true">
-          Website
-          <input type="text" name="website" autocomplete="off" tabindex="-1" />
-        </label>
+        <app-form-honeypot />
         <button type="submit" [disabled]="newsletterStatus() === 'sending'">
           {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
         </button>
-        @if (newsletterMessage()) {
-          <p class="form-status" [class.form-status--error]="newsletterStatus() === 'error'">
-            {{ newsletterMessage() }}
-          </p>
-        }
+        <app-form-status
+          [message]="newsletterMessage()"
+          [isError]="newsletterStatus() === 'error'"
+        />
       </form>
     </div>
   </section>

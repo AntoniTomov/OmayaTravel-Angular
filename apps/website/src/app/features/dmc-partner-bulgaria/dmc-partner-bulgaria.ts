@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
@@ -67,4 +67,13 @@ const DMC_PAGE = {
 })
 export class DmcPartnerBulgaria {
   protected readonly content = DMC_PAGE;
+  protected readonly openFaqIndex = signal<number | null>(null);
+
+  protected toggleFaq(index: number, event: Event): void {
+    const details = event.currentTarget as HTMLDetailsElement;
+
+    this.openFaqIndex.set(
+      details.open ? index : this.openFaqIndex() === index ? null : this.openFaqIndex(),
+    );
+  }
 }

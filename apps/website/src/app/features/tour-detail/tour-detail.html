@@ -206,7 +206,11 @@
             <p>{{ faq.intro }}</p>
             <div class="tour-detail__faq-list">
               @for (item of faq.items; track item.question; let index = $index) {
-                <details [attr.id]="faqAnswerId(item, index)">
+                <details
+                  [attr.id]="faqAnswerId(item, index)"
+                  [open]="openFaqIndex() === index"
+                  (toggle)="toggleFaq(index, $event)"
+                >
                   <summary>{{ item.question }}</summary>
                   @for (paragraph of item.answer; track paragraph) {
                     <p>{{ paragraph }}</p>

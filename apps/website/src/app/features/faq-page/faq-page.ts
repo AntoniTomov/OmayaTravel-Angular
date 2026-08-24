@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormHoneypot } from '../../shared/forms/form-honeypot';
+import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 interface FaqRule {
@@ -194,15 +196,25 @@ const FAQ_PAGE = {
 
 @Component({
   selector: 'app-faq-page',
+  imports: [FormHoneypot, FormStatus],
   templateUrl: './faq-page.html',
   styleUrl: './faq-page.scss',
 })
 export class FaqPage {
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
 
   protected readonly content = FAQ_PAGE;
+  protected readonly openFaqId = signal<string | null>(null);
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly submitMessage = signal('');
+
+  protected toggleFaq(itemId: string, event: Event): void {
+    const details = event.currentTarget as HTMLDetailsElement;
+
+    this.openFaqId.set(
+      details.open ? itemId : this.openFaqId() === itemId ? null : this.openFaqId(),
+    );
+  }
 
   protected async sendQuestionEmail(event: Event): Promise<void> {
     event.preventDefault();

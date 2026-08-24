@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 
-import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormHoneypot } from '../../shared/forms/form-honeypot';
+import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 const CONTACT_PAGE = {
@@ -16,11 +18,12 @@ const CONTACT_PAGE = {
 
 @Component({
   selector: 'app-contact-page',
+  imports: [FormHoneypot, FormStatus],
   templateUrl: './contact-page.html',
   styleUrl: './contact-page.scss',
 })
 export class ContactPage {
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
 
   protected readonly content = CONTACT_PAGE;
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');

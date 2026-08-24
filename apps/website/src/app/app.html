@@ -1,4 +1,6 @@
 <app-public-header />
 <router-outlet />
 <app-public-footer />
-<app-newsletter-popup />
+@defer (on idle) {
+  <app-newsletter-popup />
+}

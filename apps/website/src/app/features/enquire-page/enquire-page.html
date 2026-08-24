@@ -56,18 +56,11 @@
         <a routerLink="/privacy-policy/">privacy policy here.</a>
       </p>
 
-      <label class="form-honeypot" aria-hidden="true">
-        Website
-        <input type="text" name="website" autocomplete="off" tabindex="-1" />
-      </label>
+      <app-form-honeypot />
       <button type="submit" [disabled]="submitStatus() === 'sending'">
         {{ submitStatus() === 'sending' ? 'Sending...' : 'Contact us' }}
       </button>
-      @if (submitMessage()) {
-        <p class="form-status" [class.form-status--error]="submitStatus() === 'error'">
-          {{ submitMessage() }}
-        </p>
-      }
+      <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
     </form>
   </section>
 </main>

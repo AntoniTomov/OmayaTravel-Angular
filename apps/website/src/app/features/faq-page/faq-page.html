@@ -14,7 +14,7 @@
 
       <div class="faq-page__accordion" aria-label="Frequently asked questions">
         @for (item of content.items; track item.id) {
-          <details>
+          <details [open]="openFaqId() === item.id" (toggle)="toggleFaq(item.id, $event)">
             <summary>{{ item.question }}</summary>
             @for (paragraph of item.answer; track paragraph) {
               <p>{{ paragraph }}</p>
@@ -50,18 +50,11 @@
         <input type="text" name="name" placeholder="Name" autocomplete="name" required />
         <input type="email" name="email" placeholder="Email" autocomplete="email" required />
         <textarea name="message" rows="5" aria-label="Message" required></textarea>
-        <label class="form-honeypot" aria-hidden="true">
-          Website
-          <input type="text" name="website" autocomplete="off" tabindex="-1" />
-        </label>
+        <app-form-honeypot />
         <button type="submit" [disabled]="submitStatus() === 'sending'">
           {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
         </button>
-        @if (submitMessage()) {
-          <p class="form-status" [class.form-status--error]="submitStatus() === 'error'">
-            {{ submitMessage() }}
-          </p>
-        }
+        <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
       </form>
     </aside>
   </section>

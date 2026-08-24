@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GoogleAnalytics } from '../../../shared/analytics/google-analytics';
+import { OmayaAnalytics } from '../../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface FeaturedTrip {
@@ -69,7 +69,7 @@ export class FeaturedTrips {
   @ViewChild('track') private readonly track?: ElementRef<HTMLElement>;
   @ViewChildren('tripCard') private readonly tripCards!: QueryList<ElementRef<HTMLElement>>;
   protected readonly i18n = inject(OmayaI18n);
-  private readonly analytics = inject(GoogleAnalytics);
+  private readonly analytics = inject(OmayaAnalytics);
   private dragStartX = 0;
   private dragStartScrollLeft = 0;
   private isDragging = false;
