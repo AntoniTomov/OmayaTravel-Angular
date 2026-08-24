@@ -19,6 +19,7 @@ import {
   PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC,
   PUBLIC_HEADER_LOGO_VISUAL_SRC,
 } from '../../shared/content/homepage-content';
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { buildMediaImageAttributes } from '../../shared/media';
@@ -54,6 +55,7 @@ export class PublicHeader implements AfterViewInit {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly analytics = inject(GoogleAnalytics);
   protected readonly i18n = inject(OmayaI18n);
 
   protected readonly isScrolled = signal(false);
@@ -178,6 +180,9 @@ export class PublicHeader implements AfterViewInit {
     this.lastFocusedElement = this.document.activeElement as HTMLElement | null;
     this.isSearchOpen.set(true);
     this.searchError.set('');
+    this.analytics.trackEvent('open_search', {
+      source: 'header',
+    });
 
     queueMicrotask(() => this.searchInput()?.nativeElement.focus());
   }
@@ -202,10 +207,21 @@ export class PublicHeader implements AfterViewInit {
     }
 
     this.isSearchOpen.set(false);
+    this.analytics.trackEvent('search', {
+      search_term: query,
+      source: 'header',
+    });
     void this.router.navigate(['/search'], {
       queryParams: {
         s: query,
       },
+    });
+  }
+
+  protected trackContactClick(type: 'phone' | 'social', label: string): void {
+    this.analytics.trackEvent(type === 'phone' ? 'click_phone' : 'click_social', {
+      label,
+      source: 'header',
     });
   }
 

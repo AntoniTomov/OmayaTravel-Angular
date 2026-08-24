@@ -50,7 +50,18 @@
         <input type="text" name="name" placeholder="Name" autocomplete="name" required />
         <input type="email" name="email" placeholder="Email" autocomplete="email" required />
         <textarea name="message" rows="5" aria-label="Message" required></textarea>
-        <button type="submit">Submit</button>
+        <label class="form-honeypot" aria-hidden="true">
+          Website
+          <input type="text" name="website" autocomplete="off" tabindex="-1" />
+        </label>
+        <button type="submit" [disabled]="submitStatus() === 'sending'">
+          {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
+        </button>
+        @if (submitMessage()) {
+          <p class="form-status" [class.form-status--error]="submitStatus() === 'error'">
+            {{ submitMessage() }}
+          </p>
+        }
       </form>
     </aside>
   </section>

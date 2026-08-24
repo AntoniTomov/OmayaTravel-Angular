@@ -30,6 +30,7 @@ Use `docs/ADR_GUIDELINES.md` when creating or reviewing ADRs.
 | ADR-011 | Preserve high-value existing public URLs for v1 and redirect/exclude WordPress utility URLs | Accepted | Lead Architect | 2026-08-03 | Issue #5, PR #25, PR #28 | Do not normalize tour URLs to `/tours/` at launch. |
 | ADR-012 | Use TypeScript-first core content models for v1 Git-managed content | Accepted | Lead Architect | 2026-08-03 | Issue #11 | Future CMS data must map to these contracts. |
 | ADR-013 | Use R2 originals with constrained Cloudflare Image Transformations for v1 media delivery | Accepted | Lead Architect | 2026-08-04 | Issue #4, PR #39 | Serve public media from `media.omayatravel.com`; defer Cloudflare Images storage. |
+| ADR-014 | Use the existing Angular SSR Express server for v1 public form submissions | Accepted | Lead Architect | 2026-08-24 | Forms architecture review | Endpoint: `POST /api/forms`; provider: Resend; defer separate `apps/api` until forms become broader operational workflows. |
 
 ## Rejected or deferred complexity
 

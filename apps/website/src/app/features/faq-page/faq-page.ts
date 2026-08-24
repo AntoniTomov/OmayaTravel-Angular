@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 interface FaqRule {
   period: string;
@@ -195,9 +198,13 @@ const FAQ_PAGE = {
   styleUrl: './faq-page.scss',
 })
 export class FaqPage {
-  protected readonly content = FAQ_PAGE;
+  private readonly analytics = inject(GoogleAnalytics);
 
-  protected sendQuestionEmail(event: Event): void {
+  protected readonly content = FAQ_PAGE;
+  protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  protected readonly submitMessage = signal('');
+
+  protected async sendQuestionEmail(event: Event): Promise<void> {
     event.preventDefault();
 
     const form = event.currentTarget as HTMLFormElement;
@@ -210,17 +217,30 @@ export class FaqPage {
     const name = String(formData.get('name') ?? '').trim();
     const email = String(formData.get('email') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
-    const subject = 'FAQ question from omayatravel.com';
-    const body = [
-      'New FAQ question from omayatravel.com',
-      '',
-      `Name: ${name}`,
-      `Email: ${email}`,
-      '',
-      'Message:',
-      message,
-    ].join('\n');
+    const honeypot = String(formData.get('website') ?? '');
 
-    window.location.href = `mailto:info@omayatravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    this.submitStatus.set('sending');
+    this.submitMessage.set('');
+
+    const result = await submitPublicForm({
+      formType: 'faq-question',
+      fields: { name, email, message },
+      honeypot,
+    });
+
+    if (result.ok) {
+      form.reset();
+      this.submitStatus.set('sent');
+      this.submitMessage.set(
+        'Thank you. We received your question and will reply as soon as possible.',
+      );
+      this.analytics.trackEvent('generate_lead', {
+        form_type: 'faq-question',
+      });
+      return;
+    }
+
+    this.submitStatus.set('error');
+    this.submitMessage.set(result.message ?? 'We could not send your question right now.');
   }
 }

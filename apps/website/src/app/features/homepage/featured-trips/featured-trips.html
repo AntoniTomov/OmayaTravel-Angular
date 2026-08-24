@@ -2,7 +2,10 @@
   <div class="featured-trips__inner">
     <div class="featured-trips__heading">
       <h2 id="featured-trips-title">{{ i18n.t('homepage.featuredTripsTitle') }}</h2>
-      <div class="featured-trips__controls" [attr.aria-label]="i18n.t('homepage.featuredTripsControls')">
+      <div
+        class="featured-trips__controls"
+        [attr.aria-label]="i18n.t('homepage.featuredTripsControls')"
+      >
         <button
           type="button"
           [attr.aria-label]="i18n.t('homepage.previousTrip')"
@@ -38,7 +41,11 @@
             class="featured-trips__card"
             [class.featured-trips__card--active]="activeTripIndex() === index"
           >
-            <a class="featured-trips__image-link" [routerLink]="trip.target">
+            <a
+              class="featured-trips__image-link"
+              [routerLink]="trip.target"
+              (click)="trackFeaturedTripClick(trip)"
+            >
               <img
                 [src]="trip.image.src"
                 [srcset]="trip.image.srcset"
@@ -54,7 +61,9 @@
 
             <div class="featured-trips__content">
               <h3>
-                <a [routerLink]="trip.target">{{ trip.title }}</a>
+                <a [routerLink]="trip.target" (click)="trackFeaturedTripClick(trip)">{{
+                  trip.title
+                }}</a>
               </h3>
               <p class="featured-trips__price">
                 {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>

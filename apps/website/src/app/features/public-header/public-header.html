@@ -6,6 +6,7 @@
         class="public-header__social-link"
         href="https://www.instagram.com/omayatravel/"
         aria-label="Omaya Travel on Instagram"
+        (click)="trackContactClick('social', 'instagram')"
       >
         <mat-icon svgIcon="social-instagram" aria-hidden="true"></mat-icon>
       </a>
@@ -13,6 +14,7 @@
         class="public-header__social-link"
         href="https://www.facebook.com/search/top/?q=omayatravel"
         aria-label="Omaya Travel on Facebook"
+        (click)="trackContactClick('social', 'facebook')"
       >
         <mat-icon svgIcon="social-facebook" aria-hidden="true"></mat-icon>
       </a>
@@ -20,11 +22,16 @@
         class="public-header__social-link"
         href="https://www.linkedin.com/company/omaya-travel/about/"
         aria-label="Omaya Travel on LinkedIn"
+        (click)="trackContactClick('social', 'linkedin')"
       >
         <mat-icon svgIcon="social-linkedin" aria-hidden="true"></mat-icon>
       </a>
-      <a href="tel:+359879965946">+359 87 996 5946</a>
-      <a href="tel:+359889735274">+359 88 973 5274</a>
+      <a href="tel:+359879965946" (click)="trackContactClick('phone', 'primary_phone')"
+        >+359 87 996 5946</a
+      >
+      <a href="tel:+359889735274" (click)="trackContactClick('phone', 'secondary_phone')"
+        >+359 88 973 5274</a
+      >
     </div>
   </div>
 
@@ -141,7 +148,11 @@
       <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
         <div>
           <h2 id="site-search-title">{{ i18n.t('header.searchTitle') }}</h2>
-          <button type="button" [attr.aria-label]="i18n.t('header.closeSearch')" (click)="closeSearch()">
+          <button
+            type="button"
+            [attr.aria-label]="i18n.t('header.closeSearch')"
+            (click)="closeSearch()"
+          >
             {{ i18n.t('header.closeSearch') }}
           </button>
         </div>

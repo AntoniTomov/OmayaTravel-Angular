@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { GoogleAnalytics } from '../../../shared/analytics/google-analytics';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 @Component({
@@ -10,4 +11,12 @@ import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 })
 export class PrivateTours {
   protected readonly i18n = inject(OmayaI18n);
+  private readonly analytics = inject(GoogleAnalytics);
+
+  protected trackPrivateToursCta(): void {
+    this.analytics.trackEvent('click_enquire', {
+      source: 'homepage_private_tours',
+      action: 'plan_private_tour',
+    });
+  }
 }

@@ -9,6 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { GoogleAnalytics } from '../../../shared/analytics/google-analytics';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface FeaturedTrip {
@@ -68,6 +69,7 @@ export class FeaturedTrips {
   @ViewChild('track') private readonly track?: ElementRef<HTMLElement>;
   @ViewChildren('tripCard') private readonly tripCards!: QueryList<ElementRef<HTMLElement>>;
   protected readonly i18n = inject(OmayaI18n);
+  private readonly analytics = inject(GoogleAnalytics);
   private dragStartX = 0;
   private dragStartScrollLeft = 0;
   private isDragging = false;
@@ -102,6 +104,19 @@ export class FeaturedTrips {
     });
 
     this.activeTripIndex.set(targetIndex);
+    this.analytics.trackEvent('browse_featured_trips', {
+      direction: direction === 1 ? 'next' : 'previous',
+      active_index: targetIndex,
+    });
+  }
+
+  protected trackFeaturedTripClick(trip: FeaturedTrip): void {
+    this.analytics.trackEvent('select_item', {
+      item_id: trip.target,
+      item_name: trip.title,
+      item_category: trip.eyebrow,
+      source: 'featured_trips',
+    });
   }
 
   protected syncActiveTripFromScroll(event: Event): void {

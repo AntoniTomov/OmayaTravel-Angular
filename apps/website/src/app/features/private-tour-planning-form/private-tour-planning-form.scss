@@ -155,7 +155,11 @@
   cursor: pointer;
   color-scheme: light;
   background:
-    linear-gradient(90deg, transparent calc(100% - 3rem), rgb(var(--omaya-color-overlay-rgb) / 4%) 0),
+    linear-gradient(
+      90deg,
+      transparent calc(100% - 3rem),
+      rgb(var(--omaya-color-overlay-rgb) / 4%) 0
+    ),
     tokens.$omaya-color-white;
 }
 
@@ -201,6 +205,10 @@
   margin: 0;
   color: tokens.$omaya-color-gold;
   font-weight: 900;
+}
+
+.planning-form__sent.form-status--error {
+  color: var(--omaya-color-error);
 }
 
 .planning-form__back {

@@ -73,5 +73,37 @@
   <app-featured-trips />
   <app-mission-section />
   <app-private-tours />
+  <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
+    <div class="homepage__newsletter-inner">
+      <div>
+        <h2 id="homepage-newsletter-title">Join Newsletter</h2>
+        <p>To receive our best deals</p>
+      </div>
+
+      <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
+        <label for="homepage-newsletter-email">Email address</label>
+        <input
+          id="homepage-newsletter-email"
+          type="email"
+          name="email"
+          placeholder="Email address"
+          autocomplete="email"
+          required
+        />
+        <label class="form-honeypot" aria-hidden="true">
+          Website
+          <input type="text" name="website" autocomplete="off" tabindex="-1" />
+        </label>
+        <button type="submit" [disabled]="newsletterStatus() === 'sending'">
+          {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
+        </button>
+        @if (newsletterMessage()) {
+          <p class="form-status" [class.form-status--error]="newsletterStatus() === 'error'">
+            {{ newsletterMessage() }}
+          </p>
+        }
+      </form>
+    </div>
+  </section>
   <app-blog-posts />
 </main>

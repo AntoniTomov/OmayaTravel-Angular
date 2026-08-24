@@ -4,6 +4,8 @@ import {
   PrivateTourPlanningFormState,
   PrivateTourPlanningFormStateService,
 } from './private-tour-planning-form-state';
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 const COUNTRY_CODES = [
   { flag: '🇺🇸', label: 'United States', code: '+1' },
@@ -25,9 +27,12 @@ const COUNTRY_CODES = [
 })
 export class PrivateTourPlanningForm {
   private readonly formState = inject(PrivateTourPlanningFormStateService);
+  private readonly analytics = inject(GoogleAnalytics);
 
   protected readonly step = signal(1);
   protected readonly submitted = signal(false);
+  protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  protected readonly submitMessage = signal('');
   protected readonly countryCodes = COUNTRY_CODES;
   protected readonly state = this.formState.state;
 
@@ -37,6 +42,8 @@ export class PrivateTourPlanningForm {
   ): void {
     this.formState.update(key, value);
     this.submitted.set(false);
+    this.submitStatus.set('idle');
+    this.submitMessage.set('');
   }
 
   protected goToStep(nextStep: number): void {
@@ -92,19 +99,53 @@ export class PrivateTourPlanningForm {
     ];
   }
 
-  protected submitPlan(event: Event): void {
+  protected async submitPlan(event: Event): Promise<void> {
     event.preventDefault();
 
     if (!this.canAccessStep(4)) {
       return;
     }
 
-    const lines = ['Private tour planning request', '', ...this.formSummary()];
-    const subject = encodeURIComponent('Private tour planning request');
-    const body = encodeURIComponent(lines.join('\n'));
+    const form = event.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = this.state();
+
+    this.submitStatus.set('sending');
+    this.submitMessage.set('');
+
+    const result = await submitPublicForm({
+      formType: 'private-tour-planning',
+      fields: {
+        name: data.name.trim(),
+        countryCode: data.countryCode.trim(),
+        phone: data.phone.trim(),
+        email: data.email.trim(),
+        preferredContactMethod: data.contactMethod,
+        adults: data.adults,
+        children: data.children,
+        places: data.places.trim(),
+        budget: data.budget,
+        startDate: data.startDate,
+        days: data.days,
+        details: data.details.trim(),
+      },
+      honeypot: String(formData.get('website') ?? ''),
+    });
+
+    if (!result.ok) {
+      this.submitStatus.set('error');
+      this.submitMessage.set(result.message ?? 'We could not send your request right now.');
+      return;
+    }
 
     this.submitted.set(true);
-    window.location.href = `mailto:info@omayatravel.com?subject=${subject}&body=${body}`;
+    this.submitStatus.set('sent');
+    this.submitMessage.set(
+      'Thank you. We received your request and will reply as soon as possible.',
+    );
+    this.analytics.trackEvent('generate_lead', {
+      form_type: 'private-tour-planning',
+    });
   }
 
   private isStepOneValid(): boolean {

@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
 import {
   TourDetailContent,
   TourFaqItem,
@@ -30,6 +31,7 @@ interface TourTabDefinition {
 })
 export class TourDetail {
   private readonly route = inject(ActivatedRoute);
+  private readonly analytics = inject(GoogleAnalytics);
   private readonly tourSlug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('tourSlug'))),
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
@@ -64,12 +66,30 @@ export class TourDetail {
   protected readonly contentClasses = computed(() => ({
     'tour-detail__content--gallery': this.activeTab() === 'gallery',
   }));
+  private trackedTourSlug: string | null = null;
 
   constructor() {
     effect(() => {
       this.tourSlug();
       this.activeTab.set('information');
       this.activeGalleryIndex.set(null);
+    });
+
+    effect(() => {
+      const tour = this.tour();
+
+      if (!tour || this.trackedTourSlug === tour.slug) {
+        return;
+      }
+
+      this.trackedTourSlug = tour.slug;
+      this.analytics.trackEvent('view_item', {
+        item_id: tour.slug,
+        item_name: tour.title,
+        item_category: tour.category,
+        price: tour.price.amount,
+        currency: tour.price.currency,
+      });
     });
   }
 
@@ -90,10 +110,28 @@ export class TourDetail {
 
   protected setTab(tab: TourTab): void {
     this.activeTab.set(tab);
+    this.analytics.trackEvent('view_tour_section', {
+      tour_slug: this.tour()?.slug ?? '(unknown)',
+      section: tab,
+    });
   }
 
   protected openGallery(index: number): void {
     this.activeGalleryIndex.set(index);
+    this.analytics.trackEvent('open_tour_gallery', {
+      tour_slug: this.tour()?.slug ?? '(unknown)',
+      image_index: index,
+    });
+  }
+
+  protected trackTourCta(action: 'check_availability' | 'book_now' | 'discover_more'): void {
+    const tour = this.tour();
+
+    this.analytics.trackEvent('click_enquire', {
+      action,
+      tour_slug: tour?.slug ?? '(unknown)',
+      tour_name: tour?.title ?? '(unknown)',
+    });
   }
 
   protected closeGallery(): void {

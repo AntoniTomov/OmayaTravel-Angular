@@ -251,11 +251,23 @@
             <input type="number" name="tickets" min="1" placeholder="Number of people" />
           </label>
           <textarea name="message" rows="7" placeholder="Message"></textarea>
-          <button class="tour-detail__availability" type="button">{{ tour.enquiry.cta }}</button>
-          <button class="tour-detail__book" type="submit">Book Now</button>
+          <button
+            class="tour-detail__availability"
+            type="button"
+            (click)="trackTourCta('check_availability')"
+          >
+            {{ tour.enquiry.cta }}
+          </button>
+          <button class="tour-detail__book" type="submit" (click)="trackTourCta('book_now')">
+            Book Now
+          </button>
         </form>
 
-        <a class="tour-detail__discover" routerLink="/classic-tours/">
+        <a
+          class="tour-detail__discover"
+          routerLink="/classic-tours/"
+          (click)="trackTourCta('discover_more')"
+        >
           <span>Discover more tours...</span>
           <img
             src="/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp"
@@ -293,12 +305,7 @@
           >
             <
           </button>
-          <img
-            [src]="image.src"
-            [width]="image.width"
-            [height]="image.height"
-            [alt]="image.alt"
-          />
+          <img [src]="image.src" [width]="image.width" [height]="image.height" [alt]="image.alt" />
           <button
             class="tour-detail__lightbox-nav tour-detail__lightbox-nav--next"
             type="button"

@@ -1,4 +1,7 @@
 .migration-local/
+.env
+.env.*
+!.env.example
 node_modules/
 .pnpm-store/
 dist/

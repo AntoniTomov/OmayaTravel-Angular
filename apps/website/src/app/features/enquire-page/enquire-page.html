@@ -5,7 +5,7 @@
   </section>
 
   <section class="enquire-page__form-section" aria-label="Enquiry form">
-    <form class="enquire-page__form" (submit)="$event.preventDefault()">
+    <form class="enquire-page__form" (submit)="sendEnquiry($event)">
       <label>
         <span>Your Full Name <small>(required)</small></span>
         <input type="text" name="name" autocomplete="name" required />
@@ -56,7 +56,18 @@
         <a routerLink="/privacy-policy/">privacy policy here.</a>
       </p>
 
-      <button type="submit">Contact us</button>
+      <label class="form-honeypot" aria-hidden="true">
+        Website
+        <input type="text" name="website" autocomplete="off" tabindex="-1" />
+      </label>
+      <button type="submit" [disabled]="submitStatus() === 'sending'">
+        {{ submitStatus() === 'sending' ? 'Sending...' : 'Contact us' }}
+      </button>
+      @if (submitMessage()) {
+        <p class="form-status" [class.form-status--error]="submitStatus() === 'error'">
+          {{ submitMessage() }}
+        </p>
+      }
     </form>
   </section>
 </main>

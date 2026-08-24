@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { submitPublicForm } from '../../shared/forms/public-form-api';
 
 const CONTACT_PAGE = {
   title: 'Contact Us',
@@ -17,9 +20,20 @@ const CONTACT_PAGE = {
   styleUrl: './contact-page.scss',
 })
 export class ContactPage {
-  protected readonly content = CONTACT_PAGE;
+  private readonly analytics = inject(GoogleAnalytics);
 
-  protected sendContactEmail(event: Event): void {
+  protected readonly content = CONTACT_PAGE;
+  protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  protected readonly submitMessage = signal('');
+
+  protected trackContactClick(type: 'phone' | 'email', label: string): void {
+    this.analytics.trackEvent(type === 'phone' ? 'click_phone' : 'click_email', {
+      label,
+      source: 'contact_page',
+    });
+  }
+
+  protected async sendContactEmail(event: Event): Promise<void> {
     event.preventDefault();
 
     const form = event.currentTarget as HTMLFormElement;
@@ -32,19 +46,31 @@ export class ContactPage {
     const name = String(formData.get('name') ?? '').trim();
     const email = String(formData.get('email') ?? '').trim();
     const subject = String(formData.get('subject') ?? 'Website contact request').trim();
-    const comment = String(formData.get('comment') ?? '').trim();
-    const emailSubject = subject || 'Website contact request';
-    const body = [
-      'New contact request from omayatravel.com',
-      '',
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Subject: ${emailSubject}`,
-      '',
-      'Comment:',
-      comment,
-    ].join('\n');
+    const message = String(formData.get('comment') ?? '').trim();
+    const honeypot = String(formData.get('website') ?? '');
 
-    window.location.href = `mailto:${this.content.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(body)}`;
+    this.submitStatus.set('sending');
+    this.submitMessage.set('');
+
+    const result = await submitPublicForm({
+      formType: 'contact',
+      fields: { name, email, subject, message },
+      honeypot,
+    });
+
+    if (result.ok) {
+      form.reset();
+      this.submitStatus.set('sent');
+      this.submitMessage.set(
+        'Thank you. We received your message and will reply as soon as possible.',
+      );
+      this.analytics.trackEvent('generate_lead', {
+        form_type: 'contact',
+      });
+      return;
+    }
+
+    this.submitStatus.set('error');
+    this.submitMessage.set(result.message ?? 'We could not send your message right now.');
   }
 }

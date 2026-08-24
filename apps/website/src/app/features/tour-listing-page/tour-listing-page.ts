@@ -3,6 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
 import {
   TOUR_CARDS,
   TourCardContent,
@@ -43,7 +44,14 @@ const DEFAULT_FILTERS: TourFilters = {
   categories: [],
 };
 const CATEGORIES: readonly TourCategory[] = ['Classic Tours', 'Women-Only', 'Solo Travellers'];
-const MONTH_OPTIONS: readonly string[] = ['May', 'July', 'August', 'September', 'October', 'November'];
+const MONTH_OPTIONS: readonly string[] = [
+  'May',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+];
 const TOUR_MONTHS: Readonly<Record<string, readonly string[]>> = {
   '/tour-item/algeria-desert-expedition-tadrart-rouge/': ['February', 'October', 'November'],
   '/tour-item/bulgaria-beyond-the-ordinary/': ['May', 'September'],
@@ -60,6 +68,7 @@ const TOUR_MONTHS: Readonly<Record<string, readonly string[]>> = {
 })
 export class TourListingPage {
   private readonly route = inject(ActivatedRoute);
+  private readonly analytics = inject(GoogleAnalytics);
 
   protected readonly sorts = SORTS;
   protected readonly categories = CATEGORIES;
@@ -90,6 +99,10 @@ export class TourListingPage {
 
   protected setSort(sort: TourSort): void {
     this.activeSort.set(sort);
+    this.analytics.trackEvent('sort_tours', {
+      sort,
+      page: this.page().slug,
+    });
   }
 
   protected updateFilter<K extends keyof TourFilters>(key: K, value: TourFilters[K]): void {
@@ -121,6 +134,16 @@ export class TourListingPage {
   protected applyFilters(): void {
     this.isMonthDropdownOpen.set(false);
     this.appliedFilters.set({ ...this.pendingFilters() });
+    this.analytics.trackEvent('filter_tours', {
+      page: this.page().slug,
+      search_used: this.pendingFilters().search.trim().length > 0,
+      location_used: this.pendingFilters().location.trim().length > 0,
+      month: this.pendingFilters().month || '(none)',
+      categories: this.pendingFilters().categories.join(',') || '(none)',
+      min_price: this.pendingFilters().minPrice,
+      max_price: this.pendingFilters().maxPrice,
+      result_count: this.cards().length,
+    });
   }
 
   protected isCategoryChecked(category: TourCategory): boolean {
@@ -144,6 +167,26 @@ export class TourListingPage {
   protected selectMonth(month: string): void {
     this.updateFilter('month', month);
     this.isMonthDropdownOpen.set(false);
+    this.analytics.trackEvent('select_month', {
+      month: month || '(none)',
+      source: 'tour_listing_filter',
+    });
+  }
+
+  protected trackTourCardClick(card: TourCardContent): void {
+    this.analytics.trackEvent('select_item', {
+      item_id: card.target,
+      item_name: card.title,
+      item_category: card.category,
+      source: this.page().slug,
+    });
+  }
+
+  protected trackIntroEnquiry(title: string): void {
+    this.analytics.trackEvent('click_enquire', {
+      source: 'tour_listing_intro',
+      section: title,
+    });
   }
 
   private filterCards(cards: TourCardContent[]): TourCardContent[] {
@@ -153,7 +196,8 @@ export class TourListingPage {
 
     return cards.filter((card) => {
       const price = priceValue(card);
-      const searchableText = `${card.title} ${card.excerpt} ${card.destination} ${card.category}`.toLowerCase();
+      const searchableText =
+        `${card.title} ${card.excerpt} ${card.destination} ${card.category}`.toLowerCase();
       const matchesSearch = search.length === 0 || searchableText.includes(search);
       const matchesLocation =
         location.length === 0 || card.destination.toLowerCase().includes(location);

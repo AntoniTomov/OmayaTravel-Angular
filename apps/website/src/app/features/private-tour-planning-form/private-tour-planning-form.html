@@ -8,6 +8,11 @@
   </section>
 
   <form class="planning-form__panel" (submit)="submitPlan($event)">
+    <label class="form-honeypot" aria-hidden="true">
+      Website
+      <input type="text" name="website" autocomplete="off" tabindex="-1" />
+    </label>
+
     <div class="planning-form__steps" aria-label="Private tour planning steps">
       @for (item of [1, 2, 3, 4]; track item) {
         <button
@@ -56,7 +61,9 @@
           </span>
           <datalist id="country-codes">
             @for (country of countryCodes; track country.label) {
-              <option [value]="country.code">{{ country.flag }} {{ country.label }} {{ country.code }}</option>
+              <option [value]="country.code">
+                {{ country.flag }} {{ country.label }} {{ country.code }}
+              </option>
             }
           </datalist>
         </label>
@@ -97,7 +104,14 @@
           </label>
         </fieldset>
       </fieldset>
-      <button type="button" class="planning-form__button" [disabled]="!isCurrentStepValid()" (click)="goToStep(2)">Next</button>
+      <button
+        type="button"
+        class="planning-form__button"
+        [disabled]="!isCurrentStepValid()"
+        (click)="goToStep(2)"
+      >
+        Next
+      </button>
     }
 
     @if (step() === 2) {
@@ -105,7 +119,12 @@
         <legend>Your trip</legend>
         <label>
           How many adults?(required)
-          <select name="adults" required [value]="state().adults" (change)="updateField('adults', $any($event.target).value)">
+          <select
+            name="adults"
+            required
+            [value]="state().adults"
+            (change)="updateField('adults', $any($event.target).value)"
+          >
             <option value="">Select adults</option>
             @for (count of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track count) {
               <option [value]="count">{{ count }}</option>
@@ -114,7 +133,12 @@
         </label>
         <label>
           How many children?(required)
-          <select name="children" required [value]="state().children" (change)="updateField('children', $any($event.target).value)">
+          <select
+            name="children"
+            required
+            [value]="state().children"
+            (change)="updateField('children', $any($event.target).value)"
+          >
             <option value="">Select children</option>
             @for (count of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; track count) {
               <option [value]="count">{{ count }}</option>
@@ -123,11 +147,22 @@
         </label>
         <label>
           What countries/ regions/ cities would you like to visit?(required)
-          <textarea name="places" rows="4" required [value]="state().places" (input)="updateField('places', $any($event.target).value)"></textarea>
+          <textarea
+            name="places"
+            rows="4"
+            required
+            [value]="state().places"
+            (input)="updateField('places', $any($event.target).value)"
+          ></textarea>
         </label>
         <label>
           What is your budget per person?(required)
-          <select name="budget" required [value]="state().budget" (change)="updateField('budget', $any($event.target).value)">
+          <select
+            name="budget"
+            required
+            [value]="state().budget"
+            (change)="updateField('budget', $any($event.target).value)"
+          >
             <option value="">Select budget</option>
             <option>1 000 - 2 000 EUR</option>
             <option>2 000 - 4 000 EUR</option>
@@ -137,8 +172,21 @@
         </label>
       </fieldset>
       <div class="planning-form__actions">
-        <button type="button" class="planning-form__button planning-form__button--secondary" (click)="goToStep(1)">Go back</button>
-        <button type="button" class="planning-form__button" [disabled]="!isCurrentStepValid()" (click)="goToStep(3)">Next</button>
+        <button
+          type="button"
+          class="planning-form__button planning-form__button--secondary"
+          (click)="goToStep(1)"
+        >
+          Go back
+        </button>
+        <button
+          type="button"
+          class="planning-form__button"
+          [disabled]="!isCurrentStepValid()"
+          (click)="goToStep(3)"
+        >
+          Next
+        </button>
       </div>
     }
 
@@ -171,13 +219,34 @@
         </label>
         <label>
           Any extra details that you would like to share with us?
-          <textarea name="details" rows="5" [value]="state().details" (input)="updateField('details', $any($event.target).value)"></textarea>
+          <textarea
+            name="details"
+            rows="5"
+            [value]="state().details"
+            (input)="updateField('details', $any($event.target).value)"
+          ></textarea>
         </label>
-        <p>By submitting your information, you’re giving us permission to email you. You may unsubscribe at any time.</p>
+        <p>
+          By submitting your information, you’re giving us permission to email you. You may
+          unsubscribe at any time.
+        </p>
       </fieldset>
       <div class="planning-form__actions">
-        <button type="button" class="planning-form__button planning-form__button--secondary" (click)="goToStep(2)">Go back</button>
-        <button type="button" class="planning-form__button" [disabled]="!isCurrentStepValid()" (click)="goToStep(4)">Next</button>
+        <button
+          type="button"
+          class="planning-form__button planning-form__button--secondary"
+          (click)="goToStep(2)"
+        >
+          Go back
+        </button>
+        <button
+          type="button"
+          class="planning-form__button"
+          [disabled]="!isCurrentStepValid()"
+          (click)="goToStep(4)"
+        >
+          Next
+        </button>
       </div>
     }
 
@@ -191,13 +260,27 @@
         </div>
       </fieldset>
       <div class="planning-form__actions">
-        <button type="button" class="planning-form__button planning-form__button--secondary" (click)="goToStep(3)">Back</button>
-        <button type="submit" class="planning-form__button">Submit</button>
+        <button
+          type="button"
+          class="planning-form__button planning-form__button--secondary"
+          (click)="goToStep(3)"
+        >
+          Back
+        </button>
+        <button
+          type="submit"
+          class="planning-form__button"
+          [disabled]="submitStatus() === 'sending'"
+        >
+          {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
+        </button>
       </div>
     }
 
-    @if (submitted()) {
-      <p class="planning-form__sent">Congrats! Your request is submitted. We will get back to you in the next 24 hours.</p>
+    @if (submitMessage()) {
+      <p class="planning-form__sent" [class.form-status--error]="submitStatus() === 'error'">
+        {{ submitMessage() }}
+      </p>
     }
   </form>
 </main>

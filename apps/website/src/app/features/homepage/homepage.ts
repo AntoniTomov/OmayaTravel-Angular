@@ -3,6 +3,8 @@ import { Component, OnDestroy, computed, effect, inject, signal } from '@angular
 import { Router } from '@angular/router';
 
 import { HOMEPAGE_HERO } from '../../shared/content/homepage-content';
+import { GoogleAnalytics } from '../../shared/analytics/google-analytics';
+import { submitNewsletter } from '../../shared/forms/public-form-api';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { buildMediaImageAttributes } from '../../shared/media';
 import { BlogPosts } from './blog-posts/blog-posts';
@@ -20,6 +22,7 @@ import { TravelMatch } from './travel-match/travel-match';
 export class Homepage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
+  private readonly analytics = inject(GoogleAnalytics);
   protected readonly i18n = inject(OmayaI18n);
   private intervalId: ReturnType<typeof setInterval> | null;
   private readonly reducedMotion = this.prefersReducedMotion();
@@ -31,6 +34,8 @@ export class Homepage implements OnDestroy {
   protected readonly selectedDestination = signal('');
   protected readonly selectedMonth = signal('');
   protected readonly searchError = signal('');
+  protected readonly newsletterStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  protected readonly newsletterMessage = signal('');
   protected readonly activeSlide = computed(() => this.hero.slides[this.activeSlideIndex()]);
   protected readonly activeSlideImage = computed(() => {
     const slide = this.activeSlide();
@@ -74,10 +79,18 @@ export class Homepage implements OnDestroy {
 
   protected updateDestination(value: string): void {
     this.selectedDestination.set(value);
+    this.analytics.trackEvent('select_destination', {
+      destination_path: value || '(none)',
+      source: 'homepage_search',
+    });
   }
 
   protected updateMonth(value: string): void {
     this.selectedMonth.set(value);
+    this.analytics.trackEvent('select_month', {
+      month: value || '(none)',
+      source: 'homepage_search',
+    });
   }
 
   protected submitTripSearch(): void {
@@ -86,15 +99,18 @@ export class Homepage implements OnDestroy {
     );
 
     if (!destination && this.selectedMonth()) {
+      this.trackTripSearch('missing_destination');
       this.searchError.set(this.i18n.t('homepage.chooseDestinationWithMonth'));
       return;
     }
 
     if (!destination) {
+      this.trackTripSearch('missing_destination');
       this.searchError.set(this.i18n.t('homepage.chooseDestination'));
       return;
     }
 
+    this.trackTripSearch('success');
     void this.router.navigateByUrl(destination.target, {
       state: this.selectedMonth()
         ? {
@@ -102,6 +118,43 @@ export class Homepage implements OnDestroy {
           }
         : undefined,
     });
+  }
+
+  protected async submitNewsletterForm(event: Event): Promise<void> {
+    event.preventDefault();
+
+    const form = event.currentTarget as HTMLFormElement;
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    const formData = new FormData(form);
+    const email = String(formData.get('email') ?? '').trim();
+    const honeypot = String(formData.get('website') ?? '');
+
+    this.newsletterStatus.set('sending');
+    this.newsletterMessage.set('');
+
+    const result = await submitNewsletter({
+      email,
+      source: 'home page',
+      honeypot,
+    });
+
+    if (result.ok) {
+      form.reset();
+      this.newsletterStatus.set('sent');
+      this.newsletterMessage.set('Thank you for joining our newsletter.');
+      this.analytics.trackEvent('sign_up', {
+        method: 'newsletter',
+        source: 'home page',
+      });
+      return;
+    }
+
+    this.newsletterStatus.set('error');
+    this.newsletterMessage.set(result.message ?? 'We could not subscribe you right now.');
   }
 
   private createAutoAdvance(): ReturnType<typeof setInterval> {
@@ -115,6 +168,14 @@ export class Homepage implements OnDestroy {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
+  }
+
+  private trackTripSearch(status: 'success' | 'missing_destination'): void {
+    this.analytics.trackEvent('search_trip', {
+      status,
+      destination_path: this.selectedDestination() || '(none)',
+      month: this.selectedMonth() || '(none)',
+    });
   }
 
   private prefersReducedMotion(): boolean {

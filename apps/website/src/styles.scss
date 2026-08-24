@@ -103,3 +103,22 @@ details::details-content {
 details[open]::details-content {
   block-size: auto;
 }
+
+.form-honeypot {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+}
+
+.form-status {
+  margin: 0;
+  color: var(--omaya-color-dark);
+  font-weight: 800;
+}
+
+.form-status--error {
+  color: var(--omaya-color-error);
+}

@@ -160,6 +160,104 @@
   background: tokens.$omaya-color-gold !important;
 }
 
+.homepage__newsletter {
+  position: relative;
+  display: grid;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  overflow: hidden;
+  color: tokens.$omaya-color-white;
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 0%),
+      rgb(var(--omaya-color-overlay-rgb) / 20%)
+    ),
+    url('/assets/images/newsletter-bgr.jpg') center / cover,
+    tokens.$omaya-color-dark;
+}
+
+.homepage__newsletter-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 32rem);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  width: min(76rem, 100%);
+  margin: 0 auto;
+}
+
+.homepage__newsletter h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(2.7rem, 5vw, 3rem);
+  line-height: 1;
+}
+
+.homepage__newsletter p {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 800;
+}
+
+.homepage__newsletter-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+}
+
+.homepage__newsletter-form label:not(.form-honeypot) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.homepage__newsletter-form input,
+.homepage__newsletter-form button {
+  min-height: 3.35rem;
+  border-radius: 2px;
+  font: inherit;
+}
+
+.homepage__newsletter-form input {
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--omaya-color-surface-rgb) / 74%);
+  padding: 0 1rem;
+  color: var(--omaya-color-dark);
+  background: rgb(var(--omaya-color-surface-rgb) / 92%);
+}
+
+.homepage__newsletter-form button {
+  border: 1px solid tokens.$omaya-color-gold;
+  padding: 0 1.35rem;
+  color: tokens.$omaya-color-white;
+  background: var(--omaya-color-heading);
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.homepage__newsletter-form button:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-white;
+  background: var(--omaya-color-dark);
+}
+
+.homepage__newsletter-form button:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+}
+
+.homepage__newsletter-form .form-status {
+  grid-column: 1 / -1;
+  color: tokens.$omaya-color-white;
+}
+
+.homepage__newsletter-form .form-status--error {
+  color: #ffd9d5;
+}
+
 @media (max-width: 48rem) {
   .homepage__hero {
     min-height: 43rem;
@@ -174,5 +272,14 @@
 
   .homepage__hero h1 {
     font-size: 3rem;
+  }
+
+  .homepage__newsletter-inner,
+  .homepage__newsletter-form {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage__newsletter-form button {
+    width: 100%;
   }
 }

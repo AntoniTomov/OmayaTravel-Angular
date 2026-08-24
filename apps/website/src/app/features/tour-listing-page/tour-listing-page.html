@@ -2,7 +2,7 @@
   class="tour-listing"
   [ngClass]="{
     'tour-listing--compact': !page().heroImage,
-    'tour-listing--tour-list': isTourListPage()
+    'tour-listing--tour-list': isTourListPage(),
   }"
 >
   @if (page().heroImage) {
@@ -47,7 +47,9 @@
             <div>
               <h2>{{ section.title }}</h2>
               <p>{{ section.body }}</p>
-              <a routerLink="/enquire-now/">Enquire Now</a>
+              <a routerLink="/enquire-now/" (click)="trackIntroEnquiry(section.title)"
+                >Enquire Now</a
+              >
             </div>
           </article>
         }
@@ -58,7 +60,7 @@
       <div class="tour-listing__grid">
         @for (card of cards(); track card.title) {
           <article class="tour-listing__card">
-            <a [routerLink]="card.target">
+            <a [routerLink]="card.target" (click)="trackTourCardClick(card)">
               <div class="tour-listing__card-image">
                 <img [src]="card.image" [alt]="card.alt" loading="lazy" />
                 <div class="tour-listing__card-overlay">

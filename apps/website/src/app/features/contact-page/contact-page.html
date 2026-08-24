@@ -6,7 +6,18 @@
       <input type="email" name="email" placeholder="Email Address*" autocomplete="email" required />
       <input type="text" name="subject" placeholder="Subject" />
       <textarea name="comment" rows="8" placeholder="Comment" required></textarea>
-      <button type="submit">Submit</button>
+      <label class="form-honeypot" aria-hidden="true">
+        Website
+        <input type="text" name="website" autocomplete="off" tabindex="-1" />
+      </label>
+      <button type="submit" [disabled]="submitStatus() === 'sending'">
+        {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
+      </button>
+      @if (submitMessage()) {
+        <p class="form-status" [class.form-status--error]="submitStatus() === 'error'">
+          {{ submitMessage() }}
+        </p>
+      }
     </form>
 
     <div class="contact-page__details">
@@ -14,8 +25,20 @@
       <p>{{ content.intro.text }}</p>
 
       <h3>{{ content.location }}</h3>
-      <p>Phone/WhatsApp: <a [href]="'tel:' + content.phone.replaceAll(' ', '')">{{ content.phone }}</a></p>
-      <p>Email: <a [href]="'mailto:' + content.email">{{ content.email }}</a></p>
+      <p>
+        Phone/WhatsApp:
+        <a
+          [href]="'tel:' + content.phone.replaceAll(' ', '')"
+          (click)="trackContactClick('phone', 'primary_phone')"
+          >{{ content.phone }}</a
+        >
+      </p>
+      <p>
+        Email:
+        <a [href]="'mailto:' + content.email" (click)="trackContactClick('email', 'info_email')">{{
+          content.email
+        }}</a>
+      </p>
     </div>
   </section>
 </main>

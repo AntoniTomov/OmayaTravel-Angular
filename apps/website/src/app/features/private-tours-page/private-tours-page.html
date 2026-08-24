@@ -24,8 +24,8 @@
     <div class="private-tours-page__copy">
       <h2>What Is a Private Tour?</h2>
       <p>
-        A private tour is travel designed entirely around you. At <strong>Omaya Travel</strong>,
-        our team creates personalised itineraries built from scratch — your dates, your pace, your
+        A private tour is travel designed entirely around you. At <strong>Omaya Travel</strong>, our
+        team creates personalised itineraries built from scratch — your dates, your pace, your
         interests.
       </p>
       <p>
@@ -37,7 +37,12 @@
         That’s where we come in. Our experts handle every detail, so all you have to do is show up
         and enjoy the journey.
       </p>
-      <a routerLink="/private-tours-your-trip-your-rules/describe/" class="private-tours-page__button">Plan your tour</a>
+      <a
+        routerLink="/private-tours-your-trip-your-rules/describe/"
+        class="private-tours-page__button"
+        (click)="trackPlanTourClick()"
+        >Plan your tour</a
+      >
     </div>
   </section>
 </main>

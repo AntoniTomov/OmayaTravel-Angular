@@ -2,7 +2,7 @@
   <div class="private-tours__content">
     <h2 id="private-tours-title">{{ i18n.t('homepage.privateToursTitle') }}</h2>
     <p>{{ i18n.t('homepage.privateToursCopy') }}</p>
-    <a routerLink="/private-tours-your-trip-your-rules/">{{
+    <a routerLink="/private-tours-your-trip-your-rules/" (click)="trackPrivateToursCta()">{{
       i18n.t('homepage.privateToursCta')
     }}</a>
   </div>
