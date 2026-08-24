@@ -1,4 +1,10 @@
-<main class="tour-listing" [ngClass]="{ 'tour-listing--compact': !page().heroImage }">
+<main
+  class="tour-listing"
+  [ngClass]="{
+    'tour-listing--compact': !page().heroImage,
+    'tour-listing--tour-list': isTourListPage()
+  }"
+>
   @if (page().heroImage) {
     <section class="tour-listing__hero">
       <img [src]="page().heroImage" [alt]="page().heroAlt ?? page().title" fetchpriority="high" />
@@ -18,18 +24,20 @@
   }
 
   <section class="tour-listing__body">
-    <nav class="tour-listing__filters" aria-label="Tour sorting">
-      @for (sort of sorts; track sort.id) {
-        <button
-          type="button"
-          [ngClass]="{ 'tour-listing__filter--active': activeSort() === sort.id }"
-          (click)="setSort(sort.id)"
-        >
-          <mat-icon aria-hidden="true">{{ sort.icon }}</mat-icon>
-          {{ sort.label }}
-        </button>
-      }
-    </nav>
+    @if (isTourListPage()) {
+      <nav class="tour-listing__filters" aria-label="Tour sorting">
+        @for (sort of sorts; track sort.id) {
+          <button
+            type="button"
+            [ngClass]="{ 'tour-listing__filter--active': activeSort() === sort.id }"
+            (click)="setSort(sort.id)"
+          >
+            <mat-icon aria-hidden="true">{{ sort.icon }}</mat-icon>
+            {{ sort.label }}
+          </button>
+        }
+      </nav>
+    }
 
     @if (page().introSections?.length) {
       <div class="tour-listing__intro">
@@ -46,9 +54,9 @@
       </div>
     }
 
-    <div class="tour-listing__content">
+    <div class="tour-listing__content" [class.tour-listing__content--full]="!isTourListPage()">
       <div class="tour-listing__grid">
-        @for (card of cards(); track card.target) {
+        @for (card of cards(); track card.title) {
           <article class="tour-listing__card">
             <a [routerLink]="card.target">
               <div class="tour-listing__card-image">
@@ -71,18 +79,94 @@
         }
       </div>
 
-      @if (page().showFilters) {
+      @if (isTourListPage()) {
         <aside class="tour-listing__sidebar" aria-label="Find your destination">
-          <h2>Find Your Destination</h2>
-          <label><mat-icon aria-hidden="true">search</mat-icon><input placeholder="Search Tour" /></label>
-          <label><mat-icon aria-hidden="true">location_on</mat-icon><input placeholder="Where To?" /></label>
-          <label><mat-icon aria-hidden="true">calendar_month</mat-icon><select><option>Month</option></select></label>
-          <div class="tour-listing__range">EUR1050 - EUR2650</div>
-          <label class="tour-listing__check"><input type="checkbox" />Classic Tours</label>
-          <label class="tour-listing__check"><input type="checkbox" />Women-Only</label>
-          <label class="tour-listing__check"><input type="checkbox" />Solo Travellers</label>
-          <button type="button">Search</button>
-          <a class="tour-listing__discover" routerLink="/classic-tours/">Discover more tours...</a>
+          <div class="tour-listing__sidebar-panel">
+            <h2>Find Your Destination</h2>
+            <label>
+              <mat-icon aria-hidden="true">search</mat-icon>
+              <input
+                placeholder="Search Tour"
+                [value]="pendingFilters().search"
+                (input)="updateFilter('search', $any($event.target).value)"
+              />
+            </label>
+            <label>
+              <mat-icon aria-hidden="true">location_on</mat-icon>
+              <input
+                placeholder="Where To?"
+                [value]="pendingFilters().location"
+                (input)="updateFilter('location', $any($event.target).value)"
+              />
+            </label>
+            <div class="tour-listing__select-field">
+              <mat-icon aria-hidden="true">calendar_month</mat-icon>
+              <button
+                class="tour-listing__month-trigger"
+                type="button"
+                [attr.aria-expanded]="isMonthDropdownOpen()"
+                aria-haspopup="listbox"
+                (click)="toggleMonthDropdown()"
+              >
+                {{ monthLabel() }}
+              </button>
+              @if (isMonthDropdownOpen()) {
+                <div class="tour-listing__month-dropdown" role="listbox">
+                  <button type="button" role="option" (click)="selectMonth('')">Month</button>
+                  @for (month of months; track month) {
+                    <button type="button" role="option" (click)="selectMonth(month)">
+                      {{ month }}
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+            <div class="tour-listing__price-range">
+              <span>Price range</span>
+              <div class="tour-listing__range-controls">
+                <input
+                  aria-label="Minimum price"
+                  type="range"
+                  [min]="priceMin"
+                  [max]="priceMax"
+                  [value]="pendingFilters().minPrice"
+                  (input)="updateFilter('minPrice', +$any($event.target).value)"
+                />
+                <input
+                  aria-label="Maximum price"
+                  type="range"
+                  [min]="priceMin"
+                  [max]="priceMax"
+                  [value]="pendingFilters().maxPrice"
+                  (input)="updateFilter('maxPrice', +$any($event.target).value)"
+                />
+              </div>
+              <small>{{ priceRangeLabel() }}</small>
+            </div>
+            @for (category of categories; track category) {
+              <label class="tour-listing__check">
+                <input
+                  type="checkbox"
+                  [checked]="isCategoryChecked(category)"
+                  (change)="toggleCategory(category, $any($event.target).checked)"
+                />
+                {{ category }}
+              </label>
+            }
+            <button class="tour-listing__search-button" type="button" (click)="applyFilters()">
+              Search
+            </button>
+          </div>
+          <a class="tour-listing__discover" routerLink="/classic-tours/">
+            <span>Discover more tours...</span>
+            <img
+              src="/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp"
+              alt="Omaya Travel"
+              width="112"
+              height="63"
+              loading="lazy"
+            />
+          </a>
         </aside>
       }
     </div>

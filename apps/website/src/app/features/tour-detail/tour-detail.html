@@ -44,7 +44,7 @@
                 </ul>
               </div>
               <p class="tour-detail__price">
-                {{ priceLabel(tour) }} <span>/ per {{ tour.price.unit }}</span>
+                {{ priceLabel(tour) }} <span>per {{ tour.price.unit }}</span>
               </p>
             </div>
 
@@ -62,13 +62,6 @@
 
             @for (paragraph of tour.introduction; track paragraph) {
               <p>{{ paragraph }}</p>
-            }
-
-            @if (tour.departureReturn) {
-              <div class="tour-detail__departure">
-                <h2>Departure/Return Location</h2>
-                <p>{{ departureReturnLabel(tour) }}</p>
-              </div>
             }
           </section>
 
@@ -100,6 +93,13 @@
             </div>
           </section>
 
+          @if (tour.departureReturn) {
+            <section class="tour-detail__section tour-detail__lists tour-detail__departure">
+              <h2>Departure/Return Location</h2>
+              <p>{{ departureReturnLabel(tour) }}</p>
+            </section>
+          }
+
           <section class="tour-detail__section tour-detail__lists">
             <h2>Included</h2>
             <ul>
@@ -120,6 +120,9 @@
 
           <section class="tour-detail__section">
             <h2>From our gallery</h2>
+            @if (tour.gallerySubtitle) {
+              <p class="tour-detail__gallery-subtitle">{{ tour.gallerySubtitle }}</p>
+            }
             <div class="tour-detail__gallery-preview">
               @for (image of tour.gallery.slice(0, 3); track image.src; let index = $index) {
                 <button
@@ -171,23 +174,29 @@
         }
 
         @if (activeTab() === 'gallery') {
-          <section class="tour-detail__gallery" aria-label="Tour gallery">
-            @for (image of tour.gallery; track image.src; let index = $index) {
-              <button
-                class="tour-detail__gallery-button"
-                type="button"
-                [attr.aria-label]="'Preview gallery image: ' + image.alt"
-                (click)="openGallery(index)"
-              >
-                <img
-                  [src]="image.src"
-                  [width]="image.width"
-                  [height]="image.height"
-                  [alt]="image.alt"
-                  loading="lazy"
-                />
-              </button>
+          <section class="tour-detail__section tour-detail__gallery-section">
+            <h2>From our gallery</h2>
+            @if (tour.gallerySubtitle) {
+              <p class="tour-detail__gallery-subtitle">{{ tour.gallerySubtitle }}</p>
             }
+            <div class="tour-detail__gallery" aria-label="Tour gallery">
+              @for (image of tour.gallery; track image.src; let index = $index) {
+                <button
+                  class="tour-detail__gallery-button"
+                  type="button"
+                  [attr.aria-label]="'Preview gallery image: ' + image.alt"
+                  (click)="openGallery(index)"
+                >
+                  <img
+                    [src]="image.src"
+                    [width]="image.width"
+                    [height]="image.height"
+                    [alt]="image.alt"
+                    loading="lazy"
+                  />
+                </button>
+              }
+            </div>
           </section>
         }
 
@@ -239,7 +248,7 @@
           </label>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">groups_2</mat-icon>
-            <input type="number" name="tickets" min="1" placeholder="Number of tickets" />
+            <input type="number" name="tickets" min="1" placeholder="Number of people" />
           </label>
           <textarea name="message" rows="7" placeholder="Message"></textarea>
           <button class="tour-detail__availability" type="button">{{ tour.enquiry.cta }}</button>

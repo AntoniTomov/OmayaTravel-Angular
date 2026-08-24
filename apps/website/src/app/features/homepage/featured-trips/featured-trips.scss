@@ -75,7 +75,9 @@
 
 .featured-trips__carousel {
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scroll-behavior: smooth;
+  scroll-padding-inline: 0;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   cursor: grab;
@@ -99,6 +101,7 @@
 .featured-trips__track {
   display: flex;
   gap: 1.7rem;
+  align-items: stretch;
 }
 
 .featured-trips__card {

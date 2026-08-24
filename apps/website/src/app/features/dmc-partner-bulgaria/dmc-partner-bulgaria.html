@@ -19,7 +19,7 @@
     <div>
       @for (benefit of content.benefits; track benefit.title) {
         <article>
-          <span>{{ benefit.icon }}</span>
+          <span><mat-icon aria-hidden="true">{{ benefit.icon }}</mat-icon></span>
           <h3>{{ benefit.title }}</h3>
           <p>{{ benefit.text }}</p>
         </article>

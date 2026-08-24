@@ -45,11 +45,11 @@
         alt="Experience Bulgaria with Omaya"
         loading="lazy"
       />
-      <form class="faq-page__contact" (submit)="$event.preventDefault()">
+      <form class="faq-page__contact" (submit)="sendQuestionEmail($event)">
         <h2>Still Have a Question?</h2>
-        <input type="text" name="name" placeholder="Name" autocomplete="name" />
-        <input type="email" name="email" placeholder="Email" autocomplete="email" />
-        <textarea name="message" rows="5" aria-label="Message"></textarea>
+        <input type="text" name="name" placeholder="Name" autocomplete="name" required />
+        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+        <textarea name="message" rows="5" aria-label="Message" required></textarea>
         <button type="submit">Submit</button>
       </form>
     </aside>

@@ -63,6 +63,7 @@ export interface TourDetailContent {
   notIncluded: readonly string[];
   itinerary: readonly TourItineraryDay[];
   gallery: readonly TourImage[];
+  gallerySubtitle?: string;
   faq?: {
     heading: string;
     intro: string;
@@ -105,8 +106,8 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   },
   category: 'Classic Tours',
   duration: {
-    days: 8,
-    nights: 7,
+    days: 9,
+    nights: 8,
   },
   price: {
     amount: 1450,
@@ -200,65 +201,73 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   itinerary: [
     {
       day: 1,
-      title: 'Arrival in Algiers and flight to Djanet',
+      title: 'Arrival in Algiers. Meet the group and take a domestic flight to Djanet',
       description:
-        'Meet group and tour leader in Algiers, then take domestic flight south to Djanet. Local Tuareg team meets group on arrival and provides transfer to hotel.',
+        'After making your own way to Algiers, you will meet the rest of the group and your tour leader at the airport before boarding the flight south to Djanet. The landscape below shifts from city to desert long before you land - your first hint of what lies ahead. Arriving in the evening, you are met by your local Tuareg team and transferred to your hotel for the night.',
       accommodation: 'Local hotel in Djanet',
       meals: [],
     },
     {
       day: 2,
-      title: 'Into Tadrart - El Berdj',
+      title: 'Into the Tadrart - El Berdj',
       description:
-        'Travel south from Djanet into Tadrart Rouge. Visit ancient rock engravings before reaching El Berdj. Explore area around sunset and establish first desert camp.',
-      accommodation: 'Wild camping in desert',
+        'This is the day the desert opens up. Driving south from Djanet into the Tadrart - the red sandstone massif that forms one of the Sahara\'s most dramatic landscapes - you make your first stops at ancient rock engravings etched into the stone by peoples who lived here thousands of years before the desert came. By afternoon you reach El Berdj, a place of extraordinary stillness and beauty. Camp is set as the sun drops behind the rocks, casting long shadows across the sand. Your first walk here, in the golden hour before dusk, is something you will not easily forget.',
+      accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
     {
       day: 3,
-      title: 'Dunes and Neolithic Paintings - Moul Naga',
+      title: 'El Berdj - Moul Naga',
       description:
-        'Continue through El Berdj gorge into red and pink dune landscapes. Visit rock-art sites around Wan Iska and see Neolithic engravings and cattle paintings. Camp among dunes at Moul Naga.',
-      accommodation: 'Wild camping in desert',
+        'The gorge of El Berdj leads you into a different world - one of towering dunes, their colours shifting from deep red to soft pink depending on where the light falls. Today is one of the journey\'s most visually rich days, moving between vast sandscapes and galleries of rock art left by the people of the Neolithic era. You will see beautifully preserved engravings line the rock faces and paintings of cattle - a 6,000-year-old record of a time when this land was green and alive. Camp tonight is at Moul Naga, surrounded by dunes that seem to belong to another planet entirely.',
+      accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
     {
       day: 4,
-      title: 'Great Erg - Tin Merzouga to Adjlati',
+      title: 'Moul Naga - Tamzdiga - Tin Merzouga',
       description:
-        'Explore Tin Merzouga and its immense dunes, then cross Indjaren wadi while visiting additional prehistoric paintings and engravings. Continue to Adjlati and camp among contrasting black-sand dunes.',
-      accommodation: 'Wild camping in desert',
+        'The adventure continues among the striking dunes of Erg Tin Merzouga, some reaching up to 600 metres high. Along the way, we will discover impressive engravings and sites featuring magnificent Neolithic rock paintings, including depictions of oxen.',
+      accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
     {
       day: 5,
-      title: 'Stone Forest - Adaik',
+      title: 'Tin Merzouga to Adjlati',
       description:
-        'Travel back toward Djanet through unusual sandstone landscapes. Stop near Tini and visit famous Crying Cow engravings before reaching Adaik, known as Stone Forest for its wind-eroded columns and arches.',
-      accommodation: 'Wild camping in desert',
+        'The erg Tin Merzouga is one of the Sahara\'s great spectacles. The dunes here are among the highest in Algeria - and the colours move through a full spectrum of red, pink, and amber as the day progresses. You cross the wadi of Indjaren, pausing at more rock paintings and engravings that have survived here in the dry air for millennia. By afternoon, you arrive at Adjlati, a camp set among black sand dunes - a geological curiosity and a striking contrast to the fiery reds of the morning. The evenings here have a particular quality: cooler air, a fire, tea, and a sky dense with stars.',
+      accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
     {
       day: 6,
-      title: 'Wadi Essendilene - Erg Admer',
+      title: 'The Stone Forest - Adaik',
       description:
-        'Explore green canyon landscape of Essendilene, where natural pools support palms, tamarisks and oleanders. Possible encounter with local Tuareg nomads. Continue to Erg Admer for sunset and overnight desert camp.',
-      accommodation: 'Wild camping in desert',
+        'The route today passes through landscapes that feel like they belong to a geological fairy tale. A stop at Tini for lunch breaks the morning\'s drive, and nearby, the engravings of the Crying Cow - one of the Tadrart\'s most celebrated and moving rock art sites, dating to around 6000 BC - reward anyone who makes the short walk to find them. Camp tonight is in Adaik, the so-called Stone Forest: an otherworldly terrain of wind-eroded sandstone columns and arches rising from the desert floor, their shadows lengthening as the sun goes down. It is the kind of place that makes you feel very small, in the best possible way.',
+      accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
     {
       day: 7,
-      title: 'Tikobawin Arch - Return to Djanet',
+      title: 'Wadi Essendilene - Erg Admer',
       description:
-        'Visit Tikobawin natural arch, nearby Neolithic tombs and rock paintings, then pass Tilalin mountains and stop at Timghas. Return to Djanet in afternoon and visit local Tuareg market before dinner.',
-      accommodation: 'Local hotel in Djanet',
+        'Today brings one of the journey\'s most unexpected pleasures. Deep in the canyon of Essendilene, a hidden wadi shelters oleanders, tamarisks, and palm trees - a pocket of green life in the heart of the Sahara, fed by secret gueltas (natural rock pools) that persist long after the rains have gone. This is also where you may encounter a Tuareg nomad family who still live here, as their ancestors have for generations, moving with the seasons and the water. Camp is made in the Erg Admer, a sea of classic Saharan dunes where sunset and sunrise are among the finest you will see on the entire journey. The light here has been painted by photographers and described by travellers for a century - and still, nothing quite prepares you for it.',
+      accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
     {
       day: 8,
-      title: 'Flight Djanet - Algiers',
+      title: 'Tikobawin Arch - Return to Djanet',
       description:
-        'Transfer to Djanet airport and fly to Algiers. Tour finishes on arrival in Algiers.',
+        'The final day in the desert saves some of its best for last. Tikobawin is one of the Tadrart\'s great natural arches - a monumental rock formation that frames the sky like a doorway into another world. Nearby, Neolithic tombs and rock paintings add a layer of human history to the drama of the landscape, and the mountains of Tilalin provide a majestic backdrop for a last lunch in the wilderness at Timghas. By late afternoon you are back in Djanet, showering off the sand and dust of six days in the desert. The evening brings a visit to the Tuareg market - one of the most authentic in the region - followed by dinner at the hotel. A fitting close to a journey that rarely slows down long enough to feel ordinary.',
+      accommodation: 'Local hotel in Djanet',
+      meals: ['breakfast', 'lunch', 'dinner'],
+    },
+    {
+      day: 9,
+      title: 'Flight Djanet-Algiers. End of the tour',
+      description:
+        'Transfer to Djanet airport for your departure flight to Algiers. The tour ends upon arrival in Algiers.',
       accommodation: null,
       meals: [],
     },
@@ -467,6 +476,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       width: 800,
       height: 1100,
     })),
+    gallerySubtitle:
+      'The Balkans at their most beautiful, most authentic, and most unexpected.',
     faq: {
       heading: 'Your Journey, Simplified.',
       intro:
@@ -762,6 +773,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       width: 800,
       height: 1100,
     })),
+    gallerySubtitle: "Central Asia's last great nomadic frontier, lived from the inside",
     enquiry: {
       enabled: true,
       cta: 'Check Availability',

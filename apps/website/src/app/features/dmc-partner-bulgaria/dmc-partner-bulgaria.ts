@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
 const DMC_PAGE = {
@@ -14,7 +15,7 @@ const DMC_PAGE = {
   },
   benefits: [
     {
-      icon: 'puzzle',
+      icon: 'extension',
       title: 'Fully custom, every time',
       text: "No fixed templates - each itinerary is built from scratch around your group's brief.",
     },
@@ -24,7 +25,7 @@ const DMC_PAGE = {
       text: 'Registered Bulgarian tour operator (PK-01-8706), EU-compliant travel insurance - your trusted DMC partner in Bulgaria.',
     },
     {
-      icon: 'globe',
+      icon: 'public',
       title: 'Local knowledge, deeply rooted',
       text: "Years of building our own tours across Bulgaria's cities, mountains, and villages.",
     },
@@ -60,7 +61,7 @@ const DMC_PAGE = {
 
 @Component({
   selector: 'app-dmc-partner-bulgaria',
-  imports: [RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './dmc-partner-bulgaria.html',
   styleUrl: './dmc-partner-bulgaria.scss',
 })

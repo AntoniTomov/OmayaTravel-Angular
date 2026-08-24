@@ -150,15 +150,26 @@
   box-shadow: var(--omaya-shadow-dropdown);
 }
 
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown,
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu {
+  background: tokens.$omaya-color-dark;
+}
+
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown > a,
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu-button,
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu a {
+  color: tokens.$omaya-color-white;
+}
+
 .public-header__dropdown > a,
 .public-header__submenu-button {
   display: block;
-  padding: 0.85rem 1.5rem;
+  padding: 0.65rem 1.5rem;
   color: tokens.$omaya-color-text;
   background: transparent;
   border: 0;
   font: tokens.$omaya-font-body;
-  font-size: 0.82rem;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -168,12 +179,12 @@
 
 .public-header__submenu a {
   display: block;
-  padding: 0.85rem 1.5rem;
+  padding: 0.65rem 1.5rem;
   color: tokens.$omaya-color-text;
   background: transparent;
   border: 0;
   font: tokens.$omaya-font-body;
-  font-size: 0.82rem;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -352,6 +363,7 @@
     visibility: visible;
     opacity: 0;
     transform: translateY(-0.45rem);
+    background: tokens.$omaya-color-white;
     transition:
       max-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
       opacity 260ms ease,
@@ -376,6 +388,7 @@
     opacity: 0;
     transform: translateY(-0.35rem);
     box-shadow: none;
+    background: tokens.$omaya-color-white;
     transition:
       max-height 260ms cubic-bezier(0.22, 1, 0.36, 1),
       opacity 220ms ease,
@@ -386,6 +399,17 @@
     max-height: 12rem;
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown,
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu {
+    background: tokens.$omaya-color-white;
+  }
+
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown > a,
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu-button,
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu a {
+    color: tokens.$omaya-color-text;
   }
 
 }

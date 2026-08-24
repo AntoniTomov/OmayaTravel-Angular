@@ -13,7 +13,9 @@
 
 .faq-page__hero {
   display: grid;
-  min-height: 25rem;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   padding: 8rem 1rem 4rem;
   color: tokens.$omaya-color-white;

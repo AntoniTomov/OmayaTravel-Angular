@@ -196,4 +196,31 @@ const FAQ_PAGE = {
 })
 export class FaqPage {
   protected readonly content = FAQ_PAGE;
+
+  protected sendQuestionEmail(event: Event): void {
+    event.preventDefault();
+
+    const form = event.currentTarget as HTMLFormElement;
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    const formData = new FormData(form);
+    const name = String(formData.get('name') ?? '').trim();
+    const email = String(formData.get('email') ?? '').trim();
+    const message = String(formData.get('message') ?? '').trim();
+    const subject = 'FAQ question from omayatravel.com';
+    const body = [
+      'New FAQ question from omayatravel.com',
+      '',
+      `Name: ${name}`,
+      `Email: ${email}`,
+      '',
+      'Message:',
+      message,
+    ].join('\n');
+
+    window.location.href = `mailto:info@omayatravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
 }

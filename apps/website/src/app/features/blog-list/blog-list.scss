@@ -14,7 +14,9 @@
 .blog-list__hero {
   position: relative;
   display: grid;
-  min-height: clamp(22rem, 42vw, 34rem);
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;
@@ -134,15 +136,18 @@
 }
 
 .blog-list__meta span:nth-child(1)::before {
-  content: '□';
+  content: 'calendar_month';
+  font-family: 'Material Icons';
 }
 
 .blog-list__meta span:nth-child(2)::before {
-  content: '♥';
+  content: 'chat_bubble_outline';
+  font-family: 'Material Icons';
 }
 
 .blog-list__meta span:nth-child(3)::before {
-  content: '◆';
+  content: 'sell';
+  font-family: 'Material Icons';
 }
 
 .blog-list a {
@@ -186,6 +191,11 @@
   font-family: tokens.$omaya-font-heading;
   font-size: 1rem;
   line-height: 1.35;
+  transition: color 0.5s;
+}
+
+.blog-list__suggestion:is(:hover, :focus-visible) strong {
+  color: tokens.$omaya-color-gold;
 }
 
 .blog-list__suggestion small {

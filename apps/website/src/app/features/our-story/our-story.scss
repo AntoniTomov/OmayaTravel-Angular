@@ -14,7 +14,9 @@
 .our-story__hero {
   position: relative;
   display: grid;
-  min-height: 38rem;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   align-items: center;
   overflow: hidden;
   padding: 11rem max(1.5rem, calc((100vw - 76rem) / 2)) 6rem;
@@ -149,6 +151,10 @@
   line-height: 0.95;
 }
 
+#our-story-team-heading.our-story__faces-title {
+  font-family: 'Kristi', cursive;
+}
+
 .our-story__members {
   display: grid;
   gap: 3rem;
@@ -172,6 +178,7 @@
 .our-story__member:nth-child(even) div {
   grid-column: 1;
   grid-row: 1;
+  text-align: end;
 }
 
 .our-story__member img {
@@ -214,7 +221,8 @@
 
 @media (max-width: 56rem) {
   .our-story__hero {
-    min-height: 34rem;
+    height: 515px;
+    max-height: 515px;
     padding-top: 8rem;
   }
 

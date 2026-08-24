@@ -109,7 +109,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     alt: 'Morocco women-only tour preview',
     price: 'EUR2300',
     duration: '12 Days / 11 Nights',
-    target: '/tour-item/tour-item-morocco-women-only-tour/',
+    target: '/tour-item/morocco-tour/',
   },
   {
     title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only',
@@ -121,7 +121,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     alt: 'Morocco solo travellers tour preview',
     price: 'EUR2550',
     duration: '12 Days / 11 Nights',
-    target: '/tour-item/tour-item-morocco-solo-travellers-tour/',
+    target: '/tour-item/morocco-tour/',
   },
 ];
 

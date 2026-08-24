@@ -23,6 +23,11 @@ export class ContactPage {
     event.preventDefault();
 
     const form = event.currentTarget as HTMLFormElement;
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
     const formData = new FormData(form);
     const name = String(formData.get('name') ?? '').trim();
     const email = String(formData.get('email') ?? '').trim();

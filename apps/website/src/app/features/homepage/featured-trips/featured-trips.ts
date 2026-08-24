@@ -1,18 +1,13 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
-  OnDestroy,
-  OnInit,
   QueryList,
-  PLATFORM_ID,
   ViewChild,
   ViewChildren,
   computed,
   inject,
   signal,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
@@ -33,12 +28,6 @@ interface FeaturedTrip {
     loading: 'lazy';
     fetchPriority: 'auto';
   };
-}
-
-interface TempFeaturedTrip {
-  trip: FeaturedTrip;
-  originalIndex: number;
-  tempId: string;
 }
 
 const FEATURED_TRIP_IMAGES = [
@@ -74,17 +63,14 @@ const FEATURED_TRIP_IMAGES = [
   templateUrl: './featured-trips.html',
   styleUrl: './featured-trips.scss',
 })
-export class FeaturedTrips implements OnInit, AfterViewInit, OnDestroy {
+export class FeaturedTrips {
   @ViewChild('carousel') private readonly carousel?: ElementRef<HTMLElement>;
+  @ViewChild('track') private readonly track?: ElementRef<HTMLElement>;
   @ViewChildren('tripCard') private readonly tripCards!: QueryList<ElementRef<HTMLElement>>;
   protected readonly i18n = inject(OmayaI18n);
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly bufferSize = 3;
   private dragStartX = 0;
   private dragStartScrollLeft = 0;
   private isDragging = false;
-  private isCommittingMove = false;
-  private resizeHandler?: () => void;
 
   protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
     this.i18n.featuredTrips().map((trip, index) => ({
@@ -98,81 +84,40 @@ export class FeaturedTrips implements OnInit, AfterViewInit, OnDestroy {
       image: this.buildCardImage(index),
     })),
   );
-  protected readonly tempTours = signal<readonly TempFeaturedTrip[]>([]);
   protected readonly activeTripIndex = signal(0);
-  private readonly visibleStartIndex = signal(0);
-  private readonly visibleCount = signal(3);
-
-  ngOnInit(): void {
-    this.visibleCount.set(this.getVisibleCount());
-    this.rebuildTempTours();
-  }
-
-  ngAfterViewInit(): void {
-    if (!this.isBrowser) {
-      return;
-    }
-
-    this.resizeHandler = () => {
-      this.visibleCount.set(this.getVisibleCount());
-      this.rebuildTempTours();
-      queueMicrotask(() => this.resetCarouselToBuffer());
-    };
-    window.addEventListener('resize', this.resizeHandler);
-
-    queueMicrotask(() => {
-      this.rebuildTempTours();
-      this.resetCarouselToBuffer();
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.resizeHandler) {
-      window.removeEventListener('resize', this.resizeHandler);
-    }
-  }
 
   protected shiftTrip(direction: -1 | 1): void {
-    this.moveBy(direction, true);
-  }
-
-  private moveBy(offset: number, smooth: boolean): void {
     const carousel = this.carousel?.nativeElement;
-    const targetIndex = this.bufferSize + offset;
+    const nearestIndex = carousel ? this.findNearestTripIndex(carousel) : null;
+    const targetIndex = this.clampIndex((nearestIndex ?? this.activeTripIndex()) + direction);
     const targetCard = this.tripCards.get(targetIndex)?.nativeElement;
 
-    if (!carousel || !targetCard || this.isCommittingMove || offset === 0) {
+    if (!carousel || !targetCard || targetIndex === nearestIndex) {
       return;
     }
 
-    this.isCommittingMove = true;
-
     carousel.scrollTo?.({
-      left: targetCard.offsetLeft,
-      behavior: smooth ? 'smooth' : 'auto',
+      left: this.getCardScrollLeft(targetCard),
+      behavior: 'smooth',
     });
 
-    window.setTimeout(() => this.commitMove(offset), smooth ? 260 : 0);
+    this.activeTripIndex.set(targetIndex);
   }
 
   protected syncActiveTripFromScroll(event: Event): void {
     const carousel = event.currentTarget as HTMLElement | null;
 
-    if (!carousel || this.isCommittingMove) {
+    if (!carousel) {
       return;
     }
 
-    const nearestIndex = this.findNearestTempIndex(carousel);
+    const nearestIndex = this.findNearestTripIndex(carousel);
 
     if (nearestIndex === null) {
       return;
     }
 
-    const nearestTour = this.tempTours()[nearestIndex];
-
-    if (nearestTour) {
-      this.activeTripIndex.set(nearestTour.originalIndex);
-    }
+    this.activeTripIndex.set(nearestIndex);
   }
 
   protected startDrag(event: PointerEvent): void {
@@ -214,21 +159,28 @@ export class FeaturedTrips implements OnInit, AfterViewInit, OnDestroy {
       carousel.releasePointerCapture(event.pointerId);
     }
 
-    const nearestIndex = this.findNearestTempIndex(carousel);
+    const nearestIndex = this.findNearestTripIndex(carousel);
 
     if (nearestIndex === null) {
       return;
     }
 
-    this.moveBy(nearestIndex - this.bufferSize, false);
+    const targetCard = this.tripCards.get(nearestIndex)?.nativeElement;
+
+    if (targetCard) {
+      carousel.scrollTo?.({
+        left: this.getCardScrollLeft(targetCard),
+        behavior: 'smooth',
+      });
+    }
   }
 
-  private findNearestTempIndex(carousel: HTMLElement): number | null {
+  private findNearestTripIndex(carousel: HTMLElement): number | null {
     let nearestIndex: number | null = null;
     let nearestDistance = Number.POSITIVE_INFINITY;
 
     this.tripCards.forEach((card, index) => {
-      const distance = Math.abs(card.nativeElement.offsetLeft - carousel.scrollLeft);
+      const distance = Math.abs(this.getCardScrollLeft(card.nativeElement) - carousel.scrollLeft);
 
       if (distance < nearestDistance) {
         nearestIndex = index;
@@ -239,81 +191,12 @@ export class FeaturedTrips implements OnInit, AfterViewInit, OnDestroy {
     return nearestIndex;
   }
 
-  private commitMove(offset: number): void {
-    const trips = this.trips();
-
-    if (trips.length === 0) {
-      this.isCommittingMove = false;
-      return;
-    }
-
-    const nextStartIndex = this.normalizeIndex(this.visibleStartIndex() + offset, trips.length);
-    this.visibleStartIndex.set(nextStartIndex);
-    this.activeTripIndex.set(nextStartIndex);
-    this.rebuildTempTours();
-
-    queueMicrotask(() => {
-      this.resetCarouselToBuffer();
-      this.isCommittingMove = false;
-    });
+  private getCardScrollLeft(card: HTMLElement): number {
+    return card.offsetLeft - (this.track?.nativeElement.offsetLeft ?? 0);
   }
 
-  private rebuildTempTours(): void {
-    const trips = this.trips();
-
-    if (trips.length === 0) {
-      this.tempTours.set([]);
-      return;
-    }
-
-    const startIndex = this.visibleStartIndex();
-    const itemCount = this.bufferSize + this.visibleCount() + this.bufferSize;
-    const firstIndex = startIndex - this.bufferSize;
-
-    this.tempTours.set(
-      Array.from({ length: itemCount }, (_, tempIndex) => {
-        const originalIndex = this.normalizeIndex(firstIndex + tempIndex, trips.length);
-
-        return {
-          trip: trips[originalIndex],
-          originalIndex,
-          tempId: `${firstIndex + tempIndex}:${originalIndex}`,
-        };
-      }),
-    );
-  }
-
-  private resetCarouselToBuffer(): void {
-    const carousel = this.carousel?.nativeElement;
-    const targetCard = this.tripCards.get(this.bufferSize)?.nativeElement;
-
-    if (!carousel || !targetCard) {
-      return;
-    }
-
-    carousel.style.scrollBehavior = 'auto';
-    carousel.scrollLeft = targetCard.offsetLeft;
-    carousel.style.scrollBehavior = '';
-  }
-
-  private getVisibleCount(): number {
-    if (!this.isBrowser) {
-      return 3;
-    }
-
-    if (window.matchMedia('(max-width: 44rem)').matches) {
-      return 1;
-    }
-
-    if (window.matchMedia('(max-width: 70rem)').matches) {
-      return 2;
-    }
-
-    return 3;
-  }
-
-  private normalizeIndex(index: number, length: number): number {
-    return ((index % length) + length) % length;
+  private clampIndex(index: number): number {
+    return Math.max(0, Math.min(index, this.trips().length - 1));
   }
 
   private buildCardImage(index: number): FeaturedTrip['image'] {

@@ -12,7 +12,9 @@
 .private-tours-page__hero {
   position: relative;
   display: grid;
-  min-height: 32rem;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;
@@ -108,7 +110,8 @@
 
 @media (max-width: 48rem) {
   .private-tours-page__hero {
-    min-height: 26rem;
+    height: 515px;
+    max-height: 515px;
   }
 
   .private-tours-page__intro {

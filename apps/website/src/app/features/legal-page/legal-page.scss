@@ -14,7 +14,9 @@
 .legal-page__hero {
   position: relative;
   display: grid;
-  min-height: 28rem;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   margin: 0 -24px 5rem;
   overflow: hidden;
@@ -105,7 +107,8 @@
 
 @media (max-width: 40rem) {
   .legal-page__hero {
-    min-height: 22rem;
+    height: 515px;
+    max-height: 515px;
     margin-bottom: 3.5rem;
   }
 

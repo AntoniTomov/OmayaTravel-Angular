@@ -66,6 +66,12 @@
   cursor: pointer;
 }
 
+.planning-form__steps button:disabled,
+.planning-form__button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
 .planning-form__steps button.is-active {
   color: tokens.$omaya-color-dark;
   background: tokens.$omaya-color-gold;
@@ -93,6 +99,40 @@
   font-weight: 800;
 }
 
+.planning-form__phone {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 0.6rem;
+}
+
+.planning-form .planning-form__country-code {
+  padding-inline: 0.7rem;
+}
+
+.planning-form__radio-group {
+  gap: 0.75rem !important;
+}
+
+.planning-form__radio-group legend {
+  margin-bottom: 0.2rem;
+  font: inherit;
+  font-weight: 800;
+}
+
+.planning-form__radio-group label {
+  display: flex;
+  grid-template-columns: none;
+  gap: 0.6rem;
+  align-items: center;
+  font-weight: 400;
+}
+
+.planning-form__radio-group input {
+  width: 1rem;
+  min-height: 1rem;
+  accent-color: tokens.$omaya-color-gold;
+}
+
 .planning-form :is(input, select, textarea) {
   width: 100%;
   box-sizing: border-box;
@@ -100,6 +140,14 @@
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--omaya-color-border-light);
   font: inherit;
+}
+
+.planning-form input[type='date'] {
+  cursor: pointer;
+  color-scheme: light;
+  background:
+    linear-gradient(90deg, transparent calc(100% - 3rem), rgb(var(--omaya-color-overlay-rgb) / 4%) 0),
+    tokens.$omaya-color-white;
 }
 
 .planning-form textarea {
@@ -126,9 +174,18 @@
   background: tokens.$omaya-color-dark;
 }
 
+.planning-form__button:disabled:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+}
+
 .planning-form__button--secondary {
   color: tokens.$omaya-color-white;
   background: tokens.$omaya-color-dark;
+}
+
+.planning-form__button--secondary:is(:hover, :focus-visible) {
+  background: tokens.$omaya-color-gold;
 }
 
 .planning-form__sent {
@@ -150,5 +207,9 @@
 
   .planning-form__panel {
     padding: 1.25rem;
+  }
+
+  .planning-form__phone {
+    grid-template-columns: 1fr;
   }
 }

@@ -14,7 +14,9 @@
 .enquire-page__hero {
   position: relative;
   display: grid;
-  min-height: clamp(27rem, 40vw, 31rem);
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;
@@ -165,6 +167,13 @@
   font: inherit;
   font-weight: 800;
   cursor: pointer;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+
+.enquire-page button:is(:hover, :focus-visible) {
+  background: tokens.$omaya-color-gold;
 }
 
 .enquire-page :is(input, textarea, select, button, a):focus-visible {

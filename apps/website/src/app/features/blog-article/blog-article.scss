@@ -14,7 +14,9 @@
 .blog-article__hero {
   position: relative;
   display: grid;
-  min-height: clamp(28rem, 40vw, 32rem);
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;

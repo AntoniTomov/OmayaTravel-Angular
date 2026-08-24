@@ -12,7 +12,9 @@
 .not-yet__hero {
   position: relative;
   display: grid;
-  min-height: clamp(20rem, 36vw, 31rem);
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;
@@ -89,7 +91,8 @@
 
 @media (max-width: 48rem) {
   .not-yet__hero {
-    min-height: 18rem;
+    height: 515px;
+    max-height: 515px;
   }
 
   .not-yet__message {

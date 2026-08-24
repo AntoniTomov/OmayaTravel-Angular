@@ -4,6 +4,7 @@ html {
 
 :root,
 [data-theme='omaya'] {
+  interpolate-size: allow-keywords;
   --omaya-color-accent: #f7b500;
   --omaya-color-dark: #303030;
   --omaya-color-ink: #141414;
@@ -77,4 +78,28 @@ body {
 
 :is(a, button, input, textarea, select) {
   font-family: 'Roboto', sans-serif;
+}
+
+button,
+[type='button'],
+[type='submit'],
+a {
+  transition:
+    background 0.5s,
+    color 0.5s,
+    border-color 0.5s,
+    opacity 0.5s,
+    transform 0.5s;
+}
+
+details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.5s,
+    content-visibility 0.5s allow-discrete;
+}
+
+details[open]::details-content {
+  block-size: auto;
 }
