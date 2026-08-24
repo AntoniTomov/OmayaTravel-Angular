@@ -252,6 +252,7 @@
   inset: 0;
   background: linear-gradient(180deg, transparent 35%, rgb(0 0 0 / 65%));
   content: '';
+  transition: background 0.5s;
 }
 
 .tour-listing__card img {
@@ -268,6 +269,16 @@
 
 .tour-listing__card-category {
   display: inline-block;
+  mask-image:
+    linear-gradient(to bottom, transparent, black 50%, black 60%, transparent),
+    linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, black 50%, black 60%, transparent),
+    linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-composite: source-in;
+  padding: 18px 26px;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 28%);
 }
 
 .tour-listing__card-body {
@@ -279,11 +290,15 @@
 
 .tour-listing__card-overlay {
   position: absolute;
-  left: 24px;
-  right: 24px;
+  inset-inline: 0;
   bottom: 26px;
   z-index: 1;
+  box-sizing: border-box;
   color: var(--omaya-color-surface);
+}
+
+.tour-listing__card-overlay > :not(.tour-listing__card-category) {
+  padding-inline: 24px;
 }
 
 .tour-listing__card h2 {
@@ -304,19 +319,10 @@
   color: var(--omaya-color-accent);
   background-color: rgb(0 0 0 / 50%);
   border-radius: 20px;
-  padding: 4px 10px;
   font-family: 'Kristi', cursive;
   font-size: 40px;
   font-weight: 400;
   line-height: 1;
-  mask-image:
-    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
-    linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  mask-composite: intersect;
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
-    linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-composite: source-in;
 }
 
 .tour-listing__card-body > p {
@@ -338,6 +344,66 @@
   height: 16px;
   color: var(--omaya-color-accent);
   font-size: 16px;
+}
+
+.tour-listing--tour-list .tour-listing__card-image {
+  height: 450px;
+}
+
+.tour-listing--tour-list .tour-listing__card-image::after {
+  background: linear-gradient(180deg, rgb(0 0 0 / 6%) 20%, rgb(0 0 0 / 38%) 100%);
+}
+
+.tour-listing--tour-list
+  .tour-listing__card
+  a:is(:hover, :focus-visible)
+  .tour-listing__card-image::after {
+  background: rgb(0 0 0 / 58%);
+}
+
+.tour-listing--tour-list .tour-listing__card-overlay {
+  bottom: 34px;
+}
+
+.tour-listing--tour-list .tour-listing__card h2 {
+  margin-bottom: 16px;
+  font-size: 26px;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 38%);
+}
+
+.tour-listing--tour-list .tour-listing__card-overlay strong {
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 38%);
+}
+
+.tour-listing__card-overlay p {
+  display: -webkit-box;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--omaya-color-surface);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 38%);
+  opacity: 0;
+  transition:
+    max-height 0.5s,
+    margin 0.5s,
+    opacity 0.5s;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.tour-listing--tour-list
+  .tour-listing__card
+  a:is(:hover, :focus-visible)
+  .tour-listing__card-overlay
+  p {
+  max-height: 6.2rem;
+  margin: 0 0 20px;
+  opacity: 1;
 }
 
 .tour-listing__sidebar {

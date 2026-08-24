@@ -64,16 +64,21 @@
                 <div class="tour-listing__card-overlay">
                   <span class="tour-listing__card-category">{{ card.category }}</span>
                   <h2>{{ card.title }}</h2>
+                  @if (isTourListPage()) {
+                    <p>{{ card.excerpt }}</p>
+                  }
                   <strong>{{ card.price }}</strong>
                 </div>
               </div>
-              <div class="tour-listing__card-body">
-                <p>{{ card.excerpt }}</p>
-                <span class="tour-listing__duration">
-                  <mat-icon aria-hidden="true">schedule</mat-icon>
-                  {{ card.duration }}
-                </span>
-              </div>
+              @if (!isTourListPage()) {
+                <div class="tour-listing__card-body">
+                  <p>{{ card.excerpt }}</p>
+                  <span class="tour-listing__duration">
+                    <mat-icon aria-hidden="true">schedule</mat-icon>
+                    {{ card.duration }}
+                  </span>
+                </div>
+              }
             </a>
           </article>
         }

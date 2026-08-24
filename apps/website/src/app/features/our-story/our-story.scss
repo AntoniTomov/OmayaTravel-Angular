@@ -30,14 +30,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
-}
-
-.our-story__hero-copy {
-  position: relative;
-  z-index: 1;
-  justify-self: end;
-  width: min(31rem, 46%);
+  object-position: top;
 }
 
 .our-story__hero-copy p,
@@ -59,6 +52,27 @@
   color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
   line-height: 1.1;
+}
+
+.our-story__hero-copy {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+
+  h1 {
+    color: white;
+  }
+}
+
+.our-story__section-heading {
+  max-width: 100%;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  h2 {
+    color: var(--omaya-color-accent);
+    font-size: clamp(2.25rem, 4vw, 4rem);
+  }
 }
 
 .our-story h1 {
@@ -135,12 +149,6 @@
 .our-story__team {
   padding-top: 2rem;
   padding-bottom: 6rem;
-}
-
-.our-story__section-heading {
-  max-width: 100%;
-  margin-bottom: 3rem;
-  text-align: center;
 }
 
 .our-story__faces-title {
@@ -227,8 +235,7 @@
   }
 
   .our-story__hero-copy {
-    justify-self: start;
-    width: min(30rem, 100%);
+    justify-self: center;
   }
 
   .our-story__intro,
