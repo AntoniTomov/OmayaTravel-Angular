@@ -69,7 +69,10 @@ jobs:
           chmod 700 ~/.ssh
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/omaya_staging_deploy
           chmod 600 ~/.ssh/omaya_staging_deploy
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+          touch ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          echo "Scanning SSH host key for $SSH_HOST:$SSH_PORT"
+          timeout 15s ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || echo "ssh-keyscan did not return a host key; deploy commands will use StrictHostKeyChecking=accept-new"
 
       - name: Deploy browser output to Hostinger staging
         shell: bash
@@ -83,8 +86,8 @@ jobs:
           test -n "$SSH_PORT"
           test -n "$SSH_USER"
           test -n "$SSH_PATH"
-          ssh -i ~/.ssh/omaya_staging_deploy -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p \"$SSH_PATH\""
+          ssh -i ~/.ssh/omaya_staging_deploy -o StrictHostKeyChecking=accept-new -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p \"$SSH_PATH\""
           rsync -az --delete --checksum \
-            -e "ssh -i ~/.ssh/omaya_staging_deploy -p $SSH_PORT" \
+            -e "ssh -i ~/.ssh/omaya_staging_deploy -o StrictHostKeyChecking=accept-new -p $SSH_PORT" \
             apps/website/dist/website/browser/ \
             "$SSH_USER@$SSH_HOST:$SSH_PATH/"
