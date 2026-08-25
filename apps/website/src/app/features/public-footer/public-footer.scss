@@ -5,6 +5,7 @@
 }
 
 .public-footer {
+  --omaya-font-heading-family: var(--omaya-font-body-family);
   padding: 4rem;
   color: var(--omaya-color-footer-text);
   background: tokens.$omaya-color-dark;
@@ -27,7 +28,6 @@
 .public-footer h2 {
   margin: 0 0 1.7rem;
   color: tokens.$omaya-color-white;
-  font-family: tokens.$omaya-font-heading;
   font-size: 1.05rem;
   line-height: 1.25;
 }

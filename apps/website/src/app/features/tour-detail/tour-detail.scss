@@ -45,7 +45,7 @@
   width: min(76rem, 100%);
   margin: 0;
   font-family: tokens.$omaya-font-heading;
-  font-size: clamp(2.55rem, 5vw, 4.8rem);
+  font-size: 4rem;
   line-height: 1.05;
   text-align: center;
 }
@@ -178,14 +178,13 @@
 
 .tour-detail__price {
   flex: 0 0 auto;
-  color: tokens.$omaya-color-dark;
-  font-size: 2.35rem;
-  font-weight: 900;
+  color: #303030;
+  font-size: 2rem;
+  font-weight: 500;
   line-height: 1.2;
 }
 
 .tour-detail__price span {
-  display: block;
   margin-top: 0.15rem;
   color: var(--omaya-color-subtle);
   font-size: 0.78rem;
@@ -220,6 +219,7 @@
 
 .tour-detail__lists h2 {
   margin: 0;
+  font-size: 1.35rem;
 }
 
 .tour-detail__departure p {
@@ -262,7 +262,10 @@
 }
 
 .tour-detail__highlights h3 mat-icon {
+  width: 18px;
+  height: 18px;
   color: tokens.$omaya-color-gold;
+  font-size: 18px;
 }
 
 .tour-detail__lists {
@@ -505,7 +508,132 @@
   padding-left: 2.1rem;
 }
 
-.tour-detail__booking button {
+.tour-detail__date-field {
+  display: grid;
+}
+
+.tour-detail__date-trigger {
+  width: 100%;
+  min-height: 3rem;
+  box-sizing: border-box;
+  border: 1px solid var(--omaya-color-border-light);
+  padding: 0.75rem 0.9rem 0.75rem 2.1rem;
+  color: var(--omaya-color-body);
+  background: tokens.$omaya-color-white;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tour-detail__calendar {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  border: 1px solid var(--omaya-color-border-light);
+  background: tokens.$omaya-color-white;
+  box-shadow: var(--omaya-shadow-dropdown);
+}
+
+.tour-detail__calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tour-detail__calendar-header button {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  place-items: center;
+  padding: 0;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.tour-detail__calendar-header strong {
+  color: var(--omaya-color-heading);
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tour-detail__calendar-weekdays,
+.tour-detail__calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+
+.tour-detail__calendar-weekdays span {
+  color: var(--omaya-color-subtle);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tour-detail__calendar-grid button {
+  min-height: 2rem;
+  border: 1px solid transparent;
+  padding: 0;
+  color: var(--omaya-color-muted);
+  background: var(--omaya-color-surface-alt);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.tour-detail__calendar-grid .tour-detail__calendar-day--period {
+  color: tokens.$omaya-color-dark;
+  background: #f8dfb0;
+}
+
+.tour-detail__calendar-grid .tour-detail__calendar-day--start {
+  border-color: tokens.$omaya-color-gold;
+  color: tokens.$omaya-color-dark;
+  background: #edc06f;
+  cursor: pointer;
+}
+
+.tour-detail__calendar-grid .tour-detail__calendar-day--selected {
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+}
+
+.tour-detail__calendar-grid
+  .tour-detail__calendar-day--muted:not(.tour-detail__calendar-day--period) {
+  opacity: 0.45;
+}
+
+.tour-detail__terms {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+  color: var(--omaya-color-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.tour-detail__terms input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0.1rem 0 0;
+  accent-color: tokens.$omaya-color-gold;
+}
+
+.tour-detail__terms a {
+  color: tokens.$omaya-color-dark;
+}
+
+.tour-detail__booking > button {
   min-height: 3.2rem;
   border: 0;
   font-weight: 800;
@@ -516,7 +644,9 @@
 .tour-detail__availability {
   color: var(--omaya-color-body);
   background: var(--omaya-color-surface-alt);
-  transition: background 0.5s, color 0.5s;
+  transition:
+    background 0.5s,
+    color 0.5s;
 }
 
 .tour-detail__availability:is(:hover, :focus-visible) {
@@ -543,7 +673,10 @@
   padding: 1.2rem;
   color: tokens.$omaya-color-white;
   background:
-    linear-gradient(rgb(var(--omaya-color-overlay-rgb) / 8%), rgb(var(--omaya-color-overlay-rgb) / 8%)),
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 8%),
+      rgb(var(--omaya-color-overlay-rgb) / 8%)
+    ),
     url('/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp') center / cover;
   font-family: 'Kristi', cursive;
   font-size: 54px;
@@ -575,6 +708,11 @@
   place-items: center;
   width: min(76rem, 100%);
   min-height: min(42rem, 82vh);
+  overflow: auto;
+}
+
+.tour-detail__lightbox-image-link {
+  display: block;
 }
 
 .tour-detail__lightbox-panel img {
@@ -640,7 +778,7 @@
   margin: 0 0 1rem;
   color: var(--omaya-color-heading);
   font-family: tokens.$omaya-font-heading;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-size: 4rem;
   line-height: 1.1;
 }
 

@@ -1,0 +1,16 @@
+@if (isVisible()) {
+  <section class="cookie-consent" aria-label="Cookie consent">
+    <div>
+      <h2>Cookie Policy</h2>
+      <p>
+        We use essential cookies to run the website and optional analytics/marketing cookies to
+        understand visits and improve our travel offers.
+      </p>
+    </div>
+    <div class="cookie-consent__actions">
+      <a routerLink="/cookie-policy/">Cookie Policy</a>
+      <button type="button" class="cookie-consent__secondary" (click)="reject()">Reject</button>
+      <button type="button" (click)="accept()">Accept</button>
+    </div>
+  </section>
+}

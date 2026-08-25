@@ -14,15 +14,10 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
-import {
-  PUBLIC_HEADER_LOGO,
-  PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC,
-  PUBLIC_HEADER_LOGO_VISUAL_SRC,
-} from '../../shared/content/homepage-content';
+import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
-import { buildMediaImageAttributes } from '../../shared/media';
 
 const SEARCH_ICON_SVG = `
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
@@ -56,6 +51,7 @@ export class PublicHeader implements AfterViewInit {
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly activeSite = inject(ActiveSite);
   protected readonly i18n = inject(OmayaI18n);
 
   protected readonly isScrolled = signal(false);
@@ -71,22 +67,27 @@ export class PublicHeader implements AfterViewInit {
   );
   private readonly isSolidHeader = computed(() => this.isScrolled() || this.shouldUseSolidHeader());
   protected readonly isMobileMenuOpen = signal(false);
-  protected readonly navigationGroups = computed(() => this.i18n.navigationGroups());
-  protected readonly navigationLinks = computed(() => this.i18n.navigationLinks());
+  protected readonly navigationGroups = computed(
+    () => this.activeSite.site().content.navigationGroups,
+  );
+  protected readonly navigationLinks = computed(
+    () => this.activeSite.site().content.navigationLinks,
+  );
   protected readonly logo = computed(() => {
+    const brand = this.activeSite.site().brand;
     const visualSrc =
-      this.isSolidHeader() || this.isMobileMenuOpen()
-        ? PUBLIC_HEADER_LOGO_SCROLLED_VISUAL_SRC
-        : PUBLIC_HEADER_LOGO_VISUAL_SRC;
+      this.isSolidHeader() || this.isMobileMenuOpen() ? brand.solidLogoSrc : brand.logoSrc;
 
     return {
-      ...buildMediaImageAttributes(PUBLIC_HEADER_LOGO, {
-        use: 'thumbnail',
-        sizes: '92px',
-        widths: [320],
-      }),
       src: visualSrc,
-      srcset: `${visualSrc} ${PUBLIC_HEADER_LOGO.width}w`,
+      srcset: `${visualSrc} 150w`,
+      sizes: '92px',
+      width: 150,
+      height: 84,
+      alt: brand.logoAlt,
+      homeLabel: brand.homeLabel,
+      loading: 'eager',
+      fetchPriority: 'high',
     };
   });
   protected readonly activeDropdown = signal<string | null>(null);
@@ -140,7 +141,18 @@ export class PublicHeader implements AfterViewInit {
   }
 
   protected openDropdown(label: string): void {
-    setTimeout(() => this.activeDropdown.set(label), 0);
+    setTimeout(() => {
+      if (this.activeDropdown() !== label) {
+        this.activeSubmenu.set(null);
+      }
+
+      this.activeDropdown.set(label);
+    }, 0);
+  }
+
+  protected closeDropdown(): void {
+    this.activeDropdown.set(null);
+    this.activeSubmenu.set(null);
   }
 
   protected toggleDropdown(label: string): void {
@@ -159,9 +171,14 @@ export class PublicHeader implements AfterViewInit {
     this.activeSubmenu.set(label);
   }
 
-  protected ignoreSubmenuClick(event: MouseEvent): void {
+  protected closeSubmenu(): void {
+    this.activeSubmenu.set(null);
+  }
+
+  protected toggleSubmenu(label: string, event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
+    this.activeSubmenu.update((activeLabel) => (activeLabel === label ? null : label));
   }
 
   protected closeMenus(): void {

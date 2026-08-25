@@ -40,7 +40,7 @@
       class="public-header__logo"
       routerLink="/"
       (click)="closeMenus()"
-      [attr.aria-label]="i18n.t('header.homeLabel')"
+      [attr.aria-label]="logo().homeLabel"
     >
       <img
         [src]="logo().src"
@@ -70,7 +70,7 @@
         <div
           class="public-header__group"
           (mouseenter)="openDropdown(group.label)"
-          (mouseleave)="activeDropdown.set(null)"
+          (mouseleave)="closeDropdown()"
         >
           <button
             class="public-header__link"
@@ -91,14 +91,14 @@
                 <div
                   class="public-header__dropdown-item public-header__dropdown-item--has-submenu"
                   (mouseenter)="openSubmenu(link.label)"
-                  (mouseleave)="activeSubmenu.set(null)"
+                  (mouseleave)="closeSubmenu()"
                 >
                   <button
                     class="public-header__submenu-button"
                     type="button"
                     [attr.aria-expanded]="activeSubmenu() === link.label"
                     (focus)="openSubmenu(link.label)"
-                    (click)="ignoreSubmenuClick($event)"
+                    (click)="toggleSubmenu(link.label, $event)"
                   >
                     {{ link.label }}
                   </button>

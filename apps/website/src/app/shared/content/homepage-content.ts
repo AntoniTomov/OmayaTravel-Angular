@@ -80,6 +80,10 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
         target: '/solo-travellers-tours/',
       },
       {
+        label: 'All Ages',
+        target: '/all-ages-tours/',
+      },
+      {
         label: 'Private Tours',
         target: '/private-tours-your-trip-your-rules/',
       },

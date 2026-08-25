@@ -7,7 +7,13 @@
 >
   @if (page().heroImage) {
     <section class="tour-listing__hero">
-      <img [src]="page().heroImage" [alt]="page().heroAlt ?? page().title" fetchpriority="high" />
+      <img
+        [src]="page().heroImage"
+        [alt]="page().heroAlt ?? page().title"
+        width="1600"
+        height="900"
+        fetchpriority="high"
+      />
       <div>
         <h1>{{ page().title }}</h1>
         @if (page().subtitle) {
@@ -65,15 +71,17 @@
                 <img [src]="card.image" [alt]="card.alt" loading="lazy" />
                 <div class="tour-listing__card-overlay">
                   <span class="tour-listing__card-category">{{ card.category }}</span>
-                  <h2>{{ card.title }}</h2>
                   @if (isTourListPage()) {
+                    <h2>{{ card.title }}</h2>
                     <p>{{ card.excerpt }}</p>
+                    <strong>{{ card.price }}</strong>
                   }
-                  <strong>{{ card.price }}</strong>
                 </div>
               </div>
               @if (!isTourListPage()) {
                 <div class="tour-listing__card-body">
+                  <h2>{{ card.title }}</h2>
+                  <strong>{{ card.price }} <span>/ per person</span></strong>
                   <p>{{ card.excerpt }}</p>
                   <span class="tour-listing__duration">
                     <mat-icon aria-hidden="true">schedule</mat-icon>

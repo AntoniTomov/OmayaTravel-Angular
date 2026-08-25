@@ -44,7 +44,7 @@
             <a
               class="featured-trips__image-link"
               [routerLink]="trip.target"
-              (click)="trackFeaturedTripClick(trip)"
+              (click)="handleFeaturedTripClick($event, trip)"
             >
               <img
                 [src]="trip.image.src"
@@ -61,12 +61,12 @@
 
             <div class="featured-trips__content">
               <h3>
-                <a [routerLink]="trip.target" (click)="trackFeaturedTripClick(trip)">{{
+                <a [routerLink]="trip.target" (click)="handleFeaturedTripClick($event, trip)">{{
                   trip.title
                 }}</a>
               </h3>
               <p class="featured-trips__price">
-                {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
+                {{ trip.price }} <span>/ {{ i18n.t('homepage.perPerson') }}</span>
               </p>
               <p class="featured-trips__duration">{{ trip.duration }}</p>
               <p class="featured-trips__description">{{ trip.description }}</p>

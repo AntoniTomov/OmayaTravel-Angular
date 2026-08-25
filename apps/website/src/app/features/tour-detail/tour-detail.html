@@ -44,7 +44,7 @@
                 </ul>
               </div>
               <p class="tour-detail__price">
-                {{ priceLabel(tour) }} <span>per {{ tour.price.unit }}</span>
+                {{ priceLabel(tour) }} <span>/ per {{ tour.price.unit }}</span>
               </p>
             </div>
 
@@ -60,8 +60,18 @@
               <strong>Group size:</strong> {{ groupSizeLabel(tour) }}
             </p>
 
-            @for (paragraph of tour.introduction; track paragraph) {
-              <p>{{ paragraph }}</p>
+            @for (paragraph of tour.introduction; track introductionTrackText(paragraph)) {
+              <p>
+                @if (isLinkedParagraph(paragraph)) {
+                  {{ paragraph.text }}
+                  <a [href]="paragraph.link" target="_blank" rel="noopener noreferrer">
+                    {{ paragraph.linkText }}
+                  </a>
+                  {{ paragraph.trailingText }}
+                } @else {
+                  {{ paragraph }}
+                }
+              </p>
             }
           </section>
 
@@ -83,7 +93,13 @@
                     }
                     {{ highlight.title.text }}
                     @if (highlight.title.link) {
-                      <a [routerLink]="highlight.title.link">{{ highlight.title.linkText }}</a>
+                      @if (isExternalLink(highlight.title.link)) {
+                        <a [href]="highlight.title.link" target="_blank" rel="noopener noreferrer">
+                          {{ highlight.title.linkText }}
+                        </a>
+                      } @else {
+                        <a [routerLink]="highlight.title.link">{{ highlight.title.linkText }}</a>
+                      }
                     } @else {
                       {{ highlight.title.linkText }}
                     }
@@ -119,10 +135,6 @@
           </section>
 
           <section class="tour-detail__section">
-            <h2>From our gallery</h2>
-            @if (tour.gallerySubtitle) {
-              <p class="tour-detail__gallery-subtitle">{{ tour.gallerySubtitle }}</p>
-            }
             <div class="tour-detail__gallery-preview">
               @for (image of tour.gallery.slice(0, 3); track image.src; let index = $index) {
                 <button
@@ -175,10 +187,6 @@
 
         @if (activeTab() === 'gallery') {
           <section class="tour-detail__section tour-detail__gallery-section">
-            <h2>From our gallery</h2>
-            @if (tour.gallerySubtitle) {
-              <p class="tour-detail__gallery-subtitle">{{ tour.gallerySubtitle }}</p>
-            }
             <div class="tour-detail__gallery" aria-label="Tour gallery">
               @for (image of tour.gallery; track image.src; let index = $index) {
                 <button
@@ -246,15 +254,69 @@
             <mat-icon aria-hidden="true">phone</mat-icon>
             <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
           </label>
-          <label class="tour-detail__field">
+          <div class="tour-detail__field tour-detail__date-field">
             <mat-icon aria-hidden="true">calendar_month</mat-icon>
-            <input type="text" name="date" placeholder="dd-mm-yy*" />
-          </label>
+            <button
+              class="tour-detail__date-trigger"
+              type="button"
+              [attr.aria-expanded]="isBookingCalendarOpen()"
+              (click)="toggleBookingCalendar()"
+            >
+              {{ selectedBookingDateLabel() }}
+            </button>
+            @if (isBookingCalendarOpen()) {
+              <div class="tour-detail__calendar" aria-label="Available tour dates">
+                <div class="tour-detail__calendar-header">
+                  <button
+                    type="button"
+                    aria-label="Previous month"
+                    (click)="shiftCalendarMonth(-1)"
+                  >
+                    &lt;
+                  </button>
+                  <strong>{{ calendarMonthLabel() }}</strong>
+                  <button type="button" aria-label="Next month" (click)="shiftCalendarMonth(1)">
+                    &gt;
+                  </button>
+                </div>
+                <div class="tour-detail__calendar-weekdays" aria-hidden="true">
+                  @for (day of calendarWeekdays; track day) {
+                    <span>{{ day }}</span>
+                  }
+                </div>
+                <div class="tour-detail__calendar-grid">
+                  @for (day of calendarDays(); track day.iso) {
+                    <button
+                      type="button"
+                      [disabled]="!day.isSelectable"
+                      [ngClass]="{
+                        'tour-detail__calendar-day--muted': !day.isCurrentMonth,
+                        'tour-detail__calendar-day--period': day.isTourPeriod,
+                        'tour-detail__calendar-day--start': day.isStartDate,
+                        'tour-detail__calendar-day--selected': day.isSelected,
+                      }"
+                      [attr.aria-label]="day.label"
+                      (click)="selectBookingDate(day.iso)"
+                    >
+                      {{ day.date.getDate() }}
+                    </button>
+                  }
+                </div>
+              </div>
+            }
+            <input type="hidden" name="date" [value]="selectedBookingDate() ?? ''" />
+          </div>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">groups_2</mat-icon>
             <input type="number" name="tickets" min="1" placeholder="Number of people" />
           </label>
           <textarea name="message" rows="7" placeholder="Message"></textarea>
+          <label class="tour-detail__terms">
+            <input type="checkbox" name="terms" required />
+            <span>
+              I agree to the <a routerLink="/termsconditions/">Terms and Conditions</a>.
+            </span>
+          </label>
           <button
             class="tour-detail__availability"
             type="button"
@@ -292,12 +354,12 @@
         aria-label="Tour gallery preview"
         (click)="closeGallery()"
       >
-        <div class="tour-detail__lightbox-panel" (click)="$event.stopPropagation()">
+        <div class="tour-detail__lightbox-panel" (click)="closeGallery()">
           <button
             class="tour-detail__lightbox-close"
             type="button"
             aria-label="Close gallery preview"
-            (click)="closeGallery()"
+            (click)="$event.stopPropagation(); closeGallery()"
           >
             x
           </button>
@@ -305,16 +367,30 @@
             class="tour-detail__lightbox-nav tour-detail__lightbox-nav--previous"
             type="button"
             aria-label="Show previous gallery image"
-            (click)="showPreviousGalleryImage()"
+            (click)="$event.stopPropagation(); showPreviousGalleryImage()"
           >
             <
           </button>
-          <img [src]="image.src" [width]="image.width" [height]="image.height" [alt]="image.alt" />
+          <a
+            class="tour-detail__lightbox-image-link"
+            [href]="image.src"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'Open full-size image: ' + image.alt"
+            (click)="$event.stopPropagation()"
+          >
+            <img
+              [src]="image.src"
+              [width]="image.width"
+              [height]="image.height"
+              [alt]="image.alt"
+            />
+          </a>
           <button
             class="tour-detail__lightbox-nav tour-detail__lightbox-nav--next"
             type="button"
             aria-label="Show next gallery image"
-            (click)="showNextGalleryImage()"
+            (click)="$event.stopPropagation(); showNextGalleryImage()"
           >
             >
           </button>

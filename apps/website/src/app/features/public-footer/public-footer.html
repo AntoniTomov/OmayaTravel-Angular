@@ -1,15 +1,10 @@
 <footer class="public-footer">
   <div class="public-footer__columns">
     <section class="public-footer__contact" aria-labelledby="footer-contact-title">
-      <a class="public-footer__brand" routerLink="/" [attr.aria-label]="i18n.t('header.homeLabel')">
-        <img
-          src="/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp"
-          width="150"
-          height="84"
-          alt="Omaya Travel"
-        />
+      <a class="public-footer__brand" routerLink="/" [attr.aria-label]="brand().homeLabel">
+        <img [src]="brand().logoSrc" width="150" height="84" [alt]="brand().logoAlt" />
       </a>
-      <h2 id="footer-contact-title">{{ i18n.t('footer.tagline') }}</h2>
+      <h2 id="footer-contact-title">{{ tagline() }}</h2>
       <p class="public-footer__label">{{ i18n.t('footer.contactUs') }}</p>
       <a href="tel:+359889735274" (click)="trackContactClick('phone', 'secondary_phone')"
         >☎ <span>+359 88 973 5274</span></a
@@ -48,19 +43,23 @@
 
     <section aria-labelledby="footer-posts-title">
       <h2 id="footer-posts-title">{{ i18n.t('footer.latestPosts') }}</h2>
-      @for (post of latestPosts; track post.target) {
+      @for (post of latestPosts(); track post.target) {
         <a class="public-footer__post" [routerLink]="post.target">
           <span>{{ post.title }}</span>
           <small>{{ post.date }}</small>
+        </a>
+      } @empty {
+        <a class="public-footer__post" routerLink="/contact/">
+          <span>{{ i18n.t('footer.contactUs') }}</span>
         </a>
       }
     </section>
 
     <section aria-labelledby="footer-about-title">
       <h2 id="footer-about-title">{{ i18n.t('footer.about') }}</h2>
-      <a routerLink="/why-book-with-us/">{{ i18n.t('footer.whyBook') }}</a>
-      <a routerLink="/our-story/">{{ i18n.t('footer.ourStory') }}</a>
-      <a routerLink="/faq/">{{ i18n.t('footer.faqs') }}</a>
+      @for (link of aboutLinks(); track link.target) {
+        <a [routerLink]="link.target">{{ link.label }}</a>
+      }
       <h2 class="public-footer__payment-title">{{ i18n.t('footer.paymentMethods') }}</h2>
       <div class="public-footer__payments">
         @for (provider of paymentProviders; track provider.name) {
@@ -71,10 +70,9 @@
 
     <section aria-labelledby="footer-legal-title">
       <h2 id="footer-legal-title">{{ i18n.t('footer.legalPrivacy') }}</h2>
-      <a routerLink="/cookie-policy/">{{ i18n.t('footer.cookiePolicy') }}</a>
-      <a routerLink="/privacy-policy/">{{ i18n.t('footer.privacyPolicy') }}</a>
-      <a routerLink="/termsconditions/">{{ i18n.t('footer.terms') }}</a>
-      <a routerLink="/omaya-travel-license/">{{ i18n.t('footer.license') }}</a>
+      @for (link of legalLinks(); track link.target) {
+        <a [routerLink]="link.target">{{ link.label }}</a>
+      }
     </section>
   </div>
 

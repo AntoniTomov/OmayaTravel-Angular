@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 interface CalendarMonth {
@@ -8,20 +8,26 @@ interface CalendarMonth {
   resultPath?: string;
 }
 
-const MONTH_IMAGES = [
-  '/assets/images/destinations/classic-tours-bgr.webp',
-  '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
-  '/assets/images/blog-posts/beautiful-bulgaria-post-preview-bgr.webp',
-  '/assets/images/women-tours/women-tours-bgr.webp',
-  '/assets/images/home-page/private-tours-left-bgr.webp',
-  '/assets/images/women-tours/Kyrgystan-women/thumbnails/Kyrgyzstan-tour-1-thumbnail.webp',
-  '/assets/images/women-tours/Kyrgystan-women/Kyrgystan_women_only_tour-bgr.webp',
-  '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp',
-  '/assets/images/women-tours/beautiful-bulgaria-women/thumbnails/Bulgaria-tour-.webp',
-  '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp',
-  '/assets/images/home-page/private-tours-right-bgr.webp',
-  '/assets/images/blog-posts/10 places in bulgaria/beautiful-bulgaria-post-bgr.webp',
-];
+const CALENDAR_HERO_IMAGES: Readonly<Record<number, string>> = {
+  2026: '/assets/images/calendars/calendar2026-bgr.webp',
+  2027: '/assets/images/calendars/calendar2027-bgr-image.webp',
+};
+
+const CALENDAR_MONTH_IMAGES: Readonly<Record<number, readonly string[]>> = {
+  2026: Array.from(
+    { length: 12 },
+    (_, index) =>
+      `/assets/images/calendars/calendar-2026-${String(index + 1).padStart(2, '0')}.webp`,
+  ),
+  2027: [
+    CALENDAR_HERO_IMAGES[2027],
+    ...Array.from(
+      { length: 11 },
+      (_, index) =>
+        `/assets/images/calendars/calendar-2027-${String(index + 2).padStart(2, '0')}.webp`,
+    ),
+  ],
+};
 
 @Component({
   selector: 'app-tour-calendar-page',
@@ -32,10 +38,9 @@ export class TourCalendarPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  protected readonly year = computed(() =>
-    this.route.snapshot.url[0]?.path === 'calendar-2027' ? 2027 : 2026,
-  );
-  protected readonly months = computed(() => this.buildMonths(this.year()));
+  protected readonly year = this.resolveYear();
+  protected readonly months = this.buildMonths(this.year);
+  protected readonly heroImage = CALENDAR_HERO_IMAGES[this.year];
 
   protected openMonth(month: CalendarMonth): void {
     if (month.tours.length === 0) {
@@ -69,7 +74,7 @@ export class TourCalendarPage {
       'December',
     ].map((name, index) => ({
       name,
-      image: MONTH_IMAGES[index],
+      image: CALENDAR_MONTH_IMAGES[year][index],
       tours: this.monthTours(year, index),
       resultPath: year === 2027 && index === 8 ? '/september-2027/' : undefined,
     }));
@@ -94,5 +99,15 @@ export class TourCalendarPage {
     };
 
     return toursByMonth[key] ?? [];
+  }
+
+  private resolveYear(): number {
+    const routeYear = Number(this.route.snapshot.data['calendarYear']);
+
+    if (routeYear === 2026 || routeYear === 2027) {
+      return routeYear;
+    }
+
+    return this.route.snapshot.routeConfig?.path === 'calendar-2027' ? 2027 : 2026;
   }
 }

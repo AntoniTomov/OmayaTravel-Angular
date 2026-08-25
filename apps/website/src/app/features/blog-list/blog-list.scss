@@ -58,7 +58,7 @@
 
 .blog-list h1 {
   color: tokens.$omaya-color-white;
-  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-size: 4rem;
 }
 
 .blog-list__hero p {
@@ -215,7 +215,10 @@
 .blog-list__tour-card::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgb(var(--omaya-color-overlay-rgb) / 5%), rgb(var(--omaya-color-overlay-rgb) / 38%));
+  background: linear-gradient(
+    rgb(var(--omaya-color-overlay-rgb) / 5%),
+    rgb(var(--omaya-color-overlay-rgb) / 38%)
+  );
   content: '';
 }
 
