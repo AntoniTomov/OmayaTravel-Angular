@@ -1,0 +1,90 @@
+name: Deploy staging
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+
+concurrency:
+  group: staging-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build and deploy staging
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://staging.omayatravel.com
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm from packageManager
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.3
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Type check
+        run: pnpm run type-check
+
+      - name: Test
+        run: pnpm run test
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Prepare static staging artifact
+        shell: pwsh
+        run: ./scripts/deployment/prepare-staging-static.ps1 -BrowserDistPath apps/website/dist/website/browser
+
+      - name: Configure SSH
+        shell: bash
+        env:
+          SSH_HOST: ${{ vars.HOSTINGER_STAGING_HOST }}
+          SSH_PORT: ${{ vars.HOSTINGER_STAGING_PORT }}
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_STAGING_SSH_KEY }}
+        run: |
+          test -n "$SSH_HOST"
+          test -n "$SSH_PORT"
+          test -n "$SSH_PRIVATE_KEY"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/omaya_staging_deploy
+          chmod 600 ~/.ssh/omaya_staging_deploy
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy browser output to Hostinger staging
+        shell: bash
+        env:
+          SSH_HOST: ${{ vars.HOSTINGER_STAGING_HOST }}
+          SSH_PORT: ${{ vars.HOSTINGER_STAGING_PORT }}
+          SSH_USER: ${{ vars.HOSTINGER_STAGING_USERNAME }}
+          SSH_PATH: ${{ vars.HOSTINGER_STAGING_PATH }}
+        run: |
+          test -n "$SSH_HOST"
+          test -n "$SSH_PORT"
+          test -n "$SSH_USER"
+          test -n "$SSH_PATH"
+          ssh -i ~/.ssh/omaya_staging_deploy -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p \"$SSH_PATH\""
+          rsync -az --delete --checksum \
+            -e "ssh -i ~/.ssh/omaya_staging_deploy -p $SSH_PORT" \
+            apps/website/dist/website/browser/ \
+            "$SSH_USER@$SSH_HOST:$SSH_PATH/"
