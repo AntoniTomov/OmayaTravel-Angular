@@ -136,7 +136,7 @@ export const routes: Routes = [
       noindex: true,
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'enquire-now',
     pathMatch: 'full',
     loadComponent: () =>
@@ -167,7 +167,7 @@ export const routes: Routes = [
       canonicalPath: '/not-yet-but-soon/',
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'contact',
     pathMatch: 'full',
     loadComponent: () =>
@@ -178,7 +178,7 @@ export const routes: Routes = [
       canonicalPath: '/contact/',
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'faq',
     pathMatch: 'full',
     loadComponent: () => import('./features/faq-page/faq-page').then((module) => module.FaqPage),
@@ -188,7 +188,7 @@ export const routes: Routes = [
       canonicalPath: '/faq/',
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'our-story',
     pathMatch: 'full',
     loadComponent: () => import('./features/our-story/our-story').then((module) => module.OurStory),
@@ -198,7 +198,7 @@ export const routes: Routes = [
       canonicalPath: '/our-story/',
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'your-dmc-partner-in-bulgaria',
     pathMatch: 'full',
     loadComponent: () =>
@@ -211,7 +211,7 @@ export const routes: Routes = [
       canonicalPath: '/your-dmc-partner-in-bulgaria/',
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'why-book-with-us',
     pathMatch: 'full',
     loadComponent: () =>
@@ -429,6 +429,18 @@ function withSiteAccess(route: Route): Route {
     ...route,
     canActivate: [...(route.canActivate ?? []), siteRouteCanActivate],
   };
+}
+
+function withStaticPathAccess(route: Route & { path: string }): Routes {
+  const { path, pathMatch: _pathMatch, ...routeWithoutPath } = route;
+
+  return [
+    withSiteAccess({
+      ...routeWithoutPath,
+      matcher: staticPageMatcher(path),
+    }),
+    withSiteAccess(route),
+  ];
 }
 
 function staticPageMatcher(path: string): UrlMatcher {

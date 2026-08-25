@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
+import { ActiveSite } from '../../../sites/active-site';
+import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
 import { Homepage } from './homepage';
 
 describe('Homepage', () => {
@@ -11,7 +13,15 @@ describe('Homepage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Homepage],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActiveSite,
+          useValue: {
+            site: () => OMAYA_SITE_CONFIG,
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Homepage);
@@ -77,7 +87,7 @@ describe('Homepage', () => {
     expect(images.map((image) => image.getAttribute('src'))).toEqual([
       '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
       '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp',
-      '/assets/images/home-page/trips-carousel/Tour-feature-image-3.webp',
+      '/assets/images/destinations/Marocco/morocco-bgr.webp',
       '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
     ]);
   });
@@ -89,7 +99,7 @@ describe('Homepage', () => {
 
     expect(compiled.querySelector('.featured-trips__carousel')).toBeTruthy();
     expect(compiled.querySelectorAll('.featured-trips__card')).toHaveLength(4);
-    expect(compiled.textContent).toContain('Kyrgyzstan Tour');
+    expect(compiled.textContent).toContain('Kyrgyzstan Discovery Tour');
     expect(compiled.textContent).toContain('Algeria Desert Expedition (Tadrart Rouge)');
     expect(compiled.textContent).toContain('8 Days 7 Nights');
   });
@@ -104,7 +114,7 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
     expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
-      '/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp',
+      '/assets/images/blog-posts/Rila-Monastery-post-preview-bgr.webp',
     );
   });
 

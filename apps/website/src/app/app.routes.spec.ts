@@ -21,8 +21,24 @@ import {
   PUBLIC_STATIC_PRERENDER_ROUTES,
   PUBLIC_TOUR_SLUGS,
 } from './shared/routing/public-routes';
+import { ActiveSite } from '../sites/active-site';
+import { OMAYA_SITE_CONFIG } from '../sites/omaya/site.config';
 
 describe('app routes', () => {
+  function configureRouteTesting(): void {
+    TestBed.configureTestingModule({
+      providers: [
+        provideRouter(routes),
+        {
+          provide: ActiveSite,
+          useValue: {
+            site: () => OMAYA_SITE_CONFIG,
+          },
+        },
+      ],
+    });
+  }
+
   it('wires approved public Angular route patterns', () => {
     const routePaths = routes.map((route) => route.path);
 
@@ -106,9 +122,7 @@ describe('app routes', () => {
   });
 
   it('resolves approved destination slugs to the placeholder route and tour slugs to tour detail', async () => {
-    TestBed.configureTestingModule({
-      providers: [provideRouter(routes)],
-    });
+    configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
@@ -121,9 +135,7 @@ describe('app routes', () => {
   });
 
   it('resolves the our-story static page to its dedicated component', async () => {
-    TestBed.configureTestingModule({
-      providers: [provideRouter(routes)],
-    });
+    configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
@@ -131,9 +143,7 @@ describe('app routes', () => {
   });
 
   it('resolves the why-book-with-us static page to its dedicated component', async () => {
-    TestBed.configureTestingModule({
-      providers: [provideRouter(routes)],
-    });
+    configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
@@ -143,9 +153,7 @@ describe('app routes', () => {
   });
 
   it('resolves contact, faq, and DMC static pages to dedicated components', async () => {
-    TestBed.configureTestingModule({
-      providers: [provideRouter(routes)],
-    });
+    configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
@@ -159,9 +167,7 @@ describe('app routes', () => {
   });
 
   it('resolves enquire-now to its dedicated component', async () => {
-    TestBed.configureTestingModule({
-      providers: [provideRouter(routes)],
-    });
+    configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
@@ -171,9 +177,7 @@ describe('app routes', () => {
   });
 
   it('resolves unknown destination and tour slugs to not-found behavior', async () => {
-    TestBed.configureTestingModule({
-      providers: [provideRouter(routes)],
-    });
+    configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
