@@ -1,6 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 
-import { NavigationGroup, NavigationLink, TripSearchDestination } from '../content/homepage-content';
+import {
+  NavigationGroup,
+  NavigationLink,
+  TripSearchDestination,
+} from '../content/homepage-content';
 
 export type OmayaLocale = 'en' | 'bg';
 
@@ -78,7 +82,7 @@ const EN: TranslationDictionary = {
     showSlide: 'Show slide',
     travelMatchTitle: 'Are we your travel match?',
     travelMatchSubtitle:
-      "If you’re nodding along, you might have just found your travel community.",
+      'If you’re nodding along, you might have just found your travel community.',
     featuredTripsTitle: 'Trips worth talking about',
     featuredTripsControls: 'Featured trips carousel',
     previousTrip: 'Show previous trip',
@@ -115,6 +119,7 @@ const EN: TranslationDictionary = {
         { label: 'Classic Tours', target: '/classic-tours/' },
         { label: 'Women Only', target: '/women-only-tours/' },
         { label: 'Solo Travelers', target: '/solo-travellers-tours/' },
+        { label: 'All Ages', target: '/all-ages-tours/' },
         { label: 'Private Tours', target: '/private-tours-your-trip-your-rules/' },
         {
           label: 'All Tours',
@@ -303,6 +308,7 @@ const BG: TranslationDictionary = {
         { label: 'Класически турове', target: '/classic-tours/' },
         { label: 'Само за жени', target: '/women-only-tours/' },
         { label: 'Самостоятелни пътешественици', target: '/solo-travellers-tours/' },
+        { label: 'Всички възрасти', target: '/all-ages-tours/' },
         { label: 'Частни турове', target: '/private-tours-your-trip-your-rules/' },
         {
           label: 'Всички турове',
@@ -358,8 +364,7 @@ const BG: TranslationDictionary = {
     },
     {
       title: 'Внимателно създадени маршрути',
-      description:
-        'Всеки маршрут съчетава емблематични места с културни и местни преживявания.',
+      description: 'Всеки маршрут съчетава емблематични места с културни и местни преживявания.',
     },
     {
       title: 'Малки групи',

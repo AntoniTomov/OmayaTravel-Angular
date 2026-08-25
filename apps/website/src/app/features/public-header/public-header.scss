@@ -150,14 +150,21 @@
   box-shadow: var(--omaya-shadow-dropdown);
 }
 
-.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown,
-.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu {
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+  .public-header__dropdown,
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+  .public-header__submenu {
   background: tokens.$omaya-color-dark;
 }
 
-.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown > a,
-.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu-button,
-.public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu a {
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+  .public-header__dropdown
+  > a,
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+  .public-header__submenu-button,
+.public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+  .public-header__submenu
+  a {
   color: tokens.$omaya-color-white;
 }
 
@@ -224,7 +231,6 @@
   box-shadow: var(--omaya-shadow-dropdown);
 }
 
-.public-header__dropdown-item--has-submenu:is(:hover, :focus-within) .public-header__submenu,
 .public-header__submenu--open {
   visibility: visible;
   opacity: 1;
@@ -401,15 +407,21 @@
     transform: translateY(0);
   }
 
-  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown,
-  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu {
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+    .public-header__dropdown,
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+    .public-header__submenu {
     background: tokens.$omaya-color-white;
   }
 
-  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__dropdown > a,
-  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu-button,
-  .public-header:not(.public-header--scrolled):not(.public-header--menu-open) .public-header__submenu a {
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+    .public-header__dropdown
+    > a,
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+    .public-header__submenu-button,
+  .public-header:not(.public-header--scrolled):not(.public-header--menu-open)
+    .public-header__submenu
+    a {
     color: tokens.$omaya-color-text;
   }
-
 }

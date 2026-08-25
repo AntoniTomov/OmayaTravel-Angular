@@ -1,7 +1,18 @@
-import { CanMatchFn, Routes, UrlMatcher, UrlSegment } from '@angular/router';
+import {
+  CanActivateFn,
+  CanMatchFn,
+  Route,
+  Routes,
+  Router,
+  UrlMatcher,
+  UrlSegment,
+} from '@angular/router';
+import { inject } from '@angular/core';
 
 import { Homepage } from './features/homepage/homepage';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
+import { ActiveSite } from '../sites/active-site';
+import { isSiteRouteEnabled } from '../sites/site-routes';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
   PUBLIC_DESTINATION_SLUGS,
@@ -19,6 +30,7 @@ const blogArticleRoutes: Routes = PUBLIC_BLOG_ARTICLE_ROUTES.map((route) => ({
     routeKey: route.key,
     routeType: route.type,
     canonicalPath: route.canonicalPath,
+    articleSlug: route.path,
   },
 }));
 
@@ -40,6 +52,7 @@ const tourListingPageRoutes: Routes = [
   'classic-tours',
   'women-only-tours',
   'solo-travellers-tours',
+  'all-ages-tours',
   'private-tour-planning',
   'september-2027',
 ].map((path) => ({
@@ -56,6 +69,7 @@ const tourListingPageRoutes: Routes = [
         ? 'static-page'
         : 'tour-category',
     canonicalPath: `/${path}/`,
+    listingSlug: path,
   },
 }));
 
@@ -70,6 +84,7 @@ const tourCalendarPageRoutes: Routes = ['calendar', 'calendar-2027'].map((path) 
     routeKey: `tour-calendar-${path}`,
     routeType: 'static-page',
     canonicalPath: `/${path}/`,
+    calendarYear: path === 'calendar-2027' ? 2027 : 2026,
   },
 }));
 
@@ -90,8 +105,18 @@ export const destinationDetailCanonicalMatcher: UrlMatcher = (segments) =>
 export const tourDetailCanonicalMatcher: UrlMatcher = (segments) =>
   matchApprovedCanonicalRoute(segments, 'tour-item', 'tourSlug', PUBLIC_TOUR_SLUGS);
 
+export const siteRouteCanActivate: CanActivateFn = (_route, state) => {
+  const activeSite = inject(ActiveSite);
+
+  if (isSiteRouteEnabled(activeSite.site(), state.url)) {
+    return true;
+  }
+
+  return inject(Router).parseUrl('/404/');
+};
+
 export const routes: Routes = [
-  {
+  withSiteAccess({
     path: '',
     component: Homepage,
     pathMatch: 'full',
@@ -100,8 +125,8 @@ export const routes: Routes = [
       routeType: 'home',
       canonicalPath: '/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'search',
     loadComponent: () =>
       import('./features/search-results/search-results').then((module) => module.SearchResults),
@@ -110,8 +135,8 @@ export const routes: Routes = [
       routeKey: 'search',
       noindex: true,
     },
-  },
-  {
+  }),
+  ...withStaticPathAccess({
     path: 'enquire-now',
     pathMatch: 'full',
     loadComponent: () =>
@@ -121,8 +146,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/enquire-now/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'blog-list-2',
     pathMatch: 'full',
     loadComponent: () => import('./features/blog-list/blog-list').then((module) => module.BlogList),
@@ -131,8 +156,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/blog-list-2/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     matcher: staticPageMatcher('not-yet-but-soon'),
     loadComponent: () =>
       import('./features/not-yet-but-soon/not-yet-but-soon').then((module) => module.NotYetButSoon),
@@ -141,8 +166,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/not-yet-but-soon/',
     },
-  },
-  {
+  }),
+  ...withStaticPathAccess({
     path: 'contact',
     pathMatch: 'full',
     loadComponent: () =>
@@ -152,8 +177,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/contact/',
     },
-  },
-  {
+  }),
+  ...withStaticPathAccess({
     path: 'faq',
     pathMatch: 'full',
     loadComponent: () => import('./features/faq-page/faq-page').then((module) => module.FaqPage),
@@ -162,8 +187,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/faq/',
     },
-  },
-  {
+  }),
+  ...withStaticPathAccess({
     path: 'our-story',
     pathMatch: 'full',
     loadComponent: () => import('./features/our-story/our-story').then((module) => module.OurStory),
@@ -172,8 +197,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/our-story/',
     },
-  },
-  {
+  }),
+  ...withStaticPathAccess({
     path: 'your-dmc-partner-in-bulgaria',
     pathMatch: 'full',
     loadComponent: () =>
@@ -185,8 +210,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/your-dmc-partner-in-bulgaria/',
     },
-  },
-  {
+  }),
+  ...withStaticPathAccess({
     path: 'why-book-with-us',
     pathMatch: 'full',
     loadComponent: () =>
@@ -196,8 +221,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/why-book-with-us/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'private-tours-your-trip-your-rules',
     pathMatch: 'full',
     loadComponent: () =>
@@ -209,8 +234,8 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/private-tours-your-trip-your-rules/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'private-tours-your-trip-your-rules/describe',
     pathMatch: 'full',
     loadComponent: () =>
@@ -222,13 +247,13 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/private-tours-your-trip-your-rules/describe/',
     },
-  },
+  }),
   {
     path: '3122-2',
     redirectTo: 'private-tours-your-trip-your-rules/describe',
     pathMatch: 'full',
   },
-  {
+  withSiteAccess({
     matcher: staticPageMatcher('omaya-travel-license'),
     loadComponent: () =>
       import('./features/legal-page/legal-page').then((module) => module.LegalPage),
@@ -238,8 +263,8 @@ export const routes: Routes = [
       canonicalPath: '/omaya-travel-license/',
       pageSlug: 'omaya-travel-license',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     matcher: staticPageMatcher('termsconditions'),
     loadComponent: () =>
       import('./features/legal-page/legal-page').then((module) => module.LegalPage),
@@ -249,8 +274,8 @@ export const routes: Routes = [
       canonicalPath: '/termsconditions/',
       pageSlug: 'termsconditions',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     matcher: staticPageMatcher('privacy-policy'),
     loadComponent: () =>
       import('./features/legal-page/legal-page').then((module) => module.LegalPage),
@@ -260,8 +285,8 @@ export const routes: Routes = [
       canonicalPath: '/privacy-policy/',
       pageSlug: 'privacy-policy',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     matcher: staticPageMatcher('cookie-policy'),
     loadComponent: () =>
       import('./features/legal-page/legal-page').then((module) => module.LegalPage),
@@ -271,8 +296,8 @@ export const routes: Routes = [
       canonicalPath: '/cookie-policy/',
       pageSlug: 'cookie-policy',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'destinations',
     pathMatch: 'full',
     component: PublicRoutePlaceholder,
@@ -281,10 +306,10 @@ export const routes: Routes = [
       routeType: 'destination-hub',
       canonicalPath: '/destinations/',
     },
-  },
-  ...tourListingPageRoutes,
-  ...tourCalendarPageRoutes,
-  {
+  }),
+  ...tourListingPageRoutes.map(withSiteAccess),
+  ...tourCalendarPageRoutes.map(withSiteAccess),
+  withSiteAccess({
     matcher: destinationDetailCanonicalMatcher,
     component: PublicRoutePlaceholder,
     data: {
@@ -292,8 +317,8 @@ export const routes: Routes = [
       routeType: 'destination-detail',
       canonicalPathPattern: '/destinations/:destinationSlug/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'destinations/:destinationSlug',
     canMatch: [destinationDetailCanMatch],
     children: [
@@ -308,8 +333,8 @@ export const routes: Routes = [
         },
       },
     ],
-  },
-  {
+  }),
+  withSiteAccess({
     matcher: tourDetailCanonicalMatcher,
     loadComponent: () =>
       import('./features/tour-detail/tour-detail').then((module) => module.TourDetail),
@@ -318,8 +343,8 @@ export const routes: Routes = [
       routeType: 'tour-detail',
       canonicalPathPattern: '/tour-item/:tourSlug/',
     },
-  },
-  {
+  }),
+  withSiteAccess({
     path: 'tour-item/:tourSlug',
     canMatch: [tourDetailCanMatch],
     children: [
@@ -335,9 +360,9 @@ export const routes: Routes = [
         },
       },
     ],
-  },
-  ...blogArticleRoutes,
-  ...rootSlugRoutes,
+  }),
+  ...blogArticleRoutes.map(withSiteAccess),
+  ...rootSlugRoutes.map(withSiteAccess),
   {
     path: '404',
     loadComponent: () => import('./features/not-found/not-found').then((module) => module.NotFound),
@@ -397,6 +422,25 @@ function matchApprovedCanonicalRoute(
       [slugParam]: slugSegment,
     },
   };
+}
+
+function withSiteAccess(route: Route): Route {
+  return {
+    ...route,
+    canActivate: [...(route.canActivate ?? []), siteRouteCanActivate],
+  };
+}
+
+function withStaticPathAccess(route: Route & { path: string }): Routes {
+  const { path, pathMatch: _pathMatch, ...routeWithoutPath } = route;
+
+  return [
+    withSiteAccess({
+      ...routeWithoutPath,
+      matcher: staticPageMatcher(path),
+    }),
+    withSiteAccess(route),
+  ];
 }
 
 function staticPageMatcher(path: string): UrlMatcher {

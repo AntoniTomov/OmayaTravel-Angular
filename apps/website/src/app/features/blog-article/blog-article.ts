@@ -1,4 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import {
@@ -16,8 +17,13 @@ import { BlogPostSection } from './blog-post-section/blog-post-section';
 })
 export class BlogArticle {
   private readonly route = inject(ActivatedRoute);
+  private readonly routeData = toSignal(this.route.data, {
+    initialValue: this.route.snapshot.data,
+  });
 
-  protected readonly post = computed(() => findBlogPostBySlug(this.route.snapshot.url.at(0)?.path));
+  protected readonly post = computed(() =>
+    findBlogPostBySlug(String(this.routeData()['articleSlug'] ?? '')),
+  );
   protected readonly suggestedPosts = BLOG_POSTS.slice(0, 3);
   protected readonly discoverToursImage = BLOG_DISCOVER_TOURS_IMAGE;
   protected readonly relatedPosts = computed(() =>

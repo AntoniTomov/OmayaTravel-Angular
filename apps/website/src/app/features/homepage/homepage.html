@@ -12,8 +12,8 @@
       [attr.fetchpriority]="activeSlideImage().fetchPriority"
     />
     <div class="homepage__hero-content">
-      <h1>{{ i18n.t('homepage.heroTitle') }}</h1>
-      <p>{{ i18n.t('homepage.heroSubtitle') }}</p>
+      <h1>{{ hero().title }}</h1>
+      <p>{{ hero().subtitle }}</p>
 
       <form class="homepage__trip-search" (submit)="$event.preventDefault(); submitTripSearch()">
         <div>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="homepage__carousel-controls" [attr.aria-label]="i18n.t('homepage.carouselLabel')">
-      @for (slide of hero.slides; track slide.image.key; let index = $index) {
+      @for (slide of hero().slides; track slide.image.key; let index = $index) {
         <button
           type="button"
           [class.homepage__carousel-button--active]="activeSlideIndex() === index"
@@ -69,37 +69,49 @@
     </div>
   </section>
 
-  <app-travel-match />
-  <app-featured-trips />
-  <app-mission-section />
-  <app-private-tours />
-  <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
-    <div class="homepage__newsletter-inner">
-      <div>
-        <h2 id="homepage-newsletter-title">Join Newsletter</h2>
-        <p>To receive our best deals</p>
-      </div>
+  @if (siteFeatures().showTravelMatch) {
+    <app-travel-match />
+  }
+  @if (siteFeatures().showFeaturedTrips) {
+    <app-featured-trips />
+  }
+  @if (siteFeatures().showMission) {
+    <app-mission-section />
+  }
+  @if (siteFeatures().showPrivateTours) {
+    <app-private-tours />
+  }
+  @if (siteFeatures().showNewsletter) {
+    <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
+      <div class="homepage__newsletter-inner">
+        <div>
+          <h2 id="homepage-newsletter-title">Join Newsletter</h2>
+          <p>To receive our best deals</p>
+        </div>
 
-      <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
-        <label for="homepage-newsletter-email">Email address</label>
-        <input
-          id="homepage-newsletter-email"
-          type="email"
-          name="email"
-          placeholder="Email address"
-          autocomplete="email"
-          required
-        />
-        <app-form-honeypot />
-        <button type="submit" [disabled]="newsletterStatus() === 'sending'">
-          {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
-        </button>
-        <app-form-status
-          [message]="newsletterMessage()"
-          [isError]="newsletterStatus() === 'error'"
-        />
-      </form>
-    </div>
-  </section>
-  <app-blog-posts />
+        <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
+          <label for="homepage-newsletter-email">Email address</label>
+          <input
+            id="homepage-newsletter-email"
+            type="email"
+            name="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          />
+          <app-form-honeypot />
+          <button type="submit" [disabled]="newsletterStatus() === 'sending'">
+            {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
+          </button>
+          <app-form-status
+            [message]="newsletterMessage()"
+            [isError]="newsletterStatus() === 'error'"
+          />
+        </form>
+      </div>
+    </section>
+  }
+  @if (siteFeatures().showBlogPosts) {
+    <app-blog-posts />
+  }
 </main>

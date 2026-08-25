@@ -1,12 +1,18 @@
 <main class="tour-calendar">
   <section class="tour-calendar__hero">
-    <img src="/assets/images/home-page/private-tours-right-bgr.webp" alt="Group tour landscape" />
-    <h1>Calendar {{ year() }}</h1>
+    <img
+      [src]="heroImage"
+      [alt]="'Calendar ' + year + ' tour landscape'"
+      width="1600"
+      height="900"
+      fetchpriority="high"
+    />
+    <h1>Calendar {{ year }}</h1>
   </section>
 
   <section class="tour-calendar__body" aria-label="Tour calendar months">
     <div class="tour-calendar__grid">
-      @for (month of months(); track month.name) {
+      @for (month of months; track month.name) {
         <button
           type="button"
           class="tour-calendar__month"

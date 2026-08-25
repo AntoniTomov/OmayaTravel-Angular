@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
@@ -43,7 +44,7 @@ const DEFAULT_FILTERS: TourFilters = {
   maxPrice: PRICE_MAX,
   categories: [],
 };
-const CATEGORIES: readonly TourCategory[] = ['Classic Tours', 'Women-Only', 'Solo Travellers'];
+const CATEGORIES: readonly TourCategory[] = ['Classic Tours', 'Women only', 'Solo Traveller Only'];
 const MONTH_OPTIONS: readonly string[] = [
   'May',
   'July',
@@ -58,6 +59,7 @@ const TOUR_MONTHS: Readonly<Record<string, readonly string[]>> = {
   '/tour-item/women-only-tour-bulgaria/': ['May', 'September'],
   '/tour-item/kyrgyzstan-tour/': ['July', 'August'],
   '/tour-item/women-only-tour-kyrgyzstan/': ['July', 'August'],
+  '/tour-item/tour-item-morocco-solo-travellers-tour/': ['April', 'October'],
 };
 
 @Component({
@@ -69,6 +71,9 @@ const TOUR_MONTHS: Readonly<Record<string, readonly string[]>> = {
 export class TourListingPage {
   private readonly route = inject(ActivatedRoute);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly routeData = toSignal(this.route.data, {
+    initialValue: this.route.snapshot.data,
+  });
 
   protected readonly sorts = SORTS;
   protected readonly categories = CATEGORIES;
@@ -79,7 +84,9 @@ export class TourListingPage {
   protected readonly isMonthDropdownOpen = signal(false);
   protected readonly pendingFilters = signal<TourFilters>({ ...DEFAULT_FILTERS });
   protected readonly appliedFilters = signal<TourFilters>({ ...DEFAULT_FILTERS });
-  protected readonly page = computed(() => findTourListingPage(this.route.snapshot.url[0]?.path));
+  protected readonly page = computed(() =>
+    findTourListingPage(String(this.routeData()['listingSlug'] ?? 'tours-list')),
+  );
   protected readonly isTourListPage = computed(() => this.page().slug === 'tours-list');
   protected readonly cards = computed(() => {
     const page = this.page();

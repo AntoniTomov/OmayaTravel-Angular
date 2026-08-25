@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { HOMEPAGE_HERO } from '../../shared/content/homepage-content';
+import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
@@ -33,20 +33,24 @@ export class Homepage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly activeSite = inject(ActiveSite);
   protected readonly i18n = inject(OmayaI18n);
   private intervalId: ReturnType<typeof setInterval> | null;
   private readonly reducedMotion = this.prefersReducedMotion();
 
-  protected readonly hero = HOMEPAGE_HERO;
-  protected readonly destinations = computed(() => this.i18n.destinations());
-  protected readonly months = computed(() => this.i18n.months());
+  protected readonly hero = computed(() => this.activeSite.site().content.hero);
+  protected readonly siteFeatures = computed(() => this.activeSite.site().features);
+  protected readonly destinations = computed(
+    () => this.activeSite.site().content.tripSearchDestinations,
+  );
+  protected readonly months = computed(() => this.activeSite.site().content.tripSearchMonths);
   protected readonly activeSlideIndex = signal(0);
   protected readonly selectedDestination = signal('');
   protected readonly selectedMonth = signal('');
   protected readonly searchError = signal('');
   protected readonly newsletterStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly newsletterMessage = signal('');
-  protected readonly activeSlide = computed(() => this.hero.slides[this.activeSlideIndex()]);
+  protected readonly activeSlide = computed(() => this.hero().slides[this.activeSlideIndex()]);
   protected readonly activeSlideImage = computed(() => {
     const slide = this.activeSlide();
     const attributes = buildMediaImageAttributes(slide.image, {
@@ -169,7 +173,7 @@ export class Homepage implements OnDestroy {
 
   private createAutoAdvance(): ReturnType<typeof setInterval> {
     return setInterval(() => {
-      this.activeSlideIndex.update((index) => (index + 1) % this.hero.slides.length);
+      this.activeSlideIndex.update((index) => (index + 1) % this.hero().slides.length);
     }, 7000);
   }
 

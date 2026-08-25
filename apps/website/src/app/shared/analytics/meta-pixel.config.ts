@@ -1,1 +1,1 @@
-export const META_PIXEL_ID = '';
+export const FALLBACK_META_PIXEL_ID = '';

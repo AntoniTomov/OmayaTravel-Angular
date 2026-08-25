@@ -9,6 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ActiveSite } from '../../../../sites/active-site';
 import { OmayaAnalytics } from '../../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
@@ -31,33 +32,6 @@ interface FeaturedTrip {
   };
 }
 
-const FEATURED_TRIP_IMAGES = [
-  {
-    src: '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
-    alt: 'Kyrgyz eagle hunter on horseback below snow covered mountains',
-    width: 1200,
-    height: 900,
-  },
-  {
-    src: '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp',
-    alt: 'Rila Monastery with striped arches and domed church towers in Bulgaria',
-    width: 1200,
-    height: 900,
-  },
-  {
-    src: '/assets/images/home-page/trips-carousel/Tour-feature-image-3.webp',
-    alt: 'Blue painted street and local craft displays in Chefchaouen Morocco',
-    width: 1200,
-    height: 900,
-  },
-  {
-    src: '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
-    alt: 'Orange desert dune and sandstone rock formations in Tadrart Rouge Algeria',
-    width: 1200,
-    height: 900,
-  },
-] as const;
-
 @Component({
   selector: 'app-featured-trips',
   imports: [RouterLink],
@@ -70,20 +44,21 @@ export class FeaturedTrips {
   @ViewChildren('tripCard') private readonly tripCards!: QueryList<ElementRef<HTMLElement>>;
   protected readonly i18n = inject(OmayaI18n);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly activeSite = inject(ActiveSite);
   private dragStartX = 0;
   private dragStartScrollLeft = 0;
   private isDragging = false;
+  private didDrag = false;
 
   protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
-    this.i18n.featuredTrips().map((trip, index) => ({
-      ...trip,
-      target: [
-        '/tour-item/kyrgyzstan-tour/',
-        '/tour-item/bulgaria-beyond-the-ordinary/',
-        '/tour-item/morocco-tour/',
-        '/tour-item/algeria-desert-expedition-tadrart-rouge/',
-      ][index],
-      image: this.buildCardImage(index),
+    this.activeSite.site().content.featuredTours.map((trip) => ({
+      eyebrow: trip.category,
+      title: trip.title,
+      price: trip.price,
+      duration: trip.duration,
+      description: trip.excerpt,
+      target: trip.target,
+      image: this.buildCardImage(trip.image, trip.alt),
     })),
   );
   protected readonly activeTripIndex = signal(0);
@@ -110,7 +85,14 @@ export class FeaturedTrips {
     });
   }
 
-  protected trackFeaturedTripClick(trip: FeaturedTrip): void {
+  protected handleFeaturedTripClick(event: MouseEvent, trip: FeaturedTrip): void {
+    if (this.didDrag) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.didDrag = false;
+      return;
+    }
+
     this.analytics.trackEvent('select_item', {
       item_id: trip.target,
       item_name: trip.title,
@@ -143,6 +125,7 @@ export class FeaturedTrips {
     }
 
     this.isDragging = true;
+    this.didDrag = false;
     this.dragStartX = event.clientX;
     this.dragStartScrollLeft = carousel.scrollLeft;
     carousel.setPointerCapture(event.pointerId);
@@ -156,8 +139,17 @@ export class FeaturedTrips {
       return;
     }
 
-    event.preventDefault();
-    carousel.scrollLeft = this.dragStartScrollLeft - (event.clientX - this.dragStartX);
+    const dragDistance = event.clientX - this.dragStartX;
+
+    if (Math.abs(dragDistance) > 6) {
+      this.didDrag = true;
+    }
+
+    if (this.didDrag) {
+      event.preventDefault();
+    }
+
+    carousel.scrollLeft = this.dragStartScrollLeft - dragDistance;
   }
 
   protected endDrag(event: PointerEvent): void {
@@ -214,12 +206,13 @@ export class FeaturedTrips {
     return Math.max(0, Math.min(index, this.trips().length - 1));
   }
 
-  private buildCardImage(index: number): FeaturedTrip['image'] {
-    const image = FEATURED_TRIP_IMAGES[index];
-
+  private buildCardImage(src: string, alt: string): FeaturedTrip['image'] {
     return {
-      ...image,
-      srcset: `${image.src} ${image.width}w`,
+      src,
+      alt,
+      width: 1200,
+      height: 900,
+      srcset: `${src} 1200w`,
       sizes: '(min-width: 70rem) 32vw, (min-width: 44rem) 48vw, 100vw',
       loading: 'lazy',
       fetchPriority: 'auto',

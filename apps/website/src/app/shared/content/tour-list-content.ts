@@ -1,6 +1,6 @@
 export interface TourCardContent {
   title: string;
-  category: 'Classic Tours' | 'Women-Only' | 'Solo Travellers' | 'Private Tours';
+  category: 'Classic Tours' | 'Women only' | 'Solo Traveller Only' | 'Private Tours' | 'All Ages';
   destination: string;
   excerpt: string;
   image: string;
@@ -69,19 +69,19 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     destination: 'Morocco',
     excerpt:
       "Somewhere between the blue-washed walls of Chefchaouen and a Berber family's tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth.",
-    image: '/assets/images/home-page/trips-carousel/Tour-feature-image-3.webp',
+    image: '/assets/images/destinations/Marocco/morocco-bgr.webp',
     alt: 'Travellers in a desert landscape',
     price: 'EUR2300',
     duration: '12 Days 11 Nights',
     target: '/tour-item/morocco-tour/',
   },
   {
-    title: 'Bulgaria Beyond the Ordinary | Women Only',
-    category: 'Women-Only',
+    title: 'Bulgaria Beyond the Ordinary | Women only',
+    category: 'Women only',
     destination: 'Bulgaria',
     excerpt:
       'Ancient monasteries, Rhodope village rituals, Roman ruins, and a brutalist monument lost in the clouds - this 8-day Bulgaria journey goes far beyond the surface, into the living traditions and hidden landscapes that make the Balkans unlike anywhere else in Europe.',
-    image: '/assets/images/women-tours/beautiful-bulgaria-women/thumbnails/Bulgaria-tour-.webp',
+    image: '/assets/images/women-tours/bulgaria-women-only-card-bgr.webp',
     alt: 'Bulgaria women-only tour preview',
     price: 'EUR1050',
     duration: '8 Days 7 Nights',
@@ -89,11 +89,11 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
   },
   {
     title: 'Kyrgyzstan Discovery Tour | Women only',
-    category: 'Women-Only',
+    category: 'Women only',
     destination: 'Kyrgyzstan',
     excerpt:
       "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
-    image: '/assets/images/women-tours/Kyrgystan-women/thumbnails/Kyrgyzstan-tour-1-thumbnail.webp',
+    image: '/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp',
     alt: 'Kyrgyzstan women-only tour preview',
     price: 'EUR1320',
     duration: '10 Days 9 Nights',
@@ -101,27 +101,27 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
   },
   {
     title: 'Morocco – Blue Cities & Golden Dunes | Women only',
-    category: 'Women-Only',
+    category: 'Women only',
     destination: 'Morocco',
     excerpt:
       'Somewhere between the blue-washed walls of Chefchaouen and a Berber family’s tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth — designed exclusively for solo travellers, so every person around you arrived the same way you did: independently, curious, and ready.',
-    image: '/assets/images/destinations/classic-tours-bgr.webp',
+    image: '/assets/images/women-tours/morocco-women-only-card-bgr.webp',
     alt: 'Morocco women-only tour preview',
     price: 'EUR2300',
     duration: '12 Days / 11 Nights',
-    target: '/tour-item/morocco-tour/',
+    target: '/tour-item/tour-item-morocco-women-only-tour/',
   },
   {
     title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only',
-    category: 'Solo Travellers',
+    category: 'Solo Traveller Only',
     destination: 'Morocco',
     excerpt:
       'Somewhere between the blue-washed walls of Chefchaouen and a Berber family’s tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth — designed exclusively for solo travellers, so every person around you arrived the same way you did: independently, curious, and ready.',
-    image: '/assets/images/destinations/classic-tours-bgr.webp',
+    image: '/assets/images/solo-travellers/MoroccoSoloTravellers-tour-card-bgr.webp',
     alt: 'Morocco solo travellers tour preview',
     price: 'EUR2550',
     duration: '12 Days / 11 Nights',
-    target: '/tour-item/morocco-tour/',
+    target: '/tour-item/tour-item-morocco-solo-travellers-tour/',
   },
 ];
 
@@ -129,7 +129,8 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
   {
     slug: 'tours-list',
     title: 'Tours List',
-    subtitle: "Somewhere on this page is a journey you'll spend the next year dreaming about. Take your time.",
+    subtitle:
+      "Somewhere on this page is a journey you'll spend the next year dreaming about. Take your time.",
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
     heroAlt: 'Small group travellers on a remote road',
     cards: TOUR_CARDS,
@@ -150,23 +151,38 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     subtitle: '',
     heroImage: '/assets/images/women-tours/women-tours-bgr.webp',
     heroAlt: 'Women-only tour group',
-    cards: TOUR_CARDS.filter((card) => card.category === 'Women-Only'),
+    cards: TOUR_CARDS.filter((card) => card.category === 'Women only'),
     showFilters: false,
   },
   {
     slug: 'solo-travellers-tours',
-    title: 'Solo Travellers Tours',
+    title: 'Solo Travellers',
     subtitle: '',
-    heroImage: '/assets/images/20220622_174014-scaled.jpg',
+    heroImage: '/assets/images/solo-travellers/solo-travelers-bgr.webp',
     heroAlt: 'Solo travellers tour landscape',
-    cards: TOUR_CARDS.filter((card) => card.category === 'Solo Travellers'),
+    cards: TOUR_CARDS.filter((card) => card.category === 'Solo Traveller Only'),
+    showFilters: false,
+  },
+  {
+    slug: 'all-ages-tours',
+    title: 'All Ages Tours',
+    subtitle: '',
+    heroImage: '/assets/images/all-ages/all-ages-bgr.webp',
+    heroAlt: 'All ages tour landscape',
+    cards: TOUR_CARDS.filter(
+      (card) => card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    ).map((card) => ({
+      ...card,
+      title: `${card.title} | All Ages`,
+      category: 'All Ages',
+    })),
     showFilters: false,
   },
   {
     slug: 'private-tours-your-trip-your-rules',
     title: 'Private Tours - Your Trip, Your Rules',
     subtitle: 'Private itineraries shaped around your pace, interests, dates and travel style.',
-    heroImage: '/assets/images/home-page/private-tours-right-bgr.webp',
+    heroImage: '/assets/images/private-tour/Private-tour-bgr.webp',
     heroAlt: 'Private tour landscape',
     cards: TOUR_CARDS.slice(0, 4).map((card) => ({ ...card, category: 'Private Tours' })),
     showFilters: false,
@@ -174,13 +190,13 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
       {
         title: 'Bring us the idea',
         body: 'Share the places, dates, travel style and special interests you have in mind. We shape the journey around the way you actually want to travel.',
-        image: '/assets/images/home-page/private-tours-left-bgr.webp',
+        image: '/assets/images/private-tour/private-tour-image.webp',
         alt: 'Private tour planning inspiration',
       },
       {
         title: 'Travel with the right local support',
         body: 'We connect the route, guides, stays and experiences into one carefully managed itinerary, with practical support before and during the trip.',
-        image: '/assets/images/home-page/private-tours-right-bgr.webp',
+        image: '/assets/images/private-tour/Private-tour-bgr.webp',
         alt: 'Private tour local support',
       },
     ],
@@ -189,7 +205,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     slug: 'private-tour-planning',
     title: 'Private Tour Planning',
     subtitle: 'A custom travel plan built from your dates, pace and interests.',
-    heroImage: '/assets/images/home-page/private-tours-left-bgr.webp',
+    heroImage: '/assets/images/private-tour/Private-tour-bgr.webp',
     heroAlt: 'Private tour planning',
     cards: TOUR_CARDS.slice(0, 3).map((card) => ({ ...card, category: 'Private Tours' })),
     showFilters: false,
@@ -197,13 +213,13 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
       {
         title: 'Tell us what matters',
         body: 'We start with your priorities: landscapes, food, family time, photography, culture, walking level, celebration dates or a route you already have in mind.',
-        image: '/assets/images/home-page/private-tours-left-bgr.webp',
+        image: '/assets/images/private-tour/private-tour-image.webp',
         alt: 'Private itinerary notes',
       },
       {
         title: 'We refine the route',
         body: 'The final plan balances memorable experiences with realistic timing, local insight and comfortable logistics.',
-        image: '/assets/images/home-page/private-tours-right-bgr.webp',
+        image: '/assets/images/private-tour/Private-tour-bgr.webp',
         alt: 'Private itinerary route',
       },
     ],

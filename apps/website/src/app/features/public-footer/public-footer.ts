@@ -4,6 +4,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
+import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
@@ -19,6 +21,11 @@ interface PaymentProvider {
   src: string;
 }
 
+interface FooterLink {
+  label: string;
+  target: string;
+}
+
 @Component({
   selector: 'app-public-footer',
   imports: [RouterLink, MatIconModule],
@@ -30,6 +37,7 @@ export class PublicFooter {
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly activeSite = inject(ActiveSite);
   protected readonly i18n = inject(OmayaI18n);
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -39,19 +47,40 @@ export class PublicFooter {
     ),
   );
   protected readonly isHomepage = computed(() => this.currentUrl() === '/');
+  protected readonly brand = computed(() => this.activeSite.site().brand);
+  protected readonly tagline = computed(() => this.activeSite.site().brand.tagline);
 
-  protected readonly latestPosts: readonly FooterPost[] = [
-    {
-      title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
-      date: 'July 25, 2026',
-      target: '/tassili-najjer-national-park-guide/',
-    },
-    {
-      title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
-      date: 'April 16, 2026',
-      target: '/the-complete-visitor-guide-to-rila-monastery/',
-    },
-  ];
+  protected readonly aboutLinks = computed<readonly FooterLink[]>(() =>
+    [
+      { label: this.i18n.t('footer.whyBook'), target: '/why-book-with-us/' },
+      { label: this.i18n.t('footer.ourStory'), target: '/our-story/' },
+      { label: this.i18n.t('footer.faqs'), target: '/faq/' },
+    ].filter((link) => this.isRouteEnabled(link.target)),
+  );
+
+  protected readonly legalLinks = computed<readonly FooterLink[]>(() =>
+    [
+      { label: this.i18n.t('footer.cookiePolicy'), target: '/cookie-policy/' },
+      { label: this.i18n.t('footer.privacyPolicy'), target: '/privacy-policy/' },
+      { label: this.i18n.t('footer.terms'), target: '/termsconditions/' },
+      { label: this.i18n.t('footer.license'), target: '/omaya-travel-license/' },
+    ].filter((link) => this.isRouteEnabled(link.target)),
+  );
+
+  protected readonly latestPosts = computed<readonly FooterPost[]>(() =>
+    [
+      {
+        title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
+        date: 'July 25, 2026',
+        target: '/tassili-najjer-national-park-guide/',
+      },
+      {
+        title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
+        date: 'April 16, 2026',
+        target: '/the-complete-visitor-guide-to-rila-monastery/',
+      },
+    ].filter((post) => this.isRouteEnabled(post.target)),
+  );
 
   protected readonly paymentProviders: readonly PaymentProvider[] = [
     { name: 'Mastercard', src: '/assets/images/home-page/payment-providers/MastercardLogo-2.png' },
@@ -82,5 +111,9 @@ export class PublicFooter {
       label,
       source: 'footer',
     });
+  }
+
+  private isRouteEnabled(target: string): boolean {
+    return isSiteRouteEnabled(this.activeSite.site(), target);
   }
 }

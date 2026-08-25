@@ -1,7 +1,8 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 
-import { META_PIXEL_ID } from './meta-pixel.config';
+import { ActiveSite } from '../../../sites/active-site';
+import { FALLBACK_META_PIXEL_ID } from './meta-pixel.config';
 
 type MetaPixelCommand = 'init' | 'track' | 'trackCustom';
 type MetaPixelEvent = 'Contact' | 'Lead' | 'PageView' | 'Search' | 'Subscribe' | 'ViewContent';
@@ -29,8 +30,8 @@ declare global {
 export class MetaPixel {
   private readonly document = inject(DOCUMENT);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly pixelId = META_PIXEL_ID.trim();
-  private initialized = false;
+  private readonly activeSite = inject(ActiveSite);
+  private initializedPixelId = '';
 
   trackPageView(): void {
     if (!this.ensureInitialized()) {
@@ -55,11 +56,13 @@ export class MetaPixel {
   }
 
   private ensureInitialized(): boolean {
-    if (!this.isBrowser || !this.pixelId) {
+    const pixelId = this.pixelId();
+
+    if (!this.isBrowser || !pixelId) {
       return false;
     }
 
-    if (this.initialized) {
+    if (this.initializedPixelId === pixelId) {
       return true;
     }
 
@@ -87,11 +90,15 @@ export class MetaPixel {
       windowRef._fbq = fbq;
     }
 
-    windowRef.fbq?.('init', this.pixelId);
+    windowRef.fbq?.('init', pixelId);
     this.appendScript();
-    this.initialized = true;
+    this.initializedPixelId = pixelId;
 
     return true;
+  }
+
+  private pixelId(): string {
+    return (this.activeSite.site().analytics.metaPixelId || FALLBACK_META_PIXEL_ID).trim();
   }
 
   private appendScript(): void {

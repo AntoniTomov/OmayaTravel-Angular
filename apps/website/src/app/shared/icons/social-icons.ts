@@ -19,10 +19,7 @@ const SOCIAL_LINKEDIN_SVG = `
   </svg>
 `;
 
-export function registerSocialIcons(
-  iconRegistry: MatIconRegistry,
-  sanitizer: DomSanitizer,
-): void {
+export function registerSocialIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer): void {
   iconRegistry.addSvgIconLiteral(
     'social-instagram',
     sanitizer.bypassSecurityTrustHtml(SOCIAL_INSTAGRAM_SVG),

@@ -271,7 +271,9 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
       },
       {
         heading: '4. Legal Basis for Processing (GDPR)',
-        paragraphs: ['We process your data under the General Data Protection Regulation (GDPR) based on:'],
+        paragraphs: [
+          'We process your data under the General Data Protection Regulation (GDPR) based on:',
+        ],
         list: [
           'Contract: To fulfill your booking',
           'Consent: For marketing communications, cookies, and tracking technologies',
@@ -291,7 +293,9 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
         ],
       },
       {
-        paragraphs: ['These providers may process your data on our behalf and may use cookies or similar technologies.'],
+        paragraphs: [
+          'These providers may process your data on our behalf and may use cookies or similar technologies.',
+        ],
       },
       {
         heading: '6. Sharing Your Data',
@@ -336,11 +340,15 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
       },
       {
         heading: '10. Data Security',
-        paragraphs: ['We implement appropriate technical and organizational measures to protect your data from unauthorized access, loss, or misuse.'],
+        paragraphs: [
+          'We implement appropriate technical and organizational measures to protect your data from unauthorized access, loss, or misuse.',
+        ],
       },
       {
         heading: '11. Third-Party Links',
-        paragraphs: ['Our website may contain links to other websites. We are not responsible for their privacy practices.'],
+        paragraphs: [
+          'Our website may contain links to other websites. We are not responsible for their privacy practices.',
+        ],
       },
       {
         heading: '12. Children’s Privacy',
@@ -353,7 +361,9 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
       },
       {
         heading: '13. Updates to This Policy',
-        paragraphs: ['We may update this Privacy Policy from time to time. Changes will be posted on this page.'],
+        paragraphs: [
+          'We may update this Privacy Policy from time to time. Changes will be posted on this page.',
+        ],
       },
       {
         heading: '14. Contact Us',
@@ -404,7 +414,9 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
       },
       {
         heading: '4. Third-Party Cookies',
-        paragraphs: ['We work with trusted third-party providers who may place cookies on your device, including:'],
+        paragraphs: [
+          'We work with trusted third-party providers who may place cookies on your device, including:',
+        ],
         list: [
           'Google (Analytics and Ads)',
           'Meta platforms (Facebook and Instagram)',

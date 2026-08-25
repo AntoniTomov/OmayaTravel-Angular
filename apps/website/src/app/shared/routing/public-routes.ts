@@ -40,6 +40,7 @@ export const PUBLIC_TOUR_CATEGORY_SLUGS = [
   'solo-travellers-tours',
   'women-only-tours',
   'classic-tours',
+  'all-ages-tours',
 ] as const;
 
 export const PUBLIC_BLOG_ARTICLE_SLUGS = [

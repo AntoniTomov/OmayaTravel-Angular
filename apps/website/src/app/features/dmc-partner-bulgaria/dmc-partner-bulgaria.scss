@@ -39,7 +39,7 @@
 }
 
 .dmc-page h1 {
-  font-size: clamp(2.5rem, 4vw, 3.7rem);
+  font-size: 4rem;
 }
 
 .dmc-page__intro p {
@@ -71,7 +71,10 @@
   padding: 2.6rem 1rem 3rem;
   color: tokens.$omaya-color-white;
   background:
-    linear-gradient(rgb(var(--omaya-color-overlay-rgb) / 18%), rgb(var(--omaya-color-overlay-rgb) / 18%)),
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 18%),
+      rgb(var(--omaya-color-overlay-rgb) / 18%)
+    ),
     url('/assets/images/dmc-partner-bulgaria/partner-with-omaya-bgr.webp') center / cover;
   text-align: center;
 }

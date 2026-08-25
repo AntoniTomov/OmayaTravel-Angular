@@ -12,6 +12,15 @@ export interface TourLinkedTitle {
   link: string;
 }
 
+export interface TourLinkedParagraph {
+  text: string;
+  linkText: string;
+  link: string;
+  trailingText: string;
+}
+
+export type TourIntroductionParagraph = string | TourLinkedParagraph;
+
 export interface TourHighlight {
   title: TourLinkedTitle;
   image: TourImage;
@@ -57,7 +66,7 @@ export interface TourDetailContent {
   };
   departures: readonly string[];
   heroImage: TourImage;
-  introduction: readonly string[];
+  introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
   included: readonly string[];
   notIncluded: readonly string[];
@@ -89,10 +98,15 @@ export interface DepartureReturn {
 }
 
 const ALGERIA_ASSET_BASE = '/assets/images/destinations/Algiria';
+const BULGARIA_ASSET_BASE = '/assets/images/destinations/Bulgaria';
 const BULGARIA_WOMEN_ASSET_BASE = '/assets/images/women-tours/beautiful-bulgaria-women';
-const KYRGYZSTAN_ASSET_BASE = '/assets/images';
+const KYRGYZSTAN_ASSET_BASE = '/assets/images/destinations/Kyrgystan';
 const KYRGYZSTAN_WOMEN_ASSET_BASE = '/assets/images/women-tours/Kyrgystan-women';
-const MOROCCO_PLACEHOLDER_IMAGE = '/assets/images/destinations/classic-tours-bgr.webp';
+const MOROCCO_ASSET_BASE = '/assets/images/destinations/Marocco';
+const MOROCCO_SOLO_ASSET_BASE = '/assets/images/solo-travellers/Morocco';
+const MOROCCO_WOMEN_ASSET_BASE = '/assets/images/women-tours/Morocco';
+const MOROCCO_WOMEN_ONLY_TOUR_SLUG = 'tour-item-morocco-women-only-tour';
+const MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG = 'tour-item-morocco-solo-travellers-tour';
 
 export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   id: 'algeria-desert-expedition-tadrart-rouge',
@@ -211,7 +225,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
       day: 2,
       title: 'Into the Tadrart - El Berdj',
       description:
-        'This is the day the desert opens up. Driving south from Djanet into the Tadrart - the red sandstone massif that forms one of the Sahara\'s most dramatic landscapes - you make your first stops at ancient rock engravings etched into the stone by peoples who lived here thousands of years before the desert came. By afternoon you reach El Berdj, a place of extraordinary stillness and beauty. Camp is set as the sun drops behind the rocks, casting long shadows across the sand. Your first walk here, in the golden hour before dusk, is something you will not easily forget.',
+        "This is the day the desert opens up. Driving south from Djanet into the Tadrart - the red sandstone massif that forms one of the Sahara's most dramatic landscapes - you make your first stops at ancient rock engravings etched into the stone by peoples who lived here thousands of years before the desert came. By afternoon you reach El Berdj, a place of extraordinary stillness and beauty. Camp is set as the sun drops behind the rocks, casting long shadows across the sand. Your first walk here, in the golden hour before dusk, is something you will not easily forget.",
       accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
@@ -219,7 +233,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
       day: 3,
       title: 'El Berdj - Moul Naga',
       description:
-        'The gorge of El Berdj leads you into a different world - one of towering dunes, their colours shifting from deep red to soft pink depending on where the light falls. Today is one of the journey\'s most visually rich days, moving between vast sandscapes and galleries of rock art left by the people of the Neolithic era. You will see beautifully preserved engravings line the rock faces and paintings of cattle - a 6,000-year-old record of a time when this land was green and alive. Camp tonight is at Moul Naga, surrounded by dunes that seem to belong to another planet entirely.',
+        "The gorge of El Berdj leads you into a different world - one of towering dunes, their colours shifting from deep red to soft pink depending on where the light falls. Today is one of the journey's most visually rich days, moving between vast sandscapes and galleries of rock art left by the people of the Neolithic era. You will see beautifully preserved engravings line the rock faces and paintings of cattle - a 6,000-year-old record of a time when this land was green and alive. Camp tonight is at Moul Naga, surrounded by dunes that seem to belong to another planet entirely.",
       accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
@@ -235,7 +249,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
       day: 5,
       title: 'Tin Merzouga to Adjlati',
       description:
-        'The erg Tin Merzouga is one of the Sahara\'s great spectacles. The dunes here are among the highest in Algeria - and the colours move through a full spectrum of red, pink, and amber as the day progresses. You cross the wadi of Indjaren, pausing at more rock paintings and engravings that have survived here in the dry air for millennia. By afternoon, you arrive at Adjlati, a camp set among black sand dunes - a geological curiosity and a striking contrast to the fiery reds of the morning. The evenings here have a particular quality: cooler air, a fire, tea, and a sky dense with stars.',
+        "The erg Tin Merzouga is one of the Sahara's great spectacles. The dunes here are among the highest in Algeria - and the colours move through a full spectrum of red, pink, and amber as the day progresses. You cross the wadi of Indjaren, pausing at more rock paintings and engravings that have survived here in the dry air for millennia. By afternoon, you arrive at Adjlati, a camp set among black sand dunes - a geological curiosity and a striking contrast to the fiery reds of the morning. The evenings here have a particular quality: cooler air, a fire, tea, and a sky dense with stars.",
       accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
@@ -243,7 +257,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
       day: 6,
       title: 'The Stone Forest - Adaik',
       description:
-        'The route today passes through landscapes that feel like they belong to a geological fairy tale. A stop at Tini for lunch breaks the morning\'s drive, and nearby, the engravings of the Crying Cow - one of the Tadrart\'s most celebrated and moving rock art sites, dating to around 6000 BC - reward anyone who makes the short walk to find them. Camp tonight is in Adaik, the so-called Stone Forest: an otherworldly terrain of wind-eroded sandstone columns and arches rising from the desert floor, their shadows lengthening as the sun goes down. It is the kind of place that makes you feel very small, in the best possible way.',
+        "The route today passes through landscapes that feel like they belong to a geological fairy tale. A stop at Tini for lunch breaks the morning's drive, and nearby, the engravings of the Crying Cow - one of the Tadrart's most celebrated and moving rock art sites, dating to around 6000 BC - reward anyone who makes the short walk to find them. Camp tonight is in Adaik, the so-called Stone Forest: an otherworldly terrain of wind-eroded sandstone columns and arches rising from the desert floor, their shadows lengthening as the sun goes down. It is the kind of place that makes you feel very small, in the best possible way.",
       accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
@@ -251,7 +265,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
       day: 7,
       title: 'Wadi Essendilene - Erg Admer',
       description:
-        'Today brings one of the journey\'s most unexpected pleasures. Deep in the canyon of Essendilene, a hidden wadi shelters oleanders, tamarisks, and palm trees - a pocket of green life in the heart of the Sahara, fed by secret gueltas (natural rock pools) that persist long after the rains have gone. This is also where you may encounter a Tuareg nomad family who still live here, as their ancestors have for generations, moving with the seasons and the water. Camp is made in the Erg Admer, a sea of classic Saharan dunes where sunset and sunrise are among the finest you will see on the entire journey. The light here has been painted by photographers and described by travellers for a century - and still, nothing quite prepares you for it.',
+        "Today brings one of the journey's most unexpected pleasures. Deep in the canyon of Essendilene, a hidden wadi shelters oleanders, tamarisks, and palm trees - a pocket of green life in the heart of the Sahara, fed by secret gueltas (natural rock pools) that persist long after the rains have gone. This is also where you may encounter a Tuareg nomad family who still live here, as their ancestors have for generations, moving with the seasons and the water. Camp is made in the Erg Admer, a sea of classic Saharan dunes where sunset and sunrise are among the finest you will see on the entire journey. The light here has been painted by photographers and described by travellers for a century - and still, nothing quite prepares you for it.",
       accommodation: 'Wild camping in the desert',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
@@ -259,7 +273,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
       day: 8,
       title: 'Tikobawin Arch - Return to Djanet',
       description:
-        'The final day in the desert saves some of its best for last. Tikobawin is one of the Tadrart\'s great natural arches - a monumental rock formation that frames the sky like a doorway into another world. Nearby, Neolithic tombs and rock paintings add a layer of human history to the drama of the landscape, and the mountains of Tilalin provide a majestic backdrop for a last lunch in the wilderness at Timghas. By late afternoon you are back in Djanet, showering off the sand and dust of six days in the desert. The evening brings a visit to the Tuareg market - one of the most authentic in the region - followed by dinner at the hotel. A fitting close to a journey that rarely slows down long enough to feel ordinary.',
+        "The final day in the desert saves some of its best for last. Tikobawin is one of the Tadrart's great natural arches - a monumental rock formation that frames the sky like a doorway into another world. Nearby, Neolithic tombs and rock paintings add a layer of human history to the drama of the landscape, and the mountains of Tilalin provide a majestic backdrop for a last lunch in the wilderness at Timghas. By late afternoon you are back in Djanet, showering off the sand and dust of six days in the desert. The evening brings a visit to the Tuareg market - one of the most authentic in the region - followed by dinner at the hotel. A fitting close to a journey that rarely slows down long enough to feel ordinary.",
       accommodation: 'Local hotel in Djanet',
       meals: ['breakfast', 'lunch', 'dinner'],
     },
@@ -320,7 +334,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     departures: ['2027-05-14', '2027-09-10'],
     heroImage: {
-      src: `${BULGARIA_WOMEN_ASSET_BASE}/bulgaria-women-tour-bgr.webp`,
+      src: `${BULGARIA_ASSET_BASE}/bulgaria-tour-bgr.webp`,
       alt: 'Monument in the Bulgarian mountains',
       width: 1920,
       height: 900,
@@ -331,9 +345,13 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     ],
     highlights: [
       {
-        title: { text: 'Exploring Rila Monastery', linkText: '', link: '' },
+        title: {
+          text: 'Exploring',
+          linkText: ' Rila Monastery',
+          link: 'https://omayatravel.com/the-complete-visitor-guide-to-rila-monastery/',
+        },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Rila-Monastery-Frescoes-11.webp`,
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-01.webp`,
           alt: 'Frescoes at Rila Monastery',
           width: 800,
           height: 1100,
@@ -342,7 +360,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Tasting wine in Melnik', linkText: '', link: '' },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Rural-Bulgaria-9.webp`,
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-02.webp`,
           alt: 'Vineyards and rural scenery near Melnik, Bulgaria',
           width: 800,
           height: 1100,
@@ -351,16 +369,20 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'The Bridal Face Painting Ritual', linkText: '', link: '' },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Gelina-Ritual-in-Ribnovo-1.webp`,
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-03.webp`,
           alt: 'Traditional bridal face painting from the Rhodope region',
           width: 800,
           height: 1100,
         },
       },
       {
-        title: { text: "Walking Plovdiv's Old Town", linkText: '', link: '' },
+        title: {
+          text: 'Walking ',
+          linkText: "Plovdiv's",
+          link: 'https://www.visitplovdiv.com/en',
+        },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Plovdiv-Roman-Theater-5.webp`,
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-04.webp`,
           alt: 'Historic Plovdiv, Bulgaria',
           width: 800,
           height: 1100,
@@ -369,7 +391,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Exploring the forgotten Buzludzha', linkText: '', link: '' },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Buzludzha-Monument-3.webp`,
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-05.webp`,
           alt: 'Buzludzha monument in Bulgaria',
           width: 800,
           height: 1100,
@@ -471,13 +493,12 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       'Plovdiv-at-night-12.webp',
       'Gelina-Ritual-in-Ribnovo-1.webp',
     ].map((fileName, index) => ({
-      src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/${fileName}`,
+      src: `${BULGARIA_ASSET_BASE}/gallery/${fileName}`,
       alt: `Bulgaria tour gallery image ${index + 1}`,
       width: 800,
       height: 1100,
     })),
-    gallerySubtitle:
-      'The Balkans at their most beautiful, most authentic, and most unexpected.',
+    gallerySubtitle: 'The Balkans at their most beautiful, most authentic, and most unexpected.',
     faq: {
       heading: 'Your Journey, Simplified.',
       intro:
@@ -602,7 +623,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     departures: ['2027-07-23', '2027-08-06'],
     heroImage: {
-      src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/Kyrgystan_women_only_tour-bgr.webp`,
+      src: `${KYRGYZSTAN_ASSET_BASE}/kyrgyzstan-tour-bgr.webp`,
       alt: 'Mountain landscape in Kyrgyzstan',
       width: 1920,
       height: 900,
@@ -620,7 +641,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
         },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-1-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-01.webp`,
           alt: 'Yurt near Song Kul Lake',
           width: 800,
           height: 1100,
@@ -629,7 +650,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Eagle hunting demonstration', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-2-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-02.webp`,
           alt: 'Traditional eagle hunting demonstration in Kyrgyzstan',
           width: 800,
           height: 1100,
@@ -638,7 +659,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Horse riding on the alpine steppe', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-3-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-03.webp`,
           alt: 'Horses on Kyrgyz alpine grassland',
           width: 800,
           height: 1100,
@@ -647,7 +668,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'The hot springs of Altyn Arashan', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-4-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-04.webp`,
           alt: 'Mountain valley at Altyn Arashan',
           width: 800,
           height: 1100,
@@ -656,7 +677,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Sharing meals with local families', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-5-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-05.webp`,
           alt: 'Traditional hospitality in Kyrgyzstan',
           width: 800,
           height: 1100,
@@ -734,7 +755,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 8,
         title: 'Altyn Arashan - Cholpon-Ata',
         description:
-          'Descending from the mountains, today you arrive on the northern shore of Issyk-Kul - one of the largest alpine lakes in the world. Cholpon-Ata is the shore\'s main resort town, and the afternoon is spent between its beach and the remarkable open-air Petroglyphs Museum, where thousands of ancient rock carvings tell the stories of the people who lived here long before the yurts. Lunch and dinner included.',
+          "Descending from the mountains, today you arrive on the northern shore of Issyk-Kul - one of the largest alpine lakes in the world. Cholpon-Ata is the shore's main resort town, and the afternoon is spent between its beach and the remarkable open-air Petroglyphs Museum, where thousands of ancient rock carvings tell the stories of the people who lived here long before the yurts. Lunch and dinner included.",
         accommodation: null,
         meals: ['lunch', 'dinner'],
       },
@@ -755,20 +776,20 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       },
     ],
     gallery: [
-      'Kyrgyzstan-tour-1.1.webp',
-      'Kyrgyzstan-tour-1.2.webp',
-      'Kyrgyzstan-tour-1.3.webp',
-      'Kyrgyzstan-tour-1.4.webp',
-      'Kyrgyzstan-tour-1.5.webp',
-      'Kyrgyzstan-tour-1.6.webp',
-      'Kyrgyzstan-tour-1.7.webp',
-      'Kyrgyzstan-tour-1.8.webp',
-      'Kyrgyzstan-tour-1.9.webp',
-      'Kyrgyzstan-tour-1.10.webp',
-      'Kyrgyzstan-tour-1.11.webp',
-      'Kyrgyzstan-tour-1.12.webp',
+      'kyrgyzstan-gallery-01.webp',
+      'kyrgyzstan-gallery-02.webp',
+      'kyrgyzstan-gallery-03.webp',
+      'kyrgyzstan-gallery-04.webp',
+      'kyrgyzstan-gallery-05.webp',
+      'kyrgyzstan-gallery-06.webp',
+      'kyrgyzstan-gallery-07.webp',
+      'kyrgyzstan-gallery-08.webp',
+      'kyrgyzstan-gallery-09.webp',
+      'kyrgyzstan-gallery-10.webp',
+      'kyrgyzstan-gallery-11.webp',
+      'kyrgyzstan-gallery-12.webp',
     ].map((fileName, index) => ({
-      src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/gallery/${fileName}`,
+      src: `${KYRGYZSTAN_ASSET_BASE}/gallery/${fileName}`,
       alt: `Kyrgyzstan tour gallery image ${index + 1}`,
       width: 800,
       height: 1100,
@@ -817,7 +838,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     departures: ['2026-10-01', '2027-04-08'],
     heroImage: {
-      src: MOROCCO_PLACEHOLDER_IMAGE,
+      src: `${MOROCCO_ASSET_BASE}/morocco-bgr.webp`,
       alt: 'Traditional Moroccan architecture and decorative tilework',
       width: 1920,
       height: 900,
@@ -826,7 +847,13 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       'There is a moment, somewhere between the blue-washed alleys of Chefchaouen and the amber silence of the Sahara, when Morocco stops feeling like a destination and starts feeling like a dream you’ve had before. This 12-day journey is built around that feeling.',
       'We begin on the Atlantic coast, where the Hassan II Mosque rises from the ocean like a prayer made stone. We wind north through the Rif Mountains to Chefchaouen, where every wall is painted the colour of a cloudless sky. We walk the medieval lanes of Fes — the world’s largest car-free city — past tanneries that have worked leather the same way for a thousand years. We cross the Middle Atlas, pause in a cedar forest where wild Barbary macaques watch from the branches, and descend into the Sahara as the sun turns the Erg Chebbi dunes to fire.',
       'And then the quiet. Two nights camped among the dunes, with nothing above you but the Milky Way and nothing around you but the oldest silence on earth.',
-      'From there, the journey carries you through the gorges of Todra, the valley of a thousand kasbahs, and the ancient earthen towers of Aït Ben Haddou — before the High Atlas Mountains deliver you, finally, into the organised chaos and intoxicating beauty of Marrakech.',
+      {
+        text: 'From there, the journey carries you through the gorges of Todra, the valley of a thousand kasbahs, and the ancient earthen towers of ',
+        linkText: 'Aït Ben Haddou',
+        link: 'https://whc.unesco.org/en/list/444/',
+        trailingText:
+          ' — before the High Atlas Mountains deliver you, finally, into the organised chaos and intoxicating beauty of Marrakech.',
+      },
     ],
     highlights: [
       {
@@ -836,7 +863,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: '',
         },
         image: {
-          src: MOROCCO_PLACEHOLDER_IMAGE,
+          src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-1.webp`,
           alt: 'Blue alleyway in Chefchaouen',
           width: 800,
           height: 1100,
@@ -850,7 +877,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: '',
         },
         image: {
-          src: MOROCCO_PLACEHOLDER_IMAGE,
+          src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-2.webp`,
           alt: 'Hassan II Mosque in Casablanca',
           width: 800,
           height: 1100,
@@ -864,7 +891,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: '',
         },
         image: {
-          src: MOROCCO_PLACEHOLDER_IMAGE,
+          src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-3.webp`,
           alt: 'Roman ruins at Volubilis',
           width: 800,
           height: 1100,
@@ -878,7 +905,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: '',
         },
         image: {
-          src: MOROCCO_PLACEHOLDER_IMAGE,
+          src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-4.webp`,
           alt: 'Historic medina and tanneries in Fes',
           width: 800,
           height: 1100,
@@ -887,12 +914,12 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       },
       {
         title: {
-          text: 'Wake before dawn and watch the towers of Aït Ben Haddou turn gold as the Saharan sun rises.',
-          linkText: '',
-          link: '',
+          text: 'Wake before dawn and watch the towers of ',
+          linkText: 'Aït Ben Haddou',
+          link: 'https://whc.unesco.org/en/list/444/',
         },
         image: {
-          src: MOROCCO_PLACEHOLDER_IMAGE,
+          src: `${MOROCCO_ASSET_BASE}/thumbnails/marocco-thumbnail-5.webp`,
           alt: 'Aït Ben Haddou at sunrise',
           width: 800,
           height: 1100,
@@ -968,7 +995,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 7,
         title: 'Merzouga',
         description:
-          'This morning, the group heads to Khamlia, a small desert village known for its Gnawa heritage. Here, musicians welcome you with live Gnawa music - rhythmic, powerful and deeply rooted in the history of the region. It’s an atmospheric moment that adds another layer to the Sahara experience, beyond the dunes themselves. After the visit, the group returns to the desert camp. The afternoon is free to enjoy the dunes at your own pace - relax at camp, take in the silence of the desert, or simply watch the light shift across the sand. A second night at the camp, and another sky full of stars - the Milky Way arching overhead in one of the darkest places you\'ll find anywhere on earth.',
+          "This morning, the group heads to Khamlia, a small desert village known for its Gnawa heritage. Here, musicians welcome you with live Gnawa music - rhythmic, powerful and deeply rooted in the history of the region. It’s an atmospheric moment that adds another layer to the Sahara experience, beyond the dunes themselves. After the visit, the group returns to the desert camp. The afternoon is free to enjoy the dunes at your own pace - relax at camp, take in the silence of the desert, or simply watch the light shift across the sand. A second night at the camp, and another sky full of stars - the Milky Way arching overhead in one of the darkest places you'll find anywhere on earth.",
         accommodation: 'Desert camp.',
         meals: ['breakfast', 'lunch', 'dinner'],
       },
@@ -1013,7 +1040,12 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         meals: ['breakfast'],
       },
     ],
-    gallery: [],
+    gallery: Array.from({ length: 12 }, (_, index) => ({
+      src: `${MOROCCO_ASSET_BASE}/gallery/morocco-gallery-${index + 1}.webp`,
+      alt: `Morocco tour gallery image ${index + 1}`,
+      width: 1200,
+      height: 900,
+    })),
     faq: {
       heading: 'Your Journey, Simplified.',
       intro:
@@ -1127,14 +1159,14 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
   {
     id: 'women-only-tour-bulgaria',
     slug: 'women-only-tour-bulgaria',
-    title: 'Bulgaria Beyond the Ordinary | Women Only',
+    title: 'Bulgaria Beyond the Ordinary | Women only',
     destination: {
       country: 'Bulgaria',
       region: 'Sofia, Rila, Plovdiv, Rhodope Mountains',
       startLocation: 'Sofia',
       endLocation: 'Sofia',
     },
-    category: 'Women Only',
+    category: 'Women only',
     duration: {
       days: 8,
       nights: 7,
@@ -1150,7 +1182,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     departures: ['2027-09-10', '2027-09-24'],
     heroImage: {
-      src: `${BULGARIA_WOMEN_ASSET_BASE}/bulgaria-women-tour-bgr.webp`,
+      src: `${BULGARIA_WOMEN_ASSET_BASE}/bulgaria-women-only-bgr.webp`,
       alt: 'Women travelling through the mountains and villages of Bulgaria',
       width: 1920,
       height: 900,
@@ -1161,37 +1193,54 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     ],
     highlights: [
       {
-        title: { text: 'Visit Rila Monastery', linkText: '', link: '' },
+        title: {
+          text: 'Exploring',
+          linkText: ' Rila Monastery',
+          link: 'https://omayatravel.com/the-complete-visitor-guide-to-rila-monastery/',
+        },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Rila-Monasterry-Bulgaria-2.webp`,
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-01.webp`,
           alt: 'Rila Monastery in Bulgaria',
           width: 800,
           height: 1100,
         },
       },
       {
-        title: { text: 'Explore Plovdiv by night', linkText: '', link: '' },
+        title: { text: 'Tasting wine in Melnik', linkText: '', link: '' },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Plovdiv-at-night-12.webp`,
-          alt: 'Plovdiv old town at night',
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-02.webp`,
+          alt: 'Wine tasting in Melnik',
           width: 800,
           height: 1100,
         },
       },
       {
-        title: { text: 'Meet women in rural Bulgaria', linkText: '', link: '' },
+        title: { text: 'The Bridal Face Painting Ritual', linkText: '', link: '' },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Rural-Bulgaria-7.webp`,
-          alt: 'Rural Bulgaria cultural encounter',
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-03.webp`,
+          alt: 'Traditional bridal face painting ritual in Ribnovo',
           width: 800,
           height: 1100,
         },
       },
       {
-        title: { text: 'Discover caves and monuments', linkText: '', link: '' },
+        title: {
+          text: 'Walking ',
+          linkText: "Plovdiv's",
+          link: 'https://www.visitplovdiv.com/en',
+        },
         image: {
-          src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/Devetashka-Cave-8.webp`,
-          alt: 'Devetashka Cave in Bulgaria',
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-04.webp`,
+          alt: 'Plovdiv old town in Bulgaria',
+          width: 800,
+          height: 1100,
+        },
+      },
+      {
+        title: { text: 'Exploring the forgotten Buzludzha', linkText: '', link: '' },
+        image: {
+          src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-05.webp`,
+          alt: 'Buzludzha monument in Bulgaria',
           width: 800,
           height: 1100,
         },
@@ -1292,7 +1341,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       'Plovdiv-at-night-12.webp',
       'Gelina-Ritual-in-Ribnovo-1.webp',
     ].map((fileName, index) => ({
-      src: `${BULGARIA_WOMEN_ASSET_BASE}/gallery/${fileName}`,
+      src: `${BULGARIA_ASSET_BASE}/gallery/${fileName}`,
       alt: `Bulgaria women-only tour gallery image ${index + 1}`,
       width: 800,
       height: 1100,
@@ -1400,7 +1449,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       cta: 'Check Availability',
     },
     seo: {
-      title: 'Bulgaria Beyond the Ordinary | Women Only | Omaya Travel',
+      title: 'Bulgaria Beyond the Ordinary | Women only | Omaya Travel',
       description:
         'Women-only small-group tour through Bulgaria with Sofia, Rila Monastery, Plovdiv, Rhodope villages and local cultural encounters.',
     },
@@ -1411,14 +1460,14 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
   {
     id: 'women-only-tour-kyrgyzstan',
     slug: 'women-only-tour-kyrgyzstan',
-    title: 'Kyrgyzstan Discovery Tour | Women Only',
+    title: 'Kyrgyzstan Discovery Tour | Women only',
     destination: {
       country: 'Kyrgyzstan',
       region: 'Bishkek, Issyk-Kul, Song Kul',
       startLocation: 'Bishkek',
       endLocation: 'Bishkek',
     },
-    category: 'Women Only',
+    category: 'Women only',
     duration: {
       days: 10,
       nights: 9,
@@ -1434,7 +1483,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     departures: ['2027-08-13'],
     heroImage: {
-      src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/Kyrgystan_women_only_tour-bgr.webp`,
+      src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/kyrgyzstan-women-only-bgr.webp`,
       alt: 'Women-only tour group in Kyrgyzstan mountain landscape',
       width: 1920,
       height: 900,
@@ -1452,7 +1501,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
         },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-1-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-01.webp`,
           alt: 'Traditional yurt camp in Kyrgyzstan',
           width: 150,
           height: 'auto',
@@ -1461,7 +1510,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Eagle hunting demonstration', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-2-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-02.webp`,
           alt: 'Traditional eagle hunting demonstration in Kyrgyzstan',
           width: 150,
           height: 'auto',
@@ -1470,7 +1519,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Horse riding on the alpine steppe', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-3-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-03.webp`,
           alt: 'Horses on Kyrgyz alpine grassland',
           width: 150,
           height: 'auto',
@@ -1483,7 +1532,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
           link: 'https://en.wikipedia.org/wiki/Altyn_Arashan',
         },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-4-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-04.webp`,
           alt: 'Mountain valley at Altyn Arashan in Kyrgyzstan',
           width: 150,
           height: 'auto',
@@ -1492,7 +1541,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: { text: 'Sharing meals with local families', linkText: '', link: '' },
         image: {
-          src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/thumbnails/Kyrgyzstan-tour-5-thumbnail.webp`,
+          src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-05.webp`,
           alt: 'Mountain pass in Kyrgyzstan',
           width: 150,
           height: 'auto',
@@ -1595,7 +1644,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       },
     ],
     gallery: Array.from({ length: 12 }, (_, index) => ({
-      src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/gallery/Kyrgyzstan-tour-1.${index + 1}.webp`,
+      src: `${KYRGYZSTAN_ASSET_BASE}/gallery/kyrgyzstan-gallery-${String(index + 1).padStart(2, '0')}.webp`,
       alt: `Kyrgyzstan women-only tour gallery image ${index + 1}`,
       width: 800,
       height: 1100,
@@ -1605,7 +1654,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       cta: 'Check Availability',
     },
     seo: {
-      title: 'Kyrgyzstan Discovery Tour | Women Only | Omaya Travel',
+      title: 'Kyrgyzstan Discovery Tour | Women only | Omaya Travel',
       description:
         'Women-only small-group tour through Kyrgyzstan with yurt stays, Song Kul Lake, mountain passes and local cultural encounters.',
     },
@@ -1616,5 +1665,84 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
 ];
 
 export function findTourBySlug(slug: string | null | undefined): TourDetailContent | undefined {
+  if (slug === MOROCCO_WOMEN_ONLY_TOUR_SLUG) {
+    return createMoroccoWomenOnlyTour();
+  }
+
+  if (slug === MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG) {
+    return createMoroccoSoloTravellersTour();
+  }
+
   return TOUR_DETAIL_CONTENT.find((tour) => tour.slug === slug);
+}
+
+function createMoroccoWomenOnlyTour(): TourDetailContent | undefined {
+  const moroccoTour = TOUR_DETAIL_CONTENT.find((tour) => tour.slug === 'morocco-tour');
+
+  if (!moroccoTour) {
+    return undefined;
+  }
+
+  return {
+    ...moroccoTour,
+    id: MOROCCO_WOMEN_ONLY_TOUR_SLUG,
+    slug: MOROCCO_WOMEN_ONLY_TOUR_SLUG,
+    title: 'Morocco – Blue Cities & Golden Dunes | Women only',
+    category: 'Women only',
+    heroImage: {
+      ...moroccoTour.heroImage,
+      src: `${MOROCCO_WOMEN_ASSET_BASE}/morocco-women-only-bgr.webp`,
+      alt: 'Women-only Morocco tour landscape',
+    },
+    gallery: moroccoTour.gallery.map((image, index) =>
+      index === 2
+        ? {
+            ...image,
+            src: `${MOROCCO_WOMEN_ASSET_BASE}/gallery/morocco-women-only-gallery-03.webp`,
+            alt: 'Women-only Morocco tour gallery image 3',
+          }
+        : image,
+    ),
+    seo: {
+      title: 'Morocco – Blue Cities & Golden Dunes | Women only | Omaya Travel',
+      description:
+        'Women-only Morocco tour through blue cities, imperial medinas, Sahara dunes and the High Atlas.',
+    },
+    source: {
+      legacyUrl: 'https://omayatravel.com/tour-item/tour-item-morocco-women-only-tour/',
+    },
+  };
+}
+
+function createMoroccoSoloTravellersTour(): TourDetailContent | undefined {
+  const moroccoTour = TOUR_DETAIL_CONTENT.find((tour) => tour.slug === 'morocco-tour');
+
+  if (!moroccoTour) {
+    return undefined;
+  }
+
+  return {
+    ...moroccoTour,
+    id: MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG,
+    slug: MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG,
+    title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only',
+    category: 'Solo Traveller Only',
+    heroImage: {
+      ...moroccoTour.heroImage,
+      src: `${MOROCCO_SOLO_ASSET_BASE}/Morocco-Solo-Travelers-bgr.webp`,
+      alt: 'Solo travellers Morocco tour landscape',
+    },
+    price: {
+      ...moroccoTour.price,
+      amount: 2550,
+    },
+    seo: {
+      title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only | Omaya Travel',
+      description:
+        'Solo travellers Morocco tour through blue cities, imperial medinas, Sahara dunes and the High Atlas.',
+    },
+    source: {
+      legacyUrl: 'https://omayatravel.com/tour-item/tour-item-morocco-solo-travellers-tour/',
+    },
+  };
 }

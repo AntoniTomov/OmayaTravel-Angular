@@ -1,7 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { SITE_SEARCH_INDEX } from '../../shared/content/homepage-content';
+import { ActiveSite } from '../../../sites/active-site';
+import { SearchIndexItem } from '../../shared/content/homepage-content';
 import { buildMediaImageAttributes } from '../../shared/media';
 
 @Component({
@@ -13,6 +14,7 @@ import { buildMediaImageAttributes } from '../../shared/media';
 export class SearchResults {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly activeSite = inject(ActiveSite);
 
   protected readonly query = signal(this.route.snapshot.queryParamMap.get('s')?.trim() ?? '');
   protected readonly draftQuery = signal(this.query());
@@ -24,9 +26,11 @@ export class SearchResults {
       return [];
     }
 
-    return SITE_SEARCH_INDEX.filter((item) =>
-      [item.title, item.type, item.excerpt].some((value) => value.toLowerCase().includes(query)),
-    );
+    return this.activeSite
+      .site()
+      .content.searchIndex.filter((item) =>
+        [item.title, item.type, item.excerpt].some((value) => value.toLowerCase().includes(query)),
+      );
   });
 
   protected readonly title = computed(() =>
@@ -55,7 +59,7 @@ export class SearchResults {
     });
   }
 
-  protected thumbnailSrc(item: (typeof SITE_SEARCH_INDEX)[number]): string | null {
+  protected thumbnailSrc(item: SearchIndexItem): string | null {
     if (!item.thumbnail) {
       return null;
     }
