@@ -130,7 +130,8 @@
 }
 
 .why-book__card:is(:hover, :focus) .why-book__card-inner,
-.why-book__card:focus-within .why-book__card-inner {
+.why-book__card:focus-within .why-book__card-inner,
+.why-book__card--flipped .why-book__card-inner {
   transform: rotateY(180deg);
 }
 
@@ -278,6 +279,7 @@
 
   .why-book__cards {
     grid-template-columns: 1fr;
+    padding-inline: 24px;
     padding-bottom: 4rem;
   }
 

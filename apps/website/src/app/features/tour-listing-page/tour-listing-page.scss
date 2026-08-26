@@ -1,7 +1,13 @@
 :host {
   display: block;
+  overflow-x: clip;
   background: var(--omaya-color-surface);
   color: var(--omaya-color-text);
+}
+
+.tour-listing {
+  width: 100%;
+  overflow-x: clip;
 }
 
 .tour-listing__hero {
@@ -29,6 +35,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .tour-listing__hero div {
@@ -83,6 +90,7 @@
 }
 
 .tour-listing__body {
+  box-sizing: border-box;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
@@ -122,6 +130,7 @@
   background: var(--omaya-color-surface-alt);
   color: var(--omaya-color-text);
   padding: 0 1.1rem;
+  white-space: normal;
   font: inherit;
   font-size: 0.75rem;
   font-weight: 800;
@@ -227,6 +236,7 @@
 .tour-listing__card {
   width: 310px;
   max-width: 310px;
+  box-sizing: border-box;
   justify-self: center;
   background: var(--omaya-color-surface);
 }
@@ -718,7 +728,38 @@
     padding-inline: 24px;
   }
 
+  .tour-listing__filters {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .tour-listing__filters button {
+    justify-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
   .tour-listing__grid {
+    grid-template-columns: 1fr;
     gap: 44px;
+  }
+
+  .tour-listing__card {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 24px;
+  }
+
+  .tour-listing__card-body {
+    padding-inline: 24px;
+  }
+
+  .tour-listing__intro {
+    margin-inline: -24px;
+  }
+
+  .tour-listing__intro article > div {
+    padding-inline: 24px;
   }
 }

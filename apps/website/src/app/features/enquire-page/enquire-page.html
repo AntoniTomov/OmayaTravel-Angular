@@ -8,46 +8,92 @@
     <form class="enquire-page__form" (submit)="sendEnquiry($event)">
       <label>
         <span>Your Full Name <small>(required)</small></span>
-        <input type="text" name="name" autocomplete="name" required />
+        <input
+          type="text"
+          name="name"
+          autocomplete="name"
+          required
+          [value]="formState().name"
+          (input)="updateField('name', $any($event.target).value)"
+        />
       </label>
 
       <label>
         <span>Email <small>(required)</small></span>
-        <input type="email" name="email" autocomplete="email" required />
+        <input
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+          [value]="formState().email"
+          (input)="updateField('email', $any($event.target).value)"
+        />
       </label>
 
       <label>
         <span>Phone number</span>
         <span class="enquire-page__phone">
-          <select name="country-code" aria-label="Country code">
-            <option>US</option>
-            <option>BG</option>
-            <option>GB</option>
+          <select
+            name="country-code"
+            aria-label="Country code"
+            [value]="formState().countryCode"
+            (change)="updateField('countryCode', $any($event.target).value)"
+          >
+            @for (countryCode of countryCodes; track countryCode.label) {
+              <option [value]="countryCode.value">{{ countryCode.label }}</option>
+            }
           </select>
-          <input type="tel" name="phone" value="+1" autocomplete="tel" />
+          <input
+            type="tel"
+            name="phone"
+            autocomplete="tel"
+            [value]="formState().phone"
+            (input)="updateField('phone', $any($event.target).value)"
+          />
         </span>
       </label>
 
       <fieldset>
         <legend>Preferred contact method</legend>
         <label>
-          <input type="checkbox" name="email-me" />
+          <input
+            type="checkbox"
+            name="email-me"
+            [checked]="formState().emailMe"
+            (change)="updateField('emailMe', $any($event.target).checked)"
+          />
           <span>Email me</span>
         </label>
         <label>
-          <input type="checkbox" name="whatsapp" />
+          <input
+            type="checkbox"
+            name="whatsapp"
+            [checked]="formState().whatsapp"
+            (change)="updateField('whatsapp', $any($event.target).checked)"
+          />
           <span>Call me via WhatsApp</span>
         </label>
       </fieldset>
 
       <label>
         <span>Date of Travel (YYYY-MM-DD)</span>
-        <input type="text" name="travel-date" inputmode="numeric" />
+        <input
+          type="date"
+          name="travel-date"
+          [min]="minTravelDate()"
+          [value]="formState().travelDate"
+          (input)="updateField('travelDate', $any($event.target).value)"
+        />
       </label>
 
       <label>
         <span>Additional information</span>
-        <textarea name="additional-information" rows="8"></textarea>
+        <textarea
+          name="additional-information"
+          rows="8"
+          [value]="formState().additionalInformation"
+          (input)="updateField('additionalInformation', $any($event.target).value)"
+        ></textarea>
       </label>
 
       <p>
@@ -57,9 +103,11 @@
       </p>
 
       <app-form-honeypot />
-      <button type="submit" [disabled]="submitStatus() === 'sending'">
-        {{ submitStatus() === 'sending' ? 'Sending...' : 'Contact us' }}
-      </button>
+      <div class="enquire-page__actions">
+        <button type="submit" [disabled]="submitStatus() === 'sending'">
+          {{ submitStatus() === 'sending' ? 'Sending...' : 'Contact us' }}
+        </button>
+      </div>
       <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
     </form>
   </section>

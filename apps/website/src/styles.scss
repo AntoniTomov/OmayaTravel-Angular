@@ -7,6 +7,11 @@
 
 html {
   height: 100%;
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
 }
 
 details::details-content {
@@ -56,4 +61,77 @@ details[open]::details-content {
   > img,
 .homepage__hero-image {
   object-position: center var(--omaya-hero-background-y, 0px) !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.tour-detail__gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 88%);
+}
+
+.tour-detail__gallery-modal img {
+  width: min(100%, 86rem);
+  height: min(82vh, 52rem);
+  object-fit: cover;
+}
+
+.tour-detail__gallery-close,
+.tour-detail__gallery-arrow {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  color: #fff;
+  background: rgb(16 24 32 / 70%);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.tour-detail__gallery-close {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.tour-detail__gallery-arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tour-detail__gallery-arrow--previous {
+  left: 1.5rem;
+}
+
+.tour-detail__gallery-arrow--next {
+  right: 1.5rem;
+}
+
+@media (max-width: 48rem) {
+  .tour-detail__gallery-modal img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tour-detail__gallery-close {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .tour-detail__gallery-arrow--previous {
+    left: 1rem;
+  }
+
+  .tour-detail__gallery-arrow--next {
+    right: 1rem;
+  }
 }

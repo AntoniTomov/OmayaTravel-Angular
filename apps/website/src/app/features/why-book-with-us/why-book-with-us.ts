@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 interface FlipCard {
@@ -91,10 +92,15 @@ const WHY_BOOK_WITH_US = {
 
 @Component({
   selector: 'app-why-book-with-us',
-  imports: [RouterLink],
+  imports: [NgClass, RouterLink],
   templateUrl: './why-book-with-us.html',
   styleUrl: './why-book-with-us.scss',
 })
 export class WhyBookWithUs {
   protected readonly content = WHY_BOOK_WITH_US;
+  protected readonly activeCardId = signal<string | null>(null);
+
+  protected toggleCard(cardId: string): void {
+    this.activeCardId.update((activeCardId) => (activeCardId === cardId ? null : cardId));
+  }
 }

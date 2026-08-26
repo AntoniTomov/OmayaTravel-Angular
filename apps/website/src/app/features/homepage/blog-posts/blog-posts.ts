@@ -12,5 +12,7 @@ import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 })
 export class BlogPosts {
   protected readonly i18n = inject(OmayaI18n);
-  protected readonly posts = BLOG_POST_SUMMARIES.slice(1);
+  protected readonly posts = [...BLOG_POST_SUMMARIES]
+    .sort((first, second) => Date.parse(second.date) - Date.parse(first.date))
+    .slice(0, 3);
 }

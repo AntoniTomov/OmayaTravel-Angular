@@ -21,7 +21,14 @@
 
   <section class="why-book__cards" aria-label="Reasons to book with Omaya Travel">
     @for (card of content.cards; track card.id) {
-      <article class="why-book__card" tabindex="0">
+      <article
+        class="why-book__card"
+        tabindex="0"
+        [ngClass]="{ 'why-book__card--flipped': activeCardId() === card.id }"
+        (click)="toggleCard(card.id)"
+        (keydown.enter)="toggleCard(card.id)"
+        (keydown.space)="$event.preventDefault(); toggleCard(card.id)"
+      >
         <div class="why-book__card-inner">
           <div class="why-book__card-face why-book__card-front">
             <img

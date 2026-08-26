@@ -59,6 +59,7 @@ export class TourDetail {
 
   protected readonly activeTab = signal<TourTab>('information');
   protected readonly activeGalleryIndex = signal<number | null>(null);
+  private galleryTouchStartX = 0;
   protected readonly openFaqIndex = signal<number | null>(null);
   protected readonly isBookingCalendarOpen = signal(false);
   protected readonly selectedBookingDate = signal<string | null>(null);
@@ -268,6 +269,21 @@ export class TourDetail {
 
   protected showNextGalleryImage(): void {
     this.updateGalleryIndex(1);
+  }
+
+  protected onGalleryTouchStart(event: TouchEvent): void {
+    this.galleryTouchStartX = event.touches[0]?.clientX ?? 0;
+  }
+
+  protected onGalleryTouchEnd(event: TouchEvent): void {
+    const touchEndX = event.changedTouches[0]?.clientX ?? this.galleryTouchStartX;
+    const deltaX = touchEndX - this.galleryTouchStartX;
+
+    if (Math.abs(deltaX) < 40) {
+      return;
+    }
+
+    this.updateGalleryIndex(deltaX > 0 ? -1 : 1);
   }
 
   protected priceLabel(tour: TourDetailContent): string {

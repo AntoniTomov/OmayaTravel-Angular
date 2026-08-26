@@ -76,7 +76,6 @@
             class="public-header__link"
             type="button"
             [attr.aria-expanded]="activeDropdown() === group.label"
-            (focus)="openDropdown(group.label)"
             (click)="toggleDropdown(group.label)"
           >
             {{ group.label }}

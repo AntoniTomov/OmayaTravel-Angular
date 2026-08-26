@@ -352,6 +352,8 @@
         role="dialog"
         aria-modal="true"
         aria-label="Tour gallery preview"
+        (touchstart)="onGalleryTouchStart($event)"
+        (touchend)="onGalleryTouchEnd($event)"
         (click)="closeGallery()"
       >
         <div class="tour-detail__lightbox-panel" (click)="closeGallery()">

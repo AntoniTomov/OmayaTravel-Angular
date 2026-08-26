@@ -168,4 +168,11 @@
     padding-right: 3rem;
     font-size: 0.72rem;
   }
+
+  .public-footer__bottom button,
+  .public-footer__bottom button.public-footer__back-to-top--home {
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
 }
