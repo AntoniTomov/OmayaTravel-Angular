@@ -557,7 +557,9 @@
   place-items: center;
   padding: 0;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+  border-radius: 50%;
+  font-weight: 900;
 }
 
 .tour-detail__calendar-header strong {
@@ -610,9 +612,43 @@
   background: tokens.$omaya-color-gold;
 }
 
+.tour-detail__calendar-grid button:disabled {
+  cursor: not-allowed;
+}
+
 .tour-detail__calendar-grid
   .tour-detail__calendar-day--muted:not(.tour-detail__calendar-day--period) {
   opacity: 0.45;
+}
+
+.tour-detail__calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+  align-items: center;
+  color: var(--omaya-color-muted);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.tour-detail__calendar-legend span {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.tour-detail__calendar-legend i {
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 1px solid tokens.$omaya-color-gold;
+}
+
+.tour-detail__calendar-legend-start {
+  background: #edc06f;
+}
+
+.tour-detail__calendar-legend-period {
+  background: #f8dfb0;
 }
 
 .tour-detail__terms {

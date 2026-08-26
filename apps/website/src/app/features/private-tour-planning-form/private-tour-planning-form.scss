@@ -240,8 +240,24 @@
     padding-top: 7rem;
   }
 
+  .planning-form__hero h1 {
+    font-size: 3rem;
+  }
+
   .planning-form__panel {
     padding: 1.25rem;
+  }
+
+  .planning-form__panel > .planning-form__button {
+    width: 100%;
+  }
+
+  .planning-form__actions {
+    width: 100%;
+  }
+
+  .planning-form__actions .planning-form__button {
+    flex: 1 1 0;
   }
 
   .planning-form__phone {

@@ -120,9 +120,11 @@
             [value]="state().adults"
             (change)="updateField('adults', $any($event.target).value)"
           >
-            <option value="">Select adults</option>
+            <option value="" [selected]="state().adults === ''">Select adults</option>
             @for (count of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track count) {
-              <option [value]="count">{{ count }}</option>
+              <option [value]="count" [selected]="state().adults === count.toString()">
+                {{ count }}
+              </option>
             }
           </select>
         </label>
@@ -134,9 +136,11 @@
             [value]="state().children"
             (change)="updateField('children', $any($event.target).value)"
           >
-            <option value="">Select children</option>
+            <option value="" [selected]="state().children === ''">Select children</option>
             @for (count of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; track count) {
-              <option [value]="count">{{ count }}</option>
+              <option [value]="count" [selected]="state().children === count.toString()">
+                {{ count }}
+              </option>
             }
           </select>
         </label>
@@ -195,6 +199,7 @@
             name="startDate"
             type="date"
             required
+            [min]="minStartDate"
             [value]="state().startDate"
             (click)="openDatePicker(startDateInput)"
             (focus)="openDatePicker(startDateInput)"

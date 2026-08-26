@@ -90,7 +90,7 @@
 }
 
 .homepage__trip-select,
-.homepage__trip-search button {
+.homepage__trip-search > button {
   min-height: 3.25rem;
   padding: 0 1rem;
   font-weight: 800;
@@ -112,7 +112,9 @@
       no-repeat right 1.25rem center / 0.875rem 0.5rem,
     tokens.$omaya-color-white;
   border: 1px solid tokens.$omaya-color-muted-border;
+  border-radius: 0;
   text-align: left;
+  cursor: pointer;
 }
 
 .homepage__trip-menu {
@@ -122,8 +124,9 @@
   left: 0;
   z-index: 5;
   display: grid;
-  max-height: 520px;
+  max-height: min(520px, calc(100dvh - 12rem));
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: tokens.$omaya-color-white;
   box-shadow: var(--omaya-shadow-dropdown);
 }
@@ -143,7 +146,7 @@
   background: var(--omaya-color-surface-alt);
 }
 
-.homepage__trip-search button {
+.homepage__trip-search > button {
   color: tokens.$omaya-color-white;
   font-size: 0.86rem;
   background: tokens.$omaya-color-gold;
@@ -155,8 +158,8 @@
   cursor: pointer;
 }
 
-.homepage__trip-search button:hover,
-.homepage__trip-search button:focus-visible {
+.homepage__trip-search > button:hover,
+.homepage__trip-search > button:focus-visible {
   color: tokens.$omaya-color-dark;
   outline: 2px solid tokens.$omaya-color-white;
   outline-offset: 3px;

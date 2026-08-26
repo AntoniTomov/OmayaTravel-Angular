@@ -65,6 +65,15 @@
       <span></span>
     </button>
 
+    @if (isMobileMenuOpen()) {
+      <button
+        class="public-header__menu-overlay"
+        type="button"
+        aria-label="Close menu"
+        (click)="closeMenus()"
+      ></button>
+    }
+
     <div class="public-header__links" [class.public-header__links--open]="isMobileMenuOpen()">
       @for (group of navigationGroups(); track group.label) {
         <div

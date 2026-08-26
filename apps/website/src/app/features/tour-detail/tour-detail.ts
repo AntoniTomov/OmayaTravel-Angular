@@ -1,5 +1,13 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, HostListener, computed, effect, inject, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -52,6 +60,7 @@ interface CalendarDay {
 export class TourDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly host = inject(ElementRef<HTMLElement>);
   private readonly tourSlug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('tourSlug'))),
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
@@ -65,6 +74,7 @@ export class TourDetail {
   protected readonly selectedBookingDate = signal<string | null>(null);
   protected readonly calendarMonth = signal(this.startOfMonth(new Date()));
   protected readonly calendarWeekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
+  protected readonly todayIso = this.toIsoDate(new Date());
   protected readonly tour = computed(() => findTourBySlug(this.tourSlug()));
   protected readonly destinationDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
     const tour = this.tour();
@@ -100,11 +110,13 @@ export class TourDetail {
     const firstDay = this.startOfMonth(month);
     const gridStart = this.addDays(firstDay, -this.weekdayOffset(firstDay));
     const selectedIso = this.selectedBookingDate();
+    const today = this.parseIsoDate(this.todayIso);
 
     return Array.from({ length: 42 }, (_, index) => {
       const date = this.addDays(gridStart, index);
       const iso = this.toIsoDate(date);
       const matchingStart = this.destinationDepartureWindows().find((window) => window.iso === iso);
+      const isPast = date < today;
       const isTourPeriod = this.destinationDepartureWindows().some(
         (window) => date >= window.start && date <= window.end,
       );
@@ -114,13 +126,15 @@ export class TourDetail {
         date,
         iso,
         label: matchingStart
-          ? `${date.toLocaleDateString('en-GB')}, start date for ${matchingStart.tourTitle}`
+          ? `${date.toLocaleDateString('en-GB')}, ${
+              isPast ? 'past start date' : 'start date'
+            } for ${matchingStart.tourTitle}`
           : `${date.toLocaleDateString('en-GB')}${isTourPeriod ? ', tour period' : ', unavailable'}`,
         isCurrentMonth,
         isTourPeriod,
         isStartDate: Boolean(matchingStart),
         isSelected: selectedIso === iso,
-        isSelectable: Boolean(matchingStart),
+        isSelectable: Boolean(matchingStart) && !isPast,
       };
     });
   });
@@ -202,6 +216,21 @@ export class TourDetail {
   @HostListener('document:keydown.escape')
   onEscape(): void {
     this.closeGallery();
+    this.isBookingCalendarOpen.set(false);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as Element | null;
+
+    if (
+      !target ||
+      this.host.nativeElement.querySelector('.tour-detail__date-field')?.contains(target)
+    ) {
+      return;
+    }
+
+    this.isBookingCalendarOpen.set(false);
   }
 
   @HostListener('document:keydown.arrowleft')
@@ -255,7 +284,7 @@ export class TourDetail {
   }
 
   protected selectBookingDate(iso: string): void {
-    if (!this.destinationDepartureWindows().some((window) => window.iso === iso)) {
+    if (!this.calendarDays().some((day) => day.iso === iso && day.isSelectable)) {
       return;
     }
 
