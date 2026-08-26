@@ -120,9 +120,7 @@
   position: relative;
   padding-right: 3rem;
   appearance: none;
-  background:
-    linear-gradient(transparent, transparent),
-    var(--omaya-color-surface-alt);
+  background: linear-gradient(transparent, transparent), var(--omaya-color-surface-alt);
 }
 
 .enquire-page input[type='date']::-webkit-calendar-picker-indicator {
