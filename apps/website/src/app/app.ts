@@ -57,6 +57,11 @@ export class App {
   }
 
   private updateHeroBackgroundPosition(): void {
+    if (!window.matchMedia('(min-width: 48.01rem)').matches) {
+      this.document.documentElement.style.removeProperty('--omaya-hero-background-y');
+      return;
+    }
+
     const offset = -Math.round(window.scrollY * 0.08);
 
     this.document.documentElement.style.setProperty('--omaya-hero-background-y', `${offset}px`);

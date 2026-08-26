@@ -120,13 +120,16 @@
       }
 
       @for (link of navigationLinks(); track link.target) {
-        <a class="public-header__link" [routerLink]="link.target" (click)="closeMenus()">{{
-          link.label
-        }}</a>
+        <a
+          class="public-header__link public-header__standalone-link"
+          [routerLink]="link.target"
+          (click)="closeMenus()"
+          >{{ link.label }}</a
+        >
       }
 
       <button
-        class="public-header__search-button"
+        class="public-header__search-button public-header__standalone-search"
         type="button"
         [attr.aria-label]="i18n.t('header.openSearch')"
         (click)="openSearch()"

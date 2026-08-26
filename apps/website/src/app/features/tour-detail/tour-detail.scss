@@ -812,6 +812,10 @@
     padding-top: 7rem;
   }
 
+  .tour-detail__hero h1 {
+    font-size: 3rem;
+  }
+
   .tour-detail__tabs {
     grid-template-columns: 1fr;
     max-width: none;
@@ -820,8 +824,14 @@
 
   .tour-detail__layout {
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
     padding-inline: 1.5rem;
+  }
+
+  .tour-detail__section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .tour-detail__summary,
@@ -857,8 +867,9 @@
   .tour-detail__gallery-preview img,
   .tour-detail__gallery img {
     width: 100%;
-    height: auto;
-    min-height: 18rem;
+    height: 18rem;
+    min-height: 0;
+    object-fit: cover;
   }
 
   .tour-detail__highlights img {

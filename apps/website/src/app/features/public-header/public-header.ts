@@ -125,6 +125,7 @@ export class PublicHeader implements AfterViewInit {
     if (!this.host.nativeElement.contains(event.target as Node)) {
       this.activeDropdown.set(null);
       this.activeSubmenu.set(null);
+      this.isMobileMenuOpen.set(false);
     }
   }
 

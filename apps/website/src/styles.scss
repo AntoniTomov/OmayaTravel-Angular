@@ -26,25 +26,14 @@ details[open]::details-content {
   block-size: auto;
 }
 
-:where(
-  .homepage__hero,
-  .tour-detail__hero,
-  .tour-listing__hero,
-  .tour-calendar__hero,
-  .blog-list__hero,
-  .blog-article__hero,
-  .enquire-page__hero,
-  .legal-page__hero,
-  .faq-page__hero,
-  .our-story__hero,
-  .private-tours-page__hero,
-  .not-yet__hero,
-  .why-book__hero
-) {
-  background-position: center var(--omaya-hero-background-y, 0px) !important;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-:where(
+@media (min-width: 48.01rem) {
+  :where(
     .homepage__hero,
     .tour-detail__hero,
     .tour-listing__hero,
@@ -53,20 +42,33 @@ details[open]::details-content {
     .blog-article__hero,
     .enquire-page__hero,
     .legal-page__hero,
+    .faq-page__hero,
     .our-story__hero,
     .private-tours-page__hero,
     .not-yet__hero,
     .why-book__hero
-  )
-  > img,
-.homepage__hero-image {
-  object-position: center var(--omaya-hero-background-y, 0px) !important;
-}
+  ) {
+    background-position: center var(--omaya-hero-background-y, 0px) !important;
+  }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+  :where(
+      .homepage__hero,
+      .tour-detail__hero,
+      .tour-listing__hero,
+      .tour-calendar__hero,
+      .blog-list__hero,
+      .blog-article__hero,
+      .enquire-page__hero,
+      .legal-page__hero,
+      .our-story__hero,
+      .private-tours-page__hero,
+      .not-yet__hero,
+      .why-book__hero
+    )
+    > img,
+  .homepage__hero-image {
+    object-position: center var(--omaya-hero-background-y, 0px) !important;
+  }
 }
 
 .tour-detail__gallery-modal {

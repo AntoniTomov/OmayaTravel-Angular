@@ -221,7 +221,14 @@
 }
 
 @media (max-width: 42rem) {
+  .enquire-page h1 {
+    box-sizing: border-box;
+    width: 100%;
+    padding-inline: 24px;
+  }
+
   .enquire-page__form-section {
+    padding-top: 3rem;
     padding-bottom: 6rem;
   }
 

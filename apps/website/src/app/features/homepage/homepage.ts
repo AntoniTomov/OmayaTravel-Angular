@@ -1,5 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ActiveSite } from '../../../sites/active-site';
@@ -47,6 +55,7 @@ export class Homepage implements OnDestroy {
   protected readonly activeSlideIndex = signal(0);
   protected readonly selectedDestination = signal('');
   protected readonly selectedMonth = signal('');
+  protected readonly activeTripDropdown = signal<'destination' | 'month' | null>(null);
   protected readonly searchError = signal('');
   protected readonly newsletterStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly newsletterMessage = signal('');
@@ -69,6 +78,15 @@ export class Homepage implements OnDestroy {
       srcset: `${slide.visualSrc} ${slide.image.width}w`,
     };
   });
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement | null;
+
+    if (!target?.closest('.homepage__trip-field')) {
+      this.activeTripDropdown.set(null);
+    }
+  }
 
   constructor() {
     this.intervalId = this.reducedMotion ? null : this.createAutoAdvance();
@@ -93,6 +111,7 @@ export class Homepage implements OnDestroy {
 
   protected updateDestination(value: string): void {
     this.selectedDestination.set(value);
+    this.activeTripDropdown.set(null);
     this.analytics.trackEvent('select_destination', {
       destination_path: value || '(none)',
       source: 'homepage_search',
@@ -101,6 +120,7 @@ export class Homepage implements OnDestroy {
 
   protected updateMonth(value: string): void {
     this.selectedMonth.set(value);
+    this.activeTripDropdown.set(null);
     this.analytics.trackEvent('select_month', {
       month: value || '(none)',
       source: 'homepage_search',
@@ -132,6 +152,24 @@ export class Homepage implements OnDestroy {
           }
         : undefined,
     });
+  }
+
+  protected toggleTripDropdown(dropdown: 'destination' | 'month', event: MouseEvent): void {
+    event.stopPropagation();
+    this.activeTripDropdown.update((activeDropdown) =>
+      activeDropdown === dropdown ? null : dropdown,
+    );
+  }
+
+  protected destinationLabel(): string {
+    return (
+      this.destinations().find((destination) => destination.target === this.selectedDestination())
+        ?.label ?? this.i18n.t('homepage.whereTo')
+    );
+  }
+
+  protected monthLabel(): string {
+    return this.selectedMonth() || this.i18n.t('homepage.when');
   }
 
   protected async submitNewsletterForm(event: Event): Promise<void> {

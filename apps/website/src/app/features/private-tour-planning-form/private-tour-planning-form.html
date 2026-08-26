@@ -39,15 +39,20 @@
         <label>
           Phone number(required)
           <span class="planning-form__phone">
-            <input
+            <select
               class="planning-form__country-code"
               name="countryCode"
-              list="country-codes"
               autocomplete="tel-country-code"
               required
               [value]="state().countryCode"
-              (input)="updateField('countryCode', $any($event.target).value)"
-            />
+              (change)="updateField('countryCode', $any($event.target).value)"
+            >
+              @for (country of countryCodes; track country.label) {
+                <option [value]="country.code">
+                  {{ country.flag }} {{ country.label }} {{ country.code }}
+                </option>
+              }
+            </select>
             <input
               name="phone"
               autocomplete="tel"
@@ -56,13 +61,6 @@
               (input)="updateField('phone', $any($event.target).value)"
             />
           </span>
-          <datalist id="country-codes">
-            @for (country of countryCodes; track country.label) {
-              <option [value]="country.code">
-                {{ country.flag }} {{ country.label }} {{ country.code }}
-              </option>
-            }
-          </datalist>
         </label>
         <label>
           Email*
