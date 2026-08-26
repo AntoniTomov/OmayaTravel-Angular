@@ -368,7 +368,7 @@
 
   .public-header__links--open {
     display: grid;
-    gap: 0.35rem;
+    gap: 0.21rem;
     min-height: auto;
     height: auto;
   }
@@ -377,7 +377,7 @@
     width: 100%;
     box-sizing: border-box;
     text-align: left;
-    padding: 0.65rem 0;
+    padding: 0.39rem 0;
   }
 
   .public-header__search-button {
@@ -388,7 +388,13 @@
 
   .public-header__standalone-link + .public-header__standalone-link,
   .public-header__standalone-link + .public-header__standalone-search {
-    margin-top: 0.45rem;
+    margin-top: 0;
+  }
+
+  .public-header__dropdown > a,
+  .public-header__submenu-button,
+  .public-header__submenu a {
+    padding-block: 0.39rem;
   }
 
   .public-header__dropdown {

@@ -46,6 +46,3 @@ DirectoryIndex index.html
   AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
 </IfModule>
 '@ | Set-Content -LiteralPath $htaccessPath -Encoding utf8NoBOM -ErrorAction Stop
-
-Write-Host "Prepared static staging artifact at $resolvedBrowserDistPath"
-Write-Host "Wrote staging robots.txt and .htaccess"

@@ -13,6 +13,11 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  CI: true
+  NG_CLI_ANALYTICS: false
+  PNPM_CONFIG_PROGRESS: false
+
 jobs:
   deploy:
     name: Build and deploy staging
@@ -37,19 +42,39 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm install --frozen-lockfile --prefer-offline --reporter=append-only > /tmp/omaya-install.log 2>&1 || {
+            cat /tmp/omaya-install.log
+            exit 1
+          }
 
       - name: Lint
-        run: pnpm run lint
+        run: |
+          pnpm run lint > /tmp/omaya-lint.log 2>&1 || {
+            cat /tmp/omaya-lint.log
+            exit 1
+          }
 
       - name: Type check
-        run: pnpm run type-check
+        run: |
+          pnpm run type-check > /tmp/omaya-type-check.log 2>&1 || {
+            cat /tmp/omaya-type-check.log
+            exit 1
+          }
 
       - name: Test
-        run: pnpm run test
+        run: |
+          pnpm run test > /tmp/omaya-test.log 2>&1 || {
+            cat /tmp/omaya-test.log
+            exit 1
+          }
 
       - name: Build
-        run: pnpm run build
+        run: |
+          pnpm run build > /tmp/omaya-build.log 2>&1 || {
+            cat /tmp/omaya-build.log
+            exit 1
+          }
 
       - name: Prepare static staging artifact
         shell: pwsh
@@ -71,8 +96,7 @@ jobs:
           chmod 600 ~/.ssh/omaya_staging_deploy
           touch ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
-          echo "Scanning SSH host key for $SSH_HOST:$SSH_PORT"
-          timeout 15s ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || echo "ssh-keyscan did not return a host key; deploy commands will use StrictHostKeyChecking=accept-new"
+          timeout 15s ssh-keyscan -q -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Deploy browser output to Hostinger staging
         shell: bash
@@ -87,7 +111,7 @@ jobs:
           test -n "$SSH_USER"
           test -n "$SSH_PATH"
           ssh -i ~/.ssh/omaya_staging_deploy -o StrictHostKeyChecking=accept-new -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p \"$SSH_PATH\""
-          rsync -az --delete --checksum \
+          rsync -azq --delete --checksum \
             -e "ssh -i ~/.ssh/omaya_staging_deploy -o StrictHostKeyChecking=accept-new -p $SSH_PORT" \
             apps/website/dist/website/browser/ \
             "$SSH_USER@$SSH_HOST:$SSH_PATH/"

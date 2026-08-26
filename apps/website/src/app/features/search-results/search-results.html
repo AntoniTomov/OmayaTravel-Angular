@@ -18,7 +18,9 @@
         aria-describedby="search-results-error"
         (input)="updateDraftQuery($any($event.target).value)"
       />
-      <button type="submit" aria-label="Submit search"><span aria-hidden="true"></span></button>
+      <button type="submit" aria-label="Submit search">
+        <mat-icon svgIcon="search" aria-hidden="true"></mat-icon>
+      </button>
       @if (error()) {
         <p id="search-results-error" class="search-results__error">{{ error() }}</p>
       } @else {

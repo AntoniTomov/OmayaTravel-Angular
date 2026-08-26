@@ -122,9 +122,9 @@
   top: calc(100% + 0.35rem);
   right: 0;
   left: 0;
-  z-index: 5;
+  z-index: 30;
   display: grid;
-  max-height: min(520px, calc(100dvh - 12rem));
+  max-height: 14rem;
   overflow-y: auto;
   overscroll-behavior: contain;
   background: tokens.$omaya-color-white;

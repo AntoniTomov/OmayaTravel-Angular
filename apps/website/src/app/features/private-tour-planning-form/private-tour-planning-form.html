@@ -203,7 +203,7 @@
             [value]="state().startDate"
             (click)="openDatePicker(startDateInput)"
             (focus)="openDatePicker(startDateInput)"
-            (input)="updateField('startDate', $any($event.target).value)"
+            (change)="updateStartDate(startDateInput)"
           />
         </label>
         <label>

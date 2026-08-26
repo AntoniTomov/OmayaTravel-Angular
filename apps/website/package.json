@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --progress=false",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --progress=false",
     "serve:ssr:website": "node dist/website/server/server.mjs"
   },
   "private": true,

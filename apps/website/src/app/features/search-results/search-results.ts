@@ -1,4 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { ActiveSite } from '../../../sites/active-site';
@@ -7,7 +8,7 @@ import { buildMediaImageAttributes } from '../../shared/media';
 
 @Component({
   selector: 'app-search-results',
-  imports: [RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './search-results.html',
   styleUrl: './search-results.scss',
 })

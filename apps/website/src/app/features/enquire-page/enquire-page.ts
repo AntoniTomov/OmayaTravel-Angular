@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { COUNTRY_CODE_OPTIONS } from '../../shared/forms/country-codes';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
@@ -24,19 +25,6 @@ interface EnquiryFormState {
   travelDate: string;
   additionalInformation: string;
 }
-
-const COUNTRY_CODES: readonly CountryCode[] = [
-  { label: 'US +1', value: '+1' },
-  { label: 'UK +44', value: '+44' },
-  { label: 'BG +359', value: '+359' },
-  { label: 'DE +49', value: '+49' },
-  { label: 'FR +33', value: '+33' },
-  { label: 'IT +39', value: '+39' },
-  { label: 'ES +34', value: '+34' },
-  { label: 'NL +31', value: '+31' },
-  { label: 'CA +1', value: '+1' },
-  { label: 'AU +61', value: '+61' },
-];
 
 const EMPTY_FORM_STATE: EnquiryFormState = {
   name: '',
@@ -61,7 +49,7 @@ export class EnquirePage {
   protected readonly heroImage = ENQUIRE_HERO_IMAGE;
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly submitMessage = signal('');
-  protected readonly countryCodes = COUNTRY_CODES;
+  protected readonly countryCodes: readonly CountryCode[] = COUNTRY_CODE_OPTIONS;
   protected readonly formState = signal<EnquiryFormState>(this.loadFormState());
   protected readonly minTravelDate = computed(() => new Date().toISOString().slice(0, 10));
 

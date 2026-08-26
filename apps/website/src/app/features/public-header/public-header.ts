@@ -228,6 +228,7 @@ export class PublicHeader implements AfterViewInit {
 
   protected openSearch(): void {
     this.lastFocusedElement = this.document.activeElement as HTMLElement | null;
+    this.closeMenus();
     this.isSearchOpen.set(true);
     this.searchError.set('');
     this.analytics.trackEvent('open_search', {

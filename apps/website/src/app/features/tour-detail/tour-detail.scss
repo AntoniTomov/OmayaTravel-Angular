@@ -768,13 +768,13 @@
   border: 0;
   border-radius: 50%;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: rgb(247 181 0 / 50%);
   font: inherit;
   cursor: pointer;
 }
 
-.tour-detail__lightbox button:is(:hover, :focus-visible) {
-  background: tokens.$omaya-color-dark;
+.tour-detail__lightbox button:is(:hover, :focus-visible, :active) {
+  background: rgb(247 181 0 / 80%);
 }
 
 .tour-detail__lightbox-close {

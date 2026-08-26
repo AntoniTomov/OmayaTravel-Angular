@@ -5,83 +5,9 @@ import {
   PrivateTourPlanningFormStateService,
 } from './private-tour-planning-form-state';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { COUNTRY_CALLING_CODES } from '../../shared/forms/country-codes';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
-
-const COUNTRY_CODES = [
-  { flag: '🇺🇸', label: 'United States', code: '+1' },
-  { flag: '🇬🇧', label: 'United Kingdom', code: '+44' },
-  { flag: '🇧🇬', label: 'Bulgaria', code: '+359' },
-  { flag: '🇦🇱', label: 'Albania', code: '+355' },
-  { flag: '🇩🇿', label: 'Algeria', code: '+213' },
-  { flag: '🇦🇩', label: 'Andorra', code: '+376' },
-  { flag: '🇦🇷', label: 'Argentina', code: '+54' },
-  { flag: '🇦🇲', label: 'Armenia', code: '+374' },
-  { flag: '🇦🇺', label: 'Australia', code: '+61' },
-  { flag: '🇦🇹', label: 'Austria', code: '+43' },
-  { flag: '🇦🇿', label: 'Azerbaijan', code: '+994' },
-  { flag: '🇧🇪', label: 'Belgium', code: '+32' },
-  { flag: '🇧🇦', label: 'Bosnia and Herzegovina', code: '+387' },
-  { flag: '🇧🇷', label: 'Brazil', code: '+55' },
-  { flag: '🇨🇦', label: 'Canada', code: '+1' },
-  { flag: '🇨🇱', label: 'Chile', code: '+56' },
-  { flag: '🇨🇳', label: 'China', code: '+86' },
-  { flag: '🇨🇴', label: 'Colombia', code: '+57' },
-  { flag: '🇭🇷', label: 'Croatia', code: '+385' },
-  { flag: '🇨🇾', label: 'Cyprus', code: '+357' },
-  { flag: '🇨🇿', label: 'Czechia', code: '+420' },
-  { flag: '🇩🇰', label: 'Denmark', code: '+45' },
-  { flag: '🇪🇬', label: 'Egypt', code: '+20' },
-  { flag: '🇪🇪', label: 'Estonia', code: '+372' },
-  { flag: '🇫🇮', label: 'Finland', code: '+358' },
-  { flag: '🇩🇪', label: 'Germany', code: '+49' },
-  { flag: '🇫🇷', label: 'France', code: '+33' },
-  { flag: '🇬🇪', label: 'Georgia', code: '+995' },
-  { flag: '🇬🇷', label: 'Greece', code: '+30' },
-  { flag: '🇭🇰', label: 'Hong Kong', code: '+852' },
-  { flag: '🇭🇺', label: 'Hungary', code: '+36' },
-  { flag: '🇮🇸', label: 'Iceland', code: '+354' },
-  { flag: '🇮🇳', label: 'India', code: '+91' },
-  { flag: '🇮🇩', label: 'Indonesia', code: '+62' },
-  { flag: '🇮🇪', label: 'Ireland', code: '+353' },
-  { flag: '🇮🇱', label: 'Israel', code: '+972' },
-  { flag: '🇮🇹', label: 'Italy', code: '+39' },
-  { flag: '🇯🇵', label: 'Japan', code: '+81' },
-  { flag: '🇯🇴', label: 'Jordan', code: '+962' },
-  { flag: '🇰🇿', label: 'Kazakhstan', code: '+7' },
-  { flag: '🇰🇬', label: 'Kyrgyzstan', code: '+996' },
-  { flag: '🇱🇻', label: 'Latvia', code: '+371' },
-  { flag: '🇱🇹', label: 'Lithuania', code: '+370' },
-  { flag: '🇱🇺', label: 'Luxembourg', code: '+352' },
-  { flag: '🇲🇹', label: 'Malta', code: '+356' },
-  { flag: '🇲🇽', label: 'Mexico', code: '+52' },
-  { flag: '🇲🇩', label: 'Moldova', code: '+373' },
-  { flag: '🇲🇨', label: 'Monaco', code: '+377' },
-  { flag: '🇲🇪', label: 'Montenegro', code: '+382' },
-  { flag: '🇲🇦', label: 'Morocco', code: '+212' },
-  { flag: '🇪🇸', label: 'Spain', code: '+34' },
-  { flag: '🇳🇱', label: 'Netherlands', code: '+31' },
-  { flag: '🇳🇿', label: 'New Zealand', code: '+64' },
-  { flag: '🇲🇰', label: 'North Macedonia', code: '+389' },
-  { flag: '🇳🇴', label: 'Norway', code: '+47' },
-  { flag: '🇵🇪', label: 'Peru', code: '+51' },
-  { flag: '🇵🇱', label: 'Poland', code: '+48' },
-  { flag: '🇵🇹', label: 'Portugal', code: '+351' },
-  { flag: '🇷🇴', label: 'Romania', code: '+40' },
-  { flag: '🇷🇸', label: 'Serbia', code: '+381' },
-  { flag: '🇸🇬', label: 'Singapore', code: '+65' },
-  { flag: '🇸🇰', label: 'Slovakia', code: '+421' },
-  { flag: '🇸🇮', label: 'Slovenia', code: '+386' },
-  { flag: '🇿🇦', label: 'South Africa', code: '+27' },
-  { flag: '🇰🇷', label: 'South Korea', code: '+82' },
-  { flag: '🇸🇪', label: 'Sweden', code: '+46' },
-  { flag: '🇨🇭', label: 'Switzerland', code: '+41' },
-  { flag: '🇹🇭', label: 'Thailand', code: '+66' },
-  { flag: '🇹🇷', label: 'Turkey', code: '+90' },
-  { flag: '🇦🇪', label: 'United Arab Emirates', code: '+971' },
-  { flag: '🇺🇦', label: 'Ukraine', code: '+380' },
-  { flag: '🇺🇿', label: 'Uzbekistan', code: '+998' },
-] as const;
 
 @Component({
   selector: 'app-private-tour-planning-form',
@@ -97,7 +23,7 @@ export class PrivateTourPlanningForm {
   protected readonly submitted = signal(false);
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly submitMessage = signal('');
-  protected readonly countryCodes = COUNTRY_CODES;
+  protected readonly countryCodes = COUNTRY_CALLING_CODES;
   protected readonly minStartDate = new Date().toISOString().slice(0, 10);
   protected readonly state = this.formState.state;
 
@@ -144,6 +70,11 @@ export class PrivateTourPlanningForm {
   protected openDatePicker(input: HTMLInputElement): void {
     input.showPicker?.();
     input.focus();
+  }
+
+  protected updateStartDate(input: HTMLInputElement): void {
+    this.updateField('startDate', input.value);
+    input.blur();
   }
 
   protected formSummary(): string[] {

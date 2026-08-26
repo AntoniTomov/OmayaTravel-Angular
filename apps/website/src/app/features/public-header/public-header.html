@@ -154,8 +154,13 @@
       role="dialog"
       aria-modal="true"
       aria-labelledby="site-search-title"
+      (click)="closeSearch()"
     >
-      <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
+      <form
+        class="public-header__search-panel"
+        (click)="$event.stopPropagation()"
+        (submit)="$event.preventDefault(); submitSearch()"
+      >
         <div>
           <h2 id="site-search-title">{{ i18n.t('header.searchTitle') }}</h2>
           <button
