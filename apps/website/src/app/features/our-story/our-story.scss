@@ -30,7 +30,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center;
+  object-position: 34% center;
 }
 
 .our-story__hero-copy p,
@@ -101,7 +101,7 @@
   display: grid;
   gap: 4rem;
   padding-top: 5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 1.5rem;
 }
 
 .our-story__text-section {
@@ -147,7 +147,7 @@
 }
 
 .our-story__team {
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 6rem;
 }
 
@@ -181,6 +181,7 @@
 
 .our-story__member:nth-child(even) img {
   grid-column: 2;
+  justify-self: end;
 }
 
 .our-story__member:nth-child(even) div {
@@ -236,7 +237,7 @@
   }
 
   .our-story__hero img {
-    object-position: right center;
+    object-position: 34% center;
   }
 
   .our-story__hero-copy {
@@ -257,6 +258,10 @@
     padding-bottom: 4rem;
   }
 
+  .our-story__team {
+    padding-top: 2rem;
+  }
+
   .our-story__member:nth-child(even) img,
   .our-story__member:nth-child(even) div {
     grid-column: auto;
@@ -269,5 +274,9 @@
 
   .our-story__member img {
     width: min(18rem, 100%);
+  }
+
+  .our-story__member:nth-child(even) img {
+    justify-self: end;
   }
 }

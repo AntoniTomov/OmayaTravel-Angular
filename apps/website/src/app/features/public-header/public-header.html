@@ -69,8 +69,8 @@
       @for (group of navigationGroups(); track group.label) {
         <div
           class="public-header__group"
-          (mouseenter)="openDropdown(group.label)"
-          (mouseleave)="closeDropdown()"
+          (pointerenter)="openDropdownOnHover($event, group.label)"
+          (pointerleave)="closeDropdownOnHover($event)"
         >
           <button
             class="public-header__link"
@@ -89,14 +89,13 @@
               @if (link.children?.length) {
                 <div
                   class="public-header__dropdown-item public-header__dropdown-item--has-submenu"
-                  (mouseenter)="openSubmenu(link.label)"
-                  (mouseleave)="closeSubmenu()"
+                  (pointerenter)="openSubmenuOnHover($event, link.label)"
+                  (pointerleave)="closeSubmenuOnHover($event)"
                 >
                   <button
                     class="public-header__submenu-button"
                     type="button"
                     [attr.aria-expanded]="activeSubmenu() === link.label"
-                    (focus)="openSubmenu(link.label)"
                     (click)="toggleSubmenu(link.label, $event)"
                   >
                     {{ link.label }}

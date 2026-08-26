@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, HostListener, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -103,6 +103,15 @@ export class TourListingPage {
         return cards;
     }
   });
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement | null;
+
+    if (!target?.closest('.tour-listing__select-field')) {
+      this.isMonthDropdownOpen.set(false);
+    }
+  }
 
   protected setSort(sort: TourSort): void {
     this.activeSort.set(sort);

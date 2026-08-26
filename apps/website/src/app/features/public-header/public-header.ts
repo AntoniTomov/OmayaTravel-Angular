@@ -140,7 +140,23 @@ export class PublicHeader implements AfterViewInit {
     this.isMobileMenuOpen.set(false);
   }
 
-  protected openDropdown(label: string): void {
+  protected openDropdownOnHover(event: PointerEvent, label: string): void {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+
+    this.openDropdown(label);
+  }
+
+  protected closeDropdownOnHover(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+
+    this.closeDropdown();
+  }
+
+  private openDropdown(label: string): void {
     setTimeout(() => {
       if (this.activeDropdown() !== label) {
         this.activeSubmenu.set(null);
@@ -150,7 +166,7 @@ export class PublicHeader implements AfterViewInit {
     }, 0);
   }
 
-  protected closeDropdown(): void {
+  private closeDropdown(): void {
     this.activeDropdown.set(null);
     this.activeSubmenu.set(null);
   }
@@ -167,11 +183,27 @@ export class PublicHeader implements AfterViewInit {
     });
   }
 
-  protected openSubmenu(label: string): void {
+  protected openSubmenuOnHover(event: PointerEvent, label: string): void {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+
+    this.openSubmenu(label);
+  }
+
+  protected closeSubmenuOnHover(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+
+    this.closeSubmenu();
+  }
+
+  private openSubmenu(label: string): void {
     this.activeSubmenu.set(label);
   }
 
-  protected closeSubmenu(): void {
+  private closeSubmenu(): void {
     this.activeSubmenu.set(null);
   }
 
