@@ -1,6 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { of } from 'rxjs';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { SearchIndexItem } from '../../shared/content/homepage-content';
@@ -37,6 +39,18 @@ export class SearchResults {
   protected readonly title = computed(() =>
     this.query() ? `Search results for: ${this.query()}` : 'Search Omaya Travel',
   );
+
+  constructor() {
+    (this.route.queryParamMap ?? of(this.route.snapshot.queryParamMap))
+      .pipe(takeUntilDestroyed())
+      .subscribe((queryParamMap) => {
+        const query = queryParamMap.get('s')?.trim() ?? '';
+
+        this.query.set(query);
+        this.draftQuery.set(query);
+        this.error.set('');
+      });
+  }
 
   protected updateDraftQuery(value: string): void {
     this.draftQuery.set(value);

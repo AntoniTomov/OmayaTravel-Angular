@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 import { SearchResults } from './search-results';
 
@@ -73,6 +74,35 @@ describe('SearchResults', () => {
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('No results found for "zzzz".');
+  });
+
+  it('updates results when the reused search route receives a new query', async () => {
+    const queryParamMap = new Subject<ReturnType<typeof convertToParamMap>>();
+
+    await TestBed.configureTestingModule({
+      imports: [SearchResults],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              queryParamMap: convertToParamMap({ s: 'neshto' }),
+            },
+            queryParamMap,
+          },
+        },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(SearchResults);
+    fixture.detectChanges();
+
+    queryParamMap.next(convertToParamMap({ s: 'kyrgystan' }));
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('Search results for: kyrgystan');
+    expect(fixture.nativeElement.textContent).not.toContain('Search results for: neshto');
   });
 
   it('submits non-empty trimmed queries to the static search route', async () => {
