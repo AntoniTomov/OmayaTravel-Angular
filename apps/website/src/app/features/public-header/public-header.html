@@ -166,8 +166,6 @@
           type="search"
           [value]="searchQuery()"
           [attr.tabindex]="isSearchOpen() ? null : -1"
-          [attr.aria-invalid]="searchError().length > 0"
-          aria-describedby="site-search-error"
           (input)="updateSearchQuery($any($event.target).value)"
         />
 
@@ -188,10 +186,6 @@
         >
           x
         </button>
-
-        @if (searchError()) {
-          <p id="site-search-error" class="public-header__search-error">{{ searchError() }}</p>
-        }
       </form>
     </div>
   </nav>

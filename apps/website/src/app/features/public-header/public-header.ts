@@ -94,7 +94,6 @@ export class PublicHeader implements AfterViewInit {
   protected readonly activeSubmenu = signal<string | null>(null);
   protected readonly isSearchOpen = signal(false);
   protected readonly searchQuery = signal('');
-  protected readonly searchError = signal('');
   protected readonly headerClasses = computed(() => ({
     'public-header--scrolled': this.isSolidHeader(),
     'public-header--menu-open': this.isMobileMenuOpen(),
@@ -242,7 +241,6 @@ export class PublicHeader implements AfterViewInit {
     this.lastFocusedElement = this.document.activeElement as HTMLElement | null;
     this.closeMenus();
     this.isSearchOpen.set(true);
-    this.searchError.set('');
     this.analytics.trackEvent('open_search', {
       source: 'header',
     });
@@ -252,20 +250,18 @@ export class PublicHeader implements AfterViewInit {
 
   protected closeSearch(): void {
     this.isSearchOpen.set(false);
-    this.searchError.set('');
     this.lastFocusedElement?.focus();
   }
 
   protected updateSearchQuery(value: string): void {
     this.searchQuery.set(value);
-    this.searchError.set('');
   }
 
   protected submitSearch(): void {
     const query = this.searchQuery().trim();
 
     if (query.length === 0) {
-      this.searchError.set(this.i18n.t('header.emptySearch'));
+      this.closeSearch();
       return;
     }
 

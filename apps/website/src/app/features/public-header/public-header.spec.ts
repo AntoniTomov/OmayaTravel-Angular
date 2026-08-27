@@ -78,14 +78,15 @@ describe('PublicHeader', () => {
     );
   });
 
-  it('opens the site search and validates empty submit', () => {
+  it('closes the site search on empty submit', () => {
     component['openSearch']();
     fixture.detectChanges();
 
     component['submitSearch']();
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.textContent).toContain('Type a search term.');
+    expect(component['isSearchOpen']()).toBe(false);
+    expect(fixture.nativeElement.textContent).not.toContain('Type a search term.');
   });
 
   it('submits header search to the static search route', () => {

@@ -15,8 +15,7 @@
 }
 
 .public-header--scrolled,
-.public-header--menu-open,
-.public-header--search-open {
+.public-header--menu-open {
   --fg: #{tokens.$omaya-color-ink};
   background: tokens.$omaya-color-white;
   box-shadow: tokens.$omaya-shadow-header;
@@ -273,13 +272,14 @@
   position: absolute;
   top: 0;
   right: 24px;
-  left: 7.4rem;
+  left: unset;
   z-index: 4;
   display: grid;
+  box-sizing: border-box;
+  width: 100%;
   height: 100%;
   min-height: 3.4rem;
   overflow: hidden;
-  background: tokens.$omaya-color-white;
   opacity: 0;
   pointer-events: none;
   transform: translateX(100%);
@@ -291,6 +291,9 @@
 }
 
 .public-header__search--open {
+  padding: 0 12px;
+  background: tokens.$omaya-color-white;
+  border-radius: 2px;
   opacity: 1;
   pointer-events: auto;
   transform: translateX(0);
@@ -330,6 +333,7 @@
   background: tokens.$omaya-color-white;
   border: 1px solid tokens.$omaya-color-soft-border;
   font: tokens.$omaya-font-body;
+  outline: none;
 }
 
 .public-header__search-panel button {
@@ -340,12 +344,16 @@
 
 .public-header__search-submit {
   padding: 0 1rem;
-  color: tokens.$omaya-color-dark;
+  color: tokens.$omaya-color-white;
   font-weight: 800;
   background: tokens.$omaya-color-gold;
   transition:
     color tokens.$omaya-transition-fast,
     background tokens.$omaya-transition-fast;
+}
+
+.public-header__search-submit:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-dark;
 }
 
 .public-header__search-close {
@@ -361,11 +369,8 @@
   line-height: 1;
 }
 
-.public-header__search-error {
-  grid-column: 1 / -1;
-  margin: -0.25rem 0 0;
-  color: tokens.$omaya-color-error;
-  font-weight: 700;
+.public-header__search-close:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-gold;
 }
 
 @media (max-width: 56rem) {
@@ -403,7 +408,7 @@
 
   .public-header__search {
     right: 1rem;
-    left: 6.8rem;
+    left: unset;
     min-height: 3.8rem;
   }
 
