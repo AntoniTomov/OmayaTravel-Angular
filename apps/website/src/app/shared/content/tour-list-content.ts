@@ -231,6 +231,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     cards: TOUR_CARDS.filter(
       (card) =>
         card.target === '/tour-item/women-only-tour-bulgaria/' ||
+        card.target === '/tour-item/bulgaria-beyond-the-ordinary/' ||
         card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
     ),
     showFilters: true,

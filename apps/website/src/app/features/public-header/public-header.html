@@ -138,43 +138,51 @@
     </div>
   </nav>
 
-  @if (isSearchOpen()) {
-    <div
-      class="public-header__search"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="site-search-title"
-    >
-      <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
-        <div>
-          <h2 id="site-search-title">{{ i18n.t('header.searchTitle') }}</h2>
-          <button
-            type="button"
-            [attr.aria-label]="i18n.t('header.closeSearch')"
-            (click)="closeSearch()"
-          >
-            {{ i18n.t('header.closeSearch') }}
-          </button>
-        </div>
+  <div
+    class="public-header__search"
+    [class.public-header__search--open]="isSearchOpen()"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="site-search-title"
+    [attr.aria-hidden]="!isSearchOpen()"
+  >
+    <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
+      <h2 id="site-search-title">{{ i18n.t('header.searchTitle') }}</h2>
 
-        <label for="site-search-input">{{ i18n.t('header.searchLabel') }}</label>
-        <input
-          #searchInput
-          id="site-search-input"
-          name="site-search"
-          type="search"
-          [value]="searchQuery()"
-          [attr.aria-invalid]="searchError().length > 0"
-          aria-describedby="site-search-error"
-          (input)="updateSearchQuery($any($event.target).value)"
-        />
+      <label for="site-search-input">{{ i18n.t('header.searchLabel') }}</label>
+      <input
+        #searchInput
+        id="site-search-input"
+        name="site-search"
+        type="search"
+        [value]="searchQuery()"
+        [attr.tabindex]="isSearchOpen() ? null : -1"
+        [attr.aria-invalid]="searchError().length > 0"
+        aria-describedby="site-search-error"
+        (input)="updateSearchQuery($any($event.target).value)"
+      />
 
-        @if (searchError()) {
-          <p id="site-search-error" class="public-header__search-error">{{ searchError() }}</p>
-        }
+      <button
+        class="public-header__search-submit"
+        type="submit"
+        [attr.tabindex]="isSearchOpen() ? null : -1"
+      >
+        {{ i18n.t('header.searchButton') }}
+      </button>
 
-        <button type="submit">{{ i18n.t('header.searchButton') }}</button>
-      </form>
-    </div>
-  }
+      <button
+        class="public-header__search-close"
+        type="button"
+        [attr.aria-label]="i18n.t('header.closeSearch')"
+        [attr.tabindex]="isSearchOpen() ? null : -1"
+        (click)="closeSearch()"
+      >
+        x
+      </button>
+
+      @if (searchError()) {
+        <p id="site-search-error" class="public-header__search-error">{{ searchError() }}</p>
+      }
+    </form>
+  </div>
 </header>

@@ -348,7 +348,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         title: {
           text: 'Exploring',
           linkText: ' Rila Monastery',
-          link: 'https://omayatravel.com/the-complete-visitor-guide-to-rila-monastery/',
+          link: '/the-complete-visitor-guide-to-rila-monastery/',
         },
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-01.webp`,
@@ -1196,7 +1196,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         title: {
           text: 'Exploring',
           linkText: ' Rila Monastery',
-          link: 'https://omayatravel.com/the-complete-visitor-guide-to-rila-monastery/',
+          link: '/the-complete-visitor-guide-to-rila-monastery/',
         },
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-01.webp`,

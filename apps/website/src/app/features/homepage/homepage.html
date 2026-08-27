@@ -72,12 +72,14 @@
   @if (siteFeatures().showTravelMatch) {
     <app-travel-match />
   }
-  @if (siteFeatures().showFeaturedTrips) {
-    <app-featured-trips />
-  }
-  @if (siteFeatures().showMission) {
-    <app-mission-section />
-  }
+  <div class="homepage__stories-band">
+    @if (siteFeatures().showFeaturedTrips) {
+      <app-featured-trips />
+    }
+    @if (siteFeatures().showMission) {
+      <app-mission-section />
+    }
+  </div>
   @if (siteFeatures().showPrivateTours) {
     <app-private-tours />
   }
@@ -111,7 +113,9 @@
       </div>
     </section>
   }
-  @if (siteFeatures().showBlogPosts) {
-    <app-blog-posts />
-  }
+  <div class="homepage__stories-band">
+    @if (siteFeatures().showBlogPosts) {
+      <app-blog-posts />
+    }
+  </div>
 </main>
