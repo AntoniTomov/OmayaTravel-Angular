@@ -10,6 +10,12 @@
   gap: 4.5rem;
 }
 
+.homepage__stories-band {
+  background: tokens.$omaya-color-white
+    url('/assets/images/home-page/trips-carousel/trips-carousel-bgr.webp') center top / cover
+    no-repeat;
+}
+
 .homepage__hero {
   position: relative;
   display: grid;

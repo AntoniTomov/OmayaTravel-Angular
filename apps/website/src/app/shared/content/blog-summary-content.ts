@@ -8,6 +8,7 @@ export interface BlogPostSummary {
 }
 
 const BLOG_IMAGE_BASE = '/assets/images/blog-posts';
+const HOMEPAGE_BLOG_IMAGE_BASE = '/assets/images/home-page/blog-posts';
 
 export const BLOG_POST_SUMMARIES: readonly BlogPostSummary[] = [
   {
@@ -24,7 +25,7 @@ export const BLOG_POST_SUMMARIES: readonly BlogPostSummary[] = [
     title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
     date: 'April 16, 2026',
     image: {
-      src: `${BLOG_IMAGE_BASE}/Rila-Monastery-post-preview-bgr.webp`,
+      src: `${HOMEPAGE_BLOG_IMAGE_BASE}/Rila-Monastery-Article-2-Opt.webp`,
       alt: 'Rila Monastery in the Rila Mountains',
     },
   },
@@ -33,7 +34,7 @@ export const BLOG_POST_SUMMARIES: readonly BlogPostSummary[] = [
     title: '10 Unmissable Places to Visit on Your Bulgaria Trip (Chosen by Local Guides)',
     date: 'April 1, 2026',
     image: {
-      src: `${BLOG_IMAGE_BASE}/beautiful-bulgaria-post-preview-bgr.webp`,
+      src: `${HOMEPAGE_BLOG_IMAGE_BASE}/pexels-bkrustev-225203.jpg`,
       alt: 'Bulgarian mountain lake and green hills',
     },
   },
@@ -42,7 +43,7 @@ export const BLOG_POST_SUMMARIES: readonly BlogPostSummary[] = [
     title: 'Song Kul: What You Need to Know About Kyrgyzstan’s Most Untamed Alpine Lake',
     date: 'February 26, 2026',
     image: {
-      src: `${BLOG_IMAGE_BASE}/Kyrgystan-post-preview-bgr.webp`,
+      src: `${HOMEPAGE_BLOG_IMAGE_BASE}/Yurt-Camp-at-SongKul-Lake-Opt.webp`,
       alt: 'Yurt camp beside Song Kul Lake in Kyrgyzstan',
     },
   },

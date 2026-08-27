@@ -34,7 +34,7 @@ describe('Homepage', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelector('h1')?.textContent).toContain('See the world. Meet its people');
+    expect(compiled.querySelector('h1')?.textContent).toContain('See the world. Meet your people');
     expect(compiled.textContent).toContain('Where to?');
     expect(compiled.textContent).toContain('When?');
     expect(compiled.textContent).toContain('Find now');
@@ -114,7 +114,7 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
     expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
-      '/assets/images/blog-posts/Algeria-Tassili-National-Park-post-preview-bgr.webp',
+      '/assets/images/home-page/blog-posts/Rila-Monastery-Article-2-Opt.webp',
     );
   });
 

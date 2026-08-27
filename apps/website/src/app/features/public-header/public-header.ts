@@ -98,6 +98,7 @@ export class PublicHeader implements AfterViewInit {
   protected readonly headerClasses = computed(() => ({
     'public-header--scrolled': this.isSolidHeader(),
     'public-header--menu-open': this.isMobileMenuOpen(),
+    'public-header--search-open': this.isSearchOpen(),
   }));
 
   private readonly searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');

@@ -146,7 +146,7 @@ export const PUBLIC_NAVIGATION_LINKS: readonly NavigationLink[] = [
 ];
 
 export const HOMEPAGE_HERO = {
-  title: 'See the world. Meet its people',
+  title: 'See the world. Meet your people',
   subtitle:
     "Explore the world's wonders through small-group travel - meaningful, immersive, and carefully curated",
   slides: [
