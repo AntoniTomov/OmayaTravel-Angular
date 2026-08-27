@@ -117,12 +117,13 @@
 .tour-detail__layout {
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: minmax(0, 1fr) 18rem;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 970px) 310px;
+  gap: 20px;
+  justify-content: center;
   width: 100%;
-  max-width: 76rem;
-  margin: 5rem auto 6rem;
-  padding-inline: 1rem;
+  max-width: 1300px;
+  margin: 54px auto 96px;
+  padding-inline: 24px;
 }
 
 .tour-detail__content {
@@ -472,13 +473,13 @@
 .tour-detail__sidebar {
   display: grid;
   align-content: start;
-  gap: 3.2rem;
+  gap: 16px;
 }
 
 .tour-detail__booking {
   display: grid;
-  gap: 0.85rem;
-  padding: 1.35rem 1.1rem;
+  gap: 16px;
+  padding: 22px;
   background: var(--omaya-color-surface-alt);
 }
 

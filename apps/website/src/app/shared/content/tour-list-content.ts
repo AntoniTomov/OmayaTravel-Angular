@@ -236,6 +236,18 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     ),
     showFilters: true,
   },
+  {
+    slug: 'calendar-2027/september',
+    title: 'September 2027 Tours',
+    subtitle: 'Available departures for September 2027.',
+    cards: TOUR_CARDS.filter(
+      (card) =>
+        card.target === '/tour-item/women-only-tour-bulgaria/' ||
+        card.target === '/tour-item/bulgaria-beyond-the-ordinary/' ||
+        card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    ),
+    showFilters: true,
+  },
 ];
 
 export function findTourListingPage(slug: string | null | undefined): TourListingPageContent {

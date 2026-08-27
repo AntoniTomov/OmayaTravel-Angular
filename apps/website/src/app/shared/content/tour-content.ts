@@ -378,7 +378,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: {
           text: 'Walking ',
-          linkText: "Plovdiv's",
+          linkText: "Plovdiv's Old Town",
           link: 'https://www.visitplovdiv.com/en',
         },
         image: {
@@ -1226,7 +1226,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       {
         title: {
           text: 'Walking ',
-          linkText: "Plovdiv's",
+          linkText: "Plovdiv's Old Town",
           link: 'https://www.visitplovdiv.com/en',
         },
         image: {

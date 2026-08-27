@@ -55,6 +55,7 @@ const tourListingPageRoutes: Routes = [
   'all-ages-tours',
   'private-tour-planning',
   'september-2027',
+  'calendar-2027/september',
 ].map((path) => ({
   path,
   pathMatch: 'full' as const,
@@ -65,7 +66,9 @@ const tourListingPageRoutes: Routes = [
   data: {
     routeKey: `tour-listing-${path}`,
     routeType:
-      path === 'september-2027' || path === 'private-tour-planning'
+      path === 'september-2027' ||
+      path === 'calendar-2027/september' ||
+      path === 'private-tour-planning'
         ? 'static-page'
         : 'tour-category',
     canonicalPath: `/${path}/`,

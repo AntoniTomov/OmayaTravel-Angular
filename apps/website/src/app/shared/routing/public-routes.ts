@@ -57,6 +57,7 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'tours-list',
   'calendar',
   'calendar-2027',
+  'calendar-2027/september',
   'september-2027',
   'private-tour-planning',
   'private-tours-your-trip-your-rules',

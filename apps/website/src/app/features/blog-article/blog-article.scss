@@ -190,23 +190,6 @@
   gap: 0.45rem;
 }
 
-.blog-article__meta span::before {
-  color: var(--omaya-color-subtle);
-  font-size: 0.95rem;
-}
-
-.blog-article__meta span:nth-child(1)::before {
-  content: '[ ]';
-}
-
-.blog-article__meta span:nth-child(2)::before {
-  content: '<3';
-}
-
-.blog-article__meta span:nth-child(3)::before {
-  content: '#';
-}
-
 .blog-article__previous a {
   display: grid;
   grid-template-columns: 3.8rem minmax(0, 14rem);

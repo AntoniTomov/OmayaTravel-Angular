@@ -44,7 +44,12 @@ const DEFAULT_FILTERS: TourFilters = {
   maxPrice: PRICE_MAX,
   categories: [],
 };
-const CATEGORIES: readonly TourCategory[] = ['Classic Tours', 'Women only', 'Solo Traveller Only'];
+const CATEGORIES: readonly TourCategory[] = [
+  'Classic Tours',
+  'Women only',
+  'Solo Traveller Only',
+  'All Ages',
+];
 const MONTH_OPTIONS: readonly string[] = [
   'May',
   'July',
@@ -88,6 +93,7 @@ export class TourListingPage {
     findTourListingPage(String(this.routeData()['listingSlug'] ?? 'tours-list')),
   );
   protected readonly isTourListPage = computed(() => this.page().slug === 'tours-list');
+  protected readonly shouldShowSortTabs = computed(() => this.page().showFilters);
   protected readonly cards = computed(() => {
     const page = this.page();
     const cards = this.filterCards([...page.cards]);

@@ -30,7 +30,7 @@
   }
 
   <section class="tour-listing__body">
-    @if (isTourListPage()) {
+    @if (shouldShowSortTabs()) {
       <nav class="tour-listing__filters" aria-label="Tour sorting">
         @for (sort of sorts; track sort.id) {
           <button

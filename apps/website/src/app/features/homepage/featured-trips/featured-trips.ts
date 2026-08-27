@@ -49,6 +49,7 @@ export class FeaturedTrips {
   private dragStartScrollLeft = 0;
   private isDragging = false;
   private didDrag = false;
+  private suppressClickUntil = 0;
 
   protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
     this.activeSite.site().content.featuredTours.map((trip) => ({
@@ -86,10 +87,9 @@ export class FeaturedTrips {
   }
 
   protected handleFeaturedTripClick(event: MouseEvent, trip: FeaturedTrip): void {
-    if (this.didDrag) {
+    if (Date.now() < this.suppressClickUntil) {
       event.preventDefault();
       event.stopPropagation();
-      this.didDrag = false;
       return;
     }
 
@@ -164,6 +164,11 @@ export class FeaturedTrips {
 
     if (carousel.hasPointerCapture(event.pointerId)) {
       carousel.releasePointerCapture(event.pointerId);
+    }
+
+    if (this.didDrag) {
+      this.suppressClickUntil = Date.now() + 250;
+      this.didDrag = false;
     }
 
     const nearestIndex = this.findNearestTripIndex(carousel);

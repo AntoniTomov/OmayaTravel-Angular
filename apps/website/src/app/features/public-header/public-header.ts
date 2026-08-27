@@ -123,6 +123,17 @@ export class PublicHeader implements AfterViewInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement | null;
+
+    if (
+      this.isSearchOpen() &&
+      !target?.closest('.public-header__search-panel') &&
+      !target?.closest('.public-header__search-button')
+    ) {
+      this.closeSearch();
+      return;
+    }
+
     if (!this.host.nativeElement.contains(event.target as Node)) {
       this.activeDropdown.set(null);
       this.activeSubmenu.set(null);

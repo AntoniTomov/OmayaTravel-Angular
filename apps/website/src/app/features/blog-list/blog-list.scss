@@ -131,23 +131,7 @@
 }
 
 .blog-list__meta span::before {
-  color: var(--omaya-color-subtle);
-  font-size: 0.95rem;
-}
-
-.blog-list__meta span:nth-child(1)::before {
-  content: 'calendar_month';
-  font-family: 'Material Icons';
-}
-
-.blog-list__meta span:nth-child(2)::before {
-  content: 'chat_bubble_outline';
-  font-family: 'Material Icons';
-}
-
-.blog-list__meta span:nth-child(3)::before {
-  content: 'sell';
-  font-family: 'Material Icons';
+  content: none;
 }
 
 .blog-list a {

@@ -76,7 +76,7 @@ export class TourCalendarPage {
       name,
       image: CALENDAR_MONTH_IMAGES[year][index],
       tours: this.monthTours(year, index),
-      resultPath: year === 2027 && index === 8 ? '/september-2027/' : undefined,
+      resultPath: year === 2027 && index === 8 ? '/calendar-2027/september/' : undefined,
     }));
   }
 
