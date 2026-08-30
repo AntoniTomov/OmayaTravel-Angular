@@ -156,17 +156,6 @@
   object-fit: cover;
 }
 
-.blog-article__tour-card span {
-  position: absolute;
-  inset: 2rem 1.4rem auto;
-  z-index: 1;
-  color: tokens.$omaya-color-white;
-  font-family: tokens.$omaya-font-heading;
-  font-size: clamp(2.1rem, 4.4vw, 3.35rem);
-  font-style: italic;
-  line-height: 1.18;
-}
-
 .blog-article__follow p {
   margin: 0;
 }

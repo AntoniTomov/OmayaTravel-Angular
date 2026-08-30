@@ -706,30 +706,15 @@
 }
 
 .tour-detail__discover {
-  display: grid;
+  display: block;
   height: 452px;
-  align-content: space-between;
-  justify-items: center;
-  padding: 1.2rem;
-  color: tokens.$omaya-color-white;
   background:
     linear-gradient(
       rgb(var(--omaya-color-overlay-rgb) / 8%),
       rgb(var(--omaya-color-overlay-rgb) / 8%)
     ),
-    url('/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp') center / cover;
-  font-family: 'Kristi', cursive;
-  font-size: 54px;
-  line-height: 1.2;
-  letter-spacing: 5px;
+    url('/assets/images/discover-more-tours.webp') center / cover;
   text-decoration: none;
-}
-
-.tour-detail__discover img {
-  width: 112px;
-  height: auto;
-  aspect-ratio: auto;
-  object-fit: contain;
 }
 
 .tour-detail__lightbox {

@@ -65,8 +65,7 @@ const RILA_POST_IMAGE_BASE = `${BLOG_IMAGE_BASE}/Rila Monestery`;
 
 export const BLOG_LIST_HERO_IMAGE = `${BLOG_IMAGE_BASE}/blog-posts-bgr.webp`;
 
-export const BLOG_DISCOVER_TOURS_IMAGE =
-  '/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp';
+export const BLOG_DISCOVER_TOURS_IMAGE = '/assets/images/discover-more-tours.webp';
 
 export const TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE: BlogPostContent = {
   slug: 'tassili-najjer-national-park-algeria-guide',
