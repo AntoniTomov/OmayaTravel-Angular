@@ -563,7 +563,7 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
   excerpt:
     'Practical guide to Song Kul Lake covering best season, access routes, yurt camps, horse riding, hiking, weather, cash, connectivity and basic conditions.',
   preview:
-    "Song Kul sits at roughly 3,016 metres in Kyrgyzstan's Tien Shan mountains and is surrounded by open pasture, yurts and seasonal nomadic camps. The lake covers about 270 square kilometres and freezes during winter. Summer turns the plateau into a major jailoo, or high pasture.",
+    'High in the mountains of Kyrgyzstan, at 3,016 metres above sea level, Song-Kul Lake feels like another world. There are no towns here. No paved roads circling the shoreline. No permanent settlements. Just open pasture, grazing horses, scattered yurts, and the slow rhythm of nomadic life continuing much as it has for centuries. It’s the kind of place that makes you realise how rarely you actually feel free. For many travellers, Song Kol is the highlight of Kyrgyzstan and here is what you need to know before you visit it.',
   image: {
     src: `${BLOG_IMAGE_BASE}/Kyrgystan-post-preview-bgr.webp`,
     alt: 'Yurt camp beside Song Kul Lake in Kyrgyzstan',
@@ -579,8 +579,7 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
   sections: [
     {
       text: [
-        "Song Kul sits at roughly 3,016 metres in Kyrgyzstan's Tien Shan mountains and is surrounded by open pasture, yurts and seasonal nomadic camps.",
-        'Lake covers about 270 square kilometres and freezes during winter. Summer turns plateau into major jailoo, or high pasture.',
+        'Song Kol (also written Song Kul, Son Kul, or Song-Köl) is Kyrgyzstan’s second largest lake, sitting at the heart of the Tien Shan mountains in the Naryn region. It covers around 270 square kilometres, stretches 29 km at its longest, and sits high enough that it freezes solid every winter — sometimes under more than a metre of ice. But from June to September, the plateau transforms into one of Central Asia’s most extraordinary summer pastures. What you do find in summer are the Kyrgyz nomadic families who have been bringing their livestock up to these jailoos — high summer pastures — for generations. They arrive in late May, set up their yurts along the shoreline, and stay through early October.',
       ],
       image: {
         src: `${KYRGYZSTAN_POST_IMAGE_BASE}/Kyrgyzstan-tour-img-1.webp`,
@@ -588,11 +587,11 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
       },
     },
     {
-      title: 'When to visit',
+      title: 'When to Visit Song Kul Lake',
       text: [
-        'Main season runs June–September when mountain passes are open and yurt camps operate.',
-        'July and August are warmest and busiest. June is greener and quieter. September is quieter but camps begin closing.',
-        'Weather changes quickly; freezing nights or summer snow remain possible.',
+        'The tourist window is short: June to September is when the passes are open and the yurt camps are running. The lake sits high enough that even in July, overnight temperatures can drop below freezing, and snow on the surrounding peaks in summer is common rather than unusual.',
+        'July and August are peak season – warmest days, most yurt camps are open, most other travellers are around. June offers lush green meadows and fewer crowds but colder nights. September is quieter still and the light turns golden, though camps begin closing mid-month.',
+        'One thing worth knowing: the weather here is notoriously unpredictable. A clear blue morning can become a hailstorm by afternoon. Pack accordingly, even in August.',
       ],
       image: {
         src: `${KYRGYZSTAN_POST_IMAGE_BASE}/Kyrgyzstan-SongKul-Lake-img-2.webp`,
@@ -600,42 +599,32 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
       },
     },
     {
-      title: 'How to reach Song Kul',
-      items: [
-        {
-          name: 'Driver',
-          details:
-            'Travel from Bishkek, Kochkor or Naryn. Common approaches include Kalmak-Ashuu Pass and 33 Parrots Road.',
-        },
-        {
-          name: 'CBT',
-          details:
-            'Community Based Tourism offices in Kochkor and Naryn can arrange transport, yurt stays and current road information.',
-        },
-        {
-          name: 'Hiking',
-          details:
-            'Multi-day trekking routes start around Kyzart and cross mountain passes and jailoo pastures.',
-        },
-        {
-          name: 'Horseback',
-          details:
-            'Three- to four-day horse treks from Kochkor or Kyzart follow traditional herding routes.',
-        },
+      title: 'How to reach Song Kul Lake',
+      text: ['To reach the lake you have a few options:'],
+      list: [
+        'Hire a driver from Bishkek or Naryn. Most travellers go via Kochkor (about 3 hours from Bishkek) or directly from Naryn. From Naryn, the spectacular 33 Parrots Road winds up through 33 switchbacks to the plateau – allow 3 hours on rough road. From Kochkor, the Kalmak-Ashuu Pass route is the most commonly used.',
+        'Book through CBT (Community Based Tourism). The CBT offices in Kochkor and Naryn are a reliable local resource for transport, yurt bookings, and current road conditions. Highly recommended for independent travellers.',
+        'Hike in from Kyzart. For those who want to earn the views, a 3-day trek from the village of Kyzart (near Kochkor) takes you across mountain passes and through jailoo pastures before reaching the lake.',
+        'Horseback riding – multi-day horse treks from Kochkor or Kyzart are a popular option – 3 to 4 days in, following routes the Kyrgyz herders have used for centuries.',
       ],
-      list: ['4x4 strongly recommended because access roads are steep, rough and unpaved.'],
+      cta: {
+        before:
+          'A note on roads: A 4×4 car is highly recommended as the roads are steep, unpaved gravel tracks. Song Kul lake is one of the highlights of ',
+        linkText: 'our Kyrgyzstan trip',
+        linkUrl: '/tour-item/kyrgyzstan-tour/',
+        after: ', you can see all details for our next departure here.',
+      },
       image: {
         src: `${KYRGYZSTAN_POST_IMAGE_BASE}/Kyrgyzstan-SongKul-Lake-img-3.webp`,
         alt: 'Road and landscape near Song Kul Lake',
       },
     },
     {
-      title: 'Where to stay',
+      title: 'Where to Stay',
       text: [
-        'Yurt camps operate around shoreline from late May through early October.',
-        'Facilities range from basic family camps to somewhat more organised camps with running water or flush toilets.',
-        'Typical stays around USD 20 per person per night with dinner and breakfast included.',
-        'Booking ahead useful in July and August. Wild camping also possible.',
+        'Yurt camps dot the shoreline from late May through early October. They range from basic family setups to slightly more organised camps with flush toilets and running water – but “comfort” here is relative, and that’s the point.',
+        'A typical stay costs around 20 USD person per night, with dinner and breakfast included. Meals are simple and communal: fresh bread, tea, soup, and meat or fish. Vegetarian options are usually available if you ask ahead.',
+        'Most camps operate on a first-come, first-served basis, though during peak July–August weeks it’s worth booking ahead if you can. The CBT network and operators like Kyrgyz Riders can help with advance reservations. Wild camping is also legal anywhere on the lakeshore for those who prefer total solitude.',
       ],
       image: {
         src: `${KYRGYZSTAN_POST_IMAGE_BASE}/Kyrgyzstan-SongKul-Lake-img-4.webp`,
@@ -643,45 +632,33 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
       },
     },
     {
-      title: 'What to do',
-      items: [
-        {
-          name: 'Slow down',
-          details:
-            'Main appeal is open space, silence and break from constant schedules and connectivity.',
-        },
-        {
-          name: 'Horse riding',
-          details: 'Natural way to explore shoreline and surrounding pastures.',
-        },
-        {
-          name: 'Walking and hiking',
-          details: 'Longer routes can circle parts of lake and climb surrounding hills.',
-        },
-        {
-          name: 'Wildlife watching',
-          details: 'Area supports more than 60 bird species plus extensive summer wildflowers.',
-        },
-      ],
-    },
-    {
-      title: 'Practical notes',
-      list: [
-        'No ATM at lake; carry Kyrgyz som.',
-        'Expect no phone signal or Wi-Fi.',
-        'Bring thermal layers because yurt stoves do not burn all night.',
-        'Use sunscreen due to altitude.',
-        'Bring headlamp and personal medication.',
-        'Many yurts shared by five or six people.',
-        'Bathroom facilities can be very basic.',
-        'Rough roads, cold nights and simple accommodation are part of experience.',
-      ],
-    },
-    {
-      title: 'Nomadic culture',
+      title: 'What to Do',
       text: [
-        "Families bring livestock to Song Kul's high summer pastures from late spring into early autumn.",
-        'Many yurt camps remain part of seasonal pastoral life rather than existing only for tourism.',
+        'The honest answer is: not much, deliberately. Song Kol rewards those who slow down. In our opinion, the best thing to do here is to allow yourself to slow down, soak in the atmosphere and allow yourself to disconnect from the world and not have to think about what’s next on the schedule. Some of the best activities also include:',
+      ],
+      list: [
+        'Horse riding – this is the natural activity here. Riding along the shoreline at dusk, with the light flattening across the water and the mountains turning pink, is one of those travel moments that needs no filter.',
+        'Walking around the lake perimeter is possible as a 30 km loop over two to three days — the terrain is open and the views from the surrounding hills back down to the water are worth the climb.',
+        'Wildlife watching is quietly rewarding. Over 60 species of birds nest or pass through the area, including demoiselle cranes and bar-headed geese. The meadows around the lake are also rich with wildflowers in June and July, including the rare edelweiss.',
+      ],
+    },
+    {
+      title: 'A Few Notes on the Experience',
+      text: ['A few things to keep in mind when considering if you should visit Song Kul Lake:'],
+      list: [
+        'There is no ATM at the lake. Bring enough Kyrgyz som in cash.',
+        'There is no phone signal or Wi-Fi at Song Kol.',
+        'Yurt stoves provide heat but don’t burn all night — thermal layers are essential.',
+        'Sunscreen matters more than you’d expect at altitude.',
+        'Bring a headlamp and any medications you need, including something for altitude sickness if you’re prone to it.',
+        'In most camps, the accommodation is shared with 5-6 people, the bathroom facilities are very basic.',
+      ],
+    },
+    {
+      text: [
+        'Song Kol is not for everyone, and that’s worth saying clearly. The roads are rough. The nights might get cold. The facilities are basic. If you arrive expecting a boutique experience, you’ll be disappointed.',
+        'But if you arrive open to it – to the discomfort and the slowness and the vastness of it – Song Kol tends to become the part of Kyrgyzstan people talk about for years afterwards.',
+        'The nomadic families who share their camps and their meals are not curating an experience for tourists. They’re living the same seasonal rhythm their grandparents did. That realness is what you’re actually travelling towards.',
       ],
     },
   ],
