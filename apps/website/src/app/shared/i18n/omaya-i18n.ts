@@ -144,7 +144,7 @@ const EN: TranslationDictionary = {
     },
   ],
   navigationLinks: [
-    { label: 'Inspiring Stories', target: '/blog-list-2/' },
+    { label: 'Inspiring Stories', target: '/blog-list/' },
     { label: 'Enquire Now', target: '/enquire-now/' },
   ],
   destinations: [
@@ -333,7 +333,7 @@ const BG: TranslationDictionary = {
     },
   ],
   navigationLinks: [
-    { label: 'Вдъхновяващи истории', target: '/blog-list-2/' },
+    { label: 'Вдъхновяващи истории', target: '/blog-list/' },
     { label: 'Запитване', target: '/enquire-now/' },
   ],
   destinations: [

@@ -53,7 +53,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
 export const PUBLIC_STATIC_PAGE_SLUGS = [
   '3122-2',
   'private-tours-your-trip-your-rules/describe',
-  'blog-list-2',
+  'blog-list',
   'tours-list',
   'calendar',
   'calendar-2027',

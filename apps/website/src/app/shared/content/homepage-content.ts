@@ -137,7 +137,7 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
 export const PUBLIC_NAVIGATION_LINKS: readonly NavigationLink[] = [
   {
     label: 'Inspiring Stories',
-    target: '/blog-list-2/',
+    target: '/blog-list/',
   },
   {
     label: 'Enquire Now',

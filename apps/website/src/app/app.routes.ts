@@ -151,13 +151,13 @@ export const routes: Routes = [
     },
   }),
   withSiteAccess({
-    path: 'blog-list-2',
+    path: 'blog-list',
     pathMatch: 'full',
     loadComponent: () => import('./features/blog-list/blog-list').then((module) => module.BlogList),
     data: {
       routeKey: 'blog-list',
       routeType: 'static-page',
-      canonicalPath: '/blog-list-2/',
+      canonicalPath: '/blog-list/',
     },
   }),
   withSiteAccess({
