@@ -6,4 +6,5 @@ node_modules/
 .pnpm-store/
 dist/
 coverage/
+github-token.txt
 
