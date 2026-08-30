@@ -90,6 +90,11 @@ Only the Lead Architect can move architecture, approved specification or major i
 - Approved specification issues produce `docs/specifications/*-approved.md`.
 - Implementation issues must link to one approved specification.
 - Every specialist proposal, approved specification and implementation change should have a PR linked to its issue.
+- Every PR must identify the requester / expert role, for example `Requester: UI/UX Expert` or `Requester: Angular Wizard`.
+- Every requester must notify the Lead Architect when a PR is opened and when requested changes have been resolved.
+- The Lead Architect must notify the requester when Architect comments or requested changes are added.
+- Every PR requester must check their open PR for comments, requested changes and failed checks at least once per hour while the PR is awaiting review or revision.
+- PRs that receive Architect comments on a fourth review occasion after three prior Architect comment rounds were resolved must be recorded in `docs/PROBLEMATIC_PRS.md`.
 - Specialist proposal PRs are reviewed as inputs; implementation PRs are reviewed against approved specs.
 - Architecture decisions must link to `docs/DECISIONS.md` or a full ADR.
 - Migration issues must identify source URLs, target routes and redirect requirements.
@@ -125,6 +130,8 @@ The initial work-order issues have been created in this repository.
 - `develop` is merged to `master` only when the project owner approves release readiness.
 
 See `docs/EXPERT_WORKFLOW.md` for branch naming and PR expectations.
+
+Use `.github/PULL_REQUEST_TEMPLATE.md` when opening PRs.
 
 ## Codex-ready issues
 

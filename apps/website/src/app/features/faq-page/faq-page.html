@@ -1,0 +1,61 @@
+<main class="faq-page">
+  <section class="faq-page__hero" aria-labelledby="faq-page-title">
+    <div>
+      <h1 id="faq-page-title">{{ content.title }}</h1>
+    </div>
+  </section>
+
+  <section class="faq-page__layout">
+    <div class="faq-page__main">
+      <div class="faq-page__intro">
+        <h2>{{ content.intro.heading }}</h2>
+        <p>{{ content.intro.text }}</p>
+      </div>
+
+      <div class="faq-page__accordion" aria-label="Frequently asked questions">
+        @for (item of content.items; track item.id) {
+          <details [open]="openFaqId() === item.id" (toggle)="toggleFaq(item.id, $event)">
+            <summary>{{ item.question }}</summary>
+            @for (paragraph of item.answer; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+            @if (item.rules) {
+              <div class="faq-page__rules">
+                @for (rule of item.rules; track rule.period) {
+                  <article>
+                    <strong>{{ rule.period }}</strong>
+                    <span>{{ rule.policy }}</span>
+                  </article>
+                }
+              </div>
+            }
+            @for (note of item.notes ?? []; track note) {
+              <p>{{ note }}</p>
+            }
+          </details>
+        }
+      </div>
+    </div>
+
+    <aside class="faq-page__side" aria-label="Experience Bulgaria banner">
+      <img
+        src="/assets/images/faq/faq-bulgaria.webp"
+        width="305"
+        height="595"
+        alt="Experience Bulgaria with Omaya"
+        loading="lazy"
+      />
+      <form class="faq-page__contact" (submit)="sendQuestionEmail($event)">
+        <h2>Still Have a Question?</h2>
+        <input type="text" name="name" placeholder="Name" autocomplete="name" required />
+        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+        <textarea name="message" rows="5" aria-label="Message" required></textarea>
+        <app-form-honeypot />
+        <button type="submit" [disabled]="submitStatus() === 'sending'">
+          {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
+        </button>
+        <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
+      </form>
+    </aside>
+  </section>
+</main>

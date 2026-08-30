@@ -34,6 +34,7 @@ Before opening the PR, confirm:
 
 - The source branch was created from `develop`.
 - The GitHub issue is linked.
+- The PR body identifies the requester / expert role, for example `Requester: UI/UX Expert`.
 - The output file follows the naming convention.
 - Any proposed architecture change is clearly marked.
 - Blockers and questions for the Lead Architect are explicit.

@@ -1,0 +1,81 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: contents;
+}
+
+.cookie-consent {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  box-sizing: border-box;
+  width: min(64rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem;
+  color: tokens.$omaya-color-text;
+  background: tokens.$omaya-color-white;
+  box-shadow: var(--omaya-shadow-dropdown);
+}
+
+.cookie-consent h2,
+.cookie-consent p {
+  margin: 0;
+}
+
+.cookie-consent h2 {
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.cookie-consent p {
+  margin-top: 0.35rem;
+  color: var(--omaya-color-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cookie-consent a {
+  color: tokens.$omaya-color-dark;
+  font-size: 0.82rem;
+}
+
+.cookie-consent button {
+  min-height: 2.6rem;
+  border: 0;
+  padding: 0 1rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cookie-consent__secondary {
+  color: tokens.$omaya-color-dark !important;
+  background: var(--omaya-color-surface-alt) !important;
+}
+
+@media (max-width: 44rem) {
+  .cookie-consent {
+    grid-template-columns: 1fr;
+  }
+
+  .cookie-consent__actions {
+    justify-content: flex-start;
+  }
+}

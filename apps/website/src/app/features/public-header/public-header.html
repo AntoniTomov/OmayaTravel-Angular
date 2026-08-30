@@ -1,0 +1,192 @@
+<header class="public-header" [ngClass]="headerClasses()">
+  <div class="public-header__top__wrapper">
+    <div class="public-header__top">
+      <span>{{ i18n.t('header.followUs') }}</span>
+      <a
+        class="public-header__social-link"
+        href="https://www.instagram.com/omayatravel/"
+        aria-label="Omaya Travel on Instagram"
+        (click)="trackContactClick('social', 'instagram')"
+      >
+        <mat-icon svgIcon="social-instagram" aria-hidden="true"></mat-icon>
+      </a>
+      <a
+        class="public-header__social-link"
+        href="https://www.facebook.com/search/top/?q=omayatravel"
+        aria-label="Omaya Travel on Facebook"
+        (click)="trackContactClick('social', 'facebook')"
+      >
+        <mat-icon svgIcon="social-facebook" aria-hidden="true"></mat-icon>
+      </a>
+      <a
+        class="public-header__social-link"
+        href="https://www.linkedin.com/company/omaya-travel/about/"
+        aria-label="Omaya Travel on LinkedIn"
+        (click)="trackContactClick('social', 'linkedin')"
+      >
+        <mat-icon svgIcon="social-linkedin" aria-hidden="true"></mat-icon>
+      </a>
+      <a href="tel:+359879965946" (click)="trackContactClick('phone', 'primary_phone')"
+        >+359 87 996 5946</a
+      >
+      <a href="tel:+359889735274" (click)="trackContactClick('phone', 'secondary_phone')"
+        >+359 88 973 5274</a
+      >
+    </div>
+  </div>
+
+  <nav class="public-header__nav" aria-label="Primary navigation">
+    <a
+      class="public-header__logo"
+      routerLink="/"
+      (click)="closeMenus()"
+      [attr.aria-label]="logo().homeLabel"
+    >
+      <img
+        [src]="logo().src"
+        [srcset]="logo().srcset"
+        [width]="logo().width"
+        [height]="logo().height"
+        [alt]="logo().alt"
+        [attr.loading]="logo().loading"
+        [attr.fetchpriority]="logo().fetchPriority"
+      />
+    </a>
+
+    <button
+      class="public-header__menu-button"
+      type="button"
+      [attr.aria-label]="i18n.t('header.openMenu')"
+      [attr.aria-expanded]="isMobileMenuOpen()"
+      (click)="toggleMobileMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    @if (isMobileMenuOpen()) {
+      <button
+        class="public-header__menu-overlay"
+        type="button"
+        aria-label="Close menu"
+        (click)="closeMenus()"
+      ></button>
+    }
+
+    <div class="public-header__links" [class.public-header__links--open]="isMobileMenuOpen()">
+      @for (group of navigationGroups(); track group.label) {
+        <div
+          class="public-header__group"
+          (pointerenter)="openDropdownOnHover($event, group.label)"
+          (pointerleave)="closeDropdownOnHover($event)"
+        >
+          <button
+            class="public-header__link"
+            type="button"
+            [attr.aria-expanded]="activeDropdown() === group.label"
+            (click)="toggleDropdown(group.label)"
+          >
+            {{ group.label }}
+          </button>
+
+          <div
+            class="public-header__dropdown"
+            [class.public-header__dropdown--open]="activeDropdown() === group.label"
+          >
+            @for (link of group.links; track link.target) {
+              @if (link.children?.length) {
+                <div
+                  class="public-header__dropdown-item public-header__dropdown-item--has-submenu"
+                  (pointerenter)="openSubmenuOnHover($event, link.label)"
+                  (pointerleave)="closeSubmenuOnHover($event)"
+                >
+                  <button
+                    class="public-header__submenu-button"
+                    type="button"
+                    [attr.aria-expanded]="activeSubmenu() === link.label"
+                    (click)="toggleSubmenu(link.label, $event)"
+                  >
+                    {{ link.label }}
+                  </button>
+                  <div
+                    class="public-header__submenu"
+                    [class.public-header__submenu--open]="activeSubmenu() === link.label"
+                  >
+                    @for (childLink of link.children; track childLink.target) {
+                      <a [routerLink]="childLink.target" (click)="closeMenus()">{{
+                        childLink.label
+                      }}</a>
+                    }
+                  </div>
+                </div>
+              } @else {
+                <a [routerLink]="link.target" (click)="closeMenus()">{{ link.label }}</a>
+              }
+            }
+          </div>
+        </div>
+      }
+
+      @for (link of navigationLinks(); track link.target) {
+        <a
+          class="public-header__link public-header__standalone-link"
+          [routerLink]="link.target"
+          (click)="closeMenus()"
+          >{{ link.label }}</a
+        >
+      }
+
+      <button
+        class="public-header__search-button public-header__standalone-search"
+        type="button"
+        [attr.aria-label]="i18n.t('header.openSearch')"
+        (click)="openSearch()"
+      >
+        <mat-icon svgIcon="search" aria-hidden="true"></mat-icon>
+      </button>
+    </div>
+
+    <div
+      class="public-header__search"
+      [class.public-header__search--open]="isSearchOpen()"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="site-search-title"
+      [attr.aria-hidden]="!isSearchOpen()"
+    >
+      <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
+        <h2 id="site-search-title">{{ i18n.t('header.searchTitle') }}</h2>
+
+        <label for="site-search-input">{{ i18n.t('header.searchLabel') }}</label>
+        <input
+          #searchInput
+          id="site-search-input"
+          name="site-search"
+          type="search"
+          [value]="searchQuery()"
+          [attr.tabindex]="isSearchOpen() ? null : -1"
+          (input)="updateSearchQuery($any($event.target).value)"
+        />
+
+        <button
+          class="public-header__search-submit"
+          type="submit"
+          [attr.tabindex]="isSearchOpen() ? null : -1"
+        >
+          {{ i18n.t('header.searchButton') }}
+        </button>
+
+        <button
+          class="public-header__search-close"
+          type="button"
+          [attr.aria-label]="i18n.t('header.closeSearch')"
+          [attr.tabindex]="isSearchOpen() ? null : -1"
+          (click)="closeSearch()"
+        >
+          x
+        </button>
+      </form>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,627 @@
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:128:6:
+[37m      128 │       [32mtitle[37m: 'Camp beneath Saharan stars',
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:138:6:
+[37m      138 │       [32mtitle[37m: 'Marvel at towering Saharan dunes',
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:148:6:
+[37m      148 │       [32mtitle[37m: 'Discover 8,000-year-old cave art',
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:159:6:
+[37m      159 │       [32mtitle[37m: 'Explore ancient rock formations',
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:169:6:
+[37m      169 │       [32mtitle[37m: 'Experience authentic Tuareg culture',
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:319:8:
+[37m      319 │         [32mtitle[37m: 'Exploring Rila Monastery',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:328:8:
+[37m      328 │         [32mtitle[37m: 'Tasting wine in Melnik',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:337:8:
+[37m      337 │         [32mtitle[37m: 'The Bridal Face Painting Ritual',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:346:8:
+[37m      346 │         [32mtitle[37m: "Walking Plovdiv's Old Town",
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:355:8:
+[37m      355 │         [32mtitle[37m: 'Exploring the forgotten Buzludzha',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:526:8:
+[37m      526 │         [32mtitle[37m: 'Eagle hunting demonstration',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:535:8:
+[37m      535 │         [32mtitle[37m: 'Horse riding on the alpine steppe',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:544:8:
+[37m      544 │         [32mtitle[37m: 'The hot springs of Altyn Arashan',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:553:8:
+[37m      553 │         [32mtitle[37m: 'Sharing meals with local families',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:720:8:
+[37m      720 │         [32mtitle[37m: "Wander through Chefchaouen's blue-washed alleyways",
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:729:8:
+[37m      729 │         [32mtitle[37m: 'Visit the Hassan II Mosque beside the Atlantic',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:738:8:
+[37m      738 │         [32mtitle[37m: 'Walk through the Roman ruins of Volubilis',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:747:8:
+[37m      747 │         [32mtitle[37m: 'Explore medieval Fes el Bali',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:756:8:
+[37m      756 │         [32mtitle[37m: 'Watch sunrise over Aït Ben Haddou',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:929:8:
+[37m      929 │         [32mtitle[37m: 'Visit Rila Monastery',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:938:8:
+[37m      938 │         [32mtitle[37m: 'Explore Plovdiv by night',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:947:8:
+[37m      947 │         [32mtitle[37m: 'Meet women in rural Bulgaria',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:956:8:
+[37m      956 │         [32mtitle[37m: 'Discover caves and monuments',
+          ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:1227:8:
+[37m      1227 │         [32mtitle[37m: 'Experience Song Kul Lake',
+           ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:1236:8:
+[37m      1236 │         [32mtitle[37m: 'Meet local women artisans',
+           ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type 'string' is not assignable to type 'TourLinkedTitle'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:1245:8:
+[37m      1245 │         [32mtitle[37m: 'Cross dramatic mountain passes',
+           ╵         [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourHighlight'
+
+    src/app/shared/content/tour-content.ts:16:2:
+[37m      16 │   [32mtitle[37m: TourLinkedTitle;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:197:6:
+[37m      197 │       [32mtitle[37m: { text: 'Arrival in Algiers and flight to Djanet', l...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:205:6:
+[37m      205 │       [32mtitle[37m: { text: 'Into Tadrart - El Berdj', linkText: '', lin...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:213:6:
+[37m      213 │       [32mtitle[37m: { text: 'Dunes and Neolithic Paintings - Moul Naga',...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:221:6:
+[37m      221 │       [32mtitle[37m: { text: 'Great Erg - Tin Merzouga to Adjlati', linkT...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:229:6:
+[37m      229 │       [32mtitle[37m: { text: 'Stone Forest - Adaik', linkText: '', link: ...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:237:6:
+[37m      237 │       [32mtitle[37m: { text: 'Wadi Essendilene - Erg Admer', linkText: ''...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:245:6:
+[37m      245 │       [32mtitle[37m: { text: 'Tikobawin Arch - Return to Djanet', linkTex...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:253:6:
+[37m      253 │       [32mtitle[37m: { text: 'Flight Djanet - Algiers', linkText: '', lin...
+          ╵       [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourItineraryDay'
+
+    src/app/shared/content/tour-content.ts:22:2:
+[37m      22 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:271:4:
+[37m      271 │     [32mtitle[37m: { text: 'Algeria Desert Expedition (Tadrart Rouge) | O...
+          ╵     [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type '{ title: string; description: string; }'
+
+    src/app/shared/content/tour-content.ts:75:4:
+[37m      75 │     [32mtitle[37m: string;
+         ╵     [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ text: string; linkText: string; link: string; }' is not assignable to type 'string'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:285:4:
+[37m      285 │     [32mtitle[37m: { text: 'Bulgaria Beyond the Ordinary', linkText: '', ...
+          ╵     [32m~~~~~[0m
+
+  The expected type comes from property 'title' which is declared here on type 'TourDetailContent'
+
+    src/app/shared/content/tour-content.ts:36:2:
+[37m      36 │   [32mtitle[37m: string;
+         ╵   [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'departureReturn' does not exist in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:1281:4:
+[37m      1281 │     [32mdepartureReturn[37m: {
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'DeparturReturn'. Did you mean 'DepartureReturn'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:81:19:
+[37m      81 │   departureReturn: [32mDeparturReturn[37m | null;
+         ╵                    [32m~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:95:13:
+[37m      95 │ export const [32mALGERIA_DESERT_EXPEDITION_TADRART_ROUGE[37m: TourDetailCo...
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DeparturReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:288:2:
+[37m      288 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DeparturReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:482:2:
+[37m      482 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DeparturReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:689:2:
+[37m      689 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DeparturReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 13 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:902:2:
+[37m      902 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DeparturReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:95:13:
+[37m      95 │ export const [32mALGERIA_DESERT_EXPEDITION_TADRART_ROUGE[37m: TourDetailCo...
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DepartureReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:288:2:
+[37m      288 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DepartureReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:482:2:
+[37m      482 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DepartureReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 12 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:689:2:
+[37m      689 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DepartureReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2741: Property 'departureReturn' is missing in type '{ id: string; slug: string; title: string; destination: { country: string; region: string; startLocation: string; endLocation: string; }; category: string; duration: { days: number; nights: number; }; ... 13 more ...; source: { ...; }; }' but required in type 'TourDetailContent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/shared/content/tour-content.ts:902:2:
+[37m      902 │   [32m{[37m
+          ╵   [32m^[0m
+
+  'departureReturn' is declared here.
+
+    src/app/shared/content/tour-content.ts:81:2:
+[37m      81 │   [32mdepartureReturn[37m: DepartureReturn | null;
+         ╵   [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mexpected "{".
+    ╷
+274 │   height: 622.4px;
+    │                  ^
+    ╵
+  src\app\features\tour-detail\tour-detail.scss 274:18  root stylesheet[0m [1m[35m[plugin angular-sass][0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUnexpected "2xn"[0m [1m[35m[plugin angular-compiler][0m [css-syntax-error]
+
+    src/app/features/tour-detail/tour-detail.scss:268:42:
+[37m      268 │ .tour-detail__gallery img:is(:nth-of-type([32m2xn[37m + 1)) {
+          ╵                                           [32m~~~[0m
+
+

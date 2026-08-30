@@ -1,0 +1,187 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.faq-page {
+  color: var(--omaya-color-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.faq-page__hero {
+  display: grid;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
+  place-items: center;
+  padding: 8rem 1rem 4rem;
+  color: tokens.$omaya-color-white;
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 42%),
+      rgb(var(--omaya-color-overlay-rgb) / 42%)
+    ),
+    url('/assets/images/faq/faq-bgr.webp') center / cover;
+  text-align: center;
+}
+
+.faq-page__hero p,
+.faq-page__intro > p:first-child {
+  margin: 0 0 0.7rem;
+  color: tokens.$omaya-color-gold;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.faq-page h1,
+.faq-page h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  line-height: 1.12;
+}
+
+.faq-page h1 {
+  font-size: 4rem;
+}
+
+.faq-page h2 {
+  color: var(--omaya-color-heading);
+  font-size: 2rem;
+}
+
+.faq-page__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: 3rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 5rem 1rem 6rem;
+}
+
+.faq-page__intro {
+  margin-bottom: 2rem;
+}
+
+.faq-page__intro p:last-child {
+  max-width: 48rem;
+}
+
+.faq-page details {
+  border-top: 1px solid var(--omaya-color-border-light);
+  padding: 1.15rem 0;
+}
+
+.faq-page details:last-child {
+  border-bottom: 1px solid var(--omaya-color-border-light);
+}
+
+.faq-page summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--omaya-color-dark);
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faq-page summary::after {
+  color: tokens.$omaya-color-gold;
+  content: '+';
+}
+
+.faq-page details[open] summary {
+  color: tokens.$omaya-color-gold;
+}
+
+.faq-page details[open] summary::after {
+  content: '-';
+}
+
+.faq-page details p {
+  margin: 1rem 0 0;
+}
+
+.faq-page__rules {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.faq-page__rules article {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 1rem;
+  background: var(--omaya-color-surface-alt);
+}
+
+.faq-page__side {
+  display: grid;
+  align-content: start;
+  gap: 2rem;
+}
+
+.faq-page__side img {
+  width: 100%;
+  height: auto;
+}
+
+.faq-page__contact {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.2rem;
+  background: var(--omaya-color-surface-alt);
+}
+
+.faq-page__contact h2 {
+  font-size: 1.35rem;
+}
+
+.faq-page__contact :is(input, textarea) {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--omaya-color-border-light);
+  padding: 0.8rem;
+  color: var(--omaya-color-body);
+  background: tokens.$omaya-color-white;
+  font: inherit;
+}
+
+.faq-page__contact button {
+  min-height: 3rem;
+  border: 0;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-gold;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.faq-page :is(summary, input, textarea, button):focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 4px;
+}
+
+@media (max-width: 64rem) {
+  .faq-page__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-page__side {
+    grid-template-columns: minmax(12rem, 19rem) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 42rem) {
+  .faq-page__side {
+    grid-template-columns: 1fr;
+  }
+}

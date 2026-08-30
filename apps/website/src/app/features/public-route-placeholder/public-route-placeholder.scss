@@ -1,0 +1,22 @@
+.route-placeholder {
+  display: grid;
+  min-height: 100svh;
+  place-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: var(--omaya-color-heading);
+  background: var(--omaya-color-surface-warm);
+}
+
+.route-placeholder > * {
+  margin: 0;
+}
+
+.route-placeholder h1 {
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.route-placeholder a {
+  color: var(--omaya-color-accent);
+}

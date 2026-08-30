@@ -1,0 +1,61 @@
+<main class="why-book">
+  <section class="why-book__hero">
+    <img
+      [src]="content.hero.image.src"
+      [width]="content.hero.image.width"
+      [height]="content.hero.image.height"
+      [alt]="content.hero.image.alt"
+      fetchpriority="high"
+    />
+    <div class="why-book__hero-copy">
+      <h1>{{ content.title }}</h1>
+    </div>
+  </section>
+
+  <section class="why-book__intro" aria-labelledby="why-book-heading">
+    <h2 id="why-book-heading">{{ content.introduction[0] }}</h2>
+    @for (paragraph of content.introduction.slice(1); track paragraph) {
+      <p>{{ paragraph }}</p>
+    }
+  </section>
+
+  <section class="why-book__cards" aria-label="Reasons to book with Omaya Travel">
+    @for (card of content.cards; track card.id) {
+      <article
+        class="why-book__card"
+        tabindex="0"
+        [ngClass]="{ 'why-book__card--flipped': activeCardId() === card.id }"
+        (click)="toggleCard(card.id)"
+        (keydown.enter)="toggleCard(card.id)"
+        (keydown.space)="$event.preventDefault(); toggleCard(card.id)"
+      >
+        <div class="why-book__card-inner">
+          <div class="why-book__card-face why-book__card-front">
+            <img
+              [src]="card.image.src"
+              [width]="card.image.width"
+              [height]="card.image.height"
+              [alt]="card.image.alt"
+              loading="lazy"
+            />
+            <div>
+              <h3>{{ card.title }}</h3>
+            </div>
+          </div>
+
+          <div class="why-book__card-face why-book__card-back">
+            <h3>{{ card.title }}</h3>
+            @for (paragraph of card.paragraphs; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="why-book__closing" aria-label="Explore journeys">
+    <p>{{ content.closing }}</p>
+    <a routerLink="/tours-list/">Explore our journeys</a>
+  </section>
+</main>

@@ -1,0 +1,18 @@
+{
+  "name": "omaya-travel-angular",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Omaya Travel Angular rebuild monorepo.",
+  "packageManager": "pnpm@10.11.1",
+  "scripts": {
+    "build": "pnpm --dir apps/website run build",
+    "lint": "pnpm --filter website run format:check",
+    "preview:phone": "powershell -ExecutionPolicy Bypass -File scripts/phone-preview.ps1",
+    "type-check": "pnpm --dir apps/website exec ng build --configuration development --progress=false",
+    "test": "pnpm --dir apps/website run test"
+  },
+  "engines": {
+    "node": ">=22.22.3",
+    "pnpm": ">=10.0.0"
+  }
+}

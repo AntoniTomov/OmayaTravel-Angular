@@ -1,0 +1,118 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.legal-page {
+  min-height: 100vh;
+  padding: 0 24px 5rem;
+  color: tokens.$omaya-color-text;
+}
+
+.legal-page__hero {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
+  place-items: center;
+  margin: 0 -24px 5rem;
+  overflow: hidden;
+  color: tokens.$omaya-color-white;
+  text-align: center;
+}
+
+.legal-page__hero::after {
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--omaya-color-overlay-rgb) / 38%);
+  content: '';
+}
+
+.legal-page__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.legal-page .legal-page__hero h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 60rem;
+  padding: 0 24px;
+  color: tokens.$omaya-color-white;
+}
+
+.legal-page__content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 9rem;
+}
+
+.legal-page__hero + .legal-page__content {
+  padding-top: 0;
+}
+
+.legal-page__certificate {
+  display: block;
+  width: min(44rem, 100%);
+  height: auto;
+  margin: 0 auto 3rem;
+  box-shadow: 0 16px 45px rgb(var(--omaya-color-overlay-rgb) / 12%);
+}
+
+.legal-page h1,
+.legal-page h2 {
+  margin: 0;
+  color: var(--omaya-color-heading);
+  font-family: tokens.$omaya-font-heading;
+  line-height: 1.1;
+}
+
+.legal-page h1 {
+  margin-bottom: 3rem;
+  font-size: 4rem;
+}
+
+.legal-page h2 {
+  margin: 2.4rem 0 1rem;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.legal-page p,
+.legal-page li {
+  color: var(--omaya-color-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.legal-page p {
+  margin: 0 0 1rem;
+}
+
+.legal-page ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0 0 1.4rem;
+  padding-left: 1.25rem;
+}
+
+.legal-page a {
+  color: tokens.$omaya-color-gold;
+}
+
+@media (max-width: 40rem) {
+  .legal-page__hero {
+    height: 515px;
+    max-height: 515px;
+    margin-bottom: 3.5rem;
+  }
+
+  .legal-page__content {
+    padding-top: 7rem;
+  }
+}

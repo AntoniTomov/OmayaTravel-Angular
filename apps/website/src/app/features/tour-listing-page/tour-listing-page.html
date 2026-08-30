@@ -1,0 +1,180 @@
+<main
+  class="tour-listing"
+  [ngClass]="{
+    'tour-listing--compact': !page().heroImage,
+    'tour-listing--tour-list': isTourListPage(),
+  }"
+>
+  @if (page().heroImage) {
+    <section class="tour-listing__hero">
+      <img
+        [src]="page().heroImage"
+        [alt]="page().heroAlt ?? page().title"
+        width="1600"
+        height="900"
+        fetchpriority="high"
+      />
+      <div>
+        <h1>{{ page().title }}</h1>
+        @if (page().subtitle) {
+          <p>{{ page().subtitle }}</p>
+        }
+      </div>
+    </section>
+  } @else {
+    <header class="tour-listing__heading">
+      <p>All</p>
+      <h1>{{ page().title }}</h1>
+      <span>{{ page().subtitle }}</span>
+    </header>
+  }
+
+  <section class="tour-listing__body">
+    @if (shouldShowSortTabs()) {
+      <nav class="tour-listing__filters" aria-label="Tour sorting">
+        @for (sort of sorts; track sort.id) {
+          <button
+            type="button"
+            [ngClass]="{ 'tour-listing__filter--active': activeSort() === sort.id }"
+            (click)="setSort(sort.id)"
+          >
+            <mat-icon aria-hidden="true">{{ sort.icon }}</mat-icon>
+            {{ sort.label }}
+          </button>
+        }
+      </nav>
+    }
+
+    @if (page().introSections?.length) {
+      <div class="tour-listing__intro">
+        @for (section of page().introSections; track section.title; let index = $index) {
+          <article [ngClass]="{ 'tour-listing__intro-row--reverse': index % 2 === 1 }">
+            <img [src]="section.image" [alt]="section.alt" loading="lazy" />
+            <div>
+              <h2>{{ section.title }}</h2>
+              <p>{{ section.body }}</p>
+              <a routerLink="/enquire-now/" (click)="trackIntroEnquiry(section.title)"
+                >Enquire Now</a
+              >
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+    <div class="tour-listing__content" [class.tour-listing__content--full]="!isTourListPage()">
+      <div class="tour-listing__grid">
+        @for (card of cards(); track card.title) {
+          <article class="tour-listing__card">
+            <a [routerLink]="card.target" (click)="trackTourCardClick(card)">
+              <div class="tour-listing__card-image">
+                <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+                <div class="tour-listing__card-overlay">
+                  <span class="tour-listing__card-category">{{ card.category }}</span>
+                  @if (isTourListPage()) {
+                    <h2>{{ card.title }}</h2>
+                    <p>{{ card.excerpt }}</p>
+                    <strong>{{ card.price }}</strong>
+                  }
+                </div>
+              </div>
+              @if (!isTourListPage()) {
+                <div class="tour-listing__card-body">
+                  <h2>{{ card.title }}</h2>
+                  <strong>{{ card.price }} <span>/ per person</span></strong>
+                  <p>{{ card.excerpt }}</p>
+                  <span class="tour-listing__duration">
+                    <mat-icon aria-hidden="true">schedule</mat-icon>
+                    {{ card.duration }}
+                  </span>
+                </div>
+              }
+            </a>
+          </article>
+        }
+      </div>
+
+      @if (isTourListPage()) {
+        <aside class="tour-listing__sidebar" aria-label="Find your destination">
+          <div class="tour-listing__sidebar-panel">
+            <h2>Find Your Destination</h2>
+            <label>
+              <mat-icon aria-hidden="true">search</mat-icon>
+              <input
+                placeholder="Search Tour"
+                [value]="pendingFilters().search"
+                (input)="updateFilter('search', $any($event.target).value)"
+              />
+            </label>
+            <label>
+              <mat-icon aria-hidden="true">location_on</mat-icon>
+              <input
+                placeholder="Where To?"
+                [value]="pendingFilters().location"
+                (input)="updateFilter('location', $any($event.target).value)"
+              />
+            </label>
+            <div class="tour-listing__select-field">
+              <mat-icon aria-hidden="true">calendar_month</mat-icon>
+              <button
+                class="tour-listing__month-trigger"
+                type="button"
+                [attr.aria-expanded]="isMonthDropdownOpen()"
+                aria-haspopup="listbox"
+                (click)="toggleMonthDropdown()"
+              >
+                {{ monthLabel() }}
+              </button>
+              @if (isMonthDropdownOpen()) {
+                <div class="tour-listing__month-dropdown" role="listbox">
+                  <button type="button" role="option" (click)="selectMonth('')">Month</button>
+                  @for (month of months; track month) {
+                    <button type="button" role="option" (click)="selectMonth(month)">
+                      {{ month }}
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+            <div class="tour-listing__price-range">
+              <span>Price range</span>
+              <div class="tour-listing__range-controls">
+                <input
+                  aria-label="Minimum price"
+                  type="range"
+                  [min]="priceMin"
+                  [max]="priceMax"
+                  [value]="pendingFilters().minPrice"
+                  (input)="updateFilter('minPrice', +$any($event.target).value)"
+                />
+                <input
+                  aria-label="Maximum price"
+                  type="range"
+                  [min]="priceMin"
+                  [max]="priceMax"
+                  [value]="pendingFilters().maxPrice"
+                  (input)="updateFilter('maxPrice', +$any($event.target).value)"
+                />
+              </div>
+              <small>{{ priceRangeLabel() }}</small>
+            </div>
+            @for (category of categories; track category) {
+              <label class="tour-listing__check">
+                <input
+                  type="checkbox"
+                  [checked]="isCategoryChecked(category)"
+                  (change)="toggleCategory(category, $any($event.target).checked)"
+                />
+                {{ category }}
+              </label>
+            }
+            <button class="tour-listing__search-button" type="button" (click)="applyFilters()">
+              Search
+            </button>
+          </div>
+          <a class="tour-listing__discover" routerLink="/tours-list/"></a>
+        </aside>
+      }
+    </div>
+  </section>
+</main>

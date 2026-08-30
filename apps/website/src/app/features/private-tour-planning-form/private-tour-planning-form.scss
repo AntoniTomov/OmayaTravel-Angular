@@ -1,0 +1,266 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.planning-form {
+  min-height: 100vh;
+  padding: 9rem 24px 5rem;
+  color: tokens.$omaya-color-text;
+  background: tokens.$omaya-color-white;
+}
+
+.planning-form__hero {
+  max-width: 58rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.planning-form__hero p {
+  margin: 0 0 0.8rem;
+  color: tokens.$omaya-color-gold;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.planning-form__hero h1 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.planning-form__panel {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 48rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid var(--omaya-color-border-light);
+}
+
+.planning-form__steps,
+.planning-form__actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.planning-form__steps {
+  justify-content: center;
+}
+
+.planning-form__steps button {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--omaya-color-border-light);
+  border-radius: 50%;
+  background: transparent;
+  color: tokens.$omaya-color-text;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.planning-form__steps button:disabled,
+.planning-form__button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.planning-form__steps button.is-active {
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+  border-color: tokens.$omaya-color-gold;
+}
+
+.planning-form fieldset {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.planning-form legend {
+  margin-bottom: 1rem;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.planning-form label {
+  position: relative;
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 800;
+}
+
+.planning-form__phone {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.6rem;
+}
+
+.planning-form .planning-form__country-code {
+  padding-inline: 0.7rem;
+}
+
+.planning-form__radio-group {
+  gap: 0.75rem !important;
+}
+
+.planning-form__radio-group legend {
+  margin-bottom: 0.2rem;
+  font: inherit;
+  font-weight: 800;
+}
+
+.planning-form__radio-group label {
+  display: flex;
+  grid-template-columns: none;
+  gap: 0.6rem;
+  align-items: center;
+  font-weight: 400;
+}
+
+.planning-form__radio-group input {
+  width: 1rem;
+  min-height: 1rem;
+  accent-color: tokens.$omaya-color-gold;
+}
+
+.planning-form :is(input, select, textarea) {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 3rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--omaya-color-border-light);
+  font: inherit;
+  font-weight: 400;
+}
+
+.planning-form__radio-group input[type='radio'] {
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  padding: 0;
+  flex: 0 0 16px;
+}
+
+.planning-form input[type='date'] {
+  cursor: pointer;
+  color-scheme: light;
+  padding-right: 3rem;
+  appearance: none;
+  background: tokens.$omaya-color-white;
+}
+
+.planning-form input[type='date']::-webkit-calendar-picker-indicator {
+  width: 2.6rem;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.planning-form label:has(input[type='date'])::after {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.95rem;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--omaya-color-body);
+  border-top-width: 4px;
+  border-radius: 2px;
+  pointer-events: none;
+  content: '';
+}
+
+.planning-form textarea {
+  resize: vertical;
+}
+
+.planning-form__button {
+  min-height: 3rem;
+  padding: 0 1.15rem;
+  border: 0;
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+
+.planning-form__button:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.planning-form__button:disabled:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+}
+
+.planning-form__button--secondary {
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.planning-form__button--secondary:is(:hover, :focus-visible) {
+  background: tokens.$omaya-color-gold;
+}
+
+.planning-form__sent {
+  margin: 0;
+  color: tokens.$omaya-color-gold;
+  font-weight: 900;
+}
+
+.planning-form__sent.form-status--error {
+  color: var(--omaya-color-error);
+}
+
+.planning-form__back {
+  justify-self: start;
+  color: var(--omaya-color-muted);
+  font-weight: 800;
+}
+
+@media (max-width: 40rem) {
+  .planning-form {
+    padding-top: 7rem;
+  }
+
+  .planning-form__hero h1 {
+    font-size: 3rem;
+  }
+
+  .planning-form__panel {
+    padding: 1.25rem;
+  }
+
+  .planning-form__panel > .planning-form__button {
+    width: 100%;
+  }
+
+  .planning-form__actions {
+    width: 100%;
+  }
+
+  .planning-form__actions .planning-form__button {
+    flex: 1 1 0;
+  }
+
+  .planning-form__phone {
+    grid-template-columns: 1fr;
+  }
+}

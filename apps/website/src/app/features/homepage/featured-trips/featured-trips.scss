@@ -1,0 +1,260 @@
+@use '../../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.featured-trips {
+  position: relative;
+  overflow: hidden;
+  padding: 01.7rem;
+  color: tokens.$omaya-color-text;
+  background: transparent;
+}
+
+.featured-trips__inner {
+  position: relative;
+  width: 100%;
+}
+
+.featured-trips__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.featured-trips__heading h2 {
+  width: 100%;
+}
+
+.featured-trips h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 3rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.featured-trips__controls {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.featured-trips__controls button {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border: 1px solid rgb(var(--omaya-color-overlay-rgb) / 26%);
+  border-radius: 50%;
+  color: tokens.$omaya-color-dark;
+  background: rgb(var(--omaya-color-surface-rgb, 255 255 255) / 78%);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color tokens.$omaya-transition-fast,
+    color tokens.$omaya-transition-fast,
+    background tokens.$omaya-transition-fast;
+}
+
+.featured-trips__controls button:is(:hover, :focus-visible) {
+  border-color: tokens.$omaya-color-gold;
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+}
+
+.featured-trips__controls button:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 3px;
+}
+
+.featured-trips__carousel {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.featured-trips__carousel--dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.featured-trips__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-trips__carousel:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 6px;
+}
+
+.featured-trips__track {
+  display: flex;
+  gap: 1.7rem;
+  align-items: stretch;
+}
+
+.featured-trips__card {
+  flex: 0 0 calc((100% - 3.4rem) / 3);
+  box-sizing: border-box;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.featured-trips__image-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.08;
+  color: tokens.$omaya-color-gold;
+  text-decoration: none;
+}
+
+.featured-trips__image-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.featured-trips__image-link:is(:hover, :focus-visible) img {
+  transform: scale(1.035);
+}
+
+.featured-trips__image-link:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 4px;
+}
+
+.featured-trips__image-link span {
+  position: absolute;
+  bottom: 1.1rem;
+  left: 1.45rem;
+  color: tokens.$omaya-color-gold;
+  background-color: rgb(0 0 0 / 50%);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: 'Kristi', cursive;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  mask-image:
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-composite: source-in;
+  text-shadow: 0 1px 2px rgb(var(--omaya-color-overlay-rgb) / 32%);
+}
+
+.featured-trips__content {
+  display: grid;
+  gap: 0.7rem;
+  padding-top: 1.25rem;
+}
+
+.featured-trips__content h3,
+.featured-trips__price,
+.featured-trips__duration,
+.featured-trips__description {
+  margin: 0;
+}
+
+.featured-trips__content h3 {
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.22;
+}
+
+.featured-trips__content a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.featured-trips__content a:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-gold;
+}
+
+.featured-trips__price {
+  color: tokens.$omaya-color-dark;
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.featured-trips__price span {
+  color: var(--omaya-color-subtle);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.featured-trips__duration {
+  color: tokens.$omaya-color-dark;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.featured-trips__description {
+  color: var(--omaya-color-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 70rem) {
+  .featured-trips {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .featured-trips__card {
+    flex-basis: calc((100% - 1.7rem) / 2);
+  }
+}
+
+@media (max-width: 44rem) {
+  .featured-trips {
+    padding: 2rem 24px;
+  }
+
+  .featured-trips__heading {
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1.6rem;
+  }
+
+  .featured-trips h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 2.35rem;
+  }
+
+  .featured-trips__controls {
+    position: static;
+    padding-top: 0.25rem;
+  }
+
+  .featured-trips__track {
+    gap: 1rem;
+  }
+
+  .featured-trips__card {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .featured-trips__image-link {
+    aspect-ratio: 1 / 0.9;
+  }
+}

@@ -1,0 +1,415 @@
+@if (tour(); as tour) {
+  <main class="tour-detail">
+    <section class="tour-detail__hero">
+      <img
+        [src]="tour.heroImage.src"
+        [width]="tour.heroImage.width"
+        [height]="tour.heroImage.height"
+        [alt]="tour.heroImage.alt"
+        fetchpriority="high"
+      />
+      <h1>{{ tour.title }}</h1>
+    </section>
+
+    <nav class="tour-detail__tabs" aria-label="Tour detail sections">
+      @for (tab of tabs(); track tab.id) {
+        <button
+          type="button"
+          [ngClass]="{ 'tour-detail__tab--active': activeTab() === tab.id }"
+          [attr.aria-current]="activeTab() === tab.id ? 'page' : null"
+          (click)="setTab(tab.id)"
+        >
+          <mat-icon aria-hidden="true">{{ tab.icon }}</mat-icon>
+          {{ tab.label }}
+        </button>
+      }
+    </nav>
+
+    <div class="tour-detail__layout">
+      <div class="tour-detail__content" [ngClass]="contentClasses()">
+        @if (activeTab() === 'information') {
+          <section class="tour-detail__section">
+            <div class="tour-detail__summary">
+              <div>
+                <h2>{{ tour.title }}</h2>
+                <ul class="tour-detail__meta">
+                  <li>
+                    <mat-icon aria-hidden="true">schedule</mat-icon>
+                    {{ durationLabel(tour) }}
+                  </li>
+                  <li>
+                    <mat-icon aria-hidden="true">explore</mat-icon>
+                    {{ tour.category }}
+                  </li>
+                </ul>
+              </div>
+              <p class="tour-detail__price">
+                {{ priceLabel(tour) }} <span>/ per {{ tour.price.unit }}</span>
+              </p>
+            </div>
+
+            <p class="tour-detail__fact">
+              <mat-icon aria-hidden="true">calendar_month</mat-icon>
+              <strong>Available dates:</strong>
+              @for (departure of tour.departures; track departure) {
+                <span>{{ departure | date: 'd MMMM y' }}</span>
+              }
+            </p>
+            <p class="tour-detail__fact">
+              <mat-icon aria-hidden="true">groups_2</mat-icon>
+              <strong>Group size:</strong> {{ groupSizeLabel(tour) }}
+            </p>
+
+            @for (paragraph of tour.introduction; track introductionTrackText(paragraph)) {
+              <p>
+                @if (isLinkedParagraph(paragraph)) {
+                  {{ paragraph.text }}
+                  <a [href]="paragraph.link" target="_blank" rel="noopener noreferrer">
+                    {{ paragraph.linkText }}
+                  </a>
+                  {{ paragraph.trailingText }}
+                } @else {
+                  {{ paragraph }}
+                }
+              </p>
+            }
+          </section>
+
+          <section class="tour-detail__section">
+            <h2>{{ highlightsHeading(tour) }}</h2>
+            <div class="tour-detail__highlights">
+              @for (highlight of tour.highlights; track highlightTitleText(highlight)) {
+                <article>
+                  <img
+                    [src]="highlight.image.src"
+                    [width]="highlight.image.width"
+                    [height]="highlight.image.height"
+                    [alt]="highlight.image.alt"
+                    loading="lazy"
+                  />
+                  <h3>
+                    @if (highlight.icon) {
+                      <mat-icon aria-hidden="true">{{ highlight.icon }}</mat-icon>
+                    }
+                    {{ highlight.title.text }}
+                    @if (highlight.title.link) {
+                      @if (isExternalLink(highlight.title.link)) {
+                        <a [href]="highlight.title.link" target="_blank" rel="noopener noreferrer">
+                          {{ highlight.title.linkText }}
+                        </a>
+                      } @else {
+                        <a [routerLink]="highlight.title.link">{{ highlight.title.linkText }}</a>
+                      }
+                    } @else {
+                      {{ highlight.title.linkText }}
+                    }
+                  </h3>
+                </article>
+              }
+            </div>
+          </section>
+
+          @if (tour.departureReturn) {
+            <section class="tour-detail__section tour-detail__lists tour-detail__departure">
+              <h2>Departure/Return Location</h2>
+              <p>{{ departureReturnLabel(tour) }}</p>
+            </section>
+          }
+
+          <section class="tour-detail__section tour-detail__lists">
+            <h2>Included</h2>
+            <ul>
+              @for (item of tour.included; track item) {
+                <li class="tour-detail__included">{{ item }}</li>
+              }
+            </ul>
+          </section>
+
+          <section class="tour-detail__section tour-detail__lists">
+            <h2>Not Included</h2>
+            <ul>
+              @for (item of tour.notIncluded; track item) {
+                <li class="tour-detail__not-included">{{ item }}</li>
+              }
+            </ul>
+          </section>
+
+          <section class="tour-detail__section">
+            <div class="tour-detail__gallery-preview">
+              @for (image of tour.gallery.slice(0, 3); track image.src; let index = $index) {
+                <button
+                  class="tour-detail__gallery-button"
+                  type="button"
+                  [attr.aria-label]="'Preview gallery image: ' + image.alt"
+                  (click)="openGallery(index)"
+                >
+                  <img
+                    [src]="image.src"
+                    [width]="image.width"
+                    [height]="image.height"
+                    [alt]="image.alt"
+                    loading="lazy"
+                  />
+                </button>
+              }
+            </div>
+          </section>
+        }
+
+        @if (activeTab() === 'tour-plan') {
+          <section class="tour-detail__section">
+            <h2>Tour Plan</h2>
+            <div class="tour-detail__itinerary">
+              @for (day of tour.itinerary; track day.day) {
+                <article>
+                  <span class="tour-detail__day">{{ day.day }}</span>
+                  <div>
+                    <h3>{{ day.title }}</h3>
+                    <p>{{ day.description }}</p>
+                    @if (day.accommodation) {
+                      <p class="tour-detail__day-detail">
+                        <mat-icon aria-hidden="true">home</mat-icon>
+                        {{ day.accommodation }}
+                      </p>
+                    }
+                    @if (day.meals.length > 0) {
+                      <p class="tour-detail__day-detail">
+                        <mat-icon aria-hidden="true">restaurant</mat-icon>
+                        {{ mealsLabel(day) }}
+                      </p>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
+        @if (activeTab() === 'gallery') {
+          <section class="tour-detail__section tour-detail__gallery-section">
+            <div class="tour-detail__gallery" aria-label="Tour gallery">
+              @for (image of tour.gallery; track image.src; let index = $index) {
+                <button
+                  class="tour-detail__gallery-button"
+                  type="button"
+                  [attr.aria-label]="'Preview gallery image: ' + image.alt"
+                  (click)="openGallery(index)"
+                >
+                  <img
+                    [src]="image.src"
+                    [width]="image.width"
+                    [height]="image.height"
+                    [alt]="image.alt"
+                    loading="lazy"
+                  />
+                </button>
+              }
+            </div>
+          </section>
+        }
+
+        @if (activeTab() === 'faq' && tour.faq; as faq) {
+          <section class="tour-detail__section tour-detail__faq">
+            <h2>{{ faq.heading }}</h2>
+            <p>{{ faq.intro }}</p>
+            <div class="tour-detail__faq-list">
+              @for (item of faq.items; track item.question; let index = $index) {
+                <details
+                  [attr.id]="faqAnswerId(item, index)"
+                  [open]="openFaqIndex() === index"
+                  (toggle)="toggleFaq(index, $event)"
+                >
+                  <summary>{{ item.question }}</summary>
+                  @for (paragraph of item.answer; track paragraph) {
+                    <p>{{ paragraph }}</p>
+                  }
+                </details>
+              }
+            </div>
+          </section>
+        }
+      </div>
+
+      <aside class="tour-detail__sidebar" aria-label="Tour booking">
+        <form class="tour-detail__booking" (submit)="$event.preventDefault()">
+          <h2>Book this tour</h2>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">edit_square</mat-icon>
+            <input type="text" name="name" placeholder="Name*" autocomplete="name" />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">mail</mat-icon>
+            <input type="email" name="email" placeholder="Email*" autocomplete="email" />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">mail</mat-icon>
+            <input
+              type="email"
+              name="confirmEmail"
+              placeholder="Confirm Email*"
+              autocomplete="email"
+            />
+          </label>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">phone</mat-icon>
+            <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
+          </label>
+          <div class="tour-detail__field tour-detail__date-field">
+            <mat-icon aria-hidden="true">calendar_month</mat-icon>
+            <button
+              class="tour-detail__date-trigger"
+              type="button"
+              [attr.aria-expanded]="isBookingCalendarOpen()"
+              (click)="toggleBookingCalendar()"
+            >
+              {{ selectedBookingDateLabel() }}
+            </button>
+            @if (isBookingCalendarOpen()) {
+              <div class="tour-detail__calendar" aria-label="Available tour dates">
+                <div class="tour-detail__calendar-header">
+                  <button
+                    type="button"
+                    aria-label="Previous month"
+                    (click)="shiftCalendarMonth(-1)"
+                  >
+                    &lt;
+                  </button>
+                  <strong>{{ calendarMonthLabel() }}</strong>
+                  <button type="button" aria-label="Next month" (click)="shiftCalendarMonth(1)">
+                    &gt;
+                  </button>
+                </div>
+                <div class="tour-detail__calendar-weekdays" aria-hidden="true">
+                  @for (day of calendarWeekdays; track day) {
+                    <span>{{ day }}</span>
+                  }
+                </div>
+                <div class="tour-detail__calendar-grid">
+                  @for (day of calendarDays(); track day.iso) {
+                    <button
+                      type="button"
+                      [disabled]="!day.isSelectable"
+                      [ngClass]="{
+                        'tour-detail__calendar-day--muted': !day.isCurrentMonth,
+                        'tour-detail__calendar-day--period': day.isTourPeriod,
+                        'tour-detail__calendar-day--start': day.isStartDate,
+                        'tour-detail__calendar-day--selected': day.isSelected,
+                      }"
+                      [attr.aria-label]="day.label"
+                      (click)="selectBookingDate(day.iso)"
+                    >
+                      {{ day.date.getDate() }}
+                    </button>
+                  }
+                </div>
+                <div class="tour-detail__calendar-legend" aria-label="Calendar legend">
+                  <span>
+                    <i class="tour-detail__calendar-legend-start" aria-hidden="true"></i>
+                    Start of tour
+                  </span>
+                  <span>
+                    <i class="tour-detail__calendar-legend-period" aria-hidden="true"></i>
+                    Following tour dates
+                  </span>
+                </div>
+              </div>
+            }
+            <input type="hidden" name="date" [value]="selectedBookingDate() ?? ''" />
+          </div>
+          <label class="tour-detail__field">
+            <mat-icon aria-hidden="true">groups_2</mat-icon>
+            <input type="number" name="tickets" min="1" placeholder="Number of people" />
+          </label>
+          <textarea name="message" rows="7" placeholder="Message"></textarea>
+          <label class="tour-detail__terms">
+            <input type="checkbox" name="terms" required />
+            <span>
+              I agree to the <a routerLink="/termsconditions/">Terms and Conditions</a>.
+            </span>
+          </label>
+          <button
+            class="tour-detail__availability"
+            type="button"
+            (click)="trackTourCta('check_availability')"
+          >
+            {{ tour.enquiry.cta }}
+          </button>
+          <button class="tour-detail__book" type="submit" (click)="trackTourCta('book_now')">
+            Book Now
+          </button>
+        </form>
+
+        <a
+          class="tour-detail__discover"
+          routerLink="/tours-list/"
+          (click)="trackTourCta('discover_more')"
+        ></a>
+      </aside>
+    </div>
+
+    @if (activeGalleryImage(); as image) {
+      <div
+        class="tour-detail__lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Tour gallery preview"
+        (touchstart)="onGalleryTouchStart($event)"
+        (touchend)="onGalleryTouchEnd($event)"
+        (click)="closeGallery()"
+      >
+        <div class="tour-detail__lightbox-panel" (click)="closeGallery()">
+          <button
+            class="tour-detail__lightbox-close"
+            type="button"
+            aria-label="Close gallery preview"
+            (click)="$event.stopPropagation(); closeGallery()"
+          >
+            x
+          </button>
+          <button
+            class="tour-detail__lightbox-nav tour-detail__lightbox-nav--previous"
+            type="button"
+            aria-label="Show previous gallery image"
+            (click)="$event.stopPropagation(); showPreviousGalleryImage()"
+          >
+            <
+          </button>
+          <a
+            class="tour-detail__lightbox-image-link"
+            [href]="image.src"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'Open full-size image: ' + image.alt"
+            (click)="$event.stopPropagation()"
+          >
+            <img
+              [src]="image.src"
+              [width]="image.width"
+              [height]="image.height"
+              [alt]="image.alt"
+            />
+          </a>
+          <button
+            class="tour-detail__lightbox-nav tour-detail__lightbox-nav--next"
+            type="button"
+            aria-label="Show next gallery image"
+            (click)="$event.stopPropagation(); showNextGalleryImage()"
+          >
+            >
+          </button>
+        </div>
+      </div>
+    }
+  </main>
+} @else {
+  <main class="tour-detail tour-detail--empty">
+    <section>
+      <h1>Tour details coming soon</h1>
+      <p>
+        This tour route is ready, and the reusable tour page will render here once its content
+        object is added.
+      </p>
+      <a routerLink="/">Return home</a>
+    </section>
+  </main>
+}

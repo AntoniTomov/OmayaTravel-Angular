@@ -1,0 +1,332 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.homepage__stories-band {
+  background: tokens.$omaya-color-white
+    url('/assets/images/home-page/trips-carousel/trips-carousel-bgr.webp') center top / cover
+    no-repeat;
+}
+
+.homepage__hero {
+  position: relative;
+  display: grid;
+  min-height: 70svh;
+  place-items: center;
+  padding: 10.5rem 1.5rem 6rem;
+  color: tokens.$omaya-color-white;
+  background-color: tokens.$omaya-color-dark;
+  background-position: center;
+  background-size: cover;
+}
+
+.homepage__hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgb(var(--omaya-color-overlay-rgb) / 46%);
+  content: '';
+}
+
+.homepage__hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.homepage__hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(64rem, 100%);
+  gap: 0.85rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.homepage__hero h1 {
+  max-width: 58rem;
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 4rem;
+  line-height: 1.05;
+}
+
+.homepage__hero p {
+  max-width: 54rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.homepage__trip-search {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(16rem, 1.28fr);
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.7rem;
+  padding: 1.55rem 2.85rem;
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-white;
+  border-radius: 2px;
+  box-shadow: tokens.$omaya-shadow-search-panel;
+}
+
+.homepage__trip-search > div {
+  display: grid;
+}
+
+.homepage__trip-search label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.homepage__trip-select,
+.homepage__trip-search > button {
+  min-height: 3.25rem;
+  padding: 0 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.homepage__trip-field {
+  position: relative;
+  display: grid;
+}
+
+.homepage__trip-select {
+  width: 100%;
+  padding-right: 2.75rem;
+  color: tokens.$omaya-color-dark;
+  font-size: 0.62rem;
+  background:
+    url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%23171717' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      no-repeat right 1.25rem center / 0.875rem 0.5rem,
+    tokens.$omaya-color-white;
+  border: 1px solid tokens.$omaya-color-muted-border;
+  border-radius: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.homepage__trip-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  left: 0;
+  z-index: 30;
+  display: grid;
+  max-height: 14rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: tokens.$omaya-color-white;
+  box-shadow: var(--omaya-shadow-dropdown);
+}
+
+.homepage__trip-menu button {
+  justify-content: flex-start;
+  min-height: 2.8rem;
+  border: 0;
+  border-bottom: 1px solid var(--omaya-color-border-light);
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-white;
+  text-align: left;
+}
+
+.homepage__trip-menu button:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-dark;
+  background: var(--omaya-color-surface-alt);
+}
+
+.homepage__trip-search > button {
+  color: tokens.$omaya-color-white;
+  font-size: 0.86rem;
+  background: tokens.$omaya-color-gold;
+  border: 1px solid tokens.$omaya-color-gold;
+  border-radius: 2px;
+  transition:
+    color tokens.$omaya-transition-fast,
+    background tokens.$omaya-transition-fast;
+  cursor: pointer;
+}
+
+.homepage__trip-search > button:hover,
+.homepage__trip-search > button:focus-visible {
+  color: tokens.$omaya-color-dark;
+  outline: 2px solid tokens.$omaya-color-white;
+  outline-offset: 3px;
+}
+
+.homepage__trip-error {
+  grid-column: 1 / -1;
+  margin: 0.8rem 0 0;
+  color: tokens.$omaya-color-error;
+  font-weight: 700;
+  text-align: left;
+}
+
+.homepage__carousel-controls {
+  position: absolute;
+  z-index: 2;
+  bottom: 2rem;
+  left: 50%;
+  display: flex;
+  gap: 0.7rem;
+  transform: translateX(-50%);
+}
+
+.homepage__carousel-controls button {
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  background: rgb(var(--omaya-color-surface-rgb, 255 255 255) / 55%);
+  border: 1px solid tokens.$omaya-color-white;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.homepage__carousel-button--active {
+  background: tokens.$omaya-color-gold !important;
+}
+
+.homepage__newsletter {
+  position: relative;
+  display: grid;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  overflow: hidden;
+  color: tokens.$omaya-color-white;
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 0%),
+      rgb(var(--omaya-color-overlay-rgb) / 20%)
+    ),
+    url('/assets/images/newsletter-bgr.webp') center / cover,
+    tokens.$omaya-color-dark;
+}
+
+.homepage__newsletter-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 32rem);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  width: min(76rem, 100%);
+  margin: 0 auto;
+}
+
+.homepage__newsletter h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(2.7rem, 5vw, 3rem);
+  line-height: 1;
+}
+
+.homepage__newsletter p {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 800;
+}
+
+.homepage__newsletter-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+}
+
+.homepage__newsletter-form label:not(.form-honeypot) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.homepage__newsletter-form input,
+.homepage__newsletter-form button {
+  min-height: 3.35rem;
+  border-radius: 2px;
+  font: inherit;
+}
+
+.homepage__newsletter-form input {
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--omaya-color-surface-rgb) / 74%);
+  padding: 0 1rem;
+  color: var(--omaya-color-dark);
+  background: rgb(var(--omaya-color-surface-rgb) / 92%);
+}
+
+.homepage__newsletter-form button {
+  border: 1px solid tokens.$omaya-color-gold;
+  padding: 0 1.35rem;
+  color: tokens.$omaya-color-white;
+  background: var(--omaya-color-heading);
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.homepage__newsletter-form button:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-white;
+  background: var(--omaya-color-dark);
+}
+
+.homepage__newsletter-form button:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+}
+
+.homepage__newsletter-form .form-status {
+  grid-column: 1 / -1;
+  color: tokens.$omaya-color-white;
+}
+
+.homepage__newsletter-form .form-status--error {
+  color: #ffd9d5;
+}
+
+@media (max-width: 48rem) {
+  .homepage {
+    gap: 0;
+  }
+
+  .homepage__hero {
+    min-height: 43rem;
+    padding-top: 7rem;
+  }
+
+  .homepage__trip-search {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .homepage__hero h1 {
+    font-size: 3rem;
+  }
+
+  .homepage__newsletter-inner,
+  .homepage__newsletter-form {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage__newsletter-form button {
+    width: 100%;
+  }
+}

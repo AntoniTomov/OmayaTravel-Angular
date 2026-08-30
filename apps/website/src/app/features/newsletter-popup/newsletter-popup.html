@@ -1,0 +1,76 @@
+@if (isOpen()) {
+  <div class="newsletter-popup" role="presentation" (click)="close()">
+    <section
+      class="newsletter-popup__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="newsletter-popup-title"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="newsletter-popup__media" aria-hidden="true">
+        <img
+          src="/assets/images/newsletter-popup.webp"
+          alt=""
+          width="921"
+          height="1381"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="newsletter-popup__close"
+        aria-label="Close newsletter signup"
+        (click)="close()"
+      >
+        <span aria-hidden="true"></span>
+      </button>
+
+      <div class="newsletter-popup__content">
+        <img
+          class="newsletter-popup__logo"
+          src="/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp"
+          alt="Omaya Travel"
+          width="152"
+          height="83"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="newsletter-popup__eyebrow">SEE THE WORLD. MEET ITS PEOPLE</p>
+        <h2 id="newsletter-popup-title">
+          Wanderlust detected<span aria-hidden="true">👀</span><br />
+          Let's stay connected
+        </h2>
+
+        @if (!isSignupOpen()) {
+          <div class="newsletter-popup__actions">
+            <button type="button" class="newsletter-popup__primary" (click)="openSignup()">
+              SIGN UP
+            </button>
+            <button type="button" class="newsletter-popup__secondary" (click)="close()">
+              NO, THANKS
+            </button>
+          </div>
+        } @else {
+          <form class="newsletter-popup__form" (submit)="submitPopup($event)">
+            <label for="newsletter-popup-email">Email address</label>
+            <input
+              id="newsletter-popup-email"
+              type="email"
+              name="email"
+              placeholder="Email address"
+              autocomplete="email"
+              required
+            />
+            <app-form-honeypot />
+            <button type="submit" [disabled]="submitStatus() === 'sending'">
+              {{ submitStatus() === 'sending' ? 'JOINING...' : 'SIGN UP' }}
+            </button>
+            <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
+          </form>
+        }
+      </div>
+    </section>
+  </div>
+}

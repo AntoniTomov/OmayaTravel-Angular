@@ -1,0 +1,1519 @@
+
+> website@0.0.0 start
+> ng serve --host 127.0.0.1 --port 4201
+
+❯ Building...
+✔ Building...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 361.20 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 371.05 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-5YPC27WI.js    | blog-article       |  38.55 kB | 
+chunk-SKTBZFXA.js    | tour-listing-page  |  32.76 kB | 
+chunk-7ZWLV4BI.js    | -                  |  23.95 kB | 
+chunk-XV6GKLXJ.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-Z5SGVRBE.js    | tour-calendar-page |  14.04 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 362.97 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-VJ7WXOTJ.mjs   | blog-article       |  38.53 kB | 
+chunk-LGUWPP7K.mjs   | tour-listing-page  |  32.74 kB | 
+chunk-Q6PA26T7.mjs   | -                  |  23.93 kB | 
+chunk-LGCQIA2D.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-K2ERJPY5.mjs   | tour-calendar-page |  14.02 kB | 
+
+Application bundle generation complete. [3.119 seconds] - 2026-08-11T10:05:35.527Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+[2m1:05:36 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because vite config has changed
+[2m1:05:36 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4201[22m/[39m
+[2m1:05:37 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+[2m1:05:37 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m [optimizer] bundling dependencies...
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 366.59 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 368.36 kB | 
+
+Application bundle generation complete. [1.624 seconds] - 2026-08-11T10:12:46.470Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 366.61 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 368.38 kB | 
+
+Application bundle generation complete. [0.376 seconds] - 2026-08-11T10:13:52.843Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 367.56 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 369.33 kB | 
+
+Application bundle generation complete. [0.305 seconds] - 2026-08-11T10:14:19.257Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names             |  Raw size
+main.js             | main              | 367.56 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-RVDEDPPL.js   | tour-listing-page |  32.76 kB | 
+
+
+Server bundles     
+Initial chunk files | Names             |  Raw size
+main.server.mjs     | main.server       | 369.33 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-7MRCPINI.mjs  | tour-listing-page |  32.74 kB | 
+
+Application bundle generation complete. [0.344 seconds] - 2026-08-11T10:14:49.725Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names              |  Raw size
+main.js             | main               | 367.56 kB | 
+
+Lazy chunk files    | Names              |  Raw size
+chunk-3TZSPUAW.js   | tour-calendar-page |  14.10 kB | 
+
+
+Server bundles     
+Initial chunk files | Names              |  Raw size
+main.server.mjs     | main.server        | 369.33 kB | 
+
+Lazy chunk files    | Names              |  Raw size
+chunk-6KGTQCHK.mjs  | tour-calendar-page |  14.08 kB | 
+
+Application bundle generation complete. [0.984 seconds] - 2026-08-11T10:14:51.030Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 367.59 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 369.36 kB | 
+
+Application bundle generation complete. [0.643 seconds] - 2026-08-11T10:15:02.059Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 367.56 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 369.33 kB | 
+
+Application bundle generation complete. [0.409 seconds] - 2026-08-11T10:15:08.990Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+
+No output file changes.
+
+Application bundle generation complete. [1.396 seconds] - 2026-08-11T10:20:39.004Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 387.99 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 389.76 kB | 
+
+Application bundle generation complete. [0.332 seconds] - 2026-08-11T10:22:27.607Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names              |  Raw size
+main.js             | main               | 387.99 kB | 
+
+Lazy chunk files    | Names              |  Raw size
+chunk-V5FT6EY3.js   | tour-listing-page  |  32.79 kB | 
+chunk-RINU5Y2V.js   | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles     
+Initial chunk files | Names              |  Raw size
+main.server.mjs     | main.server        | 389.76 kB | 
+
+Lazy chunk files    | Names              |  Raw size
+chunk-TXXGHDQL.mjs  | tour-listing-page  |  32.78 kB | 
+chunk-XW5GAKVE.mjs  | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.660 seconds] - 2026-08-11T10:23:24.961Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names        |  Raw size
+main.js             | main         | 387.99 kB | 
+
+Lazy chunk files    | Names        |  Raw size
+chunk-FZELXSFZ.js   | blog-article |  38.55 kB | 
+chunk-4U3EHLOY.js   | -            |  23.68 kB | 
+chunk-ZDXPPKDO.js   | blog-list    |  19.66 kB | 
+
+
+Server bundles     
+Initial chunk files | Names        |  Raw size
+main.server.mjs     | main.server  | 389.76 kB | 
+
+Lazy chunk files    | Names        |  Raw size
+chunk-SRFJNU5M.mjs  | blog-article |  38.53 kB | 
+chunk-YVSI6TMR.mjs  | -            |  23.66 kB | 
+chunk-QRSAZD36.mjs  | blog-list    |  19.65 kB | 
+
+Application bundle generation complete. [0.739 seconds] - 2026-08-11T12:52:00.208Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names        |  Raw size
+main.js             | main         | 387.99 kB | 
+
+Lazy chunk files    | Names        |  Raw size
+chunk-N7W74GME.js   | blog-article |  38.55 kB | 
+chunk-6U24KOMH.js   | -            |  23.52 kB | 
+chunk-XUZQDSP4.js   | blog-list    |  19.66 kB | 
+
+
+Server bundles     
+Initial chunk files | Names        |  Raw size
+main.server.mjs     | main.server  | 389.76 kB | 
+
+Lazy chunk files    | Names        |  Raw size
+chunk-THFZDDTG.mjs  | blog-article |  38.53 kB | 
+chunk-2MGUHWZL.mjs  | -            |  23.50 kB | 
+chunk-RIEIRPMM.mjs  | blog-list    |  19.65 kB | 
+
+Application bundle generation complete. [0.700 seconds] - 2026-08-11T12:52:30.181Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 388.34 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 390.11 kB | 
+
+Application bundle generation complete. [0.887 seconds] - 2026-08-11T12:53:49.152Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 388.38 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 390.15 kB | 
+
+Application bundle generation complete. [1.409 seconds] - 2026-08-11T12:54:21.775Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 388.39 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 390.17 kB | 
+
+Application bundle generation complete. [1.091 seconds] - 2026-08-11T12:54:49.334Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names             |  Raw size
+main.js             | main              | 388.40 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-2MSRI73N.js   | tour-listing-page |  32.80 kB | 
+
+
+Server bundles     
+Initial chunk files | Names             |  Raw size
+main.server.mjs     | main.server       | 390.17 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-SMKU6Y74.mjs  | tour-listing-page |  32.78 kB | 
+
+Application bundle generation complete. [2.951 seconds] - 2026-08-11T12:54:53.889Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names             |  Raw size
+main.js             | main              | 388.40 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-OKAXFWQZ.js   | tour-listing-page |  33.59 kB | 
+
+
+Server bundles     
+Initial chunk files | Names             |  Raw size
+main.server.mjs     | main.server       | 390.17 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-ADCTSUF5.mjs  | tour-listing-page |  33.57 kB | 
+
+Application bundle generation complete. [0.332 seconds] - 2026-08-11T12:56:17.951Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names             |  Raw size
+main.js             | main              | 388.40 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-X4WH65KY.js   | tour-listing-page |  34.44 kB | 
+
+
+Server bundles     
+Initial chunk files | Names             |  Raw size
+main.server.mjs     | main.server       | 390.17 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-5QRS2NUJ.mjs  | tour-listing-page |  34.43 kB | 
+
+Application bundle generation complete. [0.949 seconds] - 2026-08-11T12:56:44.398Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names             |  Raw size
+main.js             | main              | 388.40 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-NDOSY5IM.js   | tour-listing-page |  34.83 kB | 
+
+
+Server bundles     
+Initial chunk files | Names             |  Raw size
+main.server.mjs     | main.server       | 390.17 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-P45XMGVR.mjs  | tour-listing-page |  34.82 kB | 
+
+Application bundle generation complete. [0.275 seconds] - 2026-08-11T12:57:19.336Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names             |  Raw size
+main.js             | main              | 388.40 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-TZZOB6PU.js   | tour-listing-page |  34.83 kB | 
+
+
+Server bundles     
+Initial chunk files | Names             |  Raw size
+main.server.mjs     | main.server       | 390.17 kB | 
+
+Lazy chunk files    | Names             |  Raw size
+chunk-PWDMJ65B.mjs  | tour-listing-page |  34.82 kB | 
+
+Application bundle generation complete. [1.151 seconds] - 2026-08-11T12:57:37.464Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 388.40 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 390.17 kB | 
+
+Application bundle generation complete. [0.764 seconds] - 2026-08-11T12:58:06.433Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 391.73 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 393.50 kB | 
+
+Application bundle generation complete. [0.432 seconds] - 2026-08-12T06:12:30.939Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 392.32 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 394.09 kB | 
+
+Application bundle generation complete. [0.662 seconds] - 2026-08-12T06:51:11.263Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 392.32 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 394.09 kB | 
+
+Application bundle generation complete. [0.246 seconds] - 2026-08-12T07:04:02.676Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.53 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.30 kB | 
+
+Application bundle generation complete. [0.942 seconds] - 2026-08-12T07:36:52.949Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.60 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.37 kB | 
+
+Application bundle generation complete. [2.356 seconds] - 2026-08-12T07:43:53.816Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.58 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.35 kB | 
+
+Application bundle generation complete. [1.587 seconds] - 2026-08-12T07:44:17.780Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.56 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.33 kB | 
+
+Application bundle generation complete. [0.598 seconds] - 2026-08-12T07:57:39.671Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.56 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.33 kB | 
+
+Application bundle generation complete. [1.246 seconds] - 2026-08-12T07:57:53.405Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.62 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.39 kB | 
+
+Application bundle generation complete. [1.046 seconds] - 2026-08-12T11:15:37.493Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.62 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.39 kB | 
+
+Application bundle generation complete. [0.696 seconds] - 2026-08-12T11:17:08.221Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.63 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.40 kB | 
+
+Application bundle generation complete. [1.295 seconds] - 2026-08-12T11:17:41.968Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.64 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.41 kB | 
+
+Application bundle generation complete. [0.407 seconds] - 2026-08-12T11:18:02.013Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.63 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.40 kB | 
+
+Application bundle generation complete. [0.514 seconds] - 2026-08-12T11:18:16.328Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 394.80 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 396.57 kB | 
+
+Application bundle generation complete. [0.638 seconds] - 2026-08-12T11:22:32.143Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 396.59 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 398.36 kB | 
+
+Application bundle generation complete. [4.036 seconds] - 2026-08-12T11:22:37.444Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 396.59 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 406.44 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 398.36 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [1.943 seconds] - 2026-08-12T11:22:40.302Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.516 seconds] - 2026-08-12T11:29:32.295Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.505 seconds] - 2026-08-12T11:30:29.909Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.47 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.32 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.24 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.693 seconds] - 2026-08-12T11:31:30.978Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.26 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.03 kB | 
+
+Application bundle generation complete. [4.116 seconds] - 2026-08-12T11:31:36.302Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.26 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.11 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.03 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [3.083 seconds] - 2026-08-12T11:31:40.243Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.30 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.07 kB | 
+
+Application bundle generation complete. [0.577 seconds] - 2026-08-12T11:32:29.252Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.30 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.07 kB | 
+
+Application bundle generation complete. [0.650 seconds] - 2026-08-12T11:49:06.097Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.31 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.08 kB | 
+
+Application bundle generation complete. [0.345 seconds] - 2026-08-12T11:49:53.266Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.67 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.44 kB | 
+
+Application bundle generation complete. [0.625 seconds] - 2026-08-12T11:52:29.316Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.65 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.43 kB | 
+
+Application bundle generation complete. [1.646 seconds] - 2026-08-12T11:54:06.206Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.66 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.43 kB | 
+
+Application bundle generation complete. [0.647 seconds] - 2026-08-12T11:54:32.185Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.75 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.52 kB | 
+
+Application bundle generation complete. [1.055 seconds] - 2026-08-12T12:15:23.906Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.75 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.52 kB | 
+
+Application bundle generation complete. [0.637 seconds] - 2026-08-12T12:15:35.824Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.75 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.52 kB | 
+
+Application bundle generation complete. [0.396 seconds] - 2026-08-12T12:15:51.920Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.75 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.52 kB | 
+
+Application bundle generation complete. [0.854 seconds] - 2026-08-12T12:16:02.227Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.75 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.61 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.52 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.020 seconds] - 2026-08-12T12:16:09.478Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.75 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.61 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.52 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.011 seconds] - 2026-08-12T12:16:17.623Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.75 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.61 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.52 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.022 seconds] - 2026-08-12T12:16:22.646Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.75 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.61 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.52 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.026 seconds] - 2026-08-12T12:17:25.361Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 397.75 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 407.61 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 399.52 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.021 seconds] - 2026-08-12T12:17:28.915Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.80 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.57 kB | 
+
+Application bundle generation complete. [0.709 seconds] - 2026-08-12T12:18:57.890Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 397.98 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.75 kB | 
+
+Application bundle generation complete. [1.541 seconds] - 2026-08-12T12:20:54.351Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.17 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.94 kB | 
+
+Application bundle generation complete. [1.442 seconds] - 2026-08-12T12:21:06.041Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.17 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.94 kB | 
+
+Application bundle generation complete. [4.937 seconds] - 2026-08-12T12:22:18.148Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.20 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 399.98 kB | 
+
+Application bundle generation complete. [1.309 seconds] - 2026-08-12T12:22:31.551Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.25 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 400.02 kB | 
+
+Application bundle generation complete. [1.244 seconds] - 2026-08-12T12:24:01.074Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.27 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 400.05 kB | 
+
+Application bundle generation complete. [0.464 seconds] - 2026-08-12T12:49:44.734Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.29 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 400.06 kB | 
+
+Application bundle generation complete. [0.365 seconds] - 2026-08-12T12:49:53.552Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.373 seconds] - 2026-08-12T12:51:39.818Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.525 seconds] - 2026-08-12T12:52:53.414Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.347 seconds] - 2026-08-12T12:53:02.351Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 398.39 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 408.25 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 400.17 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.540 seconds] - 2026-08-12T12:53:13.662Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 398.39 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 408.25 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 400.17 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.225 seconds] - 2026-08-12T12:53:24.396Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 398.39 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 400.17 kB | 
+
+Application bundle generation complete. [0.343 seconds] - 2026-08-12T12:54:20.849Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 399.86 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 401.63 kB | 
+
+Application bundle generation complete. [0.903 seconds] - 2026-08-12T12:56:17.300Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.50 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.27 kB | 
+
+Application bundle generation complete. [0.728 seconds] - 2026-08-12T12:57:40.106Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.51 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.29 kB | 
+
+Application bundle generation complete. [0.519 seconds] - 2026-08-12T12:57:59.613Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.52 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.30 kB | 
+
+Application bundle generation complete. [1.525 seconds] - 2026-08-12T12:58:14.058Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.54 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.31 kB | 
+
+Application bundle generation complete. [1.795 seconds] - 2026-08-12T12:58:21.426Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.54 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.31 kB | 
+
+Application bundle generation complete. [1.157 seconds] - 2026-08-12T12:58:42.025Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.57 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.34 kB | 
+
+Application bundle generation complete. [0.496 seconds] - 2026-08-12T13:15:57.958Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Application bundle generation failed. [0.373 seconds] - 2026-08-12T13:18:42.188Z
+
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles     
+Initial chunk files  | Names              |  Raw size
+main.js              | main               | 400.76 kB | 
+styles.css           | styles             |   8.86 kB | 
+chunk-VUJOFXKG.js    | -                  | 987 bytes | 
+
+                     | Initial total      | 410.61 kB
+
+Lazy chunk files     | Names              |  Raw size
+chunk-N7W74GME.js    | blog-article       |  38.55 kB | 
+chunk-TZZOB6PU.js    | tour-listing-page  |  34.83 kB | 
+chunk-6U24KOMH.js    | -                  |  23.52 kB | 
+chunk-XUZQDSP4.js    | blog-list          |  19.66 kB | 
+chunk-U4IDMKM4.js    | enquire-page       |  15.78 kB | 
+chunk-RINU5Y2V.js    | tour-calendar-page |  14.30 kB | 
+
+
+Server bundles      
+Initial chunk files  | Names              |  Raw size
+main.server.mjs      | main.server        | 402.53 kB | 
+server.mjs           | server             |   1.96 kB | 
+chunk-54EZUNS5.mjs   | -                  | 972 bytes | 
+polyfills.server.mjs | polyfills.server   | 268 bytes | 
+
+Lazy chunk files     | Names              |  Raw size
+chunk-THFZDDTG.mjs   | blog-article       |  38.53 kB | 
+chunk-PWDMJ65B.mjs   | tour-listing-page  |  34.82 kB | 
+chunk-2MGUHWZL.mjs   | -                  |  23.50 kB | 
+chunk-RIEIRPMM.mjs   | blog-list          |  19.65 kB | 
+chunk-UJS5AMZK.mjs   | enquire-page       |  15.76 kB | 
+chunk-XW5GAKVE.mjs   | tour-calendar-page |  14.29 kB | 
+
+Application bundle generation complete. [0.682 seconds] - 2026-08-12T13:18:51.082Z
+
+Page reload sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.76 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.53 kB | 
+
+Application bundle generation complete. [1.261 seconds] - 2026-08-12T13:19:25.652Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.77 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.54 kB | 
+
+Application bundle generation complete. [0.454 seconds] - 2026-08-12T13:20:54.714Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.76 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.53 kB | 
+
+Application bundle generation complete. [0.380 seconds] - 2026-08-12T13:21:09.405Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.90 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.67 kB | 
+
+Application bundle generation complete. [0.385 seconds] - 2026-08-12T13:21:30.058Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.90 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.67 kB | 
+
+Application bundle generation complete. [1.059 seconds] - 2026-08-12T13:21:56.192Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 400.90 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 402.67 kB | 
+
+Application bundle generation complete. [1.180 seconds] - 2026-08-12T13:23:22.853Z
+
+Component update sent to client(s).
+❯ Changes detected. Rebuilding...
+✔ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 401.31 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 403.08 kB | 
+
+Application bundle generation complete. [1.108 seconds] - 2026-08-12T21:59:31.855Z
+
+Component update sent to client(s).

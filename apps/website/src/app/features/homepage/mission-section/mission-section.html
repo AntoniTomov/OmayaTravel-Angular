@@ -1,0 +1,17 @@
+<section class="mission-section" aria-labelledby="mission-section-title">
+  <div class="mission-section__inner">
+    <img
+      [src]="image.src"
+      [width]="image.width"
+      [height]="image.height"
+      [alt]="image.alt"
+      loading="lazy"
+    />
+
+    <div class="mission-section__content">
+      <h2 id="mission-section-title">{{ i18n.t('homepage.missionTitle') }}</h2>
+      <p>{{ i18n.t('homepage.missionCopy') }}</p>
+      <a routerLink="/why-book-with-us/">{{ i18n.t('homepage.missionCta') }}</a>
+    </div>
+  </div>
+</section>

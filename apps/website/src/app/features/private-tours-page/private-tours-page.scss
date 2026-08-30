@@ -1,0 +1,123 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.private-tours-page {
+  color: tokens.$omaya-color-text;
+  background: tokens.$omaya-color-white;
+}
+
+.private-tours-page__hero {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
+  place-items: center;
+  overflow: hidden;
+  color: tokens.$omaya-color-white;
+  text-align: center;
+}
+
+.private-tours-page__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--omaya-color-overlay-rgb) / 38%);
+}
+
+.private-tours-page__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.private-tours-page__hero h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 58rem;
+  margin: 0;
+  padding: 0 1.5rem;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.private-tours-page__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1fr);
+  gap: 4rem;
+  width: min(76rem, 100%);
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 6rem 24px;
+  align-items: center;
+}
+
+.private-tours-page__media {
+  overflow: hidden;
+}
+
+.private-tours-page__media img {
+  display: block;
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+}
+
+.private-tours-page__copy {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.private-tours-page__copy h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 40px;
+  line-height: 1.04;
+}
+
+.private-tours-page__copy p {
+  margin: 0;
+  color: var(--omaya-color-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.private-tours-page__button {
+  justify-self: start;
+  margin-top: 0.8rem;
+  padding: 0.95rem 1.45rem;
+  color: tokens.$omaya-color-dark;
+  background: tokens.$omaya-color-gold;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+
+.private-tours-page__button:is(:hover, :focus-visible) {
+  background: tokens.$omaya-color-dark;
+  color: tokens.$omaya-color-white;
+}
+
+@media (max-width: 48rem) {
+  .private-tours-page__hero {
+    height: 515px;
+    max-height: 515px;
+  }
+
+  .private-tours-page__intro {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    width: 100%;
+    padding: 4rem 24px;
+  }
+}

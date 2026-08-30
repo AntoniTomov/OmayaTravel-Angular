@@ -1,0 +1,22 @@
+body {
+  --omaya-font-body-family: 'Roboto', Arial, sans-serif;
+  --omaya-font-heading-family: Georgia, 'Times New Roman', serif;
+  color-scheme: light;
+  background-color: var(--omaya-color-page);
+  color: var(--omaya-color-text);
+  font-family: var(--omaya-font-body-family);
+  margin: 0;
+  height: 100%;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--omaya-font-heading-family);
+}
+
+h1 {
+  font-weight: 400;
+}
+
+:is(a, button, input, textarea, select) {
+  font-family: inherit;
+}

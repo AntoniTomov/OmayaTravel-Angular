@@ -1,0 +1,145 @@
+<main class="homepage">
+  <section class="homepage__hero">
+    <img
+      class="homepage__hero-image"
+      [src]="activeSlideImage().src"
+      [srcset]="activeSlideImage().srcset"
+      [sizes]="activeSlideImage().sizes"
+      [width]="activeSlideImage().width"
+      [height]="activeSlideImage().height"
+      [alt]="activeSlideImage().alt"
+      [attr.loading]="activeSlideImage().loading"
+      [attr.fetchpriority]="activeSlideImage().fetchPriority"
+    />
+    <div class="homepage__hero-content">
+      <h1>{{ hero().title }}</h1>
+      <p>{{ hero().subtitle }}</p>
+
+      <form class="homepage__trip-search" (submit)="$event.preventDefault(); submitTripSearch()">
+        <div class="homepage__trip-field">
+          <label for="trip-destination">{{ i18n.t('homepage.whereTo') }}</label>
+          <input type="hidden" name="destination" [value]="selectedDestination()" />
+          <button
+            id="trip-destination"
+            class="homepage__trip-select"
+            type="button"
+            [attr.aria-invalid]="searchError().length > 0"
+            [attr.aria-expanded]="activeTripDropdown() === 'destination'"
+            aria-haspopup="listbox"
+            aria-describedby="trip-search-error"
+            (click)="toggleTripDropdown('destination', $event)"
+          >
+            {{ destinationLabel() }}
+          </button>
+          @if (activeTripDropdown() === 'destination') {
+            <div class="homepage__trip-menu" role="listbox">
+              <button type="button" role="option" (click)="updateDestination('')">
+                {{ i18n.t('homepage.whereTo') }}
+              </button>
+              @for (destination of destinations(); track destination.target) {
+                <button type="button" role="option" (click)="updateDestination(destination.target)">
+                  {{ destination.label }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="homepage__trip-field">
+          <label for="trip-month">{{ i18n.t('homepage.when') }}</label>
+          <input type="hidden" name="month" [value]="selectedMonth()" />
+          <button
+            id="trip-month"
+            class="homepage__trip-select"
+            type="button"
+            [attr.aria-expanded]="activeTripDropdown() === 'month'"
+            aria-haspopup="listbox"
+            (click)="toggleTripDropdown('month', $event)"
+          >
+            {{ monthLabel() }}
+          </button>
+          @if (activeTripDropdown() === 'month') {
+            <div class="homepage__trip-menu" role="listbox">
+              <button type="button" role="option" (click)="updateMonth('')">
+                {{ i18n.t('homepage.when') }}
+              </button>
+              @for (month of months(); track month) {
+                <button type="button" role="option" (click)="updateMonth(month)">
+                  {{ month }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <button type="submit">{{ i18n.t('homepage.findNow') }}</button>
+
+        @if (searchError()) {
+          <p id="trip-search-error" class="homepage__trip-error">{{ searchError() }}</p>
+        }
+      </form>
+    </div>
+
+    <div class="homepage__carousel-controls" [attr.aria-label]="i18n.t('homepage.carouselLabel')">
+      @for (slide of hero().slides; track slide.image.key; let index = $index) {
+        <button
+          type="button"
+          [class.homepage__carousel-button--active]="activeSlideIndex() === index"
+          [attr.aria-label]="i18n.t('homepage.showSlide') + ' ' + (index + 1)"
+          [attr.aria-current]="activeSlideIndex() === index"
+          (click)="setSlide(index)"
+        ></button>
+      }
+    </div>
+  </section>
+
+  @if (siteFeatures().showTravelMatch) {
+    <app-travel-match />
+  }
+  <div class="homepage__stories-band">
+    @if (siteFeatures().showFeaturedTrips) {
+      <app-featured-trips />
+    }
+    @if (siteFeatures().showMission) {
+      <app-mission-section />
+    }
+  </div>
+  @if (siteFeatures().showPrivateTours) {
+    <app-private-tours />
+  }
+  @if (siteFeatures().showNewsletter) {
+    <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
+      <div class="homepage__newsletter-inner">
+        <div>
+          <h2 id="homepage-newsletter-title">Join Newsletter</h2>
+          <p>To receive our best deals</p>
+        </div>
+
+        <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
+          <label for="homepage-newsletter-email">Email address</label>
+          <input
+            id="homepage-newsletter-email"
+            type="email"
+            name="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+          />
+          <app-form-honeypot />
+          <button type="submit" [disabled]="newsletterStatus() === 'sending'">
+            {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
+          </button>
+          <app-form-status
+            [message]="newsletterMessage()"
+            [isError]="newsletterStatus() === 'error'"
+          />
+        </form>
+      </div>
+    </section>
+  }
+  <div class="homepage__stories-band">
+    @if (siteFeatures().showBlogPosts) {
+      <app-blog-posts />
+    }
+  </div>
+</main>

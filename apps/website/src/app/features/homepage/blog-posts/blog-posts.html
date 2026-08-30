@@ -1,0 +1,38 @@
+<section class="blog-posts" aria-labelledby="blog-posts-title">
+  <div class="blog-posts__inner">
+    <header class="blog-posts__header">
+      <h2 id="blog-posts-title">{{ i18n.t('homepage.blogTitle') }}</h2>
+      <p class="blog-post__text">
+        {{ i18n.t('homepage.blogCopyPrefix') }} <b>{{ i18n.t('homepage.blogCopyStrongOne') }}</b
+        >.
+        {{ i18n.t('homepage.blogCopyMiddle') }}
+        <b>{{ i18n.t('homepage.blogCopyStrongTwo') }}</b
+        >.
+        {{ i18n.t('homepage.blogCopySuffix') }}
+      </p>
+    </header>
+
+    <div class="blog-posts__grid">
+      @for (post of posts; track post.slug) {
+        <article class="blog-posts__card">
+          <a [routerLink]="'/' + post.slug + '/'" class="blog-posts__card-link">
+            <span class="blog-posts__image">
+              <img
+                [src]="post.image.src"
+                [alt]="post.image.alt"
+                width="550"
+                height="550"
+                loading="lazy"
+              />
+            </span>
+            <h3>{{ post.title }}</h3>
+            <p class="blog-posts__date">
+              <span class="material-icons" aria-hidden="true">calendar_today</span>
+              {{ post.date }}
+            </p>
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,113 @@
+@use '../../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.travel-match {
+  color: tokens.$omaya-color-ink;
+  background: tokens.$omaya-color-white;
+}
+
+.travel-match__inner {
+  width: min(118rem, 100%);
+  margin: 0 auto;
+}
+
+.travel-match__header {
+  display: grid;
+  gap: 1.45rem;
+  justify-items: center;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.travel-match__header h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 2.75rem;
+  line-height: 1.12;
+}
+
+.travel-match__header p,
+.travel-match__item p {
+  margin: 0;
+  color: tokens.$omaya-color-dark;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.travel-match__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3.75rem;
+  align-items: start;
+  margin-top: 4.1rem;
+  padding: 0 1rem;
+}
+
+.travel-match__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: start;
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+}
+
+.travel-match__item h3 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  transition: color tokens.$omaya-transition-fast;
+}
+
+.travel-match__item:is(:hover, :focus-visible) h3 {
+  color: tokens.$omaya-color-gold;
+}
+
+.travel-match__item:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 6px;
+}
+
+.travel-match__item p {
+  max-width: 29rem;
+}
+
+.travel-match__icon {
+  display: block;
+  width: auto;
+  height: 81px;
+  object-fit: contain;
+}
+
+@media (max-width: 70rem) {
+  .travel-match {
+    padding: 3rem 1.25rem 5rem;
+  }
+
+  .travel-match__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3.5rem 2rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .travel-match {
+    padding: 2rem 1.5rem;
+  }
+
+  .travel-match__header h2 {
+    font-size: 2.25rem;
+  }
+
+  .travel-match__grid {
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+  }
+}

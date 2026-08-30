@@ -1,0 +1,286 @@
+@use '../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+  background: tokens.$omaya-color-white;
+}
+
+.our-story {
+  color: var(--omaya-color-body);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.our-story__hero {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
+  align-items: center;
+  overflow: hidden;
+  padding: 11rem max(1.5rem, calc((100vw - 76rem) / 2)) 6rem;
+  color: tokens.$omaya-color-dark;
+  background: var(--omaya-color-surface-cool);
+}
+
+.our-story__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 34% center;
+}
+
+.our-story__hero-copy p,
+.our-story__intro-heading p,
+.our-story__section-heading p,
+.our-story__member > div > p:first-child {
+  margin: 0 0 0.7rem;
+  color: tokens.$omaya-color-gold;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.our-story h1,
+.our-story h2,
+.our-story h3 {
+  margin: 0;
+  color: var(--omaya-color-heading);
+  font-family: tokens.$omaya-font-heading;
+  line-height: 1.1;
+}
+
+.our-story__hero-copy {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+
+  h1 {
+    color: white;
+  }
+}
+
+.our-story__section-heading {
+  max-width: 100%;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  h2 {
+    color: var(--omaya-color-accent);
+    font-size: clamp(2.25rem, 4vw, 4rem);
+  }
+}
+
+.our-story h1 {
+  font-size: 4rem;
+}
+
+.our-story h2 {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+.our-story h3 {
+  font-size: 1.7rem;
+}
+
+.our-story__text,
+.our-story__team,
+.our-story__contact {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+.our-story__text {
+  display: grid;
+  gap: 4rem;
+  padding-top: 5rem;
+  padding-bottom: 1.5rem;
+}
+
+.our-story__text-section {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.our-story__text-section h2 {
+  display: grid;
+  gap: 1.35rem;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+}
+
+.our-story__text-section h2::after {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  background: var(--omaya-color-muted);
+  content: '';
+}
+
+.our-story__text-section p {
+  max-width: 72rem;
+  margin: 0;
+  color: var(--omaya-color-muted);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.our-story__callout {
+  width: min(66rem, 100%);
+  box-sizing: border-box;
+  justify-self: center;
+  margin: 0.5rem 0 1rem;
+  padding: 3.4rem 2rem;
+  color: var(--omaya-color-heading);
+  background: var(--omaya-color-surface-muted);
+  font-family: tokens.$omaya-font-heading;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.our-story__team {
+  padding-top: 1rem;
+  padding-bottom: 6rem;
+}
+
+.our-story__faces-title {
+  color: tokens.$omaya-color-gold;
+  font-family: 'Kristi', cursive;
+  font-size: clamp(3.25rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+#our-story-team-heading.our-story__faces-title {
+  font-family: 'Kristi', cursive;
+}
+
+.our-story__members {
+  display: grid;
+  gap: 3rem;
+}
+
+.our-story__member {
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.our-story__member:nth-child(even) {
+  grid-template-columns: minmax(0, 1fr) 18rem;
+}
+
+.our-story__member:nth-child(even) img {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.our-story__member:nth-child(even) div {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: end;
+}
+
+.our-story__member img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.our-story__member p {
+  margin: 0 0 0.8rem;
+}
+
+.our-story__member h3 {
+  margin-bottom: 16px;
+}
+
+.our-story a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.our-story a:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-gold;
+}
+
+.our-story__cta {
+  display: inline-grid;
+  min-height: 3rem;
+  align-items: center;
+  padding: 0 1.35rem;
+  color: tokens.$omaya-color-white !important;
+  background: tokens.$omaya-color-gold;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.our-story :is(a, button):focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 4px;
+}
+
+@media (max-width: 56rem) {
+  .our-story__hero {
+    height: 515px;
+    max-height: 515px;
+    padding-top: 8rem;
+  }
+
+  .our-story__hero img {
+    object-position: 34% center;
+  }
+
+  .our-story__hero-copy {
+    justify-self: center;
+  }
+
+  .our-story__intro,
+  .our-story__text,
+  .our-story__member,
+  .our-story__member:nth-child(even),
+  .our-story__contact {
+    grid-template-columns: 1fr;
+  }
+
+  .our-story__text,
+  .our-story__team {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .our-story__team {
+    padding-top: 2rem;
+  }
+
+  .our-story__member:nth-child(even) img,
+  .our-story__member:nth-child(even) div {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .our-story__member {
+    gap: 1.5rem;
+  }
+
+  .our-story__member img {
+    width: min(18rem, 100%);
+  }
+
+  .our-story__member:nth-child(even) img {
+    justify-self: end;
+  }
+}

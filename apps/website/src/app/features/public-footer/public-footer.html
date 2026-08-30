@@ -1,0 +1,85 @@
+<footer class="public-footer">
+  <div class="public-footer__columns">
+    <section class="public-footer__contact" aria-labelledby="footer-contact-title">
+      <a class="public-footer__brand" routerLink="/" [attr.aria-label]="brand().homeLabel">
+        <img [src]="brand().logoSrc" width="150" height="84" [alt]="brand().logoAlt" />
+      </a>
+      <h2 id="footer-contact-title">{{ tagline() }}</h2>
+      <p class="public-footer__label">{{ i18n.t('footer.contactUs') }}</p>
+      <a href="tel:+359889735274" (click)="trackContactClick('phone', 'secondary_phone')"
+        >☎ <span>+359 88 973 5274</span></a
+      >
+      <a href="tel:+359879965946" (click)="trackContactClick('phone', 'primary_phone')"
+        >☎ <span>+359 87 996 5946</span></a
+      >
+      <a href="mailto:info@omayatravel.com" (click)="trackContactClick('email', 'info_email')"
+        >✉ <span>info@omayatravel.com</span></a
+      >
+      <p class="public-footer__label">{{ i18n.t('footer.followUs') }}</p>
+      <div class="public-footer__socials">
+        <a
+          href="https://www.instagram.com/omayatravel/"
+          aria-label="Instagram"
+          (click)="trackContactClick('social', 'instagram')"
+        >
+          <mat-icon svgIcon="social-instagram" aria-hidden="true"></mat-icon>
+        </a>
+        <a
+          href="https://www.facebook.com/omayatravel/"
+          aria-label="Facebook"
+          (click)="trackContactClick('social', 'facebook')"
+        >
+          <mat-icon svgIcon="social-facebook" aria-hidden="true"></mat-icon>
+        </a>
+        <a
+          href="https://www.linkedin.com/company/omaya-travel/"
+          aria-label="LinkedIn"
+          (click)="trackContactClick('social', 'linkedin')"
+        >
+          <mat-icon svgIcon="social-linkedin" aria-hidden="true"></mat-icon>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="footer-posts-title">
+      <h2 id="footer-posts-title">{{ i18n.t('footer.latestPosts') }}</h2>
+      @for (post of latestPosts(); track post.target) {
+        <a class="public-footer__post" [routerLink]="post.target">
+          <span>{{ post.title }}</span>
+          <small>{{ post.date }}</small>
+        </a>
+      } @empty {
+        <a class="public-footer__post" routerLink="/contact/">
+          <span>{{ i18n.t('footer.contactUs') }}</span>
+        </a>
+      }
+    </section>
+
+    <section aria-labelledby="footer-about-title">
+      <h2 id="footer-about-title">{{ i18n.t('footer.about') }}</h2>
+      @for (link of aboutLinks(); track link.target) {
+        <a [routerLink]="link.target">{{ link.label }}</a>
+      }
+      <h2 class="public-footer__payment-title">{{ i18n.t('footer.paymentMethods') }}</h2>
+      <div class="public-footer__payments">
+        @for (provider of paymentProviders; track provider.name) {
+          <img [src]="provider.src" [alt]="provider.name" loading="lazy" />
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="footer-legal-title">
+      <h2 id="footer-legal-title">{{ i18n.t('footer.legalPrivacy') }}</h2>
+      @for (link of legalLinks(); track link.target) {
+        <a [routerLink]="link.target">{{ link.label }}</a>
+      }
+    </section>
+  </div>
+
+  <div class="public-footer__bottom">
+    <span>{{ i18n.t('footer.copyright') }}</span>
+    <button type="button" [attr.aria-label]="i18n.t('footer.backToTop')" (click)="scrollToTop()">
+      ^
+    </button>
+  </div>
+</footer>

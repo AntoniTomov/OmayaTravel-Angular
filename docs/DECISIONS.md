@@ -23,10 +23,14 @@ Use `docs/ADR_GUIDELINES.md` when creating or reviewing ADRs.
 | ADR-004 | Use NestJS only for API responsibilities that cannot be prerendered | Accepted | Lead Architect | 2026-08-03 | Master plan | Initial scope: health, forms, Turnstile, email, logging, rate limits. |
 | ADR-005 | Use GitHub as the source of truth | Accepted | Lead Architect | 2026-08-03 | Project brief | All deployable changes must trace to commits. |
 | ADR-006 | Use Cloudflare as DNS, CDN, WAF and edge security layer | Accepted | Lead Architect | 2026-08-03 | Project brief | Exact paid features remain phase-0 confirmations. |
-| ADR-007 | Use Cloudflare R2 for original media storage | Proposed | Lead Architect | 2026-08-03 | Master plan | Pending cost and transformation choice versus Cloudflare Images. |
+| ADR-007 | Use Cloudflare R2 for original media storage | Superseded | Lead Architect | 2026-08-03 | Master plan | Replaced by ADR-013 media delivery strategy. |
 | ADR-008 | Use pnpm workspace monorepo structure | Accepted | Lead Architect | 2026-08-03 | Master plan | Keep root workspace files synchronized. |
 | ADR-009 | Keep English as the v1 primary language | Accepted | Lead Architect | 2026-08-03 | Master plan | Add i18n only after business demand is confirmed. |
 | ADR-010 | Use Hostinger only if it supports the required Angular SSR/API deployment model cleanly | Proposed | Lead Architect | 2026-08-03 | Project brief | Must be confirmed during Phase 0. |
+| ADR-011 | Preserve high-value existing public URLs for v1 and redirect/exclude WordPress utility URLs | Accepted | Lead Architect | 2026-08-03 | Issue #5, PR #25, PR #28 | Do not normalize tour URLs to `/tours/` at launch. |
+| ADR-012 | Use TypeScript-first core content models for v1 Git-managed content | Accepted | Lead Architect | 2026-08-03 | Issue #11 | Future CMS data must map to these contracts. |
+| ADR-013 | Use R2 originals with constrained Cloudflare Image Transformations for v1 media delivery | Accepted | Lead Architect | 2026-08-04 | Issue #4, PR #39 | Serve public media from `media.omayatravel.com`; defer Cloudflare Images storage. |
+| ADR-014 | Use the existing Angular SSR Express server for v1 public form submissions | Accepted | Lead Architect | 2026-08-24 | Forms architecture review | Endpoint: `POST /api/forms`; provider: Resend; defer separate `apps/api` until forms become broader operational workflows. |
 
 ## Rejected or deferred complexity
 

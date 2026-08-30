@@ -1,0 +1,68 @@
+@use '../../../../styles/tokens' as tokens;
+
+:host {
+  display: block;
+}
+
+.private-tours {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 27.7rem;
+  color: tokens.$omaya-color-white;
+  background: tokens.$omaya-color-dark;
+}
+
+.private-tours__content {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 5rem 12%;
+  text-align: center;
+  background: url('/assets/images/home-page/private-tours-left-bgr.webp') top / cover no-repeat;
+}
+
+.private-tours h2 {
+  margin: 0;
+  font-family: tokens.$omaya-font-heading;
+  font-size: 2.75rem;
+  line-height: 1.1;
+}
+
+.private-tours p {
+  max-width: 32rem;
+  margin: 1.7rem 0 2rem;
+  color: var(--omaya-color-muted);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.private-tours a {
+  color: tokens.$omaya-color-gold;
+  border-bottom: 1px solid currentcolor;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.private-tours a:is(:hover, :focus-visible) {
+  color: tokens.$omaya-color-white;
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 5px;
+}
+
+.private-tours__image {
+  min-height: 22rem;
+  background: url('/assets/images/home-page/private-tours-right-bgr.webp') center / cover no-repeat;
+}
+
+@media (max-width: 56rem) {
+  .private-tours {
+    grid-template-columns: 1fr;
+  }
+
+  .private-tours__content {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -1,0 +1,79 @@
+<section class="featured-trips" aria-labelledby="featured-trips-title">
+  <div class="featured-trips__inner">
+    <div class="featured-trips__heading">
+      <h2 id="featured-trips-title">{{ i18n.t('homepage.featuredTripsTitle') }}</h2>
+      <div
+        class="featured-trips__controls"
+        [attr.aria-label]="i18n.t('homepage.featuredTripsControls')"
+      >
+        <button
+          type="button"
+          [attr.aria-label]="i18n.t('homepage.previousTrip')"
+          (click)="shiftTrip(-1)"
+        >
+          &lt;
+        </button>
+        <button
+          type="button"
+          [attr.aria-label]="i18n.t('homepage.nextTrip')"
+          (click)="shiftTrip(1)"
+        >
+          &gt;
+        </button>
+      </div>
+    </div>
+
+    <div
+      #carousel
+      class="featured-trips__carousel"
+      tabindex="0"
+      (scroll)="syncActiveTripFromScroll($event)"
+      (pointerdown)="startDrag($event)"
+      (pointermove)="drag($event)"
+      (pointerup)="endDrag($event)"
+      (pointercancel)="endDrag($event)"
+      (pointerleave)="endDrag($event)"
+    >
+      <div #track class="featured-trips__track">
+        @for (trip of trips(); track trip.target; let index = $index) {
+          <article
+            #tripCard
+            class="featured-trips__card"
+            [class.featured-trips__card--active]="activeTripIndex() === index"
+          >
+            <a
+              class="featured-trips__image-link"
+              [routerLink]="trip.target"
+              (click)="handleFeaturedTripClick($event, trip)"
+            >
+              <img
+                [src]="trip.image.src"
+                [srcset]="trip.image.srcset"
+                [sizes]="trip.image.sizes"
+                [width]="trip.image.width"
+                [height]="trip.image.height"
+                [alt]="trip.image.alt"
+                [attr.loading]="trip.image.loading"
+                [attr.fetchpriority]="trip.image.fetchPriority"
+              />
+              <span>{{ trip.eyebrow }}</span>
+            </a>
+
+            <div class="featured-trips__content">
+              <h3>
+                <a [routerLink]="trip.target" (click)="handleFeaturedTripClick($event, trip)">{{
+                  trip.title
+                }}</a>
+              </h3>
+              <p class="featured-trips__price">
+                {{ trip.price }} <span>/ {{ i18n.t('homepage.perPerson') }}</span>
+              </p>
+              <p class="featured-trips__duration">{{ trip.duration }}</p>
+              <p class="featured-trips__description">{{ trip.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

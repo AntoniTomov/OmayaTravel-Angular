@@ -1,0 +1,149 @@
+:host {
+  display: block;
+  background: var(--omaya-color-surface);
+  color: var(--omaya-color-text);
+}
+
+.tour-calendar__hero {
+  position: relative;
+  box-sizing: border-box;
+  height: 515px;
+  max-height: 515px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--omaya-color-surface);
+}
+
+.tour-calendar__hero::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: rgb(var(--omaya-color-overlay-rgb) / 34%);
+}
+
+.tour-calendar__hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour-calendar__hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 70px 24px 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 4rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.tour-calendar__body {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1252px;
+  margin: 0 auto;
+  padding: 70px 24px 96px;
+}
+
+.tour-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 313px);
+  gap: 0;
+  justify-content: center;
+}
+
+.tour-calendar__month {
+  position: relative;
+  width: 313px;
+  height: 313px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  overflow: hidden;
+  border: 0;
+  padding: 24px;
+  background: var(--omaya-color-text);
+  color: var(--omaya-color-surface);
+  text-align: center;
+  cursor: pointer;
+}
+
+.tour-calendar__month::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: linear-gradient(
+    180deg,
+    rgb(var(--omaya-color-overlay-rgb) / 10%),
+    rgb(var(--omaya-color-overlay-rgb) / 68%)
+  );
+}
+
+.tour-calendar__month img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.74;
+  transition: transform 180ms ease;
+}
+
+.tour-calendar__month span,
+.tour-calendar__month small {
+  position: relative;
+  z-index: 1;
+}
+
+.tour-calendar__month span {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.tour-calendar__month small {
+  margin-top: 8px;
+  color: var(--omaya-color-surface-warm);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tour-calendar__month:hover img,
+.tour-calendar__month:focus-visible img {
+  transform: scale(1.04);
+}
+
+.tour-calendar__month--empty {
+  cursor: pointer;
+}
+
+.tour-calendar__month--empty img {
+  filter: grayscale(0.25);
+}
+
+@media (max-width: 980px) {
+  .tour-calendar__grid {
+    grid-template-columns: repeat(2, 313px);
+  }
+}
+
+@media (max-width: 560px) {
+  .tour-calendar__hero {
+    height: 515px;
+    max-height: 515px;
+  }
+
+  .tour-calendar__body {
+    width: 100%;
+    padding-inline: 16px;
+    padding-top: 42px;
+  }
+
+  .tour-calendar__grid {
+    grid-template-columns: 313px;
+  }
+}

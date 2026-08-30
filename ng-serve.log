@@ -1,0 +1,133 @@
+> Building...
+√ Building...
+Browser bundles     
+Initial chunk files  | Names                      |  Raw size
+main.js              | main                       | 276.60 kB | 
+chunk-FZ5ZCUJI.js    | -                          |  28.23 kB | 
+chunk-UPLJM2IL.js    | -                          |  10.55 kB | 
+styles.css           | styles                     |   5.79 kB | 
+chunk-4543NY6Y.js    | -                          |   5.24 kB | 
+chunk-KYHRAIZS.js    | -                          |   4.05 kB | 
+chunk-LLV7FTSZ.js    | -                          |   3.01 kB | 
+chunk-GOMI4DH3.js    | -                          |   1.42 kB | 
+
+                     | Initial total              | 334.88 kB
+
+Lazy chunk files     | Names                      |  Raw size
+chunk-JQB6HRS3.js    | tour-detail                | 198.93 kB | 
+chunk-LEJJ6BNJ.js    | tour-listing-page          |  70.88 kB | 
+chunk-POXAYDUL.js    | private-tour-planning-form |  49.41 kB | 
+chunk-EJZRFDIB.js    | blog-article               |  39.72 kB | 
+chunk-XYTEKMAI.js    | legal-page                 |  39.53 kB | 
+chunk-AYG2SGNA.js    | faq-page                   |  30.46 kB | 
+chunk-6URYJIKQ.js    | our-story                  |  27.97 kB | 
+chunk-6U24KOMH.js    | -                          |  23.52 kB | 
+chunk-TVQKUMIM.js    | why-book-with-us           |  23.19 kB | 
+chunk-R4D2CHI3.js    | blog-list                  |  20.91 kB | 
+chunk-IWOZJVDR.js    | search-results             |  19.55 kB | 
+chunk-3BFXZPIE.js    | enquire-page               |  19.54 kB | 
+chunk-Q7DU5APJ.js    | dmc-partner-bulgaria       |  19.36 kB | 
+chunk-4TPXK36R.js    | tour-calendar-page         |  14.98 kB | 
+chunk-ZMOE5K6P.js    | contact-page               |  14.19 kB | 
+...and 3 more lazy chunks files. Use "--verbose" to show all the files.
+
+
+Server bundles      
+Initial chunk files  | Names                      |  Raw size
+main.server.mjs      | main.server                | 278.58 kB | 
+chunk-C3KJE2SM.mjs   | -                          |  28.21 kB | 
+server.mjs           | server                     |  18.64 kB | 
+chunk-JVUHMDCK.mjs   | -                          |  10.53 kB | 
+chunk-WNMGSTRS.mjs   | -                          |   5.22 kB | 
+chunk-ZKNIV4QA.mjs   | -                          |   4.04 kB | 
+chunk-UMGJAQJJ.mjs   | -                          |   3.00 kB | 
+chunk-VYNEO3Q5.mjs   | -                          |   1.41 kB | 
+polyfills.server.mjs | polyfills.server           | 268 bytes | 
+
+Lazy chunk files     | Names                      |  Raw size
+chunk-K35YKH3D.mjs   | tour-detail                | 198.92 kB | 
+chunk-ARJC2ZGF.mjs   | tour-listing-page          |  70.87 kB | 
+chunk-M7SHJEQN.mjs   | private-tour-planning-form |  49.40 kB | 
+chunk-6246O45L.mjs   | blog-article               |  39.71 kB | 
+chunk-CD5RZFXT.mjs   | legal-page                 |  39.52 kB | 
+chunk-XXKJATXY.mjs   | faq-page                   |  30.45 kB | 
+chunk-JAPAX2LH.mjs   | our-story                  |  27.95 kB | 
+chunk-2MGUHWZL.mjs   | -                          |  23.50 kB | 
+chunk-7T3DQOAT.mjs   | why-book-with-us           |  23.17 kB | 
+chunk-3ZMZGFQQ.mjs   | blog-list                  |  20.90 kB | 
+chunk-DPZTTOSD.mjs   | search-results             |  19.54 kB | 
+chunk-R6UHOG25.mjs   | enquire-page               |  19.53 kB | 
+chunk-6LIQ344A.mjs   | dmc-partner-bulgaria       |  19.34 kB | 
+chunk-NSKPVOQY.mjs   | tour-calendar-page         |  14.96 kB | 
+chunk-2WICOTVX.mjs   | contact-page               |  14.18 kB | 
+...and 3 more lazy chunks files. Use "--verbose" to show all the files.
+
+Application bundle generation complete. [11.334 seconds] - 2026-08-26T23:14:22.102Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+2:14:25 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+2:14:25 AM [vite] (ssr) Re-optimizing dependencies because vite config has changed
+  ➜  Local:   http://127.0.0.1:4200/
+  ➜  press h + enter to show help
+2:14:26 AM [vite] (client) [optimizer] bundling dependencies...
+2:14:26 AM [vite] (ssr) [optimizer] bundling dependencies...
+NG0751: Angular has detected that this application contains `@defer` blocks and the hot module replacement (HMR) mode is enabled. All `@defer` block dependencies will be loaded eagerly. Find more at https://v22.angular.dev/errors/NG0751
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names                      |  Raw size
+main.js             | main                       | 276.60 kB | 
+chunk-XZAHQ4QN.js   | -                          |  28.23 kB | 
+chunk-NXIGVJGS.js   | -                          |  10.55 kB | 
+
+Lazy chunk files    | Names                      |  Raw size
+chunk-IUMD5SN3.js   | tour-detail                | 198.93 kB | 
+chunk-KUXNOKHO.js   | tour-listing-page          |  70.88 kB | 
+chunk-KMGMIBWA.js   | private-tour-planning-form |  49.41 kB | 
+chunk-YOLQBXA4.js   | faq-page                   |  30.46 kB | 
+chunk-NAOR5T5X.js   | search-results             |  19.55 kB | 
+chunk-3YSBBYHL.js   | enquire-page               |  19.54 kB | 
+chunk-62WSWQEG.js   | contact-page               |  14.19 kB | 
+chunk-3ELZIPXU.js   | private-tours-page         |  11.71 kB | 
+
+
+Server bundles     
+Initial chunk files | Names                      |  Raw size
+main.server.mjs     | main.server                | 278.58 kB | 
+chunk-WSFRTKMD.mjs  | -                          |  28.21 kB | 
+chunk-3FLMFGVI.mjs  | -                          |  10.53 kB | 
+
+Lazy chunk files    | Names                      |  Raw size
+chunk-KFCAAUIJ.mjs  | tour-detail                | 198.92 kB | 
+chunk-DL5LFSET.mjs  | tour-listing-page          |  70.87 kB | 
+chunk-OGKDTPA2.mjs  | private-tour-planning-form |  49.40 kB | 
+chunk-M2TSIBB6.mjs  | faq-page                   |  30.45 kB | 
+chunk-VOVMDFVG.mjs  | search-results             |  19.54 kB | 
+chunk-33SKL6ND.mjs  | enquire-page               |  19.53 kB | 
+chunk-6SQCQXCQ.mjs  | contact-page               |  14.18 kB | 
+chunk-6GBJEI5P.mjs  | private-tours-page         |  11.70 kB | 
+
+Application bundle generation complete. [1.546 seconds] - 2026-08-26T23:15:15.665Z
+
+Page reload sent to client(s).
+> Changes detected. Rebuilding...
+√ Changes detected. Rebuilding...
+Browser bundles    
+Initial chunk files | Names       |  Raw size
+main.js             | main        | 276.60 kB | 
+
+Lazy chunk files    | Names       |  Raw size
+chunk-UUUFGPPH.js   | our-story   |  27.97 kB | 
+
+
+Server bundles     
+Initial chunk files | Names       |  Raw size
+main.server.mjs     | main.server | 278.58 kB | 
+
+Lazy chunk files    | Names       |  Raw size
+chunk-4Q5GOTQ6.mjs  | our-story   |  27.95 kB | 
+
+Application bundle generation complete. [0.873 seconds] - 2026-08-26T23:15:16.876Z
+
+Page reload sent to client(s).
