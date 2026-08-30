@@ -98,8 +98,7 @@
 .blog-list__image img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  height: auto;
 }
 
 .blog-list__card-body {
