@@ -191,6 +191,12 @@
   gap: 0.45rem;
 }
 
+.blog-article__meta .material-icons {
+  color: tokens.$omaya-color-gold;
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .blog-article__previous a {
   display: grid;
   grid-template-columns: 3.8rem minmax(0, 14rem);
