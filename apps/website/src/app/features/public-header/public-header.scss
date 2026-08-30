@@ -467,6 +467,7 @@
     position: static;
     display: grid;
     max-height: 0;
+    padding: 0;
     overflow: hidden;
     pointer-events: none;
     visibility: visible;
@@ -481,6 +482,7 @@
 
   .public-header__dropdown--open {
     max-height: min(32rem, calc(100vh - 5rem));
+    padding: 8px 0;
     overflow-y: auto;
     pointer-events: auto;
     opacity: 1;
