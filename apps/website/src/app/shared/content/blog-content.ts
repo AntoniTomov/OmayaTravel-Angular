@@ -13,13 +13,27 @@ export interface BlogNamedItem {
   details: string;
 }
 
+export interface BlogSectionCta {
+  before: string;
+  linkText: string;
+  linkUrl: string;
+  after: string;
+}
+
+export interface BlogBoldListItem {
+  label: string;
+  text: string;
+}
+
 export interface BlogSection {
   title?: string;
   text?: readonly string[];
   list?: readonly string[];
+  boldList?: readonly BlogBoldListItem[];
   timeline?: readonly BlogTimelineItem[];
   items?: readonly BlogNamedItem[];
   image?: BlogSectionImage;
+  cta?: BlogSectionCta;
 }
 
 export interface BlogPostContent {
@@ -201,7 +215,7 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
   excerpt:
     'Practical guide to Rila Monastery covering history, key sights, entry fees, opening times, dress code, transport from Sofia, nearby attractions, food and overnight stays.',
   preview:
-    "Bulgaria's most sacred landmark, a UNESCO World Heritage Site, and one of the most breathtaking places in the Balkans. Here's everything you need to plan your visit to Rila Monastery.",
+    "Bulgaria’s most sacred landmark, a UNESCO World Heritage Site, and one of the most breathtaking places in the Balkans – here’s everything you need to plan your visit.",
   image: {
     src: `${BLOG_IMAGE_BASE}/Rila-Monastery-post-preview-bgr.webp`,
     alt: 'Rila Monastery in the Rila Mountains',
@@ -216,11 +230,10 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
   },
   sections: [
     {
-      title: 'What is Rila Monastery and why visit?',
+      title: 'What is Rila Monastery and why is it worth visiting?',
       text: [
-        "Bulgaria's most important Orthodox spiritual and cultural landmark, at about 1,147 metres in Rila Mountains.",
-        'More than a millennium of monastic history; UNESCO World Heritage Site since 1983.',
-        'Played major role preserving Bulgarian culture and Orthodox identity during Ottoman rule.',
+        'Rila Monastery is Bulgaria’s most important spiritual and cultural landmark, set in a forested valley in the Rila Mountains at 1,147 metres above sea level. It has been continuously inhabited for over 1,000 years, has been a UNESCO World Heritage Site since 1983, and contains some of the finest fresco painting in the Balkans.',
+        'Beyond its religious significance, Rila Monastery is a symbol of Bulgarian national survival. For nearly five centuries of Ottoman rule, it safeguarded the Bulgarian language, Orthodox faith, and cultural identity – making it as much a historical monument as a living monastery.',
       ],
       image: {
         src: `${RILA_POST_IMAGE_BASE}/Frescoes-at-the-Rila-Monastery-img-2.webp`,
@@ -230,40 +243,47 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
     {
       title: 'Who founded Rila Monastery?',
       text: [
-        "Origins trace to St Ivan of Rila, a 10th-century hermit later canonised as Bulgaria's patron saint.",
-        'His relics remain at monastery.',
+        'Rila Monastery was founded by Ivan of Rila (876–946), a Bulgarian nobleman who renounced his wealth to live as a hermit in the Rila Mountains. His reputation for humility, healing, and spiritual devotion attracted followers who formed a monastic community — the origin of Rila Monastery as it exists today.',
+        'Ivan of Rila was later canonised and became the patron saint of Bulgaria. His relics remain at the monastery and continue to draw Orthodox pilgrims from across the world.',
+        'His influence reaches far beyond the religious sphere: since Bulgaria started using euro as its currency in 2026, his image appears on the €1 coin showing how deeply he is woven into the country’s history, identity, and cultural memory as well as its spiritual life. His relics are still preserved at the monastery today, drawing pilgrims from across the Orthodox world.',
       ],
     },
     {
-      title: 'History timeline',
+      title: 'How old is Rila Monastery and what is its history?',
+      text: [
+        'The monastery you visit today is largely a 19th-century reconstruction, built after an 1833 fire by craftsmen, artists, and monks from across Bulgaria – an act of collective national renewal that is itself part of the site’s significance.',
+      ],
       timeline: [
         { period: '10th century', event: 'Founded by St Ivan of Rila' },
-        { period: 'Medieval period', event: 'Expanded and fortified under Bulgarian rulers' },
-        { period: '1335', event: 'Hrelyo Tower constructed' },
-        { period: '1833', event: 'Major fire destroyed much of complex' },
-        { period: '1834–1862', event: 'Large-scale national reconstruction' },
-        { period: '1983', event: 'Added to UNESCO World Heritage List' },
+        { period: 'Medieval period', event: 'Expanded and fortified by Bulgarian tsars' },
+        { period: '1335', event: 'Hrelyo Tower constructed — the oldest surviving structure on site' },
+        { period: '1833', event: 'Catastrophic fire destroys most of the complex' },
+        { period: '1834–1862', event: 'National reconstruction effort rebuilds the monastery' },
+        { period: '1983', event: 'Listed as a UNESCO World Heritage Site' },
       ],
     },
     {
-      title: 'What to see',
+      title: 'What can you see inside Rila Monastery?',
       items: [
         {
-          name: 'Church of the Nativity of the Virgin',
-          details: 'Main courtyard church, completed in 1837, famous for exterior frescoes.',
-        },
-        {
-          name: 'Hrelyo Tower',
-          details: 'Five-storey medieval tower from 1335; oldest surviving structure.',
-        },
-        {
-          name: "Rafail's Cross",
+          name: 'The Church of the Nativity of the Virgin',
           details:
-            'Intricately carved religious cross with more than 100 biblical scenes and hundreds of miniature figures.',
+            'The centrepiece of the inner courtyard, completed in 1837. Its exterior arcade is covered in more than 1,200 individual fresco scenes depicting biblical narratives, saints, and the Last Judgement. The style bridges Byzantine tradition with an emerging Bulgarian national aesthetic, and the colours remain remarkably vivid nearly 200 years on.',
         },
         {
-          name: 'Ethnographic Museum and Revival Period Rooms',
-          details: 'Bulgarian costumes, carpets, jewellery and reconstructed historic interiors.',
+          name: 'The Hrelyo Tower',
+          details:
+            'Built in 1335, this five-storey medieval tower is the oldest surviving structure at Rila. It houses a small chapel at the top and offers sweeping views across the courtyard. Note: entry requires a separate ticket, available from the History Museum inside the complex.',
+        },
+        {
+          name: 'Rafail’s Cross (History Museum)',
+          details:
+            'The standout exhibit of the monastery’s History Museum. Carved by the monk Rafail between 1790 and 1802, the cross contains more than 100 biblical scenes and over 650 miniature figures – some no larger than a grain of rice. According to tradition, the years of painstaking work cost Rafail his eyesight. It is one of the most extraordinary objects of religious art in Bulgaria.',
+        },
+        {
+          name: 'The Ethnographic Museum and Revival Period Rooms',
+          details:
+            'Often overlooked by visitors focused on the History Museum, the Ethnographic Museum is spread across a few rooms and covers traditional Bulgarian material culture: carpets, folk costumes, and jewellery. Adjoining it are the Revival Period Guest Rooms – a series of reconstructed interiors representing the distinctive domestic styles of different Bulgarian towns of the 18th and 19th centuries.',
         },
       ],
       image: {
@@ -272,11 +292,11 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
       },
     },
     {
-      title: 'Entry fees',
+      title: 'Are there entry fees at Rila Monastery?',
       text: [
-        'Courtyard and main church are free.',
-        'Museums and Hrelyo Tower require paid tickets; combined museum ticket around €10.',
-        'Museum tickets bought on site; check official monastery website for current prices.',
+        'Entrance to the monastery courtyard and main church is free. The museums and Hrelyo Tower charge separately, but fees are modest — a combined ticket covering all museum exhibitions costs around €10. Individual exhibitions can also be visited separately for a small fee each.',
+        'Guided tours of the museums are available in Bulgarian, English, and French, lasting around 50 minutes. To book a guide, check the official monastery website for details.',
+        'Important: Museum tickets can only be purchased on site at the monastery. Tickets bought online are not valid. For the most up-to-date prices, check the official monastery website.',
       ],
       image: {
         src: `${RILA_POST_IMAGE_BASE}/Rila-Monastery-Shop-at-the-foot-of-Hrelyo-Tower-img-3.webp`,
@@ -284,45 +304,44 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
       },
     },
     {
-      title: 'Opening hours',
+      title: 'When is Rila Monastery open?',
       text: [
-        'Complex and main church open year-round, though services may limit church access.',
-        'Museum exhibitions generally open daily 08:30–16:30, with longer Friday–Sunday hours in summer.',
-        'Early weekday mornings best for fewer crowds.',
+        'The monastery complex and main church are open every day of the year with no seasonal closures. The church may be temporarily closed during morning and evening religious services.',
+        'All museum exhibitions are open daily from 8:30 to 16:30, with extended hours until 19:30 on Fridays, Saturdays, and Sundays from 1 June to 30 September.',
+        'Best time to visit: Early morning on weekdays, before organised tour groups arrive from Sofia. In high season, the courtyard becomes very crowded between 11:00 and 14:00. Winter offers a completely different experience – the monastery surrounded by snow is one of Bulgaria’s most evocative landscapes, with few tourists and a rare atmosphere of silence and contemplation.',
       ],
     },
     {
-      title: 'Dress code',
+      title: 'Is there a dress code at the Rila Monastery?',
+      text: [
+        'Rila Monastery is an active place of worship. Visitors must cover their shoulders and knees. Women are encouraged to cover their heads when entering the church, though this is not always strictly enforced. Men should not wear hats when entering the church. In order to be respectful, you should also avoid sitting with crossed legs, keeping hands in pockets, and using your phone in the church. Photography is not permitted inside the church or museums.',
+      ],
+    },
+    {
+      title: 'How do you get to Rila Monastery from Sofia?',
+      text: [
+        'Rila Monastery is approximately 120 km south of Sofia, around a 2-hour drive. We recommend getting there either by organised day trip or rental car.',
+      ],
       list: [
-        'Cover shoulders and knees.',
-        'Men remove hats inside church.',
-        'Women encouraged to cover heads.',
-        'Photography not permitted inside church or museums.',
-        'Behave respectfully; monastery is active place of worship.',
+        'Organised day trips are the most practical option for most visitors. Tours from Sofia are widely available on platforms like Viator and GetYourGuide, typically combining the monastery with other nearby sights such as the Stob Pyramids or Boyana Church. Prices start from around €24 per person, with departures between 8:00 and 9:00 AM and returns in the evening.',
+        'Renting a car gives you the most flexibility – to stop at the Stob Pyramids en route, or extend your trip into the Rila Mountains. The drive follows well-signposted roads and is straightforward. Parking at the monastery costs around €2.50.',
+        'We do not recommend relying on public transport. There is technically one direct bus per day from Sofia’s Ovcha Kupel bus station, but the schedule is unreliable and leaves you with only around two hours at the monastery before the return departure. If you do want to check current schedules, call the Ovcha Kupel (Sofia-West) Bus Station directly on +359 2 955 5362 for the most up-to-date information. The bus station itself is a 30-minute journey from the city centre, adding further inconvenience. For a site that deserves proper time, public transport is not a practical choice.',
       ],
     },
     {
-      title: 'Getting there from Sofia',
-      text: [
-        'About 120 km south of Sofia, roughly two hours by car.',
-        'Organised day trips and rental cars are most practical.',
-        'Public transport exists but is inconvenient and can leave little time on site.',
-      ],
-    },
-    {
-      title: 'Nearby places',
-      items: [
+      title: 'What else can you do near Rila Monastery?',
+      boldList: [
         {
-          name: 'Cave of St Ivan of Rila',
-          details: 'Around 3–4 km from monastery, then short forest walk.',
+          label: 'The Cave of St Ivan of Rila:',
+          text: ' The cave where St Ivan of Rila spent more than seven years of his life is located only 3–4 km from the monastery. Drive past the monastery parking and continue until you see a large wooden icon on the left side of the road – this is where you leave your car. From there it is a 15-minute walk through the forest to a small stone chapel. The entrance to the cave is narrow. According to local tradition, only those with a pure soul can pass through the tight rock tunnel – it is sometimes called the Sacred Hole of the Righteous. There is a natural spring beside the cave, considered holy, and a prayer rock above it with panoramic views of the Rila Mountains. Entry is free. Wear sturdy shoes – the path includes some steep and rocky sections.',
         },
         {
-          name: 'Stob Pyramids',
-          details: 'Sandstone formations near Stob with roughly 1.2 km trail and viewpoints.',
+          label: 'The Stob Pyramids:',
+          text: ' sandstone rock formations shaped by centuries of wind and rain erosion, located in the village of Stob, about 20 minutes from the monastery by car. The formations stretch across approximately 40 hectares, with some reaching up to 12 metres in height. Their unusual shapes – spires, columns, and mushroom-capped towers – have inspired local folklore, including legends of a cursed wedding turned to stone. The trail is approximately 1.2 km one way, with several viewpoints offering panoramic views of the Rila Mountains and the Struma River valley. A small entry fee of around 2–3 BGN applies. Tours often combine the Stob Pyramids with Rila Monastery as a natural two-in-one excursion. The pyramids are most photogenic at sunset. Follow signs for the village of Stob rather than relying on GPS, which can direct you to a viewpoint rather than the trailhead.',
         },
         {
-          name: 'Medi Valley Winery',
-          details: 'Winery near Smochevo offering tastings by prior reservation.',
+          label: 'Medi Valley Winery:',
+          text: ' Medi Valley Winery was established in 2007 in the village of Smochevo, at the foot of the Rila Mountain. The winery has 370 acres of vineyards planted with local Bulgarian, as well as French, Italian and other grapes and has a panoramic terrace with views of the Rila Mountains. You can visit the winery to do a wine tasting or grab some Bulgarian wine for home. Important: Wine tastings are only conducted by prior reservation – walk-ins are not accepted. Book in advance through the winery’s website. Tasting packages start from around €13 per person and include a tour of the production facilities and a tasting of wines paired with local food.',
         },
       ],
       image: {
@@ -331,23 +350,30 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
       },
     },
     {
-      title: 'Food',
+      title: 'Where can you eat near Rila Monastery?',
       text: [
-        'Restaurants and food stalls operate outside monastery.',
-        'Local choices include mekitsi, trout, shkembe chorba, kavarma, banitsa and shopska salad.',
-        'Cash useful because some smaller places may not accept cards.',
+        'Several restaurants and small food stalls operate just outside the monastery complex, so you won’t go hungry on a day trip. This is a good place to eat like a Bulgarian rather than a tourist.',
+        'The most famous local snack is mekitsi – deep-fried dough made with yoghurt, best eaten warm from one of the small bakeries near the complex with powder sugar or jam on top. They are cheap, filling, and very good. For a sit-down meal, the restaurants in the area serve classic Bulgarian mountain food. Look out for grilled trout from the local rivers, shkembe chorba (tripe soup, a Bulgarian staple), kavarma (a slow-cooked meat and vegetable stew served in a clay pot), and banitsa (a flaky pastry filled with cheese and egg). If you are visiting in summer, a shopska salad – tomatoes, cucumbers, peppers, and grated white cheese – is the perfect accompaniment to almost anything.',
+        'Important: Cash is advisable, as smaller establishments may not accept cards.',
       ],
     },
     {
-      title: 'Staying overnight',
+      title: 'Can you stay overnight at Rila Monastery?',
       text: [
-        'Monastery operates simple guesthouse inside complex.',
-        'Overnight stay gives quieter mornings and evenings.',
-        'Site also works as base for longer Rila Mountain hikes.',
+        'Yes. The monastery operates a guesthouse within the complex itself, offering simple but comfortable rooms. Staying overnight gives you access to the monastery in the early morning and evening, after day visitors have left — a genuinely different experience from a day trip. To book, call the monastery directly (note that English may be limited – a Bulgarian speaker can help). Several restaurants operate near the complex for dinner. Prices are around €15 per person per night. The monastery is also a well-known starting point for longer hiking routes into the Rila Mountains, making it a practical base if you are planning multi-day hiking in the area.',
       ],
       image: {
         src: `${RILA_POST_IMAGE_BASE}/The-Backyard-of-Rila-Monastery.webp.webp`,
         alt: 'Backyard of Rila Monastery',
+      },
+    },
+    {
+      cta: {
+        before: 'Rila Monastery is one of the unmissable stops on our ',
+        linkText: 'Bulgaria trip',
+        linkUrl: '/tour-item/bulgaria-beyond-the-ordinary/',
+        after:
+          '. Find out what else we’ve included – and why we think Bulgaria deserves more time than most travellers give it.',
       },
     },
   ],

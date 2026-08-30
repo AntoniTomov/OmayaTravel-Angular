@@ -15,6 +15,14 @@
     </ul>
   }
 
+  @if (section.boldList) {
+    <ul>
+      @for (item of section.boldList; track item.label) {
+        <li><strong>{{ item.label }}</strong>{{ item.text }}</li>
+      }
+    </ul>
+  }
+
   @if (section.timeline) {
     <dl class="blog-post-section__timeline">
       @for (item of section.timeline; track item.period) {
@@ -35,6 +43,10 @@
         </article>
       }
     </div>
+  }
+
+  @if (section.cta; as cta) {
+    <p>{{ cta.before }}<a [routerLink]="cta.linkUrl">{{ cta.linkText }}</a>{{ cta.after }}</p>
   }
 
   @if (section.image) {
