@@ -28,6 +28,8 @@ export interface BlogBoldListItem {
 export interface BlogSection {
   title?: string;
   text?: readonly string[];
+  /** When true, only the first `text` paragraph shows by default; the rest sit behind a "Continue reading…" toggle. */
+  expandable?: boolean;
   list?: readonly string[];
   boldList?: readonly BlogBoldListItem[];
   timeline?: readonly BlogTimelineItem[];
@@ -219,7 +221,7 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
   excerpt:
     'Practical guide to Rila Monastery covering history, key sights, entry fees, opening times, dress code, transport from Sofia, nearby attractions, food and overnight stays.',
   preview:
-    "Bulgaria’s most sacred landmark, a UNESCO World Heritage Site, and one of the most breathtaking places in the Balkans – here’s everything you need to plan your visit.",
+    'Bulgaria’s most sacred landmark, a UNESCO World Heritage Site, and one of the most breathtaking places in the Balkans – here’s everything you need to plan your visit.',
   image: {
     src: `${BLOG_IMAGE_BASE}/Rila-Monastery-post-preview-bgr.webp`,
     alt: 'Rila Monastery in the Rila Mountains',
@@ -260,7 +262,10 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
       timeline: [
         { period: '10th century', event: 'Founded by St Ivan of Rila' },
         { period: 'Medieval period', event: 'Expanded and fortified by Bulgarian tsars' },
-        { period: '1335', event: 'Hrelyo Tower constructed — the oldest surviving structure on site' },
+        {
+          period: '1335',
+          event: 'Hrelyo Tower constructed — the oldest surviving structure on site',
+        },
         { period: '1833', event: 'Catastrophic fire destroys most of the complex' },
         { period: '1834–1862', event: 'National reconstruction effort rebuilds the monastery' },
         { period: '1983', event: 'Listed as a UNESCO World Heritage Site' },
@@ -393,7 +398,7 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
   excerpt:
     'Local-guide selection of ten memorable places and experiences across Bulgaria, combining cities, mountain villages, wine, heritage sites, alpine landscapes and Black Sea coast.',
   preview:
-    "As local guides who explore these regions year-round, we created this list to help you experience the most meaningful places to visit in Bulgaria, not just the most famous ones. Alongside well-known highlights like Rila Monastery, Plovdiv, and Veliko Tarnovo, we've included cultural experiences, hidden villages, wine regions, and mountain landscapes that travelers often miss but remember the most.",
+    'If you’re planning a trip to Bulgaria, it can be surprisingly hard to decide where to go first. This is a country where Roman cities sit beside mountain monasteries, rose fields stretch across entire valleys, and remote villages still keep centuries-old traditions alive—often just a short drive apart.',
   image: {
     src: `${BLOG_IMAGE_BASE}/beautiful-bulgaria-post-preview-bgr.webp`,
     alt: 'Bulgarian mountain lake and green hills',
@@ -409,8 +414,8 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
   sections: [
     {
       text: [
-        'Bulgaria combines Roman cities, Orthodox monasteries, mountain villages, rose-growing regions and Black Sea coast within relatively short distances.',
-        'List mixes major sights with local cultural experiences and less-visited areas.',
+        'As local guides who explore these regions year-round, we created this list to help you experience the most meaningful places to visit in Bulgaria, not just the most famous ones. Alongside well-known highlights like Rila Monastery, Plovdiv, and Veliko Tarnovo, we’ve included cultural experiences, hidden villages, wine regions, and mountain landscapes that travelers often miss but remember the most.',
+        'Whether you’re designing your first Bulgaria itinerary or searching for more unusual things to do in Bulgaria, these are the destinations we most often recommend to visitors who want to understand the country beyond the surface.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/beautiful-bulgaria-post-bgr.webp`,
@@ -418,9 +423,12 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '1. Rhodope Mountains, Leshten and Kovachevitsa',
+      title: 'Explore the Rhodope Mountains and Traditional Villages Like Leshten and Kovachevitsa',
+      expandable: true,
       text: [
-        'Western Rhodopes combine pine forests, open meadows, mountain trails and preserved Revival-era villages. Nearby Ribnovo is known for Gelina bridal face-painting tradition. Dospat, Batak, Shiroka Laka and Pamporovo add hiking and mountain scenery.',
+        'Exploring the Rhodope Mountains is one of the most memorable things to do in Bulgaria, especially if you want to have a culturally rich and nature-focused Bulgaria itinerary beyond the main cities.',
+        'This region is known for its vast meadows, deep pine forests, and preserved mountain settlements where traditional life still shapes daily rhythms. Villages such as Leshten and Kovachevitsa are standout places to visit in Bulgaria for their beautifully restored stone houses, wooden verandas, and narrow cobbled streets typical of Bulgarian National Revival architecture. Nearby, the remote village of Ribnovo preserves a remarkable tradition – the Gelina wedding ritual, where the bride’s face is decorated with white paint, sequins, and colorful ornaments in a symbolic farewell ceremony before marriage. Experiencing or learning about this custom is one of the most authentic and unusual things to do in Bulgaria, offering rare insight into living Rhodope cultural identity.',
+        'The western Rhodopes are particularly impressive for their wide alpine meadows, dense pine tree forests, and peaceful high-altitude trails leading to panoramic viewpoints and hidden mountain lakes. Hiking routes around areas like Dospat, Batak, and Shiroka Laka reveal rolling ridgelines and open grasslands that feel untouched by mass tourism. For outdoor adventures, Pamporovo is a year-round highlight, offering sunny ski slopes in winter and scenic hiking trails through vast meadows, pine forests, and panoramic ridges around Snezhanka Peak.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/1-1-scaled.webp`,
@@ -428,16 +436,24 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '2. Sofia',
+      title: 'Sofia',
+      expandable: true,
       text: [
-        'Compact capital mixing Roman remains, Orthodox landmarks, markets, food and modern culture. Key stops include Alexander Nevsky Cathedral, Serdica archaeological remains and Zhenski Pazar.',
+        'Most travelers begin their trip to Bulgaria in Sofia, a compact and walkable capital where Roman, medieval, and modern landmarks sit side by side.',
+        'Start at the iconic Alexander Nevsky Cathedral, one of the largest Orthodox churches in the Balkans, then browse the nearby open-air antique flea market in its square for Soviet memorabilia, icons, and vintage finds. Just steps away, the Serdica Archaeological Complex reveals preserved Roman streets and structures from the ancient city of Serdica.',
+        'For a more local atmosphere, visit Zhenski Pazar (Women’s Market), where fresh produce, spices, cheeses, and everyday city life create one of the most authentic urban experiences and enjoyable things to do in Bulgaria.',
+        'Sofia is also one of the country’s best destinations for food lovers, with traditional taverns alongside modern restaurants like Cosmos, Unica, and Nikolas 0/360, as well as themed experiences such as food tours, street-art walks, and communist-history routes—making the capital a flexible stop on any trip to Bulgaria, easy to explore according to your own interests and travel style.',
       ],
       image: { src: `${BULGARIA_POST_IMAGE_BASE}/2-1-scaled.webp`, alt: 'Sofia city landmark' },
     },
     {
-      title: '3. Veliko Tarnovo',
+      title: 'Walk the Medieval Streets of Veliko Tarnovo',
+      expandable: true,
       text: [
-        'Former capital of Second Bulgarian Empire, built above Yantra River. Main attractions: Tsarevets Fortress, Samovodska Charshia and evening Sound and Light Show.',
+        'Walking the medieval streets of Veliko Tarnovo is one of the most atmospheric things to do in Bulgaria, with colorful houses stacked along steep hillsides above the winding Yantra River and surrounded by lush green slopes that give the city its distinctive amphitheatrical setting.',
+        'Once the capital of the Second Bulgarian Empire, Veliko Tarnovo remains one of the most historically significant places to visit in Bulgaria and a highlight of any cultural trip to Bulgaria. The hilltop Tsarevets Fortress dominates the skyline and invites visitors to explore the restored royal complex, fortress walls, and the Patriarchal Cathedral while enjoying sweeping panoramic views across the old town.',
+        'In the nearby Samovodska Charshia quarter, traditional craft workshops, artisan boutiques, and cozy cafés recreate the atmosphere of a 19th-century market street, making it an ideal place to slow down and experience local culture as part of a relaxed Bulgaria itinerary.',
+        'If you stay overnight, don’t miss the famous evening Sound and Light Show at Tsarevets, when the fortress is illuminated with dramatic projections, music, and bells that narrate key moments from Bulgaria’s medieval history—an unforgettable experience and one of the most memorable unusual things to do in Bulgaria.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/3-1-scaled.webp`,
@@ -445,9 +461,12 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '4. Buzludzha Monument',
+      title: 'Buzludzha Monument',
+      expandable: true,
       text: [
-        'Large communist-era monument built in 1981 on Balkan Mountain ridge. Often combined with Shipka Pass and Shipka Memorial Church.',
+        'Visiting the futuristic Buzludzha Monument is one of the most striking and unusual things to do in Bulgaria, offering a powerful glimpse into the country’s recent history set against dramatic Balkan mountain scenery.',
+        'Built in 1981 as a ceremonial hall for the Bulgarian Communist Party, the monument sits high on a remote ridge in the Balkan Mountains, where its spaceship-like silhouette dominates the landscape. Although no longer open for interior access, the structure remains one of the most photographed landmarks on any alternative Bulgaria itinerary and a highlight for travelers interested in architecture, history, and post-socialist heritage.',
+        'Many visitors combine Buzludzha with nearby stops such as Shipka Pass and the Shipka Memorial Church, making this region one of the most rewarding cultural routes on a longer trip to Bulgaria and a standout among lesser-known places to visit in Bulgaria beyond the main cities.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/4-1-scaled.webp`,
@@ -455,16 +474,24 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '5. Rose Valley',
+      title: 'Experience Bulgaria’s Rose Valley and the Tradition of Rose Oil',
+      expandable: true,
       text: [
-        "Kazanlak region is centre of Bulgaria's rose-oil tradition. Late May to early June is peak bloom and Rose Festival period, with rose picking, distillation and rose-based products.",
+        'Exploring Bulgaria’s rose-growing traditions in the Rose Valley near Kazanlak is one of the most unique things to do in Bulgaria, offering insight into a centuries-old craft that still defines the country’s global reputation for high-quality rose oil.',
+        'The best time to visit is late May to early June, when the fields bloom and the annual Rose Festival celebrates the harvest with traditional music, costumes, and rose-picking rituals at sunrise. While in Kazanlak, you can also explore the Rose Museum Kazanlak, learn about centuries-old distillation techniques, and taste rose-infused sweets, jams, liquors, and aromatic drinks—making this one of the most distinctive places to visit in Bulgaria on a cultural Bulgaria itinerary.',
+        'Bulgarian rose oil, often called “liquid gold,” is exported globally and widely used in luxury perfumes by major French fragrance houses, as well as in cosmetics, skincare products, and natural wellness remedies—one reason the Rose Valley remains internationally important despite its small size.',
+        'Even if you don’t reach Kazanlak, you can still enjoy this tradition in larger cities. In Sofia, specialty boutiques like One Bulgarian Rose offer tastings, product demonstrations, and high-quality rose oils, teas, chocolates, and cosmetics. These authentic items are among the most meaningful souvenirs to bring home from a trip to Bulgaria, combining heritage, craftsmanship, and a uniquely Bulgarian scent memory.',
       ],
       image: { src: `${BULGARIA_POST_IMAGE_BASE}/5-1-scaled.webp`, alt: 'Rose Valley in Bulgaria' },
     },
     {
-      title: '6. Bulgarian wine regions and Melnik',
+      title: 'Go Wine Tasting in Bulgaria’s Ancient Vine Regions',
+      expandable: true,
       text: [
-        'Bulgaria has thousands of years of winemaking history. Melnik is known for Broad-Leaved Melnik grape and wineries such as Villa Melnik, Orbelus and Zlaten Rozhen.',
+        'Wine tasting is one of the most enjoyable things to do in Bulgaria, rooted in a tradition that stretches back over 4,000 years to the Thracians, who considered wine sacred and cultivated vines across much of today’s Bulgarian lands.',
+        'One of the best places to experience this heritage on a trip to Bulgaria is the small historic town of Melnik, famous for its dramatic sandstone pyramids and its distinctive local grape variety, Broad-Leaved Melnik Vine. The region also attracted admirers such as Winston Churchill, who was known to favor Melnik red wines.',
+        'Today, several excellent wineries around Melnik offer tastings with views over the Struma Valley, including Villa Melnik, Orbelus Winery, and Zlaten Rozhen Winery, where visitors can sample both traditional and modern interpretations of local grape varieties. These experiences make Melnik one of the most rewarding places to visit in Bulgaria for wine lovers.',
+        'Beyond Melnik, wine is produced across nearly the entire country—from the Thracian Valley to the Danubian Plain and the Black Sea coast—so no matter where your Bulgaria itinerary takes you, you’re likely to find welcoming boutique wineries and authentic tasting experiences along the way.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/6-1-scaled.webp`,
@@ -472,16 +499,24 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '7. Plovdiv',
+      title: 'Explore Plovdiv — Europe’s Oldest Living City',
+      expandable: true,
       text: [
-        "One of Europe's oldest continuously inhabited cities, combining Roman Theatre, Revival-era Old Town, Kapana creative district and viewpoints such as Nebet Tepe.",
+        'Exploring Plovdiv is one of the most essential things to do in Bulgaria, as the city blends ancient history, vibrant creative neighborhoods, and panoramic hilltop views into one of the country’s most atmospheric urban experiences.',
+        'Often described as Europe’s oldest continuously inhabited city, Plovdiv reveals layers of Thracian, Roman, Ottoman, and Bulgarian heritage within walking distance. The beautifully preserved Roman Theatre of Plovdiv is one of the city’s highlights, still used today for concerts and performances and offering sweeping views toward the modern city below.',
+        'Just above it lies the Old Town, where cobbled streets wind between colorful 19th-century National Revival houses, hidden courtyards, and small museums—making this area one of the most charming places to visit in Bulgaria on any cultural trip to Bulgaria.',
+        'In contrast, the nearby Kapana district offers a lively creative atmosphere filled with cafés, artisan shops, galleries, and street art. It’s the perfect place to experience Plovdiv’s contemporary spirit and local food scene as part of a relaxed Bulgaria itinerary.',
+        'For the best views, climb one of the city’s surrounding hills such as Nebet Tepe, where you can watch the sunset over rooftops, Roman ruins, and distant mountains—an unforgettable moment in one of the most rewarding places to visit in Bulgaria.',
       ],
       image: { src: `${BULGARIA_POST_IMAGE_BASE}/7-1-scaled.webp`, alt: 'Plovdiv in Bulgaria' },
     },
     {
-      title: '8. Rila Monastery and Cave of St Ivan of Rila',
+      title: 'Visit Rila Monastery and the Cave of St. Ivan of Rila',
+      expandable: true,
       text: [
-        'UNESCO-listed monastery in Rila Mountains, founded in 10th century. Nearby forest trail leads to cave associated with St Ivan of Rila.',
+        'Visiting the Rila Monastery is one of the most iconic things to do in Bulgaria and a highlight of nearly every cultural Bulgaria itinerary, thanks to its dramatic mountain setting and importance as the country’s spiritual heart.',
+        'Founded in the 10th century by the hermit Ivan of Rila, the monastery sits deep within the forested slopes of the Rila Mountains and impresses visitors with its colorful frescoes, striped arcades, carved wooden balconies, and peaceful courtyard surrounded by alpine scenery. As a UNESCO World Heritage Site, it remains one of the most significant places to visit in Bulgaria on any meaningful trip to Bulgaria.',
+        'A short walk from the main complex leads to the sacred Cave of St. Ivan of Rila, where the saint is believed to have lived as a hermit. Reaching the cave via a forest trail adds a quieter, reflective dimension to the visit and is considered one of the more unusual things to do in Bulgaria, combining nature, spirituality, and history in a single experience.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/8-1-scaled.webp`,
@@ -489,9 +524,12 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '9. Seven Rila Lakes',
+      title: 'Hike the Seven Rila Lakes and Spend a Night in a Mountain Hut',
+      expandable: true,
       text: [
-        'High-altitude glacial lakes linked by hiking trails. Staying in mountain hut offers quieter sunrise and sunset access and traditional Bulgarian hiking atmosphere.',
+        'Hiking the Seven Rila Lakes is one of the most unforgettable things to do in Bulgaria, offering dramatic alpine scenery and a deeper connection to the country’s wild mountain landscapes as part of a nature-focused trip to Bulgaria.',
+        'Located high in the Rila Mountains, the lakes are linked by panoramic trails that pass glacial basins, rolling ridgelines, and sweeping viewpoints. Each lake has its own distinctive shape and name—such as The Eye, The Kidney, and The Tear—creating one of the most scenic hiking routes among all the places to visit in Bulgaria.',
+        'For a truly immersive experience, consider spending the night in a traditional mountain hut near the lakes. Staying at altitude lets you enjoy sunset and sunrise over the alpine landscape, quieter trails after day visitors leave, and the unique atmosphere of Bulgaria’s long-standing hiking culture—an authentic and slightly adventurous addition to any well-planned Bulgaria itinerary and one of the most memorable unusual things to do in Bulgaria.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/9-1-scaled.webp`,
@@ -499,9 +537,13 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
       },
     },
     {
-      title: '10. Black Sea old towns and villages',
+      title: 'Explore the Old Towns and Hidden Villages Along the Black Sea Coast',
+      expandable: true,
       text: [
-        'Nessebar and Sozopol offer historic coastal architecture and churches, while Sinemorets and Varvara provide quieter beaches and slower village atmosphere.',
+        'Exploring the historic settlements along Bulgaria’s Black Sea coast is one of the most relaxing and culturally rich things to do in Bulgaria, especially if your trip to Bulgaria includes both seaside scenery and traditional architecture.',
+        'The UNESCO-listed old town of Nessebar is one of the most famous places to visit in Bulgaria, known for its ancient churches, cobbled streets, and wooden Revival-era houses perched on a narrow peninsula. Nearby, Sozopol offers a similarly charming atmosphere with historic seaside homes, small galleries, and excellent seafood restaurants along the waterfront.',
+        'However, beyond these popular destinations, the southern coast hides quieter villages where you can still experience authentic Bulgarian hospitality. Places like Sinemorets and Varvara offer a slower pace of life, scenic beaches, and a strong connection to local traditions—ideal stops for travelers looking for more unusual things to do in Bulgaria away from the summer crowds.',
+        'Including both historic coastal towns and lesser-known seaside villages in your Bulgaria itinerary creates a balanced experience of culture, nature, and relaxed Black Sea charm.',
       ],
       image: {
         src: `${BULGARIA_POST_IMAGE_BASE}/10-1-scaled.webp`,

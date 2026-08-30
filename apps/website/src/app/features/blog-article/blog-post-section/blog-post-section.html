@@ -3,8 +3,18 @@
     <h2>{{ section.title }}</h2>
   }
 
-  @for (paragraph of section.text ?? []; track paragraph) {
-    <p>{{ paragraph }}</p>
+  @if (section.expandable && (section.text?.length ?? 0) > 1) {
+    <p>{{ section.text![0] }}</p>
+    <details class="blog-post-section__more">
+      <summary>Continue reading…</summary>
+      @for (paragraph of section.text!.slice(1); track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </details>
+  } @else {
+    @for (paragraph of section.text ?? []; track paragraph) {
+      <p>{{ paragraph }}</p>
+    }
   }
 
   @if (section.list) {
@@ -18,7 +28,10 @@
   @if (section.boldList) {
     <ul>
       @for (item of section.boldList; track item.label) {
-        <li><strong>{{ item.label }}</strong>{{ item.text }}</li>
+        <li>
+          <strong>{{ item.label }}</strong
+          >{{ item.text }}
+        </li>
       }
     </ul>
   }
@@ -46,7 +59,10 @@
   }
 
   @if (section.cta; as cta) {
-    <p>{{ cta.before }}<a [routerLink]="cta.linkUrl">{{ cta.linkText }}</a>{{ cta.after }}</p>
+    <p>
+      {{ cta.before }}<a [routerLink]="cta.linkUrl">{{ cta.linkText }}</a
+      >{{ cta.after }}
+    </p>
   }
 
   @if (section.image) {

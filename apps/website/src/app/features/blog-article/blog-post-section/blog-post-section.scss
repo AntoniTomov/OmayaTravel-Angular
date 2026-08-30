@@ -1,5 +1,27 @@
+@use '../../../../styles/tokens' as tokens;
+
 .blog-post-section {
   margin-bottom: 1.2rem;
+}
+
+.blog-post-section__more summary {
+  list-style: none;
+  color: tokens.$omaya-color-gold;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.blog-post-section__more summary::-webkit-details-marker {
+  display: none;
+}
+
+.blog-post-section__more[open] summary {
+  margin-bottom: 0.6rem;
+}
+
+.blog-post-section__more p:last-child {
+  margin-bottom: 0;
 }
 
 .blog-post-section h2,
