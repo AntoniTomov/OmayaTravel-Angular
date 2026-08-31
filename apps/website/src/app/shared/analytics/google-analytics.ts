@@ -38,6 +38,7 @@ export class GoogleAnalytics {
   private sendPageView(path: string, title: string): void {
     this.gtag('event', 'page_view', {
       send_to: this.measurementId,
+      ...this.debugParams(),
       page_path: path,
       page_title: title,
       page_location: this.document.location?.href,
@@ -49,7 +50,7 @@ export class GoogleAnalytics {
       return;
     }
 
-    this.gtag('event', name, params);
+    this.gtag('event', name, { ...this.debugParams(), ...params });
   }
 
   private ensureInitialized(): boolean {
@@ -115,5 +116,9 @@ export class GoogleAnalytics {
 
   private gtag(...args: Parameters<Gtag>): void {
     this.document.defaultView?.gtag?.(...args);
+  }
+
+  private debugParams(): Record<string, true> {
+    return this.document.location?.search.includes('ga_debug=1') ? { debug_mode: true } : {};
   }
 }
