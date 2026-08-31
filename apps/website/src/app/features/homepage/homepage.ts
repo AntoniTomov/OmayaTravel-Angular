@@ -76,9 +76,8 @@ export class Homepage implements OnDestroy {
       ...attributes,
       src: slide.visualSrc,
       srcset:
-        slide.visualSrcset
-          ?.map((variant) => `${variant.src} ${variant.width}w`)
-          .join(', ') ?? `${slide.visualSrc} ${slide.image.width}w`,
+        slide.visualSrcset?.map((variant) => `${variant.src} ${variant.width}w`).join(', ') ??
+        `${slide.visualSrc} ${slide.image.width}w`,
     };
   });
 
