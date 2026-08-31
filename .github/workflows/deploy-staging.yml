@@ -27,48 +27,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm from packageManager
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.22.3
-          cache: pnpm
+          node-version: 24.15.0
+          cache: npm
 
       - name: Install dependencies
         run: |
-          pnpm install --frozen-lockfile --prefer-offline --reporter=append-only > /tmp/omaya-install.log 2>&1 || {
+          npm ci > /tmp/omaya-install.log 2>&1 || {
             cat /tmp/omaya-install.log
             exit 1
           }
 
       - name: Lint
         run: |
-          pnpm run lint > /tmp/omaya-lint.log 2>&1 || {
+          npm run lint > /tmp/omaya-lint.log 2>&1 || {
             cat /tmp/omaya-lint.log
             exit 1
           }
 
       - name: Type check
         run: |
-          pnpm run type-check > /tmp/omaya-type-check.log 2>&1 || {
+          npm run type-check > /tmp/omaya-type-check.log 2>&1 || {
             cat /tmp/omaya-type-check.log
             exit 1
           }
 
       - name: Test
         run: |
-          pnpm run test > /tmp/omaya-test.log 2>&1 || {
+          npm run test > /tmp/omaya-test.log 2>&1 || {
             cat /tmp/omaya-test.log
             exit 1
           }
 
       - name: Build
         run: |
-          pnpm run build > /tmp/omaya-build.log 2>&1 || {
+          npm run build > /tmp/omaya-build.log 2>&1 || {
             cat /tmp/omaya-build.log
             exit 1
           }
