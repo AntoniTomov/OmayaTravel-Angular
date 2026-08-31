@@ -50,7 +50,13 @@ describe('Homepage', () => {
       '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp',
     );
     expect(image.getAttribute('srcset')).toBe(
-      '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp 1920w',
+      [
+        '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-480w.webp 480w',
+        '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-720w.webp 720w',
+        '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-960w.webp 960w',
+        '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-1200w.webp 1200w',
+        '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-1600w.webp 1600w',
+      ].join(', '),
     );
     expect(image.getAttribute('sizes')).toBe('100vw');
     expect(image.getAttribute('width')).toBe('1920');
