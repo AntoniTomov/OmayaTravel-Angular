@@ -221,7 +221,11 @@ app.use((req, res, next) => {
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 3000.
  */
-if (isMainModule(import.meta.url) || process.env['pm_id']) {
+if (
+  isMainModule(import.meta.url) ||
+  process.env['pm_id'] ||
+  process.env['OMAYA_FORCE_SERVER_LISTEN'] === 'true'
+) {
   const port = Number(process.env['PORT'] ?? 3000);
   const host = '0.0.0.0';
 
