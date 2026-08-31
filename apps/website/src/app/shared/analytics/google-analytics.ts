@@ -23,12 +23,16 @@ export class GoogleAnalytics {
   private pendingPageView: { path: string; title: string } | null = null;
 
   trackPageView(path: string, title = this.document.title): void {
+    this.debug('trackPageView requested', { path, title });
+
     if (!this.ensureInitialized()) {
+      this.debug('trackPageView skipped: analytics not initialized');
       return;
     }
 
     if (!this.scriptReady) {
       this.pendingPageView = { path, title };
+      this.debug('page_view queued until GA script loads', { path, title });
       return;
     }
 
@@ -36,6 +40,12 @@ export class GoogleAnalytics {
   }
 
   private sendPageView(path: string, title: string): void {
+    this.debug('page_view sent to GA4', {
+      path,
+      title,
+      measurementId: this.measurementId,
+    });
+
     this.gtag('event', 'page_view', {
       send_to: this.measurementId,
       ...this.debugParams(),
@@ -47,6 +57,7 @@ export class GoogleAnalytics {
 
   trackEvent(name: string, params: Record<string, unknown> = {}): void {
     if (!this.ensureInitialized()) {
+      this.debug('event skipped: analytics not initialized', { name });
       return;
     }
 
@@ -55,16 +66,22 @@ export class GoogleAnalytics {
 
   private ensureInitialized(): boolean {
     if (!this.isBrowser || !this.measurementId) {
+      this.debug('initialization skipped', {
+        isBrowser: this.isBrowser,
+        hasMeasurementId: Boolean(this.measurementId),
+      });
       return false;
     }
 
     if (this.initialized) {
+      this.debug('analytics already initialized');
       return true;
     }
 
     const windowRef = this.document.defaultView;
 
     if (!windowRef) {
+      this.debug('initialization skipped: window unavailable');
       return false;
     }
 
@@ -79,6 +96,11 @@ export class GoogleAnalytics {
     this.gtag('config', this.measurementId, { send_page_view: false });
     this.appendScript();
     this.initialized = true;
+    this.debug('analytics initialized', {
+      measurementId: this.measurementId,
+      hasGtag: typeof windowRef.gtag === 'function',
+      dataLayerLength: windowRef.dataLayer?.length ?? 0,
+    });
 
     return true;
   }
@@ -87,6 +109,8 @@ export class GoogleAnalytics {
     const scriptId = 'google-analytics-gtag';
 
     if (this.document.getElementById(scriptId)) {
+      this.scriptReady = true;
+      this.debug('GA script already exists in document');
       return;
     }
 
@@ -100,6 +124,9 @@ export class GoogleAnalytics {
       'load',
       () => {
         this.scriptReady = true;
+        this.debug('GA script loaded', {
+          dataLayerLength: this.document.defaultView?.dataLayer?.length ?? 0,
+        });
 
         if (this.pendingPageView) {
           const { path, title } = this.pendingPageView;
@@ -110,8 +137,16 @@ export class GoogleAnalytics {
       },
       { once: true },
     );
+    script.addEventListener(
+      'error',
+      () => {
+        this.debug('GA script failed to load', { src: script.src });
+      },
+      { once: true },
+    );
 
     this.document.head.appendChild(script);
+    this.debug('GA script appended', { src: script.src });
   }
 
   private gtag(...args: Parameters<Gtag>): void {
@@ -120,5 +155,46 @@ export class GoogleAnalytics {
 
   private debugParams(): Record<string, true> {
     return this.document.location?.search.includes('ga_debug=1') ? { debug_mode: true } : {};
+  }
+
+  private debug(message: string, details: Record<string, unknown> = {}): void {
+    if (!this.isBrowser || !this.document.location?.search.includes('ga_debug=1')) {
+      return;
+    }
+
+    const windowRef = this.document.defaultView;
+    const line = `[${new Date().toLocaleTimeString()}] ${message}${
+      Object.keys(details).length ? ` ${JSON.stringify(details)}` : ''
+    }`;
+
+    windowRef?.console.info('[Omaya GA Debug]', message, details);
+
+    let panel = this.document.getElementById('omaya-ga-debug');
+
+    if (!panel) {
+      panel = this.document.createElement('pre');
+      panel.id = 'omaya-ga-debug';
+      panel.setAttribute('aria-label', 'Omaya GA debug');
+      panel.style.cssText = [
+        'position:fixed',
+        'left:12px',
+        'bottom:12px',
+        'z-index:2147483647',
+        'max-width:min(92vw,720px)',
+        'max-height:42vh',
+        'overflow:auto',
+        'padding:12px',
+        'margin:0',
+        'border-radius:8px',
+        'background:rgba(0,0,0,0.86)',
+        'color:#fff',
+        'font:12px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace',
+        'white-space:pre-wrap',
+        'box-shadow:0 12px 32px rgba(0,0,0,0.28)',
+      ].join(';');
+      this.document.body.appendChild(panel);
+    }
+
+    panel.textContent = `${panel.textContent ?? ''}${line}\n`;
   }
 }
