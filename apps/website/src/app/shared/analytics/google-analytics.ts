@@ -19,12 +19,23 @@ export class GoogleAnalytics {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly measurementId = GOOGLE_ANALYTICS_MEASUREMENT_ID.trim();
   private initialized = false;
+  private scriptReady = false;
+  private pendingPageView: { path: string; title: string } | null = null;
 
   trackPageView(path: string, title = this.document.title): void {
     if (!this.ensureInitialized()) {
       return;
     }
 
+    if (!this.scriptReady) {
+      this.pendingPageView = { path, title };
+      return;
+    }
+
+    this.sendPageView(path, title);
+  }
+
+  private sendPageView(path: string, title: string): void {
     this.gtag('event', 'page_view', {
       send_to: this.measurementId,
       page_path: path,
@@ -84,6 +95,20 @@ export class GoogleAnalytics {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
       this.measurementId,
     )}`;
+    script.addEventListener(
+      'load',
+      () => {
+        this.scriptReady = true;
+
+        if (this.pendingPageView) {
+          const { path, title } = this.pendingPageView;
+
+          this.pendingPageView = null;
+          this.sendPageView(path, title);
+        }
+      },
+      { once: true },
+    );
 
     this.document.head.appendChild(script);
   }
