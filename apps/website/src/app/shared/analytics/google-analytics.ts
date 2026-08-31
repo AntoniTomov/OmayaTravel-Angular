@@ -25,7 +25,7 @@ export class GoogleAnalytics {
       return;
     }
 
-    this.gtag('config', this.measurementId, {
+    this.gtag('event', 'page_view', {
       page_path: path,
       page_title: title,
       page_location: this.document.location?.href,
