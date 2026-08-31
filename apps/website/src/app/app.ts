@@ -7,6 +7,7 @@ import { PublicFooter } from './features/public-footer/public-footer';
 import { NewsletterPopup } from './features/newsletter-popup/newsletter-popup';
 import { CookieConsent } from './features/cookie-consent/cookie-consent';
 import { OmayaAnalytics } from './shared/analytics/omaya-analytics';
+import { CookieConsent as CookieConsentService } from './shared/cookie-consent/cookie-consent';
 import { OmayaI18n } from './shared/i18n/omaya-i18n';
 import { ActiveSite } from '../sites/active-site';
 
@@ -20,9 +21,11 @@ export class App {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly document = inject(DOCUMENT);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly cookieConsent = inject(CookieConsentService);
   private readonly activeSite = inject(ActiveSite);
   private readonly i18n = inject(OmayaI18n);
   private parallaxFrame: number | null = null;
+  private lastTrackedPageView = '';
 
   constructor(router: Router) {
     effect(() => {
@@ -33,13 +36,19 @@ export class App {
       this.document.documentElement.setAttribute('data-theme', site.theme.dataTheme);
     });
 
+    effect(() => {
+      if (this.cookieConsent.currentChoice() === 'accepted') {
+        this.trackCurrentPageView(router.url);
+      }
+    });
+
     router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event) => {
         if (this.isBrowser) {
           window.scrollTo({ top: 0, behavior: 'smooth' });
           this.updateHeroBackgroundPosition();
-          this.analytics.trackPageView(event.urlAfterRedirects);
+          this.trackCurrentPageView(event.urlAfterRedirects);
         }
       });
   }
@@ -65,5 +74,20 @@ export class App {
     const offset = -Math.round(window.scrollY * 0.08);
 
     this.document.documentElement.style.setProperty('--omaya-hero-background-y', `${offset}px`);
+  }
+
+  private trackCurrentPageView(path: string): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    const trackingKey = `${path}|${this.document.title}`;
+
+    if (trackingKey === this.lastTrackedPageView) {
+      return;
+    }
+
+    this.lastTrackedPageView = trackingKey;
+    this.analytics.trackPageView(path, this.document.title);
   }
 }
