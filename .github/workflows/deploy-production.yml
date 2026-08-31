@@ -1,0 +1,111 @@
+name: Deploy production
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  CI: true
+  NG_CLI_ANALYTICS: false
+  PNPM_CONFIG_PROGRESS: false
+  HOSTINGER_APPROVED_PRODUCTION_PATH: /home/u205658115/domains/palevioletred-finch-447226.hostingersite.com/public_html
+
+jobs:
+  deploy:
+    name: Build and upload production SSR bundle
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://palevioletred-finch-447226.hostingersite.com
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm from packageManager
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Type check
+        run: pnpm run type-check
+
+      - name: Test
+        run: pnpm run test
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Prepare runtime package
+        shell: bash
+        run: |
+          test -f apps/website/dist/website/server/server.mjs
+          cat > apps/website/dist/website/package.json <<'JSON'
+          {
+            "name": "omaya-travel-website-runtime",
+            "version": "0.0.0",
+            "private": true,
+            "type": "module",
+            "scripts": {
+              "build": "node -e \"console.log('Using prebuilt Angular SSR bundle.')\"",
+              "start": "node server/server.mjs"
+            }
+          }
+          JSON
+          tar -czf omaya-production-ssr.tgz -C apps/website/dist/website .
+
+      - name: Install SSH tools
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+      - name: Upload and extract runtime package
+        shell: bash
+        env:
+          SSH_HOST: ${{ vars.HOSTINGER_PRODUCTION_HOST }}
+          SSH_PORT: ${{ vars.HOSTINGER_PRODUCTION_PORT }}
+          SSH_USER: ${{ vars.HOSTINGER_PRODUCTION_USERNAME }}
+          SSH_PASSWORD: ${{ secrets.HOSTINGER_PRODUCTION_PASSWORD }}
+          SSH_PATH: ${{ vars.HOSTINGER_PRODUCTION_PATH }}
+        run: |
+          test -n "$SSH_HOST"
+          test -n "$SSH_PORT"
+          test -n "$SSH_USER"
+          test -n "$SSH_PASSWORD"
+          test -n "$SSH_PATH"
+          if [ "$SSH_PATH" != "$HOSTINGER_APPROVED_PRODUCTION_PATH" ]; then
+            echo "Refusing to deploy to unapproved path: $SSH_PATH" >&2
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          touch ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          timeout 15s ssh-keyscan -q -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=accept-new -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "mkdir -p \"$SSH_PATH\""
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=accept-new -P "$SSH_PORT" \
+            omaya-production-ssr.tgz "$SSH_USER@$SSH_HOST:$SSH_PATH/omaya-production-ssr.tgz"
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=accept-new -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "tar -xzf \"$SSH_PATH/omaya-production-ssr.tgz\" -C \"$SSH_PATH\" && rm -f \"$SSH_PATH/omaya-production-ssr.tgz\""
