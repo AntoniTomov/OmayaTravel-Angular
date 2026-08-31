@@ -200,6 +200,33 @@ export class GoogleAnalytics {
       };
     }
 
+    const HTMLImageElementRef = (
+      windowRef as Window & { HTMLImageElement: typeof HTMLImageElement }
+    ).HTMLImageElement;
+    const originalImageSrc = Object.getOwnPropertyDescriptor(HTMLImageElementRef.prototype, 'src');
+
+    if (originalImageSrc?.set && originalImageSrc.get) {
+      Object.defineProperty(HTMLImageElementRef.prototype, 'src', {
+        configurable: true,
+        enumerable: originalImageSrc.enumerable,
+        get: originalImageSrc.get,
+        set(this: HTMLImageElement, value: string) {
+          if (isAnalyticsUrl(value)) {
+            windowRef.dispatchEvent(
+              new CustomEvent('omaya-ga-debug', {
+                detail: {
+                  message: 'GA network image',
+                  details: { url: value },
+                },
+              }),
+            );
+          }
+
+          originalImageSrc.set?.call(this, value);
+        },
+      });
+    }
+
     const XMLHttpRequestRef = (windowRef as Window & { XMLHttpRequest: typeof XMLHttpRequest })
       .XMLHttpRequest;
     const originalOpen = XMLHttpRequestRef.prototype.open as (...args: unknown[]) => void;
