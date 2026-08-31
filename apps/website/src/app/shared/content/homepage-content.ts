@@ -14,6 +14,12 @@ export interface NavigationGroup {
 export interface HeroSlide {
   image: MediaReference;
   visualSrc?: string;
+  visualSrcset?: readonly HeroSlideImageVariant[];
+}
+
+export interface HeroSlideImageVariant {
+  src: string;
+  width: number;
 }
 
 export interface TripSearchDestination {
@@ -158,6 +164,28 @@ export const HOMEPAGE_HERO = {
         height: 1080,
       },
       visualSrc: '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp',
+      visualSrcset: [
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-480w.webp',
+          width: 480,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-720w.webp',
+          width: 720,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-960w.webp',
+          width: 960,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-1200w.webp',
+          width: 1200,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-1600w.webp',
+          width: 1600,
+        },
+      ],
     },
     {
       image: {
@@ -167,6 +195,24 @@ export const HOMEPAGE_HERO = {
         height: 1080,
       },
       visualSrc: '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp',
+      visualSrcset: [
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-2-e1785918980400-480w.webp',
+          width: 480,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-2-e1785918980400-720w.webp',
+          width: 720,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-2-e1785918980400-960w.webp',
+          width: 960,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-2-e1785918980400-1200w.webp',
+          width: 1200,
+        },
+      ],
     },
     {
       image: {
@@ -176,6 +222,28 @@ export const HOMEPAGE_HERO = {
         height: 1080,
       },
       visualSrc: '/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp',
+      visualSrcset: [
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-3-480w.webp',
+          width: 480,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-3-720w.webp',
+          width: 720,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-3-960w.webp',
+          width: 960,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-3-1200w.webp',
+          width: 1200,
+        },
+        {
+          src: '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-3-1600w.webp',
+          width: 1600,
+        },
+      ],
     },
   ] satisfies readonly HeroSlide[],
 };
