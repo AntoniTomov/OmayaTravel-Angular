@@ -90,8 +90,8 @@ export class GoogleAnalytics {
     this.installNetworkDebug(windowRef);
     windowRef.gtag =
       windowRef.gtag ??
-      function gtag(...args: Parameters<Gtag>) {
-        windowRef.dataLayer?.push(args);
+      function gtag() {
+        windowRef.dataLayer?.push(arguments);
       };
 
     this.gtag('js', new Date());
