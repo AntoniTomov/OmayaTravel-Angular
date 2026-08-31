@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Omaya Travel Angular rebuild monorepo.",
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "pnpm@11.24.0",
   "scripts": {
     "build": "pnpm --dir apps/website run build",
     "lint": "pnpm --filter website run format:check",
