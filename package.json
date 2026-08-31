@@ -5,14 +5,14 @@
   "description": "Omaya Travel Angular rebuild monorepo.",
   "packageManager": "pnpm@11.24.0",
   "scripts": {
-    "build": "pnpm --dir apps/website run build",
-    "lint": "pnpm --filter website run format:check",
+    "build": "cd apps/website && npm run build",
+    "lint": "cd apps/website && npm run format:check",
     "preview:phone": "powershell -ExecutionPolicy Bypass -File scripts/phone-preview.ps1",
-    "type-check": "pnpm --dir apps/website exec ng build --configuration development --progress=false",
-    "test": "pnpm --dir apps/website run test"
+    "type-check": "cd apps/website && npm run build -- --configuration development",
+    "test": "cd apps/website && npm run test"
   },
   "engines": {
-    "node": ">=22.22.3",
+    "node": ">=22.18.0",
     "pnpm": ">=10.0.0"
   }
 }
