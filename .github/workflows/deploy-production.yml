@@ -13,7 +13,7 @@ permissions:
 env:
   CI: true
   NG_CLI_ANALYTICS: false
-  HOSTINGER_APPROVED_PRODUCTION_PATH: /home/u205658115/domains/palevioletred-finch-447226.hostingersite.com/public_html
+  HOSTINGER_APPROVED_PRODUCTION_PATH: /home/u205658115/domains/paleturquoise-aardvark-680177.hostingersite.com/public_html
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://palevioletred-finch-447226.hostingersite.com
+      url: https://paleturquoise-aardvark-680177.hostingersite.com
 
     steps:
       - name: Checkout
