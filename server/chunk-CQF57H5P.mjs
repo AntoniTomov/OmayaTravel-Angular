@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Db as i,Pa as o,jb as n,kb as a,lb as m}from"./chunk-LUCTRPQE.mjs";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-form-honeypot"]],decls:3,vars:0,consts:[["aria-hidden","true",1,"form-honeypot"],["type","text","name","website","autocomplete","off","tabindex","-1"]],template:function(e,s){e&1&&(n(0,"label",0),i(1," Website "),m(2,"input",1),a())},encapsulation:2})};export{p as a};
