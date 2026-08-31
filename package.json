@@ -3,16 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "description": "Omaya Travel Angular rebuild monorepo.",
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "npm@11.17.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "build": "pnpm --dir apps/website run build",
-    "lint": "pnpm --filter website run format:check",
+    "build": "cd apps/website && npm run build",
+    "lint": "cd apps/website && npm run format:check",
     "preview:phone": "powershell -ExecutionPolicy Bypass -File scripts/phone-preview.ps1",
-    "type-check": "pnpm --dir apps/website exec ng build --configuration development --progress=false",
-    "test": "pnpm --dir apps/website run test"
+    "type-check": "cd apps/website && npm run build -- --configuration development",
+    "test": "cd apps/website && npm run test"
   },
   "engines": {
-    "node": ">=22.22.3",
-    "pnpm": ">=10.0.0"
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0",
+    "npm": ">=10.0.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "lmdb@3.5.6": true,
+    "msgpackr-extract@3.0.4": true,
+    "@parcel/watcher@2.6.0": true
   }
 }
