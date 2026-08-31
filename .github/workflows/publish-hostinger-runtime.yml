@@ -1,0 +1,97 @@
+name: Publish Hostinger runtime
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: hostinger-runtime-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  CI: true
+  NG_CLI_ANALYTICS: false
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+  publish:
+    name: Build and publish runtime branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Prepare Hostinger runtime bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f apps/website/dist/website/server/server.mjs
+          rm -rf ../hostinger-runtime
+          git clone --depth 1 --branch hostinger-runtime \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            ../hostinger-runtime
+          find ../hostinger-runtime -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a apps/website/dist/website/. ../hostinger-runtime/
+          cat > ../hostinger-runtime/hostinger-entry.mjs <<'JS'
+          process.env.OMAYA_FORCE_SERVER_LISTEN = 'true';
+          await import('./server/server.mjs');
+          JS
+          cat > ../hostinger-runtime/package.json <<'JSON'
+          {
+            "name": "omaya-travel-hostinger-runtime",
+            "version": "0.0.0",
+            "private": true,
+            "type": "module",
+            "scripts": {
+              "build": "node -e \"console.log('Using prebuilt Angular SSR bundle.')\"",
+              "start": "node hostinger-entry.mjs"
+            },
+            "engines": {
+              "node": ">=18"
+            }
+          }
+          JSON
+
+      - name: Publish Hostinger runtime branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd ../hostinger-runtime
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No runtime changes to publish."
+            exit 0
+          fi
+          git commit -m "Refresh Hostinger runtime bundle"
+          git push origin HEAD:hostinger-runtime
