@@ -227,6 +227,24 @@ export class GoogleAnalytics {
       });
     }
 
+    const ElementRef = (windowRef as Window & { Element: typeof Element }).Element;
+    const originalSetAttribute = ElementRef.prototype.setAttribute;
+
+    ElementRef.prototype.setAttribute = function setAttribute(name: string, value: string): void {
+      if (name.toLowerCase() === 'src' && isAnalyticsUrl(value)) {
+        windowRef.dispatchEvent(
+          new CustomEvent('omaya-ga-debug', {
+            detail: {
+              message: 'GA network setAttribute',
+              details: { tagName: this.tagName, url: value },
+            },
+          }),
+        );
+      }
+
+      originalSetAttribute.call(this, name, value);
+    };
+
     const XMLHttpRequestRef = (windowRef as Window & { XMLHttpRequest: typeof XMLHttpRequest })
       .XMLHttpRequest;
     const originalOpen = XMLHttpRequestRef.prototype.open as (...args: unknown[]) => void;
