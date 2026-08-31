@@ -14,6 +14,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { FormStatus } from '../../shared/forms/form-status';
+import { submitPublicForm } from '../../shared/forms/public-form-api';
 import {
   TourDetailContent,
   TourFaqItem,
@@ -53,7 +55,7 @@ interface CalendarDay {
 
 @Component({
   selector: 'app-tour-detail',
-  imports: [DatePipe, NgClass, MatIconModule, RouterLink],
+  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
 })
@@ -72,6 +74,8 @@ export class TourDetail {
   protected readonly openFaqIndex = signal<number | null>(null);
   protected readonly isBookingCalendarOpen = signal(false);
   protected readonly selectedBookingDate = signal<string | null>(null);
+  protected readonly bookingSubmitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  protected readonly bookingSubmitMessage = signal('');
   protected readonly calendarMonth = signal(this.startOfMonth(new Date()));
   protected readonly calendarWeekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
   protected readonly todayIso = this.toIsoDate(new Date());
@@ -290,6 +294,80 @@ export class TourDetail {
 
     this.selectedBookingDate.set(iso);
     this.isBookingCalendarOpen.set(false);
+  }
+
+  protected async submitBooking(event: Event): Promise<void> {
+    event.preventDefault();
+
+    const form = event.currentTarget as HTMLFormElement;
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
+    const formData = new FormData(form);
+    const email = String(formData.get('email') ?? '').trim();
+    const confirmEmail = String(formData.get('confirmEmail') ?? '').trim();
+
+    if (email.toLowerCase() !== confirmEmail.toLowerCase()) {
+      this.bookingSubmitStatus.set('error');
+      this.bookingSubmitMessage.set('Please make sure both email fields match.');
+      return;
+    }
+
+    const tour = this.tour();
+    const selectedDate = String(formData.get('date') ?? '').trim();
+    const tickets = String(formData.get('tickets') ?? '').trim();
+    const message = String(formData.get('message') ?? '').trim();
+
+    if (!selectedDate) {
+      this.bookingSubmitStatus.set('error');
+      this.bookingSubmitMessage.set('Please select a tour start date.');
+      return;
+    }
+
+    this.bookingSubmitStatus.set('sending');
+    this.bookingSubmitMessage.set('');
+
+    const result = await submitPublicForm({
+      formType: 'enquire-now',
+      fields: {
+        name: String(formData.get('name') ?? '').trim(),
+        email,
+        phone: String(formData.get('phone') ?? '').trim(),
+        countryCode: '',
+        preferredContactMethod: 'Email me',
+        travelDate: selectedDate,
+        additionalInformation: [
+          tour ? `Tour: ${tour.title}` : '',
+          tour ? `Tour slug: ${tour.slug}` : '',
+          selectedDate ? `Selected date: ${selectedDate}` : '',
+          tickets ? `Number of people: ${tickets}` : '',
+          message ? `Message: ${message}` : '',
+        ]
+          .filter(Boolean)
+          .join('\n'),
+      },
+    });
+
+    if (result.ok) {
+      form.reset();
+      this.selectedBookingDate.set(null);
+      this.bookingSubmitStatus.set('sent');
+      this.bookingSubmitMessage.set(
+        'Thank you. We received your booking request and will reply as soon as possible.',
+      );
+      this.analytics.trackEvent('generate_lead', {
+        form_type: 'tour-booking',
+        tour_slug: tour?.slug ?? '(unknown)',
+      });
+      return;
+    }
+
+    this.bookingSubmitStatus.set('error');
+    this.bookingSubmitMessage.set(
+      result.message ?? 'We could not send your booking request right now.',
+    );
   }
 
   protected showPreviousGalleryImage(): void {

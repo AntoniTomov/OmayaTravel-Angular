@@ -231,15 +231,15 @@
       </div>
 
       <aside class="tour-detail__sidebar" aria-label="Tour booking">
-        <form class="tour-detail__booking" (submit)="$event.preventDefault()">
+        <form class="tour-detail__booking" (submit)="submitBooking($event)">
           <h2>Book this tour</h2>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">edit_square</mat-icon>
-            <input type="text" name="name" placeholder="Name*" autocomplete="name" />
+            <input type="text" name="name" placeholder="Name*" autocomplete="name" required />
           </label>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">mail</mat-icon>
-            <input type="email" name="email" placeholder="Email*" autocomplete="email" />
+            <input type="email" name="email" placeholder="Email*" autocomplete="email" required />
           </label>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">mail</mat-icon>
@@ -248,11 +248,12 @@
               name="confirmEmail"
               placeholder="Confirm Email*"
               autocomplete="email"
+              required
             />
           </label>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">phone</mat-icon>
-            <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" />
+            <input type="tel" name="phone" placeholder="Phone*" autocomplete="tel" required />
           </label>
           <div class="tour-detail__field tour-detail__date-field">
             <mat-icon aria-hidden="true">calendar_month</mat-icon>
@@ -314,11 +315,11 @@
                 </div>
               </div>
             }
-            <input type="hidden" name="date" [value]="selectedBookingDate() ?? ''" />
+            <input type="hidden" name="date" [value]="selectedBookingDate() ?? ''" required />
           </div>
           <label class="tour-detail__field">
             <mat-icon aria-hidden="true">groups_2</mat-icon>
-            <input type="number" name="tickets" min="1" placeholder="Number of people" />
+            <input type="number" name="tickets" min="1" placeholder="Number of people" required />
           </label>
           <textarea name="message" rows="7" placeholder="Message"></textarea>
           <label class="tour-detail__terms">
@@ -330,13 +331,23 @@
           <button
             class="tour-detail__availability"
             type="button"
+            [disabled]="bookingSubmitStatus() === 'sending'"
             (click)="trackTourCta('check_availability')"
           >
             {{ tour.enquiry.cta }}
           </button>
-          <button class="tour-detail__book" type="submit" (click)="trackTourCta('book_now')">
-            Book Now
+          <button
+            class="tour-detail__book"
+            type="submit"
+            [disabled]="bookingSubmitStatus() === 'sending'"
+            (click)="trackTourCta('book_now')"
+          >
+            {{ bookingSubmitStatus() === 'sending' ? 'Sending...' : 'Book Now' }}
           </button>
+          <app-form-status
+            [message]="bookingSubmitMessage()"
+            [isError]="bookingSubmitStatus() === 'error'"
+          />
         </form>
 
         <a
