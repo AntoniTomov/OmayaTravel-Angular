@@ -10,6 +10,7 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: Gtag;
+    omayaGaNetworkDebugInstalled?: boolean;
   }
 }
 
@@ -86,6 +87,7 @@ export class GoogleAnalytics {
     }
 
     windowRef.dataLayer = windowRef.dataLayer ?? [];
+    this.installNetworkDebug(windowRef);
     windowRef.gtag =
       windowRef.gtag ??
       function gtag(...args: Parameters<Gtag>) {
@@ -155,6 +157,84 @@ export class GoogleAnalytics {
 
   private debugParams(): Record<string, true> {
     return this.document.location?.search.includes('ga_debug=1') ? { debug_mode: true } : {};
+  }
+
+  private installNetworkDebug(windowRef: Window): void {
+    if (
+      !this.document.location?.search.includes('ga_debug=1') ||
+      windowRef.omayaGaNetworkDebugInstalled
+    ) {
+      return;
+    }
+
+    windowRef.omayaGaNetworkDebugInstalled = true;
+
+    const isAnalyticsUrl = (url: unknown): boolean =>
+      typeof url === 'string' &&
+      /(?:google-analytics\.com|analytics\.google\.com|googletagmanager\.com)/.test(url);
+
+    const originalSendBeacon = windowRef.navigator.sendBeacon.bind(windowRef.navigator);
+
+    windowRef.navigator.sendBeacon = (url: string | URL, data?: BodyInit | null): boolean => {
+      const target = String(url);
+
+      if (isAnalyticsUrl(target)) {
+        this.debug('GA network sendBeacon', { url: target });
+      }
+
+      return originalSendBeacon(url, data);
+    };
+
+    const originalFetch = windowRef.fetch?.bind(windowRef);
+
+    if (originalFetch) {
+      windowRef.fetch = (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+        const target =
+          typeof input === 'string' || input instanceof URL ? String(input) : input.url;
+
+        if (isAnalyticsUrl(target)) {
+          this.debug('GA network fetch', { url: target });
+        }
+
+        return originalFetch(input, init);
+      };
+    }
+
+    const XMLHttpRequestRef = (windowRef as Window & { XMLHttpRequest: typeof XMLHttpRequest })
+      .XMLHttpRequest;
+    const originalOpen = XMLHttpRequestRef.prototype.open as (...args: unknown[]) => void;
+
+    XMLHttpRequestRef.prototype.open = function open(
+      method: string,
+      url: string | URL,
+      async = true,
+      username?: string | null,
+      password?: string | null,
+    ): void {
+      const target = String(url);
+
+      if (isAnalyticsUrl(target)) {
+        const event = new CustomEvent('omaya-ga-debug', {
+          detail: {
+            message: 'GA network xhr',
+            details: { method, url: target },
+          },
+        });
+
+        windowRef.dispatchEvent(event);
+      }
+
+      originalOpen.call(this, method, url, async, username, password);
+    };
+
+    windowRef.addEventListener('omaya-ga-debug', (event) => {
+      const detail = (event as CustomEvent<{ message: string; details: Record<string, unknown> }>)
+        .detail;
+
+      this.debug(detail.message, detail.details);
+    });
+
+    this.debug('GA network diagnostic installed');
   }
 
   private debug(message: string, details: Record<string, unknown> = {}): void {
