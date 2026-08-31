@@ -13,7 +13,6 @@ permissions:
 env:
   CI: true
   NG_CLI_ANALYTICS: false
-  PNPM_CONFIG_PROGRESS: false
   HOSTINGER_APPROVED_PRODUCTION_PATH: /home/u205658115/domains/palevioletred-finch-447226.hostingersite.com/public_html
 
 jobs:
@@ -28,31 +27,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm from packageManager
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24.15.0
-          cache: pnpm
+          cache: npm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Lint
-        run: pnpm run lint
+        run: npm run lint
 
       - name: Type check
-        run: pnpm run type-check
+        run: npm run type-check
 
       - name: Test
-        run: pnpm run test
+        run: npm run test
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
 
       - name: Prepare runtime package
         shell: bash
