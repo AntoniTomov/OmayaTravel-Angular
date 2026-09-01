@@ -168,6 +168,7 @@ export const routes: Routes = [
       routeKey: 'static-not-yet-but-soon',
       routeType: 'static-page',
       canonicalPath: '/not-yet-but-soon/',
+      noindex: true,
     },
   }),
   ...withStaticPathAccess({

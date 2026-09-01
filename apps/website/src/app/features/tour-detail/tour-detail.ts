@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
+import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
@@ -63,6 +64,7 @@ export class TourDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly analytics = inject(OmayaAnalytics);
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly activeSite = inject(ActiveSite);
   private readonly tourSlug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('tourSlug'))),
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
@@ -79,7 +81,9 @@ export class TourDetail {
   protected readonly calendarMonth = signal(this.startOfMonth(new Date()));
   protected readonly calendarWeekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
   protected readonly todayIso = this.toIsoDate(new Date());
-  protected readonly tour = computed(() => findTourBySlug(this.tourSlug()));
+  protected readonly tour = computed(() =>
+    findTourBySlug(this.tourSlug(), this.activeSite.site().id),
+  );
   protected readonly destinationDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
     const tour = this.tour();
 
@@ -87,9 +91,14 @@ export class TourDetail {
       return [];
     }
 
-    return TOUR_DETAIL_CONTENT.filter(
-      (candidate) => candidate.destination.country === tour.destination.country,
-    ).flatMap((candidate) =>
+    return [
+      tour,
+      ...TOUR_DETAIL_CONTENT.filter(
+        (candidate) =>
+          candidate.slug !== tour.slug &&
+          candidate.destination.country === tour.destination.country,
+      ),
+    ].flatMap((candidate) =>
       candidate.departures.map((departure) => {
         const start = this.parseIsoDate(departure);
         const end = this.addDays(start, candidate.duration.days - 1);

@@ -27,6 +27,7 @@ const FORMS_RATE_LIMIT_MAX = Number(
   process.env['PLATFORM_FORMS_RATE_LIMIT_MAX'] ?? process.env['OMAYA_FORMS_RATE_LIMIT_MAX'] ?? 5,
 );
 const MAILCHIMP_SUBSCRIBE_STATUS = process.env['MAILCHIMP_SUBSCRIBE_STATUS'] ?? 'subscribed';
+const NOINDEX_CANONICAL_PATHS = new Set(['/not-yet-but-soon/']);
 const configuredSiteHosts = Object.values(SITE_CONFIGS).flatMap((site) =>
   site.domain ? [site.domain, `www.${site.domain}`] : [],
 );
@@ -75,8 +76,10 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const site = getRequestSite(req);
-  const urls = PUBLIC_INDEXABLE_ROUTES.filter((route) =>
-    isSiteRouteEnabled(site, route.canonicalPath),
+  const urls = PUBLIC_INDEXABLE_ROUTES.filter(
+    (route) =>
+      isSiteRouteEnabled(site, route.canonicalPath) &&
+      !NOINDEX_CANONICAL_PATHS.has(route.canonicalPath),
   )
     .map((route) => `  <url><loc>${escapeXml(canonicalUrl(route.canonicalPath, site))}</loc></url>`)
     .join('\n');

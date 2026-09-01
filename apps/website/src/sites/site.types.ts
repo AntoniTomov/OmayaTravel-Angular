@@ -26,6 +26,7 @@ export interface SiteBrand {
 }
 
 export interface SiteFeatureFlags {
+  showHeroSearch: boolean;
   showTravelMatch: boolean;
   showFeaturedTrips: boolean;
   showMission: boolean;
@@ -65,10 +66,20 @@ export interface SiteContent {
     subtitle: string;
     slides: readonly HeroSlide[];
   };
+  travelMatchSection?: {
+    title: string;
+    subtitle: string;
+    backgroundImage?: string;
+    items: readonly {
+      title: string;
+      description: string;
+    }[];
+  };
   navigationGroups: readonly NavigationGroup[];
   navigationLinks: readonly NavigationLink[];
   tripSearchDestinations: readonly TripSearchDestination[];
   tripSearchMonths: readonly string[];
+  featuredToursTitle?: string;
   featuredTours: readonly TourCardContent[];
   searchIndex: readonly SearchIndexItem[];
   enabledRoutes: readonly string[];

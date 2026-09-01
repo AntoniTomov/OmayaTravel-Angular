@@ -214,6 +214,16 @@ Comment: before implementation, the Kyrgyzstan copy should be normalized into th
 - [x] Added tests for Amelia route access.
 - [x] Added tests for site-aware canonical generation.
 - [x] Added site-aware title, meta description, canonical, OG, and robots handling.
+- [x] Copied supplied Amelia logo files into the repo.
+- [x] Copied supplied Amelia homepage carousel files into the repo.
+- [x] Copied supplied Amelia coral section background into the repo.
+- [x] Replaced Amelia's temporary Omaya logo paths with Amelia logo paths.
+- [x] Updated Amelia homepage hero title and subtitle from supplied copy.
+- [x] Hid the Omaya homepage find/search section for Amelia.
+- [x] Added Amelia-specific post-hero section content and background.
+- [x] Added Amelia Popular Tours cards for Morocco, Algeria, and Kyrgyzstan.
+- [x] Added site-specific Bulgarian Kyrgyzstan tour detail content for Amelia.
+- [x] Marked the shared coming-soon page as noindex.
 - [x] Verified with `npm.cmd run type-check`.
 - [x] Verified with `npm.cmd run test`.
 - [x] Verified with `npm.cmd run lint`.
@@ -222,19 +232,19 @@ Comment: before implementation, the Kyrgyzstan copy should be normalized into th
 
 ### 1. Amelia Assets
 
-- [ ] Copy supplied Amelia logo files into `apps/website/public/assets/images/amelia/brand/`.
-- [ ] Copy supplied carousel images into `apps/website/public/assets/images/amelia/home/`.
-- [ ] Copy supplied coral background into `apps/website/public/assets/images/amelia/home/`.
+- [x] Copy supplied Amelia logo files into `apps/website/public/assets/images/amelia/brand/`.
+- [x] Copy supplied carousel images into `apps/website/public/assets/images/amelia/home/`.
+- [x] Copy supplied coral background into `apps/website/public/assets/images/amelia/home/`.
 - [ ] Confirm actual image dimensions and update `HeroSlide.image.width` and `HeroSlide.image.height`.
 - [ ] Decide whether to generate responsive variants for the carousel images.
-- [ ] Update Amelia `ogImage` to an Amelia-specific public asset.
+- [x] Update Amelia `ogImage` to an Amelia-specific public asset.
 
 Comment: for performance, the first carousel image should be treated as the LCP image and should be optimized carefully.
 
 ### 2. Amelia Brand Config
 
-- [ ] Replace temporary Omaya logo paths in `amelia/site.config.ts`.
-- [ ] Confirm public brand name: `Amelia Travel`.
+- [x] Replace temporary Omaya logo paths in `amelia/site.config.ts`.
+- [x] Confirm public brand name: `Amelia Travel`.
 - [ ] Confirm final tagline.
 - [ ] Add Amelia phone number if available.
 - [ ] Confirm sender email and recipient email for Resend.
@@ -244,7 +254,7 @@ Comment: the provided logo files appear named for transparent and dark-backgroun
 
 ### 3. Header Navigation
 
-- [ ] Replace current Amelia placeholder navigation with the required menu structure.
+- [x] Replace current Amelia placeholder navigation with the required menu structure.
 - [ ] Use Bulgarian visible labels unless final decision is English menu text.
 - [ ] Implement Destinations as a dropdown/list containing all Amelia destinations.
 - [ ] Route destination links to real destination/tour pages only when content exists.
@@ -254,19 +264,19 @@ Comment: navigation can list destination names before all pages are indexable on
 
 ### 4. Homepage Hero
 
-- [ ] Replace existing Amelia hero title with `Общност за жени пътешественички`.
-- [ ] Replace existing Amelia hero subtitle with the provided Bulgarian subtitle.
-- [ ] Use the three supplied carousel images.
-- [ ] Remove/hide the Omaya find/search section for Amelia.
+- [x] Replace existing Amelia hero title with `Общност за жени пътешественички`.
+- [x] Replace existing Amelia hero subtitle with the provided Bulgarian subtitle.
+- [x] Use the three supplied carousel images.
+- [x] Remove/hide the Omaya find/search section for Amelia.
 - [ ] Confirm carousel timing, mobile crop, contrast, and readable text over all three images.
 
 Comment: the hero text should remain server-rendered text, not embedded inside an image, for SEO and accessibility.
 
 ### 5. First Post-Hero Section
 
-- [ ] Create or adapt a shared section for Amelia's "Защо да се присъединиш към нас?" content.
-- [ ] Use `h1-background-coral.avif` as the section background.
-- [ ] Add the four content blocks exactly as approved, with minor punctuation normalization only if approved.
+- [x] Create or adapt a shared section for Amelia's "Защо да се присъединиш към нас?" content.
+- [x] Use `h1-background-coral.avif` as the section background.
+- [x] Add the four content blocks exactly as approved, with minor punctuation normalization only if approved.
 - [ ] Confirm desktop layout matches the supplied visual direction.
 - [ ] Confirm mobile layout has no overlapping text or awkward wrapping.
 
@@ -303,14 +313,14 @@ Comment: because the site is Bulgarian, visible labels should be Bulgarian, but 
 
 ### 7. Popular Tours
 
-- [ ] Add a Popular Tours section below Amelia's first post-hero section.
-- [ ] Use the supplied screenshot as a card layout/content reference.
-- [ ] Confirm whether the visible section heading should be `Популярни пътувания`, `Популярни турове`, or another final phrase.
-- [ ] Add Morocco, Algeria, and Kyrgyzstan as the first three cards.
-- [ ] Convert supplied Kyrgyzstan text into a full Amelia tour detail page.
+- [x] Add a Popular Tours section below Amelia's first post-hero section.
+- [x] Use the supplied screenshot as a card layout/content reference.
+- [ ] Confirm whether the visible section heading should stay `Popular Tours`, become `Популярни пътувания`, `Популярни турове`, or another final phrase.
+- [x] Add Morocco, Algeria, and Kyrgyzstan as the first three cards.
+- [x] Convert supplied Kyrgyzstan text into a full Amelia tour detail page.
 - [ ] Keep Morocco and Algeria card/detail copy pending until supplied.
-- [ ] Ensure Popular Tours cards link only to valid Amelia-enabled routes.
-- [ ] Add SEO metadata for the Kyrgyzstan tour page before it becomes indexable.
+- [x] Ensure Popular Tours cards link only to valid Amelia-enabled routes.
+- [x] Add SEO metadata for the Kyrgyzstan tour page before it becomes indexable.
 - [ ] Add FAQ schema for Kyrgyzstan only if FAQ content is visible on the page.
 
 Comment: the Kyrgyzstan content is ready for modeling, but Morocco and Algeria are not content-complete for Amelia yet.
@@ -433,10 +443,8 @@ PLATFORM_FORMS_RATE_LIMIT_MAX
 - [ ] Amelia GA4 measurement ID is missing.
 - [ ] Amelia Mailchimp audience/list decision is not finalized.
 - [ ] Amelia Resend sender/domain verification is not confirmed.
-- [ ] Amelia logo assets are not yet copied into the repo.
-- [ ] Amelia homepage carousel images are not yet copied into the repo.
+- [ ] Amelia homepage carousel image dimensions still need visual/metadata confirmation.
 - [ ] Amelia destination pages/routes are not yet implemented.
-- [ ] Amelia Popular Tours section is not yet implemented.
 - [ ] Amelia Morocco and Algeria Popular Tours copy is not yet supplied.
 - [ ] Amelia legal copy is not yet confirmed.
 - [ ] Amelia blog launch decision is not yet confirmed.

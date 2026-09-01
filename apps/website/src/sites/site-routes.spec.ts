@@ -17,9 +17,11 @@ describe('site route access', () => {
 
   it('allows Amelia routes explicitly and blocks Omaya-only routes', () => {
     expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/contact/')).toBe(true);
-    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/women-only-tour-kyrgyzstan/')).toBe(
-      true,
-    );
+    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/kyrgyzstan-tour/')).toBe(true);
+    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/morocco-tour/')).toBe(true);
+    expect(
+      isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/algeria-desert-expedition-tadrart-rouge/'),
+    ).toBe(true);
     expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/your-dmc-partner-in-bulgaria/')).toBe(false);
   });
 });

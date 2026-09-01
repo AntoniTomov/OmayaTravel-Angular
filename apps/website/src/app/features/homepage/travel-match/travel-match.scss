@@ -5,8 +5,11 @@
 }
 
 .travel-match {
+  padding: 4.5rem 0 5rem;
   color: tokens.$omaya-color-ink;
-  background: tokens.$omaya-color-white;
+  background:
+    var(--travel-match-background-image, none) center top / cover no-repeat,
+    tokens.$omaya-color-white;
 }
 
 .travel-match__inner {

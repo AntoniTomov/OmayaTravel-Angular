@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ActiveSite } from '../../../../sites/active-site';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface TravelMatchFeature {
@@ -21,6 +22,7 @@ interface TravelMatchFeature {
 })
 export class TravelMatch {
   protected readonly i18n = inject(OmayaI18n);
+  private readonly activeSite = inject(ActiveSite);
   protected readonly calendarTarget = `/${new Date().getFullYear() === 2027 ? 'calendar-2027' : 'calendar'}/`;
   private readonly icons: readonly TravelMatchFeature['icon'][] = [
     {
@@ -48,10 +50,28 @@ export class TravelMatch {
       height: 81,
     },
   ];
+  protected readonly section = computed(() => {
+    const siteSection = this.activeSite.site().content.travelMatchSection;
+
+    return {
+      title: siteSection?.title ?? this.i18n.t('homepage.travelMatchTitle'),
+      subtitle: siteSection?.subtitle ?? this.i18n.t('homepage.travelMatchSubtitle'),
+      backgroundImage: siteSection?.backgroundImage,
+    };
+  });
+  protected readonly sectionStyle = computed(() => {
+    const backgroundImage = this.section().backgroundImage;
+
+    return backgroundImage
+      ? { '--travel-match-background-image': `url('${backgroundImage}')` }
+      : {};
+  });
   protected readonly features = computed<readonly TravelMatchFeature[]>(() =>
-    this.i18n.travelMatch().map((feature, index) => ({
-      ...feature,
-      icon: this.icons[index],
-    })),
+    (this.activeSite.site().content.travelMatchSection?.items ?? this.i18n.travelMatch()).map(
+      (feature, index) => ({
+        ...feature,
+        icon: this.icons[index],
+      }),
+    ),
   );
 }

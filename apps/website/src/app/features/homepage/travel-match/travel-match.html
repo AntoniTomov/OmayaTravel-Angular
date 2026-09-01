@@ -1,8 +1,10 @@
-<section class="travel-match" aria-labelledby="travel-match-title">
+<section class="travel-match" aria-labelledby="travel-match-title" [style]="sectionStyle()">
   <div class="travel-match__inner">
     <header class="travel-match__header">
-      <h2 id="travel-match-title">{{ i18n.t('homepage.travelMatchTitle') }}</h2>
-      <p>{{ i18n.t('homepage.travelMatchSubtitle') }}</p>
+      <h2 id="travel-match-title">{{ section().title }}</h2>
+      @if (section().subtitle) {
+        <p>{{ section().subtitle }}</p>
+      }
     </header>
 
     <div class="travel-match__grid">

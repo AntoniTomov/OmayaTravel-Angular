@@ -15,69 +15,75 @@
       <h1>{{ hero().title }}</h1>
       <p>{{ hero().subtitle }}</p>
 
-      <form class="homepage__trip-search" (submit)="$event.preventDefault(); submitTripSearch()">
-        <div class="homepage__trip-field">
-          <label for="trip-destination">{{ i18n.t('homepage.whereTo') }}</label>
-          <input type="hidden" name="destination" [value]="selectedDestination()" />
-          <button
-            id="trip-destination"
-            class="homepage__trip-select"
-            type="button"
-            [attr.aria-invalid]="searchError().length > 0"
-            [attr.aria-expanded]="activeTripDropdown() === 'destination'"
-            aria-haspopup="listbox"
-            aria-describedby="trip-search-error"
-            (click)="toggleTripDropdown('destination', $event)"
-          >
-            {{ destinationLabel() }}
-          </button>
-          @if (activeTripDropdown() === 'destination') {
-            <div class="homepage__trip-menu" role="listbox">
-              <button type="button" role="option" (click)="updateDestination('')">
-                {{ i18n.t('homepage.whereTo') }}
-              </button>
-              @for (destination of destinations(); track destination.target) {
-                <button type="button" role="option" (click)="updateDestination(destination.target)">
-                  {{ destination.label }}
+      @if (siteFeatures().showHeroSearch) {
+        <form class="homepage__trip-search" (submit)="$event.preventDefault(); submitTripSearch()">
+          <div class="homepage__trip-field">
+            <label for="trip-destination">{{ i18n.t('homepage.whereTo') }}</label>
+            <input type="hidden" name="destination" [value]="selectedDestination()" />
+            <button
+              id="trip-destination"
+              class="homepage__trip-select"
+              type="button"
+              [attr.aria-invalid]="searchError().length > 0"
+              [attr.aria-expanded]="activeTripDropdown() === 'destination'"
+              aria-haspopup="listbox"
+              aria-describedby="trip-search-error"
+              (click)="toggleTripDropdown('destination', $event)"
+            >
+              {{ destinationLabel() }}
+            </button>
+            @if (activeTripDropdown() === 'destination') {
+              <div class="homepage__trip-menu" role="listbox">
+                <button type="button" role="option" (click)="updateDestination('')">
+                  {{ i18n.t('homepage.whereTo') }}
                 </button>
-              }
-            </div>
-          }
-        </div>
+                @for (destination of destinations(); track destination.target) {
+                  <button
+                    type="button"
+                    role="option"
+                    (click)="updateDestination(destination.target)"
+                  >
+                    {{ destination.label }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
 
-        <div class="homepage__trip-field">
-          <label for="trip-month">{{ i18n.t('homepage.when') }}</label>
-          <input type="hidden" name="month" [value]="selectedMonth()" />
-          <button
-            id="trip-month"
-            class="homepage__trip-select"
-            type="button"
-            [attr.aria-expanded]="activeTripDropdown() === 'month'"
-            aria-haspopup="listbox"
-            (click)="toggleTripDropdown('month', $event)"
-          >
-            {{ monthLabel() }}
-          </button>
-          @if (activeTripDropdown() === 'month') {
-            <div class="homepage__trip-menu" role="listbox">
-              <button type="button" role="option" (click)="updateMonth('')">
-                {{ i18n.t('homepage.when') }}
-              </button>
-              @for (month of months(); track month) {
-                <button type="button" role="option" (click)="updateMonth(month)">
-                  {{ month }}
+          <div class="homepage__trip-field">
+            <label for="trip-month">{{ i18n.t('homepage.when') }}</label>
+            <input type="hidden" name="month" [value]="selectedMonth()" />
+            <button
+              id="trip-month"
+              class="homepage__trip-select"
+              type="button"
+              [attr.aria-expanded]="activeTripDropdown() === 'month'"
+              aria-haspopup="listbox"
+              (click)="toggleTripDropdown('month', $event)"
+            >
+              {{ monthLabel() }}
+            </button>
+            @if (activeTripDropdown() === 'month') {
+              <div class="homepage__trip-menu" role="listbox">
+                <button type="button" role="option" (click)="updateMonth('')">
+                  {{ i18n.t('homepage.when') }}
                 </button>
-              }
-            </div>
+                @for (month of months(); track month) {
+                  <button type="button" role="option" (click)="updateMonth(month)">
+                    {{ month }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
+
+          <button type="submit">{{ i18n.t('homepage.findNow') }}</button>
+
+          @if (searchError()) {
+            <p id="trip-search-error" class="homepage__trip-error">{{ searchError() }}</p>
           }
-        </div>
-
-        <button type="submit">{{ i18n.t('homepage.findNow') }}</button>
-
-        @if (searchError()) {
-          <p id="trip-search-error" class="homepage__trip-error">{{ searchError() }}</p>
-        }
-      </form>
+        </form>
+      }
     </div>
 
     <div class="homepage__carousel-controls" [attr.aria-label]="i18n.t('homepage.carouselLabel')">

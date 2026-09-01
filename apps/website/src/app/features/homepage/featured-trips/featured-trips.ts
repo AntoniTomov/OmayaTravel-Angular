@@ -62,6 +62,11 @@ export class FeaturedTrips {
       image: this.buildCardImage(trip.image, trip.alt),
     })),
   );
+  protected readonly title = computed(
+    () =>
+      this.activeSite.site().content.featuredToursTitle ??
+      this.i18n.t('homepage.featuredTripsTitle'),
+  );
   protected readonly activeTripIndex = signal(0);
 
   protected shiftTrip(direction: -1 | 1): void {

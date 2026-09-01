@@ -9,9 +9,8 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     name: 'Amelia Travel',
     tagline: 'Пътувания за жени в малки групи.',
     homeLabel: 'Начало на Amelia Travel',
-    // TODO_DUMMY_AMELIA_LOGO: replace with Amelia logo files when branding is ready.
-    logoSrc: '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp',
-    solidLogoSrc: '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp',
+    logoSrc: '/assets/images/amelia/brand/amelia-logo-transparent-dark-bg.png',
+    solidLogoSrc: '/assets/images/amelia/brand/amelia-logo-transparent.png',
     logoAlt: 'Amelia Travel',
   },
   theme: {
@@ -21,6 +20,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
   },
   content: AMELIA_SITE_CONTENT,
   features: {
+    showHeroSearch: false,
     showTravelMatch: true,
     showFeaturedTrips: true,
     showMission: true,
@@ -38,7 +38,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     defaultTitle: 'Amelia Travel | Пътувания за жени в малки групи',
     defaultDescription:
       'Пътувания за жени в малки групи с внимателно подбрани маршрути, културни срещи и спокойна подкрепа по пътя.',
-    ogImage: '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp',
+    ogImage: '/assets/images/amelia/home/hero-3.avif',
     locale: 'bg_BG',
   },
   contact: {

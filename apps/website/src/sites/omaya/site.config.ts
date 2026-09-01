@@ -20,6 +20,7 @@ export const OMAYA_SITE_CONFIG: SiteConfig = {
   },
   content: OMAYA_SITE_CONTENT,
   features: {
+    showHeroSearch: true,
     showTravelMatch: true,
     showFeaturedTrips: true,
     showMission: true,
