@@ -145,6 +145,7 @@ C:/Users/Toni/Downloads/h1-background-coral.avif
 C:/Users/Toni/Downloads/amelia_logo_transparent.png
 C:/Users/Toni/Downloads/amelia_logo_transparent_dark-bg.png
 C:/Users/Toni/AppData/Local/Temp/codex-clipboard-ab044e25-ba99-4d2d-9313-35de96fca781.png
+C:/Users/Toni/Downloads/popular tours.png
 ```
 
 Target location:
@@ -156,6 +157,42 @@ apps/website/public/assets/images/amelia/
 Comment: do not overwrite Omaya images. Amelia media should stay in an Amelia-specific folder. After copying, confirm dimensions, file sizes, and rendered layout.
 
 The screenshot file is a visual reference for the Omaya Travel section layout that Amelia should mirror for the first post-hero section. It should guide spacing, section rhythm, heading prominence, and four-column desktop composition; its English text and Omaya-specific content should not be reused.
+
+### Popular Tours Section
+
+Below the first post-hero section, Amelia should show a Popular Tours section.
+
+Visual reference:
+
+```text
+C:/Users/Toni/Downloads/popular tours.png
+```
+
+Initial visible tour cards from the supplied screenshot:
+
+- Morocco - Blue Cities & Golden Dunes
+- Algeria Desert Expedition (Tadrart Rouge)
+- Kyrgyzstan Discovery Tour
+
+Comment: the screenshot is a visual/content reference for card composition. The final Amelia cards should use Amelia branding, Bulgarian-facing copy, Amelia route eligibility, and only published/indexable tour URLs when the detail pages are ready.
+
+Kyrgyzstan tour text has been supplied in:
+
+```text
+C:/Users/Toni/.codex/attachments/b5f9d5c2-9b96-46ce-83ae-9fb4cffb3c3e/pasted-text.txt
+```
+
+Kyrgyzstan supplied content includes:
+
+- Bulgarian intro narrative
+- "This trip is for you if" positioning
+- Experience highlights
+- Day-by-day 10-day itinerary
+- Accommodation and meals notes
+- Included / not included sections
+- FAQ content
+
+Comment: before implementation, the Kyrgyzstan copy should be normalized into the existing tour content model: title, summary, hero, highlights, itinerary days, included/excluded, FAQ, SEO title, SEO description, canonical path, card excerpt, and structured-data-safe fields. The phrase "Omaya Travel" appears in the supplied FAQ and should be reviewed before publishing on Amelia.
 
 ## Completed Properly
 
@@ -264,7 +301,21 @@ japan
 
 Comment: because the site is Bulgarian, visible labels should be Bulgarian, but URL slugs should stay ASCII and stable.
 
-### 7. Blog
+### 7. Popular Tours
+
+- [ ] Add a Popular Tours section below Amelia's first post-hero section.
+- [ ] Use the supplied screenshot as a card layout/content reference.
+- [ ] Confirm whether the visible section heading should be `Популярни пътувания`, `Популярни турове`, or another final phrase.
+- [ ] Add Morocco, Algeria, and Kyrgyzstan as the first three cards.
+- [ ] Convert supplied Kyrgyzstan text into a full Amelia tour detail page.
+- [ ] Keep Morocco and Algeria card/detail copy pending until supplied.
+- [ ] Ensure Popular Tours cards link only to valid Amelia-enabled routes.
+- [ ] Add SEO metadata for the Kyrgyzstan tour page before it becomes indexable.
+- [ ] Add FAQ schema for Kyrgyzstan only if FAQ content is visible on the page.
+
+Comment: the Kyrgyzstan content is ready for modeling, but Morocco and Algeria are not content-complete for Amelia yet.
+
+### 8. Blog
 
 - [ ] Decide whether Amelia blog launches now or later.
 - [ ] If launching now, create Amelia-specific blog listing content.
@@ -273,7 +324,7 @@ Comment: because the site is Bulgarian, visible labels should be Bulgarian, but 
 
 Comment: if there is no Amelia blog content at launch, the Blog menu item should either be hidden or route to a non-indexable coming-soon page. Best SEO choice is not to publish thin pages.
 
-### 8. Legal Pages
+### 9. Legal Pages
 
 - [ ] Decide whether Amelia uses the same legal entity as Omaya or separate legal wording.
 - [ ] Update privacy policy text for Amelia brand, domain, contact email, analytics providers, Meta Pixel, GA4, Mailchimp, Resend, and cookies.
@@ -283,7 +334,7 @@ Comment: if there is no Amelia blog content at launch, the Blog menu item should
 
 Comment: this is not just wording. Legal pages affect trust, ads approval, analytics consent, and conversion credibility.
 
-### 9. Analytics And Consent
+### 10. Analytics And Consent
 
 - [ ] Create/provide Amelia GA4 measurement ID.
 - [ ] Confirm Amelia Meta Pixel ID is final: `1088639487435953`.
@@ -295,7 +346,7 @@ Comment: this is not just wording. Legal pages affect trust, ads approval, analy
 
 Comment: Amelia GA4 is intentionally blank right now to prevent accidental Omaya tracking.
 
-### 10. Forms, Resend, And Mailchimp
+### 11. Forms, Resend, And Mailchimp
 
 - [ ] Confirm Amelia recipient email.
 - [ ] Verify `ameliatravel.bg` sender domain in Resend if sending from `website@ameliatravel.bg`.
@@ -308,7 +359,7 @@ Comment: Amelia GA4 is intentionally blank right now to prevent accidental Omaya
 
 Comment: the current code intentionally refuses to fall back to Omaya's Mailchimp audience for Amelia.
 
-### 11. SEO Technical Validation
+### 12. SEO Technical Validation
 
 - [ ] Confirm `https://ameliatravel.bg/robots.txt` points to Amelia sitemap.
 - [ ] Confirm `https://ameliatravel.bg/sitemap.xml` contains only Amelia-approved URLs.
@@ -320,7 +371,7 @@ Comment: the current code intentionally refuses to fall back to Omaya's Mailchim
 - [ ] Add Search Console property for Amelia.
 - [ ] Submit Amelia sitemap after staging validation and production launch.
 
-### 12. Performance Validation
+### 13. Performance Validation
 
 - [ ] Check local Lighthouse/PageSpeed for Amelia homepage.
 - [ ] Check mobile hero LCP.
@@ -329,7 +380,7 @@ Comment: the current code intentionally refuses to fall back to Omaya's Mailchim
 - [ ] Confirm SSR HTML renders Amelia content before hydration.
 - [ ] Confirm no unnecessary Omaya-only sections are loaded/rendered on Amelia homepage.
 
-### 13. Staging And Production Flow
+### 14. Staging And Production Flow
 
 - [ ] Finish feature work on `codex/amelia-travel-platform`.
 - [ ] Review branch diff.
@@ -385,6 +436,8 @@ PLATFORM_FORMS_RATE_LIMIT_MAX
 - [ ] Amelia logo assets are not yet copied into the repo.
 - [ ] Amelia homepage carousel images are not yet copied into the repo.
 - [ ] Amelia destination pages/routes are not yet implemented.
+- [ ] Amelia Popular Tours section is not yet implemented.
+- [ ] Amelia Morocco and Algeria Popular Tours copy is not yet supplied.
 - [ ] Amelia legal copy is not yet confirmed.
 - [ ] Amelia blog launch decision is not yet confirmed.
 
@@ -393,6 +446,7 @@ PLATFORM_FORMS_RATE_LIMIT_MAX
 Amelia is ready for staging when:
 
 - [ ] Local `?site=amelia` preview shows Amelia branding, hero, images, navigation, and first content section.
+- [ ] Amelia Popular Tours section renders below the first post-hero section.
 - [ ] Build, tests, and formatting checks pass.
 - [ ] Amelia sitemap contains only approved Amelia URLs.
 - [ ] Amelia canonicals use `https://ameliatravel.bg`.
