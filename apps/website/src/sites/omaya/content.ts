@@ -33,6 +33,8 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
   }),
   searchIndex: SITE_SEARCH_INDEX,
   enabledRoutes: ['*'],
+  // Amelia-only Bulgarian articles/pages must stay off Omaya and out of its sitemap.
+  excludedRoutes: ['/maroko-za-zheni-pateshestvenichki/'],
   pageSeo: [
     {
       canonicalPath: '/contact/',

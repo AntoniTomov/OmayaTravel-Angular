@@ -264,6 +264,15 @@ Comment: before implementation, the Kyrgyzstan copy should be normalized into th
 - [x] Verified with `npm.cmd run type-check`.
 - [x] Verified with `npm.cmd run test`.
 - [x] Verified with `npm.cmd run lint`.
+- [x] Added Bulgarian Amelia Morocco tour detail content on `/tour-item/morocco-tour/`.
+- [x] Copied the Morocco women-only tour imagery into an Amelia-owned asset folder.
+- [x] Added the Bulgarian Amelia Morocco blog article and made blog listing/article site-aware.
+- [x] Added `excludedRoutes` so Amelia-only pages stay off Omaya and out of its sitemap.
+- [x] Added Amelia "Кои сме ние?" story and founder bios on `/our-story/`.
+- [x] Made tour detail page chrome, dates, and booking form Bulgarian on Amelia.
+- [x] Made the cookie banner, newsletter popup, header search, and homepage mission site-aware.
+- [x] Made `LOCALE_ID` site-aware so Amelia formats dates in Bulgarian.
+- [x] Applied tour/blog content SEO titles and descriptions to detail routes on both sites.
 
 ## Implementation Plan
 
@@ -292,7 +301,7 @@ Comment: the provided logo files appear named for transparent and dark-backgroun
 ### 3. Header Navigation
 
 - [x] Replace current Amelia placeholder navigation with the required menu structure.
-- [ ] Use Bulgarian visible labels unless final decision is English menu text.
+- [x] Bulgarian visible labels: Дестинации, За нас, Блог, Контакти.
 - [ ] Implement Destinations as a dropdown/list containing all Amelia destinations.
 - [ ] Route destination links to real destination/tour pages only when content exists.
 - [ ] Keep incomplete destination pages out of sitemap until ready.
@@ -352,24 +361,50 @@ Comment: because the site is Bulgarian, visible labels should be Bulgarian, but 
 
 - [x] Add a Popular Tours section below Amelia's first post-hero section.
 - [x] Use the supplied screenshot as a card layout/content reference.
-- [ ] Confirm whether the visible section heading should stay `Popular Tours`, become `Популярни пътувания`, `Популярни турове`, or another final phrase.
+- [x] Section heading is now `Популярни пътувания`.
 - [x] Add Morocco, Algeria, and Kyrgyzstan as the first three cards.
 - [x] Convert supplied Kyrgyzstan text into a full Amelia tour detail page.
-- [ ] Keep Morocco and Algeria card/detail copy pending until supplied.
+- [x] Convert supplied Morocco text into a full Amelia tour detail page.
+- [ ] Algeria card/detail copy is still pending; the page body remains Omaya's English content.
 - [x] Ensure Popular Tours cards link only to valid Amelia-enabled routes.
 - [x] Add SEO metadata for the Kyrgyzstan tour page before it becomes indexable.
-- [ ] Add FAQ schema for Kyrgyzstan only if FAQ content is visible on the page.
+- [x] Add SEO metadata for the Morocco tour page before it becomes indexable.
+- [ ] Add FAQ schema for Morocco/Kyrgyzstan only if FAQ content is visible on the page.
 
-Comment: the Kyrgyzstan content is ready for modeling, but Morocco and Algeria are not content-complete for Amelia yet.
+Comment: Kyrgyzstan and Morocco are content-complete for Amelia. Algeria is not.
+
+### 7A. Amelia Morocco Tour
+
+Slug: `/tour-item/morocco-tour/` (Amelia-specific content resolved by `findTourBySlug(slug, 'amelia')`).
+
+- [x] Title: `Мароко - сини градове и златни дюни`.
+- [x] 12 days / 11 nights, EUR 2300 per person, group of 6-12, departure 22 April 2027.
+- [x] Start and end at Sofia Airport (the group travels from Sofia and back together).
+- [x] Category `Само за жени`.
+- [x] Full Bulgarian introduction, 5 highlights, included/not included, 12-day itinerary, 20 FAQ items.
+- [x] Every `Omaya Travel` mention in the supplied copy replaced with `Amelia Travel`.
+- [x] Images taken from the Omaya Morocco women-only tour page and copied into
+      `apps/website/public/assets/images/amelia/tours/morocco/` so Amelia owns its media.
+- [x] Image `width`/`height` set from the real files rather than the inherited Omaya values.
+- [ ] Confirm the final Bulgarian tour title with the business before launch.
+- [ ] Replace the shared Omaya photography with Amelia's own Morocco shoot when available.
+
+Comment: the supplied copy mixed "Omaya Travel" and "Амелия Travel". Both were normalised to
+`Amelia Travel` to match the brand name used everywhere else on the site.
 
 ### 8. Blog
 
-- [ ] Decide whether Amelia blog launches now or later.
-- [ ] If launching now, create Amelia-specific blog listing content.
-- [ ] Keep Omaya blog posts from appearing under Amelia unless they are translated/adapted and approved.
-- [ ] Add blog article SEO and schema only for real Amelia posts.
+- [x] Amelia blog launches with one Bulgarian article.
+- [x] Amelia blog listing shows only Amelia posts, with Bulgarian labels.
+- [x] Omaya blog posts no longer appear under Amelia, and the Amelia article is excluded from Omaya.
+- [x] Article slug `maroko-za-zheni-pateshestvenichki` added to the public route table.
+- [x] Blog article SEO title/description now come from the post content.
+- [x] Footer "latest posts" is driven by the active site's own posts.
+- [ ] Homepage blog grid stays hidden on Amelia (`showBlogPosts: false`) until there are enough posts.
+- [ ] Add more Amelia articles before promoting the blog on the homepage.
 
-Comment: if there is no Amelia blog content at launch, the Blog menu item should either be hidden or route to a non-indexable coming-soon page. Best SEO choice is not to publish thin pages.
+Comment: one article is enough for a real `/blog-list/` page but not for a homepage blog grid, so
+the homepage section stays off for now.
 
 ### 8A. Our Story / Mission Page
 
@@ -380,7 +415,11 @@ Comment: if there is no Amelia blog content at launch, the Blog menu item should
 - [x] Render `Запознайте се с нас` as the next section heading.
 - [x] Avoid displaying untranslated Omaya team bios on Amelia.
 - [x] Add Amelia-specific `/our-story/` SEO title and description.
-- [ ] Add final Amelia team/founder bios and portraits when supplied.
+- [x] Add the supplied `Кои сме ние?` story section.
+- [x] Add Весислава and Неси bios, portraits, and the Instagram link for Неси.
+- [x] Rename the visible H1 from `Нашата мисия` to `За нас` to match the nav item and the
+      supplied About Us content, with `Нашата мисия` kept as a section heading.
+- [ ] Replace the reused Omaya founder portraits with Amelia-branded photography when available.
 
 Comment: the page component is now content-driven by active site, so future Amelia-only page copy can be added without forking the route or duplicating the component.
 
@@ -501,6 +540,36 @@ PLATFORM_FORMS_RATE_LIMIT_WINDOW_MS
 PLATFORM_FORMS_RATE_LIMIT_MAX
 ```
 
+## Platform Changes That Also Affect Omaya
+
+These were needed for Amelia but are not Amelia-only. They must be checked on staging for Omaya too.
+
+- Tour detail and blog article pages now use their own `seo.title` / `seo.description` from the
+  content model instead of falling back to the generic site title. Before this change every Omaya
+  tour and article shared the title `Omaya Travel | Small Group Tours for Curious Travellers`.
+  This is an SEO improvement, but it does change live Omaya titles and meta descriptions.
+- `pageSeo` lookup now also resolves parameterised routes (`/tour-item/:tourSlug/`,
+  `/destinations/:destinationSlug/`), not just static ones.
+- `LOCALE_ID` is now provided per site. Omaya stays on `en`; Amelia uses `bg`.
+- Tour detail page chrome, the cookie banner, and the newsletter popup now read from the i18n
+  dictionary and the active site brand instead of hardcoded English/Omaya strings. Omaya's English
+  wording is unchanged.
+- Footer "latest posts" is derived from the blog content instead of a hardcoded pair of links.
+  Omaya still shows the same two posts.
+- `our-story` section headings now use `[attr.id]` instead of `[id]`, which removes a stray
+  `id="null"` attribute that was also being emitted on Omaya.
+
+## Known Issues Found During This Work
+
+- `/search` returns 404 on both Omaya and Amelia. The Angular route is registered as `search`
+  but the request does not match. This is a pre-existing production bug on Omaya and is not
+  fixed here; it deserves its own change.
+- The Amelia Algeria tour page still renders Omaya's English tour body. Only its title and
+  description are overridden via Amelia `pageSeo`. Do not submit it to Search Console until the
+  Bulgarian copy lands.
+- The legal pages (`/privacy-policy/`, `/cookie-policy/`, `/termsconditions/`) still name
+  Omaya Travel as the company and data controller on Amelia. See section 9.
+
 ## Launch Blockers
 
 - [ ] Amelia GA4 measurement ID is missing.
@@ -508,8 +577,8 @@ PLATFORM_FORMS_RATE_LIMIT_MAX
 - [ ] Amelia Resend sender/domain verification is not confirmed.
 - [ ] Amelia homepage carousel image dimensions still need visual/metadata confirmation.
 - [ ] Amelia destination pages/routes are not yet implemented.
-- [ ] Amelia Morocco and Algeria Popular Tours copy is not yet supplied.
-- [ ] Amelia team/founder bios and portraits for the mission page are not yet supplied.
+- [ ] Amelia Algeria Popular Tours copy is not yet supplied; the page body is still Omaya's English content.
+- [ ] Amelia legal pages still name Omaya Travel as the company and data controller.
 - [ ] Amelia legal copy is not yet confirmed.
 - [ ] Amelia blog launch decision is not yet confirmed.
 

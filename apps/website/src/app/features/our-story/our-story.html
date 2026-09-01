@@ -15,7 +15,7 @@
   <section class="our-story__text" aria-labelledby="our-story-heading">
     @for (section of story().story.sections; track section.heading; let index = $index) {
       <div class="our-story__text-section">
-        <h2 [id]="$first ? 'our-story-heading' : null">{{ section.heading }}</h2>
+        <h2 [attr.id]="$first ? 'our-story-heading' : null">{{ section.heading }}</h2>
         @for (paragraph of section.paragraphs; track paragraph) {
           <p>{{ paragraph }}</p>
         }
@@ -57,10 +57,21 @@
                 @for (paragraph of member.paragraphs; track paragraph) {
                   <p>{{ paragraph }}</p>
                 }
+                @if (member.link; as link) {
+                  <p class="our-story__member-link">
+                    <a [href]="link.url" target="_blank" rel="noopener noreferrer">{{
+                      link.label
+                    }}</a>
+                  </p>
+                }
               </div>
             </article>
           }
         </div>
+      }
+
+      @if (team.outro) {
+        <p class="our-story__team-outro">{{ team.outro }}</p>
       }
     </section>
   }

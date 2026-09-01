@@ -1,16 +1,15 @@
 @if (isVisible()) {
-  <section class="cookie-consent" aria-label="Cookie consent">
+  <section class="cookie-consent" [attr.aria-label]="i18n.t('cookieConsent.label')">
     <div>
-      <h2>Cookie Policy</h2>
-      <p>
-        We use essential cookies to run the website and optional analytics/marketing cookies to
-        understand visits and improve our travel offers.
-      </p>
+      <h2>{{ i18n.t('cookieConsent.title') }}</h2>
+      <p>{{ i18n.t('cookieConsent.body') }}</p>
     </div>
     <div class="cookie-consent__actions">
-      <a routerLink="/cookie-policy/">Cookie Policy</a>
-      <button type="button" class="cookie-consent__secondary" (click)="reject()">Reject</button>
-      <button type="button" (click)="accept()">Accept</button>
+      <a routerLink="/cookie-policy/">{{ i18n.t('cookieConsent.policyLink') }}</a>
+      <button type="button" class="cookie-consent__secondary" (click)="reject()">
+        {{ i18n.t('cookieConsent.reject') }}
+      </button>
+      <button type="button" (click)="accept()">{{ i18n.t('cookieConsent.accept') }}</button>
     </div>
   </section>
 }

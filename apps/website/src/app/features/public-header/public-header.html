@@ -145,7 +145,7 @@
       [attr.aria-hidden]="!isSearchOpen()"
     >
       <form class="public-header__search-panel" (submit)="$event.preventDefault(); submitSearch()">
-        <h2 id="site-search-title">{{ i18n.t('header.searchTitle') }}</h2>
+        <h2 id="site-search-title">{{ searchTitle() }}</h2>
 
         <label for="site-search-input">{{ i18n.t('header.searchLabel') }}</label>
         <input

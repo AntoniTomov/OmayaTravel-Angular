@@ -87,6 +87,17 @@ export interface SiteContent {
       description: string;
     }[];
   };
+  missionSection?: {
+    title: string;
+    copy: string;
+    cta: string;
+    image: {
+      src: string;
+      alt: string;
+      width: number | string;
+      height: number;
+    };
+  };
   navigationGroups: readonly NavigationGroup[];
   navigationLinks: readonly NavigationLink[];
   tripSearchDestinations: readonly TripSearchDestination[];
@@ -95,6 +106,12 @@ export interface SiteContent {
   featuredTours: readonly TourCardContent[];
   searchIndex: readonly SearchIndexItem[];
   enabledRoutes: readonly string[];
+  /**
+   * Routes that must never be served or indexed for this site, even when
+   * `enabledRoutes` contains the `*` wildcard. Keeps brand-specific pages
+   * (for example Amelia-only Bulgarian articles) out of the other brand.
+   */
+  excludedRoutes?: readonly string[];
   pageSeo?: readonly SitePageSeo[];
 }
 

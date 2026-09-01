@@ -4,7 +4,9 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 
 import { ActiveSite } from '../../../sites/active-site';
-import type { SiteConfig } from '../../../sites/site.types';
+import type { SiteConfig, SitePageSeo } from '../../../sites/site.types';
+import { findBlogPostBySlug } from '../content/blog-content';
+import { findTourBySlug } from '../content/tour-content';
 import { canonicalUrl } from '../routing/public-routes';
 
 @Injectable({ providedIn: 'root' })
@@ -18,8 +20,8 @@ export class PublicSeo {
     const site = this.activeSite.site();
     const route = this.deepestRoute(snapshot.root);
     const noindex = Boolean(route.data['noindex']) || route.data['routeStatus'] === 404;
-    const pageSeo = this.pageSeoForRoute(site, route);
-    const title = this.pageTitle(site, route);
+    const pageSeo = this.pageSeoForRoute(site, route) ?? this.contentSeoForRoute(site, route);
+    const title = this.pageTitle(site, route, pageSeo);
     const description = String(
       pageSeo?.description ?? route.data['description'] ?? site.seo.defaultDescription,
     );
@@ -55,9 +57,11 @@ export class PublicSeo {
     return active;
   }
 
-  private pageTitle(site: SiteConfig, route: ActivatedRouteSnapshot): string {
-    const pageSeo = this.pageSeoForRoute(site, route);
-
+  private pageTitle(
+    site: SiteConfig,
+    route: ActivatedRouteSnapshot,
+    pageSeo: Pick<SitePageSeo, 'title' | 'description'> | null,
+  ): string {
     if (pageSeo?.title.trim()) {
       return pageSeo.title.includes(site.brand.name)
         ? pageSeo.title
@@ -75,10 +79,34 @@ export class PublicSeo {
     return site.seo.defaultTitle;
   }
 
-  private pageSeoForRoute(site: SiteConfig, route: ActivatedRouteSnapshot) {
-    const canonicalPath = route.data['canonicalPath'];
+  /**
+   * Detail routes (tours, blog articles) carry their own title/description in the
+   * content model. Without this, every tour and article would inherit the generic
+   * site-level title, which is both an SEO and a share-preview problem.
+   */
+  private contentSeoForRoute(
+    site: SiteConfig,
+    route: ActivatedRouteSnapshot,
+  ): Pick<SitePageSeo, 'title' | 'description'> | null {
+    if (route.data['routeType'] === 'tour-detail') {
+      const tour = findTourBySlug(route.params['tourSlug'], site.id);
 
-    if (typeof canonicalPath !== 'string') {
+      return tour ? { title: tour.seo.title, description: tour.seo.description } : null;
+    }
+
+    if (route.data['routeType'] === 'blog-article') {
+      const post = findBlogPostBySlug(String(route.data['articleSlug'] ?? ''), site.id);
+
+      return post ? { title: post.title, description: post.excerpt } : null;
+    }
+
+    return null;
+  }
+
+  private pageSeoForRoute(site: SiteConfig, route: ActivatedRouteSnapshot): SitePageSeo | null {
+    const canonicalPath = this.resolvedCanonicalPath(route);
+
+    if (!canonicalPath) {
       return null;
     }
 
@@ -86,10 +114,20 @@ export class PublicSeo {
   }
 
   private canonicalForRoute(site: SiteConfig, route: ActivatedRouteSnapshot): string | null {
+    const canonicalPath = this.resolvedCanonicalPath(route);
+
+    return canonicalPath ? canonicalUrl(canonicalPath, site) : null;
+  }
+
+  /**
+   * Static routes carry `canonicalPath`; parameterised routes (tour and destination
+   * detail pages) carry `canonicalPathPattern` and fill it from the route params.
+   */
+  private resolvedCanonicalPath(route: ActivatedRouteSnapshot): string | null {
     const canonicalPath = route.data['canonicalPath'];
 
     if (typeof canonicalPath === 'string') {
-      return canonicalUrl(canonicalPath, site);
+      return canonicalPath;
     }
 
     const canonicalPathPattern = route.data['canonicalPathPattern'];
@@ -98,12 +136,10 @@ export class PublicSeo {
       return null;
     }
 
-    const path = Object.entries(route.params).reduce(
+    return Object.entries(route.params).reduce(
       (result, [key, value]) => result.replace(`:${key}`, String(value)),
       canonicalPathPattern,
     );
-
-    return canonicalUrl(path, site);
   }
 
   private absoluteUrl(site: SiteConfig, value: string): string {

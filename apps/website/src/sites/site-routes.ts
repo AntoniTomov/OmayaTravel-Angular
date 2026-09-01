@@ -15,11 +15,16 @@ export function normalizeSiteRoutePath(url: string): string {
 }
 
 export function isSiteRouteEnabled(site: SiteConfig, url: string): boolean {
+  const path = normalizeSiteRoutePath(url);
   const enabledRoutes = site.content.enabledRoutes;
+
+  if (site.content.excludedRoutes?.includes(path)) {
+    return false;
+  }
 
   if (enabledRoutes.includes('*')) {
     return true;
   }
 
-  return enabledRoutes.includes(normalizeSiteRoutePath(url));
+  return enabledRoutes.includes(path);
 }

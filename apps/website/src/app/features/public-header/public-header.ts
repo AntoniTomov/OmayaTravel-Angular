@@ -75,6 +75,9 @@ export class PublicHeader implements AfterViewInit {
     () => this.activeSite.site().content.navigationLinks,
   );
   protected readonly contact = computed(() => this.activeSite.site().contact);
+  protected readonly searchTitle = computed(
+    () => `${this.i18n.t('header.searchTitlePrefix')} ${this.activeSite.site().brand.name}`,
+  );
   protected readonly socialLinks = computed(() => this.activeSite.site().socialLinks);
   protected readonly hasTopBarLinks = computed(
     () => this.contact().phoneNumbers.length > 0 || this.socialLinks().length > 0,

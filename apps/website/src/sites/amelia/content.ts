@@ -54,40 +54,42 @@ const AMELIA_DESTINATION_LINKS = [
 
 const AMELIA_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
   {
-    label: 'Destinations',
+    label: 'Дестинации',
     links: AMELIA_DESTINATION_LINKS,
   },
 ];
 
 const AMELIA_NAVIGATION_LINKS: readonly NavigationLink[] = [
   {
-    label: 'About Us',
+    label: 'За нас',
     target: '/our-story/',
   },
   {
-    label: 'Blog',
+    label: 'Блог',
     target: '/blog-list/',
   },
   {
-    label: 'Contact Us',
+    label: 'Контакти',
     target: '/contact/',
   },
 ];
 
 const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
   {
-    title: 'Morocco - Blue Cities & Golden Dunes',
-    category: 'Classic Tours',
+    title: 'Мароко - сини градове и златни дюни',
+    category: 'Women only',
+    categoryLabel: 'Само за жени',
     destination: 'Мароко',
     excerpt:
-      "Somewhere between the blue-washed walls of Chefchaouen and a Berber family's tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth.",
-    image: '/assets/images/destinations/Marocco/morocco-bgr.webp',
-    alt: 'Сините улици на Шефшауен в Мароко',
+      'Има един момент - някъде между сините улички на Шефшауен и кехлибарената тишина на Сахара - в който Мароко спира да бъде дестинация и започва да прилича на сън, който вече си сънувала. 12 дни от Атлантическия бряг до дюните на Сахара, в малка група само от жени.',
+    image: '/assets/images/amelia/tours/morocco/morocco-card.webp',
+    alt: 'Сините улички на Шефшауен в Мароко',
     price: 'EUR2300',
-    duration: '12 Days / 11 Nights',
+    duration: '12 дни / 11 нощувки',
     target: '/tour-item/morocco-tour/',
   },
   {
+    // TODO_AMELIA_ALGERIA: Bulgarian tour copy and Amelia-owned imagery are still pending.
     title: 'Algeria Desert Expedition (Tadrart Rouge)',
     category: 'Classic Tours',
     destination: 'Алжир',
@@ -100,15 +102,16 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
   },
   {
-    title: 'Kyrgyzstan Discovery Tour',
-    category: 'Classic Tours',
+    title: 'Киргистан - юрти, коне и високи планини',
+    category: 'Women only',
+    categoryLabel: 'Само за жени',
     destination: 'Киргистан',
     excerpt:
       'Представи си, че се събуждаш в юрта на 3000 метра надморска височина, край тюркоазените води на Сон-Кул, свободни коне и безкрайни високопланински пасища.',
     image: '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
     alt: 'Планински пейзаж в Киргистан',
     price: 'EUR1320',
-    duration: '10 Days 9 Nights',
+    duration: '10 дни / 9 нощувки',
     target: '/tour-item/kyrgyzstan-tour/',
   },
 ];
@@ -147,6 +150,17 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       },
     ],
   },
+  missionSection: {
+    title: 'Нашата мисия',
+    copy: 'Нашата мисия е да създадем пространство, в което жените могат да пътуват свободно, смело и в подкрепяща общност. Вярваме, че женските приятелства, основани на общи интереси и разбирания за света, правят живота по-богат, по-смислен и по-вълнуващ.',
+    cta: 'Запознай се с нас',
+    image: {
+      src: '/assets/images/amelia/our-story/our-mission.jpg',
+      alt: 'Жени пътешественички, седнали заедно край морето',
+      width: 'auto',
+      height: 540,
+    },
+  },
   navigationGroups: AMELIA_NAVIGATION_GROUPS,
   navigationLinks: AMELIA_NAVIGATION_LINKS,
   tripSearchDestinations: AMELIA_DESTINATION_LINKS,
@@ -164,21 +178,29 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     'Ноември',
     'Декември',
   ],
-  featuredToursTitle: 'Popular Tours',
+  featuredToursTitle: 'Популярни пътувания',
   featuredTours: AMELIA_FEATURED_TOURS,
   searchIndex: [
     {
       type: 'Tour',
-      title: 'Kyrgyzstan Discovery Tour',
+      title: 'Киргистан - юрти, коне и високи планини',
       excerpt:
         'Юрти край Сон-Кул, конни преходи, номадска култура, горещи извори и едни от най-впечатляващите пейзажи на Централна Азия.',
       canonicalPath: '/tour-item/kyrgyzstan-tour/',
     },
     {
       type: 'Tour',
-      title: 'Morocco - Blue Cities & Golden Dunes',
-      excerpt: 'Сини градове, пустинни дюни и културни срещи в маршрут из Мароко.',
+      title: 'Мароко - сини градове и златни дюни',
+      excerpt:
+        '12 дни само за жени от София: Казабланка, Шефшауен, Фес, дюните на Ерг Шеби, Аит Бен Хаду и Маракеш.',
       canonicalPath: '/tour-item/morocco-tour/',
+    },
+    {
+      type: 'Article',
+      title: 'Мароко за жени пътешественички: безопасност, облекло и какво да очакваш',
+      excerpt:
+        'Практичен пътеводител за жени, които планират пътуване до Мароко: безопасност, облекло, сезони, местни обичаи и пътуване в малка женска група.',
+      canonicalPath: '/maroko-za-zheni-pateshestvenichki/',
     },
     {
       type: 'Tour',
@@ -188,8 +210,9 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     },
     {
       type: 'Page',
-      title: 'Нашата мисия',
-      excerpt: 'Женски ориентиран сайт за смислени пътувания в малки групи.',
+      title: 'За нас',
+      excerpt:
+        'Неси и Весислава, мисията на Amelia Travel и общността от жени, която градим около смислените пътувания в малки групи.',
       canonicalPath: '/our-story/',
     },
     {
@@ -205,6 +228,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/our-story/',
     '/contact/',
     '/blog-list/',
+    '/maroko-za-zheni-pateshestvenichki/',
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',
@@ -218,15 +242,29 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
   pageSeo: [
     {
       canonicalPath: '/our-story/',
-      title: 'Нашата мисия',
+      title: 'За нас',
       description:
-        'Мисията на Amelia Travel е да създава подкрепяща общност за жени, които пътуват свободно, смело и в малки групи по света.',
+        'Запознай се с Неси и Весислава и с мисията на Amelia Travel - подкрепяща общност за жени, които пътуват свободно, смело и в малки групи по света.',
     },
     {
       canonicalPath: '/contact/',
       title: 'Свържете се с нас',
       description:
         'Свържете се с Amelia Travel, за да планираме следващото ти пътуване в малка група от жени с приключенски дух.',
+    },
+    {
+      // TODO_AMELIA_ALGERIA: page body is still the Omaya English tour content. This override
+      // keeps Omaya branding out of Amelia's title/description until the Bulgarian copy lands.
+      canonicalPath: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+      title: 'Алжир - пустинна експедиция в Тадрарт Руж',
+      description:
+        '8-дневна пустинна експедиция в Тасили н’Аджер и Тадрарт Руж - неолитно скално изкуство, червени дюни и лагери под звездите.',
+    },
+    {
+      canonicalPath: '/blog-list/',
+      title: 'Блог',
+      description:
+        'Истории, практични съвети и пътеводители за жени, които пътуват в малки групи с Amelia Travel.',
     },
   ],
 };

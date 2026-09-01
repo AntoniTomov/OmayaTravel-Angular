@@ -1,10 +1,20 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, HostListener, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  PLATFORM_ID,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 
+import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
+import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
 const POPUP_DELAY_MS = 5000;
 const DISMISSED_KEY = 'omaya-newsletter-popup-dismissed';
@@ -20,7 +30,18 @@ export class NewsletterPopup implements OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly document = inject(DOCUMENT);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly activeSite = inject(ActiveSite);
+  protected readonly i18n = inject(OmayaI18n);
   private readonly timerId: ReturnType<typeof setTimeout> | null = this.createTimer();
+
+  protected readonly brand = computed(() => this.activeSite.site().brand);
+  protected readonly mediaImage = computed(() => {
+    const site = this.activeSite.site();
+
+    return site.id === 'amelia'
+      ? { src: site.content.hero.slides[0]?.visualSrc ?? '', width: 1920, height: 1080 }
+      : { src: '/assets/images/newsletter-popup.webp', width: 921, height: 1381 };
+  });
 
   protected readonly isOpen = signal(false);
   protected readonly isSignupOpen = signal(false);

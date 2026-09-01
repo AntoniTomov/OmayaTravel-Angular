@@ -178,6 +178,23 @@
   font-family: 'Kristi', cursive;
 }
 
+.our-story__team-outro {
+  max-width: 46rem;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+
+.our-story__member-link a {
+  color: tokens.$omaya-color-gold;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.our-story__member-link a:hover,
+.our-story__member-link a:focus-visible {
+  text-decoration: underline;
+}
+
 .our-story__members {
   display: grid;
   gap: 3rem;

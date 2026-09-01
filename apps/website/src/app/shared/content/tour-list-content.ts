@@ -1,6 +1,12 @@
 export interface TourCardContent {
   title: string;
   category: 'Classic Tours' | 'Women only' | 'Solo Traveller Only' | 'Private Tours' | 'All Ages';
+  /**
+   * Visible category text. Falls back to `category` when omitted, so localised
+   * sites (Amelia is Bulgarian-first) can show a translated label while filters
+   * and analytics keep using the stable English category key.
+   */
+  categoryLabel?: string;
   destination: string;
   excerpt: string;
   image: string;

@@ -47,6 +47,7 @@ export const PUBLIC_TOUR_CATEGORY_SLUGS = [
 
 export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   '10-unmissable-places-to-visit-on-your-bulgaria-trip',
+  'maroko-za-zheni-pateshestvenichki',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
   'the-complete-visitor-guide-to-rila-monastery',

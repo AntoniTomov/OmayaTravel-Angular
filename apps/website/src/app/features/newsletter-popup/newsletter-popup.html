@@ -9,10 +9,10 @@
     >
       <div class="newsletter-popup__media" aria-hidden="true">
         <img
-          src="/assets/images/newsletter-popup.webp"
+          [src]="mediaImage().src"
           alt=""
-          width="921"
-          height="1381"
+          [width]="mediaImage().width"
+          [height]="mediaImage().height"
           loading="lazy"
           decoding="async"
         />
@@ -21,7 +21,7 @@
       <button
         type="button"
         class="newsletter-popup__close"
-        aria-label="Close newsletter signup"
+        [attr.aria-label]="i18n.t('newsletterPopup.close')"
         (click)="close()"
       >
         <span aria-hidden="true"></span>
@@ -30,42 +30,46 @@
       <div class="newsletter-popup__content">
         <img
           class="newsletter-popup__logo"
-          src="/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp"
-          alt="Omaya Travel"
+          [src]="brand().solidLogoSrc"
+          [alt]="brand().logoAlt"
           width="152"
           height="83"
           loading="lazy"
           decoding="async"
         />
-        <p class="newsletter-popup__eyebrow">SEE THE WORLD. MEET ITS PEOPLE</p>
+        <p class="newsletter-popup__eyebrow">{{ brand().tagline }}</p>
         <h2 id="newsletter-popup-title">
-          Wanderlust detected<span aria-hidden="true">👀</span><br />
-          Let's stay connected
+          {{ i18n.t('newsletterPopup.title') }}<span aria-hidden="true">👀</span><br />
+          {{ i18n.t('newsletterPopup.titleSecondLine') }}
         </h2>
 
         @if (!isSignupOpen()) {
           <div class="newsletter-popup__actions">
             <button type="button" class="newsletter-popup__primary" (click)="openSignup()">
-              SIGN UP
+              {{ i18n.t('newsletterPopup.signUp') }}
             </button>
             <button type="button" class="newsletter-popup__secondary" (click)="close()">
-              NO, THANKS
+              {{ i18n.t('newsletterPopup.noThanks') }}
             </button>
           </div>
         } @else {
           <form class="newsletter-popup__form" (submit)="submitPopup($event)">
-            <label for="newsletter-popup-email">Email address</label>
+            <label for="newsletter-popup-email">{{ i18n.t('newsletterPopup.emailLabel') }}</label>
             <input
               id="newsletter-popup-email"
               type="email"
               name="email"
-              placeholder="Email address"
+              [placeholder]="i18n.t('newsletterPopup.emailLabel')"
               autocomplete="email"
               required
             />
             <app-form-honeypot />
             <button type="submit" [disabled]="submitStatus() === 'sending'">
-              {{ submitStatus() === 'sending' ? 'JOINING...' : 'SIGN UP' }}
+              {{
+                submitStatus() === 'sending'
+                  ? i18n.t('newsletterPopup.joining')
+                  : i18n.t('newsletterPopup.signUp')
+              }}
             </button>
             <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
           </form>

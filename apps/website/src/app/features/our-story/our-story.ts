@@ -10,12 +10,18 @@ interface StoryImage {
   source?: string;
 }
 
+interface TeamMemberLink {
+  label: string;
+  url: string;
+}
+
 interface TeamMember {
   id: string;
   name: string;
   heading: string;
   image: StoryImage;
   paragraphs: readonly string[];
+  link?: TeamMemberLink;
 }
 
 interface StoryTextSection {
@@ -41,6 +47,7 @@ interface StoryPageContent {
   team?: {
     heading: string;
     members: readonly TeamMember[];
+    outro?: string;
   };
   tagline: string;
   contact: {
@@ -154,7 +161,7 @@ const OMAYA_OUR_STORY: StoryPageContent = {
 const AMELIA_OUR_STORY: StoryPageContent = {
   id: 'our-story',
   slug: 'our-story',
-  title: 'Нашата мисия',
+  title: 'За нас',
   hero: {
     image: {
       src: '/assets/images/amelia/our-story/our-mission.jpg',
@@ -164,8 +171,16 @@ const AMELIA_OUR_STORY: StoryPageContent = {
     },
   },
   story: {
-    heading: 'Нашата мисия',
+    heading: 'Кои сме ние?',
     sections: [
+      {
+        heading: 'Кои сме ние?',
+        paragraphs: [
+          'Ние сме Неси и Весислава - две жени с приключенски дух, които вярват, че най-добрите спомени се създават не само от местата, които посещаваш, но и от хората, с които ги споделяш.',
+          'Нашата история започва от личното ни желание да пътуваме по-дълбоко, по-осмислено и в компанията на съмишленички. Искахме да създадем нещо, което да ни липсваше - общност от жени, които не просто „гледат“ света, а го опознават, разбират и преживяват заедно.',
+          'Така се роди нашата общност - място, което те мотивира да пътуваш смело, без да си поставяш ограничения или да чакаш някой да се съгласи да пътува с теб.',
+        ],
+      },
       {
         heading: 'Нашата мисия',
         paragraphs: [
@@ -183,7 +198,46 @@ const AMELIA_OUR_STORY: StoryPageContent = {
   },
   team: {
     heading: 'Запознайте се с нас',
-    members: [],
+    members: [
+      {
+        id: 'vesislava',
+        name: 'Весислава',
+        heading: 'Весислава',
+        image: {
+          src: '/assets/images/amelia/our-story/vesislava.jpg',
+          alt: 'Весислава, съосновател на Amelia Travel',
+          width: 300,
+          height: 300,
+        },
+        paragraphs: [
+          'Бакалавър по туризъм и над 10 години в организацията и логистиката на пътувания.',
+          'Завърших бакалавърска степен по туризъм и над 10 години се занимавам с организация и логистика на пътувания - както за бизнес, така и за отдих. Организирала съм пътувания за хора от цял свят, като се грижа всеки детайл да е обмислен, а всяко приключение - да протече спокойно.',
+          'Ходя по туристически изложения, чета и не спирам да се уча - не защото се налага, а защото тази сфера наистина ме интересува. Самата аз пътувам много и знам колко голяма разлика прави компанията, с която си тръгнала на път. Затова в Amelia влагам опита си в преживявания, които събират жени на една вълна.',
+        ],
+      },
+      {
+        id: 'nesi',
+        name: 'Неси',
+        heading: 'Неси',
+        image: {
+          src: '/assets/images/amelia/our-story/nesi.webp',
+          alt: 'Неси, съосновател на Amelia Travel',
+          width: 300,
+          height: 297,
+        },
+        paragraphs: [
+          'Екскурзоводка и организатор на пътувания в Близкия изток, Западна Африка и Южна Америка.',
+          'Годините ми опит в туристическата индустрия са разнообразни - от работа в медии и хотелиерство до екскурзоводство и организация на пътувания по света. Имах привилегията да организирам и да водя групи в разнообразни дестинации в Близкия изток, Западна Африка, Южна Америка и др.',
+          'Тези преживявания формираха моята визия за това какво прави едно пътуване запомнящо се и обогатяващо, и това е основата, върху която градим Amelia.',
+        ],
+        link: {
+          label: '@nesizelenkova',
+          url: 'https://www.instagram.com/nesizelenkova/',
+        },
+      },
+    ] satisfies readonly TeamMember[],
+    outro:
+      'Заедно съчетаваме професионализма с личната страст към пътуването, за да създадем преживявания, които надхвърлят очакванията.',
   },
   tagline: 'Общност за жени пътешественички',
   contact: {
@@ -191,7 +245,7 @@ const AMELIA_OUR_STORY: StoryPageContent = {
     email: 'info@ameliatravel.bg',
   },
   seo: {
-    title: 'Нашата мисия - Amelia Travel',
+    title: 'За нас - Amelia Travel',
   },
 };
 

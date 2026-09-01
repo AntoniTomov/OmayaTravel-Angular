@@ -7,6 +7,7 @@ import { filter, map, startWith } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { blogPostsForSite } from '../../shared/content/blog-content';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
@@ -57,9 +58,12 @@ export class PublicFooter {
 
   protected readonly aboutLinks = computed<readonly FooterLink[]>(() =>
     [
-      { label: this.i18n.t('footer.whyBook'), target: '/why-book-with-us/' },
-      { label: this.i18n.t('footer.ourStory'), target: '/our-story/' },
-      { label: this.i18n.t('footer.faqs'), target: '/faq/' },
+      {
+        label: this.linkLabel('/why-book-with-us/', 'footer.whyBook'),
+        target: '/why-book-with-us/',
+      },
+      { label: this.linkLabel('/our-story/', 'footer.ourStory'), target: '/our-story/' },
+      { label: this.linkLabel('/faq/', 'footer.faqs'), target: '/faq/' },
     ].filter((link) => this.isRouteEnabled(link.target)),
   );
 
@@ -73,18 +77,14 @@ export class PublicFooter {
   );
 
   protected readonly latestPosts = computed<readonly FooterPost[]>(() =>
-    [
-      {
-        title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
-        date: 'July 25, 2026',
-        target: '/tassili-najjer-national-park-algeria-guide/',
-      },
-      {
-        title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
-        date: 'April 16, 2026',
-        target: '/the-complete-visitor-guide-to-rila-monastery/',
-      },
-    ].filter((post) => this.isRouteEnabled(post.target)),
+    blogPostsForSite(this.activeSite.site().id)
+      .map((post) => ({
+        title: post.title,
+        date: post.date,
+        target: `/${post.slug}/`,
+      }))
+      .filter((post) => this.isRouteEnabled(post.target))
+      .slice(0, 2),
   );
 
   protected readonly paymentProviders: readonly PaymentProvider[] = [
@@ -120,6 +120,18 @@ export class PublicFooter {
 
   private isRouteEnabled(target: string): boolean {
     return isSiteRouteEnabled(this.activeSite.site(), target);
+  }
+
+  /**
+   * Prefer the active site's own page title so footer labels stay in step with the
+   * page they link to (Amelia renames `/our-story/` to "За нас", for example).
+   */
+  private linkLabel(canonicalPath: string, translationKey: `footer.${string}`): string {
+    const pageSeo = this.activeSite
+      .site()
+      .content.pageSeo?.find((entry) => entry.canonicalPath === canonicalPath);
+
+    return pageSeo?.title ?? this.i18n.t(translationKey);
   }
 
   protected phoneHref(phoneNumber: string): string {

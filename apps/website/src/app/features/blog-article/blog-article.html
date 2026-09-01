@@ -45,7 +45,7 @@
           }
 
           <section class="blog-article__related-posts" aria-labelledby="related-posts-title">
-            <h2 id="related-posts-title">Related Posts</h2>
+            <h2 id="related-posts-title">{{ labels().relatedPosts }}</h2>
             <div>
               @for (relatedPost of relatedPosts(); track relatedPost.slug) {
                 <article>
@@ -62,8 +62,8 @@
 
       <aside class="blog-article__sidebar" aria-label="Blog sidebar">
         <section>
-          <h2>Suggested Blog Posts</h2>
-          @for (suggestedPost of suggestedPosts; track suggestedPost.slug) {
+          <h2>{{ labels().suggestedPosts }}</h2>
+          @for (suggestedPost of suggestedPosts(); track suggestedPost.slug) {
             <a [routerLink]="'/' + suggestedPost.slug + '/'" class="blog-article__suggestion">
               <img
                 [src]="suggestedPost.sidebarImage?.src ?? suggestedPost.image.src"
@@ -85,14 +85,14 @@
             [src]="discoverToursImage"
             width="540"
             height="720"
-            alt="Discover more tours"
+            [alt]="labels().discoverAlt"
             loading="lazy"
           />
         </a>
 
         <section class="blog-article__follow">
-          <h2>Follow Us</h2>
-          <p>For more travel inspiration, follow us on Instagram: <b>@omayatravel</b></p>
+          <h2>{{ labels().followUs }}</h2>
+          <p>{{ labels().followText }}</p>
         </section>
       </aside>
     </div>
@@ -100,6 +100,6 @@
 } @else {
   <main class="blog-article blog-article--missing">
     <h1>Article not found</h1>
-    <a routerLink="/blog-list/">Back to all stories</a>
+    <a routerLink="/blog-list/">{{ labels().backToStories }}</a>
   </main>
 }
