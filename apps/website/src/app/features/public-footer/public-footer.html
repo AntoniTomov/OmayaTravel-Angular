@@ -6,39 +6,28 @@
       </a>
       <h2 id="footer-contact-title">{{ tagline() }}</h2>
       <p class="public-footer__label">{{ i18n.t('footer.contactUs') }}</p>
-      <a href="tel:+359889735274" (click)="trackContactClick('phone', 'secondary_phone')"
-        >☎ <span>+359 88 973 5274</span></a
-      >
-      <a href="tel:+359879965946" (click)="trackContactClick('phone', 'primary_phone')"
-        >☎ <span>+359 87 996 5946</span></a
-      >
-      <a href="mailto:info@omayatravel.com" (click)="trackContactClick('email', 'info_email')"
-        >✉ <span>info@omayatravel.com</span></a
-      >
-      <p class="public-footer__label">{{ i18n.t('footer.followUs') }}</p>
-      <div class="public-footer__socials">
-        <a
-          href="https://www.instagram.com/omayatravel/"
-          aria-label="Instagram"
-          (click)="trackContactClick('social', 'instagram')"
+      @for (phoneNumber of contact().phoneNumbers; track phoneNumber) {
+        <a [href]="phoneHref(phoneNumber)" (click)="trackContactClick('phone', phoneNumber)"
+          >☎ <span>{{ phoneNumber }}</span></a
         >
-          <mat-icon svgIcon="social-instagram" aria-hidden="true"></mat-icon>
-        </a>
-        <a
-          href="https://www.facebook.com/profile.php?id=61576518854858"
-          aria-label="Facebook"
-          (click)="trackContactClick('social', 'facebook')"
-        >
-          <mat-icon svgIcon="social-facebook" aria-hidden="true"></mat-icon>
-        </a>
-        <a
-          href="https://www.linkedin.com/company/omaya-travel/"
-          aria-label="LinkedIn"
-          (click)="trackContactClick('social', 'linkedin')"
-        >
-          <mat-icon svgIcon="social-linkedin" aria-hidden="true"></mat-icon>
-        </a>
-      </div>
+      }
+      <a [href]="'mailto:' + contact().email" (click)="trackContactClick('email', contact().email)"
+        >✉ <span>{{ contact().email }}</span></a
+      >
+      @if (socialLinks().length) {
+        <p class="public-footer__label">{{ i18n.t('footer.followUs') }}</p>
+        <div class="public-footer__socials">
+          @for (social of socialLinks(); track social.url) {
+            <a
+              [href]="social.url"
+              [attr.aria-label]="social.label"
+              (click)="trackContactClick('social', social.label)"
+            >
+              <mat-icon [svgIcon]="social.icon" aria-hidden="true"></mat-icon>
+            </a>
+          }
+        </div>
+      }
     </section>
 
     <section aria-labelledby="footer-posts-title">
@@ -77,7 +66,7 @@
   </div>
 
   <div class="public-footer__bottom">
-    <span>{{ i18n.t('footer.copyright') }}</span>
+    <span>{{ copyright() }}</span>
     <button type="button" [attr.aria-label]="i18n.t('footer.backToTop')" (click)="scrollToTop()">
       ^
     </button>

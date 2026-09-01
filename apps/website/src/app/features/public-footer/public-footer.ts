@@ -48,7 +48,12 @@ export class PublicFooter {
   );
   protected readonly isHomepage = computed(() => this.currentUrl() === '/');
   protected readonly brand = computed(() => this.activeSite.site().brand);
+  protected readonly contact = computed(() => this.activeSite.site().contact);
+  protected readonly socialLinks = computed(() => this.activeSite.site().socialLinks);
   protected readonly tagline = computed(() => this.activeSite.site().brand.tagline);
+  protected readonly copyright = computed(
+    () => `© 2026 ${this.activeSite.site().brand.name}, All Rights Reserved`,
+  );
 
   protected readonly aboutLinks = computed<readonly FooterLink[]>(() =>
     [
@@ -115,5 +120,9 @@ export class PublicFooter {
 
   private isRouteEnabled(target: string): boolean {
     return isSiteRouteEnabled(this.activeSite.site(), target);
+  }
+
+  protected phoneHref(phoneNumber: string): string {
+    return `tel:${phoneNumber.replace(/[^\d+]/g, '')}`;
   }
 }

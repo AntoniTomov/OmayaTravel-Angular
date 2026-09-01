@@ -74,6 +74,11 @@ export class PublicHeader implements AfterViewInit {
   protected readonly navigationLinks = computed(
     () => this.activeSite.site().content.navigationLinks,
   );
+  protected readonly contact = computed(() => this.activeSite.site().contact);
+  protected readonly socialLinks = computed(() => this.activeSite.site().socialLinks);
+  protected readonly hasTopBarLinks = computed(
+    () => this.contact().phoneNumbers.length > 0 || this.socialLinks().length > 0,
+  );
   protected readonly logo = computed(() => {
     const brand = this.activeSite.site().brand;
     const visualSrc =
@@ -293,5 +298,9 @@ export class PublicHeader implements AfterViewInit {
     const path = url.split(/[?#]/)[0]?.replace(/\/+$/, '') || '/';
 
     return path === '' ? '/' : path;
+  }
+
+  protected phoneHref(phoneNumber: string): string {
+    return `tel:${phoneNumber.replace(/[^\d+]/g, '')}`;
   }
 }

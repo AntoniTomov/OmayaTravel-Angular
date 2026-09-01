@@ -50,4 +50,21 @@ export const OMAYA_SITE_CONFIG: SiteConfig = {
     mailchimpAudienceIdEnvVar: 'OMAYA_MAILCHIMP_AUDIENCE_ID',
     tags: ['omaya'],
   },
+  socialLinks: [
+    {
+      label: 'Instagram',
+      url: 'https://www.instagram.com/omayatravel/',
+      icon: 'social-instagram',
+    },
+    {
+      label: 'Facebook',
+      url: 'https://www.facebook.com/profile.php?id=61576518854858',
+      icon: 'social-facebook',
+    },
+    {
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/company/omaya-travel/about/',
+      icon: 'social-linkedin',
+    },
+  ],
 };

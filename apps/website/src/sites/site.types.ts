@@ -60,6 +60,12 @@ export interface SiteNewsletter {
   tags: readonly string[];
 }
 
+export interface SiteSocialLink {
+  label: string;
+  url: string;
+  icon: 'social-facebook' | 'social-instagram' | 'social-linkedin';
+}
+
 export interface SiteContent {
   hero: {
     title: string;
@@ -97,4 +103,5 @@ export interface SiteConfig {
   seo: SiteSeo;
   contact: SiteContact;
   newsletter: SiteNewsletter;
+  socialLinks: readonly SiteSocialLink[];
 }

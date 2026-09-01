@@ -51,4 +51,5 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     mailchimpAudienceIdEnvVar: 'AMELIA_MAILCHIMP_AUDIENCE_ID',
     tags: ['amelia', 'bg'],
   },
+  socialLinks: [],
 };

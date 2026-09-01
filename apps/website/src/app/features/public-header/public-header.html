@@ -1,39 +1,28 @@
 <header class="public-header" [ngClass]="headerClasses()">
-  <div class="public-header__top__wrapper">
-    <div class="public-header__top">
-      <span>{{ i18n.t('header.followUs') }}</span>
-      <a
-        class="public-header__social-link"
-        href="https://www.instagram.com/omayatravel/"
-        aria-label="Omaya Travel on Instagram"
-        (click)="trackContactClick('social', 'instagram')"
-      >
-        <mat-icon svgIcon="social-instagram" aria-hidden="true"></mat-icon>
-      </a>
-      <a
-        class="public-header__social-link"
-        href="https://www.facebook.com/profile.php?id=61576518854858"
-        aria-label="Omaya Travel on Facebook"
-        (click)="trackContactClick('social', 'facebook')"
-      >
-        <mat-icon svgIcon="social-facebook" aria-hidden="true"></mat-icon>
-      </a>
-      <a
-        class="public-header__social-link"
-        href="https://www.linkedin.com/company/omaya-travel/about/"
-        aria-label="Omaya Travel on LinkedIn"
-        (click)="trackContactClick('social', 'linkedin')"
-      >
-        <mat-icon svgIcon="social-linkedin" aria-hidden="true"></mat-icon>
-      </a>
-      <a href="tel:+359879965946" (click)="trackContactClick('phone', 'primary_phone')"
-        >+359 87 996 5946</a
-      >
-      <a href="tel:+359889735274" (click)="trackContactClick('phone', 'secondary_phone')"
-        >+359 88 973 5274</a
-      >
+  @if (hasTopBarLinks()) {
+    <div class="public-header__top__wrapper">
+      <div class="public-header__top">
+        @if (socialLinks().length) {
+          <span>{{ i18n.t('header.followUs') }}</span>
+        }
+        @for (social of socialLinks(); track social.url) {
+          <a
+            class="public-header__social-link"
+            [href]="social.url"
+            [attr.aria-label]="social.label"
+            (click)="trackContactClick('social', social.label)"
+          >
+            <mat-icon [svgIcon]="social.icon" aria-hidden="true"></mat-icon>
+          </a>
+        }
+        @for (phoneNumber of contact().phoneNumbers; track phoneNumber) {
+          <a [href]="phoneHref(phoneNumber)" (click)="trackContactClick('phone', phoneNumber)">{{
+            phoneNumber
+          }}</a>
+        }
+      </div>
     </div>
-  </div>
+  }
 
   <nav class="public-header__nav" aria-label="Primary navigation">
     <a
