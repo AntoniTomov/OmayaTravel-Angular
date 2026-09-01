@@ -33,4 +33,11 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
   }),
   searchIndex: SITE_SEARCH_INDEX,
   enabledRoutes: ['*'],
+  pageSeo: [
+    {
+      canonicalPath: '/contact/',
+      title: 'Contact Us',
+      description: 'Get in touch with Omaya Travel to discuss your next small-group journey.',
+    },
+  ],
 };

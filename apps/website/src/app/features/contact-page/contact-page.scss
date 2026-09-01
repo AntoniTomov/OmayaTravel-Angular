@@ -11,6 +11,9 @@
   color: var(--omaya-color-body);
   font-size: 0.95rem;
   line-height: 1.7;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.9)),
+    var(--contact-page-background, none) center/cover no-repeat;
 }
 
 .contact-page__layout {

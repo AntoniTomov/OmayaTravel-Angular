@@ -257,6 +257,10 @@ Comment: before implementation, the Kyrgyzstan copy should be normalized into th
 - [x] Made the `/our-story/` page site-aware.
 - [x] Added Amelia Bulgarian mission content to `/our-story/`.
 - [x] Added Amelia-specific SEO title and meta description for `/our-story/`.
+- [x] Made the `/contact/` page site-aware.
+- [x] Added Amelia Bulgarian contact page copy and form labels.
+- [x] Added Amelia coral background to the contact page.
+- [x] Added Amelia-specific SEO title and meta description for `/contact/`.
 - [x] Verified with `npm.cmd run type-check`.
 - [x] Verified with `npm.cmd run test`.
 - [x] Verified with `npm.cmd run lint`.
@@ -389,6 +393,19 @@ Comment: the page component is now content-driven by active site, so future Amel
 - [ ] Confirm whether Omaya travel license should be visible on Amelia.
 
 Comment: this is not just wording. Legal pages affect trust, ads approval, analytics consent, and conversion credibility.
+
+### 9A. Contact Page
+
+- [x] Reuse the existing `/contact/` route and form behavior.
+- [x] Translate the Omaya contact intro into Bulgarian for Amelia.
+- [x] Translate Amelia form placeholders and submit/status text.
+- [x] Use `h1-background-coral.avif` as the Amelia contact page background.
+- [x] Use Amelia contact email instead of Omaya contact email.
+- [x] Hide the phone row for Amelia until a real phone number is supplied.
+- [x] Add Amelia-specific `/contact/` SEO title and description.
+- [ ] Add Amelia phone/WhatsApp number when supplied.
+
+Comment: contact form submissions already use the site-aware backend routing, so this change is limited to visible content, metadata, and styling.
 
 ### 10. Analytics And Consent
 

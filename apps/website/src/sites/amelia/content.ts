@@ -194,7 +194,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     },
     {
       type: 'Page',
-      title: 'Контакти',
+      title: 'Свържете се с нас',
       excerpt: 'Свържете се с Amelia за следващото си пътуване.',
       canonicalPath: '/contact/',
     },
@@ -221,6 +221,12 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       title: 'Нашата мисия',
       description:
         'Мисията на Amelia Travel е да създава подкрепяща общност за жени, които пътуват свободно, смело и в малки групи по света.',
+    },
+    {
+      canonicalPath: '/contact/',
+      title: 'Свържете се с нас',
+      description:
+        'Свържете се с Amelia Travel, за да планираме следващото ти пътуване в малка група от жени с приключенски дух.',
     },
   ],
 };

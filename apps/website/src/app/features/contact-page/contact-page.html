@@ -1,36 +1,55 @@
-<main class="contact-page">
+<main class="contact-page" [style.--contact-page-background]="backgroundImage()">
   <section class="contact-page__layout" aria-labelledby="contact-page-title">
     <form class="contact-page__form" (submit)="sendContactEmail($event)">
-      <h1 id="contact-page-title">{{ content.title }}</h1>
-      <input type="text" name="name" placeholder="Name*" autocomplete="name" required />
-      <input type="email" name="email" placeholder="Email Address*" autocomplete="email" required />
-      <input type="text" name="subject" placeholder="Subject" />
-      <textarea name="comment" rows="8" placeholder="Comment" required></textarea>
+      <h1 id="contact-page-title">{{ content().title }}</h1>
+      <input
+        type="text"
+        name="name"
+        [placeholder]="content().labels.name"
+        autocomplete="name"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        [placeholder]="content().labels.email"
+        autocomplete="email"
+        required
+      />
+      <input type="text" name="subject" [placeholder]="content().labels.subject" />
+      <textarea
+        name="comment"
+        rows="8"
+        [placeholder]="content().labels.comment"
+        required
+      ></textarea>
       <app-form-honeypot />
       <button type="submit" [disabled]="submitStatus() === 'sending'">
-        {{ submitStatus() === 'sending' ? 'Sending...' : 'Submit' }}
+        {{ submitStatus() === 'sending' ? content().labels.sending : content().labels.submit }}
       </button>
       <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
     </form>
 
     <div class="contact-page__details">
-      <h2>{{ content.intro.heading }}</h2>
-      <p>{{ content.intro.text }}</p>
+      <h2>{{ content().intro.heading }}</h2>
+      <p>{{ content().intro.text }}</p>
 
-      <h3>{{ content.location }}</h3>
+      <h3>{{ content().location }}</h3>
+      @for (phoneNumber of content().phoneNumbers; track phoneNumber) {
+        <p>
+          {{ content().labels.phone }}
+          <a [href]="phoneHref(phoneNumber)" (click)="trackContactClick('phone', phoneNumber)">{{
+            phoneNumber
+          }}</a>
+        </p>
+      }
       <p>
-        Phone/WhatsApp:
+        {{ content().labels.emailLabel }}
         <a
-          [href]="'tel:' + content.phone.replaceAll(' ', '')"
-          (click)="trackContactClick('phone', 'primary_phone')"
-          >{{ content.phone }}</a
+          [href]="'mailto:' + content().email"
+          (click)="trackContactClick('email', content().email)"
+          >{{ content().email }}</a
         >
-      </p>
-      <p>
-        Email:
-        <a [href]="'mailto:' + content.email" (click)="trackContactClick('email', 'info_email')">{{
-          content.email
-        }}</a>
       </p>
     </div>
   </section>
