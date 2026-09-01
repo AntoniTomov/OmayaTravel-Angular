@@ -72,7 +72,7 @@ export class PublicFooter {
       {
         title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
         date: 'July 25, 2026',
-        target: '/tassili-najjer-national-park-guide/',
+        target: '/tassili-najjer-national-park-algeria-guide/',
       },
       {
         title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
