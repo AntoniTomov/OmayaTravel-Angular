@@ -67,6 +67,10 @@
 .public-footer__contact > a:not(.public-footer__brand)::first-letter {
   color: tokens.$omaya-color-gold;
 }
+.public-footer__contact > a[href^='mailto:']::first-letter {
+  font-size: 1.3em;
+  font-weight: 700;
+}
 .public-footer__contact > a span {
   margin-left: 0.55rem;
 }
