@@ -1,3 +1,5 @@
+import type { SiteConfig } from '../../../sites/site.types';
+
 export const PUBLIC_CANONICAL_HOST = 'https://omayatravel.com';
 
 export type PublicRouteType =
@@ -139,8 +141,12 @@ export const PUBLIC_REDIRECTS: readonly PublicRedirectDefinition[] = [
   ...PUBLIC_EXACT_REDIRECTS,
 ];
 
-export function canonicalUrl(canonicalPath: string): string {
-  return `${PUBLIC_CANONICAL_HOST}${canonicalPath}`;
+export function canonicalUrl(canonicalPath: string, site?: Pick<SiteConfig, 'seo'>): string {
+  return `${canonicalHost(site)}${canonicalPath}`;
+}
+
+export function canonicalHost(site?: Pick<SiteConfig, 'seo'>): string {
+  return site?.seo.canonicalHost ?? PUBLIC_CANONICAL_HOST;
 }
 
 export function withTrailingSlash(path: string): string {

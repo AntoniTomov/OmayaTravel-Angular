@@ -35,7 +35,28 @@ export interface SiteFeatureFlags {
 }
 
 export interface SiteAnalytics {
+  gaMeasurementId: string;
   metaPixelId: string;
+}
+
+export interface SiteSeo {
+  canonicalHost: string;
+  defaultTitle: string;
+  defaultDescription: string;
+  ogImage: string;
+  locale: string;
+}
+
+export interface SiteContact {
+  email: string;
+  phoneNumbers: readonly string[];
+  resendFrom: string;
+  resendReplyTo: string;
+}
+
+export interface SiteNewsletter {
+  mailchimpAudienceIdEnvVar: string;
+  tags: readonly string[];
 }
 
 export interface SiteContent {
@@ -62,4 +83,7 @@ export interface SiteConfig {
   content: SiteContent;
   features: SiteFeatureFlags;
   analytics: SiteAnalytics;
+  seo: SiteSeo;
+  contact: SiteContact;
+  newsletter: SiteNewsletter;
 }
