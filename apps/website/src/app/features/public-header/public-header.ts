@@ -36,6 +36,7 @@ const SOLID_HEADER_PATHS = new Set([
   '/your-dmc-partner-in-bulgaria',
   '/contact',
   '/private-tours-your-trip-your-rules/describe',
+  '/omaya-travel-license',
 ]);
 
 @Component({
