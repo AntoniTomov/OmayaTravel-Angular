@@ -83,7 +83,7 @@
             class="public-header__dropdown"
             [class.public-header__dropdown--open]="activeDropdown() === group.label"
           >
-            @for (link of group.links; track link.target) {
+            @for (link of group.links; track link.label + link.target) {
               @if (link.children?.length) {
                 <div
                   class="public-header__dropdown-item public-header__dropdown-item--has-submenu"
@@ -102,7 +102,7 @@
                     class="public-header__submenu"
                     [class.public-header__submenu--open]="activeSubmenu() === link.label"
                   >
-                    @for (childLink of link.children; track childLink.target) {
+                    @for (childLink of link.children; track childLink.label + childLink.target) {
                       <a [routerLink]="childLink.target" (click)="closeMenus()">{{
                         childLink.label
                       }}</a>

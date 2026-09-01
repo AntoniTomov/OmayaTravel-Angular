@@ -188,7 +188,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     },
     {
       type: 'Page',
-      title: 'About Amelia Travel',
+      title: 'Нашата мисия',
       excerpt: 'Женски ориентиран сайт за смислени пътувания в малки групи.',
       canonicalPath: '/our-story/',
     },
@@ -214,5 +214,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/privacy-policy/',
     '/termsconditions/',
     '/404/',
+  ],
+  pageSeo: [
+    {
+      canonicalPath: '/our-story/',
+      title: 'Нашата мисия',
+      description:
+        'Мисията на Amelia Travel е да създава подкрепяща общност за жени, които пътуват свободно, смело и в малки групи по света.',
+    },
   ],
 };

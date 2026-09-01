@@ -18,8 +18,11 @@ export class PublicSeo {
     const site = this.activeSite.site();
     const route = this.deepestRoute(snapshot.root);
     const noindex = Boolean(route.data['noindex']) || route.data['routeStatus'] === 404;
+    const pageSeo = this.pageSeoForRoute(site, route);
     const title = this.pageTitle(site, route);
-    const description = String(route.data['description'] ?? site.seo.defaultDescription);
+    const description = String(
+      pageSeo?.description ?? route.data['description'] ?? site.seo.defaultDescription,
+    );
     const canonical = noindex ? null : this.canonicalForRoute(site, route);
 
     this.title.setTitle(title);
@@ -53,6 +56,14 @@ export class PublicSeo {
   }
 
   private pageTitle(site: SiteConfig, route: ActivatedRouteSnapshot): string {
+    const pageSeo = this.pageSeoForRoute(site, route);
+
+    if (pageSeo?.title.trim()) {
+      return pageSeo.title.includes(site.brand.name)
+        ? pageSeo.title
+        : `${pageSeo.title.trim()} | ${site.brand.name}`;
+    }
+
     const routeTitle = route.title ?? route.data['title'];
 
     if (typeof routeTitle === 'string' && routeTitle.trim()) {
@@ -62,6 +73,16 @@ export class PublicSeo {
     }
 
     return site.seo.defaultTitle;
+  }
+
+  private pageSeoForRoute(site: SiteConfig, route: ActivatedRouteSnapshot) {
+    const canonicalPath = route.data['canonicalPath'];
+
+    if (typeof canonicalPath !== 'string') {
+      return null;
+    }
+
+    return site.content.pageSeo?.find((pageSeo) => pageSeo.canonicalPath === canonicalPath) ?? null;
   }
 
   private canonicalForRoute(site: SiteConfig, route: ActivatedRouteSnapshot): string | null {

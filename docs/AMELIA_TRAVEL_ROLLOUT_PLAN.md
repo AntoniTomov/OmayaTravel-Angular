@@ -146,6 +146,7 @@ C:/Users/Toni/Downloads/amelia_logo_transparent.png
 C:/Users/Toni/Downloads/amelia_logo_transparent_dark-bg.png
 C:/Users/Toni/AppData/Local/Temp/codex-clipboard-ab044e25-ba99-4d2d-9313-35de96fca781.png
 C:/Users/Toni/Downloads/popular tours.png
+C:/Users/Toni/Downloads/Our mission.jpg
 ```
 
 Target location:
@@ -157,6 +158,34 @@ apps/website/public/assets/images/amelia/
 Comment: do not overwrite Omaya images. Amelia media should stay in an Amelia-specific folder. After copying, confirm dimensions, file sizes, and rendered layout.
 
 The screenshot file is a visual reference for the Omaya Travel section layout that Amelia should mirror for the first post-hero section. It should guide spacing, section rhythm, heading prominence, and four-column desktop composition; its English text and Omaya-specific content should not be reused.
+
+### Our Story / Mission Page
+
+Amelia should reuse the existing `/our-story/` route, but the visible page title and H1 should be:
+
+```text
+Нашата мисия
+```
+
+Hero/background image:
+
+```text
+C:/Users/Toni/Downloads/Our mission.jpg
+```
+
+Mission body:
+
+```text
+Нашата мисия е да създадем пространство, в което жените могат да пътуват свободно, смело и в подкрепяща общност. Знаем колко е трудно да се организира пътуване с приятели и да намериш компания, която пътува по твоя начин. Вярваме, че женските приятелства, основани на общи интереси, хобита и разбирания за света, правят живота по-богат, по-смислен и по-вълнуващ. Вярваме, че пътуването може да промени начина, по който гледаме на света, и да ни даде нови перспективи, които остават с нас завинаги.
+```
+
+The page should include the provided four bullet points and the section heading:
+
+```text
+Запознайте се с нас
+```
+
+Comment: the user has supplied the heading for the team/about section, but not final person bios or portraits for Amelia. The page should avoid showing untranslated Omaya team copy under Amelia until that content is provided.
 
 ### Popular Tours Section
 
@@ -224,6 +253,10 @@ Comment: before implementation, the Kyrgyzstan copy should be normalized into th
 - [x] Added Amelia Popular Tours cards for Morocco, Algeria, and Kyrgyzstan.
 - [x] Added site-specific Bulgarian Kyrgyzstan tour detail content for Amelia.
 - [x] Marked the shared coming-soon page as noindex.
+- [x] Copied supplied Amelia Our Mission image into the repo.
+- [x] Made the `/our-story/` page site-aware.
+- [x] Added Amelia Bulgarian mission content to `/our-story/`.
+- [x] Added Amelia-specific SEO title and meta description for `/our-story/`.
 - [x] Verified with `npm.cmd run type-check`.
 - [x] Verified with `npm.cmd run test`.
 - [x] Verified with `npm.cmd run lint`.
@@ -333,6 +366,19 @@ Comment: the Kyrgyzstan content is ready for modeling, but Morocco and Algeria a
 - [ ] Add blog article SEO and schema only for real Amelia posts.
 
 Comment: if there is no Amelia blog content at launch, the Blog menu item should either be hidden or route to a non-indexable coming-soon page. Best SEO choice is not to publish thin pages.
+
+### 8A. Our Story / Mission Page
+
+- [x] Reuse the existing `/our-story/` route for Amelia's mission page.
+- [x] Copy supplied Our Mission image into `apps/website/public/assets/images/amelia/our-story/`.
+- [x] Render `Нашата мисия` as the Amelia hero title/H1.
+- [x] Render the supplied Bulgarian mission paragraph and four bullet points.
+- [x] Render `Запознайте се с нас` as the next section heading.
+- [x] Avoid displaying untranslated Omaya team bios on Amelia.
+- [x] Add Amelia-specific `/our-story/` SEO title and description.
+- [ ] Add final Amelia team/founder bios and portraits when supplied.
+
+Comment: the page component is now content-driven by active site, so future Amelia-only page copy can be added without forking the route or duplicating the component.
 
 ### 9. Legal Pages
 
@@ -446,6 +492,7 @@ PLATFORM_FORMS_RATE_LIMIT_MAX
 - [ ] Amelia homepage carousel image dimensions still need visual/metadata confirmation.
 - [ ] Amelia destination pages/routes are not yet implemented.
 - [ ] Amelia Morocco and Algeria Popular Tours copy is not yet supplied.
+- [ ] Amelia team/founder bios and portraits for the mission page are not yet supplied.
 - [ ] Amelia legal copy is not yet confirmed.
 - [ ] Amelia blog launch decision is not yet confirmed.
 

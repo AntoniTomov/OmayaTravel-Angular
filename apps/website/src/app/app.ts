@@ -48,10 +48,11 @@ export class App {
     router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event) => {
+        this.seo.apply(router.routerState.snapshot);
+
         if (this.isBrowser) {
           window.scrollTo({ top: 0, behavior: 'smooth' });
           this.updateHeroBackgroundPosition();
-          this.seo.apply(router.routerState.snapshot);
           this.trackCurrentPageView(event.urlAfterRedirects);
         }
       });

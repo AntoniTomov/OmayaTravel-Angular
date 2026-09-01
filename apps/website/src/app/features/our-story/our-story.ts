@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+
+import { ActiveSite } from '../../../sites/active-site';
 
 interface StoryImage {
   src: string;
@@ -16,7 +18,44 @@ interface TeamMember {
   paragraphs: readonly string[];
 }
 
-const OUR_STORY = {
+interface StoryTextSection {
+  heading: string;
+  paragraphs: readonly string[];
+  listItems?: readonly string[];
+}
+
+interface StoryPageContent {
+  id: string;
+  slug: string;
+  title: string;
+  hero: {
+    image: StoryImage;
+  };
+  story: {
+    heading: string;
+    lead?: string;
+    sections: readonly StoryTextSection[];
+    callout?: string;
+    calloutAfterSectionIndex?: number;
+  };
+  team?: {
+    heading: string;
+    members: readonly TeamMember[];
+  };
+  tagline: string;
+  contact: {
+    phoneNumbers: readonly string[];
+    email: string;
+  };
+  seo: {
+    title: string;
+  };
+  source?: {
+    legacyUrl: string;
+  };
+}
+
+const OMAYA_OUR_STORY: StoryPageContent = {
   id: 'our-story',
   slug: 'our-story',
   title: 'Our Story',
@@ -32,13 +71,32 @@ const OUR_STORY = {
   story: {
     heading: 'Our story',
     lead: "The story of Omaya didn't begin with a business plan. It began with a shared car ride sometime in 2010.",
-    paragraphs: [
-      'We were both on our way to high school, living in the same neighbourhood and commuting to class each morning. Sharing that ride quickly turned into sharing conversations, ideas, and a growing friendship. Before long, we discovered we had something important in common - a deep curiosity about the world and a desire to explore it.',
-      "In our early twenties, that curiosity turned into travel. Not the kind with luxury hotels or big budgets, but the kind where the adventure comes from the journey itself. The trips where you don't need to go far to feel the thrill of discovering something new. Where the plans are simple, the days are spontaneous, and somehow those are the moments you remember most. Those were the trips where we realised just how much travel can shape the way you see the world.",
-      'As the years passed, we both found our way into the travel industry, working in different areas and gaining experience from different perspectives. Eventually our paths crossed professionally as well, and we had the chance to work together for a while. That is when we realised that beyond our friendship and love of travel, we also shared the same work ethic and the same vision for how travel should be done - thoughtfully designed journeys, local experiences, and the time to truly enjoy each place.',
-      'After years of learning, travelling, and gaining insight into the industry, we remained close friends. So when the idea of creating something of our own began to take shape, it felt like the most natural next step.',
-      "And that's how Omaya Travel came to life - built on friendship, shared values, and a love for the kind of travel that stays with you long after the journey ends.",
+    sections: [
+      {
+        heading: 'Where it started',
+        paragraphs: [
+          'The story of Omaya Travel did not begin with a business plan. It started with a shared car ride to school - we were two teenagers who quickly realised they shared something bigger than a commute: a curiosity about the world and a desire to go see it.',
+          'In our early 20s, that curiosity turned into travel. Not luxury trips or big groups - just a backpack, loose plans and the excitement of new experiences. It turned out we loved travelling in much the same way, and at much the same pace. And that is a pretty good test for a friendship, right?',
+        ],
+      },
+      {
+        heading: 'How travel changed us',
+        paragraphs: [
+          'Then we both ended up working in the travel industry, and kept travelling even further. Over the years, travel changed us. It made us more open, more curious and more willing to question what we thought we knew. But we noticed something ironic: while travel teaches you to step outside your boxes, group travel often puts you straight back into one. We felt that group travel for people in their 20s and 30s often seemed to come with a pretty predictable formula - big groups, pub crawls, loud nights and a very specific idea of what a fun trip should look like.',
+          'That never really felt like us. So we would either skip the group trip or go and feel like we had to pretend to be party animals just to fit in.',
+        ],
+      },
+      {
+        heading: 'Who we built it for',
+        paragraphs: [
+          'So we created Omaya Travel for people like us - curious travellers aged 20 to 45 who believe there is always more to see, more to learn, more food to try and more stories to hear. And for the kind of people who would rather build friendships over long conversations than a pub crawl.',
+          'Do not get us wrong - we still love a beer in a local pub and a good conversation with a stranger. We do not think one way of travelling is better than another. We simply wanted to create a space for young people who have not quite found their version of group travel yet.',
+          'That is the kind of travel we are here to create - and the kind of community you will find with Omaya Travel.',
+        ],
+      },
     ],
+    callout: 'Then we thought: we cannot be the only ones.',
+    calloutAfterSectionIndex: 1,
   },
   team: {
     heading: 'The Faces Behind the Story',
@@ -93,11 +151,59 @@ const OUR_STORY = {
   },
 };
 
+const AMELIA_OUR_STORY: StoryPageContent = {
+  id: 'our-story',
+  slug: 'our-story',
+  title: 'Нашата мисия',
+  hero: {
+    image: {
+      src: '/assets/images/amelia/our-story/our-mission.jpg',
+      alt: 'Жени пътешественички, седнали заедно край морето',
+      width: 1232,
+      height: 816,
+    },
+  },
+  story: {
+    heading: 'Нашата мисия',
+    sections: [
+      {
+        heading: 'Нашата мисия',
+        paragraphs: [
+          'Нашата мисия е да създадем пространство, в което жените могат да пътуват свободно, смело и в подкрепяща общност. Знаем колко е трудно да се организира пътуване с приятели и да намериш компания, която пътува по твоя начин. Вярваме, че женските приятелства, основани на общи интереси, хобита и разбирания за света, правят живота по-богат, по-смислен и по-вълнуващ. Вярваме, че пътуването може да промени начина, по който гледаме на света, и да ни даде нови перспективи, които остават с нас завинаги.',
+          'Затова организираме пътувания, които:',
+        ],
+        listItems: [
+          'Обединяват жени на възраст 20-45 години с приключенски дух и любопитство към света.',
+          'Подкрепят местни жени - приоритизираме работа с жени-гидове и професионалистки в туризма, за да създадем по-равнопоставен свят.',
+          'Предлагат баланс - съчетаваме най-важните забележителности с по-малко известни места и активности, които ни дават по-задълбочен поглед върху историята и културата на дестинацията.',
+          'Създават връзки - в малки групи до 16 души, където има време за всеки, за спонтанни разговори и за формиране на истински приятелства.',
+        ],
+      },
+    ],
+  },
+  team: {
+    heading: 'Запознайте се с нас',
+    members: [],
+  },
+  tagline: 'Общност за жени пътешественички',
+  contact: {
+    phoneNumbers: [],
+    email: 'info@ameliatravel.bg',
+  },
+  seo: {
+    title: 'Нашата мисия - Amelia Travel',
+  },
+};
+
 @Component({
   selector: 'app-our-story',
   templateUrl: './our-story.html',
   styleUrl: './our-story.scss',
 })
 export class OurStory {
-  protected readonly story = OUR_STORY;
+  private readonly activeSite = inject(ActiveSite);
+
+  protected readonly story = computed(() =>
+    this.activeSite.site().id === 'amelia' ? AMELIA_OUR_STORY : OMAYA_OUR_STORY,
+  );
 }

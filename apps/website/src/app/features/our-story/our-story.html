@@ -1,95 +1,67 @@
 <main class="our-story">
   <section class="our-story__hero">
     <img
-      [src]="story.hero.image.src"
-      [width]="story.hero.image.width"
-      [height]="story.hero.image.height"
-      [alt]="story.hero.image.alt"
+      [src]="story().hero.image.src"
+      [width]="story().hero.image.width"
+      [height]="story().hero.image.height"
+      [alt]="story().hero.image.alt"
       fetchpriority="high"
     />
     <div class="our-story__hero-copy">
-      <h1>{{ story.title }}</h1>
+      <h1>{{ story().title }}</h1>
     </div>
   </section>
 
   <section class="our-story__text" aria-labelledby="our-story-heading">
-    <div class="our-story__text-section">
-      <h2 id="our-story-heading">Where it started</h2>
-      <p>
-        The story of Omaya Travel didn’t begin with a business plan. It started with a shared car
-        ride to school — we were two teenagers who quickly realised they shared something bigger
-        than a commute: a curiosity about the world and a desire to go see it.
-      </p>
-      <p>
-        In our early 20s, that curiosity turned into travel. Not luxury trips or big groups — just a
-        backpack, loose plans and the excitement of new experiences. It turned out we loved
-        travelling in much the same way, and at much the same pace. And that’s a pretty good test
-        for a friendship, right?
-      </p>
-    </div>
-
-    <div class="our-story__text-section">
-      <h2>How travel changed us</h2>
-      <p>
-        Then we both ended up working in the travel industry, and kept travelling even further. Over
-        the years, travel changed us. It made us more open, more curious and more willing to
-        question what we thought we knew. But we noticed something ironic: while travel teaches you
-        to step outside your boxes, group travel often puts you straight back into one. We felt that
-        group travel for people in their 20s and 30s often seemed to come with a pretty predictable
-        formula – big groups, pub crawls, loud nights and a very specific idea of what a fun trip
-        should look like.
-      </p>
-      <p>
-        That never really felt like us. So we’d either skip the group trip or go and feel like we
-        had to pretend to be party animals just to fit in.
-      </p>
-    </div>
-
-    <div class="our-story__callout">Then we thought: we can’t be the only ones.</div>
-
-    <div class="our-story__text-section">
-      <h2>Who we built it for</h2>
-      <p>
-        So we created Omaya Travel for people like us – curious travellers aged 20 to 45 who believe
-        there is always more to see, more to learn, more food to try and more stories to hear. And
-        for the kind of people who’d rather build friendships over long conversations than a pub
-        crawl.
-      </p>
-      <p>
-        Don’t get us wrong – we still love a beer in a local pub and a good conversation with a
-        stranger. We don’t think one way of travelling is better than another. We simply wanted to
-        create a space for young people who haven’t quite found their version of group travel yet.
-      </p>
-      <p>
-        That’s the kind of travel we’re here to create – and the kind of community you will find
-        with Omaya Travel.
-      </p>
-    </div>
-  </section>
-
-  <section class="our-story__team" aria-labelledby="our-story-team-heading">
-    <div class="our-story__section-heading">
-      <h2 id="our-story-team-heading" class="our-story__faces-title">{{ story.team.heading }}</h2>
-    </div>
-
-    <div class="our-story__members">
-      @for (member of story.team.members; track member.id) {
-        <article class="our-story__member">
-          <img
-            [src]="member.image.src"
-            [width]="member.image.width"
-            [height]="member.image.height"
-            [alt]="member.image.alt"
-            loading="lazy"
-          />
-          <div>
-            <h3>{{ member.heading }}</h3>
-            @for (paragraph of member.paragraphs; track paragraph) {
-              <p>{{ paragraph }}</p>
+    @for (section of story().story.sections; track section.heading; let index = $index) {
+      <div class="our-story__text-section">
+        <h2 [id]="$first ? 'our-story-heading' : null">{{ section.heading }}</h2>
+        @for (paragraph of section.paragraphs; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+        @if (section.listItems?.length) {
+          <ul>
+            @for (item of section.listItems; track item) {
+              <li>{{ item }}</li>
             }
-          </div>
-        </article>
+          </ul>
+        }
+      </div>
+      @if (story().story.callout && index === (story().story.calloutAfterSectionIndex ?? 0)) {
+        <div class="our-story__callout">{{ story().story.callout }}</div>
       }
-    </div>
+    }
   </section>
+
+  @if (story().team; as team) {
+    <section class="our-story__team" aria-labelledby="our-story-team-heading">
+      <div class="our-story__section-heading">
+        <h2 id="our-story-team-heading" class="our-story__faces-title">
+          {{ team.heading }}
+        </h2>
+      </div>
+
+      @if (team.members.length) {
+        <div class="our-story__members">
+          @for (member of team.members; track member.id) {
+            <article class="our-story__member">
+              <img
+                [src]="member.image.src"
+                [width]="member.image.width"
+                [height]="member.image.height"
+                [alt]="member.image.alt"
+                loading="lazy"
+              />
+              <div>
+                <h3>{{ member.heading }}</h3>
+                @for (paragraph of member.paragraphs; track paragraph) {
+                  <p>{{ paragraph }}</p>
+                }
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </section>
+  }
 </main>

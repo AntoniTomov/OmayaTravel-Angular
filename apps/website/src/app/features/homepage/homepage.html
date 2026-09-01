@@ -37,7 +37,7 @@
                 <button type="button" role="option" (click)="updateDestination('')">
                   {{ i18n.t('homepage.whereTo') }}
                 </button>
-                @for (destination of destinations(); track destination.target) {
+                @for (destination of destinations(); track destination.label + destination.target) {
                   <button
                     type="button"
                     role="option"

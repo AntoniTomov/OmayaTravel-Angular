@@ -66,6 +66,12 @@ export interface SiteSocialLink {
   icon: 'social-facebook' | 'social-instagram' | 'social-linkedin';
 }
 
+export interface SitePageSeo {
+  canonicalPath: string;
+  title: string;
+  description?: string;
+}
+
 export interface SiteContent {
   hero: {
     title: string;
@@ -89,6 +95,7 @@ export interface SiteContent {
   featuredTours: readonly TourCardContent[];
   searchIndex: readonly SearchIndexItem[];
   enabledRoutes: readonly string[];
+  pageSeo?: readonly SitePageSeo[];
 }
 
 export interface SiteConfig {

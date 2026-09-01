@@ -131,6 +131,21 @@
   line-height: 1.7;
 }
 
+.our-story__text-section ul {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 72rem;
+  margin: 0.15rem 0 0;
+  padding-left: 1.35rem;
+  color: var(--omaya-color-muted);
+  font-size: 1.12rem;
+  line-height: 1.65;
+}
+
+.our-story__text-section li::marker {
+  color: var(--omaya-color-accent);
+}
+
 .our-story__callout {
   width: min(66rem, 100%);
   box-sizing: border-box;
