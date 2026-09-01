@@ -1,0 +1,108 @@
+name: Publish Hostinger staging runtime
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+concurrency:
+  group: hostinger-staging-runtime-publish
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+env:
+  CI: true
+  NG_CLI_ANALYTICS: false
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+  publish:
+    name: Build dev and publish staging runtime branch
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://staging.omayatravel.com
+
+    steps:
+      - name: Checkout dev source
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Prepare Hostinger staging runtime bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f apps/website/dist/website/server/server.mjs
+          rm -rf ../hostinger-staging-runtime
+          if git ls-remote --exit-code --heads origin hostinger-staging-runtime >/dev/null 2>&1; then
+            git clone --depth 1 --branch hostinger-staging-runtime \
+              "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+              ../hostinger-staging-runtime
+          else
+            git init ../hostinger-staging-runtime
+            git -C ../hostinger-staging-runtime remote add origin \
+              "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+            git -C ../hostinger-staging-runtime checkout -b hostinger-staging-runtime
+          fi
+          find ../hostinger-staging-runtime -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a apps/website/dist/website/. ../hostinger-staging-runtime/
+          cat > ../hostinger-staging-runtime/hostinger-entry.mjs <<'JS'
+          process.env.OMAYA_FORCE_SERVER_LISTEN = 'true';
+          await import('./server/server.mjs');
+          JS
+          cat > ../hostinger-staging-runtime/package.json <<'JSON'
+          {
+            "name": "omaya-travel-hostinger-staging-runtime",
+            "version": "0.0.0",
+            "private": true,
+            "type": "module",
+            "scripts": {
+              "build": "node -e \"console.log('Using prebuilt Angular SSR staging bundle.')\"",
+              "start": "node hostinger-entry.mjs"
+            },
+            "engines": {
+              "node": ">=18"
+            }
+          }
+          JSON
+
+      - name: Publish Hostinger staging runtime branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd ../hostinger-staging-runtime
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No staging runtime changes to publish."
+            exit 0
+          fi
+          git commit -m "Refresh Hostinger staging runtime bundle"
+          git push origin HEAD:hostinger-staging-runtime
