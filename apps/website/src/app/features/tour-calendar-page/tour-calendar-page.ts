@@ -44,17 +44,17 @@ export class TourCalendarPage {
 
   protected openMonth(month: CalendarMonth): void {
     if (month.tours.length === 0) {
-      void this.router.navigateByUrl('/not-yet-but-soon/');
+      void this.router.navigateByUrl('/not-yet-but-soon');
       return;
     }
 
     if (month.tours.length === 1) {
-      void this.router.navigateByUrl(month.tours[0]);
+      void this.router.navigateByUrl(month.tours[0].replace(/\/$/, ''));
       return;
     }
 
     if (month.tours.length > 1 && month.resultPath) {
-      void this.router.navigateByUrl(month.resultPath);
+      void this.router.navigateByUrl(month.resultPath.replace(/\/$/, ''));
     }
   }
 
