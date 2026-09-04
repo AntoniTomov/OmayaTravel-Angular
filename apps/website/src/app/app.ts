@@ -1,5 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, PLATFORM_ID, effect, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { PublicHeader } from './features/public-header/public-header';
@@ -24,6 +25,7 @@ export class App {
   private readonly cookieConsent = inject(CookieConsentService);
   private readonly activeSite = inject(ActiveSite);
   private readonly i18n = inject(OmayaI18n);
+  private readonly titleService = inject(Title);
   private parallaxFrame: number | null = null;
   private lastTrackedPageView = '';
 
@@ -34,6 +36,7 @@ export class App {
       this.i18n.setLocale(site.locale);
       this.document.documentElement.lang = site.locale;
       this.document.documentElement.setAttribute('data-theme', site.theme.dataTheme);
+      this.titleService.setTitle(site.brand.name);
     });
 
     effect(() => {
