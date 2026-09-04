@@ -65,6 +65,7 @@ export interface TourDetailContent {
     max: number;
   };
   departures: readonly string[];
+  departureNotes?: Readonly<Record<string, string>>;
   heroImage: TourImage;
   introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
@@ -133,6 +134,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     max: 12,
   },
   departures: ['2026-11-05', '2027-02-24', '2027-10-28'],
+  departureNotes: { '2027-02-24': 'All ages departure' },
   heroImage: {
     src: `${ALGERIA_ASSET_BASE}/gallery/gallery-image-5.webp`,
     source:
