@@ -44,7 +44,7 @@ const TERMS_SECTIONS: readonly LegalSection[] = [
       'Refund structure:',
     ],
     list: [
-      'Less than 14 days before departure: non-refundable.',
+      'Less than 20 days before departure: non-refundable.',
       '45–30 days before departure: full refund minus the deposit.',
       '29–20 days before departure: 30% refund applicable.',
     ],
