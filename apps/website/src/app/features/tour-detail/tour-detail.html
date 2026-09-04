@@ -52,7 +52,12 @@
               <mat-icon aria-hidden="true">calendar_month</mat-icon>
               <strong>Available dates:</strong>
               @for (departure of tour.departures; track departure) {
-                <span>{{ departure | date: 'd MMMM y' }}</span>
+                <span
+                  >{{ departure | date: 'd MMMM y' }}
+                  @if (tour.departureNotes?.[departure]; as note) {
+                    ({{ note }})
+                  }
+                </span>
               }
             </p>
             <p class="tour-detail__fact">
