@@ -1,0 +1,321 @@
+import { DOCUMENT } from '@angular/common';
+import { Injectable, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+
+import { ActiveSite } from '../../../sites/active-site';
+import { findBlogPostBySlug } from '../content/blog-content';
+import { findTourBySlug } from '../content/tour-content';
+import { PUBLIC_CANONICAL_HOST, withTrailingSlash } from '../routing/public-routes';
+import {
+  DEFAULT_SOCIAL_IMAGE,
+  PageMetadata,
+  destinationPageMetadata,
+  staticPageMetadata,
+} from './page-metadata';
+import {
+  BreadcrumbEntry,
+  JsonLd,
+  SeoSiteIdentity,
+  absoluteUrl,
+  blogPostingJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  organizationJsonLd,
+  tourJsonLd,
+  webSiteJsonLd,
+} from './structured-data';
+
+/** Marks the JSON-LD scripts this service owns, so stale ones can be cleared on navigation. */
+const JSON_LD_MARKER = 'data-omaya-seo';
+
+/** Matches the address the SSR form handler already replies from (`server.ts`). */
+const SITE_CONTACT_EMAIL = 'info@omayatravel.com';
+
+/**
+ * Google truncates result titles around 60 characters. Article headlines are the content team's
+ * copy and are never shortened here — instead the brand suffix is dropped once it would only push
+ * the headline itself out of the visible part of the result.
+ */
+const MAX_BRANDED_TITLE_LENGTH = 60;
+
+function brandedTitle(title: string, brand: string): string {
+  const branded = `${title} | ${brand}`;
+
+  return branded.length <= MAX_BRANDED_TITLE_LENGTH ? branded : title;
+}
+
+/** Used when a route carries no `routeKey` we recognise, so a page never ships without metadata. */
+const FALLBACK_METADATA: PageMetadata = {
+  title: 'Omaya Travel',
+  description:
+    'Small group adventure tours to Bulgaria, Kyrgyzstan, Morocco and Algeria, with local guides and genuinely small groups.',
+};
+
+interface ResolvedPage {
+  metadata: PageMetadata;
+  canonicalPath: string;
+  breadcrumbs: readonly BreadcrumbEntry[];
+  jsonLd: readonly JsonLd[];
+}
+
+/**
+ * Sets the search and social metadata for the active route.
+ *
+ * Everything written here lives in the document head — title, meta tags, canonical link and JSON-LD.
+ * No visible page copy is touched. Runs during SSR as well as in the browser, so the tags are
+ * present in the served HTML that crawlers read.
+ */
+@Injectable({ providedIn: 'root' })
+export class OmayaSeo {
+  private readonly document = inject(DOCUMENT);
+  private readonly router = inject(Router);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly activeSite = inject(ActiveSite);
+
+  /** Called once from the root component; subsequent updates follow router navigation. */
+  start(): void {
+    this.update();
+
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe(() => this.update());
+  }
+
+  private update(): void {
+    const identity = this.siteIdentity();
+    const page = this.resolvePage(identity);
+    const canonical = absoluteUrl(identity.canonicalHost, page.canonicalPath);
+    const image = absoluteUrl(identity.canonicalHost, page.metadata.image ?? DEFAULT_SOCIAL_IMAGE);
+
+    this.title.setTitle(page.metadata.title);
+
+    this.meta.updateTag({ name: 'description', content: page.metadata.description });
+    this.meta.updateTag({
+      name: 'robots',
+      content: page.metadata.noIndex ? 'noindex, follow' : 'index, follow',
+    });
+
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:site_name', content: identity.name });
+    this.meta.updateTag({ property: 'og:title', content: page.metadata.title });
+    this.meta.updateTag({ property: 'og:description', content: page.metadata.description });
+    this.meta.updateTag({ property: 'og:url', content: canonical });
+    this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ property: 'og:locale', content: identity.locale });
+
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: page.metadata.title });
+    this.meta.updateTag({ name: 'twitter:description', content: page.metadata.description });
+    this.meta.updateTag({ name: 'twitter:image', content: image });
+
+    this.setCanonicalLink(canonical);
+
+    const breadcrumbs = breadcrumbJsonLd(identity, page.breadcrumbs);
+
+    this.setJsonLd([
+      organizationJsonLd(identity),
+      webSiteJsonLd(identity),
+      ...(breadcrumbs ? [breadcrumbs] : []),
+      ...page.jsonLd,
+    ]);
+  }
+
+  private siteIdentity(): SeoSiteIdentity {
+    const site = this.activeSite.site();
+    const canonicalHost = site.domain ? `https://${site.domain}` : PUBLIC_CANONICAL_HOST;
+
+    return {
+      name: site.brand.name,
+      canonicalHost,
+      logoUrl: site.brand.logoSrc,
+      email: SITE_CONTACT_EMAIL,
+      locale: site.locale,
+    };
+  }
+
+  private resolvePage(identity: SeoSiteIdentity): ResolvedPage {
+    const snapshot = this.deepestRoute();
+    const data = snapshot.data;
+    const routeKey = data['routeKey'] as string | undefined;
+    const canonicalPath = this.canonicalPath(snapshot);
+
+    const tourSlug = (data['tourSlug'] as string | undefined) ?? snapshot.params['tourSlug'];
+    const tour = findTourBySlug(tourSlug);
+
+    if (tour) {
+      const canonical = absoluteUrl(identity.canonicalHost, canonicalPath);
+      const faq = faqJsonLd(tour);
+
+      return {
+        metadata: {
+          title: tour.seo.title,
+          description: tour.seo.description,
+          image: tour.heroImage.src,
+        },
+        canonicalPath,
+        breadcrumbs: [
+          { name: 'Home', path: '/' },
+          { name: 'Tours', path: '/tours-list/' },
+          { name: tour.title, path: canonicalPath },
+        ],
+        jsonLd: [tourJsonLd(identity, tour, canonical), ...(faq ? [faq] : [])],
+      };
+    }
+
+    const articleSlug = data['articleSlug'] as string | undefined;
+    const post = findBlogPostBySlug(articleSlug);
+
+    if (post) {
+      const canonical = absoluteUrl(identity.canonicalHost, canonicalPath);
+
+      return {
+        metadata: {
+          title: brandedTitle(post.title, identity.name),
+          description: post.excerpt,
+          image: (post.heroImage ?? post.image).src,
+        },
+        canonicalPath,
+        breadcrumbs: [
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog-list/' },
+          { name: post.title, path: canonicalPath },
+        ],
+        jsonLd: [blogPostingJsonLd(identity, post, canonical)],
+      };
+    }
+
+    const destinationSlug =
+      (data['destinationSlug'] as string | undefined) ?? snapshot.params['destinationSlug'];
+    const destination = destinationPageMetadata(destinationSlug);
+
+    if (destination) {
+      return {
+        metadata: destination,
+        canonicalPath,
+        breadcrumbs: [
+          { name: 'Home', path: '/' },
+          { name: 'Destinations', path: '/destinations/' },
+          { name: destination.title.split(' | ')[0], path: canonicalPath },
+        ],
+        jsonLd: [],
+      };
+    }
+
+    const metadata = staticPageMetadata(routeKey) ?? FALLBACK_METADATA;
+
+    return {
+      metadata,
+      canonicalPath,
+      breadcrumbs: this.staticBreadcrumbs(metadata, canonicalPath),
+      jsonLd: [],
+    };
+  }
+
+  private staticBreadcrumbs(
+    metadata: PageMetadata,
+    canonicalPath: string,
+  ): readonly BreadcrumbEntry[] {
+    if (canonicalPath === '/') {
+      return [];
+    }
+
+    return [
+      { name: 'Home', path: '/' },
+      { name: metadata.title.split(' | ')[0], path: canonicalPath },
+    ];
+  }
+
+  /**
+   * Prefers the `canonicalPath` already declared on the route, expanding `canonicalPathPattern`
+   * placeholders for parameterised routes, and falls back to the navigated URL.
+   */
+  private canonicalPath(snapshot: ActivatedRouteSnapshot): string {
+    const declared = snapshot.data['canonicalPath'] as string | undefined;
+
+    if (declared) {
+      return declared;
+    }
+
+    const pattern = snapshot.data['canonicalPathPattern'] as string | undefined;
+
+    if (pattern) {
+      const expanded = pattern.replace(/:([A-Za-z0-9_]+)/g, (match, param: string) => {
+        const value = snapshot.params[param] ?? this.segmentFallback(snapshot, param);
+
+        return value ?? match;
+      });
+
+      return withTrailingSlash(expanded);
+    }
+
+    const path = this.router.url.split(/[?#]/)[0];
+
+    return withTrailingSlash(path);
+  }
+
+  /**
+   * Canonical matcher routes carry their slug as a URL segment rather than a router param, so read
+   * it back off the matched segments when `params` has nothing.
+   */
+  private segmentFallback(snapshot: ActivatedRouteSnapshot, param: string): string | undefined {
+    const segments = snapshot.url.map((segment) => segment.path).filter(Boolean);
+
+    if (param === 'tourSlug' || param === 'destinationSlug') {
+      return segments[segments.length - 1];
+    }
+
+    return undefined;
+  }
+
+  private deepestRoute(): ActivatedRouteSnapshot {
+    let route = this.router.routerState.snapshot.root;
+
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+
+    return route;
+  }
+
+  private setCanonicalLink(canonical: string): void {
+    const head = this.document.head;
+
+    if (!head) {
+      return;
+    }
+
+    let link = head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+    if (!link) {
+      link = this.document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      head.appendChild(link);
+    }
+
+    link.setAttribute('href', canonical);
+  }
+
+  private setJsonLd(blocks: readonly JsonLd[]): void {
+    const head = this.document.head;
+
+    if (!head) {
+      return;
+    }
+
+    for (const stale of Array.from(head.querySelectorAll(`script[${JSON_LD_MARKER}]`))) {
+      stale.remove();
+    }
+
+    for (const block of blocks) {
+      const script = this.document.createElement('script');
+
+      script.setAttribute('type', 'application/ld+json');
+      script.setAttribute(JSON_LD_MARKER, '');
+      script.textContent = JSON.stringify(block);
+      head.appendChild(script);
+    }
+  }
+}
