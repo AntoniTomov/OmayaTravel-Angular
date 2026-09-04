@@ -56,8 +56,17 @@ structured-data builders and the sitemap/robots generators. All of it writes to 
 only — it never touches visible copy.
 
 Strategy, market targeting and phased rollout: **[docs/SEO_STRATEGY_PLAN.md](docs/SEO_STRATEGY_PLAN.md)**.
-Read it before changing anything under `shared/seo/` or adding public routes. Target markets are
-the **USA and Germany first**, then rest of world.
+Read it before changing anything under `shared/seo/` or adding public routes.
+
+Omaya is **English only** — tours are guided in English and there is no German site and no `.de`
+domain. Target markets are the **USA and UK first**, then Germany and the rest of the world *in
+English*. Because the UK is primary, keep the British spelling the existing copy already uses, and
+title destination and listing pages with both "tours" and "holidays" — UK searchers use "holidays"
+as heavily as "tours". No hreflang is needed while the site is single-language on one domain; do
+not add it speculatively.
+
+Amelia Travel is a separate brand (Bulgarian market, women-only, Bulgarian language), not a
+translation of Omaya, so the two are not hreflang alternates. Its SEO is a separate exercise.
 
 ## Other docs
 

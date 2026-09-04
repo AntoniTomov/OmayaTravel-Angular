@@ -29,9 +29,9 @@ const BRAND_SUFFIX = 'Omaya Travel';
 /** Route metadata keyed by the `routeKey` set in `app.routes.ts`. */
 export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
   home: {
-    title: `Small Group Adventure Tours | ${BRAND_SUFFIX}`,
+    title: `Small Group Adventure Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
-      'Small group adventure tours to Bulgaria, Kyrgyzstan, Morocco and Algeria. Women-only and solo traveller departures, local guides and genuinely small groups.',
+      'Small group adventure tours and holidays to Bulgaria, Kyrgyzstan, Morocco and Algeria. Women-only and solo traveller departures, led in English by local guides.',
   },
   search: {
     title: `Search | ${BRAND_SUFFIX}`,
@@ -54,29 +54,30 @@ export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
       'Bulgaria, Kyrgyzstan, Morocco and Algeria — four countries we know first-hand, with small group departures throughout the year.',
   },
 
-  // Tour listings
+  // Tour listings. See the note on DESTINATION_PAGE_METADATA for why titles carry both
+  // "tours" and "holidays".
   'tour-listing-tours-list': {
-    title: `All Small Group Tours | ${BRAND_SUFFIX}`,
+    title: `All Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Every Omaya Travel departure in one place: classic, women-only and solo traveller small group tours across Bulgaria, Kyrgyzstan, Morocco and Algeria.',
   },
   'tour-listing-classic-tours': {
-    title: `Classic Small Group Tours | ${BRAND_SUFFIX}`,
+    title: `Classic Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Our classic small group tours, open to all travellers. Local guides, small groups and itineraries built around the places rather than the checklist.',
   },
   'tour-listing-women-only-tours': {
-    title: `Women Only Tours in Small Groups | ${BRAND_SUFFIX}`,
+    title: `Women Only Small Group Holidays & Tours | ${BRAND_SUFFIX}`,
     description:
-      'Women-only small group tours to Kyrgyzstan, Bulgaria and Morocco. Designed for women travelling solo or together, with women-led guiding on the ground.',
+      'Women-only small group tours and holidays to Kyrgyzstan, Bulgaria and Morocco. For women travelling solo or together, with women-led guiding on the ground.',
   },
   'tour-listing-solo-travellers-tours': {
-    title: `Solo Traveller Tours in Small Groups | ${BRAND_SUFFIX}`,
+    title: `Solo Traveller Small Group Holidays & Tours | ${BRAND_SUFFIX}`,
     description:
-      'Small group tours built for solo travellers, with no single supplement traps and a group small enough that nobody stays a stranger for long.',
+      'Small group tours and holidays built for solo travellers, with no single supplement traps and a group small enough that nobody stays a stranger for long.',
   },
   'tour-listing-all-ages-tours': {
-    title: `All Ages Small Group Tours | ${BRAND_SUFFIX}`,
+    title: `All Ages Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Small group adventures suited to travellers of every age, with a pace that leaves room to look around rather than tick things off.',
   },
@@ -194,27 +195,31 @@ export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
  * These routes still render `PublicRoutePlaceholder`, so the pages are not built yet. The metadata
  * is written against what the pages will hold, and targets the destination terms in the strategy
  * plan (`docs/SEO_STRATEGY_PLAN.md`).
+ *
+ * Titles carry both "tours" and "holidays" deliberately: the UK is a primary market and UK
+ * searchers use "holidays" as heavily as "tours", while American searchers use "tours" almost
+ * exclusively. One title serves both.
  */
 export const DESTINATION_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
   bulgaria: {
-    title: `Bulgaria Small Group Tours | ${BRAND_SUFFIX}`,
+    title: `Bulgaria Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
-      'Small group tours through Bulgaria: Rila Monastery, the Rhodope villages, Plovdiv and the Black Sea coast, guided by people who live there.',
+      'Small group tours and holidays through Bulgaria: Rila Monastery, the Rhodope villages, Plovdiv and the Black Sea coast, guided by people who live there.',
   },
   kyrgyzstan: {
-    title: `Kyrgyzstan Small Group Tours | ${BRAND_SUFFIX}`,
+    title: `Kyrgyzstan Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
-      'Small group tours across Kyrgyzstan: Song-Kul lake, the Tien Shan mountains, yurt stays and horseback days on the high summer pastures.',
+      'Small group tours and holidays across Kyrgyzstan: Song-Kul lake, the Tien Shan mountains, yurt stays and horseback days on the high summer pastures.',
   },
   morocco: {
-    title: `Morocco Small Group Tours | ${BRAND_SUFFIX}`,
+    title: `Morocco Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
-      'Small group tours through Morocco: the blue city of Chefchaouen, the Atlas mountains, Saharan dunes and the medinas in between.',
+      'Small group tours and holidays through Morocco: the blue city of Chefchaouen, the Atlas mountains, Saharan dunes and the medinas in between.',
   },
   algeria: {
-    title: `Algeria Desert Tours | ${BRAND_SUFFIX}`,
+    title: `Algeria Desert Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
-      'Small group expeditions into the Algerian Sahara: Tadrart Rouge, Tassili n’Ajjer rock art, desert camping and Tuareg hospitality.',
+      'Small group desert expeditions into the Algerian Sahara: Tadrart Rouge, Tassili n’Ajjer rock art, desert camping and Tuareg hospitality.',
   },
 };
 

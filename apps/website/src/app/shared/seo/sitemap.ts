@@ -10,8 +10,9 @@ import { DESTINATION_PAGE_METADATA, STATIC_PAGE_METADATA } from './page-metadata
  * Sitemap and robots.txt generation.
  *
  * Both are built from the same route tables the router uses, so they cannot drift from the real
- * site. `sitemap.xml` is a sitemap *index* even though there is only one child today — that is what
- * lets a German child sitemap be added later without changing the URL Google already knows.
+ * site. `sitemap.xml` is a sitemap *index* even though there is only one child today, so a second
+ * child can be added when blog volume justifies splitting it, without changing the URL Google
+ * already knows. The site is English-only on one domain, so no per-language children are planned.
  */
 export const SITEMAP_INDEX_PATH = '/sitemap.xml';
 export const SITEMAP_PAGES_PATH = '/sitemap-pages.xml';
