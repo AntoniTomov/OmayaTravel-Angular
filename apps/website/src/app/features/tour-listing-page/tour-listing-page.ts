@@ -92,7 +92,7 @@ export class TourListingPage {
   protected readonly page = computed(() =>
     findTourListingPage(String(this.routeData()['listingSlug'] ?? 'tours-list')),
   );
-  protected readonly isTourListPage = computed(() => this.page().slug === 'tours-list');
+  protected readonly isTourListPage = computed(() => this.page().showFilters);
   protected readonly shouldShowSortTabs = computed(() => this.page().showFilters);
   protected readonly cards = computed(() => {
     const page = this.page();
