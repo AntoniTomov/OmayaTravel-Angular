@@ -98,13 +98,24 @@ export class OmayaSeo {
       content: page.metadata.noIndex ? 'noindex, follow' : 'index, follow',
     });
 
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:type', content: page.metadata.ogType ?? 'website' });
     this.meta.updateTag({ property: 'og:site_name', content: identity.name });
     this.meta.updateTag({ property: 'og:title', content: page.metadata.title });
     this.meta.updateTag({ property: 'og:description', content: page.metadata.description });
     this.meta.updateTag({ property: 'og:url', content: canonical });
     this.meta.updateTag({ property: 'og:image', content: image });
     this.meta.updateTag({ property: 'og:locale', content: identity.locale });
+
+    // Article-only tag. Removed rather than left stale when navigating from a post to any
+    // other page, because Meta persists tags across navigations.
+    if (page.metadata.publishedTime) {
+      this.meta.updateTag({
+        property: 'article:published_time',
+        content: page.metadata.publishedTime,
+      });
+    } else {
+      this.meta.removeTag('property="article:published_time"');
+    }
 
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: page.metadata.title });
@@ -176,6 +187,8 @@ export class OmayaSeo {
           title: brandedTitle(post.title, identity.name),
           description: post.excerpt,
           image: (post.heroImage ?? post.image).src,
+          ogType: 'article',
+          publishedTime: post.publishedAt,
         },
         canonicalPath,
         breadcrumbs: [

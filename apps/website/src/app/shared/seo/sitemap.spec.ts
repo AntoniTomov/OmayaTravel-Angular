@@ -1,11 +1,11 @@
 import { PUBLIC_CANONICAL_HOST, PUBLIC_INDEXABLE_ROUTES } from '../routing/public-routes';
-import { STATIC_PAGE_METADATA } from './page-metadata';
 import {
   SITEMAP_INDEX_PATH,
   SITEMAP_PAGES_PATH,
   buildRobotsTxt,
   buildSitemapIndexXml,
   buildSitemapPagesXml,
+  metadataForRoute,
   sitemapEntries,
 } from './sitemap';
 
@@ -31,23 +31,27 @@ describe('sitemap generation', () => {
     expect(locations).not.toContain(`${PUBLIC_CANONICAL_HOST}/3122-2/`);
   });
 
-  it('includes the destination and tour detail routes', () => {
+  it('keeps the unbuilt destination placeholders out of the sitemap', () => {
+    const locations = sitemapEntries().map((entry) => entry.loc);
+    const destinations = locations.filter((location) => location.includes('/destinations/'));
+
+    // Remove the noIndex flags in DESTINATION_PAGE_METADATA once these pages render real content
+    // and this assertion should be inverted.
+    expect(destinations).toEqual([]);
+  });
+
+  it('includes the tour detail routes, which are fully built', () => {
     const locations = sitemapEntries().map((entry) => entry.loc);
 
-    expect(locations).toContain(`${PUBLIC_CANONICAL_HOST}/destinations/kyrgyzstan/`);
     expect(locations).toContain(`${PUBLIC_CANONICAL_HOST}/tour-item/women-only-tour-kyrgyzstan/`);
+    expect(locations).toContain(`${PUBLIC_CANONICAL_HOST}/tour-item/morocco-tour/`);
   });
 
   it('stays in step with the route table as routes are added', () => {
-    const excluded = PUBLIC_INDEXABLE_ROUTES.filter((route) => {
-      const metadata =
-        STATIC_PAGE_METADATA[route.key] ??
-        STATIC_PAGE_METADATA[route.key.replace('tour-category-', 'tour-listing-')];
-
-      return metadata?.noIndex;
-    });
+    const excluded = PUBLIC_INDEXABLE_ROUTES.filter((route) => metadataForRoute(route)?.noIndex);
 
     expect(sitemapEntries().length).toBe(PUBLIC_INDEXABLE_ROUTES.length - excluded.length);
+    expect(excluded.length).toBeGreaterThan(0);
   });
 
   it('dates blog entries from the post itself', () => {

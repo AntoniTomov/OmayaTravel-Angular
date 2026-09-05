@@ -27,7 +27,8 @@ function isIndexable(route: PublicRouteDefinition): boolean {
   return !metadataForRoute(route)?.noIndex;
 }
 
-function metadataForRoute(route: PublicRouteDefinition) {
+/** Exported so tests can assert against the same resolution the sitemap uses, not a copy of it. */
+export function metadataForRoute(route: PublicRouteDefinition) {
   if (route.type === 'destination-detail') {
     const slug = route.path.split('/').pop();
 

@@ -13,6 +13,10 @@ export interface PageMetadata {
   image?: string;
   /** Keeps a page out of the index without removing it from the site. */
   noIndex?: boolean;
+  /** Open Graph object type. Blog articles are `article`; everything else defaults to `website`. */
+  ogType?: 'website' | 'article';
+  /** ISO date for `article:published_time`. Only meaningful alongside `ogType: 'article'`. */
+  publishedTime?: string;
 }
 
 /**
@@ -48,10 +52,15 @@ export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
     description:
       'First-hand guides to the places we actually travel: Song-Kul in Kyrgyzstan, Rila Monastery in Bulgaria, the Algerian Sahara and more.',
   },
+  // TODO_SEO_DESTINATIONS: drop `noIndex` here and in DESTINATION_PAGE_METADATA once these pages
+  // render real content. They currently render `PublicRoutePlaceholder`, whose only heading is
+  // "Public route placeholder" — indexing that would put five near-empty pages in front of Google
+  // and drag the whole domain's quality signal down. The metadata below is written and ready.
   'destination-hub': {
     title: `Destinations We Travel | ${BRAND_SUFFIX}`,
     description:
       'Bulgaria, Kyrgyzstan, Morocco and Algeria — four countries we know first-hand, with small group departures throughout the year.',
+    noIndex: true,
   },
 
   // Tour listings. See the note on DESTINATION_PAGE_METADATA for why titles carry both
@@ -192,9 +201,11 @@ export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
 /**
  * Destination detail metadata, keyed by slug.
  *
- * These routes still render `PublicRoutePlaceholder`, so the pages are not built yet. The metadata
- * is written against what the pages will hold, and targets the destination terms in the strategy
- * plan (`docs/SEO_STRATEGY_PLAN.md`).
+ * TODO_SEO_DESTINATIONS: these routes still render `PublicRoutePlaceholder`, whose only heading is
+ * "Public route placeholder", so every entry here is `noIndex` for now. The copy is written and
+ * ready — drop the `noIndex` flags (here and on `destination-hub`) the moment the pages render real
+ * content, and they will enter the sitemap automatically. Indexing five near-empty pages would put
+ * thin content in front of Google and drag the domain's quality signal down.
  *
  * Titles carry both "tours" and "holidays" deliberately: the UK is a primary market and UK
  * searchers use "holidays" as heavily as "tours", while American searchers use "tours" almost
@@ -205,21 +216,25 @@ export const DESTINATION_PAGE_METADATA: Readonly<Record<string, PageMetadata>> =
     title: `Bulgaria Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Small group tours and holidays through Bulgaria: Rila Monastery, the Rhodope villages, Plovdiv and the Black Sea coast, guided by people who live there.',
+    noIndex: true,
   },
   kyrgyzstan: {
     title: `Kyrgyzstan Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Small group tours and holidays across Kyrgyzstan: Song-Kul lake, the Tien Shan mountains, yurt stays and horseback days on the high summer pastures.',
+    noIndex: true,
   },
   morocco: {
     title: `Morocco Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Small group tours and holidays through Morocco: the blue city of Chefchaouen, the Atlas mountains, Saharan dunes and the medinas in between.',
+    noIndex: true,
   },
   algeria: {
     title: `Algeria Desert Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Small group desert expeditions into the Algerian Sahara: Tadrart Rouge, Tassili n’Ajjer rock art, desert camping and Tuareg hospitality.',
+    noIndex: true,
   },
 };
 
