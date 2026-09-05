@@ -86,6 +86,42 @@ anything, per the review's own guidance.
 
 **Test suite: 100 passing, up from 88.** Lint clean. Build prerenders 42 routes.
 
+### GA4 lead tracking: code audit
+
+The review said to audit the existing implementation rather than install a second one. The code half
+is done; the account half still needs access (item H).
+
+**The implementation is sound.** Five `generate_lead` sites, every one firing only after a confirmed
+successful submission:
+
+| Where | `form_type` | Attribution |
+| --- | --- | --- |
+| Tour detail booking form | `tour-booking` | `tour_slug` — the only site with product attribution |
+| Enquire page | `enquire-now` | — |
+| Contact page | `contact` | — |
+| FAQ page | `faq-question` | — |
+| Private tour planning form | `private-tour-planning` | — |
+
+Four use `if (result.ok)`, the fifth an early-return guard on `!result.ok`. Equivalent. **A failed
+submission cannot record a lead**, which is the completion criterion the review's Phase 1 asks for —
+though it should still be confirmed end to end against the live property once access exists.
+
+**No personal data reaches the analytics payload** — only `form_type` and `tour_slug`. That matches
+the review's rule about keeping enquiry information out of analytics.
+
+**Two things to be aware of when reconciling:**
+
+1. **Every event is gated on cookie consent** (`OmayaAnalytics.trackEvent` returns early unless
+   `canUseAnalytics()`). Leads from visitors who declined analytics are invisible to GA4 but real in
+   the inbox. Analytics will undercount, and reconciliation against enquiry records is mandatory
+   rather than optional.
+2. **A FAQ question currently counts as a `generate_lead`.** Whether that is a lead is a business
+   definition, not a code question — it will inflate the count relative to enquiries that could
+   actually book. Worth deciding before anyone reports on lead volume.
+
+**Still needs account access:** whether `generate_lead` is configured as a key event in GA4,
+data-retention settings, and country reporting.
+
 ---
 
 ## Corrections to earlier claims
@@ -116,6 +152,7 @@ Blocked on business facts, not effort. Each is small once answered.
 | C | **Organisation facts for JSON-LD** — registered name, postal address, public phone, licence number, social profile URLs | Currently `TODO_SEO_ORGANISATION` in `structured-data.ts`. Omitted rather than invented. ~15 minutes to wire in. |
 | D | **ABTA / AITO / ATOL** | Whether Omaya holds or will seek any of these. UK buyers look for them and every UK competitor displays one. Gates the trust-signal work. |
 | E | **Default social share image** | A purpose-made 1200×630 image. Link previews currently crop a carousel frame. |
+| F2 | **Is a FAQ question a lead?** | It currently fires `generate_lead`. If it is not a sales lead, say so and it comes out — otherwise every lead figure is inflated. |
 
 ## Not done — needs account access
 
@@ -123,7 +160,7 @@ Blocked on business facts, not effort. Each is small once answered.
 | --- | --- | --- |
 | F | **Google Search Console verification and sitemap submission** | Prefer a DNS-verified Domain property (covers protocol and subdomain variants). The existing GA4 ID alone does not guarantee Analytics verification — that method needs the right permissions and applies to URL-prefix properties. Blocks all measurement. |
 | G | **Bing Webmaster Tools** | Imports from Search Console once F is done. |
-| H | **Audit existing GA4 lead tracking** | `generate_lead` already fires after successful tour enquiries. Audit rather than reinstall: validate successful events, failed submissions, route page views, tour attribution and consent behaviour. |
+| H | **GA4 account-side verification** | Code audit is **done** (see above) and the implementation is sound. Outstanding: confirm `generate_lead` is configured as a key event, check data retention and country reporting, and run one live end-to-end test enquiry against an agreed test recipient. Also needs a business decision on whether a FAQ question should count as a lead. |
 
 ## Not done — real work, not yet started
 
