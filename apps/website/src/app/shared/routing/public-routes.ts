@@ -143,6 +143,38 @@ export function canonicalUrl(canonicalPath: string): string {
   return `${PUBLIC_CANONICAL_HOST}${canonicalPath}`;
 }
 
+/**
+ * Resolves an incoming URL against {@link PUBLIC_REDIRECTS}.
+ *
+ * The redirect table existed as data long before anything applied it, so every entry in it was
+ * inert: the legacy WordPress query URLs served the homepage with HTTP 200 (duplicate content on
+ * five URLs) and the retired tour paths returned 404 (discarding whatever link equity they had).
+ * `server.ts` now runs every request through this.
+ *
+ * Matching is case-insensitive and tolerant of a missing or extra trailing slash, because inbound
+ * links from the old site are not consistent about it. Query-string entries are matched against the
+ * full URL, path entries against the path alone.
+ */
+export function findRedirect(requestUrl: string): PublicRedirectDefinition | undefined {
+  const normalized = (requestUrl || '/').toLowerCase();
+  const exact = PUBLIC_REDIRECTS.find((redirect) => redirect.from.toLowerCase() === normalized);
+
+  if (exact) {
+    return exact;
+  }
+
+  const path = normalized.split(/[?#]/)[0];
+  const withSlash = withTrailingSlash(path);
+
+  return PUBLIC_REDIRECTS.find((redirect) => {
+    const from = redirect.from.toLowerCase();
+
+    // Only path-shaped entries may match on path alone; a query entry must match the full URL,
+    // otherwise every request to "/" would match "/?page_id=3".
+    return !from.includes('?') && withTrailingSlash(from) === withSlash;
+  });
+}
+
 export function withTrailingSlash(path: string): string {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
 

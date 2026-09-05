@@ -1,3 +1,4 @@
+import { BLOG_POSTS } from '../content/blog-content';
 import { TOUR_DETAIL_CONTENT } from '../content/tour-content';
 import { PUBLIC_INDEXABLE_ROUTES } from '../routing/public-routes';
 import {
@@ -9,49 +10,82 @@ import {
 } from './page-metadata';
 
 /**
- * Google truncates titles around 60 characters and descriptions around 160. These are soft limits,
- * so the assertions leave headroom rather than pinning the exact display width.
+ * Google does not enforce a fixed title or description length — what is displayed varies with
+ * device width, and Google frequently rewrites snippets anyway. These bounds are an editorial
+ * house style, not a ranking rule, so they are reported as warnings (see `warn` below) rather than
+ * failing the build. What *does* fail the build is a duplicate or missing title, because that is a
+ * genuine defect rather than a matter of taste.
  */
 const MAX_TITLE_LENGTH = 70;
 const MIN_DESCRIPTION_LENGTH = 70;
 const MAX_DESCRIPTION_LENGTH = 175;
+
+/** Reports an editorial guideline breach without failing the suite. */
+function warn(label: string, offenders: readonly string[]): void {
+  if (offenders.length) {
+    console.warn(`[seo] ${label}: ${offenders.join(', ')}`);
+  }
+}
 
 function allMetadata(): readonly [string, PageMetadata][] {
   return [...Object.entries(STATIC_PAGE_METADATA), ...Object.entries(DESTINATION_PAGE_METADATA)];
 }
 
 describe('page metadata', () => {
-  it('gives every entry a title that fits a search result', () => {
-    const oversized = allMetadata()
-      .filter(([, metadata]) => metadata.title.length > MAX_TITLE_LENGTH)
-      .map(([key, metadata]) => `${key} (${metadata.title.length})`);
+  it('gives every entry a non-empty title and description', () => {
+    const empty = allMetadata()
+      .filter(([, metadata]) => !metadata.title.trim() || !metadata.description.trim())
+      .map(([key]) => key);
 
-    expect(oversized).toEqual([]);
+    expect(empty).toEqual([]);
   });
 
-  it('gives every entry a description within snippet length', () => {
-    const oversized = allMetadata()
-      .filter(([, metadata]) => metadata.description.length > MAX_DESCRIPTION_LENGTH)
-      .map(([key, metadata]) => `${key} (${metadata.description.length})`);
-
-    expect(oversized).toEqual([]);
+  it('reports entries outside house-style length as warnings, not failures', () => {
+    warn(
+      'title longer than house style',
+      allMetadata()
+        .filter(([, metadata]) => metadata.title.length > MAX_TITLE_LENGTH)
+        .map(([key, metadata]) => `${key} (${metadata.title.length})`),
+    );
+    warn(
+      'description longer than house style',
+      allMetadata()
+        .filter(([, metadata]) => metadata.description.length > MAX_DESCRIPTION_LENGTH)
+        .map(([key, metadata]) => `${key} (${metadata.description.length})`),
+    );
+    warn(
+      'description shorter than house style',
+      allMetadata()
+        .filter(([, metadata]) => !metadata.noIndex)
+        .filter(([, metadata]) => metadata.description.length < MIN_DESCRIPTION_LENGTH)
+        .map(([key, metadata]) => `${key} (${metadata.description.length})`),
+    );
   });
 
-  it('writes indexable descriptions long enough to fill a snippet', () => {
-    const tooShort = allMetadata()
-      .filter(([, metadata]) => !metadata.noIndex)
-      .filter(([, metadata]) => metadata.description.length < MIN_DESCRIPTION_LENGTH)
-      .map(([key, metadata]) => `${key} (${metadata.description.length})`);
-
-    expect(tooShort).toEqual([]);
-  });
-
-  it('never repeats a title across pages, which is the bug this replaced', () => {
-    const titles = allMetadata()
+  it('never repeats a title across any indexable page, registry or authored', () => {
+    // Covers the rendered pages too, not just this registry: tours and articles get their titles
+    // from authored content, and a collision there is exactly as damaging.
+    const registryTitles = allMetadata()
       .filter(([, metadata]) => !metadata.noIndex)
       .map(([, metadata]) => metadata.title);
+    const tourTitles = TOUR_DETAIL_CONTENT.map((tour) => tour.seo.title);
+    const articleTitles = BLOG_POSTS.map((post) => post.title);
+    const all = [...registryTitles, ...tourTitles, ...articleTitles];
+    const seen = new Set<string>();
+    const duplicates = all.filter((title) => !seen.add(title));
 
-    expect(new Set(titles).size).toBe(titles.length);
+    expect(duplicates).toEqual([]);
+  });
+
+  it('gives every tour and article a title distinct from the generic brand name', () => {
+    const generic = [
+      ...TOUR_DETAIL_CONTENT.map((t) => t.seo.title),
+      ...BLOG_POSTS.map((p) => p.title),
+    ]
+      .filter((title) => title.trim() === 'Omaya Travel')
+      .map((title) => title);
+
+    expect(generic).toEqual([]);
   });
 
   it('keeps search and error pages out of the index', () => {

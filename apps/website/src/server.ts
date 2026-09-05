@@ -9,11 +9,12 @@ import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { PUBLIC_CANONICAL_HOST } from './app/shared/routing/public-routes';
+import { findRedirect } from './app/shared/routing/public-routes';
 import {
   buildRobotsTxt,
   buildSitemapIndexXml,
   buildSitemapPagesXml,
+  canonicalHostForRequestHost,
 } from './app/shared/seo/sitemap';
 
 loadLocalEnv();
@@ -71,6 +72,22 @@ app.use((req, res, next) => {
   }
 
   return res.redirect(301, `https://${host.slice(4)}${req.originalUrl}`);
+});
+
+/**
+ * Legacy URL redirects. `PUBLIC_REDIRECTS` had been declared but never applied, so the old
+ * WordPress query URLs answered 200 with the homepage and the retired tour paths answered 404.
+ */
+app.use((req, res, next) => {
+  const redirect = findRedirect(req.originalUrl);
+
+  if (!redirect) {
+    return next();
+  }
+
+  res.set('Cache-Control', 'public, max-age=3600');
+
+  return res.redirect(redirect.statusCode, redirect.to);
 });
 
 app.get('/robots.txt', (req, res) => {
@@ -703,21 +720,12 @@ function getClientIp(req: express.Request): string {
 }
 
 /**
- * Origin to advertise in robots.txt and the sitemaps. Taken from the request so each site in the
- * platform advertises its own domain, falling back to Omaya's canonical host for local dev and any
- * host we do not recognise.
+ * Origin to advertise in robots.txt and the sitemaps. Resolution lives in the SEO module so it is
+ * matched against the configured site domains and unit tested, rather than echoing back whatever
+ * `Host` header arrived.
  */
 function canonicalHostFor(req: express.Request): string {
-  const host = req
-    .get('host')
-    ?.toLowerCase()
-    .replace(/^www\./, '');
-
-  if (!host || host.startsWith('localhost') || host.startsWith('127.0.0.1')) {
-    return PUBLIC_CANONICAL_HOST;
-  }
-
-  return `https://${host}`;
+  return canonicalHostForRequestHost(req.get('host'));
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

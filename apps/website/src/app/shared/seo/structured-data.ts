@@ -37,6 +37,13 @@ export function organizationJsonLd(identity: SeoSiteIdentity): JsonLd {
   };
 }
 
+/**
+ * Site identity only.
+ *
+ * Deliberately carries no `potentialAction` / `SearchAction`: Google retired the sitelinks search
+ * box in November 2024, so that block feeds nothing and is just weight in every page's head.
+ * https://developers.google.com/search/blog/2024/10/sitelinks-search-box
+ */
 export function webSiteJsonLd(identity: SeoSiteIdentity): JsonLd {
   return {
     '@context': 'https://schema.org',
@@ -46,14 +53,6 @@ export function webSiteJsonLd(identity: SeoSiteIdentity): JsonLd {
     url: `${identity.canonicalHost}/`,
     inLanguage: identity.locale,
     publisher: { '@id': `${identity.canonicalHost}/#organization` },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${identity.canonicalHost}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -105,11 +104,14 @@ export function tourJsonLd(
         name: day.title,
       })),
     },
+    // No `availability`: an earlier version hardcoded every Offer to InStock, which asserted to
+    // Google that all eight tours always have places on every departure. Nothing in the content
+    // model tracks remaining capacity, so the honest move is to omit the field. Add it back only
+    // when real availability is modelled — a wrong availability claim is worse than none.
     offers: {
       '@type': 'Offer',
       price: tour.price.amount,
       priceCurrency: tour.price.currency,
-      availability: 'https://schema.org/InStock',
       url: canonical,
     },
   };

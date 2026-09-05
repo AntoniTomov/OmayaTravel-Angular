@@ -1,4 +1,5 @@
 import {
+  findRedirect,
   canonicalUrl,
   PUBLIC_CANONICAL_HOST,
   PUBLIC_INDEXABLE_ROUTES,
@@ -65,5 +66,46 @@ describe('public route definitions', () => {
       ]),
     );
     expect(PUBLIC_REDIRECTS.some((redirect) => redirect.from === '/3122-2/')).toBe(false);
+  });
+});
+
+describe('legacy redirect resolution', () => {
+  it('redirects every declared legacy URL', () => {
+    const unresolved = PUBLIC_REDIRECTS.filter(
+      (redirect) => findRedirect(redirect.from)?.to !== redirect.to,
+    ).map((redirect) => redirect.from);
+
+    expect(unresolved).toEqual([]);
+  });
+
+  it('matches the legacy WordPress query URLs on the full URL', () => {
+    expect(findRedirect('/?page_id=635')?.to).toBe('/our-story/');
+    expect(findRedirect('/?page_id=852')?.to).toBe('/faq/');
+  });
+
+  it('tolerates a missing or extra trailing slash on path redirects', () => {
+    expect(findRedirect('/tour-item/bulgaria-trip')?.to).toBe(
+      '/tour-item/bulgaria-beyond-the-ordinary/',
+    );
+    expect(findRedirect('/tour-item/bulgaria-trip/')?.to).toBe(
+      '/tour-item/bulgaria-beyond-the-ordinary/',
+    );
+    expect(findRedirect('/TOUR-ITEM/Bulgaria-Trip/')?.to).toBe(
+      '/tour-item/bulgaria-beyond-the-ordinary/',
+    );
+  });
+
+  it('never redirects the homepage just because a query redirect starts with a slash', () => {
+    expect(findRedirect('/')).toBeUndefined();
+    expect(findRedirect('/?utm_source=newsletter')).toBeUndefined();
+  });
+
+  it('leaves live routes alone', () => {
+    expect(findRedirect('/tour-item/morocco-tour/')).toBeUndefined();
+    expect(findRedirect('/contact/')).toBeUndefined();
+  });
+
+  it('uses 301 so link equity transfers', () => {
+    expect(PUBLIC_REDIRECTS.every((redirect) => redirect.statusCode === 301)).toBe(true);
   });
 });
