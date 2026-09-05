@@ -52,6 +52,37 @@ work in a new session.
 | **Metadata lookup vs rendered route keys** | The route table keys pages by URL, `app.routes.ts` keys them by component, and the two disagreed on **eight** routes (the review found one). An alias map reconciles them; unresolved routes now fail the spec rather than silently entering the sitemap; tour and article routes resolve through authored content exactly as `OmayaSeo` does at runtime. |
 | **Duplicate-title test coverage** | Extended beyond the static registry to rendered tour and article titles. |
 | **Title length as editorial guideline** | Length checks are now warnings, not build failures. Duplicate and empty titles still fail hard. |
+| **Replace performance assumptions with measurement** | Partly done — see below. The image/CLS assumption is now disproven; a real field baseline is still outstanding. |
+
+### Performance: what was actually measured
+
+Review item 6 asked for measurement instead of assumption. Done for the image question, outstanding
+for the rest.
+
+**Disproven — the image dimension claim.** Across four templates (homepage, tour detail, article,
+tour listing), every image lacking `width`/`height` attributes has its space reserved by CSS
+(`aspect-ratio`, an explicit height, or absolute positioning). Images at risk of layout shift:
+**0 of 36 checked**. My earlier "339 images cause CLS" claim was wrong, exactly as the review
+suspected.
+
+**Measured, with caveats.** Mobile viewport 375×812, against the local SSR build:
+
+| Metric | Cold load | Warm reload |
+| --- | --- | --- |
+| CLS | 0.0726 (2 shifts, largest 0.0446) | 0 |
+| LCP | 72 ms | — |
+| TTFB | 2 ms | — |
+
+**Do not quote the LCP or TTFB figures.** They are localhost with no network throttling and mean
+nothing about real users. CLS is more transferable but still understated here, because fast local
+loading hides shifts a slow connection would expose.
+
+**Hypothesis, not a finding:** the cold-load shift is probably webfont swap. Kristi and Roboto load
+from `fonts.googleapis.com` with `display=swap` and no fallback metric matching, and a warm reload
+with fonts cached shows exactly zero shift — consistent with a fallback-to-webfont reflow. Candidate
+fixes are `size-adjust` / `ascent-override` fallback metrics, or self-hosting the fonts. **Not
+implemented** — this needs a throttled cold-cache run and ideally field data before changing
+anything, per the review's own guidance.
 
 **Test suite: 100 passing, up from 88.** Lint clean. Build prerenders 42 routes.
 
@@ -67,7 +98,8 @@ Recorded so they are not repeated. Several came from the expert review; the last
 | Extending `FAQPage` markup would win FAQ rich results | **Outdated.** Google has been dismantling FAQ rich results since 2023. Visible FAQs still help buyers; the markup buys no SERP space. |
 | Phase 1 "makes rankings possible, which wasn't true before" | **Overstated.** A crawlable page can rank without a meta description or sitemap. What was broken was duplicate titles and missing canonicals — bad, not categorical. |
 | "Kyrgyzstan women-only is close to empty" | **Not established.** Ecotour.kg and Wander Kyrgyzstan already sell it. A plausible focus, not a demonstrated gap. |
-| 339 images missing `width` cause CLS; the 606 kB bundle warning is a performance problem | **Hypotheses, not findings.** CSS may already reserve the space, and a build warning is not a Core Web Vitals measurement. Needs real measurement. |
+| 339 images missing `width` cause CLS | **Disproven by measurement.** 0 of 36 such images across four templates are at risk — CSS reserves the space in every case. See the performance section above. |
+| The 606 kB bundle warning is a performance problem | **Still a hypothesis.** A build-budget warning is not a Core Web Vitals measurement. Unmeasured. |
 | First-page positions in months 4–6 | **Unjustifiable** without a baseline. Removed. |
 | "6 images missing alt text" | **False positive of mine.** All 584 images have alt. Empty alts render as the bare attribute `alt`, which is valid HTML and the correct marking for decorative images. My grep only looked for `alt=`. No action needed. |
 
@@ -101,7 +133,7 @@ Blocked on business facts, not effort. Each is small once answered.
 | J | **Derive calendars and month filters from departure records** rather than hand-picked cards | Half a day or more. Fixes the class of bug behind item B. Changes what visitors see, so it needs sign-off. |
 | K | **Improve the three priority tour pages** — group size, pace, room sharing and private-room cost, inclusions, currency, booking conditions | Days, needs business facts |
 | L | **Query-to-page map for US/UK** | Needs Search Console data (item F) |
-| M | **Core Web Vitals measurement and fixes** | Baseline mobile homepage, tour, listing and article templates first. No measurement harness exists in the repo yet. |
+| M | **Core Web Vitals — field baseline and the font-swap fix** | The image question is settled (see above). What remains: a throttled cold-cache run to confirm the font-swap hypothesis, real-user field data via Search Console once verified, and only then the `size-adjust` / self-hosting change. Do not change font loading on lab evidence alone. |
 | N | **Visible breadcrumbs** | The `BreadcrumbList` JSON-LD exists but no on-page trail. Half a day. |
 | O | **Content: refresh 4 existing articles, publish 4 new guides** | Weeks, needs firsthand material from guides |
 | P | **Production verification after deploy** | Re-run every check in this board against the live CDN. Nothing here is confirmed in production yet. |
