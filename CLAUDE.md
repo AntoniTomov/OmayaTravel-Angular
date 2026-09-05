@@ -72,8 +72,10 @@ translation of Omaya, so the two are not hreflang alternates. Its SEO is a separ
 
 `docs/` holds the working plans and governance notes. The ones worth knowing about:
 
-- `SEO_STRATEGY_PLAN.md` — search strategy and Phase 1–5 rollout
-- `SEO_IMPLEMENTATION.md` — what the SEO code does, how to extend it, and the remaining backlog
+- `SEO_PROGRESS.md` — **start here for SEO**: what is done, what is blocked and on whom
+- `SEO_EXPERT_REVIEW_AND_ACTION_PLAN.md` — external review and 90-day plan the progress board tracks
+- `SEO_STRATEGY_PLAN.md` — search strategy, markets and keyword targets
+- `SEO_IMPLEMENTATION.md` — what the SEO code does and how to extend it
 - `MULTI_SITE_PLATFORM.md` — the multi-brand architecture
 - `AMELIA_TRAVEL_ROLLOUT_PLAN.md` — the Bulgarian-language Amelia brand
 - `OMAYA_WEBSITE_REBUILD_PLAN.md` — the rebuild this repo came from

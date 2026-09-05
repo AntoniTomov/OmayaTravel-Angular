@@ -105,8 +105,13 @@ booking-intent terms combine a destination with a differentiator:
 | B2B | Bulgaria DMC · destination management company Bulgaria · Bulgaria ground handler |
 
 **The wedge:** women-only and solo-traveller trips to uncommon destinations. Morocco women-only is
-contested by Trafalgar, Intrepid and Insight. **Kyrgyzstan women-only is close to empty** — that is
-the single best opportunity on the list, in both markets.
+heavily contested by Trafalgar, Intrepid and Insight. Kyrgyzstan women-only is **less contested, but
+not empty** — Ecotour.kg and Wander Kyrgyzstan both sell it. That makes it a plausible focus, not a
+demonstrated gap; the competition is established but market size and US/UK ranking difficulty are
+not, and should be validated against real query data before it absorbs the largest investment.
+
+Note also that women-only travel and joining a mixed group as a solo traveller are **different
+needs**, and the pages should say so plainly rather than blur them.
 
 The B2B row is worth more than it looks: US and UK tour operators searching for a Bulgarian ground
 handler are exactly the audience Omaya's licence and local standing were built for, and competition
@@ -144,12 +149,19 @@ See [Phase 1 progress](#phase-1-progress) below.
 
 1. Keep existing destination copy exactly as written and build around it — add the sections the
    pages lack: seasonality, FAQ, embedded tours with prices and departure dates, internal links.
-2. Add real traveller testimonials with `AggregateRating` markup so stars appear in results.
-3. Add `FAQPage`-marked FAQ blocks to every tour and destination page. Answer both markets'
-   questions: flights and vacation days for the US, and for the UK, departure logistics and what
-   "small group" actually means in numbers.
-4. Build dedicated women-only and solo-traveller landing pages per destination — the category
-   routes already exist, and this is the wedge.
+2. Add real traveller testimonials, for trust and conversion. They will **not** produce review
+   stars in Google — self-serving reviews of an Organization or LocalBusiness, `TravelAgency`
+   included, are excluded from review-snippet eligibility. Do not relabel the business to get
+   around that.
+3. Add visible FAQ blocks to every tour and destination page. Answer both markets' questions:
+   flights and vacation days for the US, and for the UK, departure logistics and what "small group"
+   actually means in numbers. Keep the existing accurate `FAQPage` markup, but do not extend it
+   expecting FAQ rich results — that display has been withdrawn. The value is in answering purchase
+   objections on the page.
+4. Improve the existing women-only and solo-traveller products before building competing category
+   landing pages. With one relevant product in a niche, a rival page splits signals rather than
+   adding reach. Create a separate page only when it serves a distinct search need with a
+   meaningful choice of products.
 5. Surface licence, years operating, group-size cap and guaranteed departures above the fold. Add
    ABTA/AITO badges here if section 3 resolves in favour of joining.
 6. Add year-qualified landing pages for 2027 departures (calendar routes already exist).
@@ -188,13 +200,22 @@ See [Phase 1 progress](#phase-1-progress) below.
 
 ### Measurement
 
-Review monthly in Search Console, segmented by country (US, UK, DE).
+Review monthly in Search Console, filtered by country (US, UK, DE).
 
-- **Weeks 1–4** — indexed page count climbs toward ~40.
-- **Months 2–3** — impressions rise on long-tail queries; CTR improves as real titles land.
-- **Months 4–6** — first-page positions on destination-plus-differentiator terms in the US and UK.
-  Enquiry volume is the number that matters.
-- **Months 6–12** — content clusters start ranking for terms they were not explicitly targeting.
+**No ranking or timeline forecast is offered.** There is no Search Console baseline yet, so any
+figure would be invented. Once the property is verified and a few weeks of data exist, forecasting
+becomes possible; until then, track the sequence rather than dates:
+
+1. **Indexation** — pages get discovered and indexed. The first sign the plumbing works.
+2. **Impressions** — pages start surfacing for queries. Tells you what Google thinks they are about.
+3. **Clicks and CTR** — whether titles and descriptions earn the click at the position they hold.
+4. **Qualified enquiries** — the only measure that matters commercially.
+
+Diagnostic rules, in order: if a page is not indexed, investigate discovery, duplication and page
+value before publishing more pages. If it earns impressions but few clicks, inspect query intent and
+the competing results. If it attracts qualified visits but few enquiries, look at information gaps
+and the form. If enquiries do not book, look at offer, price, availability and response handling.
+Avoid changing titles repeatedly without enough evidence to interpret the result.
 
 ---
 

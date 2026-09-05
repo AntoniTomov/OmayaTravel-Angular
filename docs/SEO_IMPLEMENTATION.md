@@ -165,90 +165,68 @@ Not just unit tests — the production SSR build was run and inspected.
 
 Ordered by return on effort. Items 1–5 are where the remaining value is concentrated.
 
-### Tier 1 — highest return
+> **This section is superseded by [SEO_PROGRESS.md](SEO_PROGRESS.md)**, which tracks live status
+> against the external review in
+> [SEO_EXPERT_REVIEW_AND_ACTION_PLAN.md](SEO_EXPERT_REVIEW_AND_ACTION_PLAN.md). The summary below is
+> kept for orientation; the progress board is authoritative.
+
+### Highest return
 
 1. **Verify Google Search Console and submit the sitemap.** *(Needs the site owner's Google
-   account; blocks all measurement.)* The site already runs GA4 `G-2F24XF4XZ8`, so if the same
-   Google account administers that property, Search Console verifies through the existing tag with
-   no code change. Otherwise a DNS TXT record at Hostinger. Then submit
-   `https://omayatravel.com/sitemap.xml` and review Performance filtered by country. Until this
-   exists there is no way to tell whether any of the work landed.
+   account; blocks all measurement.)* Prefer a DNS-verified Domain property, which covers protocol
+   and subdomain variants. The existing GA4 ID alone does not guarantee Analytics-based
+   verification — that method requires the right permissions and applies to URL-prefix properties.
 
 2. **Build the four destination pages and the hub.** *(Largest single content win.)* They currently
    render `PublicRoutePlaceholder` — literally `<h1>Public route placeholder</h1>` — and are
-   `noindex` for that reason. They target the highest-value terms on the whole list
-   (*Bulgaria small group tours & holidays*, *Kyrgyzstan small group tours & holidays*), and their
+   `noindex` for that reason. They target the highest-value terms on the whole list, and their
    metadata is already written and waiting. Removing the `noIndex` flags once they render real
    content puts them into the sitemap automatically.
 
-3. **Collect real reviews and add `AggregateRating` markup.** The highest-visibility, lowest-effort
-   rich result available — it puts star ratings directly in the search listing. Needs real
-   testimonials first; do not fabricate them.
+3. **Resolve the two factual errors** — the duplicate September 2027 URLs, and Algeria appearing in
+   September listings when it has no September departure. Both need a business answer.
 
 4. **Supply the organisation facts.** Registered business name, postal address, public phone,
-   licence number, social profile URLs. Roughly fifteen minutes of wiring once they exist, and they
-   materially strengthen the entity signal for a small operator.
+   licence number, social profile URLs. Roughly fifteen minutes of wiring once they exist.
 
-5. **Build the women-only and solo-traveller landing pages per destination.** This is the strategic
-   wedge. Morocco women-only is contested; **Kyrgyzstan women-only is close to empty** and Omaya
-   already runs the trip. The category routes already exist.
+5. **Collect real traveller reviews** — for trust and conversion. Note that they will *not* produce
+   review stars in Google: self-serving reviews of an Organization or LocalBusiness, including
+   `TravelAgency`, are excluded from review-snippet eligibility.
 
-### Tier 2 — real impact, more work
+### Worth doing
 
-6. **FAQ blocks with `FAQPage` markup** on every tour and destination page. The builder already
-   exists and fires wherever a tour has `faq` content — most tours simply have none yet. FAQ rich
-   results expand in the listing and push competitors down the page.
-
-7. **Core Web Vitals.** Two measured issues, both ranking factors:
-   - **339 of 584 images carry no `width` attribute**, which risks cumulative layout shift.
-   - The initial bundle is **605.86 kB against a 500 kB budget** (pre-existing, not caused by this
-     work), which affects load performance.
-
-8. **Visible breadcrumbs.** The `BreadcrumbList` JSON-LD is emitted, but there is no breadcrumb
-   trail on the page itself. Google prefers both, and it helps users orient.
-
-9. **Year-qualified landing pages for 2027 departures.** The calendar routes exist and just need
-   titles and content. Year-qualified travel searches are high volume and cheap to capture.
-
-10. **A purpose-made 1200×630 social share image.** Link previews currently crop a carousel frame —
-    it works, but it was not designed for the shape.
-
-### Tier 3 — worthwhile, less urgent
-
-11. **Image sitemap entries.** Travel is an image-search category and the site has 584 images.
-12. **`og:image:width` / `og:image:height`**, so social platforms render previews without a reflow.
-13. **Four decorative homepage icons are missing `alt`** (`travel-match__icon`). They should carry
-    `alt=""` to be correctly announced as decorative.
-14. **71 images have no `loading` attribute.** Below-the-fold images should be `lazy`; above-the-fold
-    ones should stay eager.
-15. **`lastmod` for tours.** Tours have no date field today; adding one would let the sitemap signal
-    freshness on the money pages, not just the blog.
-16. **Internal linking between blog articles, tours and destinations.** Topical clusters are how
-    small sites beat large ones on specific terms, and the links are currently sparse.
-17. **Blog pagination** once article count grows past a single page.
+6. **Improve the existing priority tour pages** before adding competing category pages. With one
+   relevant product per niche, improving that product beats creating a rival landing page.
+7. **Measure Core Web Vitals** on representative templates before acting. Missing image dimensions
+   *can* cause layout shift and a bundle-budget warning *may* indicate a problem, but neither is a
+   measurement. Baseline LCP, INP and CLS first.
+8. **Visible breadcrumbs.** The `BreadcrumbList` JSON-LD is emitted, but there is no on-page trail.
+9. **A purpose-made 1200×630 social share image.**
+10. **Internal linking** between articles, tours and destinations.
+11. **`og:image:width` / `og:image:height`**, and accurate `dateModified` / `lastmod` for
+    substantive changes only — never automatic freshness timestamps.
 
 ### Explicitly not recommended
 
-- **hreflang** — pointless while the site is one language on one domain. Do not add speculatively.
-- **A German translation or a `.de` domain** — decided against; tours are guided in English.
-- **`priority` and `changefreq` in the sitemap** — Google ignores both.
-- **A `keywords` meta tag** — ignored by every major engine for over fifteen years.
-- **Chasing "small group adventure travel"** — Intrepid, Exodus and G Adventures have decades of
-  authority on it. That traffic is browsing anyway; the destination-plus-differentiator terms are
-  where the bookings are.
+- **hreflang, regional copies or translations** — one language, one domain.
+- **`AggregateRating` on the business entity for review stars** — ineligible, see item 5.
+- **Extending `FAQPage` markup to win rich results** — that display has been withdrawn. Visible
+  FAQs still earn their place by answering purchase objections.
+- **`priority` and `changefreq` in the sitemap**, and the **`keywords` meta tag** — all ignored.
+- **Mass article production** or treating competitors' article counts as a publishing target.
+- **Chasing "small group adventure travel"** as a head term.
 
 ---
 
 ## 6. Honest expectations
 
-Phase 1 fixed the plumbing. It does not, by itself, produce rankings — it makes rankings possible,
-which was not true before. The site went from telling Google nothing about 41 pages to describing
-each one accurately.
+Phase 1 fixed the plumbing. It did not make ranking newly *possible* — a crawlable page can rank
+without a meta description or a sitemap, and the site was crawlable before. What was actually broken
+was that 41 pages shared one title and none declared a canonical, which are real defects that
+weakened relevance and consolidation signals. Those are now fixed.
 
-What follows from here is content and time. Competitors ranking for these terms run 340–500 blog
-articles against Omaya's 4, and that gap does not close by writing harder — it closes by picking
-narrow topics nobody else has covered forty times, and publishing consistently for a year. Expect
-indexation within weeks, impression growth within two to three months, and meaningful first-page
-positions on the narrow terms somewhere in months four to six.
+What follows is content and time. No forecast of specific positions or timelines is offered here:
+there is no Search Console baseline yet, so any such number would be invented. Once the property is
+verified and a few weeks of data exist, forecasting becomes possible.
 
-The number worth watching is enquiry volume, not rankings.
+The number worth watching is qualified enquiries, not rankings.
