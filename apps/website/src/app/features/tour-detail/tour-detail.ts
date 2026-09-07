@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
+import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
@@ -55,7 +56,7 @@ interface CalendarDay {
 
 @Component({
   selector: 'app-tour-detail',
-  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus],
+  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus, PublicBreadcrumbs],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
 })

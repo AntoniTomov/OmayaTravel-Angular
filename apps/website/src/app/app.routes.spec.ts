@@ -13,7 +13,10 @@ import { EnquirePage } from './features/enquire-page/enquire-page';
 import { FaqPage } from './features/faq-page/faq-page';
 import { NotFound } from './features/not-found/not-found';
 import { OurStory } from './features/our-story/our-story';
-import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
+import { DestinationPage } from './features/destination-page/destination-page';
+import { TourListingPage } from './features/tour-listing-page/tour-listing-page';
+import { OmayaSeo } from './shared/seo/omaya-seo';
+import { Title } from '@angular/platform-browser';
 import { TourDetail } from './features/tour-detail/tour-detail';
 import { WhyBookWithUs } from './features/why-book-with-us/why-book-with-us';
 import {
@@ -121,14 +124,14 @@ describe('app routes', () => {
     expect(wildcardRoute.status).toBe(404);
   });
 
-  it('resolves approved destination slugs to the placeholder route and tour slugs to tour detail', async () => {
+  it('resolves approved destination slugs to destination pages and tour slugs to tour detail', async () => {
     configureRouteTesting();
 
     const harness = await RouterTestingHarness.create();
 
     await expect(
-      harness.navigateByUrl('/destinations/kyrgyzstan/', PublicRoutePlaceholder),
-    ).resolves.toBeInstanceOf(PublicRoutePlaceholder);
+      harness.navigateByUrl('/destinations/kyrgyzstan/', DestinationPage),
+    ).resolves.toBeInstanceOf(DestinationPage);
     await expect(
       harness.navigateByUrl('/tour-item/algeria-desert-expedition-tadrart-rouge/', TourDetail),
     ).resolves.toBeInstanceOf(TourDetail);
@@ -140,6 +143,56 @@ describe('app routes', () => {
     const harness = await RouterTestingHarness.create();
 
     await expect(harness.navigateByUrl('/our-story/', OurStory)).resolves.toBeInstanceOf(OurStory);
+  });
+
+  it('redirects both old September path variants during client navigation', async () => {
+    configureRouteTesting();
+    const harness = await RouterTestingHarness.create();
+    for (const path of ['/september-2027', '/september-2027/']) {
+      await harness.navigateByUrl(path, TourListingPage);
+      expect(TestBed.inject(Router).url).toBe('/calendar-2027/september/');
+      expect(harness.routeNativeElement?.textContent).toContain('Bulgaria Beyond the Ordinary');
+      expect(harness.routeNativeElement?.textContent).not.toContain('Algeria Desert Expedition');
+    }
+  });
+
+  it('updates country content and SEO when navigating between destination pages', async () => {
+    configureRouteTesting();
+    const harness = await RouterTestingHarness.create();
+    TestBed.inject(OmayaSeo).start();
+    for (const country of ['bulgaria', 'morocco']) {
+      await harness.navigateByUrl(`/destinations/${country}/`, DestinationPage);
+      harness.detectChanges();
+      const name = country.charAt(0).toUpperCase() + country.slice(1);
+      expect(harness.routeNativeElement?.querySelector('h1')?.textContent).toContain(name);
+      expect(TestBed.inject(Title).getTitle()).toContain(name);
+      expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe(
+        'index, follow',
+      );
+      expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
+        `https://omayatravel.com/destinations/${country}/`,
+      );
+      if (country === 'morocco') {
+        expect(
+          harness.routeNativeElement?.querySelector('time[datetime="2026-10-01"]')?.textContent,
+        ).toBe('1 Oct 2026');
+        expect(
+          harness.routeNativeElement?.querySelector('time[datetime="2027-04-08"]')?.textContent,
+        ).toBe('8 Apr 2027');
+      }
+    }
+  });
+
+  it('applies calendar query filters and resets them when returning to all tours', async () => {
+    configureRouteTesting();
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/tours-list/?month=April&year=2027', TourListingPage);
+    harness.detectChanges();
+    expect(harness.routeNativeElement?.querySelectorAll('.tour-listing__card')).toHaveLength(3);
+    expect(harness.routeNativeElement?.textContent).not.toContain('Bulgaria Beyond the Ordinary');
+    await harness.navigateByUrl('/tours-list/', TourListingPage);
+    harness.detectChanges();
+    expect(harness.routeNativeElement?.querySelectorAll('.tour-listing__card')).toHaveLength(8);
   });
 
   it('resolves the why-book-with-us static page to its dedicated component', async () => {

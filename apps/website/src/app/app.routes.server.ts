@@ -14,6 +14,11 @@ const prerenderedStaticRoutes: ServerRoute[] = PUBLIC_STATIC_PRERENDER_ROUTES.ma
 );
 
 export const serverRoutes: ServerRoute[] = [
+  {
+    path: 'september-2027',
+    renderMode: RenderMode.Server,
+    status: 301,
+  },
   ...prerenderedStaticRoutes,
   {
     path: 'destinations/:destinationSlug',

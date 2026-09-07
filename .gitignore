@@ -9,3 +9,7 @@ coverage/
 github-token.txt
 .claude/
 
+
+# Generated SEO verification output
+.seo-build-verification.log
+.seo-http-verification.json

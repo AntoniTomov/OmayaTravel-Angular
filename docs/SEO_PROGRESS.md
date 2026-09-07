@@ -5,7 +5,8 @@ work in a new session.
 
 - **Branch:** `toni-seo-optimization` — **not merged, not deployed.** Everything below is verified
   against local builds only; production still shows the pre-Phase-1 state.
-- **Last updated:** 6 September 2026
+- **Last updated:** 7 September 2026
+- **Test suite:** 116 passing across 11 files. Build prerenders 41 routes. Sitemap lists 39 URLs.
 
 | Commit | What |
 | --- | --- |
@@ -14,6 +15,10 @@ work in a new session.
 | `e5f7786` | Noindex the unbuilt destination placeholders; Open Graph article fixes |
 | `8797538` | Implementation report |
 | `f29d7d6` | Act on the expert review — robots, redirects, schema, host policy |
+| `db1e86b` | Progress board; correct superseded claims |
+| `63689e1` | Measure the image/CLS assumption instead of asserting it |
+| `a5d53e9` | GA4 lead tracking code audit |
+| *(this batch)* | Destination pages, breadcrumbs, departure-derived calendars, September dedupe, trailing-slash canonicalisation |
 
 **Companion documents**
 
@@ -29,10 +34,10 @@ work in a new session.
 
 | # | Item | Evidence |
 | --- | --- | --- |
-| 1 | `OmayaSeo` service — title, description, canonical, Open Graph, Twitter, robots meta, JSON-LD, running during SSR | 41 prerendered pages carry 41 distinct titles; previously all 41 shared `<title>Omaya Travel</title>` |
+| 1 | `OmayaSeo` service — title, description, canonical, Open Graph, Twitter, robots meta, JSON-LD, running during SSR | Every prerendered page carries a distinct title; previously all of them shared `<title>Omaya Travel</title>` |
 | 2 | Metadata resolution wired to the `canonicalPath` data that already existed and was never read | Canonical tag on every page |
 | 3 | Titles and descriptions for every public page; tours reuse authored `seo` copy verbatim, articles derive from their own title and excerpt | `page-metadata.ts` |
-| 4 | `sitemap.xml` generated from the route tables, served as a sitemap index | 35 indexable URLs, `lastmod` on the 4 blog posts |
+| 4 | `sitemap.xml` generated from the route tables, served as a sitemap index | 39 indexable URLs today, `lastmod` on the 4 blog posts |
 | 5 | `robots.txt` served from the same source | Points at the sitemap index |
 | 6 | JSON-LD: `TravelAgency`, `WebSite`, `BreadcrumbList`, `TouristTrip` + `Offer` + itinerary, `FAQPage` where content exists, `BlogPosting` | 2–4 blocks per page |
 | 7 | `www` → bare-domain 301, preserving path and query | Verified against the SSR build |
@@ -84,7 +89,18 @@ fixes are `size-adjust` / `ascent-override` fallback metrics, or self-hosting th
 implemented** — this needs a throttled cold-cache run and ideally field data before changing
 anything, per the review's own guidance.
 
-**Test suite: 100 passing, up from 88.** Lint clean. Build prerenders 42 routes.
+
+
+### Second batch — destination pages, calendars, breadcrumbs, canonicalisation
+
+| Item | What was done | Verified |
+| --- | --- | --- |
+| **Destination pages built** (was item I) | `features/destination-page/` plus `content/destination-content.ts`. The hub and all four country pages render real content and are no longer `noindex`. Metadata now also supplies each destination's hero image for Open Graph. | H1s read "Bulgaria Tours & Holidays", "Kyrgyzstan Tours & Holidays" etc — the UK "holidays" vocabulary carried into the visible heading. All five return `index, follow` and appear in the sitemap. |
+| **September duplicate resolved** (was item A) | `/september-2027/` removed from the route table and added to `PUBLIC_EXACT_REDIRECTS`; `/calendar-2027/september/` is the surviving URL. | `/september-2027/` returns **301** to the canonical URL. Only the canonical URL appears in the sitemap. |
+| **Calendars derived from departure records** (was item J) | New `content/tour-departures.ts` derives month listings from each tour's actual `departures` array instead of hand-picked cards. | Fixes item B structurally. |
+| **Algeria September mismatch resolved** (was item B) | Follows from the above — Algeria's departures are `2026-11-05`, `2027-02-24`, `2027-10-28`, so it no longer appears in September. | The September page's only Algeria mentions are a nav link and a blog-post title; it is not listed as a departure. |
+| **Visible breadcrumbs** (was item N) | New `shared/breadcrumbs/public-breadcrumbs.ts`, an accessible component (`aria-label="Breadcrumb"`, `aria-current="page"`). Tour breadcrumbs now run Home → Destinations → Country → Tour. | Visible trail and the `BreadcrumbList` JSON-LD agree exactly on every page checked. |
+| **Trailing-slash canonicalisation** | *Found during review of the above.* Every public URL answered HTTP 200 both with and without a trailing slash — the whole site duplicated at a second set of URLs, the same class of problem as the `www` issue. Angular's `RouterLink` strips the trailing slash when rendering hrefs, so the site linked to its own non-canonical URLs. `trailingSlashRedirectTarget()` added and applied in `server.ts`. | Public routes 301 onto the slash form preserving query and fragment; `/`, already-canonical URLs, `robots.txt`, the sitemaps, assets and `/api/*` are untouched. No redirect chains — legacy URLs still reach their target in one hop. |
 
 ### GA4 lead tracking: code audit
 
@@ -147,8 +163,6 @@ Blocked on business facts, not effort. Each is small once answered.
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| A | **`/september-2027/` and `/calendar-2027/september/` are duplicates** — same titles, descriptions and card selections | Decide which URL survives. The other gets a 301 and leaves the sitemap. ~15 minutes once chosen. |
-| B | **Algeria appears in both September listings, but its departures are `2026-11-05`, `2027-02-24`, `2027-10-28`** — no September departure exists | Confirm whether the listing is wrong or the departure data is stale. This is a factual error visible to customers, not just a search problem. |
 | C | **Organisation facts for JSON-LD** — registered name, postal address, public phone, licence number, social profile URLs | Currently `TODO_SEO_ORGANISATION` in `structured-data.ts`. Omitted rather than invented. ~15 minutes to wire in. |
 | D | **ABTA / AITO / ATOL** | Whether Omaya holds or will seek any of these. UK buyers look for them and every UK competitor displays one. Gates the trust-signal work. |
 | E | **Default social share image** | A purpose-made 1200×630 image. Link previews currently crop a carousel frame. |
@@ -166,12 +180,9 @@ Blocked on business facts, not effort. Each is small once answered.
 
 | # | Item | Size |
 | --- | --- | --- |
-| I | **Build the destination hub and four country pages** | Days. Highest-value content work — they hold the best keyword targets and are currently `noindex` placeholders. Remove the `noIndex` flags in `page-metadata.ts` when they render real content and they re-enter the sitemap automatically. |
-| J | **Derive calendars and month filters from departure records** rather than hand-picked cards | Half a day or more. Fixes the class of bug behind item B. Changes what visitors see, so it needs sign-off. |
 | K | **Improve the three priority tour pages** — group size, pace, room sharing and private-room cost, inclusions, currency, booking conditions | Days, needs business facts |
 | L | **Query-to-page map for US/UK** | Needs Search Console data (item F) |
 | M | **Core Web Vitals — field baseline and the font-swap fix** | The image question is settled (see above). What remains: a throttled cold-cache run to confirm the font-swap hypothesis, real-user field data via Search Console once verified, and only then the `size-adjust` / self-hosting change. Do not change font loading on lab evidence alone. |
-| N | **Visible breadcrumbs** | The `BreadcrumbList` JSON-LD exists but no on-page trail. Half a day. |
 | O | **Content: refresh 4 existing articles, publish 4 new guides** | Weeks, needs firsthand material from guides |
 | P | **Production verification after deploy** | Re-run every check in this board against the live CDN. Nothing here is confirmed in production yet. |
 
@@ -190,6 +201,14 @@ Do not spend time on these; the reasoning is in the expert review and the correc
 
 ## Suggested next session
 
-1. Get answers to A and B — they are factual errors on a live-bound branch and cheap to fix.
-2. Do F, since it blocks every measurement claim anyone will want to make later.
-3. Then I (destination pages), which is where the remaining search value is concentrated.
+The code side of Phase 1 and most of Phase 2 is now done. What is left is mostly not code.
+
+1. **Item F — Search Console.** Everything measurable is downstream of it, and it is the one task
+   nobody else can do. Do it before writing another line of content.
+2. **Items C, D, E, F2** — four small business answers that unblock the organisation schema, the UK
+   trust signals, the share image and the lead definition.
+3. **Merge and deploy**, then item P: re-run every check on this board against the live CDN. None of
+   it is confirmed in production yet, and the external review's own production checks still show the
+   pre-Phase-1 state.
+4. Only then item K (tour page depth) and item O (content), which is where the remaining search
+   value now sits.

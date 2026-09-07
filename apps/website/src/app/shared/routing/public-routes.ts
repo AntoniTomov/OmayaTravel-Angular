@@ -58,7 +58,6 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'calendar',
   'calendar-2027',
   'calendar-2027/september',
-  'september-2027',
   'private-tour-planning',
   'private-tours-your-trip-your-rules',
   'not-yet-but-soon',
@@ -130,6 +129,7 @@ export const PUBLIC_QUERY_REDIRECTS: readonly PublicRedirectDefinition[] = [
 ];
 
 export const PUBLIC_EXACT_REDIRECTS: readonly PublicRedirectDefinition[] = [
+  defineRedirect('/september-2027/', '/calendar-2027/september/'),
   defineRedirect('/tour-checkout/', '/contact/'),
 ];
 
@@ -173,6 +173,41 @@ export function findRedirect(requestUrl: string): PublicRedirectDefinition | und
     // otherwise every request to "/" would match "/?page_id=3".
     return !from.includes('?') && withTrailingSlash(from) === withSlash;
   });
+}
+
+/**
+ * Redirect target that canonicalises a public HTML URL onto its trailing-slash form.
+ *
+ * Public routes are canonical with a trailing slash, but every one of them also answered HTTP 200
+ * without it, duplicating the entire site at a second set of URLs. Angular's `RouterLink` strips the
+ * trailing slash when it renders an href, so crawlers genuinely follow those links — the site links
+ * to its own non-canonical URLs. Users never pay for the redirect, because in-app navigation is
+ * client-side; only crawlers take the hop, and then consolidate.
+ *
+ * Returns `undefined` for anything that must not be touched: the root, URLs that already end in a
+ * slash, API routes, and any path whose last segment looks like a file (`robots.txt`,
+ * `/assets/...webp`).
+ */
+export function trailingSlashRedirectTarget(requestUrl: string): string | undefined {
+  const [path, query = ''] = splitQuery(requestUrl || '/');
+
+  if (path === '/' || path.endsWith('/') || path.startsWith('/api/')) {
+    return undefined;
+  }
+
+  const lastSegment = path.split('/').pop() ?? '';
+
+  if (lastSegment.includes('.')) {
+    return undefined;
+  }
+
+  return `${path}/${query}`;
+}
+
+function splitQuery(requestUrl: string): [string, string] {
+  const index = requestUrl.search(/[?#]/);
+
+  return index === -1 ? [requestUrl, ''] : [requestUrl.slice(0, index), requestUrl.slice(index)];
 }
 
 export function withTrailingSlash(path: string): string {

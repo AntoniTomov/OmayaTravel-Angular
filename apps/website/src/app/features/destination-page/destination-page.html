@@ -1,0 +1,216 @@
+<main class="destination-page">
+  <section class="destination-page__hero">
+    <img [src]="hero().src" [alt]="hero().alt" width="1600" height="900" fetchpriority="high" />
+    <div>
+      <p>Omaya Travel</p>
+      <h1>
+        {{
+          destination() ? destination()!.name + ' Tours & Holidays' : 'Find your next destination'
+        }}
+      </h1>
+      <span>{{
+        destination()?.theme ??
+          'Small group journeys through Bulgaria, Kyrgyzstan, Morocco and Algeria'
+      }}</span>
+    </div>
+  </section>
+
+  <div class="destination-page__body">
+    <app-public-breadcrumbs [entries]="breadcrumbs()" />
+
+    @if (destination(); as country) {
+      <section class="destination-page__intro" aria-labelledby="destination-intro">
+        <div>
+          <h2 id="destination-intro">Explore {{ country.name }} with Omaya</h2>
+          <p>{{ country.introduction }}</p>
+          <p>{{ country.planning }}</p>
+        </div>
+        <aside>
+          <h3>Choose your journey</h3>
+          <p>Compare the group formats, departure dates and itinerary details below.</p>
+          <a
+            [href]="'/destinations/' + country.slug + '/#destination-tours'"
+            (click)="
+              $event.preventDefault();
+              tourSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            "
+            >View {{ country.name }} tours</a
+          >
+          <a routerLink="/enquire-now/">Ask the Omaya team</a>
+        </aside>
+      </section>
+
+      <section #tourSection id="destination-tours" aria-labelledby="destination-tours-heading">
+        <h2 id="destination-tours-heading">Our {{ country.name }} tours</h2>
+        <p>
+          Prices are per person in the currency shown. Departure dates are scheduled; please enquire
+          to confirm places and room arrangements.
+        </p>
+        <div class="destination-page__tours">
+          @for (tour of country.tours; track tour.slug) {
+            <article class="destination-page__tour">
+              <a
+                [routerLink]="'/tour-item/' + tour.slug + '/'"
+                class="destination-page__tour-image"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <img
+                  [src]="tour.heroImage.src"
+                  [alt]="tour.heroImage.alt"
+                  width="800"
+                  height="530"
+                  loading="lazy"
+                />
+              </a>
+              <div class="destination-page__tour-body">
+                <p class="destination-page__eyebrow">{{ tour.category }}</p>
+                <h3>
+                  <a [routerLink]="'/tour-item/' + tour.slug + '/'">{{ tour.title }}</a>
+                </h3>
+                <p>{{ tour.seo.description }}</p>
+                <dl>
+                  <div>
+                    <dt>Duration</dt>
+                    <dd>{{ tour.duration.days }} days / {{ tour.duration.nights }} nights</dd>
+                  </div>
+                  <div>
+                    <dt>Group size</dt>
+                    <dd>{{ tour.groupSize.min }}–{{ tour.groupSize.max }} travellers</dd>
+                  </div>
+                  <div>
+                    <dt>Starts in</dt>
+                    <dd>{{ tour.destination.startLocation }}</dd>
+                  </div>
+                  <div>
+                    <dt>Ends in</dt>
+                    <dd>{{ tour.destination.endLocation }}</dd>
+                  </div>
+                </dl>
+                <p class="destination-page__price">
+                  {{ tour.price.currency }} {{ tour.price.amount }}
+                  <span>/ {{ tour.price.unit }}</span>
+                </p>
+                <h4>Scheduled departures</h4>
+                <ul class="destination-page__dates">
+                  @for (date of tour.departures; track date) {
+                    <li>
+                      <time [attr.datetime]="date">{{
+                        date + 'T00:00:00Z' | date: 'd MMM y' : 'UTC'
+                      }}</time>
+                      @if (tour.departureNotes?.[date]; as note) {
+                        <span> — {{ note }}</span>
+                      }
+                    </li>
+                  } @empty {
+                    <li>Contact us for dates.</li>
+                  }
+                </ul>
+                <a class="destination-page__button" [routerLink]="'/tour-item/' + tour.slug + '/'"
+                  >View itinerary & details</a
+                >
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section class="destination-page__planning" aria-labelledby="destination-planning-heading">
+        <h2 id="destination-planning-heading">Before you choose your departure</h2>
+        <div class="destination-page__planning-grid">
+          <div>
+            <h3>Read the day-by-day itinerary</h3>
+            <p>
+              Each tour page sets out the route, accommodation, meals and activities so you can
+              decide whether the journey fits your travel style.
+            </p>
+          </div>
+          <div>
+            <h3>Check what is included</h3>
+            <p>
+              Read the included and excluded services for your chosen trip. Ask us about arrival
+              arrangements, room sharing and any private-room supplement before booking.
+            </p>
+          </div>
+          <div>
+            <h3>Talk to the team</h3>
+            <p>
+              Tell us your preferred dates and who is travelling. We can help you compare the
+              options and confirm the current arrangements.
+            </p>
+            <a routerLink="/contact/">Contact Omaya Travel</a>
+          </div>
+        </div>
+      </section>
+
+      @if (country.guides.length) {
+        <section aria-labelledby="destination-guides-heading">
+          <h2 id="destination-guides-heading">Read more about {{ country.name }}</h2>
+          <div class="destination-page__guides">
+            @for (guide of country.guides; track guide.slug) {
+              <a [routerLink]="'/' + guide.slug + '/'">
+                <img
+                  [src]="guide.image.src"
+                  [alt]="guide.image.alt"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                />
+                <h3>{{ guide.title }}</h3>
+              </a>
+            }
+          </div>
+        </section>
+      }
+      <section class="destination-page__other" aria-label="Explore other destinations">
+        <h2>Where else will you go?</h2>
+        <div>
+          @for (other of destinations; track other.slug) {
+            @if (other.slug !== country.slug) {
+              <a [routerLink]="'/destinations/' + other.slug + '/'">{{ other.name }}</a>
+            }
+          }
+        </div>
+      </section>
+    } @else {
+      <section class="destination-page__hub-intro">
+        <h2>Four countries. Your kind of journey.</h2>
+        <p>
+          Explore the destinations behind our small group tours. Compare itineraries, group formats
+          and scheduled departures, then find the journey that suits you.
+        </p>
+      </section>
+      <div class="destination-page__destinations">
+        @for (country of destinations; track country.slug) {
+          <article>
+            <a [routerLink]="'/destinations/' + country.slug + '/'">
+              <img
+                [src]="country.heroImage.src"
+                [alt]="country.heroImage.alt"
+                width="800"
+                height="530"
+                loading="lazy"
+              />
+              <div>
+                <p class="destination-page__eyebrow">{{ country.theme }}</p>
+                <h2>{{ country.name }}</h2>
+                <p>{{ country.introduction }}</p>
+                <span
+                  >Explore {{ country.tours.length }} tour{{
+                    country.tours.length === 1 ? '' : 's'
+                  }}
+                  →</span
+                >
+              </div>
+            </a>
+          </article>
+        }
+      </div>
+      <section class="destination-page__other">
+        <h2>Have a different journey in mind?</h2>
+        <p>Tell us about your dates, interests and who you are travelling with.</p>
+        <a routerLink="/private-tours-your-trip-your-rules/">Explore private tours</a>
+      </section>
+    }
+  </div>
+</main>

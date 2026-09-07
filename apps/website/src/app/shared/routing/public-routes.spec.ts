@@ -1,5 +1,6 @@
 import {
   findRedirect,
+  trailingSlashRedirectTarget,
   canonicalUrl,
   PUBLIC_CANONICAL_HOST,
   PUBLIC_INDEXABLE_ROUTES,
@@ -70,6 +71,19 @@ describe('public route definitions', () => {
 });
 
 describe('legacy redirect resolution', () => {
+  it('redirects the retired September URL with or without its trailing slash', () => {
+    for (const path of [
+      '/september-2027',
+      '/september-2027/',
+      '/september-2027/?utm_source=test',
+    ]) {
+      expect(findRedirect(path)).toEqual({
+        from: '/september-2027/',
+        to: '/calendar-2027/september/',
+        statusCode: 301,
+      });
+    }
+  });
   it('redirects every declared legacy URL', () => {
     const unresolved = PUBLIC_REDIRECTS.filter(
       (redirect) => findRedirect(redirect.from)?.to !== redirect.to,
@@ -107,5 +121,45 @@ describe('legacy redirect resolution', () => {
 
   it('uses 301 so link equity transfers', () => {
     expect(PUBLIC_REDIRECTS.every((redirect) => redirect.statusCode === 301)).toBe(true);
+  });
+});
+
+describe('trailing slash canonicalisation', () => {
+  it('redirects public HTML URLs onto the trailing-slash form', () => {
+    expect(trailingSlashRedirectTarget('/destinations/algeria')).toBe('/destinations/algeria/');
+    expect(trailingSlashRedirectTarget('/tour-item/morocco-tour')).toBe('/tour-item/morocco-tour/');
+    expect(trailingSlashRedirectTarget('/contact')).toBe('/contact/');
+  });
+
+  it('preserves the query string and fragment', () => {
+    expect(trailingSlashRedirectTarget('/contact?utm_source=x')).toBe('/contact/?utm_source=x');
+    expect(trailingSlashRedirectTarget('/contact#form')).toBe('/contact/#form');
+  });
+
+  it('leaves already-canonical URLs alone', () => {
+    expect(trailingSlashRedirectTarget('/')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/contact/')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/destinations/algeria/')).toBeUndefined();
+  });
+
+  it('never touches files, assets or API routes', () => {
+    expect(trailingSlashRedirectTarget('/robots.txt')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/sitemap.xml')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/sitemap-pages.xml')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/favicon.svg')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/assets/images/home-page/hero.webp')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/api/forms')).toBeUndefined();
+    expect(trailingSlashRedirectTarget('/api/newsletter')).toBeUndefined();
+  });
+
+  it('sends every canonical route to itself in one hop, not two', () => {
+    // A canonical path must never itself be a redirect target of either rule.
+    const doubleHop = PUBLIC_INDEXABLE_ROUTES.filter(
+      (route) =>
+        trailingSlashRedirectTarget(route.canonicalPath) !== undefined ||
+        findRedirect(route.canonicalPath) !== undefined,
+    ).map((route) => route.canonicalPath);
+
+    expect(doubleHop).toEqual([]);
   });
 });

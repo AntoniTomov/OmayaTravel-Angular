@@ -1,5 +1,7 @@
 import { BLOG_POSTS } from '../content/blog-content';
-import { TOUR_DETAIL_CONTENT } from '../content/tour-content';
+import { articlePageTitle } from './page-title';
+import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
+import { PUBLIC_TOURS } from '../content/tour-departures';
 import { PUBLIC_INDEXABLE_ROUTES } from '../routing/public-routes';
 import {
   DESTINATION_PAGE_METADATA,
@@ -68,20 +70,18 @@ describe('page metadata', () => {
     const registryTitles = allMetadata()
       .filter(([, metadata]) => !metadata.noIndex)
       .map(([, metadata]) => metadata.title);
-    const tourTitles = TOUR_DETAIL_CONTENT.map((tour) => tour.seo.title);
-    const articleTitles = BLOG_POSTS.map((post) => post.title);
+    const tourTitles = PUBLIC_TOURS.map((tour) => tour.seo.title);
+    const articleTitles = BLOG_POSTS.map((post) =>
+      articlePageTitle(post.title, OMAYA_SITE_CONFIG.brand.name),
+    );
     const all = [...registryTitles, ...tourTitles, ...articleTitles];
-    const seen = new Set<string>();
-    const duplicates = all.filter((title) => !seen.add(title));
+    const duplicates = all.filter((title, index) => all.indexOf(title) !== index);
 
     expect(duplicates).toEqual([]);
   });
 
   it('gives every tour and article a title distinct from the generic brand name', () => {
-    const generic = [
-      ...TOUR_DETAIL_CONTENT.map((t) => t.seo.title),
-      ...BLOG_POSTS.map((p) => p.title),
-    ]
+    const generic = [...PUBLIC_TOURS.map((t) => t.seo.title), ...BLOG_POSTS.map((p) => p.title)]
       .filter((title) => title.trim() === 'Omaya Travel')
       .map((title) => title);
 
@@ -104,10 +104,10 @@ describe('page metadata', () => {
   });
 
   it('leaves tour metadata to the authored copy in tour-content', () => {
-    const duplicated = TOUR_DETAIL_CONTENT.filter(
+    const duplicated = PUBLIC_TOURS.filter(
       (tour) => STATIC_PAGE_METADATA[`tour-${tour.slug}`] !== undefined,
     ).map((tour) => tour.slug);
-    const unauthored = TOUR_DETAIL_CONTENT.filter(
+    const unauthored = PUBLIC_TOURS.filter(
       (tour) => !tour.seo.title.trim() || !tour.seo.description.trim(),
     ).map((tour) => tour.slug);
 

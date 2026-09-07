@@ -5,6 +5,7 @@ import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 import { ActiveSite } from '../../../sites/active-site';
+import { articlePageTitle } from './page-title';
 import { findBlogPostBySlug } from '../content/blog-content';
 import { findTourBySlug } from '../content/tour-content';
 import { PUBLIC_CANONICAL_HOST, withTrailingSlash } from '../routing/public-routes';
@@ -32,19 +33,6 @@ const JSON_LD_MARKER = 'data-omaya-seo';
 
 /** Matches the address the SSR form handler already replies from (`server.ts`). */
 const SITE_CONTACT_EMAIL = 'info@omayatravel.com';
-
-/**
- * Google truncates result titles around 60 characters. Article headlines are the content team's
- * copy and are never shortened here — instead the brand suffix is dropped once it would only push
- * the headline itself out of the visible part of the result.
- */
-const MAX_BRANDED_TITLE_LENGTH = 60;
-
-function brandedTitle(title: string, brand: string): string {
-  const branded = `${title} | ${brand}`;
-
-  return branded.length <= MAX_BRANDED_TITLE_LENGTH ? branded : title;
-}
 
 /** Used when a route carries no `routeKey` we recognise, so a page never ships without metadata. */
 const FALLBACK_METADATA: PageMetadata = {
@@ -169,7 +157,11 @@ export class OmayaSeo {
         canonicalPath,
         breadcrumbs: [
           { name: 'Home', path: '/' },
-          { name: 'Tours', path: '/tours-list/' },
+          { name: 'Destinations', path: '/destinations/' },
+          {
+            name: tour.destination.country,
+            path: '/destinations/' + tour.destination.country.toLowerCase() + '/',
+          },
           { name: tour.title, path: canonicalPath },
         ],
         jsonLd: [tourJsonLd(identity, tour, canonical), ...(faq ? [faq] : [])],
@@ -184,7 +176,7 @@ export class OmayaSeo {
 
       return {
         metadata: {
-          title: brandedTitle(post.title, identity.name),
+          title: articlePageTitle(post.title, identity.name),
           description: post.excerpt,
           image: (post.heroImage ?? post.image).src,
           ogType: 'article',
@@ -211,7 +203,10 @@ export class OmayaSeo {
         breadcrumbs: [
           { name: 'Home', path: '/' },
           { name: 'Destinations', path: '/destinations/' },
-          { name: destination.title.split(' | ')[0], path: canonicalPath },
+          {
+            name: destinationSlug.charAt(0).toUpperCase() + destinationSlug.slice(1),
+            path: canonicalPath,
+          },
         ],
         jsonLd: [],
       };

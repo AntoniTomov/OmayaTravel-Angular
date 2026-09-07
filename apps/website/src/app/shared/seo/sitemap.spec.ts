@@ -36,13 +36,15 @@ describe('sitemap generation', () => {
     expect(locations).not.toContain(`${PUBLIC_CANONICAL_HOST}/3122-2/`);
   });
 
-  it('keeps the unbuilt destination placeholders out of the sitemap', () => {
+  it('includes the destination hub and all four completed country pages', () => {
     const locations = sitemapEntries().map((entry) => entry.loc);
-    const destinations = locations.filter((location) => location.includes('/destinations/'));
+    expect(locations.filter((location) => location.includes('/destinations/'))).toHaveLength(5);
+  });
 
-    // Remove the noIndex flags in DESTINATION_PAGE_METADATA once these pages render real content
-    // and this assertion should be inverted.
-    expect(destinations).toEqual([]);
+  it('lists only the preferred September URL', () => {
+    const locations = sitemapEntries().map((entry) => entry.loc);
+    expect(locations).toContain(PUBLIC_CANONICAL_HOST + '/calendar-2027/september/');
+    expect(locations).not.toContain(PUBLIC_CANONICAL_HOST + '/september-2027/');
   });
 
   it('includes the tour detail routes, which are fully built', () => {
@@ -78,7 +80,6 @@ describe('sitemap generation', () => {
         'static-tours-list',
         'static-calendar',
         'static-calendar-2027',
-        'static-september-2027',
         'static-private-tour-planning',
         'static-private-tours-your-trip-your-rules/describe',
       ].includes(route.key),

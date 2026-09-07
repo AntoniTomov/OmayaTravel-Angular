@@ -11,6 +11,19 @@
       <h1>{{ tour.title }}</h1>
     </section>
 
+    <div class="tour-detail__breadcrumbs">
+      <app-public-breadcrumbs
+        [entries]="[
+          { label: 'Home', path: '/' },
+          { label: 'Destinations', path: '/destinations/' },
+          {
+            label: tour.destination.country,
+            path: '/destinations/' + tour.destination.country.toLowerCase() + '/',
+          },
+          { label: tour.title },
+        ]"
+      />
+    </div>
     <nav class="tour-detail__tabs" aria-label="Tour detail sections">
       @for (tab of tabs(); track tab.id) {
         <button

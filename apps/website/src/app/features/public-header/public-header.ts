@@ -37,7 +37,6 @@ const SOLID_HEADER_PATHS = new Set([
   '/contact',
   '/private-tours-your-trip-your-rules/describe',
   '/omaya-travel-license',
-  '/september-2027',
   '/calendar-2027/september',
 ]);
 

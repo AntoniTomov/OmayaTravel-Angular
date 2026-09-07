@@ -9,7 +9,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { findRedirect } from './app/shared/routing/public-routes';
+import { findRedirect, trailingSlashRedirectTarget } from './app/shared/routing/public-routes';
 import {
   buildRobotsTxt,
   buildSitemapIndexXml,
@@ -88,6 +88,22 @@ app.use((req, res, next) => {
   res.set('Cache-Control', 'public, max-age=3600');
 
   return res.redirect(redirect.statusCode, redirect.to);
+});
+
+/**
+ * Canonicalise public HTML URLs onto their trailing-slash form. Runs after the legacy redirects so
+ * an old URL reaches its mapped target in one hop rather than two.
+ */
+app.use((req, res, next) => {
+  const target = trailingSlashRedirectTarget(req.originalUrl);
+
+  if (!target) {
+    return next();
+  }
+
+  res.set('Cache-Control', 'public, max-age=3600');
+
+  return res.redirect(301, target);
 });
 
 app.get('/robots.txt', (req, res) => {

@@ -1,30 +1,29 @@
 <main class="tour-calendar">
   <section class="tour-calendar__hero">
     <img
-      [src]="heroImage"
-      [alt]="'Calendar ' + year + ' tour landscape'"
+      [src]="heroImage()"
+      [alt]="'Calendar ' + year() + ' tour landscape'"
       width="1600"
       height="900"
       fetchpriority="high"
     />
-    <h1>Calendar {{ year }}</h1>
+    <h1>Calendar {{ year() }}</h1>
   </section>
 
   <section class="tour-calendar__body" aria-label="Tour calendar months">
     <div class="tour-calendar__grid">
-      @for (month of months; track month.name) {
-        <button
-          type="button"
+      @for (month of months(); track month.name) {
+        <a
+          [href]="month.resultPath"
           class="tour-calendar__month"
           [class.tour-calendar__month--empty]="month.tours.length === 0"
-          (click)="openMonth(month)"
         >
           <img [src]="month.image" [alt]="month.name + ' tour preview'" loading="lazy" />
           <span>{{ month.name }}</span>
           @if (month.tours.length > 0) {
             <small>{{ month.tours.length }} tour{{ month.tours.length === 1 ? '' : 's' }}</small>
           }
-        </button>
+        </a>
       }
     </div>
   </section>
