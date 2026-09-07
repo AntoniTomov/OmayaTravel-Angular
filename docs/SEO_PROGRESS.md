@@ -6,7 +6,7 @@ work in a new session.
 - **Branch:** `toni-seo-optimization` — **not merged, not deployed.** Everything below is verified
   against local builds only; production still shows the pre-Phase-1 state.
 - **Last updated:** 7 September 2026
-- **Test suite:** 125 passing across 12 files. Build prerenders 40 routes. Sitemap lists 39 URLs.
+- **Test suite:** 125 passing across 12 files. Build prerenders 40 routes. Sitemap lists 38 URLs.
 
 | Commit | What |
 | --- | --- |
@@ -39,7 +39,7 @@ work in a new session.
 | 1 | `OmayaSeo` service — title, description, canonical, Open Graph, Twitter, robots meta, JSON-LD, running during SSR | Every prerendered page carries a distinct title; previously all of them shared `<title>Omaya Travel</title>` |
 | 2 | Metadata resolution wired to the `canonicalPath` data that already existed and was never read | Canonical tag on every page |
 | 3 | Titles and descriptions for every public page; tours reuse authored `seo` copy verbatim, articles derive from their own title and excerpt | `page-metadata.ts` |
-| 4 | `sitemap.xml` generated from the route tables, served as a sitemap index | 39 indexable URLs today, `lastmod` on the 4 blog posts |
+| 4 | `sitemap.xml` generated from the route tables, served as a sitemap index | 38 indexable URLs today, `lastmod` on the 4 blog posts |
 | 5 | `robots.txt` served from the same source | Points at the sitemap index |
 | 6 | JSON-LD: `TravelAgency`, `WebSite`, `BreadcrumbList`, `TouristTrip` + `Offer` + itinerary, `FAQPage` where content exists, `BlogPosting` | 2–4 blocks per page |
 | 7 | `www` → bare-domain 301, preserving path and query | Verified against the SSR build |
@@ -131,13 +131,40 @@ URL.
 Regenerate share images with `npm run og:generate` after changing any hero image. `sharp` is a
 dev dependency needed only for that script.
 
-### GA4 lead tracking: code audit
+### Pre-merge review against dev (7 September 2026)
+
+Reviewed application commit `5315f20` against `dev` at `e63b486`: 13 commits ahead, no
+divergence. This PR includes both the SEO foundation and the subsequent destination, calendar,
+organisation and share-image work. No merge-blocking issue found in the checks below.
+
+- **Tests:** `npm --workspace website run test -- --watch=false` — 125 passing in 12 files.
+- **Formatting:** `npm run lint` — passed.
+- **Production build:** `npm run build` — passed; 40 prerendered routes. Warnings remain for the
+  initial bundle (611.41 kB against 500 kB) and tour-detail CSS (14.48 kB against 14 kB).
+- **Fresh local SSR crawl:** all **38** sitemap URLs return 200, have the matching canonical,
+  one H1, no `noindex`, unique titles and parseable JSON-LD. All 21 distinct advertised share
+  images return 200. All 23 generated image files are 1200×630.
+- **Redirects:** checked both slash variants of the retired September and private-planning URLs,
+  a legacy WordPress query URL, a retired tour URL and a slash redirect with a tracking query.
+  Each returns 301 to the expected target. An unknown destination returns 404.
+- **Minor follow-up:** the surviving `/private-tours-your-trip-your-rules/` page still advertises
+  `listing-tours-list.jpg`. Its own generated image exists, but the dedicated page route has no
+  `listingSlug` and its static metadata does not select that image. Add an explicit image to the
+  static metadata in a follow-up; the current fallback is valid and accessible.
+
+The earlier 39-URL crawl below predates the private-planning consolidation; **38 is the current
+count**. These are local checks, not production or GitHub CI results. Wait for PR CI before merging,
+then repeat the HTTP checks after deployment. This review only updates documentation; it does not
+change application code, merge branches or deploy the site.
+
+### GA4 lead tracking: code audit (historical, before the FAQ event change)
 
 The review said to audit the existing implementation rather than install a second one. The code half
 is done; the account half still needs access (item H).
 
-**The implementation is sound.** Five `generate_lead` sites, every one firing only after a confirmed
-successful submission:
+At the time of the original audit there were five `generate_lead` sites, every one firing only
+after a confirmed successful submission. The FAQ event has since changed to `submit_faq_question`,
+leaving four sales-lead sites:
 
 | Where | `form_type` | Attribution |
 | --- | --- | --- |
@@ -160,9 +187,9 @@ the review's rule about keeping enquiry information out of analytics.
    `canUseAnalytics()`). Leads from visitors who declined analytics are invisible to GA4 but real in
    the inbox. Analytics will undercount, and reconciliation against enquiry records is mandatory
    rather than optional.
-2. **A FAQ question currently counts as a `generate_lead`.** Whether that is a lead is a business
-   definition, not a code question — it will inflate the count relative to enquiries that could
-   actually book. Worth deciding before anyone reports on lead volume.
+2. **FAQ questions now use `submit_faq_question`.** This implements the business decision to
+   report them separately from sales enquiries. Historical `generate_lead` figures may still
+   include FAQ questions from before deployment of this change.
 
 **Still needs account access:** whether `generate_lead` is configured as a key event in GA4,
 data-retention settings, and country reporting.
@@ -232,8 +259,9 @@ The code side of Phase 1 and most of Phase 2 is now done. What is left is mostly
 
 1. **Item F — Search Console.** Everything measurable is downstream of it, and it is the one task
    nobody else can do. Do it before writing another line of content.
-2. **Items C, D, E, F2** — four small business answers that unblock the organisation schema, the UK
-   trust signals, the share image and the lead definition.
+2. **Item R and the private-tour share image follow-up** — the previously requested business
+   answers (C, D, E, F2 and Q) are already implemented. The remaining small follow-ups are licence
+   script consistency and selecting the existing private-tour share image in metadata.
 3. **Merge and deploy**, then item P: re-run every check on this board against the live CDN. None of
    it is confirmed in production yet, and the external review's own production checks still show the
    pre-Phase-1 state.
