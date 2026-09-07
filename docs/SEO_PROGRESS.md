@@ -102,6 +102,20 @@ anything, per the review's own guidance.
 | **Visible breadcrumbs** (was item N) | New `shared/breadcrumbs/public-breadcrumbs.ts`, an accessible component (`aria-label="Breadcrumb"`, `aria-current="page"`). Tour breadcrumbs now run Home → Destinations → Country → Tour. | Visible trail and the `BreadcrumbList` JSON-LD agree exactly on every page checked. |
 | **Trailing-slash canonicalisation** | *Found during review of the above.* Every public URL answered HTTP 200 both with and without a trailing slash — the whole site duplicated at a second set of URLs, the same class of problem as the `www` issue. Angular's `RouterLink` strips the trailing slash when rendering hrefs, so the site linked to its own non-canonical URLs. `trailingSlashRedirectTarget()` added and applied in `server.ts`. | Public routes 301 onto the slash form preserving query and fragment; `/`, already-canonical URLs, `robots.txt`, the sitemaps, assets and `/api/*` are untouched. No redirect chains — legacy URLs still reach their target in one hop. |
 
+### Phase 1 completion criteria, verified
+
+The external review sets two testable criteria for Phase 1. Both now pass against the local SSR
+build. They still need re-running in production after deploy (item P).
+
+| Criterion | Result |
+| --- | --- |
+| "sitemap returns 200 and contains only canonical, indexable 200 pages" | **Pass.** All **39** sitemap URLs return HTTP 200, are self-canonical (the canonical tag matches the sitemap URL exactly) and carry `index, follow`. Zero failures. |
+| "no priority page is orphaned" | **One orphan found** — see item Q below. The other 38 have inbound internal links. |
+
+Method: fetched every URL in the live sitemap and compared status, canonical and robots meta; then
+built an internal link graph across all 40 prerendered pages and checked inbound links per sitemap
+URL.
+
 ### GA4 lead tracking: code audit
 
 The review said to audit the existing implementation rather than install a second one. The code half
@@ -167,6 +181,7 @@ Blocked on business facts, not effort. Each is small once answered.
 | D | **ABTA / AITO / ATOL** | Whether Omaya holds or will seek any of these. UK buyers look for them and every UK competitor displays one. Gates the trust-signal work. |
 | E | **Default social share image** | A purpose-made 1200×630 image. Link previews currently crop a carousel frame. |
 | F2 | **Is a FAQ question a lead?** | It currently fires `generate_lead`. If it is not a sales lead, say so and it comes out — otherwise every lead figure is inflated. |
+| Q | **`/private-tour-planning/` is orphaned** — indexable and in the sitemap, but **no page on the site links to it**. Google can reach it only via the sitemap; it receives no internal link equity and a visitor cannot navigate to it. | It is *not* a duplicate — it is a genuinely different page from `/private-tours-your-trip-your-rules/` (different H1, different content). So the choice is real: either **link to it** from the private tours page or the navigation, or **drop it from the sitemap** and let the other page own that intent. Worth also asking whether two private-tour pages should compete for the same query at all — the review warns against exactly that overlap. I did not decide this unilaterally because both options change what visitors see. |
 
 ## Not done — needs account access
 
