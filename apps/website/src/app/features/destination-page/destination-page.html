@@ -19,11 +19,12 @@
         <div>
           <h2 id="destination-intro">Explore {{ country.name }} with Omaya</h2>
           <p>{{ country.introduction }}</p>
-          <p>{{ country.planning }}</p>
         </div>
         <aside>
           <h3>Choose your journey</h3>
-          <p>Compare the group formats, departure dates and itinerary details below.</p>
+          <p>
+            Each journey has its own pace, group and dates — find the one that feels like yours.
+          </p>
           <a
             [href]="'/destinations/' + country.slug + '/#destination-tours'"
             (click)="
