@@ -37,7 +37,7 @@ const FAQ_PAGE = {
       id: 'accreditation',
       question: 'What accreditation does Omaya have?',
       answer: [
-        'Omaya Travel is a professionally registered travel company (License PK-18706), operating under applicable Bulgarian and EU travel regulations. We work with accredited local partners and suppliers across all our destinations to ensure the highest standards of service, safety, and authenticity.',
+        'Omaya Travel is a professionally registered travel company (License PK-01-8706), operating under applicable Bulgarian and EU travel regulations. We work with accredited local partners and suppliers across all our destinations to ensure the highest standards of service, safety, and authenticity.',
       ],
     },
     {

@@ -193,7 +193,7 @@ implemented.** One new item stands.
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| R | **The licence number is written three different ways in visible copy** | `/omaya-travel-license/` and the terms say **РК-01-8706** (Cyrillic РК, matching the register). The DMC page says **PK-01-8706** (Latin PK). The FAQ page says **PK-18706**, which is missing the `01-` block entirely and matches nothing. Structured data uses the Cyrillic form as issued. This is a factual error in customer-facing copy written by your team, so I have not touched it — confirm the correct rendering and I will align all three. |
+| R | **The licence number still reads two ways, in two scripts** | *Partly fixed.* The FAQ page said **PK-18706**, missing the `01-` block entirely and matching nothing; on instruction it now reads **PK-01-8706**, in line with the DMC page. What remains is a script split, not a wrong number: the DMC and FAQ pages use Latin **PK-01-8706** while `/omaya-travel-license/` and the terms use Cyrillic **РК-01-8706**, which is the form as issued and the form the structured data publishes. Both are recognisable to a reader; only one matches the register exactly. Worth deciding whether the Latin pages should switch to Cyrillic for consistency. |
 
 ## Not done — needs account access
 
