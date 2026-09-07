@@ -163,6 +163,44 @@
             </ul>
           </section>
 
+          <!--
+            The general booking terms, summarised where someone is already thinking about money.
+            Deliberately a summary that links to the full page rather than a copy of it: the
+            authored terms carry conditions ("in general", "may vary by destination") that a
+            duplicate would lose, and two versions of a payment policy would eventually disagree.
+          -->
+          <section class="tour-detail__section tour-detail__booking">
+            <h2>Booking conditions</h2>
+            <dl>
+              <div>
+                <dt>Deposit</dt>
+                <dd>25% per person, within 7 days of written confirmation</dd>
+              </div>
+              <div>
+                <dt>Balance</dt>
+                <dd>Due no less than 60 days before departure</dd>
+              </div>
+              <div>
+                <dt>Cancelling 45–30 days before</dt>
+                <dd>Full refund minus the deposit</dd>
+              </div>
+              <div>
+                <dt>Cancelling 29–20 days before</dt>
+                <dd>30% refund</dd>
+              </div>
+              <div>
+                <dt>Cancelling under 20 days before</dt>
+                <dd>Non-refundable</dd>
+              </div>
+            </dl>
+            <p>
+              Cancel more than 45 days ahead and the deposit can be held as credit toward a future
+              trip, less a EUR 100 administration fee. Some tours and services carry different
+              terms, which we confirm when you book.
+              <a routerLink="/termsconditions/">Read the full terms and conditions</a>
+            </p>
+          </section>
+
           <section class="tour-detail__section">
             <div class="tour-detail__gallery-preview">
               @for (image of tour.gallery.slice(0, 3); track image.src; let index = $index) {

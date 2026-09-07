@@ -195,6 +195,14 @@ Reinstate them in the introductions if they ever stop being visible there.
 from that page. Judged worth it — the names still appear in every card, link and H1 across the
 site, and brand voice won. Recorded so it reads as a decision rather than an oversight.
 
+### Sixth batch — booking conditions, share image, licence decision (8 September 2026)
+
+| Item | Outcome |
+| --- | --- |
+| **K4 — booking conditions on tour pages** | **Done.** A "Booking conditions" block on every tour page states the deposit (25% per person within 7 days), the balance date (60 days before departure) and the three cancellation bands, then links to the full terms. Written as a *summary that links out*, not a copy of the Terms page: the authored terms carry qualifiers ("in general", "may vary depending on the destination") that a duplicate would lose, and two copies of a payment policy eventually disagree with each other. Update the Terms page and this block together. |
+| **Private-tour share image** | **Done.** `/private-tours-your-trip-your-rules/` was advertising the site-wide fallback while its own generated image sat unused. It is a static route with no `listingSlug`, so `OmayaSeo` had nothing to resolve an image from; the static metadata entry now selects it explicitly via `ogImageFor`. |
+| **Item R — licence number script** | **Closed, by design.** Confirmed 8 September 2026 that the split is deliberate: the DMC and FAQ pages use Latin **PK-01-8706**, while `/omaya-travel-license/`, the terms and the structured data use Cyrillic **РК-01-8706** as issued. Both are correct; do not "fix" one to match the other. The only genuine error was the FAQ page's `PK-18706`, missing the `01-` block, corrected in `5315f20`. |
+
 ### GA4 lead tracking: code audit (historical, before the FAQ event change)
 
 The review said to audit the existing implementation rather than install a second one. The code half
@@ -258,7 +266,6 @@ implemented.** One new item stands.
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| R | **The licence number still reads two ways, in two scripts** | *Partly fixed.* The FAQ page said **PK-18706**, missing the `01-` block entirely and matching nothing; on instruction it now reads **PK-01-8706**, in line with the DMC page. What remains is a script split, not a wrong number: the DMC and FAQ pages use Latin **PK-01-8706** while `/omaya-travel-license/` and the terms use Cyrillic **РК-01-8706**, which is the form as issued and the form the structured data publishes. Both are recognisable to a reader; only one matches the register exactly. Worth deciding whether the Latin pages should switch to Cyrillic for consistency. |
 
 ## Not done — needs account access
 
@@ -275,7 +282,6 @@ implemented.** One new item stands.
 | K1 | **Single-room supplement price** — **not done, deferred.** `notIncluded` lists "Single-room supplement" with **no figure**, so a solo traveller cannot tell whether a private room costs €50 or €500. Needs a number per tour (or one policy). | Business fact |
 | K2 | **Rooming policy** — **not done, deferred.** Confirmed 7 Sep 2026 that a single room is the default **only on tours where single rooms are available** — it is *per tour*, not site-wide. Kyrgyzstan yurt stays and the Algeria desert camping cannot offer them. **Do not publish a blanket "single room by default" claim**; it would be false on those tours. Needs a per-tour answer. Note this interacts with K1: if a single room is the default *and* the supplement is "not included", the two statements read as a contradiction and must be resolved together. | Business fact |
 | K3 | **Pace / fitness level** — **not done, deferred.** Not modelled at all. A label plus a sentence per tour, e.g. "Moderate — 3–5 hours walking on some days, no technical terrain." | Business fact |
-| K4 | **Booking conditions on tour pages** — not done. The facts already exist in the Terms page (25% deposit within 7 days; credit less €100 admin if cancelled >45 days out; non-refundable inside 20 days) and just need surfacing on the tour pages. | Code only, no new facts needed |
 | L | **Query-to-page map for US/UK** | Needs Search Console data (item F) |
 | M | **Core Web Vitals — field baseline and the font-swap fix** | The image question is settled (see above). What remains: a throttled cold-cache run to confirm the font-swap hypothesis, real-user field data via Search Console once verified, and only then the `size-adjust` / self-hosting change. Do not change font loading on lab evidence alone. |
 | O | **Content: refresh 4 existing articles, publish 4 new guides** | Weeks, needs firsthand material from guides |
@@ -296,15 +302,15 @@ Do not spend time on these; the reasoning is in the expert review and the correc
 
 ## Suggested next session
 
-The code side of Phase 1 and most of Phase 2 is now done. What is left is mostly not code.
+The code side is done. **Every small follow-up is now closed** — C, D, E, F2, Q, R, K4 and the
+private-tour share image. What remains needs a deploy, a business fact, or content.
 
-1. **Item F — Search Console.** Everything measurable is downstream of it, and it is the one task
-   nobody else can do. Do it before writing another line of content.
-2. **Item R and the private-tour share image follow-up** — the previously requested business
-   answers (C, D, E, F2 and Q) are already implemented. The remaining small follow-ups are licence
-   script consistency and selecting the existing private-tour share image in metadata.
-3. **Merge and deploy**, then item P: re-run every check on this board against the live CDN. None of
-   it is confirmed in production yet, and the external review's own production checks still show the
-   pre-Phase-1 state.
-4. Only then item K (tour page depth) and item O (content), which is where the remaining search
-   value now sits.
+1. **Deploy.** PR #64 merged the work into `dev`, but `master` is behind and production still serves
+   the pre-Phase-1 site: `sitemap.xml` and `robots.txt` return 404 and every page still carries the
+   title `Omaya Travel`. Nothing below can start until this happens.
+2. **Item F — Search Console.** One click once deployed; the domain is already DNS-verified.
+   Everything measurable is downstream of it.
+3. **Item P — verify production.** Re-run every check on this board against the live CDN. Nothing
+   here is confirmed in production yet.
+4. **Then** items K1–K3 (the supplement price, per-tour rooming, pace) once the facts exist, and
+   item O (content), which is where the remaining search value sits.
