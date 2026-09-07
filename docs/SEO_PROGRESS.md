@@ -3,9 +3,11 @@
 **Single source of truth for what is done and what is not.** Read this first when picking up SEO
 work in a new session.
 
-- **Branch:** `toni-seo-optimization` — **not merged, not deployed.** Everything below is verified
-  against local builds only; production still shows the pre-Phase-1 state.
-- **Last updated:** 7 September 2026
+- **Status: LIVE.** Merged via PR #64 into `dev` and PR #65 into `master`, and deployed. Production
+  verified 8 September 2026 — see [Production verification](#production-verification-8-september-2026).
+- **Not yet in production:** commits `80dbea6` (docs) and `fae926f` (booking conditions block and
+  the private-tour share image fix). Both need a follow-up PR into `dev`.
+- **Last updated:** 8 September 2026
 - **Test suite:** 125 passing across 12 files. Build prerenders 40 routes. Sitemap lists 38 URLs.
 
 | Commit | What |
@@ -203,6 +205,32 @@ site, and brand voice won. Recorded so it reads as a decision rather than an ove
 | **Private-tour share image** | **Done.** `/private-tours-your-trip-your-rules/` was advertising the site-wide fallback while its own generated image sat unused. It is a static route with no `listingSlug`, so `OmayaSeo` had nothing to resolve an image from; the static metadata entry now selects it explicitly via `ogImageFor`. |
 | **Item R — licence number script** | **Closed, by design.** Confirmed 8 September 2026 that the split is deliberate: the DMC and FAQ pages use Latin **PK-01-8706**, while `/omaya-travel-license/`, the terms and the structured data use Cyrillic **РК-01-8706** as issued. Both are correct; do not "fix" one to match the other. The only genuine error was the FAQ page's `PK-18706`, missing the `01-` block, corrected in `5315f20`. |
 
+### Production verification (8 September 2026)
+
+Item P, run against the live domain rather than a local build. **Zero failures.**
+
+| Check | Result |
+| --- | --- |
+| `robots.txt` | 200, `text/plain`, no crawl blocks, points at the sitemap index |
+| `sitemap.xml` | 200, `application/xml`, valid index → `sitemap-pages.xml` |
+| Sitemap contents | **38 URLs.** Every one returns 200, carries a canonical matching its own URL exactly, and is `index, follow`. Zero failures across all 38. |
+| Homepage title | `Small Group Adventure Tours & Holidays \| Omaya Travel` — the one-title-for-every-page bug is gone from production |
+| `www` → bare domain | 301 |
+| Retired September URL | 301 → `/calendar-2027/september/` |
+| Consolidated private-tour URL | 301 → `/private-tours-your-trip-your-rules/` |
+| Legacy WordPress query URL | `/?page_id=635` → 301 → `/our-story/` |
+| Retired tour URL | `/tour-item/bulgaria-trip/` → 301 → `/tour-item/bulgaria-beyond-the-ordinary/` |
+| Trailing slash | `/contact` → 301 → `/contact/` |
+| Genuine 404 | Unknown URL returns 404, not a soft 200 |
+| Tour page markup | 5 JSON-LD blocks; per-page share image resolving to `/assets/images/og/tour-morocco-tour.jpg` |
+
+**Sitemap submitted to Google Search Console on 8 September 2026** against the DNS-verified Domain
+property. Note that a Domain property's sitemap field takes the **full URL**
+(`https://omayatravel.com/sitemap.xml`), not a bare path — a bare path is rejected as invalid.
+
+The booking conditions block is correctly **absent** from production: it lives in `fae926f`, which
+has not been merged yet.
+
 ### GA4 lead tracking: code audit (historical, before the FAQ event change)
 
 The review said to audit the existing implementation rather than install a second one. The code half
@@ -271,8 +299,7 @@ implemented.** One new item stands.
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| F | **Google Search Console verification and sitemap submission** | Prefer a DNS-verified Domain property (covers protocol and subdomain variants). The existing GA4 ID alone does not guarantee Analytics verification — that method needs the right permissions and applies to URL-prefix properties. Blocks all measurement. |
-| G | **Bing Webmaster Tools** | Imports from Search Console once F is done. |
+| G | **Bing Webmaster Tools** | Search Console is done, so this is now a 5-minute import at <https://www.bing.com/webmasters> — it carries the verification and sitemap across, and Bing feeds DuckDuckGo and some AI search. |
 | H | **GA4 account-side verification** | Code audit **done**; the FAQ page no longer fires `generate_lead` (it fires `submit_faq_question`). Outstanding: confirm `generate_lead` is configured as a key event, check data retention and country reporting, and run one live end-to-end test enquiry against an agreed test recipient. |
 
 ## Not done — real work, not yet started
@@ -285,7 +312,6 @@ implemented.** One new item stands.
 | L | **Query-to-page map for US/UK** | Needs Search Console data (item F) |
 | M | **Core Web Vitals — field baseline and the font-swap fix** | The image question is settled (see above). What remains: a throttled cold-cache run to confirm the font-swap hypothesis, real-user field data via Search Console once verified, and only then the `size-adjust` / self-hosting change. Do not change font loading on lab evidence alone. |
 | O | **Content: refresh 4 existing articles, publish 4 new guides** | Weeks, needs firsthand material from guides |
-| P | **Production verification after deploy** | Re-run every check in this board against the live CDN. Nothing here is confirmed in production yet. |
 
 ## Explicitly not recommended
 
