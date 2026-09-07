@@ -2,16 +2,12 @@
   <section class="destination-page__hero">
     <img [src]="hero().src" [alt]="hero().alt" width="1600" height="900" fetchpriority="high" />
     <div>
-      <p>Omaya Travel</p>
       <h1>
         {{
           destination() ? destination()!.name + ' Tours & Holidays' : 'Find your next destination'
         }}
       </h1>
-      <span>{{
-        destination()?.theme ??
-          'Small group journeys through Bulgaria, Kyrgyzstan, Morocco and Algeria'
-      }}</span>
+      <span>{{ destination()?.theme ?? 'Small group journeys' }}</span>
     </div>
   </section>
 
@@ -174,10 +170,9 @@
       </section>
     } @else {
       <section class="destination-page__hub-intro">
-        <h2>Four countries. Your kind of journey.</h2>
+        <h2>Pick your kind of journey</h2>
         <p>
-          Explore the destinations behind our small group tours. Compare itineraries, group formats
-          and scheduled departures, then find the journey that suits you.
+          Explore the destinations behind our small group tours and find the journey that suits you.
         </p>
       </section>
       <div class="destination-page__destinations">

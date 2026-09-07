@@ -7,7 +7,7 @@ const DESTINATION_BRIEFS = [
     name: 'Bulgaria',
     theme: 'Monasteries, mountains and village life',
     introduction:
-      'Explore Bulgaria through its monasteries, mountain villages and living traditions. Compare the classic and women-only versions of Bulgaria Beyond the Ordinary, then choose the departure and group that suit you.',
+      'Explore Bulgaria through its monasteries, mountain villages and living traditions. Enjoy the calm of frescoed monastery courtyards, unhurried afternoons in the mountains, and long tables of food cooked the way it always has been.',
     planning:
       'Both itineraries run for eight days. Compare the group format and dates below, then open the full itinerary for accommodation, meals, room-sharing arrangements and the daily route.',
     guideSlugs: [
@@ -20,7 +20,7 @@ const DESTINATION_BRIEFS = [
     name: 'Kyrgyzstan',
     theme: 'Mountain lakes and nomadic traditions',
     introduction:
-      'Yurt stays, mountain landscapes and time beside Song Kul Lake are part of Omaya’s Kyrgyzstan journeys. Choose between the classic Discovery Tour and the women-only itinerary, with the recorded departure dates shown below.',
+      'Yurt stays, mountain landscapes and time beside Song Kul Lake are part of Omaya’s Kyrgyzstan journeys. Settle into the stillness of the high summer pastures, evenings with the families who host you, and the long golden light over the lake.',
     planning:
       'Compare each itinerary’s daily activities and accommodation before choosing your departure. Open the trip details for the riding and walking programme, what to bring and the arrangements for nights in yurts.',
     guideSlugs: ['how-to-visit-song-kul-lake-in-kyrgyzstan'],
@@ -30,7 +30,7 @@ const DESTINATION_BRIEFS = [
     name: 'Morocco',
     theme: 'Blue cities, medinas and desert dunes',
     introduction:
-      'Follow Morocco’s Blue Cities & Golden Dunes itinerary through its cities, mountains and Sahara landscapes. The classic, women-only and solo-traveller formats let you choose the group experience as well as the journey.',
+      'Follow Morocco’s Blue Cities & Golden Dunes itinerary through its cities, mountains and Sahara landscapes. Enjoy mint tea in the blue lanes of Chefchaouen, the colour and noise of the medinas, and a night under more stars than you thought the sky held.',
     planning:
       'The group formats share the core itinerary, but prices and participation conditions can differ. Compare the options below and read your chosen tour’s inclusions, room arrangements and booking conditions before enquiring.',
     guideSlugs: [],
@@ -40,7 +40,7 @@ const DESTINATION_BRIEFS = [
     name: 'Algeria',
     theme: 'An expedition into the Tadrart Rouge',
     introduction:
-      'Omaya’s Algeria journey focuses on the Tadrart Rouge: red dunes, sandstone formations and desert camping. Explore the expedition and its scheduled departures, then use the Tassili n’Ajjer guide to learn more about the region.',
+      'Omaya’s Algeria journey focuses on the Tadrart Rouge: red dunes, sandstone formations and desert camping. Feel the deep silence of the Sahara, sandstone arches burning red at sunset, and nights spent sleeping out beneath the stars.',
     planning:
       'Start with the expedition itinerary to understand the daily route and camping arrangements. Check the included services and arrival instructions with the team before making separate travel bookings.',
     guideSlugs: ['tassili-najjer-national-park-algeria-guide'],
