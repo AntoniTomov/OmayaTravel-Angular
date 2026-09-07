@@ -6,7 +6,7 @@ work in a new session.
 - **Branch:** `toni-seo-optimization` — **not merged, not deployed.** Everything below is verified
   against local builds only; production still shows the pre-Phase-1 state.
 - **Last updated:** 7 September 2026
-- **Test suite:** 116 passing across 11 files. Build prerenders 41 routes. Sitemap lists 39 URLs.
+- **Test suite:** 125 passing across 12 files. Build prerenders 40 routes. Sitemap lists 39 URLs.
 
 | Commit | What |
 | --- | --- |
@@ -18,7 +18,9 @@ work in a new session.
 | `db1e86b` | Progress board; correct superseded claims |
 | `63689e1` | Measure the image/CLS assumption instead of asserting it |
 | `a5d53e9` | GA4 lead tracking code audit |
-| *(this batch)* | Destination pages, breadcrumbs, departure-derived calendars, September dedupe, trailing-slash canonicalisation |
+| `8003dea` | Destination pages, breadcrumbs, departure-derived calendars, September dedupe, trailing-slash canonicalisation |
+| `583145f` | Verify Phase 1 completion criteria; record the orphaned page |
+| `57d708a` | Organisation facts, per-page share images, FAQ lead fix, private tour consolidation |
 
 **Companion documents**
 
@@ -116,6 +118,19 @@ Method: fetched every URL in the live sitemap and compared status, canonical and
 built an internal link graph across all 40 prerendered pages and checked inbound links per sitemap
 URL.
 
+### Third batch — business answers implemented (7 September 2026)
+
+| Item | Answer given | What was built |
+| --- | --- | --- |
+| **C — organisation facts** | Supplied in full | `TravelAgency` schema now carries Omaya Travel EOOD, registration **РК-01-8706**, EIK 208663654, the Kardzhali address, both public phones as `ContactPoint`s, founding year 2026, and the Facebook, Instagram and LinkedIn profiles. Stored in a new optional `organisation` block on `SiteConfig`, so Amelia can supply its own later. The Instagram `?stkn=` share token is stripped — it is personal to whoever copied the link — and a spec fails if any tokenised profile URL is ever added. |
+| **D — ABTA / AITO / ATOL** | None held or planned | Nothing claimed anywhere. No trust-badge work will be designed around a membership that does not exist. |
+| **E — share images** | "Use each page's first big image, with the logo smaller" | `npm run og:generate` composites every page's own hero into the 1200×630 frame with the logo bottom-left. **23 images generated.** A gradient scrim sits under the logo because the logo is white and vanished on pale heroes. Output is committed and a generated manifest tells the app which pages have one, so a normal build never needs `sharp` and no page links a missing image. The site-wide fallback is now a generated image too. |
+| **F2 — is a FAQ question a lead?** | No | The FAQ page fires `submit_faq_question` instead of `generate_lead`. Still tracked, just reported apart, so lead volume reflects actual sales enquiries. |
+| **Q — the orphaned page** | "You decide who owns the intent" | `/private-tours-your-trip-your-rules/` owns it — it is the page the site links to and the one leading into the questionnaire. `/private-tour-planning/` now **301s** onto it. Its copy is kept in `tour-list-content.ts`, unrouted, with a note on how to restore it. |
+
+Regenerate share images with `npm run og:generate` after changing any hero image. `sharp` is a
+dev dependency needed only for that script.
+
 ### GA4 lead tracking: code audit
 
 The review said to audit the existing implementation rather than install a second one. The code half
@@ -173,15 +188,12 @@ Recorded so they are not repeated. Several came from the expert review; the last
 
 ## Not done — needs a decision from Omaya
 
-Blocked on business facts, not effort. Each is small once answered.
+**All previously open decisions (C, D, E, F2, Q) were answered on 7 September 2026 and are
+implemented.** One new item stands.
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| C | **Organisation facts for JSON-LD** — registered name, postal address, public phone, licence number, social profile URLs | Currently `TODO_SEO_ORGANISATION` in `structured-data.ts`. Omitted rather than invented. ~15 minutes to wire in. |
-| D | **ABTA / AITO / ATOL** | Whether Omaya holds or will seek any of these. UK buyers look for them and every UK competitor displays one. Gates the trust-signal work. |
-| E | **Default social share image** | A purpose-made 1200×630 image. Link previews currently crop a carousel frame. |
-| F2 | **Is a FAQ question a lead?** | It currently fires `generate_lead`. If it is not a sales lead, say so and it comes out — otherwise every lead figure is inflated. |
-| Q | **`/private-tour-planning/` is orphaned** — indexable and in the sitemap, but **no page on the site links to it**. Google can reach it only via the sitemap; it receives no internal link equity and a visitor cannot navigate to it. | It is *not* a duplicate — it is a genuinely different page from `/private-tours-your-trip-your-rules/` (different H1, different content). So the choice is real: either **link to it** from the private tours page or the navigation, or **drop it from the sitemap** and let the other page own that intent. Worth also asking whether two private-tour pages should compete for the same query at all — the review warns against exactly that overlap. I did not decide this unilaterally because both options change what visitors see. |
+| R | **The licence number is written three different ways in visible copy** | `/omaya-travel-license/` and the terms say **РК-01-8706** (Cyrillic РК, matching the register). The DMC page says **PK-01-8706** (Latin PK). The FAQ page says **PK-18706**, which is missing the `01-` block entirely and matches nothing. Structured data uses the Cyrillic form as issued. This is a factual error in customer-facing copy written by your team, so I have not touched it — confirm the correct rendering and I will align all three. |
 
 ## Not done — needs account access
 
@@ -189,7 +201,7 @@ Blocked on business facts, not effort. Each is small once answered.
 | --- | --- | --- |
 | F | **Google Search Console verification and sitemap submission** | Prefer a DNS-verified Domain property (covers protocol and subdomain variants). The existing GA4 ID alone does not guarantee Analytics verification — that method needs the right permissions and applies to URL-prefix properties. Blocks all measurement. |
 | G | **Bing Webmaster Tools** | Imports from Search Console once F is done. |
-| H | **GA4 account-side verification** | Code audit is **done** (see above) and the implementation is sound. Outstanding: confirm `generate_lead` is configured as a key event, check data retention and country reporting, and run one live end-to-end test enquiry against an agreed test recipient. Also needs a business decision on whether a FAQ question should count as a lead. |
+| H | **GA4 account-side verification** | Code audit **done**; the FAQ page no longer fires `generate_lead` (it fires `submit_faq_question`). Outstanding: confirm `generate_lead` is configured as a key event, check data retention and country reporting, and run one live end-to-end test enquiry against an agreed test recipient. |
 
 ## Not done — real work, not yet started
 
