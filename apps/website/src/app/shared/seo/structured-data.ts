@@ -1,5 +1,6 @@
 import { BlogPostContent } from '../content/blog-content';
 import { SiteOrganisation } from '../../../sites/site.types';
+import { tourFaqItems } from '../content/booking-conditions';
 import { TourDetailContent } from '../content/tour-content';
 
 /**
@@ -159,15 +160,22 @@ export function tourJsonLd(
   };
 }
 
+/**
+ * Marks up exactly the questions the page renders — authored items plus the booking conditions —
+ * by reading the same helper the template does. Marking up a different set from the visible one is
+ * worse than marking up nothing.
+ */
 export function faqJsonLd(tour: TourDetailContent): JsonLd | null {
-  if (!tour.faq?.items.length) {
+  const items = tourFaqItems(tour);
+
+  if (!items.length) {
     return null;
   }
 
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: tour.faq.items.map((item) => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {

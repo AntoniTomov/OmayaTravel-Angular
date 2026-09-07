@@ -76,30 +76,6 @@
   font-weight: 700;
 }
 
-.tour-detail__booking dl {
-  display: grid;
-  gap: 0.5rem 1.5rem;
-  margin: 0 0 1rem;
-}
-
-.tour-detail__booking dl > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--omaya-color-border-light);
-}
-
-.tour-detail__booking dt {
-  flex: 1 1 16rem;
-  font-weight: 700;
-}
-
-.tour-detail__booking dd {
-  flex: 1 1 16rem;
-  margin: 0;
-}
-
 .tour-detail__tabs {
   position: relative;
   z-index: 2;

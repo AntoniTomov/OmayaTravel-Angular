@@ -14,6 +14,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
+import {
+  tourFaqHeading,
+  tourFaqIntro,
+  tourFaqItems,
+} from '../../shared/content/booking-conditions';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
@@ -173,7 +178,9 @@ export class TourDetail {
       { id: 'gallery', label: 'Gallery', icon: 'photo_camera' },
     ];
 
-    if (this.tour()?.faq) {
+    // Always available: every tour has at least the booking conditions entry, even when the
+    // content team has not authored destination-specific questions yet.
+    if (this.tour()) {
       tabs.push({ id: 'faq', label: 'FAQ', icon: 'help_outline' });
     }
 
@@ -404,6 +411,18 @@ export class TourDetail {
 
   protected groupSizeLabel(tour: TourDetailContent): string {
     return `${tour.groupSize.min} - ${tour.groupSize.max} people`;
+  }
+
+  protected faqItems(tour: TourDetailContent): readonly TourFaqItem[] {
+    return tourFaqItems(tour);
+  }
+
+  protected faqHeading(tour: TourDetailContent): string {
+    return tourFaqHeading(tour);
+  }
+
+  protected faqIntro(tour: TourDetailContent): string {
+    return tourFaqIntro(tour);
   }
 
   protected isGuaranteedDeparture(tour: TourDetailContent, departure: string): boolean {
