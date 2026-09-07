@@ -133,6 +133,9 @@ export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
     title: `Private Tours: Your Trip, Your Rules | ${BRAND_SUFFIX}`,
     description:
       'Private, custom-built itineraries for couples, families and small groups of friends. Your dates, your pace, your interests.',
+    // This page has a generated share image but is a static route, so it carries no `listingSlug`
+    // for OmayaSeo to resolve one from — without this it fell back to the site-wide default.
+    image: ogImageFor('listing-private-tours-your-trip-your-rules'),
   },
   'static-private-tour-form': {
     title: `Describe Your Private Tour | ${BRAND_SUFFIX}`,

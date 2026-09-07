@@ -14,6 +14,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
+import {
+  tourFaqHeading,
+  tourFaqIntro,
+  tourFaqItems,
+} from '../../shared/content/booking-conditions';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
@@ -173,11 +178,64 @@ export class TourDetail {
       { id: 'gallery', label: 'Gallery', icon: 'photo_camera' },
     ];
 
-    if (this.tour()?.faq) {
+    // Always available: every tour has at least the booking conditions entry, even when the
+    // content team has not authored destination-specific questions yet.
+    if (this.tour()) {
       tabs.push({ id: 'faq', label: 'FAQ', icon: 'help_outline' });
     }
 
     return tabs;
+  });
+  /**
+   * FAQ state as computed signals rather than template methods.
+   *
+   * A template method runs on every change detection pass, and `tourFaqItems` builds a new array
+   * each call — so `@for` would see a fresh reference every cycle. These recompute only when the
+   * tour changes and hand back a stable reference.
+   */
+  protected readonly faqItems = computed<readonly TourFaqItem[]>(() => {
+    const tour = this.tour();
+
+    return tour ? tourFaqItems(tour) : [];
+  });
+  protected readonly faqHeading = computed(() => {
+    const tour = this.tour();
+
+    return tour ? tourFaqHeading(tour) : '';
+  });
+  protected readonly faqIntro = computed(() => {
+    const tour = this.tour();
+
+    return tour ? tourFaqIntro(tour) : '';
+  });
+  /** Empty unless the tour has a guaranteed departure that is still in its departure list. */
+  protected readonly guaranteedDeparture = computed(() => {
+    const tour = this.tour();
+    const guaranteed = (tour?.guaranteedDepartures ?? []).filter((date) =>
+      tour?.departures.includes(date),
+    );
+
+    return guaranteed.length ? 'Guaranteed departure' : '';
+  });
+  /** Departure date to its combined note, so the template does no work per row. */
+  protected readonly departureNotes = computed<ReadonlyMap<string, string>>(() => {
+    const tour = this.tour();
+
+    if (!tour) {
+      return new Map();
+    }
+
+    return new Map(
+      tour.departures.map((departure) => [
+        departure,
+        [
+          tour.departureNotes?.[departure],
+          tour.guaranteedDepartures?.includes(departure) ? 'Guaranteed' : '',
+        ]
+          .filter(Boolean)
+          .join(' · '),
+      ]),
+    );
   });
   protected readonly contentClasses = computed(() => ({
     'tour-detail__content--gallery': this.activeTab() === 'gallery',
@@ -404,32 +462,6 @@ export class TourDetail {
 
   protected groupSizeLabel(tour: TourDetailContent): string {
     return `${tour.groupSize.min} - ${tour.groupSize.max} people`;
-  }
-
-  protected isGuaranteedDeparture(tour: TourDetailContent, departure: string): boolean {
-    return tour.guaranteedDepartures?.includes(departure) ?? false;
-  }
-
-  /** Empty unless the tour has at least one guaranteed departure. */
-  protected guaranteedDepartureLabel(tour: TourDetailContent): string {
-    const guaranteed = (tour.guaranteedDepartures ?? []).filter((date) =>
-      tour.departures.includes(date),
-    );
-
-    return guaranteed.length ? 'Guaranteed departure' : '';
-  }
-
-  /**
-   * Merges the authored departure note with the guaranteed flag so a date reads
-   * "(All ages departure · Guaranteed)" rather than carrying two separate brackets.
-   */
-  protected departureNoteLabel(tour: TourDetailContent, departure: string): string {
-    return [
-      tour.departureNotes?.[departure],
-      this.isGuaranteedDeparture(tour, departure) ? 'Guaranteed' : '',
-    ]
-      .filter(Boolean)
-      .join(' · ');
   }
 
   protected departureReturnLabel(tour: TourDetailContent): string {

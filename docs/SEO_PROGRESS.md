@@ -3,9 +3,11 @@
 **Single source of truth for what is done and what is not.** Read this first when picking up SEO
 work in a new session.
 
-- **Branch:** `toni-seo-optimization` — **not merged, not deployed.** Everything below is verified
-  against local builds only; production still shows the pre-Phase-1 state.
-- **Last updated:** 7 September 2026
+- **Status: LIVE.** Merged via PR #64 into `dev` and PR #65 into `master`, and deployed. Production
+  verified 8 September 2026 — see [Production verification](#production-verification-8-september-2026).
+- **Not yet in production:** commits `80dbea6` (docs) and `fae926f` (booking conditions block and
+  the private-tour share image fix). Both need a follow-up PR into `dev`.
+- **Last updated:** 8 September 2026
 - **Test suite:** 125 passing across 12 files. Build prerenders 40 routes. Sitemap lists 38 URLs.
 
 | Commit | What |
@@ -21,6 +23,11 @@ work in a new session.
 | `8003dea` | Destination pages, breadcrumbs, departure-derived calendars, September dedupe, trailing-slash canonicalisation |
 | `583145f` | Verify Phase 1 completion criteria; record the orphaned page |
 | `57d708a` | Organisation facts, per-page share images, FAQ lead fix, private tour consolidation |
+| `7d71e7f` | Record the answered business decisions; flag the licence-number inconsistency |
+| `73b51d7` | Pre-merge verification against `dev` (author's own review) |
+| `ad14fc4` | Group size and guaranteed departures on tour pages |
+| `ef20a84` | Destination copy rewritten in an inviting voice; hub copy future-proofed |
+| `74895f8` | Instructional planning paragraph removed from destination pages |
 
 **Companion documents**
 
@@ -164,6 +171,67 @@ change application code, merge branches or deploy the site.
 | **Group size surfaced** | Duration and group size (`6–12 people` on every tour) now sit directly under the H1 in the hero, above the fold. They were already rendered, but inside the information tab below the tab bar — past the point where a first-time visitor decides whether a trip fits. |
 | **Guaranteed departures** | New optional `guaranteedDepartures` on `TourDetailContent`. Currently set on **Algeria, 24 February 2027 only**. Shows as a hero fact and merges with the authored note so the date reads `(All ages departure · Guaranteed)` rather than carrying two brackets. Deliberately *not* mapped to schema `availability` — a guaranteed departure means the trip runs, not that places remain. |
 
+### Fifth batch — destination page voice (7 September 2026)
+
+**The rule established here, because it will come up again:** copy on these pages should invite,
+not instruct. The destination pages we built originally ended every section by telling the reader
+what to do next — *compare the itineraries, open the tour page, check the inclusions before
+enquiring*. Read together it was a task list sitting where the reason to travel should be. The
+author flagged it three separate times, so treat it as the house voice rather than three one-off
+edits.
+
+| Change | Detail |
+| --- | --- |
+| **Destination introductions rewritten** | Each keeps its factual opening sentence and closes with what the place is actually like — monastery courtyards and long tables in Bulgaria, the stillness of the summer pastures in Kyrgyzstan, mint tea and medinas in Morocco, the silence of the Sahara in Algeria. Openings are deliberately varied rather than four identical "Enjoy the…" constructions. |
+| **`planning` paragraph removed** | It sat directly under each introduction, duplicated the sidebar beside it, and was instructional throughout. Removed on **all four** destinations and the field deleted from `destination-content.ts`, since nothing rendered it any more. |
+| **Sidebar line rewritten** | "Compare the group formats, departure dates and itinerary details below" became "Each journey has its own pace, group and dates — find the one that feels like yours." |
+| **"Omaya Travel" eyebrow removed** | From above the destination page title. The brand is already in the header, tab title and footer. The dead `.destination-page__hero p` selector went with it; `.destination-page__eyebrow` stays, still used by the tour and country cards. |
+| **Hub copy future-proofed** | The subtitle no longer lists the four countries, "Four countries. Your kind of journey." became "Pick your kind of journey", and the intro dropped a clause the cards below already showed. All so a fifth destination does not make the page wrong. |
+
+**Two facts were lost with the `planning` paragraph** — that both Bulgaria itineraries run eight
+days, and that Morocco's group formats share a core itinerary at differing prices. Both remain
+visible on the tour cards immediately below, which show duration, group size and price per format.
+Reinstate them in the introductions if they ever stop being visible there.
+
+**Known trade:** dropping the country names from the hub subtitle removes a little keyword text
+from that page. Judged worth it — the names still appear in every card, link and H1 across the
+site, and brand voice won. Recorded so it reads as a decision rather than an oversight.
+
+### Sixth batch — booking conditions, share image, licence decision (8 September 2026)
+
+| Item | Outcome |
+| --- | --- |
+| **K4 — booking conditions on tour pages** | **Done, as an FAQ entry.** The deposit (25% per person within 7 days), the balance date (60 days before departure) and the three cancellation bands now appear as a question in the FAQ tab — appended after the authored questions on tours that have them, and the only entry on the three tours that do not. That is why the FAQ tab is now always available. It lives in `shared/content/booking-conditions.ts`, which both the accordion and the `FAQPage` markup read, so visible and marked-up FAQ cannot drift apart. Written as a *summary that points at* the Terms page, not a copy: the authored terms carry qualifiers ("in general", "may vary depending on the destination") that a duplicate would lose, and two copies of a payment policy eventually disagree. **Update the Terms page and this entry together.** |
+| **Known trade from that move** | Tab panels on the tour page are rendered with `@if (activeTab() === …)`, so only the Information tab is in the server-rendered HTML. Moving the booking terms into the FAQ tab means the visible text is no longer in the initial HTML — it exists there only inside the `FAQPage` JSON-LD until a visitor opens the tab. This is the page's pre-existing tab architecture, not something the move introduced, and it costs little now that FAQ rich results are withdrawn. If the text should be crawlable as body copy, render the FAQ panel always and hide it with CSS instead of `@if`. |
+| **Private-tour share image** | **Done.** `/private-tours-your-trip-your-rules/` was advertising the site-wide fallback while its own generated image sat unused. It is a static route with no `listingSlug`, so `OmayaSeo` had nothing to resolve an image from; the static metadata entry now selects it explicitly via `ogImageFor`. |
+| **Item R — licence number script** | **Closed, by design.** Confirmed 8 September 2026 that the split is deliberate: the DMC and FAQ pages use Latin **PK-01-8706**, while `/omaya-travel-license/`, the terms and the structured data use Cyrillic **РК-01-8706** as issued. Both are correct; do not "fix" one to match the other. The only genuine error was the FAQ page's `PK-18706`, missing the `01-` block, corrected in `5315f20`. |
+
+### Production verification (8 September 2026)
+
+Item P, run against the live domain rather than a local build. **Zero failures.**
+
+| Check | Result |
+| --- | --- |
+| `robots.txt` | 200, `text/plain`, no crawl blocks, points at the sitemap index |
+| `sitemap.xml` | 200, `application/xml`, valid index → `sitemap-pages.xml` |
+| Sitemap contents | **38 URLs.** Every one returns 200, carries a canonical matching its own URL exactly, and is `index, follow`. Zero failures across all 38. |
+| Homepage title | `Small Group Adventure Tours & Holidays \| Omaya Travel` — the one-title-for-every-page bug is gone from production |
+| `www` → bare domain | 301 |
+| Retired September URL | 301 → `/calendar-2027/september/` |
+| Consolidated private-tour URL | 301 → `/private-tours-your-trip-your-rules/` |
+| Legacy WordPress query URL | `/?page_id=635` → 301 → `/our-story/` |
+| Retired tour URL | `/tour-item/bulgaria-trip/` → 301 → `/tour-item/bulgaria-beyond-the-ordinary/` |
+| Trailing slash | `/contact` → 301 → `/contact/` |
+| Genuine 404 | Unknown URL returns 404, not a soft 200 |
+| Tour page markup | 5 JSON-LD blocks; per-page share image resolving to `/assets/images/og/tour-morocco-tour.jpg` |
+
+**Sitemap submitted to Google Search Console on 8 September 2026** against the DNS-verified Domain
+property. Note that a Domain property's sitemap field takes the **full URL**
+(`https://omayatravel.com/sitemap.xml`), not a bare path — a bare path is rejected as invalid.
+
+The booking conditions block is correctly **absent** from production: it lives in `fae926f`, which
+has not been merged yet.
+
 ### GA4 lead tracking: code audit (historical, before the FAQ event change)
 
 The review said to audit the existing implementation rather than install a second one. The code half
@@ -227,14 +295,12 @@ implemented.** One new item stands.
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| R | **The licence number still reads two ways, in two scripts** | *Partly fixed.* The FAQ page said **PK-18706**, missing the `01-` block entirely and matching nothing; on instruction it now reads **PK-01-8706**, in line with the DMC page. What remains is a script split, not a wrong number: the DMC and FAQ pages use Latin **PK-01-8706** while `/omaya-travel-license/` and the terms use Cyrillic **РК-01-8706**, which is the form as issued and the form the structured data publishes. Both are recognisable to a reader; only one matches the register exactly. Worth deciding whether the Latin pages should switch to Cyrillic for consistency. |
 
 ## Not done — needs account access
 
 | # | Item | What is needed |
 | --- | --- | --- |
-| F | **Google Search Console verification and sitemap submission** | Prefer a DNS-verified Domain property (covers protocol and subdomain variants). The existing GA4 ID alone does not guarantee Analytics verification — that method needs the right permissions and applies to URL-prefix properties. Blocks all measurement. |
-| G | **Bing Webmaster Tools** | Imports from Search Console once F is done. |
+| G | **Bing Webmaster Tools** | Search Console is done, so this is now a 5-minute import at <https://www.bing.com/webmasters> — it carries the verification and sitemap across, and Bing feeds DuckDuckGo and some AI search. |
 | H | **GA4 account-side verification** | Code audit **done**; the FAQ page no longer fires `generate_lead` (it fires `submit_faq_question`). Outstanding: confirm `generate_lead` is configured as a key event, check data retention and country reporting, and run one live end-to-end test enquiry against an agreed test recipient. |
 
 ## Not done — real work, not yet started
@@ -244,11 +310,9 @@ implemented.** One new item stands.
 | K1 | **Single-room supplement price** — **not done, deferred.** `notIncluded` lists "Single-room supplement" with **no figure**, so a solo traveller cannot tell whether a private room costs €50 or €500. Needs a number per tour (or one policy). | Business fact |
 | K2 | **Rooming policy** — **not done, deferred.** Confirmed 7 Sep 2026 that a single room is the default **only on tours where single rooms are available** — it is *per tour*, not site-wide. Kyrgyzstan yurt stays and the Algeria desert camping cannot offer them. **Do not publish a blanket "single room by default" claim**; it would be false on those tours. Needs a per-tour answer. Note this interacts with K1: if a single room is the default *and* the supplement is "not included", the two statements read as a contradiction and must be resolved together. | Business fact |
 | K3 | **Pace / fitness level** — **not done, deferred.** Not modelled at all. A label plus a sentence per tour, e.g. "Moderate — 3–5 hours walking on some days, no technical terrain." | Business fact |
-| K4 | **Booking conditions on tour pages** — not done. The facts already exist in the Terms page (25% deposit within 7 days; credit less €100 admin if cancelled >45 days out; non-refundable inside 20 days) and just need surfacing on the tour pages. | Code only, no new facts needed |
 | L | **Query-to-page map for US/UK** | Needs Search Console data (item F) |
 | M | **Core Web Vitals — field baseline and the font-swap fix** | The image question is settled (see above). What remains: a throttled cold-cache run to confirm the font-swap hypothesis, real-user field data via Search Console once verified, and only then the `size-adjust` / self-hosting change. Do not change font loading on lab evidence alone. |
 | O | **Content: refresh 4 existing articles, publish 4 new guides** | Weeks, needs firsthand material from guides |
-| P | **Production verification after deploy** | Re-run every check in this board against the live CDN. Nothing here is confirmed in production yet. |
 
 ## Explicitly not recommended
 
@@ -265,15 +329,15 @@ Do not spend time on these; the reasoning is in the expert review and the correc
 
 ## Suggested next session
 
-The code side of Phase 1 and most of Phase 2 is now done. What is left is mostly not code.
+The code side is done. **Every small follow-up is now closed** — C, D, E, F2, Q, R, K4 and the
+private-tour share image. What remains needs a deploy, a business fact, or content.
 
-1. **Item F — Search Console.** Everything measurable is downstream of it, and it is the one task
-   nobody else can do. Do it before writing another line of content.
-2. **Item R and the private-tour share image follow-up** — the previously requested business
-   answers (C, D, E, F2 and Q) are already implemented. The remaining small follow-ups are licence
-   script consistency and selecting the existing private-tour share image in metadata.
-3. **Merge and deploy**, then item P: re-run every check on this board against the live CDN. None of
-   it is confirmed in production yet, and the external review's own production checks still show the
-   pre-Phase-1 state.
-4. Only then item K (tour page depth) and item O (content), which is where the remaining search
-   value now sits.
+1. **Deploy.** PR #64 merged the work into `dev`, but `master` is behind and production still serves
+   the pre-Phase-1 site: `sitemap.xml` and `robots.txt` return 404 and every page still carries the
+   title `Omaya Travel`. Nothing below can start until this happens.
+2. **Item F — Search Console.** One click once deployed; the domain is already DNS-verified.
+   Everything measurable is downstream of it.
+3. **Item P — verify production.** Re-run every check on this board against the live CDN. Nothing
+   here is confirmed in production yet.
+4. **Then** items K1–K3 (the supplement price, per-tour rooming, pace) once the facts exist, and
+   item O (content), which is where the remaining search value sits.

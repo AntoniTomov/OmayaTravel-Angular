@@ -48,6 +48,12 @@ Page content lives in typed constants under `apps/website/src/app/shared/content
 and metadata around it rather than editing the words. Tours carry authored `seo: { title,
 description }` in `tour-content.ts` — use it verbatim; never generate replacement copy for it.
 
+The exception is `destination-content.ts` and the destination page template, which this project
+generated rather than inherited — those are editable. When writing for them, **invite rather than
+instruct**: describe what a place is actually like, not what the reader should go and do. Copy that
+ends "compare the itineraries, then open the tour page and check the inclusions" has been rejected
+repeatedly. See the fifth-batch note in `docs/SEO_PROGRESS.md`.
+
 ## SEO
 
 `apps/website/src/app/shared/seo/` owns everything search-related: the `OmayaSeo` service (title,
