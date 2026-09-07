@@ -406,6 +406,32 @@ export class TourDetail {
     return `${tour.groupSize.min} - ${tour.groupSize.max} people`;
   }
 
+  protected isGuaranteedDeparture(tour: TourDetailContent, departure: string): boolean {
+    return tour.guaranteedDepartures?.includes(departure) ?? false;
+  }
+
+  /** Empty unless the tour has at least one guaranteed departure. */
+  protected guaranteedDepartureLabel(tour: TourDetailContent): string {
+    const guaranteed = (tour.guaranteedDepartures ?? []).filter((date) =>
+      tour.departures.includes(date),
+    );
+
+    return guaranteed.length ? 'Guaranteed departure' : '';
+  }
+
+  /**
+   * Merges the authored departure note with the guaranteed flag so a date reads
+   * "(All ages departure · Guaranteed)" rather than carrying two separate brackets.
+   */
+  protected departureNoteLabel(tour: TourDetailContent, departure: string): string {
+    return [
+      tour.departureNotes?.[departure],
+      this.isGuaranteedDeparture(tour, departure) ? 'Guaranteed' : '',
+    ]
+      .filter(Boolean)
+      .join(' · ');
+  }
+
   protected departureReturnLabel(tour: TourDetailContent): string {
     if (!tour.departureReturn) {
       return '';

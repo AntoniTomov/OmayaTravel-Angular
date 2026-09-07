@@ -9,6 +9,17 @@
         fetchpriority="high"
       />
       <h1>{{ tour.title }}</h1>
+      <!--
+        Group size and duration decide whether a trip is a fit, so they sit with the title rather
+        than inside the information tab. A guaranteed departure only shows on tours that have one.
+      -->
+      <ul class="tour-detail__hero-facts">
+        <li>{{ durationLabel(tour) }}</li>
+        <li>{{ groupSizeLabel(tour) }}</li>
+        @if (guaranteedDepartureLabel(tour); as guaranteed) {
+          <li class="tour-detail__hero-facts--guaranteed">{{ guaranteed }}</li>
+        }
+      </ul>
     </section>
 
     <div class="tour-detail__breadcrumbs">
@@ -67,7 +78,7 @@
               @for (departure of tour.departures; track departure) {
                 <span
                   >{{ departure | date: 'd MMMM y' }}
-                  @if (tour.departureNotes?.[departure]; as note) {
+                  @if (departureNoteLabel(tour, departure); as note) {
                     ({{ note }})
                   }
                 </span>

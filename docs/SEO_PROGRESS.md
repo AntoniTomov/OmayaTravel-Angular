@@ -157,6 +157,13 @@ count**. These are local checks, not production or GitHub CI results. Wait for P
 then repeat the HTTP checks after deployment. This review only updates documentation; it does not
 change application code, merge branches or deploy the site.
 
+### Fourth batch — tour page essentials (item K, partial)
+
+| Item | What was done |
+| --- | --- |
+| **Group size surfaced** | Duration and group size (`6–12 people` on every tour) now sit directly under the H1 in the hero, above the fold. They were already rendered, but inside the information tab below the tab bar — past the point where a first-time visitor decides whether a trip fits. |
+| **Guaranteed departures** | New optional `guaranteedDepartures` on `TourDetailContent`. Currently set on **Algeria, 24 February 2027 only**. Shows as a hero fact and merges with the authored note so the date reads `(All ages departure · Guaranteed)` rather than carrying two brackets. Deliberately *not* mapped to schema `availability` — a guaranteed departure means the trip runs, not that places remain. |
+
 ### GA4 lead tracking: code audit (historical, before the FAQ event change)
 
 The review said to audit the existing implementation rather than install a second one. The code half
@@ -234,7 +241,10 @@ implemented.** One new item stands.
 
 | # | Item | Size |
 | --- | --- | --- |
-| K | **Improve the three priority tour pages** — group size, pace, room sharing and private-room cost, inclusions, currency, booking conditions | Days, needs business facts |
+| K1 | **Single-room supplement price** — **not done, deferred.** `notIncluded` lists "Single-room supplement" with **no figure**, so a solo traveller cannot tell whether a private room costs €50 or €500. Needs a number per tour (or one policy). | Business fact |
+| K2 | **Rooming policy** — **not done, deferred.** Confirmed 7 Sep 2026 that a single room is the default **only on tours where single rooms are available** — it is *per tour*, not site-wide. Kyrgyzstan yurt stays and the Algeria desert camping cannot offer them. **Do not publish a blanket "single room by default" claim**; it would be false on those tours. Needs a per-tour answer. Note this interacts with K1: if a single room is the default *and* the supplement is "not included", the two statements read as a contradiction and must be resolved together. | Business fact |
+| K3 | **Pace / fitness level** — **not done, deferred.** Not modelled at all. A label plus a sentence per tour, e.g. "Moderate — 3–5 hours walking on some days, no technical terrain." | Business fact |
+| K4 | **Booking conditions on tour pages** — not done. The facts already exist in the Terms page (25% deposit within 7 days; credit less €100 admin if cancelled >45 days out; non-refundable inside 20 days) and just need surfacing on the tour pages. | Code only, no new facts needed |
 | L | **Query-to-page map for US/UK** | Needs Search Console data (item F) |
 | M | **Core Web Vitals — field baseline and the font-swap fix** | The image question is settled (see above). What remains: a throttled cold-cache run to confirm the font-swap hypothesis, real-user field data via Search Console once verified, and only then the `size-adjust` / self-hosting change. Do not change font loading on lab evidence alone. |
 | O | **Content: refresh 4 existing articles, publish 4 new guides** | Weeks, needs firsthand material from guides |
