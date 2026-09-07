@@ -66,6 +66,14 @@ export interface TourDetailContent {
   };
   departures: readonly string[];
   departureNotes?: Readonly<Record<string, string>>;
+  /**
+   * Departures confirmed to run regardless of how many people book, as ISO dates matching
+   * `departures`. A guaranteed departure is the single strongest reassurance for someone booking
+   * flights around a trip, so it is surfaced next to the date rather than buried in terms.
+   *
+   * Note this is not the same as availability — it says the trip runs, not that places remain.
+   */
+  guaranteedDepartures?: readonly string[];
   heroImage: TourImage;
   introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
@@ -135,6 +143,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   },
   departures: ['2026-11-05', '2027-02-24', '2027-10-28'],
   departureNotes: { '2027-02-24': 'All ages departure' },
+  guaranteedDepartures: ['2027-02-24'],
   heroImage: {
     src: `${ALGERIA_ASSET_BASE}/gallery/gallery-image-5.webp`,
     source:

@@ -1,3 +1,5 @@
+import { toursInMonth } from './tour-departures';
+
 export interface TourCardContent {
   title: string;
   category: 'Classic Tours' | 'Women only' | 'Solo Traveller Only' | 'Private Tours' | 'All Ages';
@@ -18,6 +20,7 @@ export interface TourListingPageContent {
   heroAlt?: string;
   cards: readonly TourCardContent[];
   showFilters: boolean;
+  departurePeriod?: { month: number; year: number };
   introSections?: readonly {
     title: string;
     body: string;
@@ -201,6 +204,10 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
       },
     ],
   },
+  // Unrouted. /private-tour-planning/ now 301s to /private-tours-your-trip-your-rules/, which owns
+  // this intent — the two pages shared a hero image, section images, card source and purpose, and
+  // this one had no inbound links. The copy is kept rather than deleted: restoring the page means
+  // putting the slug back in PUBLIC_STATIC_PAGE_SLUGS and app.routes.ts, and removing the redirect.
   {
     slug: 'private-tour-planning',
     title: 'Private Tour Planning',
@@ -225,27 +232,13 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     ],
   },
   {
-    slug: 'september-2027',
-    title: 'September 2027 Tours',
-    subtitle: 'Available departures for September 2027.',
-    cards: TOUR_CARDS.filter(
-      (card) =>
-        card.target === '/tour-item/women-only-tour-bulgaria/' ||
-        card.target === '/tour-item/bulgaria-beyond-the-ordinary/' ||
-        card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
-    ),
-    showFilters: true,
-  },
-  {
     slug: 'calendar-2027/september',
     title: 'September 2027 Tours',
-    subtitle: 'Available departures for September 2027.',
-    cards: TOUR_CARDS.filter(
-      (card) =>
-        card.target === '/tour-item/women-only-tour-bulgaria/' ||
-        card.target === '/tour-item/bulgaria-beyond-the-ordinary/' ||
-        card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    subtitle: 'Scheduled departures for September 2027. Enquire to confirm places.',
+    cards: TOUR_CARDS.filter((card) =>
+      toursInMonth(9, 2027).some((tour) => card.target === '/tour-item/' + tour.slug + '/'),
     ),
+    departurePeriod: { month: 9, year: 2027 },
     showFilters: true,
   },
 ];

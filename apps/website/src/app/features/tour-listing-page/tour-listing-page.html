@@ -30,6 +30,9 @@
   }
 
   <section class="tour-listing__body">
+    @if (calendarYear()) {
+      <p>Showing scheduled departures in {{ calendarYear() }}. Enquire to confirm places.</p>
+    }
     @if (shouldShowSortTabs()) {
       <nav class="tour-listing__filters" aria-label="Tour sorting">
         @for (sort of sorts; track sort.id) {
@@ -128,7 +131,7 @@
               @if (isMonthDropdownOpen()) {
                 <div class="tour-listing__month-dropdown" role="listbox">
                   <button type="button" role="option" (click)="selectMonth('')">Month</button>
-                  @for (month of months; track month) {
+                  @for (month of months(); track month) {
                     <button type="button" role="option" (click)="selectMonth(month)">
                       {{ month }}
                     </button>

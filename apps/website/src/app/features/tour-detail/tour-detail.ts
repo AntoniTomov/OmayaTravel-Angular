@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
+import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
@@ -55,7 +56,7 @@ interface CalendarDay {
 
 @Component({
   selector: 'app-tour-detail',
-  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus],
+  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus, PublicBreadcrumbs],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
 })
@@ -403,6 +404,32 @@ export class TourDetail {
 
   protected groupSizeLabel(tour: TourDetailContent): string {
     return `${tour.groupSize.min} - ${tour.groupSize.max} people`;
+  }
+
+  protected isGuaranteedDeparture(tour: TourDetailContent, departure: string): boolean {
+    return tour.guaranteedDepartures?.includes(departure) ?? false;
+  }
+
+  /** Empty unless the tour has at least one guaranteed departure. */
+  protected guaranteedDepartureLabel(tour: TourDetailContent): string {
+    const guaranteed = (tour.guaranteedDepartures ?? []).filter((date) =>
+      tour.departures.includes(date),
+    );
+
+    return guaranteed.length ? 'Guaranteed departure' : '';
+  }
+
+  /**
+   * Merges the authored departure note with the guaranteed flag so a date reads
+   * "(All ages departure · Guaranteed)" rather than carrying two separate brackets.
+   */
+  protected departureNoteLabel(tour: TourDetailContent, departure: string): string {
+    return [
+      tour.departureNotes?.[departure],
+      this.isGuaranteedDeparture(tour, departure) ? 'Guaranteed' : '',
+    ]
+      .filter(Boolean)
+      .join(' · ');
   }
 
   protected departureReturnLabel(tour: TourDetailContent): string {

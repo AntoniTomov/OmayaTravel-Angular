@@ -52,21 +52,22 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
   {
     label: 'Destinations',
     links: [
+      { label: 'All destinations', target: '/destinations/' },
       {
         label: 'Algeria',
-        target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+        target: '/destinations/algeria/',
       },
       {
         label: 'Bulgaria',
-        target: '/tour-item/bulgaria-beyond-the-ordinary/',
+        target: '/destinations/bulgaria/',
       },
       {
         label: 'Kyrgyzstan',
-        target: '/tour-item/kyrgyzstan-tour/',
+        target: '/destinations/kyrgyzstan/',
       },
       {
         label: 'Morocco',
-        target: '/tour-item/morocco-tour/',
+        target: '/destinations/morocco/',
       },
     ],
   },
