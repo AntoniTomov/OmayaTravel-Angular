@@ -16,7 +16,7 @@
       <ul class="tour-detail__hero-facts">
         <li>{{ durationLabel(tour) }}</li>
         <li>{{ groupSizeLabel(tour) }}</li>
-        @if (guaranteedDepartureLabel(tour); as guaranteed) {
+        @if (guaranteedDeparture(); as guaranteed) {
           <li class="tour-detail__hero-facts--guaranteed">{{ guaranteed }}</li>
         }
       </ul>
@@ -78,7 +78,7 @@
               @for (departure of tour.departures; track departure) {
                 <span
                   >{{ departure | date: 'd MMMM y' }}
-                  @if (departureNoteLabel(tour, departure); as note) {
+                  @if (departureNotes().get(departure); as note) {
                     ({{ note }})
                   }
                 </span>
@@ -239,10 +239,10 @@
 
         @if (activeTab() === 'faq') {
           <section class="tour-detail__section tour-detail__faq">
-            <h2>{{ faqHeading(tour) }}</h2>
-            <p>{{ faqIntro(tour) }}</p>
+            <h2>{{ faqHeading() }}</h2>
+            <p>{{ faqIntro() }}</p>
             <div class="tour-detail__faq-list">
-              @for (item of faqItems(tour); track item.question; let index = $index) {
+              @for (item of faqItems(); track item.question; let index = $index) {
                 <details
                   [attr.id]="faqAnswerId(item, index)"
                   [open]="openFaqIndex() === index"
