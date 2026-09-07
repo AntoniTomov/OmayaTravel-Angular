@@ -58,7 +58,6 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'calendar',
   'calendar-2027',
   'calendar-2027/september',
-  'private-tour-planning',
   'private-tours-your-trip-your-rules',
   'not-yet-but-soon',
   'contact',
@@ -129,6 +128,11 @@ export const PUBLIC_QUERY_REDIRECTS: readonly PublicRedirectDefinition[] = [
 ];
 
 export const PUBLIC_EXACT_REDIRECTS: readonly PublicRedirectDefinition[] = [
+  // /private-tour-planning/ duplicated the intent of /private-tours-your-trip-your-rules/ — same
+  // hero, same section images, same card source — and was orphaned with no inbound links. The
+  // longer-named page owns the intent: it is the one the site links to and the one that leads into
+  // the /describe/ questionnaire.
+  defineRedirect('/private-tour-planning/', '/private-tours-your-trip-your-rules/'),
   defineRedirect('/september-2027/', '/calendar-2027/september/'),
   defineRedirect('/tour-checkout/', '/contact/'),
 ];

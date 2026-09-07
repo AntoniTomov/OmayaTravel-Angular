@@ -163,3 +163,24 @@ describe('trailing slash canonicalisation', () => {
     expect(doubleHop).toEqual([]);
   });
 });
+
+describe('private tour page consolidation', () => {
+  it('redirects the orphaned planning page onto the page that owns the intent', () => {
+    expect(findRedirect('/private-tour-planning/')?.to).toBe(
+      '/private-tours-your-trip-your-rules/',
+    );
+  });
+
+  it('no longer routes or prerenders the consolidated page', () => {
+    const paths = PUBLIC_INDEXABLE_ROUTES.map((route) => route.canonicalPath);
+
+    expect(paths).not.toContain('/private-tour-planning/');
+    expect(paths).toContain('/private-tours-your-trip-your-rules/');
+  });
+
+  it('keeps the questionnaire reachable from the surviving page', () => {
+    const paths = PUBLIC_INDEXABLE_ROUTES.map((route) => route.canonicalPath);
+
+    expect(paths).toContain('/private-tours-your-trip-your-rules/describe/');
+  });
+});

@@ -53,7 +53,6 @@ const tourListingPageRoutes = [
   'women-only-tours',
   'solo-travellers-tours',
   'all-ages-tours',
-  'private-tour-planning',
   'calendar-2027/september',
 ].map((path) => ({
   path,
@@ -64,10 +63,7 @@ const tourListingPageRoutes = [
     ),
   data: {
     routeKey: `tour-listing-${path}`,
-    routeType:
-      path === 'calendar-2027/september' || path === 'private-tour-planning'
-        ? 'static-page'
-        : 'tour-category',
+    routeType: path === 'calendar-2027/september' ? 'static-page' : 'tour-category',
     canonicalPath: `/${path}/`,
     listingSlug: path,
   },

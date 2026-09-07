@@ -1,13 +1,14 @@
 import { BlogPostContent } from '../content/blog-content';
+import { SiteOrganisation } from '../../../sites/site.types';
 import { TourDetailContent } from '../content/tour-content';
 
 /**
  * JSON-LD builders.
  *
  * Structured data is a factual claim made to search engines, so every value here is either derived
- * from real content in the repo or deliberately omitted. Fields we cannot verify — postal address,
- * public phone number, licence number, social profiles — are left out rather than guessed; see the
- * TODO_SEO_ORGANISATION note below.
+ * from real content in the repo or deliberately omitted. Registered business facts come from the
+ * active site's `organisation` block; a brand that has not supplied one simply ships fewer fields
+ * rather than guessed ones.
  */
 export type JsonLd = Record<string, unknown>;
 
@@ -17,14 +18,19 @@ export interface SeoSiteIdentity {
   logoUrl: string;
   email: string;
   locale: string;
+  organisation?: SiteOrganisation;
 }
 
 /**
- * TODO_SEO_ORGANISATION: add `address` (PostalAddress), `telephone`, and `sameAs` (social profile
- * URLs) once the business supplies them. Google shows these in the knowledge panel and they
- * strengthen a small operator's entity signal considerably.
+ * The site's `TravelAgency` entity.
+ *
+ * Every field is a factual claim published to Google, so anything the site config does not state is
+ * left out rather than guessed. A brand with no `organisation` block still gets valid schema — just
+ * the name, URL, logo and email.
  */
 export function organizationJsonLd(identity: SeoSiteIdentity): JsonLd {
+  const organisation = identity.organisation;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
@@ -34,6 +40,42 @@ export function organizationJsonLd(identity: SeoSiteIdentity): JsonLd {
     logo: absoluteUrl(identity.canonicalHost, identity.logoUrl),
     image: absoluteUrl(identity.canonicalHost, identity.logoUrl),
     email: identity.email,
+    ...(organisation
+      ? {
+          legalName: organisation.legalName,
+          foundingDate: organisation.foundingDate,
+          telephone: organisation.telephones[0],
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: organisation.streetAddress,
+            addressLocality: organisation.addressLocality,
+            postalCode: organisation.postalCode,
+            addressCountry: organisation.addressCountry,
+          },
+          contactPoint: organisation.telephones.map((telephone) => ({
+            '@type': 'ContactPoint',
+            telephone,
+            email: identity.email,
+            contactType: 'customer service',
+            availableLanguage: 'English',
+          })),
+          // The tour operator registration and company ID are the two identifiers a traveller or a
+          // partner operator can actually verify against the Bulgarian register.
+          identifier: [
+            {
+              '@type': 'PropertyValue',
+              name: 'Tour operator registration',
+              value: organisation.registrationNumber,
+            },
+            {
+              '@type': 'PropertyValue',
+              name: 'EIK',
+              value: organisation.companyId,
+            },
+          ],
+          sameAs: organisation.sameAs,
+        }
+      : {}),
   };
 }
 

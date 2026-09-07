@@ -1,4 +1,5 @@
 import { DESTINATION_CONTENT } from '../content/destination-content';
+import { ogImageFor } from './og-images';
 
 /**
  * Per-page search metadata.
@@ -22,13 +23,12 @@ export interface PageMetadata {
 }
 
 /**
- * Fallback preview image for pages with no hero of their own.
+ * Fallback preview image for pages with no hero of their own — the legal pages, contact, search.
  *
- * TODO_SEO_SOCIAL_IMAGE: replace with a purpose-made 1200x630 share image. This carousel frame is
- * the right subject but the wrong aspect ratio, so social previews crop it.
+ * Points at a generated 1200x630 share image rather than a raw asset, so even the fallback is the
+ * right aspect ratio and carries the logo. Regenerate with `npm run og:generate`.
  */
-export const DEFAULT_SOCIAL_IMAGE =
-  '/assets/images/home-page/carousel/responsive/HomePageCoverPhoto-5-1200w.webp';
+export const DEFAULT_SOCIAL_IMAGE = '/assets/images/og/listing-tours-list.jpg';
 
 const BRAND_SUFFIX = 'Omaya Travel';
 
@@ -86,11 +86,6 @@ export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
     title: `All Ages Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
     description:
       'Small group adventures suited to travellers of every age, with a pace that leaves room to look around rather than tick things off.',
-  },
-  'tour-listing-private-tour-planning': {
-    title: `Plan a Private Tour | ${BRAND_SUFFIX}`,
-    description:
-      'Tell us where you want to go and how you like to travel, and we will build a private itinerary around it. No fixed dates, no fixed group.',
   },
   'tour-listing-calendar-2027/september': {
     title: `September 2027 Tour Calendar | ${BRAND_SUFFIX}`,
@@ -221,5 +216,8 @@ export function staticPageMetadata(routeKey: string | null | undefined): PageMet
 export function destinationPageMetadata(slug: string | null | undefined): PageMetadata | undefined {
   const metadata = slug ? DESTINATION_PAGE_METADATA[slug] : undefined;
   const destination = DESTINATION_CONTENT.find((item) => item.slug === slug);
-  return metadata ? { ...metadata, image: destination?.heroImage.src } : undefined;
+
+  return metadata
+    ? { ...metadata, image: ogImageFor(`destination-${slug}`) ?? destination?.heroImage.src }
+    : undefined;
 }

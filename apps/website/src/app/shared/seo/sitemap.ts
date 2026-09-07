@@ -54,7 +54,6 @@ export interface SitemapEntry {
 const ROUTE_KEY_ALIASES: Readonly<Record<string, string>> = {
   'static-blog-list': 'blog-list',
   'static-tours-list': 'tour-listing-tours-list',
-  'static-private-tour-planning': 'tour-listing-private-tour-planning',
   'static-calendar-2027/september': 'tour-listing-calendar-2027/september',
   'static-calendar': 'tour-calendar-calendar',
   'static-calendar-2027': 'tour-calendar-calendar-2027',

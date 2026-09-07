@@ -246,7 +246,10 @@ export class FaqPage {
       this.submitMessage.set(
         'Thank you. We received your question and will reply as soon as possible.',
       );
-      this.analytics.trackEvent('generate_lead', {
+      // Deliberately not `generate_lead`. A question on the FAQ page is a support enquiry, not a
+      // sales lead, and counting it as one inflated every lead figure. Still tracked, just
+      // separately, so the two can be reported apart.
+      this.analytics.trackEvent('submit_faq_question', {
         form_type: 'faq-question',
       });
       return;

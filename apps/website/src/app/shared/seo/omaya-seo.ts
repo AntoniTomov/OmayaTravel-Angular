@@ -8,6 +8,8 @@ import { ActiveSite } from '../../../sites/active-site';
 import { articlePageTitle } from './page-title';
 import { findBlogPostBySlug } from '../content/blog-content';
 import { findTourBySlug } from '../content/tour-content';
+import { findTourListingPage } from '../content/tour-list-content';
+import { ogImageFor } from './og-images';
 import { PUBLIC_CANONICAL_HOST, withTrailingSlash } from '../routing/public-routes';
 import {
   DEFAULT_SOCIAL_IMAGE,
@@ -132,6 +134,7 @@ export class OmayaSeo {
       logoUrl: site.brand.logoSrc,
       email: SITE_CONTACT_EMAIL,
       locale: site.locale,
+      organisation: site.organisation,
     };
   }
 
@@ -152,7 +155,7 @@ export class OmayaSeo {
         metadata: {
           title: tour.seo.title,
           description: tour.seo.description,
-          image: tour.heroImage.src,
+          image: ogImageFor(`tour-${tour.slug}`) ?? tour.heroImage.src,
         },
         canonicalPath,
         breadcrumbs: [
@@ -178,7 +181,7 @@ export class OmayaSeo {
         metadata: {
           title: articlePageTitle(post.title, identity.name),
           description: post.excerpt,
-          image: (post.heroImage ?? post.image).src,
+          image: ogImageFor(`article-${post.slug}`) ?? (post.heroImage ?? post.image).src,
           ogType: 'article',
           publishedTime: post.publishedAt,
         },
@@ -213,9 +216,16 @@ export class OmayaSeo {
     }
 
     const metadata = staticPageMetadata(routeKey) ?? FALLBACK_METADATA;
+    // Listing pages carry their own hero image, so a shared link previews the page it points at
+    // rather than the generic site fallback.
+    const listingSlug = data['listingSlug'] as string | undefined;
+    const listingImage = listingSlug
+      ? (ogImageFor(`listing-${listingSlug.replaceAll('/', '-')}`) ??
+        findTourListingPage(listingSlug).heroImage)
+      : undefined;
 
     return {
-      metadata,
+      metadata: listingImage ? { ...metadata, image: listingImage } : metadata,
       canonicalPath,
       breadcrumbs: this.staticBreadcrumbs(metadata, canonicalPath),
       jsonLd: [],

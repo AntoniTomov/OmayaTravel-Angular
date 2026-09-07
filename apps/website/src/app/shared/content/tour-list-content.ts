@@ -204,6 +204,10 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
       },
     ],
   },
+  // Unrouted. /private-tour-planning/ now 301s to /private-tours-your-trip-your-rules/, which owns
+  // this intent — the two pages shared a hero image, section images, card source and purpose, and
+  // this one had no inbound links. The copy is kept rather than deleted: restoring the page means
+  // putting the slug back in PUBLIC_STATIC_PAGE_SLUGS and app.routes.ts, and removing the redirect.
   {
     slug: 'private-tour-planning',
     title: 'Private Tour Planning',
