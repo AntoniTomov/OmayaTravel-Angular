@@ -47,14 +47,12 @@ const rootSlugRoutes: Routes = [...PUBLIC_TOUR_CATEGORY_ROUTES, ...PUBLIC_STATIC
   }),
 );
 
-const tourListingPageRoutes: Routes = [
+const tourListingPageRoutes = [
   'tours-list',
   'classic-tours',
   'women-only-tours',
   'solo-travellers-tours',
   'all-ages-tours',
-  'private-tour-planning',
-  'september-2027',
   'calendar-2027/september',
 ].map((path) => ({
   path,
@@ -65,18 +63,13 @@ const tourListingPageRoutes: Routes = [
     ),
   data: {
     routeKey: `tour-listing-${path}`,
-    routeType:
-      path === 'september-2027' ||
-      path === 'calendar-2027/september' ||
-      path === 'private-tour-planning'
-        ? 'static-page'
-        : 'tour-category',
+    routeType: path === 'calendar-2027/september' ? 'static-page' : 'tour-category',
     canonicalPath: `/${path}/`,
     listingSlug: path,
   },
 }));
 
-const tourCalendarPageRoutes: Routes = ['calendar', 'calendar-2027'].map((path) => ({
+const tourCalendarPageRoutes = ['calendar', 'calendar-2027'].map((path) => ({
   path,
   pathMatch: 'full' as const,
   loadComponent: () =>
@@ -119,6 +112,10 @@ export const siteRouteCanActivate: CanActivateFn = (_route, state) => {
 };
 
 export const routes: Routes = [
+  {
+    path: 'september-2027',
+    redirectTo: '/calendar-2027/september/',
+  },
   withSiteAccess({
     path: '',
     component: Homepage,
@@ -300,21 +297,23 @@ export const routes: Routes = [
       pageSlug: 'cookie-policy',
     },
   }),
-  withSiteAccess({
+  ...withStaticPathAccess({
     path: 'destinations',
     pathMatch: 'full',
-    component: PublicRoutePlaceholder,
+    loadComponent: () =>
+      import('./features/destination-page/destination-page').then((m) => m.DestinationPage),
     data: {
       routeKey: 'destination-hub',
       routeType: 'destination-hub',
       canonicalPath: '/destinations/',
     },
   }),
-  ...tourListingPageRoutes.map(withSiteAccess),
-  ...tourCalendarPageRoutes.map(withSiteAccess),
+  ...tourListingPageRoutes.flatMap(withStaticPathAccess),
+  ...tourCalendarPageRoutes.flatMap(withStaticPathAccess),
   withSiteAccess({
     matcher: destinationDetailCanonicalMatcher,
-    component: PublicRoutePlaceholder,
+    loadComponent: () =>
+      import('./features/destination-page/destination-page').then((m) => m.DestinationPage),
     data: {
       routeKey: 'destination-detail',
       routeType: 'destination-detail',
@@ -328,7 +327,8 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: PublicRoutePlaceholder,
+        loadComponent: () =>
+          import('./features/destination-page/destination-page').then((m) => m.DestinationPage),
         data: {
           routeKey: 'destination-detail',
           routeType: 'destination-detail',
@@ -447,18 +447,14 @@ function withStaticPathAccess(route: Route & { path: string }): Routes {
 }
 
 function staticPageMatcher(path: string): UrlMatcher {
+  const expected = path.split('/');
   return (segments) => {
-    const [pageSegment, ...remainingSegments] = segments;
-
     if (
-      pageSegment?.path !== path ||
-      remainingSegments.some((segment) => segment.path.length > 0)
+      expected.some((part, index) => segments[index]?.path !== part) ||
+      segments.slice(expected.length).some((segment) => segment.path.length > 0)
     ) {
       return null;
     }
-
-    return {
-      consumed: [pageSegment, ...remainingSegments],
-    };
+    return { consumed: segments };
   };
 }

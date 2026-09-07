@@ -58,8 +58,6 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'calendar',
   'calendar-2027',
   'calendar-2027/september',
-  'september-2027',
-  'private-tour-planning',
   'private-tours-your-trip-your-rules',
   'not-yet-but-soon',
   'contact',
@@ -130,6 +128,12 @@ export const PUBLIC_QUERY_REDIRECTS: readonly PublicRedirectDefinition[] = [
 ];
 
 export const PUBLIC_EXACT_REDIRECTS: readonly PublicRedirectDefinition[] = [
+  // /private-tour-planning/ duplicated the intent of /private-tours-your-trip-your-rules/ — same
+  // hero, same section images, same card source — and was orphaned with no inbound links. The
+  // longer-named page owns the intent: it is the one the site links to and the one that leads into
+  // the /describe/ questionnaire.
+  defineRedirect('/private-tour-planning/', '/private-tours-your-trip-your-rules/'),
+  defineRedirect('/september-2027/', '/calendar-2027/september/'),
   defineRedirect('/tour-checkout/', '/contact/'),
 ];
 
@@ -141,6 +145,73 @@ export const PUBLIC_REDIRECTS: readonly PublicRedirectDefinition[] = [
 
 export function canonicalUrl(canonicalPath: string): string {
   return `${PUBLIC_CANONICAL_HOST}${canonicalPath}`;
+}
+
+/**
+ * Resolves an incoming URL against {@link PUBLIC_REDIRECTS}.
+ *
+ * The redirect table existed as data long before anything applied it, so every entry in it was
+ * inert: the legacy WordPress query URLs served the homepage with HTTP 200 (duplicate content on
+ * five URLs) and the retired tour paths returned 404 (discarding whatever link equity they had).
+ * `server.ts` now runs every request through this.
+ *
+ * Matching is case-insensitive and tolerant of a missing or extra trailing slash, because inbound
+ * links from the old site are not consistent about it. Query-string entries are matched against the
+ * full URL, path entries against the path alone.
+ */
+export function findRedirect(requestUrl: string): PublicRedirectDefinition | undefined {
+  const normalized = (requestUrl || '/').toLowerCase();
+  const exact = PUBLIC_REDIRECTS.find((redirect) => redirect.from.toLowerCase() === normalized);
+
+  if (exact) {
+    return exact;
+  }
+
+  const path = normalized.split(/[?#]/)[0];
+  const withSlash = withTrailingSlash(path);
+
+  return PUBLIC_REDIRECTS.find((redirect) => {
+    const from = redirect.from.toLowerCase();
+
+    // Only path-shaped entries may match on path alone; a query entry must match the full URL,
+    // otherwise every request to "/" would match "/?page_id=3".
+    return !from.includes('?') && withTrailingSlash(from) === withSlash;
+  });
+}
+
+/**
+ * Redirect target that canonicalises a public HTML URL onto its trailing-slash form.
+ *
+ * Public routes are canonical with a trailing slash, but every one of them also answered HTTP 200
+ * without it, duplicating the entire site at a second set of URLs. Angular's `RouterLink` strips the
+ * trailing slash when it renders an href, so crawlers genuinely follow those links — the site links
+ * to its own non-canonical URLs. Users never pay for the redirect, because in-app navigation is
+ * client-side; only crawlers take the hop, and then consolidate.
+ *
+ * Returns `undefined` for anything that must not be touched: the root, URLs that already end in a
+ * slash, API routes, and any path whose last segment looks like a file (`robots.txt`,
+ * `/assets/...webp`).
+ */
+export function trailingSlashRedirectTarget(requestUrl: string): string | undefined {
+  const [path, query = ''] = splitQuery(requestUrl || '/');
+
+  if (path === '/' || path.endsWith('/') || path.startsWith('/api/')) {
+    return undefined;
+  }
+
+  const lastSegment = path.split('/').pop() ?? '';
+
+  if (lastSegment.includes('.')) {
+    return undefined;
+  }
+
+  return `${path}/${query}`;
+}
+
+function splitQuery(requestUrl: string): [string, string] {
+  const index = requestUrl.search(/[?#]/);
+
+  return index === -1 ? [requestUrl, ''] : [requestUrl.slice(0, index), requestUrl.slice(index)];
 }
 
 export function withTrailingSlash(path: string): string {

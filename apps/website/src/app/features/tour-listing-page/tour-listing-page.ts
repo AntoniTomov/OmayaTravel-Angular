@@ -1,9 +1,15 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener, computed, inject, signal } from '@angular/core';
+import { Component, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import {
+  DEPARTURE_MONTH_NAMES,
+  departureMonthNames,
+  departuresInMonth,
+  tourForPath,
+} from '../../shared/content/tour-departures';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import {
   TOUR_CARDS,
@@ -50,23 +56,6 @@ const CATEGORIES: readonly TourCategory[] = [
   'Solo Traveller Only',
   'All Ages',
 ];
-const MONTH_OPTIONS: readonly string[] = [
-  'May',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-];
-const TOUR_MONTHS: Readonly<Record<string, readonly string[]>> = {
-  '/tour-item/algeria-desert-expedition-tadrart-rouge/': ['February', 'October', 'November'],
-  '/tour-item/bulgaria-beyond-the-ordinary/': ['May', 'September'],
-  '/tour-item/women-only-tour-bulgaria/': ['May', 'September'],
-  '/tour-item/kyrgyzstan-tour/': ['July', 'August'],
-  '/tour-item/women-only-tour-kyrgyzstan/': ['July', 'August'],
-  '/tour-item/tour-item-morocco-solo-travellers-tour/': ['April', 'October'],
-};
-
 @Component({
   selector: 'app-tour-listing-page',
   imports: [NgClass, MatIconModule, RouterLink],
@@ -82,7 +71,20 @@ export class TourListingPage {
 
   protected readonly sorts = SORTS;
   protected readonly categories = CATEGORIES;
-  protected readonly months = MONTH_OPTIONS;
+  private readonly queryParams = toSignal(this.route.queryParamMap, {
+    initialValue: this.route.snapshot.queryParamMap,
+  });
+  protected readonly calendarYear = computed(() => {
+    const fixedYear = this.page().departurePeriod?.year;
+    const queryYear = this.queryParams().get('year');
+    return fixedYear ?? (queryYear && /^20\d{2}$/.test(queryYear) ? Number(queryYear) : undefined);
+  });
+  protected readonly months = computed(() => {
+    const period = this.page().departurePeriod;
+    return period
+      ? [DEPARTURE_MONTH_NAMES[period.month - 1]]
+      : departureMonthNames(this.calendarYear());
+  });
   protected readonly priceMin = PRICE_MIN;
   protected readonly priceMax = PRICE_MAX;
   protected readonly activeSort = signal<TourSort>('date');
@@ -109,6 +111,18 @@ export class TourListingPage {
         return cards;
     }
   });
+
+  constructor() {
+    effect(() => {
+      const period = this.page().departurePeriod;
+      const requestedMonth = this.queryParams().get('month') ?? '';
+      const month = period
+        ? DEPARTURE_MONTH_NAMES[period.month - 1]
+        : (this.months().find((name) => name === requestedMonth) ?? '');
+      this.pendingFilters.set({ ...DEFAULT_FILTERS, month });
+      this.appliedFilters.set({ ...DEFAULT_FILTERS, month });
+    });
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
@@ -226,8 +240,14 @@ export class TourListingPage {
       const matchesCategory =
         filters.categories.length === 0 || filters.categories.includes(card.category);
       const matchesPrice = price >= filters.minPrice && price <= filters.maxPrice;
+      const tour = tourForPath(card.target);
+      const monthNumber = DEPARTURE_MONTH_NAMES.findIndex((name) => name === filters.month) + 1;
+      const year = this.calendarYear();
       const matchesMonth =
-        filters.month.length === 0 || (TOUR_MONTHS[card.target] ?? []).includes(filters.month);
+        monthNumber === 0
+          ? year === undefined ||
+            Boolean(tour?.departures.some((date) => Number(date.slice(0, 4)) === year))
+          : Boolean(tour && departuresInMonth(tour, monthNumber, year).length);
 
       return matchesSearch && matchesLocation && matchesCategory && matchesPrice && matchesMonth;
     });

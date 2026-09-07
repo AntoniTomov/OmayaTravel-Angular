@@ -1,6 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, PLATFORM_ID, effect, inject } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { PublicHeader } from './features/public-header/public-header';
@@ -10,6 +9,7 @@ import { CookieConsent } from './features/cookie-consent/cookie-consent';
 import { OmayaAnalytics } from './shared/analytics/omaya-analytics';
 import { CookieConsent as CookieConsentService } from './shared/cookie-consent/cookie-consent';
 import { OmayaI18n } from './shared/i18n/omaya-i18n';
+import { OmayaSeo } from './shared/seo/omaya-seo';
 import { ActiveSite } from '../sites/active-site';
 
 @Component({
@@ -25,18 +25,21 @@ export class App {
   private readonly cookieConsent = inject(CookieConsentService);
   private readonly activeSite = inject(ActiveSite);
   private readonly i18n = inject(OmayaI18n);
-  private readonly titleService = inject(Title);
+  private readonly seo = inject(OmayaSeo);
   private parallaxFrame: number | null = null;
   private lastTrackedPageView = '';
 
   constructor(router: Router) {
+    // Per-route title, description, canonical, social tags and JSON-LD. Replaces the single
+    // site-wide title this effect used to set, which left every page sharing one <title>.
+    this.seo.start();
+
     effect(() => {
       const site = this.activeSite.site();
 
       this.i18n.setLocale(site.locale);
       this.document.documentElement.lang = site.locale;
       this.document.documentElement.setAttribute('data-theme', site.theme.dataTheme);
-      this.titleService.setTitle(site.brand.name);
     });
 
     effect(() => {

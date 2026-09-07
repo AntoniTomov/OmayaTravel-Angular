@@ -9,6 +9,14 @@ import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { findRedirect, trailingSlashRedirectTarget } from './app/shared/routing/public-routes';
+import {
+  buildRobotsTxt,
+  buildSitemapIndexXml,
+  buildSitemapPagesXml,
+  canonicalHostForRequestHost,
+} from './app/shared/seo/sitemap';
+
 loadLocalEnv();
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
@@ -51,6 +59,68 @@ const app = express();
 const angularApp = new AngularNodeAppEngine({ allowedHosts, trustProxyHeaders });
 
 app.disable('x-powered-by');
+
+/**
+ * `www` and the bare domain both served HTTP 200, which splits every page's ranking signals across
+ * two URLs. The canonical form is the bare domain, matching `PUBLIC_CANONICAL_HOST`.
+ */
+app.use((req, res, next) => {
+  const host = req.get('host');
+
+  if (!host?.toLowerCase().startsWith('www.')) {
+    return next();
+  }
+
+  return res.redirect(301, `https://${host.slice(4)}${req.originalUrl}`);
+});
+
+/**
+ * Legacy URL redirects. `PUBLIC_REDIRECTS` had been declared but never applied, so the old
+ * WordPress query URLs answered 200 with the homepage and the retired tour paths answered 404.
+ */
+app.use((req, res, next) => {
+  const redirect = findRedirect(req.originalUrl);
+
+  if (!redirect) {
+    return next();
+  }
+
+  res.set('Cache-Control', 'public, max-age=3600');
+
+  return res.redirect(redirect.statusCode, redirect.to);
+});
+
+/**
+ * Canonicalise public HTML URLs onto their trailing-slash form. Runs after the legacy redirects so
+ * an old URL reaches its mapped target in one hop rather than two.
+ */
+app.use((req, res, next) => {
+  const target = trailingSlashRedirectTarget(req.originalUrl);
+
+  if (!target) {
+    return next();
+  }
+
+  res.set('Cache-Control', 'public, max-age=3600');
+
+  return res.redirect(301, target);
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain').set('Cache-Control', 'public, max-age=3600');
+  res.send(buildRobotsTxt(canonicalHostFor(req)));
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml').set('Cache-Control', 'public, max-age=3600');
+  res.send(buildSitemapIndexXml(canonicalHostFor(req)));
+});
+
+app.get('/sitemap-pages.xml', (req, res) => {
+  res.type('application/xml').set('Cache-Control', 'public, max-age=3600');
+  res.send(buildSitemapPagesXml(canonicalHostFor(req)));
+});
+
 app.use('/api/forms', express.json({ limit: '32kb', type: 'application/json' }));
 app.use('/api/newsletter', express.json({ limit: '8kb', type: 'application/json' }));
 
@@ -663,6 +733,15 @@ function getClientIp(req: express.Request): string {
   const forwardedFor = req.get('x-forwarded-for')?.split(',')[0]?.trim();
 
   return cfIp || forwardedFor || req.ip || req.socket.remoteAddress || 'unknown';
+}
+
+/**
+ * Origin to advertise in robots.txt and the sitemaps. Resolution lives in the SEO module so it is
+ * matched against the configured site domains and unit tested, rather than echoing back whatever
+ * `Host` header arrived.
+ */
+function canonicalHostFor(req: express.Request): string {
+  return canonicalHostForRequestHost(req.get('host'));
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
