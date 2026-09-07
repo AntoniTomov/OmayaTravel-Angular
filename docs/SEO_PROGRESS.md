@@ -21,6 +21,11 @@ work in a new session.
 | `8003dea` | Destination pages, breadcrumbs, departure-derived calendars, September dedupe, trailing-slash canonicalisation |
 | `583145f` | Verify Phase 1 completion criteria; record the orphaned page |
 | `57d708a` | Organisation facts, per-page share images, FAQ lead fix, private tour consolidation |
+| `7d71e7f` | Record the answered business decisions; flag the licence-number inconsistency |
+| `73b51d7` | Pre-merge verification against `dev` (author's own review) |
+| `ad14fc4` | Group size and guaranteed departures on tour pages |
+| `ef20a84` | Destination copy rewritten in an inviting voice; hub copy future-proofed |
+| `74895f8` | Instructional planning paragraph removed from destination pages |
 
 **Companion documents**
 
@@ -163,6 +168,32 @@ change application code, merge branches or deploy the site.
 | --- | --- |
 | **Group size surfaced** | Duration and group size (`6–12 people` on every tour) now sit directly under the H1 in the hero, above the fold. They were already rendered, but inside the information tab below the tab bar — past the point where a first-time visitor decides whether a trip fits. |
 | **Guaranteed departures** | New optional `guaranteedDepartures` on `TourDetailContent`. Currently set on **Algeria, 24 February 2027 only**. Shows as a hero fact and merges with the authored note so the date reads `(All ages departure · Guaranteed)` rather than carrying two brackets. Deliberately *not* mapped to schema `availability` — a guaranteed departure means the trip runs, not that places remain. |
+
+### Fifth batch — destination page voice (7 September 2026)
+
+**The rule established here, because it will come up again:** copy on these pages should invite,
+not instruct. The destination pages we built originally ended every section by telling the reader
+what to do next — *compare the itineraries, open the tour page, check the inclusions before
+enquiring*. Read together it was a task list sitting where the reason to travel should be. The
+author flagged it three separate times, so treat it as the house voice rather than three one-off
+edits.
+
+| Change | Detail |
+| --- | --- |
+| **Destination introductions rewritten** | Each keeps its factual opening sentence and closes with what the place is actually like — monastery courtyards and long tables in Bulgaria, the stillness of the summer pastures in Kyrgyzstan, mint tea and medinas in Morocco, the silence of the Sahara in Algeria. Openings are deliberately varied rather than four identical "Enjoy the…" constructions. |
+| **`planning` paragraph removed** | It sat directly under each introduction, duplicated the sidebar beside it, and was instructional throughout. Removed on **all four** destinations and the field deleted from `destination-content.ts`, since nothing rendered it any more. |
+| **Sidebar line rewritten** | "Compare the group formats, departure dates and itinerary details below" became "Each journey has its own pace, group and dates — find the one that feels like yours." |
+| **"Omaya Travel" eyebrow removed** | From above the destination page title. The brand is already in the header, tab title and footer. The dead `.destination-page__hero p` selector went with it; `.destination-page__eyebrow` stays, still used by the tour and country cards. |
+| **Hub copy future-proofed** | The subtitle no longer lists the four countries, "Four countries. Your kind of journey." became "Pick your kind of journey", and the intro dropped a clause the cards below already showed. All so a fifth destination does not make the page wrong. |
+
+**Two facts were lost with the `planning` paragraph** — that both Bulgaria itineraries run eight
+days, and that Morocco's group formats share a core itinerary at differing prices. Both remain
+visible on the tour cards immediately below, which show duration, group size and price per format.
+Reinstate them in the introductions if they ever stop being visible there.
+
+**Known trade:** dropping the country names from the hub subtitle removes a little keyword text
+from that page. Judged worth it — the names still appear in every card, link and H1 across the
+site, and brand voice won. Recorded so it reads as a decision rather than an oversight.
 
 ### GA4 lead tracking: code audit (historical, before the FAQ event change)
 
