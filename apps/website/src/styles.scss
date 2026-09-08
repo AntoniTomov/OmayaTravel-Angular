@@ -5,6 +5,38 @@
 @use './styles/forms';
 @use './styles/sections';
 
+// Self-hosted Material Icons, subsetted to the icons this site actually renders by
+// scripts/generate-material-icons-subset.mjs. Google's hosted font is 128,352 bytes for the whole
+// icon set; the subset is 2,688. It also takes fonts.gstatic.com off the critical path for icons,
+// which on a slow connection were competing with the LCP image for bandwidth. These rules replace
+// the ones the build used to inline from the Material Icons stylesheet.
+//
+// `block` rather than `swap`: during a swap period the browser paints the ligature name as
+// literal text, so a slow load would flash the words "calendar_month" at the reader.
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('./assets/fonts/material-icons-subset.woff2') format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 html {
   height: 100%;
   overflow-x: clip;
@@ -66,7 +98,9 @@ details[open]::details-content {
       .why-book__hero
     )
     > img,
-  .homepage__hero-image {
+  .homepage__hero-image,
+  .tour-detail__hero > picture > img,
+  .tour-listing__hero > picture > img {
     object-position: center var(--omaya-hero-background-y, 0px) !important;
   }
 }

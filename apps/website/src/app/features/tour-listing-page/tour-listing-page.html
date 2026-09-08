@@ -7,13 +7,20 @@
 >
   @if (page().heroImage) {
     <section class="tour-listing__hero">
-      <img
-        [src]="page().heroImage"
-        [alt]="page().heroAlt ?? page().title"
-        width="1600"
-        height="900"
-        fetchpriority="high"
-      />
+      <picture style="display: contents">
+        <source
+          type="image/avif"
+          [attr.srcset]="page().heroImage! | tourWebImageSrcset"
+          sizes="(min-width: 926px) 100vw, 926px"
+        />
+        <img
+          [src]="page().heroImage"
+          [alt]="page().heroAlt ?? page().title"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+      </picture>
       <div>
         <h1>{{ page().title }}</h1>
         @if (page().subtitle) {
@@ -71,7 +78,10 @@
           <article class="tour-listing__card">
             <a [routerLink]="card.target" (click)="trackTourCardClick(card)">
               <div class="tour-listing__card-image">
-                <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+                <picture style="display: contents">
+                  <source type="image/avif" [attr.srcset]="card.image | tourWebImage" />
+                  <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+                </picture>
                 <div class="tour-listing__card-overlay">
                   <span class="tour-listing__card-category">{{ card.category }}</span>
                   @if (isTourListPage()) {
@@ -142,6 +152,7 @@
             <div class="tour-listing__price-range">
               <span>Price range</span>
               <div class="tour-listing__range-controls">
+                <span>Minimum price</span>
                 <input
                   aria-label="Minimum price"
                   type="range"
@@ -150,6 +161,7 @@
                   [value]="pendingFilters().minPrice"
                   (input)="updateFilter('minPrice', +$any($event.target).value)"
                 />
+                <span>Maximum price</span>
                 <input
                   aria-label="Maximum price"
                   type="range"
@@ -175,7 +187,11 @@
               Search
             </button>
           </div>
-          <a class="tour-listing__discover" routerLink="/tours-list/"></a>
+          <a
+            class="tour-listing__discover"
+            routerLink="/tours-list/"
+            aria-label="Discover more tours"
+          ></a>
         </aside>
       }
     </div>

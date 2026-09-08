@@ -1,3 +1,6 @@
+import { findBlogMetadataBySlug } from './blog-metadata-content';
+import { PLANNING_GUIDES } from './planning-guide-content';
+
 export interface BlogSectionImage {
   src: string;
   alt: string;
@@ -42,6 +45,8 @@ export interface BlogPostContent {
   slug: string;
   title: string;
   publishedAt: string;
+  modifiedAt?: string;
+  sources?: readonly { title: string; url: string }[];
   date: string;
   category: string;
   comments: number;
@@ -68,32 +73,7 @@ export const BLOG_LIST_HERO_IMAGE = `${BLOG_IMAGE_BASE}/blog-posts-bgr.webp`;
 export const BLOG_DISCOVER_TOURS_IMAGE = '/assets/images/discover-more-tours.webp';
 
 export const TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE: BlogPostContent = {
-  slug: 'tassili-najjer-national-park-algeria-guide',
-  title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
-  publishedAt: '2026-07-25',
-  date: 'July 25, 2026',
-  category: 'Uncategorized',
-  comments: 2,
-  excerpt:
-    'Guide to visiting Tassili n’Ajjer National Park and Tadrart Rouge, covering access, rock art, safety, weather, visas, desert camping, Tuareg culture and expedition conditions.',
-  preview:
-    'One of the largest protected areas in the Sahara, home to 600-metre red dunes, 8,000-year-old rock art, and Tuareg nomads who still live as their ancestors did – here’s what you need to know about visiting Tassili n’Ajjer National Park and its most spectacular corner, the Tadrart Rouge.',
-  image: {
-    src: `${BLOG_IMAGE_BASE}/Algeria-Tassili-National-Park-post-preview-bgr.webp`,
-    alt: "Sandstone formations and dunes in Tassili n'Ajjer National Park",
-  },
-  heroImage: {
-    src: `${ALGERIA_POST_IMAGE_BASE}/Algeria-Tassili-National-Park-Desert-Expedition-bgr.webp`,
-    alt: "Desert rocks and dunes in Tassili n'Ajjer National Park",
-  },
-  sidebarImage: {
-    src: `${BLOG_IMAGE_BASE}/Algeria-Tassili-National-Park-post-preview-bgr.webp`,
-    alt: 'Desert expedition in Algeria',
-  },
-  relatedTour: {
-    title: 'Algeria Desert Expedition (Tadrart Rouge)',
-    url: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
-  },
+  ...findBlogMetadataBySlug('tassili-najjer-national-park-algeria-guide')!,
   sections: [
     {
       title: 'What is Tassili n’Ajjer National Park?',
@@ -201,7 +181,7 @@ export const TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE: BlogPostContent = {
     {
       cta: {
         before:
-          'Omaya Travel’s Algeria Desert Expedition (Tadrart Rouge) covers the best of Tassili n’Ajjer National Park over 8 days, travelling with a dedicated local Tuareg team from the moment you land in Algiers to the moment you fly out. Find out more details ',
+          'Omaya Travel’s Algeria Desert Expedition (Tadrart Rouge) covers the best of Tassili n’Ajjer National Park over 9 days, travelling with a dedicated local Tuareg team from the moment you land in Algiers to the moment you fly out. Find out more details ',
         linkText: 'here',
         linkUrl: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
         after: '.',
@@ -211,28 +191,17 @@ export const TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE: BlogPostContent = {
 };
 
 export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
-  slug: 'the-complete-visitor-guide-to-rila-monastery',
-  title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
-  publishedAt: '2026-04-16',
-  date: 'April 16, 2026',
-  category: 'Uncategorized',
-  comments: 1,
-  excerpt:
-    'Practical guide to Rila Monastery covering history, key sights, entry fees, opening times, dress code, transport from Sofia, nearby attractions, food and overnight stays.',
-  preview:
-    'Bulgaria’s most sacred landmark, a UNESCO World Heritage Site, and one of the most breathtaking places in the Balkans – here’s everything you need to plan your visit.',
-  image: {
-    src: `${BLOG_IMAGE_BASE}/Rila-Monastery-post-preview-bgr.webp`,
-    alt: 'Rila Monastery in the Rila Mountains',
-  },
-  heroImage: {
-    src: `${RILA_POST_IMAGE_BASE}/Rila-Monastery-post-bgr.webp`,
-    alt: 'Rila Monastery courtyard and mountain setting',
-  },
-  relatedTour: {
-    title: 'Bulgaria Tour',
-    url: '/tour-item/bulgaria-beyond-the-ordinary/',
-  },
+  ...findBlogMetadataBySlug('the-complete-visitor-guide-to-rila-monastery')!,
+  sources: [
+    {
+      title: 'Rila Monastery museum information (English)',
+      url: 'https://www.rilskimanastir.org/en/museums/',
+    },
+    {
+      title: 'Rila Monastery exhibition hours (Bulgarian)',
+      url: 'https://www.rilskimanastir.org/bg/museums/',
+    },
+  ],
   sections: [
     {
       title: 'What is Rila Monastery and why is it worth visiting?',
@@ -302,7 +271,7 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
     {
       title: 'Are there entry fees at Rila Monastery?',
       text: [
-        'Entrance to the monastery courtyard and main church is free. The museums and Hrelyo Tower charge separately, but fees are modest — a combined ticket covering all museum exhibitions costs around €10. Individual exhibitions can also be visited separately for a small fee each.',
+        'Entrance to the monastery courtyard and main church is free. The museums and Hrelyo Tower charge separately; the monastery lists a combined ticket covering all museum exhibitions at €12, checked on 8 September 2026. Individual exhibitions can also be visited separately.',
         'Guided tours of the museums are available in Bulgarian, English, and French, lasting around 50 minutes. To book a guide, check the official monastery website for details.',
         'Important: Museum tickets can only be purchased on site at the monastery. Tickets bought online are not valid. For the most up-to-date prices, check the official monastery website.',
       ],
@@ -315,7 +284,7 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
       title: 'When is Rila Monastery open?',
       text: [
         'The monastery complex and main church are open every day of the year with no seasonal closures. The church may be temporarily closed during morning and evening religious services.',
-        'All museum exhibitions are open daily from 8:30 to 16:30, with extended hours until 19:30 on Fridays, Saturdays, and Sundays from 1 June to 30 September.',
+        'The monastery lists daily museum hours of 8:30–16:30. Its Bulgarian exhibition schedule extends the Church History Museum to 19:30 from 1 June to 30 September, while other exhibitions retain earlier closing times. Check the intended exhibition before visiting; the English overview gives a broader summer-hours summary.',
         'Best time to visit: Early morning on weekdays, before organised tour groups arrive from Sofia. In high season, the courtyard becomes very crowded between 11:00 and 14:00. Winter offers a completely different experience – the monastery surrounded by snow is one of Bulgaria’s most evocative landscapes, with few tourists and a rare atmosphere of silence and contemplation.',
       ],
     },
@@ -388,28 +357,7 @@ export const THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY: BlogPostContent = {
 };
 
 export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostContent = {
-  slug: '10-unmissable-places-to-visit-on-your-bulgaria-trip',
-  title: '10 Unmissable Places to Visit on Your Bulgaria Trip (Chosen by Local Guides)',
-  publishedAt: '2026-04-01',
-  date: 'April 1, 2026',
-  category: 'Uncategorized',
-  comments: 19,
-  excerpt:
-    'Local-guide selection of ten memorable places and experiences across Bulgaria, combining cities, mountain villages, wine, heritage sites, alpine landscapes and Black Sea coast.',
-  preview:
-    'If you’re planning a trip to Bulgaria, it can be surprisingly hard to decide where to go first. This is a country where Roman cities sit beside mountain monasteries, rose fields stretch across entire valleys, and remote villages still keep centuries-old traditions alive—often just a short drive apart.',
-  image: {
-    src: `${BLOG_IMAGE_BASE}/beautiful-bulgaria-post-preview-bgr.webp`,
-    alt: 'Bulgarian mountain lake and green hills',
-  },
-  heroImage: {
-    src: `${BULGARIA_POST_IMAGE_BASE}/beautiful-bulgaria-post-bgr.webp`,
-    alt: 'Beautiful mountain landscape in Bulgaria',
-  },
-  relatedTour: {
-    title: 'Bulgaria Beyond the Ordinary',
-    url: '/tour-item/bulgaria-beyond-the-ordinary/',
-  },
+  ...findBlogMetadataBySlug('10-unmissable-places-to-visit-on-your-bulgaria-trip')!,
   sections: [
     {
       text: [
@@ -553,28 +501,13 @@ export const TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP: BlogPostConte
 };
 
 export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
-  slug: 'how-to-visit-song-kul-lake-in-kyrgyzstan',
-  title: 'Song Kul: What You Need to Know About Kyrgyzstan’s Most Untamed Alpine Lake',
-  publishedAt: '2026-02-26',
-  date: 'February 26, 2026',
-  category: 'Uncategorized',
-  comments: 3,
-  excerpt:
-    'Practical guide to Song Kul Lake covering best season, access routes, yurt camps, horse riding, hiking, weather, cash, connectivity and basic conditions.',
-  preview:
-    'High in the mountains of Kyrgyzstan, at 3,016 metres above sea level, Song-Kul Lake feels like another world. There are no towns here. No paved roads circling the shoreline. No permanent settlements. Just open pasture, grazing horses, scattered yurts, and the slow rhythm of nomadic life continuing much as it has for centuries. It’s the kind of place that makes you realise how rarely you actually feel free. For many travellers, Song Kol is the highlight of Kyrgyzstan and here is what you need to know before you visit it.',
-  image: {
-    src: `${BLOG_IMAGE_BASE}/Kyrgystan-post-preview-bgr.webp`,
-    alt: 'Yurt camp beside Song Kul Lake in Kyrgyzstan',
-  },
-  heroImage: {
-    src: `${KYRGYZSTAN_POST_IMAGE_BASE}/Kyrgystan-bgr.webp`,
-    alt: 'Song Kul Lake landscape in Kyrgyzstan',
-  },
-  relatedTour: {
-    title: 'Kyrgyzstan Discovery Tour',
-    url: '/tour-item/kyrgyzstan-tour/',
-  },
+  sources: [
+    {
+      title: 'NHS altitude sickness guidance',
+      url: 'https://www.nhs.uk/conditions/altitude-sickness/',
+    },
+  ],
+  ...findBlogMetadataBySlug('how-to-visit-song-kul-lake-in-kyrgyzstan')!,
   sections: [
     {
       text: [
@@ -637,7 +570,7 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
       ],
       list: [
         'Horse riding – this is the natural activity here. Riding along the shoreline at dusk, with the light flattening across the water and the mountains turning pink, is one of those travel moments that needs no filter.',
-        'Walking around the lake perimeter is possible as a 30 km loop over two to three days — the terrain is open and the views from the surrounding hills back down to the water are worth the climb.',
+        'Walking beside the lake offers views across the water and surrounding hills. Ask your guide about a suitable route and current conditions; this guide does not establish a measured route around the full lake.',
         'Wildlife watching is quietly rewarding. Over 60 species of birds nest or pass through the area, including demoiselle cranes and bar-headed geese. The meadows around the lake are also rich with wildflowers in June and July, including the rare edelweiss.',
       ],
     },
@@ -646,11 +579,11 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
       text: ['A few things to keep in mind when considering if you should visit Song Kul Lake:'],
       list: [
         'There is no ATM at the lake. Bring enough Kyrgyz som in cash.',
-        'There is no phone signal or Wi-Fi at Song Kol.',
+        'Confirm connectivity at your booked camp rather than relying on phone signal or Wi-Fi throughout the lake area.',
         'Yurt stoves provide heat but don’t burn all night — thermal layers are essential.',
         'Sunscreen matters more than you’d expect at altitude.',
-        'Bring a headlamp and any medications you need, including something for altitude sickness if you’re prone to it.',
-        'In most camps, the accommodation is shared with 5-6 people, the bathroom facilities are very basic.',
+        'Bring a headlamp and your personal medications. Discuss altitude-related concerns with a GP or travel clinic before travelling, especially if you have had altitude sickness before.',
+        'Confirm sleeping and bathroom arrangements for your booked camp; a general description of yurt stays does not establish the room-sharing policy for your departure.',
       ],
     },
     {
@@ -664,6 +597,7 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
 };
 
 export const BLOG_POSTS: readonly BlogPostContent[] = [
+  ...PLANNING_GUIDES,
   TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE,
   THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY,
   TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP,

@@ -44,6 +44,10 @@ export const PUBLIC_TOUR_CATEGORY_SLUGS = [
 ] as const;
 
 export const PUBLIC_BLOG_ARTICLE_SLUGS = [
+  'morocco-casablanca-marrakech-route-guide',
+  'women-only-kyrgyzstan-what-to-expect',
+  'song-kul-yurt-stay-packing-guide',
+  'bulgaria-classic-women-only-tour-comparison',
   '10-unmissable-places-to-visit-on-your-bulgaria-trip',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',

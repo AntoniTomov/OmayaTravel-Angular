@@ -120,7 +120,7 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
     expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
-      '/assets/images/home-page/blog-posts/Rila-Monastery-Article-2-Opt.webp',
+      '/assets/images/destinations/Marocco/morocco-bgr.webp',
     );
   });
 

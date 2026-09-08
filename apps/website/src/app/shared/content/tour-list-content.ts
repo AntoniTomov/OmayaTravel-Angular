@@ -135,7 +135,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     subtitle:
       "Somewhere on this page is a journey you'll spend the next year dreaming about. Take your time.",
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
-    heroAlt: 'Small group travellers on a remote road',
+    heroAlt: 'Hillside town and wooded landscape in Bulgaria',
     cards: TOUR_CARDS,
     showFilters: true,
   },
@@ -144,7 +144,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     title: 'Classic Tours',
     subtitle: '',
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
-    heroAlt: 'Classic tours landscape',
+    heroAlt: 'Hillside town and wooded landscape in Bulgaria',
     cards: TOUR_CARDS.filter((card) => card.category === 'Classic Tours'),
     showFilters: false,
   },

@@ -51,6 +51,7 @@ export interface TourDetailContent {
     endLocation: string;
   };
   category: string;
+  fitnessLevel: 'Easy';
   duration: {
     days: number;
     nights: number;
@@ -128,6 +129,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     endLocation: 'Algiers',
   },
   category: 'Classic Tours',
+  fitnessLevel: 'Easy',
   duration: {
     days: 9,
     nights: 8,
@@ -330,6 +332,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Sofia',
     },
     category: 'Classic Tours',
+    fitnessLevel: 'Easy',
     duration: {
       days: 8,
       nights: 7,
@@ -619,6 +622,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Bishkek',
     },
     category: 'Classic Tours',
+    fitnessLevel: 'Easy',
     duration: {
       days: 10,
       nights: 9,
@@ -834,6 +838,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Marrakech',
     },
     category: 'Classic Tours',
+    fitnessLevel: 'Easy',
     duration: {
       days: 12,
       nights: 11,
@@ -1085,7 +1090,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         {
           question: 'How physically demanding is this tour?',
           answer: [
-            "The trip involves a mix of walking, hiking and long drives. Some days — like exploring Fes el Bali or hiking up to the Spanish Mosque in Chefchaouen — require a reasonable level of fitness and comfort on uneven, cobbled surfaces. The camel trek into the Sahara is gentle and short. Overall, a moderate level of fitness is recommended, but nothing on this itinerary requires athletic ability. If you have any specific concerns, speak to our team before booking and we'll give you an honest assessment.",
+            "The trip involves a mix of walking, hiking and long drives. Some days — like exploring Fes el Bali or hiking up to the Spanish Mosque in Chefchaouen — require a reasonable level of fitness and comfort on uneven, cobbled surfaces. The camel trek into the Sahara is gentle and short. Omaya rates this tour as easy; nothing on this itinerary requires athletic ability. If you have any specific concerns, speak to our team before booking and we'll give you an honest assessment.",
           ],
         },
         {
@@ -1178,6 +1183,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Sofia',
     },
     category: 'Women only',
+    fitnessLevel: 'Easy',
     duration: {
       days: 8,
       nights: 7,
@@ -1479,6 +1485,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Bishkek',
     },
     category: 'Women only',
+    fitnessLevel: 'Easy',
     duration: {
       days: 10,
       nights: 9,
@@ -1502,7 +1509,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     introduction: [
       'This women-only tour Kyrgyzstan invites a small group of women into a landscape where nomadic life is not a memory — it is the present. Its people still move with the seasons, still build their homes by hand, still trust the eagle and the horse as partners in daily life.',
       'This 10-day journey takes you from Bishkek’s Soviet-tinged streets deep into landscapes that feel like they belong to another century – Song Kul’s high pastures, Skazka’s red canyons, Altyn Arashan’s hidden hot springs. Every day brings a different face of this extraordinary country.',
-      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for nine days, so will you.',
+      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for ten days, so will you.',
     ],
     highlights: [
       {
@@ -1700,6 +1707,7 @@ function createMoroccoWomenOnlyTour(): TourDetailContent | undefined {
     slug: MOROCCO_WOMEN_ONLY_TOUR_SLUG,
     title: 'Morocco – Blue Cities & Golden Dunes | Women only',
     category: 'Women only',
+    fitnessLevel: 'Easy',
     heroImage: {
       ...moroccoTour.heroImage,
       src: `${MOROCCO_WOMEN_ASSET_BASE}/morocco-women-only-bgr.webp`,
@@ -1738,6 +1746,7 @@ function createMoroccoSoloTravellersTour(): TourDetailContent | undefined {
     slug: MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG,
     title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only',
     category: 'Solo Traveller Only',
+    fitnessLevel: 'Easy',
     heroImage: {
       ...moroccoTour.heroImage,
       src: `${MOROCCO_SOLO_ASSET_BASE}/Morocco-Solo-Travelers-bgr.webp`,
