@@ -73,7 +73,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     excerpt:
       "Somewhere between the blue-washed walls of Chefchaouen and a Berber family's tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth.",
     image: '/assets/images/destinations/Marocco/morocco-bgr.webp',
-    alt: 'Travellers in a desert landscape',
+    alt: 'Traditional Moroccan architecture and decorative tilework',
     price: 'EUR2300',
     duration: '12 Days 11 Nights',
     target: '/tour-item/morocco-tour/',

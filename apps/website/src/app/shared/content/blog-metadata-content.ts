@@ -10,7 +10,7 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     date: 'September 8, 2026',
     image: {
       src: '/assets/images/destinations/Marocco/morocco-bgr.webp',
-      alt: 'Desert landscape in Morocco',
+      alt: 'Traditional Moroccan architecture and decorative tilework',
     },
     publishedAt: '2026-09-08',
     category: 'Morocco',

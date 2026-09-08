@@ -1,85 +1,81 @@
 # SEO Progress Board
 
-**Single source of truth for what is done and what is not.** Read this first when picking up SEO
-work in a new session.
+**Single source of truth for resuming SEO work.** This checkpoint supersedes historical pending
+statuses further down the file.
 
-- **Status: LIVE.** Merged via PR #64 into `dev` and PR #65 into `master`, and deployed. Production
-  verified 8 September 2026 — see [Production verification](#production-verification-8-september-2026).
-- **Later branch work:** booking-conditions and share-image follow-ups plus the Phase 3–5
-  changes below need release verification. The current uncommitted batch has not been pushed,
-  merged or deployed by this task. Check remote state before making claims about other releases.
-- **Last updated:** 8 September 2026
-- **Local test suite:** 127 passing across 13 files after the Phase 3–5 changes. Build prerenders
-  40 routes. Sitemap lists 38 URLs. Current build and formatting checks pass.
+- **Production foundation:** Phases 1–2 completed; the earlier release through PRs #64/#65 was
+  verified on 8 September 2026.
+- **Release candidate:** `toni-seo-optimization`, PR #67, currently targeting `master`. The
+  Phase 3–5 work is committed and pushed; not merged or deployed by this task. Check current
+  remote status before release. The earlier workflow targeted `dev`; Toni's current PR
+  destination has been preserved rather than silently retargeted.
+- **Last updated:** 8 September 2026, following review of `5cd6677`.
+- **Latest full verification:** 132 tests / 15 files, formatting and production build pass.
+  Build prerenders 44 routes. Initial bundle: 570.57 kB / 500 kB warning threshold; tour CSS:
+  14.83 kB / 14 kB. These are build measurements, not Core Web Vitals.
 
 ## Resume checkpoint — 8 September 2026
 
-**Read this section first after a context or usage reset.** Work is in the existing
-`toni-seo-optimization` checkout, based on `284112b`. Do not reset, clean, discard or overwrite the
-uncommitted changes. Read `git status --short` and the current log before continuing because this
-workspace is shared with Toni and other tasks.
+Read `git status --short` and the current log before editing this shared workspace. Preserve
+other work. The priorities remain **Bulgaria Beyond the Ordinary, Women-only Kyrgyzstan and
+Morocco Classic** (`morocco-tour`).
 
-Toni confirmed Phases 1 and 2 are done and authorised continuation into the other phases. The
-three priorities are **Bulgaria Beyond the Ordinary, Women-only Kyrgyzstan and Morocco Classic**
-(`morocco-tour`). Rooming arrangements, supplement prices and fitness facts will arrive in a few
-days. Those content additions are deferred; do not invent them or repeatedly request them.
+**Easy fitness is confirmed and implemented on all eight public tours.** Single supplements are
+explicitly deferred. Room allocation and detailed activity alternatives remain unconfirmed.
 
-### Completed locally in the current batch
+### Completed in the release candidate
 
-| Area                | Work completed                                                                                                                                                                                                                                                                    | Detailed record                                                                                        |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Phase 3             | Booking calendars restricted to the selected tour's own departures; first future date selected for the initial month; invalid/past dates rejected before submission. Tour pages link to their existing destination guides.                                                        | [Phase 3](SEO_PHASE_3.md)                                                                              |
-| Phase 4 code        | All four articles link to their destination and relevant tours, including women-only Kyrgyzstan. Related stories exclude the current article and prioritise its country. Unsupported hardcoded `By nesi` label removed from related-card chrome; authored article prose retained. | [Content work](SEO_PHASE_4_CONTENT.md)                                                                 |
-| Phase 4 preparation | Four detailed guide briefs, an audit of all four existing articles, a queue of factual discrepancies, ten researched editorial/partner prospects and a factual partner brief. These are preparation, not four published guides or completed outreach.                             | [Content briefs](SEO_PHASE_4_CONTENT.md), [partner shortlist](SEO_PHASE_4_PARTNERS.md)                 |
-| Phase 5 baseline    | Five live PageSpeed mobile audits: homepage, tour, destination, listing and article. All lack public field data. Listing LCP is the weakest sampled result at 9.2 s.                                                                                                              | [Performance baseline](SEO_PHASE_5_PERFORMANCE.md)                                                     |
-| Phase 5 code        | Twelve smaller AVIF encodings used for priority-tour heroes, Bulgaria previews and listing hero/cards, with original WebP fallbacks. Saves **1,586,379 bytes across twelve files**, not a measured LCP gain. Accessible names added to tour and listing discovery links.          | [Performance changes](SEO_PHASE_5_PERFORMANCE.md), [exact bytes](SEO_IMAGE_DELIVERY_MEASUREMENTS.json) |
-| Phase 6 preparation | Ready-to-use export definitions, baseline tables, query ownership reference and review decisions. No GSC/GA4 export data or booking outcomes were available; no growth or ranking results claimed.                                                                                | [Measurement playbook](SEO_MEASUREMENT_PLAYBOOK.md)                                                    |
+| Area                 | Completed                                                                                                                                                                                                    | Record                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| Phase 3              | Selected-tour departure calendars, invalid/past-date checks, reciprocal guide links, easy fitness and corrected Morocco fitness FAQ.                                                                         | [Phase 3](SEO_PHASE_3.md)                                                     |
+| Phase 4 content      | Four new guides: Morocco route, women-only Kyrgyzstan, Song Kul packing and Bulgaria comparison. Blog/country/tour links connected. Targeted Rila, Algeria and Song Kul corrections with modification dates. | [Content work](SEO_PHASE_4_CONTENT.md)                                        |
+| Phase 4 partnerships | Ten researched prospects and three tailored approach drafts. No outreach sent.                                                                                                                               | [Prospects](SEO_PHASE_4_PARTNERS.md), [approaches](SEO_PARTNER_APPROACHES.md) |
+| Phase 5              | Five production baselines; twelve AVIF encodings plus three responsive variants; accessibility fixes; article metadata separated from bodies; unused preload removed and Material Icons subsetted.           | [Performance record](SEO_PHASE_5_PERFORMANCE.md)                              |
+| Phase 6              | Export definitions and measurement workflow prepared. Actual analytics and booking outcomes still needed.                                                                                                    | [Measurement playbook](SEO_MEASUREMENT_PLAYBOOK.md)                           |
 
-**Verification:** 127 tests in 13 files pass; production build and `npm run lint` pass. All 38
-local sitemap URLs return 200 with matching canonicals. Referenced AVIF assets return 200 as
-`image/avif`. Mobile browser checks of the Bulgaria hero/previews and Song Kul article journey
-panel show no horizontal overflow; the lightbox retains the original WebP. Build warnings remain:
-initial bundle **611.86 kB / 500 kB**, tour CSS **14.83 kB / 14 kB**. No live form was submitted.
+The guides are in the release build, **not confirmed live**. The twelve original AVIF encodings
+save 1,586,379 bytes across those files; responsive variants are alternative downloads, not
+additional per-load savings. Earlier mobile/HTTP checks are recorded in the phase files and
+do not constitute post-deployment verification of PR #67.
 
-### What remains, in execution order
+### What remains, in order
 
-1. **Next performance investigation:** inspect the listing report's LCP breakdown, image-delivery
-   details and forced reflow. Its hero and large card images are candidates for responsive
-   delivery. Record a before/after comparison under matching conditions; do not infer speed from
-   file bytes alone. Repeat production audits after release and gather field data as available.
-2. **Review and release the current batch:** check the full diff and current remote branches,
-   include generated AVIF files and the manifest, then follow the PR/release process. This task
-   has not created a new PR for the uncommitted Phase 3–5 work or authorised itself to merge.
-3. **Existing article factual refresh:** the content audit records Rila ticket/hours discrepancies,
-   the Algeria article's duration mismatch, and itinerary conflicts involving Morocco lodging
-   and Kyrgyzstan inclusions/meals. Resolve them with the content owner rather than silently
-   rewriting protected professional prose or propagating uncertain claims into new guides.
-4. **New guides:** begin with the Morocco gap once firsthand material is available, then the
-   women-only Kyrgyzstan, Song Kul practical guide and Bulgaria comparison briefs. Preserve the
-   confirmed commercial priorities; briefs are not a claim of keyword demand or firsthand experience.
-5. **Phase 3 deferred facts:** add per-tour rooming, private-room costs and pace when Toni supplies
-   them; reconcile them with inclusions and booking FAQs, then finish the commercial-page review.
-6. **Measurement:** use actual exports and enquiry/booking totals to fill the playbook. Weekly
-   technical review and monthly commercial review are documented workflows, not active automations.
-7. **Partners:** tailor approaches only when the factual material is ready. No outreach has been
-   sent. Sending messages, accepting commercial terms or spending money requires Toni's instruction.
+1. Release PR #67 through the intended workflow; verify live new URLs, canonicals, sitemap,
+   images, icons and enquiry behaviour.
+2. Repeat the five mobile audits under comparable conditions, preferably three per template.
+   No production LCP/TBT gain has yet been demonstrated.
+3. Confirm **Morocco Day 6 hotel/camp and Day 7 wording**, and **women-only Kyrgyzstan
+   insurance/transport inclusions plus Day 8–9 meals/accommodation** with Toni. New guides
+   avoid those uncertain claims; the itinerary discrepancies still need answers.
+4. Add rooming and supplements when supplied. Fitness is done.
+5. If marketing agrees, test consent-preserving deferral of **GA4's Google tag (`gtag.js`)
+   and Meta Pixel**. Compare accepted-consent and first-visit/no-consent cases, and check
+   event delivery. The probe makes this a candidate, not a demonstrated production fix.
+6. Populate the measurement playbook with real exports and enquiry/booking outcomes.
+7. Finalise a selected partnership draft with operating facts; send only on explicit instruction.
 
-### Files and reproduction commands
+**Further font work is on hold at Toni's request.** Keep the existing implementation.
 
-- Application edits: tour-detail feature, tour-listing-page feature, blog-article feature, route regression spec, shared
-  `tour-web-image.pipe.ts` and generated `tour-web-images.ts`, and the global hero-parallax selector.
-- Generated media: `apps/website/src/assets/images/tour-web/` (twelve content-hashed AVIF files).
-- Regenerate encodings: `node scripts/generate-tour-web-images.mjs`. Original files are not modified.
+### Review corrections
+
+- Replaced obsolete statuses (127 tests, 40 routes, uncommitted changes, fitness pending,
+  guides unwritten) with the actual release-candidate state.
+- Qualified the local probe: it did not reproduce the production 547 ms reflow and cannot
+  establish its root cause or rule out application improvements.
+- Corrected tracking terminology: GA4 `gtag.js` is loaded from googletagmanager.com; this is
+  not a GTM container. Deferral remains an experiment.
+- Corrected Morocco guide/listing alt text to describe architecture and tilework.
+- PR summary records scope, checks and unresolved business facts.
+- Itinerary facts, fonts, tracking behaviour and PR destination remain unchanged.
+
+### Reproduction
+
 - Tests: `npm --workspace website run test -- --watch=false`.
-- Build: `npm run build` (the ignored verification log predates the listing continuation).
-- Formatting: `npm run lint`; whitespace check: `git diff --check`.
-- Start previews through `.claude/launch.json`; the last verification used `website-ssr` with
-  a process-local `PORT=3111`. Check whether it is still running before starting another server.
-
-The public PageSpeed API returned quota HTTP 429; use the report links already recorded in the
-performance file before launching redundant audits. Browser tabs and process sessions can disappear
-between turns: rediscover current state rather than relying on saved tab IDs. No restart is needed
-for completed verification unless code, assets or relevant conditions change.
+- Build: `npm run build`; formatting: `npm run lint`; whitespace: `git diff --check`.
+- Images: `node scripts/generate-tour-web-images.mjs`; originals remain intact.
+- Previews use `.claude/launch.json`. Rediscover running ports/tabs after a reset.
+- The PageSpeed API previously returned quota HTTP 429; use saved Phase 5 report links.
+- Historical records below retain their original context; use this checkpoint for current status.
 
 | Commit    | What                                                                                                           |
 | --------- | -------------------------------------------------------------------------------------------------------------- |
@@ -374,14 +370,14 @@ implemented.** One new item stands.
 
 ## Remaining work — deferred or in progress
 
-| #   | Item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Size                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| K1  | **Single-room supplement price** — **not done, deferred.** `notIncluded` lists "Single-room supplement" with **no figure**, so a solo traveller cannot tell whether a private room costs €50 or €500. Needs a number per tour (or one policy).                                                                                                                                                                                                                                                                                                                           | Business fact                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| K2  | **Rooming policy** — **not done, deferred.** Confirmed 7 Sep 2026 that a single room is the default **only on tours where single rooms are available** — it is _per tour_, not site-wide. Kyrgyzstan yurt stays and the Algeria desert camping cannot offer them. **Do not publish a blanket "single room by default" claim**; it would be false on those tours. Needs a per-tour answer. Note this interacts with K1: if a single room is the default _and_ the supplement is "not included", the two statements read as a contradiction and must be resolved together. | Business fact                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| K3  | **Pace / fitness level** — **not done, deferred.** Not modelled at all. A label plus a sentence per tour, e.g. "Moderate — 3–5 hours walking on some days, no technical terrain."                                                                                                                                                                                                                                                                                                                                                                                        | Business fact                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| L   | **Query-to-page evidence for US/UK**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Toni confirmed Phase 2 complete. The current task has no account exports; use the completed research when available and the measurement playbook for later validation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| M   | **Performance — baseline, image and font work done; reflow attributed**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Recorded in `SEO_PHASE_5_PERFORMANCE.md`: five production lab audits, twelve image encodings, and the critical-path font work (removed a preload fetching an unused stylesheet on every page; replaced the 128,352-byte hosted Material Icons font with a self-hosted 2,688-byte subset). The listing's 547 ms forced reflow is **no longer unattributed**: with every layout-forcing API instrumented, the whole load forces 2.9 ms, of which app code is 0.1 ms — it is not the site's JavaScript, and the parallax hypothesis is disproven for mobile. Third-party tags are the only scripts reading layout. Post-release comparison and field data still remain. Roboto and Kristi are unchanged and still third-party. |
-| O   | **Content — first improvements and preparation implemented**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Four article discovery sections are built; refresh audit, four guide briefs and partner shortlist prepared. Factual edits and new guides await reviewed firsthand material. See Phase 4 files.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| #   | Item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Size                                                                                                                                                                   |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| K1  | **Single-room supplement price** — **not done, deferred.** `notIncluded` lists "Single-room supplement" with **no figure**, so a solo traveller cannot tell whether a private room costs €50 or €500. Needs a number per tour (or one policy).                                                                                                                                                                                                                                                                                                                           | Business fact                                                                                                                                                          |
+| K2  | **Rooming policy** — **not done, deferred.** Confirmed 7 Sep 2026 that a single room is the default **only on tours where single rooms are available** — it is _per tour_, not site-wide. Kyrgyzstan yurt stays and the Algeria desert camping cannot offer them. **Do not publish a blanket "single room by default" claim**; it would be false on those tours. Needs a per-tour answer. Note this interacts with K1: if a single room is the default _and_ the supplement is "not included", the two statements read as a contradiction and must be resolved together. | Business fact                                                                                                                                                          |
+| K3  | **Fitness implemented:** easy on all eight tours, confirmed by Toni on 8 September.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Walking durations and activity alternatives require further facts.                                                                                                     |
+| L   | **Query-to-page evidence for US/UK**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Toni confirmed Phase 2 complete. The current task has no account exports; use the completed research when available and the measurement playbook for later validation. |
+| M   | **Performance implementation ready for release; effects unmeasured in production.**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | See Phase 5. Further font work is on hold.                                                                                                                             |
+| O   | **Four guides and targeted factual corrections implemented.**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Resolve the remaining itinerary conflicts; no outreach sent.                                                                                                           |
 
 ## Explicitly not recommended
 
@@ -398,20 +394,7 @@ Do not spend time on these; the reasoning is in the expert review and the correc
 
 ## Suggested next session
 
-Phase 3 started on 8 September: see [SEO_PHASE_3.md](SEO_PHASE_3.md) for that work. Phase 5
-performance work is on `toni-seo-optimization` and **not merged or deployed** — its ordered
-recommendations, with the evidence behind each and who has to decide, are in
-[SEO_PHASE_5_PERFORMANCE.md](SEO_PHASE_5_PERFORMANCE.md) under _Recommended next, in order_.
-
-1. **Merge and deploy the branch, then re-run the five production audits.** This gates every
-   performance claim: the audits recorded so far are the pre-change baseline, and nothing in
-   Phase 5 is confirmed in production.
-2. **Decide on deferring Google Tag Manager and the Facebook Pixel.** Measurement shows they are
-   the only scripts reading layout during load and they own the load's single long task. This is
-   a marketing call about attribution windows, not a performance one.
-3. Priorities confirmed: Bulgaria Beyond the Ordinary, Women-only Kyrgyzstan and Morocco Classic.
-   Toni will supply K1–K3 (supplement prices, per-tour rooming and pace); defer those additions
-   until the facts arrive.
-4. Complete the practical tour-page additions, then check the enquiry paths and mobile layout.
-5. Continue the account-side checks (G, H) and the content work; neither is implied complete by
-   the local implementation work.
+Follow the ordered list in the current checkpoint at the top of this file. Start with PR #67's
+release review and post-deployment verification. Fitness and four guides are implemented;
+rooming, supplements and the named itinerary conflicts still need operating facts. Tracking
+deferral is a candidate experiment, not a proven production fix. Further font work is on hold.

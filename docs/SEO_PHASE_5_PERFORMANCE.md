@@ -241,12 +241,11 @@ Unchanged from the previous section, plus one new candidate:
   the `sizes` value and the `object-fit: cover` box. Capping the density would trade sharpness for
   bytes and is an editorial call, not a defect.
 
-## The listing forced reflow, attributed — 8 September 2026
+## Local layout probe — 8 September 2026
 
-The saved audit reported **547 ms of forced reflow, unattributed**, and two sessions had left it
-that way because the in-app browser cannot capture a DevTools trace. It does not need to. Every
-layout-forcing API a page can call from JavaScript can be wrapped, and the wrapper can time the
-call and keep the stack. That gives attribution directly, which is what was actually missing.
+The saved audit reported **547 ms of forced reflow, unattributed**, and earlier sessions had left it
+unattributed. Wrappers can time selected layout-reading APIs and retain their stacks. This
+attributes instrumented calls in the local run, not the complete production Lighthouse trace.
 
 ### Method
 
@@ -259,27 +258,25 @@ getters on `Element`, `HTMLElement` and `Window` — `offsetWidth/Height/Top/Lef
 alongside so records line up against tasks. The probe was reverted and the build restored; the
 working tree is clean and nothing of this ships.
 
-### Result: it is not the site's own code
+### Result: small costs in the instrumented local run
 
 Across the whole load of `/tours-list/` at 375 px, **18 layout-forcing calls totalling 2.9 ms**:
 
 | Source                    | Calls |  Total |
 | ------------------------- | ----: | -----: |
-| Google Tag Manager        |     6 | 1.7 ms |
+| GA4 Google tag            |     6 | 1.7 ms |
 | App and Angular bundles   |     1 | 0.1 ms |
 | The measuring code itself |    11 | 1.1 ms |
 
-The single largest was Google Tag Manager reading `scrollLeft` on `<html>` at 100 ms, inside the
+The single largest was GA4 Google tag reading `scrollLeft` on `<html>` at 100 ms, inside the
 one long task of the load (73–101 ms across runs, attributed only to `window`).
 
-**The application forces 0.1 ms of layout during load, in one call.** Even scaling the whole 2.9 ms
-by a generous 6× for the emulated Moto G Power's slower CPU gives roughly 17 ms, against a reported
-547 ms. The gap is two orders of magnitude, so the reported figure is not the site's JavaScript
-reading layout — which is consistent with Lighthouse being unable to attribute it in the first
-place. Whatever it is, it is not something the app can be changed to avoid, and the previous
-sessions' searching for a culprit in app code was looking in the wrong place.
+The wrappers recorded 0.1 ms for one application/Angular call in this local run. The run
+did not reproduce the production audit's 547 ms. Multiplying local timings by a guessed CPU
+factor cannot bridge differences in build, throttling, consent, cache and execution. This
+does not identify the production root cause or rule out application-level improvements.
 
-### The parallax hypothesis is disproven for mobile
+### Desktop parallax is not exercised on a narrow initial viewport
 
 The standing hypothesis named `App.updateHeroBackgroundPosition` in `app.ts`, which writes a custom
 property on `documentElement` and reads `matchMedia` and `scrollY`. Reading style after writing it
@@ -294,7 +291,7 @@ if (!window.matchMedia('(min-width: 48.01rem)').matches) {
 ```
 
 At 375 px that test is false, so the mobile path removes a property that was never set and returns.
-It never reads `scrollY` and never writes anything. Measured per frame on the listing:
+It does not read `scrollY` or set the parallax offset on this path. Measured per frame on the listing:
 
 | Path                                       | Per frame |
 | ------------------------------------------ | --------: |
@@ -312,19 +309,19 @@ forcing a recalculation after the previous frame's write. That is worth knowing 
 It did not reproduce across three later runs on a warmed page and is not used here; the figures
 above are the reproducible ones. Recorded so the discarded number is not rediscovered and believed.
 
-### What this does change
+### What this suggests
 
-The only scripts reading layout during load are the third-party tags, and they also account for the
-load's single long task. Deferring Google Tag Manager and the Facebook Pixel until after load is
-therefore the measurable TBT lever on this page — but that is a marketing decision about
-attribution windows, not a performance one, so it is raised rather than taken.
+The Google tag appears in recorded layout reads and overlaps a long task attributed to
+`window`. This is a candidate for testing; overlap does not establish the full task's cause,
+and this run does not isolate Meta Pixel's contribution. The application loads GA4 `gtag.js`,
+not a Google Tag Manager container, despite the shared googletagmanager.com domain.
 
 ### Limits of this result
 
-Fast desktop CPU with no throttling, a 324-node page, the local build, cookie consent already
-accepted. It establishes **which code forces layout**, which is what was missing, and that
-conclusion transfers. It does not establish what any of it costs on a Moto G Power, and the
-millisecond figures here should not be quoted as if it did.
+Unthrottled desktop CPU, local build and accepted-consent session. The probe covers wrapped
+APIs and can affect timing. The production audit used a different build and throttled load.
+A comparable trace or controlled tag-enabled/tag-deferred experiment is needed before
+assigning the original 547 ms or claiming a production TBT benefit.
 
 ## Recommended next, in order — 8 September 2026
 
@@ -341,17 +338,19 @@ what turn everything below into evidence. Until that happens, the honest summary
 Repeat the same conditions: one run per template, emulated Moto G Power, Slow 4G, mobile form
 factor, and preferably three runs per template rather than one, since single lab runs move around.
 
-### 2. Defer Google Tag Manager and the Facebook Pixel — needs a marketing decision
+### 2. Test Google tag and Meta Pixel deferral — candidate, needs a marketing decision
 
-This is now the **measured** lever on the listing, not a guess. The instrumentation found that the
-only scripts reading layout during load are the third-party tags, and they also account for the
-load's single long task. Loading them after first paint, or on first interaction, is the change.
+After release, compare consent-preserving loading options under matching conditions. Include
+first-visit/no-consent and accepted-consent cases: analytics are already gated on consent.
+Test tags independently where possible and verify page views/enquiry events are not lost or
+duplicated. The probe does not demonstrate a production TBT improvement.
 
-It is not a performance decision to make alone: deferring changes what the pixel observes and can
-narrow attribution windows. Someone who owns the ad reporting has to agree. If they will not defer
-the pixel, deferring GTM alone is still worth doing.
+Choose scheduling only after measuring performance and agreeing reporting trade-offs.
+No tracking behaviour has been changed by this review.
 
-### 3. Self-host Roboto and Kristi — smaller than it first appears
+### 3. Fonts — on hold at Toni's request
+
+No further font changes are planned now. The analysis below is retained for reference.
 
 Worth stating precisely, because the case is weaker than the icon font's and should not be sold on
 the same terms.
@@ -379,9 +378,8 @@ deliberately, the same maintenance the icon subset now carries.
 
 ### 4. Field data, once traffic allows
 
-Every report so far shows **No Data** in its real-user section. CrUX through Search Console is the
-only thing that settles CLS and INP, and INP is still entirely unknown. Nothing in the lab
-substitutes for it.
+Every report so far shows **No Data** in its real-user section. CrUX/Search Console or suitable real-user monitoring can provide field CLS and INP.
+INP remains unknown here; lab measurements do not establish the field result.
 
 ### Still explicitly not recommended
 
@@ -391,4 +389,5 @@ substitutes for it.
   at DPR 2, which is correct for the `sizes` value and the `object-fit: cover` box. Dropping to
   1440w trades sharpness for about 40 kB — an editorial call, not a defect, and not one to make
   quietly.
-- **Chasing the 547 ms forced reflow in application code.** Answered above: the app forces 0.1 ms.
+- **Speculative application rewrites for the 547 ms result.** The local probe did not reproduce
+  it. Obtain comparable evidence before choosing a fix; it is not conclusively attributed.
