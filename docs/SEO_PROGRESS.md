@@ -398,14 +398,20 @@ Do not spend time on these; the reasoning is in the expert review and the correc
 
 ## Suggested next session
 
-Phase 3 started on 8 September: see [SEO_PHASE_3.md](SEO_PHASE_3.md) for the current work,
-verification and outstanding inputs. The original foundation is deployed, production verification
-is recorded above, and the sitemap has been submitted to Search Console.
+Phase 3 started on 8 September: see [SEO_PHASE_3.md](SEO_PHASE_3.md) for that work. Phase 5
+performance work is on `toni-seo-optimization` and **not merged or deployed** — its ordered
+recommendations, with the evidence behind each and who has to decide, are in
+[SEO_PHASE_5_PERFORMANCE.md](SEO_PHASE_5_PERFORMANCE.md) under _Recommended next, in order_.
 
-1. Priorities confirmed: Bulgaria Beyond the Ordinary, Women-only Kyrgyzstan and Morocco Classic.
-   Toni will supply K1–K3 (supplement prices, per-tour rooming and pace) in a few days; defer those
-   additions until the facts arrive.
-2. Complete the practical tour-page additions, then check the enquiry paths and mobile layout.
-3. Release the subsequent branch changes through the normal PR process and repeat production checks.
-4. Continue the account-side checks and content work recorded above; neither is implied complete
-   by the local implementation work.
+1. **Merge and deploy the branch, then re-run the five production audits.** This gates every
+   performance claim: the audits recorded so far are the pre-change baseline, and nothing in
+   Phase 5 is confirmed in production.
+2. **Decide on deferring Google Tag Manager and the Facebook Pixel.** Measurement shows they are
+   the only scripts reading layout during load and they own the load's single long task. This is
+   a marketing call about attribution windows, not a performance one.
+3. Priorities confirmed: Bulgaria Beyond the Ordinary, Women-only Kyrgyzstan and Morocco Classic.
+   Toni will supply K1–K3 (supplement prices, per-tour rooming and pace); defer those additions
+   until the facts arrive.
+4. Complete the practical tour-page additions, then check the enquiry paths and mobile layout.
+5. Continue the account-side checks (G, H) and the content work; neither is implied complete by
+   the local implementation work.

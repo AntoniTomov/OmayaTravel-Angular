@@ -325,3 +325,70 @@ Fast desktop CPU with no throttling, a 324-node page, the local build, cookie co
 accepted. It establishes **which code forces layout**, which is what was missing, and that
 conclusion transfers. It does not establish what any of it costs on a Moto G Power, and the
 millisecond figures here should not be quoted as if it did.
+
+## Recommended next, in order — 8 September 2026
+
+The sections above each end with their own "next", written as the work happened. This is the
+consolidated view, ordered by value, with who has to decide.
+
+### 1. Release this branch and re-run the five audits — highest value, blocked on merge
+
+Nothing in this document is confirmed in production. Every figure here is a local lab build. The
+five production audits at the top are the **pre-change** baseline; comparable post-change runs are
+what turn everything below into evidence. Until that happens, the honest summary of Phase 5 is
+"fewer requests and bytes on the critical path, effect unmeasured".
+
+Repeat the same conditions: one run per template, emulated Moto G Power, Slow 4G, mobile form
+factor, and preferably three runs per template rather than one, since single lab runs move around.
+
+### 2. Defer Google Tag Manager and the Facebook Pixel — needs a marketing decision
+
+This is now the **measured** lever on the listing, not a guess. The instrumentation found that the
+only scripts reading layout during load are the third-party tags, and they also account for the
+load's single long task. Loading them after first paint, or on first interaction, is the change.
+
+It is not a performance decision to make alone: deferring changes what the pixel observes and can
+narrow attribution windows. Someone who owns the ad reporting has to agree. If they will not defer
+the pixel, deferring GTM alone is still worth doing.
+
+### 3. Self-host Roboto and Kristi — smaller than it first appears
+
+Worth stating precisely, because the case is weaker than the icon font's and should not be sold on
+the same terms.
+
+| What                                                         |          Now |
+| ------------------------------------------------------------ | -----------: |
+| Inlined `@font-face` CSS in every page's HTML                | 21,057 bytes |
+| — as a share of the listing's 98,867-byte HTML               |          21% |
+| Roboto face declarations, across 9 unicode subsets           |           36 |
+| Roboto latin woff2                                           | 43,136 bytes |
+| Roboto second subset woff2                                   | 20,556 bytes |
+| Kristi woff2                                                 | 25,624 bytes |
+| Total downloaded from `fonts.gstatic.com` on an English page | 89,316 bytes |
+
+The gain is **latency and document size, not font weight**: it removes the last third-party origin
+from the critical path — one DNS + TCP + TLS handshake, roughly 3 RTT — and replaces ~20 kB of
+inlined CSS per page with about 1 kB covering only the subsets an English-only site needs. It also
+makes a real `preload as="font"` possible for the one face first paint depends on. The font bytes
+themselves barely move; self-hosting does not shrink glyphs. Unlike Material Icons there is no 98%
+saving here, and it should not be described as if there were.
+
+Licensing is not an obstacle — Roboto is Apache 2.0, Kristi is OFL, both permit self-hosting, and
+the licence files ship with the fonts. The cost is a pinned version someone has to refresh
+deliberately, the same maintenance the icon subset now carries.
+
+### 4. Field data, once traffic allows
+
+Every report so far shows **No Data** in its real-user section. CrUX through Search Console is the
+only thing that settles CLS and INP, and INP is still entirely unknown. Nothing in the lab
+substitutes for it.
+
+### Still explicitly not recommended
+
+- **Changing `font-display` or adding `size-adjust` fallback metrics.** The font-swap hypothesis is
+  still unproven, and the guidance not to change font loading on lab evidence alone stands.
+- **Capping the hero's density.** The listing hero serves the 1920w candidate to a 375 px viewport
+  at DPR 2, which is correct for the `sizes` value and the `object-fit: cover` box. Dropping to
+  1440w trades sharpness for about 40 kB — an editorial call, not a defect, and not one to make
+  quietly.
+- **Chasing the 547 ms forced reflow in application code.** Answered above: the app forces 0.1 ms.
