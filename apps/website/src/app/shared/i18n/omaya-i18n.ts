@@ -193,7 +193,7 @@ const EN: TranslationDictionary = {
       eyebrow: 'Classic Tours',
       title: 'Kyrgyzstan Tour',
       price: 'EUR1490',
-      duration: '9 Days 8 Nights',
+      duration: '10 Days 9 Nights',
       description:
         "Travel through Kyrgyzstan's mountain passes, alpine lakes, yurt camps, and nomadic traditions on a small-group journey shaped by wild landscapes.",
     },
@@ -217,9 +217,9 @@ const EN: TranslationDictionary = {
       eyebrow: 'Classic Tours',
       title: 'Algeria Desert Expedition (Tadrart Rouge)',
       price: 'EUR1450',
-      duration: '8 Days 7 Nights',
+      duration: '9 Days 8 Nights',
       description:
-        "Explore Algeria's Tassili n'Ajjer on an 8-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
+        "Explore Algeria's Tassili n'Ajjer on a 9-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
     },
   ],
 };
@@ -382,7 +382,7 @@ const BG: TranslationDictionary = {
       eyebrow: 'Класически турове',
       title: 'Киргизстан',
       price: 'EUR1490',
-      duration: '9 дни / 8 нощувки',
+      duration: '10 дни / 9 нощувки',
       description:
         'Пътуване през планински проходи, алпийски езера, юртови лагери и номадски традиции в малка група, оформено от диви пейзажи.',
     },
@@ -406,9 +406,9 @@ const BG: TranslationDictionary = {
       eyebrow: 'Класически турове',
       title: 'Алжирска пустинна експедиция (Тадрарт Руж)',
       price: 'EUR1450',
-      duration: '8 дни / 7 нощувки',
+      duration: '9 дни / 8 нощувки',
       description:
-        'Осемдневна експедиция в Тадрарт - един от най-отдалечените и впечатляващи пейзажи на Сахара, с древно скално изкуство, червени дюни и туарегски водачи.',
+        'Деветдневна експедиция в Тадрарт - един от най-отдалечените и впечатляващи пейзажи на Сахара, с древно скално изкуство, червени дюни и туарегски водачи.',
     },
   ],
 };

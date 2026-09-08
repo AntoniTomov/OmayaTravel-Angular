@@ -288,7 +288,7 @@ export const SITE_SEARCH_INDEX: readonly SearchIndexItem[] = [
     type: 'Tour',
     title: 'Kyrgyzstan Discovery Tour | Women only',
     excerpt:
-      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive.",
+      "Ten days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive.",
     canonicalPath: '/tour-item/women-only-tour-kyrgyzstan/',
     thumbnail: {
       key: 'tours/women-only-tour-kyrgyzstan/song-kul-lake.webp',

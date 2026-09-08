@@ -35,11 +35,11 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Classic Tours',
     destination: 'EUR1450 / per person',
     excerpt:
-      "Explore Algeria's Tassili n'Ajjer on an 9-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
+      "Explore Algeria's Tassili n'Ajjer on a 9-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
     image: '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
     alt: 'Red dunes and rock formations in Algeria',
     price: 'EUR1450',
-    duration: '8 Days 7 Nights',
+    duration: '9 Days 8 Nights',
     target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
   },
   {
@@ -59,7 +59,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Classic Tours',
     destination: 'Kyrgyzstan',
     excerpt:
-      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
+      "Ten days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
     image: '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
     alt: 'Kyrgyzstan mountain landscape',
     price: 'EUR1320',
@@ -95,7 +95,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Women only',
     destination: 'Kyrgyzstan',
     excerpt:
-      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
+      "Ten days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
     image: '/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp',
     alt: 'Kyrgyzstan women-only tour preview',
     price: 'EUR1320',
