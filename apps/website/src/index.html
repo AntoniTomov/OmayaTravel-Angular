@@ -9,18 +9,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- No preload/preconnect for fonts.googleapis.com: the build inlines this stylesheet, so
+         nothing requests that origin. Material Icons is self-hosted from styles.scss. -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Kristi&family=Roboto:wght@400;500;700;900&display=swap"
-    />
     <link
       href="https://fonts.googleapis.com/css2?family=Kristi&family=Roboto:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <body>
     <app-root></app-root>

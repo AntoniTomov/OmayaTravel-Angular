@@ -9,6 +9,7 @@ const DESTINATION_BRIEFS = [
     introduction:
       'Explore Bulgaria through its monasteries, mountain villages and living traditions. Enjoy the calm of frescoed monastery courtyards, unhurried afternoons in the mountains, and long tables of food cooked the way it always has been.',
     guideSlugs: [
+      'bulgaria-classic-women-only-tour-comparison',
       '10-unmissable-places-to-visit-on-your-bulgaria-trip',
       'the-complete-visitor-guide-to-rila-monastery',
     ],
@@ -19,7 +20,11 @@ const DESTINATION_BRIEFS = [
     theme: 'Mountain lakes and nomadic traditions',
     introduction:
       'Yurt stays, mountain landscapes and time beside Song Kul Lake are part of Omaya’s Kyrgyzstan journeys. Settle into the stillness of the high summer pastures, evenings with the families who host you, and the long golden light over the lake.',
-    guideSlugs: ['how-to-visit-song-kul-lake-in-kyrgyzstan'],
+    guideSlugs: [
+      'how-to-visit-song-kul-lake-in-kyrgyzstan',
+      'women-only-kyrgyzstan-what-to-expect',
+      'song-kul-yurt-stay-packing-guide',
+    ],
   },
   {
     slug: 'morocco',
@@ -27,7 +32,7 @@ const DESTINATION_BRIEFS = [
     theme: 'Blue cities, medinas and desert dunes',
     introduction:
       'Follow Morocco’s Blue Cities & Golden Dunes itinerary through its cities, mountains and Sahara landscapes. Enjoy mint tea in the blue lanes of Chefchaouen, the colour and noise of the medinas, and a night under more stars than you thought the sky held.',
-    guideSlugs: [],
+    guideSlugs: ['morocco-casablanca-marrakech-route-guide'],
   },
   {
     slug: 'algeria',

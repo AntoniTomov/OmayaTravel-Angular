@@ -1,5 +1,5 @@
 import { SITE_CONFIGS } from '../../../sites';
-import { findBlogPostBySlug } from '../content/blog-content';
+import { findBlogMetadataBySlug } from '../content/blog-metadata-content';
 import { findTourBySlug } from '../content/tour-content';
 import {
   PUBLIC_CANONICAL_HOST,
@@ -91,7 +91,7 @@ export function routeIndexability(route: PublicRouteDefinition): RouteIndexabili
   }
 
   if (route.type === 'blog-article') {
-    return { resolved: Boolean(findBlogPostBySlug(route.path)), noIndex: false };
+    return { resolved: Boolean(findBlogMetadataBySlug(route.path)), noIndex: false };
   }
 
   if (route.type === 'destination-detail') {
@@ -117,7 +117,8 @@ function lastModified(route: PublicRouteDefinition): string | undefined {
     return undefined;
   }
 
-  return findBlogPostBySlug(route.path)?.publishedAt;
+  const post = findBlogMetadataBySlug(route.path);
+  return post?.modifiedAt ?? post?.publishedAt;
 }
 
 export function sitemapEntries(canonicalHost = PUBLIC_CANONICAL_HOST): readonly SitemapEntry[] {

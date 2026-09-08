@@ -1,0 +1,180 @@
+import type { BlogPostContent } from './blog-content';
+
+export type BlogArticleMetadata = Omit<BlogPostContent, 'sections' | 'sources'>;
+
+// Metadata is shared by SEO and article pages; article bodies stay in lazy feature chunks.
+export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
+  {
+    slug: 'morocco-casablanca-marrakech-route-guide',
+    title: 'Twelve Days in Morocco: From Casablanca to Marrakech',
+    date: 'September 8, 2026',
+    image: {
+      src: '/assets/images/destinations/Marocco/morocco-bgr.webp',
+      alt: 'Traditional Moroccan architecture and decorative tilework',
+    },
+    publishedAt: '2026-09-08',
+    category: 'Morocco',
+    comments: 0,
+    excerpt:
+      'How Omaya’s twelve-day Morocco route connects Casablanca, Chefchaouen, Fes, Merzouga and Marrakech, with city stays and desert travel in between.',
+    preview:
+      'Blue lanes in the north, intricate medinas, a road south towards the dunes, and Marrakech beyond the mountains: this journey brings several very different Moroccos into one holiday. Its twelve days make room for full days in Chefchaouen and Fes as well as the distances between them.',
+  },
+  {
+    slug: 'women-only-kyrgyzstan-what-to-expect',
+    title: 'A Women-only Journey Through Kyrgyzstan: What to Expect',
+    date: 'September 8, 2026',
+    image: {
+      src: '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp',
+      alt: 'Mountain landscape on a Kyrgyzstan journey',
+    },
+    publishedAt: '2026-09-08',
+    category: 'Kyrgyzstan',
+    comments: 0,
+    excerpt:
+      'The group format, route and easy fitness rating of Omaya’s ten-day women-only Kyrgyzstan journey, from Bishkek to Song Kul and Issyk-Kul.',
+    preview:
+      'A city welcome, evenings at yurt camps and a route through lakes and mountain valleys give this women-only journey its changing rhythm. It is a ten-day trip from Bishkek back to Bishkek, with a small group of 6–12 travellers.',
+  },
+  {
+    slug: 'song-kul-yurt-stay-packing-guide',
+    title: 'Packing for a Song Kul Yurt Stay',
+    date: 'September 8, 2026',
+    image: {
+      src: '/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp',
+      alt: 'Yurt camp beside Song Kul Lake',
+    },
+    publishedAt: '2026-09-08',
+    category: 'Kyrgyzstan',
+    comments: 0,
+    excerpt:
+      'A practical packing checklist for a Song Kul yurt stay, plus the camp-specific questions to settle before travelling with Omaya.',
+    preview:
+      'Packing for Song Kul is easier when the essentials for a day at the lake are close to hand. This checklist focuses on clothing and personal items; the camp’s bedding, heating, bathrooms and charging arrangements need confirmation for your departure.',
+  },
+  {
+    slug: 'bulgaria-classic-women-only-tour-comparison',
+    title: 'Eight Days in Bulgaria: Classic or Women-only?',
+    date: 'September 8, 2026',
+    image: {
+      src: '/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp',
+      alt: 'Monument on a Bulgaria tour',
+    },
+    publishedAt: '2026-09-08',
+    category: 'Bulgaria',
+    comments: 0,
+    excerpt:
+      'Compare the route and group format of Omaya’s eight-day classic and women-only Bulgaria journeys, both beginning and ending in Sofia.',
+    preview:
+      'Both Bulgaria journeys spend eight days travelling from Sofia through monasteries, mountain villages and historic towns before returning to the capital. The central choice is the group format: a classic small group or a women-only departure.',
+  },
+  {
+    slug: 'tassili-najjer-national-park-algeria-guide',
+    title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
+    publishedAt: '2026-07-25',
+    modifiedAt: '2026-09-08',
+    date: 'July 25, 2026',
+    category: 'Uncategorized',
+    comments: 2,
+    excerpt:
+      'Guide to visiting Tassili n’Ajjer National Park and Tadrart Rouge, covering access, rock art, safety, weather, visas, desert camping, Tuareg culture and expedition conditions.',
+    preview:
+      'One of the largest protected areas in the Sahara, home to 600-metre red dunes, 8,000-year-old rock art, and Tuareg nomads who still live as their ancestors did – here’s what you need to know about visiting Tassili n’Ajjer National Park and its most spectacular corner, the Tadrart Rouge.',
+    image: {
+      src: '/assets/images/blog-posts/Algeria-Tassili-National-Park-post-preview-bgr.webp',
+      alt: "Sandstone formations and dunes in Tassili n'Ajjer National Park",
+    },
+    heroImage: {
+      src: '/assets/images/blog-posts/Algeria blog post images/Algeria-Tassili-National-Park-Desert-Expedition-bgr.webp',
+      alt: "Desert rocks and dunes in Tassili n'Ajjer National Park",
+    },
+    sidebarImage: {
+      src: '/assets/images/blog-posts/Algeria-Tassili-National-Park-post-preview-bgr.webp',
+      alt: 'Desert expedition in Algeria',
+    },
+    relatedTour: {
+      title: 'Algeria Desert Expedition (Tadrart Rouge)',
+      url: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    },
+  },
+  {
+    slug: 'the-complete-visitor-guide-to-rila-monastery',
+    title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
+    publishedAt: '2026-04-16',
+    modifiedAt: '2026-09-08',
+    date: 'April 16, 2026',
+    category: 'Uncategorized',
+    comments: 1,
+    excerpt:
+      'Practical guide to Rila Monastery covering history, key sights, entry fees, opening times, dress code, transport from Sofia, nearby attractions, food and overnight stays.',
+    preview:
+      'Bulgaria’s most sacred landmark, a UNESCO World Heritage Site, and one of the most breathtaking places in the Balkans – here’s everything you need to plan your visit.',
+    image: {
+      src: '/assets/images/blog-posts/Rila-Monastery-post-preview-bgr.webp',
+      alt: 'Rila Monastery in the Rila Mountains',
+    },
+    heroImage: {
+      src: '/assets/images/blog-posts/Rila Monestery/Rila-Monastery-post-bgr.webp',
+      alt: 'Rila Monastery courtyard and mountain setting',
+    },
+    relatedTour: {
+      title: 'Bulgaria Tour',
+      url: '/tour-item/bulgaria-beyond-the-ordinary/',
+    },
+  },
+  {
+    slug: '10-unmissable-places-to-visit-on-your-bulgaria-trip',
+    title: '10 Unmissable Places to Visit on Your Bulgaria Trip (Chosen by Local Guides)',
+    publishedAt: '2026-04-01',
+    date: 'April 1, 2026',
+    category: 'Uncategorized',
+    comments: 19,
+    excerpt:
+      'Local-guide selection of ten memorable places and experiences across Bulgaria, combining cities, mountain villages, wine, heritage sites, alpine landscapes and Black Sea coast.',
+    preview:
+      'If you’re planning a trip to Bulgaria, it can be surprisingly hard to decide where to go first. This is a country where Roman cities sit beside mountain monasteries, rose fields stretch across entire valleys, and remote villages still keep centuries-old traditions alive—often just a short drive apart.',
+    image: {
+      src: '/assets/images/blog-posts/beautiful-bulgaria-post-preview-bgr.webp',
+      alt: 'Bulgarian mountain lake and green hills',
+    },
+    heroImage: {
+      src: '/assets/images/blog-posts/10 places in bulgaria/beautiful-bulgaria-post-bgr.webp',
+      alt: 'Beautiful mountain landscape in Bulgaria',
+    },
+    relatedTour: {
+      title: 'Bulgaria Beyond the Ordinary',
+      url: '/tour-item/bulgaria-beyond-the-ordinary/',
+    },
+  },
+  {
+    slug: 'how-to-visit-song-kul-lake-in-kyrgyzstan',
+    title: 'Song Kul: What You Need to Know About Kyrgyzstan’s Most Untamed Alpine Lake',
+    publishedAt: '2026-02-26',
+    modifiedAt: '2026-09-08',
+    date: 'February 26, 2026',
+    category: 'Uncategorized',
+    comments: 3,
+    excerpt:
+      'Practical guide to Song Kul Lake covering best season, access routes, yurt camps, horse riding, hiking, weather, cash, connectivity and basic conditions.',
+    preview:
+      'High in the mountains of Kyrgyzstan, at 3,016 metres above sea level, Song-Kul Lake feels like another world. There are no towns here. No paved roads circling the shoreline. No permanent settlements. Just open pasture, grazing horses, scattered yurts, and the slow rhythm of nomadic life continuing much as it has for centuries. It’s the kind of place that makes you realise how rarely you actually feel free. For many travellers, Song Kol is the highlight of Kyrgyzstan and here is what you need to know before you visit it.',
+    image: {
+      src: '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp',
+      alt: 'Yurt camp beside Song Kul Lake in Kyrgyzstan',
+    },
+    heroImage: {
+      src: '/assets/images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp',
+      alt: 'Song Kul Lake landscape in Kyrgyzstan',
+    },
+    relatedTour: {
+      title: 'Kyrgyzstan Discovery Tour',
+      url: '/tour-item/kyrgyzstan-tour/',
+    },
+  },
+];
+
+export function findBlogMetadataBySlug(
+  slug: string | null | undefined,
+): BlogArticleMetadata | undefined {
+  return BLOG_ARTICLE_METADATA.find((post) => post.slug === slug);
+}

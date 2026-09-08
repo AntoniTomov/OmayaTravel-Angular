@@ -1,3 +1,4 @@
+import { BLOG_POST_SUMMARIES } from '../../shared/content/blog-summary-content';
 import { Component, computed, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -68,18 +69,13 @@ export class PublicFooter {
   );
 
   protected readonly latestPosts = computed<readonly FooterPost[]>(() =>
-    [
-      {
-        title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
-        date: 'July 25, 2026',
-        target: '/tassili-najjer-national-park-algeria-guide/',
-      },
-      {
-        title: 'The Complete Visitor Guide to the Rila Monastery in Bulgaria',
-        date: 'April 16, 2026',
-        target: '/the-complete-visitor-guide-to-rila-monastery/',
-      },
-    ].filter((post) => this.isRouteEnabled(post.target)),
+    BLOG_POST_SUMMARIES.map((post) => ({
+      title: post.title,
+      date: post.date,
+      target: '/' + post.slug + '/',
+    }))
+      .filter((post) => this.isRouteEnabled(post.target))
+      .slice(0, 2),
   );
 
   protected readonly paymentProviders: readonly PaymentProvider[] = [

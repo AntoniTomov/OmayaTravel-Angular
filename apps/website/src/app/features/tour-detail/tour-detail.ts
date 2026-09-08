@@ -14,6 +14,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
+import { TourWebImagePipe } from '../../shared/content/tour-web-image.pipe';
+import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import {
   tourFaqHeading,
   tourFaqIntro,
@@ -29,7 +31,6 @@ import {
   TourImage,
   TourIntroductionParagraph,
   TourItineraryDay,
-  TOUR_DETAIL_CONTENT,
   findTourBySlug,
 } from '../../shared/content/tour-content';
 
@@ -61,7 +62,15 @@ interface CalendarDay {
 
 @Component({
   selector: 'app-tour-detail',
-  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus, PublicBreadcrumbs],
+  imports: [
+    DatePipe,
+    NgClass,
+    MatIconModule,
+    RouterLink,
+    FormStatus,
+    PublicBreadcrumbs,
+    TourWebImagePipe,
+  ],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
 })
@@ -86,28 +95,30 @@ export class TourDetail {
   protected readonly calendarWeekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
   protected readonly todayIso = this.toIsoDate(new Date());
   protected readonly tour = computed(() => findTourBySlug(this.tourSlug()));
-  protected readonly destinationDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
+  protected readonly relatedGuides = computed(
+    () =>
+      DESTINATION_CONTENT.find(
+        (destination) => destination.name === this.tour()?.destination.country,
+      )?.guides ?? [],
+  );
+  protected readonly tourDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
     const tour = this.tour();
 
     if (!tour) {
       return [];
     }
 
-    return TOUR_DETAIL_CONTENT.filter(
-      (candidate) => candidate.destination.country === tour.destination.country,
-    ).flatMap((candidate) =>
-      candidate.departures.map((departure) => {
-        const start = this.parseIsoDate(departure);
-        const end = this.addDays(start, candidate.duration.days - 1);
+    return [...tour.departures].sort().map((departure) => {
+      const start = this.parseIsoDate(departure);
+      const end = this.addDays(start, tour.duration.days - 1);
 
-        return {
-          start,
-          end,
-          iso: departure,
-          tourTitle: candidate.title,
-        };
-      }),
-    );
+      return {
+        start,
+        end,
+        iso: departure,
+        tourTitle: tour.title,
+      };
+    });
   });
   protected readonly calendarMonthLabel = computed(() =>
     this.calendarMonth().toLocaleDateString('en-GB', {
@@ -125,9 +136,9 @@ export class TourDetail {
     return Array.from({ length: 42 }, (_, index) => {
       const date = this.addDays(gridStart, index);
       const iso = this.toIsoDate(date);
-      const matchingStart = this.destinationDepartureWindows().find((window) => window.iso === iso);
+      const matchingStart = this.tourDepartureWindows().find((window) => window.iso === iso);
       const isPast = date < today;
-      const isTourPeriod = this.destinationDepartureWindows().some(
+      const isTourPeriod = this.tourDepartureWindows().some(
         (window) => date >= window.start && date <= window.end,
       );
       const isCurrentMonth = date.getMonth() === month.getMonth();
@@ -251,10 +262,14 @@ export class TourDetail {
       this.isBookingCalendarOpen.set(false);
       this.selectedBookingDate.set(null);
 
-      const firstDeparture = this.destinationDepartureWindows()[0];
+      const firstDeparture = this.tourDepartureWindows().find(
+        (departure) => departure.iso >= this.todayIso,
+      );
 
       if (firstDeparture) {
         this.calendarMonth.set(this.startOfMonth(firstDeparture.start));
+      } else {
+        this.calendarMonth.set(this.startOfMonth(this.parseIsoDate(this.todayIso)));
       }
     });
 
@@ -379,7 +394,7 @@ export class TourDetail {
     const tickets = String(formData.get('tickets') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
 
-    if (!selectedDate) {
+    if (!tour?.departures.includes(selectedDate) || selectedDate < this.todayIso) {
       this.bookingSubmitStatus.set('error');
       this.bookingSubmitMessage.set('Please select a tour start date.');
       return;
