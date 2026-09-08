@@ -240,3 +240,88 @@ Unchanged from the previous section, plus one new candidate:
 - The listing hero serves the 1920w candidate to a 375 px viewport at DPR 2, which is correct for
   the `sizes` value and the `object-fit: cover` box. Capping the density would trade sharpness for
   bytes and is an editorial call, not a defect.
+
+## The listing forced reflow, attributed — 8 September 2026
+
+The saved audit reported **547 ms of forced reflow, unattributed**, and two sessions had left it
+that way because the in-app browser cannot capture a DevTools trace. It does not need to. Every
+layout-forcing API a page can call from JavaScript can be wrapped, and the wrapper can time the
+call and keep the stack. That gives attribution directly, which is what was actually missing.
+
+### Method
+
+A probe was injected into `index.html`, rebuilt, and the instrumented build served over SSR, so it
+was installed before any application script ran. It wraps `getBoundingClientRect`, `getClientRects`,
+`scrollIntoView`, `getComputedStyle`, `matchMedia`, `elementFromPoint` and the layout-reading
+getters on `Element`, `HTMLElement` and `Window` — `offsetWidth/Height/Top/Left/Parent`,
+`clientWidth/Height/Top/Left`, `scrollWidth/Height/Top/Left`, `scrollY/X`, `pageYOffset/XOffset`,
+`innerWidth/Height`. Each call is timed and recorded with its stack; a `longtask` observer runs
+alongside so records line up against tasks. The probe was reverted and the build restored; the
+working tree is clean and nothing of this ships.
+
+### Result: it is not the site's own code
+
+Across the whole load of `/tours-list/` at 375 px, **18 layout-forcing calls totalling 2.9 ms**:
+
+| Source                    | Calls |  Total |
+| ------------------------- | ----: | -----: |
+| Google Tag Manager        |     6 | 1.7 ms |
+| App and Angular bundles   |     1 | 0.1 ms |
+| The measuring code itself |    11 | 1.1 ms |
+
+The single largest was Google Tag Manager reading `scrollLeft` on `<html>` at 100 ms, inside the
+one long task of the load (73–101 ms across runs, attributed only to `window`).
+
+**The application forces 0.1 ms of layout during load, in one call.** Even scaling the whole 2.9 ms
+by a generous 6× for the emulated Moto G Power's slower CPU gives roughly 17 ms, against a reported
+547 ms. The gap is two orders of magnitude, so the reported figure is not the site's JavaScript
+reading layout — which is consistent with Lighthouse being unable to attribute it in the first
+place. Whatever it is, it is not something the app can be changed to avoid, and the previous
+sessions' searching for a culprit in app code was looking in the wrong place.
+
+### The parallax hypothesis is disproven for mobile
+
+The standing hypothesis named `App.updateHeroBackgroundPosition` in `app.ts`, which writes a custom
+property on `documentElement` and reads `matchMedia` and `scrollY`. Reading style after writing it
+is the classic shape, so the hypothesis was reasonable. It is also wrong for the case that was
+measured, and the reason is in the method's first line:
+
+```
+if (!window.matchMedia('(min-width: 48.01rem)').matches) {
+  this.document.documentElement.style.removeProperty('--omaya-hero-background-y');
+  return;
+}
+```
+
+At 375 px that test is false, so the mobile path removes a property that was never set and returns.
+It never reads `scrollY` and never writes anything. Measured per frame on the listing:
+
+| Path                                       | Per frame |
+| ------------------------------------------ | --------: |
+| Mobile branch, as written                  | 0.0143 ms |
+| Reads only, doing nothing                  | 0.0113 ms |
+| Desktop branch, as written                 | 0.2063 ms |
+| Desktop branch without the `.matches` read | 0.1327 ms |
+
+The mobile branch is indistinguishable from doing nothing. On desktop the pattern is real but
+costs about 0.2 ms per scroll frame on this page, of which roughly 0.07 ms is the `.matches` read
+forcing a recalculation after the previous frame's write. That is worth knowing but it is not a
+546 ms problem, and it does not run at all in the mobile audit that reported one.
+
+**One measurement is excluded.** A first run put the write-then-read pattern at 2.67 ms per frame.
+It did not reproduce across three later runs on a warmed page and is not used here; the figures
+above are the reproducible ones. Recorded so the discarded number is not rediscovered and believed.
+
+### What this does change
+
+The only scripts reading layout during load are the third-party tags, and they also account for the
+load's single long task. Deferring Google Tag Manager and the Facebook Pixel until after load is
+therefore the measurable TBT lever on this page — but that is a marketing decision about
+attribution windows, not a performance one, so it is raised rather than taken.
+
+### Limits of this result
+
+Fast desktop CPU with no throttling, a 324-node page, the local build, cookie consent already
+accepted. It establishes **which code forces layout**, which is what was missing, and that
+conclusion transfers. It does not establish what any of it costs on a Moto G Power, and the
+millisecond figures here should not be quoted as if it did.
