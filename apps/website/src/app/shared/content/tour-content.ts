@@ -312,7 +312,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   seo: {
     title: 'Algeria Desert Expedition (Tadrart Rouge) | Omaya Travel',
     description:
-      '8-day Algeria desert expedition through Tadrart Rouge with Saharan camping, ancient rock art, Tuareg culture and spectacular dunes.',
+      '9-day Algeria desert expedition through Tadrart Rouge with Saharan camping, ancient rock art, Tuareg culture and spectacular dunes.',
   },
   source: {
     legacyUrl: 'https://omayatravel.com/tour-item/algeria-desert-expedition-tadrart-rouge/',
@@ -646,12 +646,12 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     introduction: [
       'Kyrgyzstan is one of the last places on earth where nomadic life is not a memory – it is the present. Its people still move with the seasons, still build their homes by hand, still trust the eagle and the horse as partners in daily life.',
       'This 10-day journey takes you from Bishkek’s Soviet-tinged streets deep into landscapes that feel like they belong to another century – Song Kul’s high pastures, Skazka’s red canyons, Altyn Arashan’s hidden hot springs. Every day brings a different face of this extraordinary country.',
-      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for nine days, so will you.',
+      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for ten days, so will you.',
     ],
     highlights: [
       {
         title: {
-          text: 'Sleeping in a at ',
+          text: 'Sleeping in a yurt at ',
           linkText: 'Song Kul Lake',
           link: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
         },
@@ -1514,7 +1514,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     highlights: [
       {
         title: {
-          text: 'Sleeping in a at ',
+          text: 'Sleeping in a yurt at ',
           linkText: 'Song Kul Lake',
           link: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
         },

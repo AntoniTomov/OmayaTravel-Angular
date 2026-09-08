@@ -5,13 +5,15 @@ statuses further down the file.
 
 - **Production foundation:** Phases 1–2 completed; the earlier release through PRs #64/#65 was
   verified on 8 September 2026.
-- **Release candidate:** `toni-seo-optimization`, PR #67, currently targeting `master`. The
-  Phase 3–5 work is committed and pushed; not merged or deployed by this task. Check current
-  remote status before release. The earlier workflow targeted `dev`; Toni's current PR
-  destination has been preserved rather than silently retargeted.
-- **Last updated:** 8 September 2026, following review of `5cd6677`.
+- **Release candidate:** PR #67 merged into `dev` at `5d7cd85`; remote `master` remains
+  `dcac088` at this checkpoint. No merge to master or deployment was performed by this task.
+- **Last updated:** 8 September 2026, following pre-merge testing of remote `dev`.
+  See [pre-merge verification](SEO_PREMERGE_VERIFICATION.md) for results. The duration-summary
+  discrepancies and incomplete Kyrgyzstan highlights are now corrected locally following
+  Toni's confirmation: Kyrgyzstan 10 days/9 nights; Algeria 9 days/8 nights. Destination-page
+  yurt wording is preserved. Include these corrections in the release branch before merging.
 - **Latest full verification:** 132 tests / 15 files, formatting and production build pass.
-  Build prerenders 44 routes. Initial bundle: 570.57 kB / 500 kB warning threshold; tour CSS:
+  Build prerenders 44 routes. Initial bundle: 570.63 kB / 500 kB warning threshold; tour CSS:
   14.83 kB / 14 kB. These are build measurements, not Core Web Vitals.
 
 ## Resume checkpoint — 8 September 2026
@@ -40,7 +42,8 @@ do not constitute post-deployment verification of PR #67.
 
 ### What remains, in order
 
-1. Release PR #67 through the intended workflow; verify live new URLs, canonicals, sitemap,
+1. Include the local copy corrections recorded in the pre-merge verification, then release `dev` to `master` through
+   the intended workflow; verify live new URLs, canonicals, sitemap,
    images, icons and enquiry behaviour.
 2. Repeat the five mobile audits under comparable conditions, preferably three per template.
    No production LCP/TBT gain has yet been demonstrated.
