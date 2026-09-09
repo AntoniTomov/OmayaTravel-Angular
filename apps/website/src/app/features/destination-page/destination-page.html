@@ -1,6 +1,9 @@
 <main class="destination-page">
   <section class="destination-page__hero">
-    <img [src]="hero().src" [alt]="hero().alt" width="1600" height="900" fetchpriority="high" />
+    <picture style="display: contents">
+      <source type="image/avif" [attr.srcset]="hero().src | tourWebImageSrcset" sizes="100vw" />
+      <img [src]="hero().src" [alt]="hero().alt" width="1600" height="900" fetchpriority="high" />
+    </picture>
     <div>
       <h1>
         {{

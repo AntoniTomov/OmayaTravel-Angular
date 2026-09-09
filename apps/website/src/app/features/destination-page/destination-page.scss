@@ -13,7 +13,8 @@
   color: #fff;
   isolation: isolate;
 }
-.destination-page__hero > img {
+.destination-page__hero > img,
+.destination-page__hero > picture > img {
   position: absolute;
   inset: 0;
   width: 100%;
