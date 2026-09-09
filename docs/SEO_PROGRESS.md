@@ -56,21 +56,17 @@ run from a machine with outbound access to the production host.
 
 A follow-up sweep of all six tour definitions on 9 September widened this list from three items to
 six. They are written up for Toni as a single decision sheet:
-**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. **4 of the 6 are answered.**
-Toni confirmed on 9 September that Morocco Day 6, Morocco entry fees, Bulgaria activities and the
-rooming arrangement are all correct as they stand and are not to be changed. **Only the two
-Kyrgyzstan items still hold the release:**
+**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. **All six are now answered and
+the sheet is closed.** Toni reviewed every item on 9 September and confirmed the site is factually
+correct as published — Morocco Day 6, Morocco entry fees, the women-only Kyrgyzstan inclusions, the
+Kyrgyzstan Days 8-9 fields, Bulgaria activities and the rooming arrangement. **Nothing was
+changed, and no factual question holds the release any longer.**
 
-- **Item 3 — women-only Kyrgyzstan inclusions.** Ground transport and insurance sit on opposite
-  sides from the classic tour: the same matched pair inverted, not one line differing. The
-  insurance half is contradicted by the site's own FAQ and booking conditions, which tell
-  travellers to purchase their own cover; the ground-transport half is circumstantial.
-- **Item 4 — Kyrgyzstan Days 8 and 9.** Three gaps, not one. The women-only tour prints no meals
-  on days where its own copy says "Lunch and dinner included" (the classic carries the values,
-  with identical descriptions), so that part reads as an unfilled field. Day 9's accommodation is
-  known to be in Bishkek but names no property; Day 8 in Cholpon-Ata names nothing at all.
+Keep the sheet rather than deleting it: it records what was queried and confirmed, so a later
+review does not re-raise the same six points as defects. In particular the women-only Kyrgyzstan
+inclusion pair and the blank Days 8-9 fields are **intended**, not omissions to backfill.
 
-Summary of the original sweep:
+Summary of the original sweep, retained for context:
 
 - **Morocco Day 6 is closed — answered 9 September, correct as published, nothing changed.**
   Toni confirmed the Day 6 and Day 7 entries are factually right; the repository matches the
@@ -132,14 +128,14 @@ do not constitute post-deployment verification of PR #67.
 
 ### What remains, in order
 
-1. **The release is held pending Toni's answers to
-   [the release-blocking questions](RELEASE_BLOCKING_QUESTIONS.md).** Decided 9 September: the
-   itinerary and inclusion facts ship in the same deploy rather than needing a second one. The
-   code side is ready — PR #67 and #68 are merged into `dev` and the audit passes — so the only
-   thing between `dev` and `master` is those answers. Once they arrive, apply them, re-run the
-   checks, merge `dev` to `master` through the intended workflow and deploy. After the deploy,
-   verify the live new URLs, canonicals, sitemap, images, icons and enquiry behaviour — the
-   9 September audit could only check these against the local SSR build.
+1. **The release is no longer held.** The hold placed on 9 September was lifted the same day:
+   Toni reviewed all six [release-blocking questions](RELEASE_BLOCKING_QUESTIONS.md) and confirmed
+   the site is factually correct as published, so no content change was needed. The code side was
+   already ready — PRs #67 and #68 are merged into `dev` and the audit passes. **Nothing now
+   stands between `dev` and `master` except running the merge and the deploy** through the intended
+   workflow. After deploying, verify the live new URLs, canonicals, sitemap, images, icons and
+   enquiry behaviour: the 9 September audit could only check these against the local SSR build,
+   because `omayatravel.com` is unreachable from the agent environment.
 2. Repeat the five mobile audits under comparable conditions, preferably three per template.
    No production LCP/TBT gain has yet been demonstrated.
 3. Confirm **Morocco Day 6 hotel/camp and Day 7 wording**, and **women-only Kyrgyzstan
