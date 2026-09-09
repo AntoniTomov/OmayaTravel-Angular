@@ -391,3 +391,89 @@ INP remains unknown here; lab measurements do not establish the field result.
   quietly.
 - **Speculative application rewrites for the 547 ms result.** The local probe did not reproduce
   it. Obtain comparable evidence before choosing a fix; it is not conclusively attributed.
+
+## Acting on the first post-release mobile audits — 10 September 2026
+
+Two production mobile audits after the Phase 5 release, on pages the original five-template
+baseline never covered: `/tour-item/kyrgyzstan-tour/` and `/destinations/kyrgyzstan/` (score 80,
+FCP 3.0 s, LCP 4.3 s, TBT 30 ms, CLS 0). Desktop was reported as fine; this work is mobile only.
+
+**There is no before/after here.** Neither URL is in the five-template baseline, so nothing in this
+section is a comparison against a previous score. The measurements below are local, and the
+production effect is unknown until these two URLs are re-audited.
+
+### A layout shift of 1.007, and it was ours
+
+The tour audit attributed a shift of **1.000** to `app-public-footer`, with a separate audit naming
+the seven payment-provider logos as images without explicit dimensions.
+
+The cause: `.public-footer__payments img` is styled `height: 60px; width: auto`, and the images
+carried no `width`/`height` attributes. With `loading="lazy"` and no intrinsic ratio the browser
+reserves **no width at all**, so every logo that decoded pushed the footer around.
+
+Fixed by carrying intrinsic pixels on each provider and binding them. The CSS still decides the
+rendered size; the attributes only supply the ratio. Verified locally on the tour page: **CLS 0,
+with no individual shift above 0.001**, measured after scrolling the footer into view, which is
+what triggered the shift before.
+
+This also corrects an earlier claim in this document. "0 of 36 images at risk of layout shift — CSS
+reserves the space in every case" was measured across four templates that did not include the
+footer, and production found a shift of 1.000 there. The claim was too broad for its evidence.
+
+### The icon font: `block` was right, a separate request was not
+
+The audit charged **210 ms** to `font-display` on the subset icon font and put it at **1,037 ms** in
+the critical chain — it is only discovered once the stylesheet parses.
+
+Lighthouse suggests `swap` or `optional`. Both are wrong here and the advice does not know why: for
+a ligature icon font the fallback renders the ligature's own _name_, so either setting would show
+the reader the word "calendar_month" instead of an icon. `block` stays.
+
+The request went instead. At 2,688 bytes the font is smaller than a round trip, so the generator
+now emits it as a base64 `@font-face` in `styles/_material-icons.scss`. Cost: the stylesheet goes
+from 1.57 kB to 4.25 kB transferred. Gain: one fewer request, and the font is available the moment
+the CSS applies. Verified: 15 icons render on the tour page, none as text, and **no icon-font
+request is made at all**.
+
+### Images: the audits were pointing at cards, not heroes
+
+The destination audit flagged 281 KiB, and the largest asset on the page turned out to be a guide
+thumbnail: the Song Kul yurt camp at **475,382 bytes**, rendered at 335 CSS px, larger than the
+hero. The AVIF encodings for the two big destination images already existed — the template simply
+was not using them.
+
+- Destination tour cards, country cards and guide cards now go through `<picture>` with the AVIF
+  srcset, as the hero already did.
+- Two guide sources added to the generator.
+- `RESPONSIVE_WIDTHS` gains **640**. Cards render near 333 CSS px, so even at DPR 2 they need about
+  690 px and the old 960 floor was the smallest thing on offer.
+- 33 AVIF files orphaned by the hash change were deleted after checking that nothing in `src` or
+  `docs` referenced them: **4,317,312 bytes** that would otherwise have shipped.
+
+Measured locally on `/destinations/kyrgyzstan/` at 375 px, all lazy images forced to load:
+
+|               |       Image bytes |
+| ------------- | ----------------: |
+| Before        |           898,921 |
+| After         |           231,115 |
+| **Reduction** | **667,806 (74%)** |
+
+Song Kul went 475,382 → 26,837. No large WebP is fetched any more; the prerendered HTML carries the
+AVIF `srcset`, so this holds on first paint and does not depend on hydration.
+
+### Verified
+
+132 tests across 15 files, formatting clean, 44 prerendered routes. Initial bundle 574.39 kB, up
+3.76 kB from the inlined font.
+
+### Not done, and why
+
+- **`discover-more-tours.webp`** — 46.5 KiB, 17.9 KiB of flagged savings, used as a CSS background
+  on the tour and listing templates. It needs a stable-named AVIF and `image-set()`, because SCSS
+  cannot read the hashed manifest. Left out to keep this change reviewable.
+- **The Google Pay logo** is 160×160 for a 60×60 slot, and a Kyrgyzstan thumbnail is oversized.
+  About 10 KiB combined, below the fold.
+- **Unused JavaScript, ~50 KiB** across `main.js` and one chunk. This is framework code; it needs a
+  real look at what the initial bundle pulls in, not a quick fix.
+
+Re-audit both URLs under the same conditions before claiming any of this improved the score.
