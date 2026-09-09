@@ -56,8 +56,21 @@ run from a machine with outbound access to the production host.
 
 A follow-up sweep of all six tour definitions on 9 September widened this list from three items to
 six. They are written up for Toni as a single decision sheet:
-**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. **1 of the 6 is answered;
-items 2 to 6 still hold the release.** Summary:
+**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. **4 of the 6 are answered.**
+Toni confirmed on 9 September that Morocco Day 6, Morocco entry fees, Bulgaria activities and the
+rooming arrangement are all correct as they stand and are not to be changed. **Only the two
+Kyrgyzstan items still hold the release:**
+
+- **Item 3 — women-only Kyrgyzstan inclusions.** Ground transport and insurance sit on opposite
+  sides from the classic tour: the same matched pair inverted, not one line differing. The
+  insurance half is contradicted by the site's own FAQ and booking conditions, which tell
+  travellers to purchase their own cover; the ground-transport half is circumstantial.
+- **Item 4 — Kyrgyzstan Days 8 and 9.** Three gaps, not one. The women-only tour prints no meals
+  on days where its own copy says "Lunch and dinner included" (the classic carries the values,
+  with identical descriptions), so that part reads as an unfilled field. Day 9's accommodation is
+  known to be in Bishkek but names no property; Day 8 in Cholpon-Ata names nothing at all.
+
+Summary of the original sweep:
 
 - **Morocco Day 6 is closed — answered 9 September, correct as published, nothing changed.**
   Toni confirmed the Day 6 and Day 7 entries are factually right; the repository matches the

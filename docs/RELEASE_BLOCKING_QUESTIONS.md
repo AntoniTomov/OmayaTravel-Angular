@@ -11,8 +11,10 @@ changed; this sheet only records what the site currently says.**
 The audit that produced this list swept all six tour definitions rather than the three issues
 already on the board, so items 2, 4 and 5 are new.
 
-**Status: 1 of 6 answered.** Item 1 (Morocco Day 6) is closed — confirmed correct as published on
-9 September, no change made. Items 2 to 6 are still open and still hold the release.
+**Status: 4 of 6 answered; 2 remain.** Toni confirmed on 9 September that items 1, 2, 5 and 6 are
+correct as they stand — Morocco Day 6, Morocco entry fees, Bulgaria activities, and rooming — and
+none of them is to be changed. **Only items 3 and 4, both on the Kyrgyzstan tours, still hold the
+release.** They are restated below with the evidence gathered after the first sweep.
 
 ---
 
@@ -36,77 +38,105 @@ by the women-only and solo-traveller Morocco pages, so all three are correct as 
 
 ---
 
-## 2. Morocco entry fees — the only tour that excludes them _(new)_
+## 2. Morocco entry fees — ANSWERED 9 September: correct as published, no change
 
-`tour-content.ts:946-960`. Morocco is the **only** tour of the six that lists
-"Entry fees for the mentioned sites" as **not included**. Bulgaria, Kyrgyzstan and Algeria all
-include them. The Morocco itinerary sends the group into paid sites, so a traveller comparing two
-Omaya tours would reasonably conclude Morocco charges extra for them.
-
-- [ ] Correct — Morocco genuinely excludes entry fees. Leave as is.
-- [ ] Wrong — entry fees are included, as on the other tours. Move the line to `included`.
-
-Also on all three Morocco pages.
+**Toni confirmed Morocco genuinely excludes entry fees.** `tour-content.ts:946-960` stays as it
+is. Morocco being the only one of the six tours to exclude them is deliberate, not a data-entry
+error. Applies to all three Morocco pages.
 
 ---
 
-## 3. Women-only Kyrgyzstan — insurance and ground transport look swapped
+## 3. Women-only Kyrgyzstan — insurance and ground transport look swapped — OPEN
 
-`tour-content.ts:1573-1582` versus the classic tour at `tour-content.ts:702-711`. This one tour
-deviates from every other tour on **both** halves of the same pair:
+`tour-content.ts:1573-1582` against the classic tour at `tour-content.ts:702-711`. Same route,
+same ten days, and the **same two lines sit on opposite sides**:
 
-|                               | Ground transport | Insurance    |
-| ----------------------------- | ---------------- | ------------ |
-| Bulgaria classic / women-only | INCLUDED         | not included |
-| Kyrgyzstan **classic**        | INCLUDED         | not included |
-| **Kyrgyzstan women-only**     | **not included** | **INCLUDED** |
-| Morocco, Algeria              | INCLUDED         | not included |
+|                  | Classic (`/tour-item/kyrgyzstan-tour/`) | Women-only (`/tour-item/women-only-tour-kyrgyzstan/`) |
+| ---------------- | --------------------------------------- | ----------------------------------------------------- |
+| Ground transport | **Included**                            | **Not included**                                      |
+| Insurance        | **Not included**                        | **Included**                                          |
 
-The two tours are otherwise the same route. A women-only tour that excludes ground transport
-in Kyrgyzstan would also be hard to operate.
+Not one line differing, but a matched pair inverted — the shape of a copy-paste swap rather than
+a policy difference. Every other tour matches the classic on both.
+
+**Insurance is the half with hard corroboration.** Two other pages contradict it:
+
+- FAQ, `faq-page.ts:107`: "We strongly recommend **purchasing** comprehensive travel insurance at
+  the time of paying your deposit."
+- Booking conditions, `legal-page.ts:56`: "Travel insurance covering illness and unforeseen events
+  is strongly recommended."
+
+If this one tour included insurance, both pages would be telling that customer to buy cover they
+already hold. The "full travel insurance" on `legal-page.ts:26` is Omaya's own operator liability
+cover under licence РК-01-8706 — a different thing from traveller cover, and not an inclusion.
+
+**Ground transport is circumstantial only.** The itinerary loops Bishkek → Song Kul (3,000 m) →
+Issyk-Kul → Karakol → Altyn Arashan → Bishkek, and every other tour including the identical classic
+route includes it — but nothing on this page states it either way. The driver FAQ that mentions
+"local drivers, who are contracted separately for ground transport" is on the women-only **Bulgaria**
+tour (`tour-content.ts:1375`), which includes transport, so it corroborates nothing here.
 
 - [ ] Swapped in error → ground transport included, insurance not included, matching the classic.
-- [ ] Deliberate → leave as is (worth a line of on-page explanation if so).
+- [ ] One or both are deliberate → say which, and leave as is.
 
 ---
 
-## 4. Kyrgyzstan Days 8 and 9 — no accommodation on either tour _(partly new)_
+## 4. Kyrgyzstan Days 8 and 9 — three separate gaps — OPEN
 
-Both Kyrgyzstan tours have `accommodation: null` on Days 8 and 9 of a ten-day trip. The board
-recorded this for the women-only tour only; it is on the classic tour too.
+Both tours have `accommodation: null` on Days 8 and 9 of a ten-day trip. The template renders
+accommodation and meals only when present (`tour-detail.html:224-233`), so those nights print no
+accommodation line while the other eight do. This splits into three questions, and two are close
+to self-answering.
 
-|                           | Day 8 (Altyn Arashan → Cholpon-Ata)   | Day 9 (Cholpon-Ata → Burana → Bishkek) |
-| ------------------------- | ------------------------------------- | -------------------------------------- |
-| Classic (`:770-785`)      | acc **missing**, meals lunch + dinner | acc **missing**, meals lunch           |
-| Women-only (`:1641-1656`) | acc **missing**, **meals missing**    | acc **missing**, **meals missing**     |
+### (a) Meals on the women-only tour — the tour's own copy already answers it
 
-Day 10 is departure and correctly carries breakfast on both. Every other night on both tours names
-its accommodation, so these two nights read as an omission rather than a deliberate blank.
+|                               | Day 8 description ends        | `meals` field         |
+| ----------------------------- | ----------------------------- | --------------------- |
+| Classic (`:770-777`)          | "…Lunch and dinner included." | `['lunch', 'dinner']` |
+| **Women-only** (`:1641-1648`) | "…Lunch and dinner included." | **`[]`**              |
 
-**Needed:** where the group sleeps on Days 8 and 9 (Cholpon-Ata and Bishkek), for both tours, and
-which meals are provided on those two days on the **women-only** tour.
+|                               | Day 9 description says           | `meals` field |
+| ----------------------------- | -------------------------------- | ------------- |
+| Classic (`:778-785`)          | "Lunch is shared in a homestay…" | `['lunch']`   |
+| **Women-only** (`:1649-1656`) | "Lunch is shared in a homestay…" | **`[]`**      |
+
+The descriptions are identical between the two tours. The women-only page therefore prints no meals
+line on days where its own prose states lunch and dinner are included — **the page contradicts
+itself.** This reads as an unfilled field rather than a fact question.
+
+- [ ] Copy the classic tour's values: Day 8 lunch + dinner, Day 9 lunch.
+- [ ] The women-only tour genuinely differs → say what it provides.
+
+### (b) Day 9 accommodation, both tours — location known, property not
+
+The Day 9 text ends "…the road leads back to Bishkek for **our last overnight in Bishkek**", so the
+city is known; the property is not. Days 1 and 2 read "3\* hotel in Bishkek (TWIN/DBL room)".
+
+**Needed:** is Day 9 the same Bishkek hotel as Days 1-2, or a different one?
+
+### (c) Day 8 accommodation, both tours — the only real information gap
+
+The group arrives in Cholpon-Ata on the northern shore of Issyk-Kul. Nothing on either tour says
+where they sleep.
+
+**Needed:** hotel, guesthouse or yurt camp, and the room type, phrased to match the other nights.
 
 ---
 
-## 5. Bulgaria activities — both Bulgaria tours exclude them _(new, lower confidence)_
+## 5. Bulgaria activities — ANSWERED 9 September: correct as published, no change
 
-Both Bulgaria tours list "Activities as mentioned" as **not included**, where Kyrgyzstan, Morocco
-and Algeria include it. The two Bulgaria tours agree with each other, so unlike items 2 and 3 this
-may well be deliberate.
-
-- [ ] Deliberate — Bulgaria activities are paid locally. Leave as is.
-- [ ] Should match the other tours → move to `included`.
+**Toni confirmed both Bulgaria tours genuinely exclude "Activities as mentioned."** This was
+already flagged at lower confidence because the two Bulgaria tours agree with each other, and that
+reading was right. No change.
 
 ---
 
-## 6. Room sharing and single supplements — still open
+## 6. Room sharing and single supplements — ANSWERED 9 September: fine as they are
 
-Not blocking, but the last piece of item 4 on the board. The general policy is published (booking
-conditions, the solo-traveller FAQs, the destination-page prompt). What is missing is the
-**per-tour room-sharing arrangement** and the **actual supplement amounts** — "Single room
-supplement" sits in every tour's `notIncluded` list with no price anywhere on the site.
-
-Easy fitness is confirmed and implemented on all eight public tours; nothing outstanding there.
+**Toni confirmed the current arrangement is fine as it stands.** The general policy is published
+in the booking conditions, the solo-traveller FAQs and the destination-page prompt; no per-tour
+room-sharing detail or supplement price is to be added for this release. Easy fitness is confirmed
+and implemented on all eight public tours.
 
 ---
 
