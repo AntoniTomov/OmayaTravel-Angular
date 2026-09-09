@@ -56,11 +56,14 @@ run from a machine with outbound access to the production host.
 
 A follow-up sweep of all six tour definitions on 9 September widened this list from three items to
 six. They are written up for Toni as a single decision sheet:
-**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. Summary of what the sweep added:
+**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. **1 of the 6 is answered;
+items 2 to 6 still hold the release.** Summary:
 
-- The Morocco Day 6 contradiction reaches **three public pages**, not one — the women-only and
-  solo-traveller Morocco tours are derived from `morocco-tour` by spreading it, so they inherit
-  the itinerary verbatim.
+- **Morocco Day 6 is closed — answered 9 September, correct as published, nothing changed.**
+  Toni confirmed the Day 6 and Day 7 entries are factually right; the repository matches the
+  production itinerary field for field, meals included. The earlier reading that the
+  `accommodation` field contradicted the copy was an inference, and it was wrong. This also
+  clears the women-only and solo-traveller Morocco pages, which inherit the same itinerary.
 - **Morocco is the only tour that excludes entry fees**, where the other five include them.
 - The missing Days 8-9 accommodation affects **both** Kyrgyzstan tours, not just the women-only
   one; the women-only tour is additionally missing meals on those days.

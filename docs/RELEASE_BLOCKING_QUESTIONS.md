@@ -11,31 +11,28 @@ changed; this sheet only records what the site currently says.**
 The audit that produced this list swept all six tour definitions rather than the three issues
 already on the board, so items 2, 4 and 5 are new.
 
+**Status: 1 of 6 answered.** Item 1 (Morocco Day 6) is closed — confirmed correct as published on
+9 September, no change made. Items 2 to 6 are still open and still hold the release.
+
 ---
 
-## 1. Morocco Day 6 — hotel or desert camp?
+## 1. Morocco Day 6 — ANSWERED 9 September: correct as published, no change
 
-`tour-content.ts:1003-1016`. Day 6 contradicts itself, and Day 7 corroborates the camp twice:
+**Toni confirmed the Day 6 and Day 7 entries are factually correct and are not to be changed.**
+The repository matches the production itinerary exactly, field for field:
 
-| Field                    | Current text                                                                                              |
-| ------------------------ | --------------------------------------------------------------------------------------------------------- |
-| Day 6 description (ends) | "…Tonight, **a comfortable desert camp** under a sky that reminds you how many stars there actually are." |
-| Day 6 `accommodation`    | "**Hotel in Merzouga.**"                                                                                  |
-| Day 7 description        | "…the group **returns to the desert camp**… **A second night at the camp**…"                              |
-| Day 7 `accommodation`    | "Desert camp."                                                                                            |
+|                 | Day 6 (Fes - Merzouga) | Day 7 (Merzouga)         |
+| --------------- | ---------------------- | ------------------------ |
+| `accommodation` | Hotel in Merzouga.     | Desert camp.             |
+| `meals`         | breakfast              | breakfast, lunch, dinner |
 
-"A second night at the camp" on Day 7 only follows if Day 6 was also the camp, so the evidence
-leans towards the `accommodation` field being the wrong one — but that is an inference, not a fact.
+Verified against `tour-content.ts:1003-1017` on `a53fa31`; the descriptions, both `accommodation`
+values and both `meals` arrays are identical to what production serves. Nothing was edited.
 
-**Please pick one:**
-
-- [ ] Day 6 is the **desert camp** → change Day 6 `accommodation` to "Desert camp."
-- [ ] Day 6 is a **hotel in Merzouga** → then Day 6's closing sentence and Day 7's "second night"
-      both need rewording, and I would need your words for them, not mine.
-
-> **This appears on three public pages, not one.** `tour-item-morocco-women-only-tour` and
-> `tour-item-morocco-solo-travellers-tour` are derived from `morocco-tour` by spreading it
-> (`tour-content.ts:1697-1766`), so they inherit the whole itinerary. One fix corrects all three.
+This closes the item. The earlier reading — that Day 6's closing sentence and Day 7's "second
+night at the camp" implied the `accommodation` field was wrong — was an inference from the copy,
+and it was wrong. The itinerary is as the operator intends it, and the same content is inherited
+by the women-only and solo-traveller Morocco pages, so all three are correct as they stand.
 
 ---
 
