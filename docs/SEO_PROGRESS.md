@@ -54,6 +54,20 @@ run from a machine with outbound access to the production host.
 
 ### Itinerary facts still open — confirmed still unresolved on `a53fa31`
 
+A follow-up sweep of all six tour definitions on 9 September widened this list from three items to
+six. They are written up for Toni as a single decision sheet:
+**[RELEASE_BLOCKING_QUESTIONS.md](RELEASE_BLOCKING_QUESTIONS.md)**. Summary of what the sweep added:
+
+- The Morocco Day 6 contradiction reaches **three public pages**, not one — the women-only and
+  solo-traveller Morocco tours are derived from `morocco-tour` by spreading it, so they inherit
+  the itinerary verbatim.
+- **Morocco is the only tour that excludes entry fees**, where the other five include them.
+- The missing Days 8-9 accommodation affects **both** Kyrgyzstan tours, not just the women-only
+  one; the women-only tour is additionally missing meals on those days.
+- **Both Bulgaria tours exclude "Activities as mentioned"**, where the other four include it.
+  The two agree with each other, so this may be deliberate — flagged at lower confidence.
+- Algeria states the same concepts in different words from every other tour. Presentational only.
+
 1. **Morocco Day 6** (`tour-content.ts:1006-1007`): the description ends "Tonight, a comfortable
    desert camp under a sky…" while the `accommodation` field on the same day says
    "Hotel in Merzouga." Day 7 then says the group "returns to the desert camp" for "a second
@@ -102,10 +116,14 @@ do not constitute post-deployment verification of PR #67.
 
 ### What remains, in order
 
-1. Release `dev` to `master` through the intended workflow and deploy. The copy corrections are
-   already in `dev` (PR #68) and PR #67 is merged, so nothing remains to fold in first. After the
-   deploy, verify the live new URLs, canonicals, sitemap, images, icons and enquiry behaviour —
-   the 9 September audit could only check these against the local SSR build.
+1. **The release is held pending Toni's answers to
+   [the release-blocking questions](RELEASE_BLOCKING_QUESTIONS.md).** Decided 9 September: the
+   itinerary and inclusion facts ship in the same deploy rather than needing a second one. The
+   code side is ready — PR #67 and #68 are merged into `dev` and the audit passes — so the only
+   thing between `dev` and `master` is those answers. Once they arrive, apply them, re-run the
+   checks, merge `dev` to `master` through the intended workflow and deploy. After the deploy,
+   verify the live new URLs, canonicals, sitemap, images, icons and enquiry behaviour — the
+   9 September audit could only check these against the local SSR build.
 2. Repeat the five mobile audits under comparable conditions, preferably three per template.
    No production LCP/TBT gain has yet been demonstrated.
 3. Confirm **Morocco Day 6 hotel/camp and Day 7 wording**, and **women-only Kyrgyzstan
