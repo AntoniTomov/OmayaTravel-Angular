@@ -5,16 +5,76 @@ statuses further down the file.
 
 - **Production foundation:** Phases 1–2 completed; the earlier release through PRs #64/#65 was
   verified on 8 September 2026.
-- **Release candidate:** PR #67 merged into `dev` at `5d7cd85`; remote `master` remains
-  `dcac088` at this checkpoint. No merge to master or deployment was performed by this task.
-- **Last updated:** 8 September 2026, following pre-merge testing of remote `dev`.
-  See [pre-merge verification](SEO_PREMERGE_VERIFICATION.md) for results. The duration-summary
-  discrepancies and incomplete Kyrgyzstan highlights are now corrected locally following
-  Toni's confirmation: Kyrgyzstan 10 days/9 nights; Algeria 9 days/8 nights. Destination-page
-  yurt wording is preserved. Include these corrections in the release branch before merging.
+- **Release candidate:** PR #67 and the follow-up PR #68 ("small fixes") are both merged into
+  `dev`, which now stands at `a53fa31`. Remote `master` remains `dcac088`. **PR #67 targeted
+  `dev`, not `master`, and needs no further action** — the outstanding release step is merging
+  `dev` into `master` and deploying. No merge to master or deployment was performed by this task.
+- **Copy corrections: landed.** The duration-summary discrepancies and the incomplete Kyrgyzstan
+  highlight were carried into the release candidate by PR #68 and re-checked on `a53fa31`:
+  Kyrgyzstan reads ten days, Algeria reads nine days/eight nights in both the excerpt and the
+  badge, and "Sleeping in a yurt at Song Kul Lake" is restored on both Kyrgyzstan tours.
+  Destination-page yurt wording is preserved. Nothing remains to fold in before merging.
+- **Last updated:** 9 September 2026, following the release-readiness audit of `dev` at `a53fa31`.
+  See [pre-merge verification](SEO_PREMERGE_VERIFICATION.md) for the 8 September results and the
+  audit section below for the re-run.
 - **Latest full verification:** 132 tests / 15 files, formatting and production build pass.
   Build prerenders 44 routes. Initial bundle: 570.63 kB / 500 kB warning threshold; tour CSS:
   14.83 kB / 14 kB. These are build measurements, not Core Web Vitals.
+
+## Release-readiness audit — 9 September 2026
+
+Re-ran the pre-merge checks against `dev` at `a53fa31` in this container, on Node 22.22.3
+(the preinstalled 22.22.2 is below the Angular CLI minimum and fails both `test` and `build`;
+this is a container limitation, not a repository defect).
+
+**Every check reproduced the 8 September result.** The release candidate is ready to merge on
+its technical merits; the open items below are business facts and account-side work, not code.
+
+| Check                                                   | Result                                                                   |
+| ------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `npm --workspace website run test -- --watch=false`     | 132 tests / 15 files passed                                              |
+| `npm run lint`                                          | passed                                                                   |
+| `npm run build`                                         | passed, 44 prerendered routes                                            |
+| Bundle warnings                                         | initial 570.63 kB / 500 kB; tour-detail CSS 14.83 kB / 14 kB — unchanged |
+| `sitemap.xml` → `sitemap-pages.xml`                     | index resolves; 42 URLs                                                  |
+| All 42 sitemap URLs over SSR                            | 200, exactly one H1, production canonical, no `noindex`                  |
+| Four new guides                                         | prerendered, each with its `https://omayatravel.com/<slug>/` canonical   |
+| JSON-LD across the four guides and three priority tours | 31 blocks, 0 parse failures                                              |
+| Local assets on those seven pages                       | 46 distinct URLs, all 200                                                |
+| All eight configured redirects                          | 301 to the expected target; unknown page 404                             |
+| `POST /api/forms`, `POST /api/newsletter` with `{}`     | 400 validation errors; nothing sent                                      |
+
+Blog articles are served from the site root (`/song-kul-yurt-stay-packing-guide/`), not under a
+`/blog/` prefix. JSON-LD parsing is a syntax check, not a rich-results eligibility check.
+
+**Production could not be checked.** `omayatravel.com` is refused by this environment's network
+policy (the proxy answers 403 to CONNECT), so every result above is from the local SSR build.
+Live verification of the deployed site, and the five mobile performance audits, still have to be
+run from a machine with outbound access to the production host.
+
+### Itinerary facts still open — confirmed still unresolved on `a53fa31`
+
+1. **Morocco Day 6** (`tour-content.ts:1006-1007`): the description ends "Tonight, a comfortable
+   desert camp under a sky…" while the `accommodation` field on the same day says
+   "Hotel in Merzouga." Day 7 then says the group "returns to the desert camp" for "a second
+   night at the camp", which only follows if Day 6 was also the camp. One of the two is wrong.
+2. **Women-only Kyrgyzstan inclusions** (`tour-content.ts:1573-1582`): this tour lists
+   **Insurance as included** and **Ground transport as not included** — the exact inverse of the
+   classic Kyrgyzstan tour (`tour-content.ts:702-711`), which includes ground transport and
+   excludes insurance. A swapped pair is the likely explanation. These are commercial claims and
+   will go live with this release, so they are worth settling before the deploy rather than after.
+3. **Women-only Kyrgyzstan Days 8-9** (`tour-content.ts:1641-1654`): both days have
+   `accommodation: null` and `meals: []`. The classic tour's Days 8-9 at least carry meals
+   (lunch/dinner and lunch), so the women-only tour is missing meals as well as accommodation.
+   Day 10 correctly carries breakfast on both tours.
+
+### Room information
+
+The general policy is published — booking conditions in `legal-page.ts`, the solo-traveller FAQ
+entries on the tours and in `faq-page.ts`, and the destination-page prompt to confirm room sharing
+before booking. What is still missing is per-tour room-sharing detail and the actual single
+supplement amounts. "Single room supplement" appears in every tour's `notIncluded` list without a
+price. Easy fitness is implemented on all eight public tours.
 
 ## Resume checkpoint — 8 September 2026
 
@@ -42,9 +102,10 @@ do not constitute post-deployment verification of PR #67.
 
 ### What remains, in order
 
-1. Include the local copy corrections recorded in the pre-merge verification, then release `dev` to `master` through
-   the intended workflow; verify live new URLs, canonicals, sitemap,
-   images, icons and enquiry behaviour.
+1. Release `dev` to `master` through the intended workflow and deploy. The copy corrections are
+   already in `dev` (PR #68) and PR #67 is merged, so nothing remains to fold in first. After the
+   deploy, verify the live new URLs, canonicals, sitemap, images, icons and enquiry behaviour —
+   the 9 September audit could only check these against the local SSR build.
 2. Repeat the five mobile audits under comparable conditions, preferably three per template.
    No production LCP/TBT gain has yet been demonstrated.
 3. Confirm **Morocco Day 6 hotel/camp and Day 7 wording**, and **women-only Kyrgyzstan
