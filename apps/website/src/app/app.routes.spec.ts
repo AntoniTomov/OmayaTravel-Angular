@@ -1,4 +1,5 @@
 import '@angular/compiler';
+import { vi } from 'vitest';
 
 import { PrerenderFallback, RenderMode } from '@angular/ssr';
 import { provideRouter, Router } from '@angular/router';
@@ -193,6 +194,58 @@ describe('app routes', () => {
     await harness.navigateByUrl('/tours-list/', TourListingPage);
     harness.detectChanges();
     expect(harness.routeNativeElement?.querySelectorAll('.tour-listing__card')).toHaveLength(8);
+  });
+
+  it('offers only the current tour departures and updates guides on tour navigation', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date('2027-08-01T12:00:00Z'));
+    try {
+      configureRouteTesting();
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/tour-item/women-only-tour-kyrgyzstan/', TourDetail);
+      harness.detectChanges();
+      const element = harness.routeNativeElement!;
+      (element.querySelector('.tour-detail__date-trigger') as HTMLButtonElement).click();
+      harness.detectChanges();
+      const dates = Array.from(
+        element.querySelectorAll<HTMLButtonElement>(
+          '.tour-detail__calendar-grid button:not(:disabled)',
+        ),
+      );
+      expect(dates).toHaveLength(1);
+      expect(dates[0].textContent?.trim()).toBe('13');
+      expect(
+        element.querySelector('a[href="/how-to-visit-song-kul-lake-in-kyrgyzstan"]'),
+      ).not.toBeNull();
+      dates[0].click();
+      harness.detectChanges();
+      expect(element.querySelector<HTMLInputElement>('input[name="date"]')?.value).toBe(
+        '2027-08-13',
+      );
+
+      await harness.navigateByUrl('/tour-item/morocco-tour/', TourDetail);
+      harness.detectChanges();
+      expect(
+        harness.routeNativeElement?.querySelector(
+          'a[href="/morocco-casablanca-marrakech-route-guide"]',
+        ),
+      ).not.toBeNull();
+      expect(harness.routeNativeElement?.textContent).toContain('Fitness level: Easy');
+      expect(
+        harness.routeNativeElement?.querySelector<HTMLInputElement>('input[name="date"]')?.value,
+      ).toBe('');
+      (
+        harness.routeNativeElement?.querySelector('.tour-detail__date-trigger') as HTMLButtonElement
+      ).click();
+      harness.detectChanges();
+      expect(
+        harness.routeNativeElement?.querySelectorAll(
+          '.tour-detail__calendar-grid button:not(:disabled)',
+        ),
+      ).toHaveLength(0);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('resolves the why-book-with-us static page to its dedicated component', async () => {

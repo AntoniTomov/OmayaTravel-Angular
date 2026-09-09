@@ -27,12 +27,46 @@
           <app-blog-post-section [section]="section" />
         }
 
+        @if (destination(); as destination) {
+          <section class="blog-article__journeys" aria-labelledby="article-journeys-title">
+            <h2 id="article-journeys-title">Journeys through {{ destination.name }}</h2>
+            <a [href]="'/destinations/' + destination.slug + '/'">
+              {{ destination.name }} tours &amp; holidays
+            </a>
+            <ul>
+              @for (tour of destination.tours; track tour.slug) {
+                <li>
+                  <a [href]="'/tour-item/' + tour.slug + '/'">{{ tour.title }}</a>
+                  <span>{{ tour.duration.days }} days · {{ tour.category }}</span>
+                </li>
+              }
+            </ul>
+          </section>
+        }
+
+        @if (post.sources?.length) {
+          <section aria-label="Article sources">
+            <h2>Sources for this update</h2>
+            <ul>
+              @for (source of post.sources; track source.url) {
+                <li>
+                  <a [href]="source.url">{{ source.title }}</a>
+                </li>
+              }
+            </ul>
+          </section>
+        }
         <footer class="blog-article__post-footer">
           <div class="blog-article__meta" aria-label="Post details">
             <span>
               <span class="material-icons" aria-hidden="true">calendar_today</span>
               {{ post.date }}
             </span>
+            @if (post.modifiedAt) {
+              <span
+                >Updated <time [attr.datetime]="post.modifiedAt">{{ post.modifiedAt }}</time></span
+              >
+            }
           </div>
 
           @if (previousPost(); as previousPost) {
@@ -52,7 +86,7 @@
                   <h3>
                     <a [routerLink]="'/' + relatedPost.slug + '/'">{{ relatedPost.title }}</a>
                   </h3>
-                  <p>{{ relatedPost.date }} / By nesi</p>
+                  <p>{{ relatedPost.date }}</p>
                 </article>
               }
             </div>
@@ -63,7 +97,7 @@
       <aside class="blog-article__sidebar" aria-label="Blog sidebar">
         <section>
           <h2>Suggested Blog Posts</h2>
-          @for (suggestedPost of suggestedPosts; track suggestedPost.slug) {
+          @for (suggestedPost of relatedPosts(); track suggestedPost.slug) {
             <a [routerLink]="'/' + suggestedPost.slug + '/'" class="blog-article__suggestion">
               <img
                 [src]="suggestedPost.sidebarImage?.src ?? suggestedPost.image.src"

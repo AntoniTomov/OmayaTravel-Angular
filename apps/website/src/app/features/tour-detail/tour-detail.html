@@ -1,13 +1,16 @@
 @if (tour(); as tour) {
   <main class="tour-detail">
     <section class="tour-detail__hero">
-      <img
-        [src]="tour.heroImage.src"
-        [width]="tour.heroImage.width"
-        [height]="tour.heroImage.height"
-        [alt]="tour.heroImage.alt"
-        fetchpriority="high"
-      />
+      <picture style="display: contents">
+        <source type="image/avif" [attr.srcset]="tour.heroImage.src | tourWebImage" />
+        <img
+          [src]="tour.heroImage.src"
+          [width]="tour.heroImage.width"
+          [height]="tour.heroImage.height"
+          [alt]="tour.heroImage.alt"
+          fetchpriority="high"
+        />
+      </picture>
       <h1>{{ tour.title }}</h1>
       <!--
         Group size and duration decide whether a trip is a fit, so they sit with the title rather
@@ -16,7 +19,7 @@
       <ul class="tour-detail__hero-facts">
         <li>{{ durationLabel(tour) }}</li>
         <li>{{ groupSizeLabel(tour) }}</li>
-        @if (guaranteedDepartureLabel(tour); as guaranteed) {
+        @if (guaranteedDeparture(); as guaranteed) {
           <li class="tour-detail__hero-facts--guaranteed">{{ guaranteed }}</li>
         }
       </ul>
@@ -78,7 +81,7 @@
               @for (departure of tour.departures; track departure) {
                 <span
                   >{{ departure | date: 'd MMMM y' }}
-                  @if (departureNoteLabel(tour, departure); as note) {
+                  @if (departureNotes().get(departure); as note) {
                     ({{ note }})
                   }
                 </span>
@@ -87,6 +90,10 @@
             <p class="tour-detail__fact">
               <mat-icon aria-hidden="true">groups_2</mat-icon>
               <strong>Group size:</strong> {{ groupSizeLabel(tour) }}
+            </p>
+            <p class="tour-detail__fact">
+              <mat-icon aria-hidden="true">directions_walk</mat-icon>
+              <strong>Fitness level:</strong> {{ tour.fitnessLevel }}
             </p>
 
             @for (paragraph of tour.introduction; track introductionTrackText(paragraph)) {
@@ -163,6 +170,22 @@
             </ul>
           </section>
 
+          @if (relatedGuides().length) {
+            <section
+              class="tour-detail__section tour-detail__lists"
+              aria-labelledby="tour-guides-heading"
+            >
+              <h2 id="tour-guides-heading">Stories from {{ tour.destination.country }}</h2>
+              <ul>
+                @for (guide of relatedGuides(); track guide.slug) {
+                  <li>
+                    <a [routerLink]="'/' + guide.slug + '/'">{{ guide.title }}</a>
+                  </li>
+                }
+              </ul>
+            </section>
+          }
+
           <section class="tour-detail__section">
             <div class="tour-detail__gallery-preview">
               @for (image of tour.gallery.slice(0, 3); track image.src; let index = $index) {
@@ -172,13 +195,16 @@
                   [attr.aria-label]="'Preview gallery image: ' + image.alt"
                   (click)="openGallery(index)"
                 >
-                  <img
-                    [src]="image.src"
-                    [width]="image.width"
-                    [height]="image.height"
-                    [alt]="image.alt"
-                    loading="lazy"
-                  />
+                  <picture style="display: contents">
+                    <source type="image/avif" [attr.srcset]="image.src | tourWebImage" />
+                    <img
+                      [src]="image.src"
+                      [width]="image.width"
+                      [height]="image.height"
+                      [alt]="image.alt"
+                      loading="lazy"
+                    />
+                  </picture>
                 </button>
               }
             </div>
@@ -237,12 +263,12 @@
           </section>
         }
 
-        @if (activeTab() === 'faq' && tour.faq; as faq) {
+        @if (activeTab() === 'faq') {
           <section class="tour-detail__section tour-detail__faq">
-            <h2>{{ faq.heading }}</h2>
-            <p>{{ faq.intro }}</p>
+            <h2>{{ faqHeading() }}</h2>
+            <p>{{ faqIntro() }}</p>
             <div class="tour-detail__faq-list">
-              @for (item of faq.items; track item.question; let index = $index) {
+              @for (item of faqItems(); track item.question; let index = $index) {
                 <details
                   [attr.id]="faqAnswerId(item, index)"
                   [open]="openFaqIndex() === index"
@@ -382,6 +408,7 @@
         <a
           class="tour-detail__discover"
           routerLink="/tours-list/"
+          aria-label="Discover more tours"
           (click)="trackTourCta('discover_more')"
         ></a>
       </aside>

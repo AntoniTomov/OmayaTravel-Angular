@@ -548,26 +548,21 @@
 }
 
 .tour-listing__range-controls {
-  position: relative;
-  min-height: 1.35rem;
+  display: grid;
+  gap: 8px;
 }
 
 .tour-listing__range-controls input {
-  position: absolute;
-  inset: 0;
   width: 100%;
+  min-height: 44px;
   margin: 0;
   appearance: none;
-  pointer-events: none;
   background: transparent;
 }
 
-.tour-listing__range-controls input:first-child {
-  z-index: 3;
-}
-
-.tour-listing__range-controls input:last-child {
-  z-index: 4;
+.tour-listing__range-controls input:focus-visible {
+  outline: 2px solid var(--omaya-color-ink);
+  outline-offset: 2px;
 }
 
 .tour-listing__range-controls input::-webkit-slider-runnable-track {
@@ -586,9 +581,9 @@
 
 .tour-listing__range-controls input::-webkit-slider-thumb {
   appearance: none;
-  width: 16px;
-  height: 16px;
-  margin-top: -6px;
+  width: 24px;
+  height: 24px;
+  margin-top: -10px;
   border: 0;
   border-radius: 50%;
   background: var(--omaya-color-accent);
@@ -596,8 +591,8 @@
 }
 
 .tour-listing__range-controls input::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   border: 0;
   border-radius: 50%;
   background: var(--omaya-color-accent);
@@ -649,7 +644,7 @@
   padding: 0 1.15rem;
   border: 0;
   background: var(--omaya-color-accent);
-  color: var(--omaya-color-surface);
+  color: var(--omaya-color-ink);
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -661,6 +656,7 @@
 
 .tour-listing__search-button:is(:hover, :focus-visible, :active) {
   background: var(--omaya-color-ink);
+  color: var(--omaya-color-surface);
 }
 
 .tour-listing__discover {

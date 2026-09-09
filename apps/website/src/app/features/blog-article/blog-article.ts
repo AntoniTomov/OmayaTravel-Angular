@@ -7,6 +7,7 @@ import {
   BLOG_POSTS,
   findBlogPostBySlug,
 } from '../../shared/content/blog-content';
+import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import { BlogPostSection } from './blog-post-section/blog-post-section';
 
 @Component({
@@ -24,11 +25,21 @@ export class BlogArticle {
   protected readonly post = computed(() =>
     findBlogPostBySlug(String(this.routeData()['articleSlug'] ?? '')),
   );
-  protected readonly suggestedPosts = BLOG_POSTS.slice(0, 3);
   protected readonly discoverToursImage = BLOG_DISCOVER_TOURS_IMAGE;
-  protected readonly relatedPosts = computed(() =>
-    BLOG_POSTS.filter((post) => post.slug !== this.post()?.slug).slice(0, 3),
+  protected readonly destination = computed(() =>
+    DESTINATION_CONTENT.find((destination) =>
+      destination.guides.some((guide) => guide.slug === this.post()?.slug),
+    ),
   );
+  protected readonly relatedPosts = computed(() => {
+    const sameCountrySlugs = new Set(this.destination()?.guides.map((guide) => guide.slug));
+    const otherPosts = BLOG_POSTS.filter((post) => post.slug !== this.post()?.slug);
+
+    return [
+      ...otherPosts.filter((post) => sameCountrySlugs.has(post.slug)),
+      ...otherPosts.filter((post) => !sameCountrySlugs.has(post.slug)),
+    ].slice(0, 3);
+  });
   protected readonly previousPost = computed(() => {
     const post = this.post();
     const index = BLOG_POSTS.findIndex((candidate) => candidate.slug === post?.slug);

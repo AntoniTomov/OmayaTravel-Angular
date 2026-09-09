@@ -95,6 +95,11 @@ describe('sitemap generation', () => {
     );
 
     expect(article?.lastmod).toBeTruthy();
+    expect(
+      sitemapEntries().find((entry) =>
+        entry.loc.endsWith('/the-complete-visitor-guide-to-rila-monastery/'),
+      )?.lastmod,
+    ).toBe('2026-09-08');
   });
 
   it('builds a sitemap index pointing at the page sitemap', () => {

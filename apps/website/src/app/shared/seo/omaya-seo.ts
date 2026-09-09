@@ -6,7 +6,7 @@ import { filter } from 'rxjs';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { articlePageTitle } from './page-title';
-import { findBlogPostBySlug } from '../content/blog-content';
+import { findBlogMetadataBySlug } from '../content/blog-metadata-content';
 import { findTourBySlug } from '../content/tour-content';
 import { findTourListingPage } from '../content/tour-list-content';
 import { ogImageFor } from './og-images';
@@ -172,7 +172,7 @@ export class OmayaSeo {
     }
 
     const articleSlug = data['articleSlug'] as string | undefined;
-    const post = findBlogPostBySlug(articleSlug);
+    const post = findBlogMetadataBySlug(articleSlug);
 
     if (post) {
       const canonical = absoluteUrl(identity.canonicalHost, canonicalPath);

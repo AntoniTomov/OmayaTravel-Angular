@@ -3,6 +3,7 @@ import { Component, HostListener, computed, effect, inject, signal } from '@angu
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TourWebImagePipe, TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 
 import {
   DEPARTURE_MONTH_NAMES,
@@ -58,7 +59,7 @@ const CATEGORIES: readonly TourCategory[] = [
 ];
 @Component({
   selector: 'app-tour-listing-page',
-  imports: [NgClass, MatIconModule, RouterLink],
+  imports: [NgClass, MatIconModule, RouterLink, TourWebImagePipe, TourWebImageSrcsetPipe],
   templateUrl: './tour-listing-page.html',
   styleUrl: './tour-listing-page.scss',
 })
