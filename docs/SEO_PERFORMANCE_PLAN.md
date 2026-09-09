@@ -27,6 +27,35 @@ things that **are** solid:
 The baseline predates this release, but this release changed no hero image, template or bundle, so
 the delivery characteristics it describes still hold.
 
+## Measured 9 September, 18:47 EEST
+
+Two audits Toni ran after the release, on pages absent from the 8 September baseline. Same
+emulation. These are the first measurements taken **after** this release.
+
+| Page                          | Perf | FCP   | LCP   | TBT   | CLS | SI    |
+| ----------------------------- | ---- | ----- | ----- | ----- | --- | ----- |
+| `/tour-item/kyrgyzstan-tour/` | 84   | 2.0 s | 4.2 s | 50 ms | 0   | 2.5 s |
+| `/destinations/kyrgyzstan/`   | 86   | 2.0 s | 3.5 s | 10 ms | 0   | 4.7 s |
+
+They confirm the diagnosis and add three things, all detailed in the
+[fix plan](SEO_PERFORMANCE_FIX_PLAN.md):
+
+- **Kyrgyzstan has no AVIF coverage at all.** No Kyrgyzstan classic asset is in the generator's
+  input list. Its hero (217,994 B) is the LCP element of both pages above, and its gallery holds
+  the largest file on the site at 406,604 B. Kyrgyzstan is one of the three commercial priorities.
+- **LCP is not purely a bytes problem.** The destination breakdown is 40 ms TTFB, **1,680 ms
+  resource load delay**, 910 ms load duration, 40 ms render delay. The hero does not start
+  downloading for 1.68 s because the HTML and two `fonts.gstatic.com` files saturate Slow 4G
+  first. Font bytes are delaying the LCP image.
+- **The font stack is misconfigured.** `Roboto:wght@400;500;700;900` is requested, but weight 800
+  is the most-used weight in the stylesheets (36 rules) and is not downloaded at all, while 500 is
+  downloaded for 2 rules.
+
+The third point revises this document's "what not to do" section: font work was ranked bottom on
+the grounds that CLS is 0 and TBT is negligible. That reasoning held for _layout stability_, but
+the critical-path evidence shows fonts competing with the LCP image for bandwidth, which the
+8 September data could not reveal. Font delivery is now part of the plan.
+
 ## The baseline
 
 One PageSpeed run per template, emulated Moto G Power, Slow 4G. Lab results, not field data.

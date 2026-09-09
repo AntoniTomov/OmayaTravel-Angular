@@ -8,6 +8,131 @@ Every byte figure is measured from the deployed artefact (`hostinger-runtime` at
 estimated. Two findings below (**Fix 2** and **Fix 3**) were discovered while writing this plan
 and are not in the diagnosis document.
 
+## Revised against measurement — 9 September 2026, 18:47 EEST
+
+Toni ran two PageSpeed audits that were not in the 8 September baseline. They confirm the
+diagnosis, **correct one of its cost estimates, and promote a finding that was buried**.
+
+| Page                          | Perf | FCP   | LCP   | TBT   | CLS | SI    |
+| ----------------------------- | ---- | ----- | ----- | ----- | --- | ----- |
+| `/tour-item/kyrgyzstan-tour/` | 84   | 2.0 s | 4.2 s | 50 ms | 0   | 2.5 s |
+| `/destinations/kyrgyzstan/`   | 86   | 2.0 s | 3.5 s | 10 ms | 0   | 4.7 s |
+
+Same emulation as the baseline (Moto G Power, Slow 4G, Lighthouse 13.4.1). Lighthouse puts image
+delivery at **456 KiB** of estimated savings on the tour page and **282 KiB** on the destination.
+
+### What changed in the plan
+
+**Kyrgyzstan has no AVIF coverage at all, and it is a commercial priority.** The generator's
+`inputs` list contains no Kyrgyzstan _classic_ asset — not the hero, not the gallery. Only the
+women-only hero and card are there. Verified: `grep -c "Kyrgystan/kyrgyzstan-tour-bgr"` and
+`grep -c "Kyrgystan/gallery"` both return 0.
+
+`kyrgyzstan-tour-bgr.webp` (**217,994 bytes**) is the LCP element of **both** pages above. It ships
+as the raw WebP to each. This is now the single highest-value change in the plan, and it is a
+one-line addition to a list.
+
+| Asset                                         | Deployed bytes | Lighthouse est. saving | In generator? |
+| --------------------------------------------- | -------------- | ---------------------- | ------------- |
+| `kyrgyzstan-tour-bgr.webp` (hero, both pages) | 217,994        | 129.6 KiB              | **no**        |
+| `kyrgyzstan-gallery-02.webp`                  | **406,604**    | 254.2 KiB              | **no**        |
+| `kyrgyzstan-gallery-01.webp`                  | 84,248         | 48.4 KiB               | **no**        |
+| `discover-more-tours.webp`                    | 47,608         | 17.9 KiB               | **no**        |
+
+`kyrgyzstan-gallery-02.webp` at 406,604 bytes is **the largest asset on the site** — larger than
+the Sofia gallery file I had flagged as the heaviest in Fix 6.
+
+**Correction to Fix 2.** I estimated 98,552 bytes saved by wrapping destination heroes in
+`<picture>`. That figure holds **for Bulgaria only**, whose hero is already in the generator.
+Kyrgyzstan and Morocco destinations save **nothing** from Fix 2 alone, because no AVIF exists for
+their heroes yet. Fix 2 must ship with the input-list additions, not before them. The blockquote
+under Fix 2 anticipated this; the measurement confirms it.
+
+### LCP is not purely a bytes problem
+
+The destination report breaks LCP down, and the shape is the finding:
+
+| Sub-part                | Duration     |
+| ----------------------- | ------------ |
+| Time to First Byte      | 40 ms        |
+| **Resource load delay** | **1,680 ms** |
+| Resource load duration  | 910 ms       |
+| Element render delay    | 40 ms        |
+
+**The hero does not begin downloading for 1.68 s** — that dominates, and no amount of AVIF fixes
+it directly. The critical-path tree shows why: the HTML (17.76 KiB) and two `fonts.gstatic.com`
+woff2 files (20.87 + 42.92 KiB) all complete around 1,787–1,792 ms, saturating Slow 4G before the
+image gets bandwidth.
+
+So **font bytes are directly delaying the LCP image**, which the 8 September baseline could not
+show. Smaller heroes still help — they cut the 910 ms load duration and reduce contention — but
+the font work below now earns its place, having previously been ranked "do not do".
+
+### New: the font stack is misconfigured
+
+`index.html:16` requests `Roboto:wght@400;500;700;900`. What the stylesheets actually use:
+
+| Weight  | Rules using it | Declared?            |
+| ------- | -------------- | -------------------- |
+| **800** | **36**         | **no — synthesised** |
+| 700     | 27             | yes                  |
+| 400     | 23             | yes                  |
+| 900     | 7              | yes                  |
+| **600** | **3**          | **no — synthesised** |
+| 500     | 2              | yes                  |
+
+The most-used weight on the site is not downloaded. Thirty-six rules ask for 800 and get a
+browser-synthesised faux-bold off 700 or 900, while 500 is downloaded for two rules.
+
+**Recommended change: request Roboto as a variable font** — `family=Roboto:wght@400..900`. One
+file instead of four static faces, typically well below the current 63.8 KiB for the two fetched,
+and it makes 600 and 800 real weights rather than synthetic. It both cuts critical-path bytes and
+_improves_ rendering fidelity.
+
+> This changes how 600 and 800 text renders — from synthesised to true weights. It is a visual
+> change, small but real, and should be eyeballed against the current site before shipping.
+> Do not treat it as a pure performance change.
+
+**Also flagged: `font-display` on the icon font.** Lighthouse costs the self-hosted
+`material-*.woff2` **270 ms** for `font-display: block` (`styles.scss:20`). Phase 5 chose `block`
+deliberately, to stop ligature names painting as text during a swap period — that reasoning is
+sound and should not be reverted. The better fix keeps both properties: **preload the subsetted
+icon font**. It is same-origin and only 3.08 KiB, so preloading removes the delay without
+reintroducing the ligature flash.
+
+### Smaller confirmed items
+
+- **Payment logos have no `width`/`height`** (`public-footer.ts:81`, seven images). CLS is 0 today,
+  so this is unprotected luck rather than a live defect. Cheap to fix.
+- **Unused JavaScript: 49 KiB** — 27.1 KiB in `main.js`, 22.1 KiB in `chunk-BBXOUSuu.js`. Worth a
+  treemap look, but note TBT is 10–50 ms, so this is bytes not blocking time.
+- **The forced reflow is 34 ms on the tour page**, against 547 ms on the listing. That supports
+  sequencing Fix 7 last: it is a listing-specific problem, not a site-wide one.
+
+> A finding I checked and dropped: Lighthouse reports the payment logos with `src=""`. The
+> deployed HTML has correct `src` values on all seven — the empty attribute is an artefact of
+> Lighthouse reading the rendered DOM for not-yet-loaded lazy images. Not a defect.
+
+### Revised order
+
+Batch A is re-cut. The input-list additions move to the front, because they are the cheapest
+change in the plan and they unblock both Kyrgyzstan pages plus two of the three commercial
+priorities.
+
+| #      | Change                                                                                   | Effort                        |
+| ------ | ---------------------------------------------------------------------------------------- | ----------------------------- |
+| **A1** | Add the four missing Kyrgyzstan/shared sources to the generator `inputs`, regenerate     | 4 lines + regen               |
+| **A2** | Listing `sizes="100vw"` (Fix 1)                                                          | 1 attribute                   |
+| **A3** | Destination `<picture>` (Fix 2) + tour-detail srcset pipe (Fix 3)                        | ~8 lines                      |
+| **B1** | Generalise responsive widths (Fix 4)                                                     | ~8 lines                      |
+| **B2** | Roboto variable font + preload the icon font                                             | 2 lines, needs a visual check |
+| **C**  | Homepage AVIF (Fix 5), gallery sizes (Fix 6), payment dimensions, then the trace (Fix 7) | larger                        |
+
+A1 and A2 together are four lines of list plus one attribute, and they cover the LCP element of
+the two worst-measured pages plus the largest asset on the site.
+
+---
+
 ## Summary
 
 | Fix | File                           | Effort        | Bytes saved on the LCP element      | Assets to build         |
