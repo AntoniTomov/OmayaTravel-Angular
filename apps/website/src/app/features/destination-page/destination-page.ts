@@ -4,10 +4,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import { PublicBreadcrumbs, PublicBreadcrumb } from '../../shared/breadcrumbs/public-breadcrumbs';
+import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 
 @Component({
   selector: 'app-destination-page',
-  imports: [DatePipe, RouterLink, PublicBreadcrumbs],
+  imports: [DatePipe, RouterLink, PublicBreadcrumbs, TourWebImageSrcsetPipe],
   templateUrl: './destination-page.html',
   styleUrl: './destination-page.scss',
 })
