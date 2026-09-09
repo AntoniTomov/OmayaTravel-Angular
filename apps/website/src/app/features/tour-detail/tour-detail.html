@@ -2,7 +2,11 @@
   <main class="tour-detail">
     <section class="tour-detail__hero">
       <picture style="display: contents">
-        <source type="image/avif" [attr.srcset]="tour.heroImage.src | tourWebImage" />
+        <source
+          type="image/avif"
+          [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
+          sizes="100vw"
+        />
         <img
           [src]="tour.heroImage.src"
           [width]="tour.heroImage.width"

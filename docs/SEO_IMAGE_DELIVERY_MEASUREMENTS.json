@@ -6,102 +6,213 @@
       "width": 2560,
       "height": 1425,
       "originalBytes": 242714,
-      "webBytes": 226063
+      "webBytes": 222666
     },
     {
       "source": "/assets/images/destinations/classic-tours-bgr.webp",
       "width": 960,
       "variant": "responsive",
-      "webBytes": 48060
+      "webBytes": 47288
     },
     {
       "source": "/assets/images/destinations/classic-tours-bgr.webp",
       "width": 1440,
       "variant": "responsive",
-      "webBytes": 90088
+      "webBytes": 89091
     },
     {
       "source": "/assets/images/destinations/classic-tours-bgr.webp",
       "width": 1920,
       "variant": "responsive",
-      "webBytes": 130722
+      "webBytes": 128932
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
       "width": 622,
       "height": 932,
       "originalBytes": 351662,
-      "webBytes": 66389
+      "webBytes": 66169
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
       "width": 632,
       "height": 932,
       "originalBytes": 603314,
-      "webBytes": 69562
+      "webBytes": 68424
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
       "width": 632,
       "height": 932,
       "originalBytes": 190830,
-      "webBytes": 18564
+      "webBytes": 18030
     },
     {
       "source": "/assets/images/women-tours/bulgaria-women-only-card-bgr.webp",
       "width": 400,
       "height": 800,
       "originalBytes": 61982,
-      "webBytes": 45184
+      "webBytes": 44351
     },
     {
       "source": "/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp",
       "width": 409,
       "height": 800,
       "originalBytes": 52646,
-      "webBytes": 37766
+      "webBytes": 37329
     },
     {
       "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
       "width": 1920,
       "height": 800,
       "originalBytes": 330628,
-      "webBytes": 232076
+      "webBytes": 232326
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 52822
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 105380
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 217994,
+      "webBytes": 150575
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 78376
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 84248,
+      "webBytes": 68261
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 35127
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
+      "width": 1183,
+      "height": 2560,
+      "originalBytes": 406604,
+      "webBytes": 314920
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 181492
     },
     {
       "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
       "width": 1600,
       "height": 753,
       "originalBytes": 161092,
-      "webBytes": 134079
+      "webBytes": 132523
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 43068
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 85103
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
       "width": 1600,
       "height": 1066,
       "originalBytes": 257924,
-      "webBytes": 192288
+      "webBytes": 189679
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 78175
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 136808
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
       "width": 1600,
       "height": 1046,
       "originalBytes": 315010,
-      "webBytes": 206079
+      "webBytes": 204396
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 75971
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 139299
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
       "width": 1600,
       "height": 2407,
       "originalBytes": 217746,
-      "webBytes": 179450
+      "webBytes": 181093
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 68253
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 123944
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
       "width": 1600,
       "height": 2407,
       "originalBytes": 671924,
-      "webBytes": 463593
+      "webBytes": 460689
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 149629
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 307123
     }
   ]
 }

@@ -10,6 +10,7 @@ import { format, resolveConfig } from "prettier";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const assets = resolve(root, "apps/website/src/assets");
 const output = resolve(assets, "images/tour-web");
+const RESPONSIVE_WIDTHS = [960, 1440, 1920];
 const inputs = [
   "images/destinations/classic-tours-bgr.webp",
   "images/home-page/trips-carousel/Algeria-trip.webp",
@@ -18,6 +19,9 @@ const inputs = [
   "images/women-tours/bulgaria-women-only-card-bgr.webp",
   "images/women-tours/kyrgyzstan-women-only-card-bgr.webp",
   "images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+  "images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+  "images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
+  "images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
   "images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
   "images/destinations/Marocco/morocco-bgr.webp",
   "images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
@@ -55,9 +59,15 @@ for (const relativePath of inputs) {
     originalBytes: original.length,
     webBytes: Math.min(original.length, encoded.length),
   });
-  if (relativePath === "images/destinations/classic-tours-bgr.webp") {
+  // Generate a responsive candidate for every configured width narrower than the source. A source
+  // narrower than the smallest width yields no candidates and keeps its single encoding, which is
+  // what card images need: sharp's withoutEnlargement would otherwise emit byte-identical copies.
+  const responsiveWidths = RESPONSIVE_WIDTHS.filter(
+    (width) => width < before.width,
+  );
+  if (responsiveWidths.length > 0) {
     const candidates = [];
-    for (const width of [960, 1440, 1920]) {
+    for (const width of responsiveWidths) {
       const resized = await sharp(original)
         .resize({ width, withoutEnlargement: true })
         .avif({ quality: 55, effort: 5 })
