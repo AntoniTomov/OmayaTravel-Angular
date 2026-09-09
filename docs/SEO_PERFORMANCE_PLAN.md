@@ -156,6 +156,18 @@ after Findings 1–3 shows third-party script time actually mattering.
 every template, so the font-swap hypothesis has no symptom to fix. Material Icons subsetting and
 the unused `fonts.googleapis.com` request were already dealt with in Phase 5.
 
+## Two further findings
+
+Written up in the [fix plan](SEO_PERFORMANCE_FIX_PLAN.md) after inspecting the templates:
+
+- **Destination heroes have no `<picture>` element at all.** They ship
+  `bulgaria-tour-bgr.webp` as the raw 330,628-byte original, while the tour page renders the same
+  image as a 232,076-byte AVIF that is already built and deployed. Wrapping it saves 98,552 bytes
+  with no asset generation.
+- **The tour-detail hero uses the single-image pipe, not the srcset pipe**, so it could never
+  consume responsive variants even once they exist. Swapping it is a no-op today and an enabler
+  for the generator change.
+
 ## Order of work
 
 Each step deploys and is measured before the next begins, so every change has an attributable
