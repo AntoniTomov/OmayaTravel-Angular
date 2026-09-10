@@ -14,7 +14,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
-import { TourWebImagePipe, TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
+import {
+  TourWebImagePipe,
+  TourWebImageSrcsetPipe,
+  TourWebThumbnailSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import {
   tourFaqHeading,
@@ -71,6 +75,7 @@ interface CalendarDay {
     PublicBreadcrumbs,
     TourWebImagePipe,
     TourWebImageSrcsetPipe,
+    TourWebThumbnailSrcsetPipe,
   ],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
