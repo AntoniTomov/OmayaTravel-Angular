@@ -45,6 +45,12 @@
   object-position: center;
 }
 
+@media (min-width: 48.01rem) {
+  .homepage__hero-image {
+    object-position: center 70%;
+  }
+}
+
 .homepage__hero-content {
   position: relative;
   z-index: 3;
