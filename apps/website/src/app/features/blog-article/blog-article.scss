@@ -98,7 +98,7 @@
 }
 
 .blog-article a:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .blog-article__sidebar {
@@ -181,7 +181,7 @@
 }
 
 .blog-article__meta .material-icons {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-size: 1rem;
   line-height: 1;
 }
@@ -199,7 +199,7 @@
   display: block;
   width: 3.8rem;
   aspect-ratio: 1;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
 }
 
 .blog-article__previous span::before {

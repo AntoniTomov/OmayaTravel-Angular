@@ -37,7 +37,7 @@
 }
 
 .private-tours a {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   border-bottom: 1px solid currentcolor;
   font-size: 0.8rem;
   font-weight: 800;

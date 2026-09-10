@@ -19,7 +19,7 @@
 
 .planning-form__hero p {
   margin: 0 0 0.8rem;
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-weight: 900;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -74,8 +74,8 @@
 
 .planning-form__steps button.is-active {
   color: tokens.$omaya-color-dark;
-  background: tokens.$omaya-color-gold;
-  border-color: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
+  border-color: var(--omaya-color-accent);
 }
 
 .planning-form fieldset {
@@ -131,7 +131,7 @@
 .planning-form__radio-group input {
   width: 1rem;
   min-height: 1rem;
-  accent-color: tokens.$omaya-color-gold;
+  accent-color: var(--omaya-color-accent);
 }
 
 .planning-form :is(input, select, textarea) {
@@ -190,7 +190,7 @@
   padding: 0 1.15rem;
   border: 0;
   color: tokens.$omaya-color-dark;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -207,7 +207,7 @@
 
 .planning-form__button:disabled:is(:hover, :focus-visible) {
   color: tokens.$omaya-color-dark;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
 }
 
 .planning-form__button--secondary {
@@ -216,12 +216,12 @@
 }
 
 .planning-form__button--secondary:is(:hover, :focus-visible) {
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
 }
 
 .planning-form__sent {
   margin: 0;
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-weight: 900;
 }
 

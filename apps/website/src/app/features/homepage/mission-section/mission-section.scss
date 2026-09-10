@@ -5,7 +5,7 @@
 }
 
 .mission-section {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 4.5rem;
   color: tokens.$omaya-color-text;
   background: transparent;
 }
@@ -54,7 +54,7 @@
   place-items: center;
   margin-top: 0.7rem;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.22em;

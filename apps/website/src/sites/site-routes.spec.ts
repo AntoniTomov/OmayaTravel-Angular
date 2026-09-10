@@ -52,7 +52,10 @@ describe('Amelia tour content', () => {
     expect(ameliaTour?.title).toBe('Мароко - сини градове и златни дюни');
     expect(ameliaTour?.destination.startLocation).toBe('София');
     expect(ameliaTour?.duration).toEqual({ days: 12, nights: 11 });
-    expect(ameliaTour?.departures).toEqual(['2027-04-22']);
+    expect(ameliaTour?.departures).toEqual([
+      { date: '2027-04-22', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-20', ageGroupLabel: 'Група 40-65 г.' },
+    ]);
     expect(ameliaTour?.price).toEqual({ amount: 2300, currency: 'EUR', unit: 'човек' });
     expect(ameliaTour?.itinerary).toHaveLength(12);
     expect(ameliaTour?.seo.title).toContain('Amelia Travel');
@@ -73,6 +76,8 @@ describe('Amelia tour content', () => {
   it('serves Amelia blog posts separately from Omaya blog posts', () => {
     expect(blogPostsForSite('amelia').map((post) => post.slug)).toEqual([
       'maroko-za-zheni-pateshestvenichki',
+      'ezeroto-song-kul-kirgistan',
+      'india-otblizo',
     ]);
     expect(blogPostsForSite('omaya').map((post) => post.slug)).not.toContain(
       'maroko-za-zheni-pateshestvenichki',

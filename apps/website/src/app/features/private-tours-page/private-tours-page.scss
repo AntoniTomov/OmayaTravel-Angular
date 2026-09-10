@@ -93,7 +93,7 @@
   margin-top: 0.8rem;
   padding: 0.95rem 1.45rem;
   color: tokens.$omaya-color-dark;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-weight: 900;
   text-decoration: none;
   text-transform: uppercase;

@@ -110,7 +110,12 @@
                   </div>
                 </div>
               } @else {
-                <a [routerLink]="link.target" (click)="closeMenus()">{{ link.label }}</a>
+                <a [routerLink]="link.target" (click)="closeMenus()">
+                  {{ link.label }}
+                  @if (link.badge) {
+                    <span class="public-header__badge">{{ link.badge }}</span>
+                  }
+                </a>
               }
             }
           </div>

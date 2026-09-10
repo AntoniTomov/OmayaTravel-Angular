@@ -31,7 +31,7 @@
 .faq-page__hero p,
 .faq-page__intro > p:first-child {
   margin: 0 0 0.7rem;
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -94,12 +94,12 @@
 }
 
 .faq-page summary::after {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   content: '+';
 }
 
 .faq-page details[open] summary {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .faq-page details[open] summary::after {
@@ -159,7 +159,7 @@
   min-height: 3rem;
   border: 0;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-weight: 800;
   text-transform: uppercase;
   cursor: pointer;

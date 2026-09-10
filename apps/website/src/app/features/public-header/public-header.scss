@@ -6,7 +6,7 @@
 
 .public-header {
   --fg: #{tokens.$omaya-color-white};
-  --hover: #{tokens.$omaya-color-gold};
+  --hover: var(--omaya-color-accent);
   position: fixed;
   inset: 0 0 auto;
   z-index: 20;
@@ -185,6 +185,20 @@
   cursor: pointer;
 }
 
+.public-header__badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.45rem;
+  color: var(--omaya-color-muted);
+  background: var(--omaya-color-surface-alt);
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  vertical-align: middle;
+}
+
 .public-header__submenu a {
   display: block;
   padding: 0.65rem 1.5rem;
@@ -347,7 +361,7 @@
   padding: 0 1rem;
   color: tokens.$omaya-color-white;
   font-weight: 800;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   transition:
     color tokens.$omaya-transition-fast,
     background tokens.$omaya-transition-fast;
@@ -371,7 +385,7 @@
 }
 
 .public-header__search-close:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 @media (max-width: 56rem) {

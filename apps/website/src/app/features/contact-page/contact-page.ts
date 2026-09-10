@@ -67,7 +67,7 @@ const AMELIA_CONTACT_PAGE: ContactPageContent = {
   location: 'София, България',
   phoneNumbers: ['+359 88 973 5274', '+359 87 996 5946'],
   email: 'info@ameliatravel.com',
-  backgroundImage: '/assets/images/amelia/home/h1-background-coral.avif',
+  backgroundImage: '/assets/images/amelia/home/h1-background-coral.webp',
   labels: {
     name: 'Име*',
     email: 'Имейл адрес*',

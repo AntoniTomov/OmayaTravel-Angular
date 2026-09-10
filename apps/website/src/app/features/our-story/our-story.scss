@@ -38,7 +38,7 @@
 .our-story__section-heading p,
 .our-story__member > div > p:first-child {
   margin: 0 0 0.7rem;
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -167,7 +167,7 @@
 }
 
 .our-story__faces-title {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-family: 'Kristi', cursive;
   font-size: clamp(3.25rem, 6vw, 5rem);
   font-weight: 400;
@@ -185,7 +185,7 @@
 }
 
 .our-story__member-link a {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-weight: 700;
   text-decoration: none;
 }
@@ -244,7 +244,7 @@
 }
 
 .our-story a:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .our-story__cta {
@@ -253,7 +253,7 @@
   align-items: center;
   padding: 0 1.35rem;
   color: tokens.$omaya-color-white !important;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.15em;

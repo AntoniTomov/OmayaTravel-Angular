@@ -29,6 +29,7 @@ interface TranslationDictionary {
   footer: Record<string, string>;
   homepage: Record<string, string>;
   tourDetail: Record<string, string>;
+  notYet: Record<string, string>;
   navigationGroups: readonly NavigationGroup[];
   navigationLinks: readonly NavigationLink[];
   destinations: readonly TripSearchDestination[];
@@ -183,6 +184,12 @@ const EN: TranslationDictionary = {
     emptyBody:
       'This tour route is ready, and the reusable tour page will render here once its content object is added.',
     emptyHomeLink: 'Return home',
+  },
+  notYet: {
+    heroTitle: 'Not Yet, But Soon',
+    message:
+      'Not every month holds an adventure - but the next one is never far. See all available tours.',
+    cta: 'See all tours',
   },
   navigationGroups: [
     {
@@ -355,7 +362,7 @@ const BG: TranslationDictionary = {
     cookiePolicy: 'Политика за бисквитки',
     privacyPolicy: 'Политика за поверителност',
     terms: 'Общи условия',
-    license: 'Лиценз на Omaya Travel',
+    license: 'Лиценз',
     copyright: '© 2026 Omaya Travel, всички права запазени',
     backToTop: 'Обратно нагоре',
   },
@@ -449,6 +456,12 @@ const BG: TranslationDictionary = {
     emptyBody:
       'Страницата на това пътуване е готова и ще се зареди тук веднага щом добавим съдържанието ѝ.',
     emptyHomeLink: 'Обратно към началото',
+  },
+  notYet: {
+    heroTitle: 'Все още не, но скоро',
+    message:
+      'Не всеки месец крие приключение - но следващото никога не е далеч. Разгледай всички налични пътувания.',
+    cta: 'Виж всички пътувания',
   },
   navigationGroups: [
     {

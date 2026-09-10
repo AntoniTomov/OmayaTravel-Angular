@@ -102,7 +102,7 @@
 }
 
 .legal-page a {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 @media (max-width: 40rem) {

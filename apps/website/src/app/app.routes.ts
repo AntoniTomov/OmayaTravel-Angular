@@ -302,6 +302,17 @@ export const routes: Routes = [
     },
   }),
   withSiteAccess({
+    matcher: staticPageMatcher('standarten-formulyar'),
+    loadComponent: () =>
+      import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    data: {
+      routeKey: 'static-standarten-formulyar',
+      routeType: 'static-page',
+      canonicalPath: '/standarten-formulyar/',
+      pageSlug: 'standarten-formulyar',
+    },
+  }),
+  withSiteAccess({
     path: 'destinations',
     pathMatch: 'full',
     component: PublicRoutePlaceholder,

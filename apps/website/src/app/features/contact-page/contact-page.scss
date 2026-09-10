@@ -74,7 +74,7 @@
   margin-top: 1.65rem;
   border: 0;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -94,7 +94,7 @@
 }
 
 .contact-page a:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .contact-page :is(input, textarea, button, a):focus-visible {

@@ -59,7 +59,7 @@
   border: 0;
   padding: 0 1rem;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-weight: 800;
   text-transform: uppercase;
   cursor: pointer;

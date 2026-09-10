@@ -1,5 +1,5 @@
 [data-theme='amelia'] {
-  --omaya-color-accent: #c76578;
+  --omaya-color-accent: #e8836b;
   --omaya-color-dark: #30252c;
   --omaya-color-ink: #211820;
   --omaya-color-text: #2f2730;
@@ -33,4 +33,40 @@ html[data-theme='amelia'] .public-header__logo {
 
 html[data-theme='amelia'] .public-header__logo img {
   width: 190px !important;
+}
+
+html[data-theme='amelia'] .public-header__dropdown {
+  min-width: 19rem;
+}
+
+html[data-theme='amelia'] .public-header__dropdown > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+html[data-theme='amelia'] .public-header__badge {
+  flex-shrink: 0;
+}
+
+html[data-theme='amelia'] .travel-match {
+  padding-bottom: 2rem;
+}
+
+html[data-theme='amelia'] .homepage__stories-band {
+  background: var(--omaya-color-surface) url('/assets/images/amelia/home/h1-background-coral.webp')
+    center top / cover no-repeat;
+}
+
+html[data-theme='amelia'] .homepage__newsletter {
+  color: #ffffff;
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 0%),
+      rgb(var(--omaya-color-overlay-rgb) / 35%)
+    ),
+    url('/assets/images/amelia/home/newsletter-bgr.webp') center / cover,
+    var(--omaya-color-dark);
 }

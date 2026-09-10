@@ -39,7 +39,7 @@
   text-decoration: none;
 }
 .public-footer a:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 .public-footer :is(a, button):focus-visible {
   outline: tokens.$omaya-border-focus;
@@ -65,7 +65,7 @@
   color: var(--omaya-color-footer-text);
 }
 .public-footer__contact > a:not(.public-footer__brand)::first-letter {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 .public-footer__contact > a[href^='mailto:']::first-letter {
   font-size: 1.3em;
@@ -92,7 +92,7 @@
   color: currentColor;
 }
 .public-footer__socials a:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 .public-footer__post {
   display: grid;
@@ -141,7 +141,7 @@
   height: 3rem;
   border-radius: 50%;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   border: 0;
   font-size: 1.2rem;
   font-weight: 700;

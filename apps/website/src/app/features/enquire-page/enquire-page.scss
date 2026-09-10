@@ -174,7 +174,7 @@
   width: 0.9rem;
   min-height: 0.9rem;
   margin-top: 0.2rem;
-  accent-color: tokens.$omaya-color-gold;
+  accent-color: var(--omaya-color-accent);
 }
 
 .enquire-page p {
@@ -212,7 +212,7 @@
 }
 
 .enquire-page button:is(:hover, :focus-visible) {
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
 }
 
 .enquire-page :is(input, textarea, select, button, a):focus-visible {

@@ -56,7 +56,9 @@
                 [attr.loading]="trip.image.loading"
                 [attr.fetchpriority]="trip.image.fetchPriority"
               />
-              <span>{{ trip.eyebrow }}</span>
+              @if (trip.eyebrow) {
+                <span>{{ trip.eyebrow }}</span>
+              }
             </a>
 
             <div class="featured-trips__content">
@@ -65,10 +67,14 @@
                   trip.title
                 }}</a>
               </h3>
-              <p class="featured-trips__price">
-                {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
-              </p>
-              <p class="featured-trips__duration">{{ trip.duration }}</p>
+              @if (trip.price) {
+                <p class="featured-trips__price">
+                  {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
+                </p>
+              }
+              @if (trip.duration) {
+                <p class="featured-trips__duration">{{ trip.duration }}</p>
+              }
               <p class="featured-trips__description">{{ trip.description }}</p>
             </div>
           </article>

@@ -36,20 +36,21 @@ const AMELIA_HERO_SLIDES: readonly HeroSlide[] = [
   },
 ];
 
+const AMELIA_COMING_SOON_BADGE = 'Очаквайте скоро';
+
 const AMELIA_DESTINATION_LINKS = [
-  { label: 'Алжир', target: '/tour-item/algeria-desert-expedition-tadrart-rouge/' },
-  { label: 'Армения', target: '/not-yet-but-soon/' },
-  { label: 'Грузия', target: '/not-yet-but-soon/' },
-  { label: 'Индия', target: '/not-yet-but-soon/' },
+  { label: 'Армения', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Грузия', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Индия', target: '/tour-item/india-tour/' },
   { label: 'Киргистан', target: '/tour-item/kyrgyzstan-tour/' },
   { label: 'Мароко', target: '/tour-item/morocco-tour/' },
-  { label: 'Намибия', target: '/not-yet-but-soon/' },
-  { label: 'Оман', target: '/not-yet-but-soon/' },
-  { label: 'Перу', target: '/not-yet-but-soon/' },
-  { label: 'Саудитска Арабия', target: '/not-yet-but-soon/' },
-  { label: 'Узбекистан', target: '/not-yet-but-soon/' },
-  { label: 'Южна Корея', target: '/not-yet-but-soon/' },
-  { label: 'Япония', target: '/not-yet-but-soon/' },
+  { label: 'Намибия', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Оман', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Перу', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Саудитска Арабия', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Узбекистан', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Южна Корея', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  { label: 'Япония', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
 ] as const;
 
 const AMELIA_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
@@ -78,7 +79,7 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
   {
     title: 'Мароко - сини градове и златни дюни',
     category: 'Women only',
-    categoryLabel: 'Само за жени',
+    categoryLabel: '',
     destination: 'Мароко',
     excerpt:
       'Има един момент - някъде между сините улички на Шефшауен и кехлибарената тишина на Сахара - в който Мароко спира да бъде дестинация и започва да прилича на сън, който вече си сънувала. 12 дни от Атлантическия бряг до дюните на Сахара, в малка група само от жени.',
@@ -89,22 +90,22 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     target: '/tour-item/morocco-tour/',
   },
   {
-    // TODO_AMELIA_ALGERIA: Bulgarian tour copy and Amelia-owned imagery are still pending.
-    title: 'Algeria Desert Expedition (Tadrart Rouge)',
-    category: 'Classic Tours',
-    destination: 'Алжир',
+    title: 'Индия',
+    category: 'Women only',
+    categoryLabel: '',
+    destination: 'Индия',
     excerpt:
-      "Explore Algeria's Tassili n'Ajjer on an 8-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
-    image: '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
-    alt: 'Пустинен пейзаж в Алжир',
-    price: 'EUR1450',
-    duration: '8 Days 7 Nights',
-    target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+      'Индия не е страна, която можеш да побереш в няколко думи. Тя е шумна и тиха, цветна и семпла, хаотична и удивително подредена в собствения си ритъм. Понякога ще те накара да се усмихнеш, друг път ще те изненада, а на моменти просто ще ти се прииска да спреш и да гледаш.',
+    image: '/assets/images/amelia/tours/india/india-card.webp',
+    alt: 'Тадж Махал в Индия',
+    price: 'EUR1420',
+    duration: '14 дни / 13 нощувки',
+    target: '/tour-item/india-tour/',
   },
   {
     title: 'Киргистан - юрти, коне и високи планини',
     category: 'Women only',
-    categoryLabel: 'Само за жени',
+    categoryLabel: '',
     destination: 'Киргистан',
     excerpt:
       'Представи си, че се събуждаш в юрта на 3000 метра надморска височина, край тюркоазените води на Сон-Кул, свободни коне и безкрайни високопланински пасища.',
@@ -126,7 +127,6 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
   travelMatchSection: {
     title: 'Защо да се присъединиш към нас?',
     subtitle: '',
-    backgroundImage: '/assets/images/amelia/home/h1-background-coral.avif',
     items: [
       {
         title: 'ТВОЯТА ОБЩНОСТ',
@@ -183,6 +183,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
   searchIndex: [
     {
       type: 'Tour',
+      title: 'Северна Индия отблизо',
+      excerpt:
+        '14 дни в Ню Делхи, Джайпур, Агра и Варанаси - Тадж Махал, Чанд Баори, аарти на Ганг и блокпечат с жените от Багру.',
+      canonicalPath: '/tour-item/india-tour/',
+    },
+    {
+      type: 'Tour',
       title: 'Киргистан - юрти, коне и високи планини',
       excerpt:
         'Юрти край Сон-Кул, конни преходи, номадска култура, горещи извори и едни от най-впечатляващите пейзажи на Централна Азия.',
@@ -201,6 +208,20 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       excerpt:
         'Практичен пътеводител за жени, които планират пътуване до Мароко: безопасност, облекло, сезони, местни обичаи и пътуване в малка женска група.',
       canonicalPath: '/maroko-za-zheni-pateshestvenichki/',
+    },
+    {
+      type: 'Article',
+      title: 'Езерото Сонг-Кул: мястото, което ще те накара да се почувстваш свободен',
+      excerpt:
+        'Практичен гид за езерото Сонг-Кул в Киргизстан: кога да пътуваш, как да стигнеш, къде да спиш и какво да очакваш от живота на 3016 метра надморска височина.',
+      canonicalPath: '/ezeroto-song-kul-kirgistan/',
+    },
+    {
+      type: 'Article',
+      title: 'Индия отблизо: между хаоса, цветовете и тишината',
+      excerpt:
+        'Впечатления от Северна Индия – контрастите между шумните улици и тихите дворове, цветовете, храната и малките моменти, които остават след едно пътуване дотам.',
+      canonicalPath: '/india-otblizo/',
     },
     {
       type: 'Tour',
@@ -229,14 +250,19 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/contact/',
     '/blog-list/',
     '/maroko-za-zheni-pateshestvenichki/',
+    '/ezeroto-song-kul-kirgistan/',
+    '/india-otblizo/',
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    '/tour-item/india-tour/',
     '/tour-item/kyrgyzstan-tour/',
     '/tour-item/morocco-tour/',
     '/cookie-policy/',
     '/privacy-policy/',
     '/termsconditions/',
+    '/standarten-formulyar/',
+    '/omaya-travel-license/',
     '/404/',
   ],
   pageSeo: [

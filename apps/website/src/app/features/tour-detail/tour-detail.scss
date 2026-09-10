@@ -91,7 +91,7 @@
 .tour-detail__fact mat-icon,
 .tour-detail__included::before,
 .tour-detail__day-detail::before {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .tour-detail__tabs mat-icon {
@@ -277,7 +277,7 @@
     font-weight: 600;
 
     &:hover {
-      color: tokens.$omaya-color-gold;
+      color: var(--omaya-color-accent);
     }
   }
 }
@@ -285,7 +285,7 @@
 .tour-detail__highlights h3 mat-icon {
   width: 18px;
   height: 18px;
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-size: 18px;
 }
 
@@ -427,7 +427,7 @@
   height: 3.5rem;
   place-items: center;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-family: tokens.$omaya-font-heading;
   font-size: 1.6rem;
   font-weight: 700;
@@ -442,7 +442,7 @@
 }
 
 .tour-detail__day-detail mat-icon {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .tour-detail__faq-list {
@@ -471,12 +471,12 @@
 }
 
 .tour-detail__faq summary::after {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   content: '+';
 }
 
 .tour-detail__faq details[open] summary {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .tour-detail__faq details[open] summary::after {
@@ -520,7 +520,7 @@
   left: 0.7rem;
   width: 1rem;
   height: 1rem;
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-size: 1rem;
   transform: translateY(-50%);
 }
@@ -575,7 +575,7 @@
   place-items: center;
   padding: 0;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   border-radius: 50%;
   font-weight: 900;
 }
@@ -619,7 +619,7 @@
 }
 
 .tour-detail__calendar-grid .tour-detail__calendar-day--start {
-  border-color: tokens.$omaya-color-gold;
+  border-color: var(--omaya-color-accent);
   color: tokens.$omaya-color-dark;
   background: #edc06f;
   cursor: pointer;
@@ -627,7 +627,7 @@
 
 .tour-detail__calendar-grid .tour-detail__calendar-day--selected {
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
 }
 
 .tour-detail__calendar-grid button:disabled {
@@ -658,7 +658,7 @@
 .tour-detail__calendar-legend i {
   width: 0.72rem;
   height: 0.72rem;
-  border: 1px solid tokens.$omaya-color-gold;
+  border: 1px solid var(--omaya-color-accent);
 }
 
 .tour-detail__calendar-legend-start {
@@ -683,7 +683,7 @@
   width: 1rem;
   height: 1rem;
   margin: 0.1rem 0 0;
-  accent-color: tokens.$omaya-color-gold;
+  accent-color: var(--omaya-color-accent);
 }
 
 .tour-detail__terms a {
@@ -708,12 +708,12 @@
 
 .tour-detail__availability:is(:hover, :focus-visible) {
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
 }
 
 .tour-detail__book {
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   letter-spacing: 0.18rem;
   transition: background 0.5s;
 }
@@ -829,7 +829,7 @@
   margin-top: 1rem;
   padding: 0.75rem 1.4rem;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-weight: 800;
   text-decoration: none;
 }

@@ -109,39 +109,39 @@
     @if (siteFeatures().showMission) {
       <app-mission-section />
     }
+    @if (siteFeatures().showNewsletter) {
+      <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
+        <div class="homepage__newsletter-inner">
+          <div>
+            <h2 id="homepage-newsletter-title">Join Newsletter</h2>
+            <p>To receive our best deals</p>
+          </div>
+
+          <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
+            <label for="homepage-newsletter-email">Email address</label>
+            <input
+              id="homepage-newsletter-email"
+              type="email"
+              name="email"
+              placeholder="Email address"
+              autocomplete="email"
+              required
+            />
+            <app-form-honeypot />
+            <button type="submit" [disabled]="newsletterStatus() === 'sending'">
+              {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
+            </button>
+            <app-form-status
+              [message]="newsletterMessage()"
+              [isError]="newsletterStatus() === 'error'"
+            />
+          </form>
+        </div>
+      </section>
+    }
   </div>
   @if (siteFeatures().showPrivateTours) {
     <app-private-tours />
-  }
-  @if (siteFeatures().showNewsletter) {
-    <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
-      <div class="homepage__newsletter-inner">
-        <div>
-          <h2 id="homepage-newsletter-title">Join Newsletter</h2>
-          <p>To receive our best deals</p>
-        </div>
-
-        <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
-          <label for="homepage-newsletter-email">Email address</label>
-          <input
-            id="homepage-newsletter-email"
-            type="email"
-            name="email"
-            placeholder="Email address"
-            autocomplete="email"
-            required
-          />
-          <app-form-honeypot />
-          <button type="submit" [disabled]="newsletterStatus() === 'sending'">
-            {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
-          </button>
-          <app-form-status
-            [message]="newsletterMessage()"
-            [isError]="newsletterStatus() === 'error'"
-          />
-        </form>
-      </div>
-    </section>
   }
   <div class="homepage__stories-band">
     @if (siteFeatures().showBlogPosts) {

@@ -72,6 +72,9 @@ export class PublicFooter {
       { label: this.i18n.t('footer.cookiePolicy'), target: '/cookie-policy/' },
       { label: this.i18n.t('footer.privacyPolicy'), target: '/privacy-policy/' },
       { label: this.i18n.t('footer.terms'), target: '/termsconditions/' },
+      ...(this.activeSite.site().id === 'amelia'
+        ? [{ label: 'Стандартен формуляр', target: '/standarten-formulyar/' }]
+        : []),
       { label: this.i18n.t('footer.license'), target: '/omaya-travel-license/' },
     ].filter((link) => this.isRouteEnabled(link.target)),
   );

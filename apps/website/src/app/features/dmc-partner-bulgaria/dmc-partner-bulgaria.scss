@@ -52,7 +52,7 @@
   align-items: center;
   padding: 0 2rem;
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -163,12 +163,12 @@
 }
 
 .dmc-page__faq summary::after {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   content: '+';
 }
 
 .dmc-page__faq details[open] summary {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .dmc-page__faq details[open] summary::after {

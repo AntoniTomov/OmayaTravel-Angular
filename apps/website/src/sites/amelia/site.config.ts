@@ -43,7 +43,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
   },
   contact: {
     email: 'info@ameliatravel.com',
-    phoneNumbers: [],
+    phoneNumbers: ['+359 88 973 5274', '+359 87 996 5946'],
     resendFrom: 'Amelia Travel <website@ameliatravel.bg>',
     resendReplyTo: 'info@ameliatravel.bg',
   },
@@ -51,5 +51,11 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     mailchimpAudienceIdEnvVar: 'AMELIA_MAILCHIMP_AUDIENCE_ID',
     tags: ['amelia', 'bg'],
   },
-  socialLinks: [],
+  socialLinks: [
+    {
+      label: 'Instagram',
+      url: 'https://www.instagram.com/ameliatravelbg/',
+      icon: 'social-instagram',
+    },
+  ],
 };

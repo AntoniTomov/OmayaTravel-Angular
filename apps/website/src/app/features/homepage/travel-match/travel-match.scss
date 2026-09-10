@@ -9,7 +9,7 @@
   color: tokens.$omaya-color-ink;
   background:
     var(--travel-match-background-image, none) center top / cover no-repeat,
-    tokens.$omaya-color-white;
+    var(--omaya-color-page, #{tokens.$omaya-color-white});
 }
 
 .travel-match__inner {
@@ -70,7 +70,7 @@
 }
 
 .travel-match__item:is(:hover, :focus-visible) h3 {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .travel-match__item:focus-visible {

@@ -161,8 +161,8 @@
 .homepage__trip-search > button {
   color: tokens.$omaya-color-white;
   font-size: 0.86rem;
-  background: tokens.$omaya-color-gold;
-  border: 1px solid tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
+  border: 1px solid var(--omaya-color-accent);
   border-radius: 2px;
   transition:
     color tokens.$omaya-transition-fast,
@@ -206,7 +206,7 @@
 }
 
 .homepage__carousel-button--active {
-  background: tokens.$omaya-color-gold !important;
+  background: var(--omaya-color-accent) !important;
 }
 
 .homepage__newsletter {
@@ -279,7 +279,7 @@
 }
 
 .homepage__newsletter-form button {
-  border: 1px solid tokens.$omaya-color-gold;
+  border: 1px solid var(--omaya-color-accent);
   padding: 0 1.35rem;
   color: tokens.$omaya-color-white;
   background: var(--omaya-color-heading);

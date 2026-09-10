@@ -76,7 +76,7 @@
 }
 
 .blog-posts__card-link:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   outline: tokens.$omaya-border-focus;
   outline-offset: 4px;
 }
@@ -91,7 +91,7 @@
 }
 
 .blog-posts__date .material-icons {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
   font-size: 1rem;
   line-height: 1;
 }

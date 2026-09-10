@@ -164,10 +164,10 @@ const AMELIA_OUR_STORY: StoryPageContent = {
   title: 'За нас',
   hero: {
     image: {
-      src: '/assets/images/amelia/our-story/our-mission.jpg',
-      alt: 'Жени пътешественички, седнали заедно край морето',
-      width: 1232,
-      height: 816,
+      src: '/assets/images/our-story/Our-story-16.webp',
+      alt: 'Основателките на Amelia Travel',
+      width: 1600,
+      height: 630,
     },
   },
   story: {

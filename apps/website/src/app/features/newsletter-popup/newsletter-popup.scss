@@ -70,7 +70,7 @@
   left: 50%;
   width: 1.45rem;
   height: 1px;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   content: '';
 }
 
@@ -159,7 +159,7 @@
 .newsletter-popup__primary,
 .newsletter-popup__form button {
   color: tokens.$omaya-color-white;
-  background: tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
   font-size: 1.25rem;
   text-transform: uppercase;
   cursor: pointer;
