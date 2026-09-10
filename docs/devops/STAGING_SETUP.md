@@ -17,14 +17,35 @@ Diagnosed 10 September 2026:
 | Port 443                          | **TLS handshake fails**, including with certificate validation disabled |
 | Staging runtime branch            | Published and current                                                   |
 
-A handshake that fails even with validation off is not an expired or mismatched certificate — it
-means **no certificate exists for the hostname**. The subdomain was recreated without one.
+A handshake that fails even with validation off is not an expired or mismatched certificate — the
+server never presents one at all.
 
 ## 1. Issue the TLS certificate
 
-In hPanel, on the staging subdomain, issue a free Let's Encrypt certificate and wait for it to show
-as active. Menu labels move between hPanel versions; production already has one, so the reliable
-route is to open the production site's SSL screen and do the same thing for the staging subdomain.
+**hPanel showing the certificate as Active is not evidence that it works.** On 10 September it
+listed `staging.omayatravel.com` as Lifetime SSL, Active, created 2026-08-25, while the server was
+refusing every handshake. Compared against a subdomain that does not exist:
+
+| Test, same server                       | Port 80        | Port 443                                     |
+| --------------------------------------- | -------------- | -------------------------------------------- |
+| A hostname that was never created       | 200, catch-all | `tlsv1 alert internal error`, no certificate |
+| `staging.omayatravel.com`               | 301 to HTTPS   | `tlsv1 alert internal error`, no certificate |
+| `omayatravel.com` forced to the same IP | —              | 200, TLS negotiated                          |
+
+So the vhost half-exists: port 80 knows the hostname and redirects it to HTTPS, and HTTPS then
+refuses. Port 80 sending traffic to a port that rejects it is why the site is unreachable rather
+than merely insecure.
+
+The certificate record predates the subdomain: it was created 2026-08-25 and the subdomain was
+recreated 2026-09-09. The record survived; the binding to the new vhost did not.
+
+The fix is to remove that SSL entry and re-issue it, which forces a fresh install against the
+current vhost. Menu labels move between hPanel versions; production already has a working
+certificate, so the reliable route is to open its SSL screen and mirror it.
+
+If re-issuing does not help, it is a Hostinger-side binding problem rather than a configuration
+one. The evidence to quote is the table above: an Active panel record, alert 80 with
+`no peer certificate available` for that SNI, and the same IP serving production successfully.
 
 Verify from a terminal, not a browser — a browser will cache and confuse the picture:
 
