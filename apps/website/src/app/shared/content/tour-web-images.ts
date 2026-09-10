@@ -111,3 +111,32 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp':
     '/assets/images/tour-web/ef647157a32fac6a.avif 320w, /assets/images/tour-web/5486683f41360c6d.avif 480w, /assets/images/tour-web/133d997121483967.avif 640w, /assets/images/tour-web/d9c946bd21bf9d57.avif 800w, /assets/images/tour-web/4e2742b9eeb1be17.avif 960w, /assets/images/tour-web/a278583b0deb8df6.avif 964w',
 };
+// Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
+// the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
+// original, which is why these are a separate map rather than a replacement.
+export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp':
+    '/assets/images/tour-web/f5b5785ceba8962a.avif 320w, /assets/images/tour-web/1d50c8d6ff8007d8.avif 480w, /assets/images/tour-web/d42f3f5062ef36fb.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp':
+    '/assets/images/tour-web/3ab1eee6b9741729.avif 320w, /assets/images/tour-web/683799e03d187eb6.avif 480w, /assets/images/tour-web/dec45605f2b51d13.avif 640w, /assets/images/tour-web/7333865ff7d0c2a3.avif 800w, /assets/images/tour-web/e34c8b7e178a77f8.avif 1183w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp':
+    '/assets/images/tour-web/e16c781ba67c2010.avif 320w, /assets/images/tour-web/2372929e88893215.avif 480w, /assets/images/tour-web/d0bfcbc3c6d0d23b.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp':
+    '/assets/images/tour-web/aa87f2ef473ca661.avif 320w, /assets/images/tour-web/5414c1e3140e5f49.avif 480w, /assets/images/tour-web/016706c3db2e1f91.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp':
+    '/assets/images/tour-web/5c454836c7fa80ea.avif 320w, /assets/images/tour-web/869e4e0b6e31f6b4.avif 480w, /assets/images/tour-web/232003eebb54eab5.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp':
+    '/assets/images/tour-web/c333681fb49cd496.avif 320w, /assets/images/tour-web/4342892eb561510f.avif 480w, /assets/images/tour-web/de10c4887f08ddff.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp':
+    '/assets/images/tour-web/42b2062a5375e345.avif 320w, /assets/images/tour-web/fccdf6149873c64d.avif 480w, /assets/images/tour-web/ad69de3ab9a10b80.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp':
+    '/assets/images/tour-web/1497f97086b84376.avif 320w, /assets/images/tour-web/dc958a79d457af1a.avif 480w, /assets/images/tour-web/8165e04b23943dd4.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp':
+    '/assets/images/tour-web/83a6f1f842c9cfb1.avif 320w, /assets/images/tour-web/7d0eeddc2953d721.avif 480w, /assets/images/tour-web/b83189d2a4b1f6c0.avif 640w, /assets/images/tour-web/c9673d9b6ac7fe48.avif 655w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp':
+    '/assets/images/tour-web/8d5a38dd62f11403.avif 320w, /assets/images/tour-web/46f37336f29e5f2d.avif 480w, /assets/images/tour-web/8b8a9ecb7f07cc1f.avif 581w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp':
+    '/assets/images/tour-web/30e8947d8f414504.avif 320w, /assets/images/tour-web/9d4a7b83defe1869.avif 480w, /assets/images/tour-web/b98e0f05b076e060.avif 640w, /assets/images/tour-web/3d4f31fc22e9fcfd.avif 800w, /assets/images/tour-web/b28cdd86c47fa4f8.avif 1439w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp':
+    '/assets/images/tour-web/aadd5e0be942dc84.avif 320w, /assets/images/tour-web/73767c74e22be3a3.avif 480w, /assets/images/tour-web/5aa4c95307acf7c7.avif 640w, /assets/images/tour-web/1cad68e539a9f199.avif 800w, /assets/images/tour-web/7efd5a08386fb244.avif 1600w',
+};

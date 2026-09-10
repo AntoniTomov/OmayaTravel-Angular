@@ -542,3 +542,62 @@ background rather than losing it.
   bytes on the largest element on the page; not worth doing blind.
 
 Re-audit before claiming a score change.
+
+## Cropping gallery thumbnails, and a measured before/after — 10 September 2026
+
+### Why cropping here is not an editorial decision
+
+The gallery grid renders every image through `object-fit: cover` with **no `object-position` set**,
+so the default `50% 50%` applies. A centred crop is therefore _exactly_ the region the grid already
+displays: the rendering is pixel-identical and only the bytes change. That is what makes this safe
+to do without a conversation about composition, unlike the art-directed crops still outstanding.
+
+The originals are untouched. The lightbox shows the whole frame at `max-height: 82vh` and its
+"open full-size" link points at `image.src`, so cropping the source files themselves would have
+broken the full-size view. The crops live in a separate manifest, `TOUR_WEB_THUMBNAIL_SRCSETS`,
+consumed only by the grid.
+
+Sources that cannot fill the crop are clamped rather than skipped: a landscape 1230×800 photograph
+in a portrait slot is limited by its height and yields 582×800, which still beats leaving the
+browser to upscale a smaller candidate.
+
+### Before and after, same page, same viewport, same script
+
+`/tour-item/kyrgyzstan-tour/` at 375 px with every lazy image forced to load, measured against
+three local SSR builds:
+
+| Build                                                   | Image bytes | Requests |
+| ------------------------------------------------------- | ----------: | -------: |
+| `dev` — what production serves today, scoring 79        |     748,624 |       18 |
+| plus PR #75 (gallery srcset, 800w step, CSS background) |     363,628 |       18 |
+| plus this change (cropped thumbnails)                   | **326,260** |       18 |
+
+**Total against production: −422,364 bytes, −56.4%.** This change on its own contributes −37,368
+(−10.3%); most of it lands on the one genuinely tall photograph, 140,476 → 104,595, because the
+other two gallery previews are already close to the display ratio and have little to crop.
+
+The hero — the LCP element — is 79,106 → 58,535 across both changes, −26%.
+
+### What this will and will not do to the score
+
+**Say the quiet part plainly: most of these bytes are marked `Unscored` by Lighthouse.** The
+"Improve image delivery" insight that flagged 253 KiB is labelled Unscored, and the gallery
+previews are lazy and below the fold. Removing their weight is a real improvement for real
+visitors — less data on a metered phone, faster scrolling — but it is not what the number is
+computed from.
+
+The score comes from FCP 2.9 s, LCP 4.4 s, TBT 40 ms, CLS 0 and SI 3.2 s. The only part of this
+work that touches those is the hero, and 20.5 kB less on Slow 4G is worth roughly a tenth of a
+second. **Expect a small score movement, not a jump to 97.** The destination page reached 97
+because its problem — a 475 kB thumbnail and two uncropped card images — sat much closer to the
+metrics that count.
+
+If the goal is the tour page's number specifically, the remaining lever is LCP, and that means the
+render-blocking chain and the hero, not the gallery.
+
+### Also found, and not caused by this work
+
+Six images upscale into their slots on the tour page: five highlight thumbnails whose sources are
+only 231 px wide against a 327 px slot, and the Visa logo at 102 px against 139. Both predate this
+change — the highlight sources are simply too small, and the payment logos are sized by CSS height.
+Worth fixing when someone regenerates those assets; not a delivery problem.
