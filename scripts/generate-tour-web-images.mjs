@@ -10,7 +10,11 @@ import { format, resolveConfig } from "prettier";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const assets = resolve(root, "apps/website/src/assets");
 const output = resolve(assets, "images/tour-web");
-const RESPONSIVE_WIDTHS = [960, 1440, 1920];
+// 640 is here for card images. Destination and listing cards render around 333 CSS px, so even at
+// a 2x device pixel ratio they need ~666 px and the old 960 floor was the smallest thing on offer —
+// an audit flagged the resulting overshoot as "larger than it needs to be". Full-width heroes still
+// resolve to 960 and above, so adding the smaller step costs them nothing.
+const RESPONSIVE_WIDTHS = [640, 960, 1440, 1920];
 const inputs = [
   "images/destinations/classic-tours-bgr.webp",
   "images/home-page/trips-carousel/Algeria-trip.webp",
@@ -27,6 +31,11 @@ const inputs = [
   "images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
   "images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
   "images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
+  // Guide and article cards. These render at about 335 CSS px but ship their full source: the Song
+  // Kul yurt camp alone was 475,382 bytes, the largest single asset on the Kyrgyzstan destination
+  // page and bigger than the hero.
+  "images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
+  "images/blog-posts/Kyrgystan-post-preview-bgr.webp",
 ];
 mkdirSync(output, { recursive: true });
 const manifest = {};

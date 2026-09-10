@@ -20,6 +20,12 @@ interface FooterPost {
 interface PaymentProvider {
   name: string;
   src: string;
+  // Intrinsic pixels. The stylesheet sizes these to `height: 60px; width: auto`, so without an
+  // intrinsic ratio the browser reserves no width until each logo decodes and the whole footer
+  // reflows — a production audit measured a layout shift of 1.000 against the footer from exactly
+  // this. The attributes give the ratio up front; the CSS still decides the rendered size.
+  width: number;
+  height: number;
 }
 
 interface FooterLink {
@@ -79,15 +85,47 @@ export class PublicFooter {
   );
 
   protected readonly paymentProviders: readonly PaymentProvider[] = [
-    { name: 'Mastercard', src: '/assets/images/home-page/payment-providers/MastercardLogo-2.png' },
-    { name: 'Maestro', src: '/assets/images/home-page/payment-providers/MaestroLogo.png' },
-    { name: 'Visa', src: '/assets/images/home-page/payment-providers/VisaLogo.png' },
-    { name: 'Revolut', src: '/assets/images/home-page/payment-providers/RevolutLogo.png' },
-    { name: 'Google Pay', src: '/assets/images/home-page/payment-providers/GPayLogo.png' },
-    { name: 'Apple Pay', src: '/assets/images/home-page/payment-providers/ApplePayLogo.png' },
+    {
+      name: 'Mastercard',
+      src: '/assets/images/home-page/payment-providers/MastercardLogo-2.png',
+      width: 120,
+      height: 74,
+    },
+    {
+      name: 'Maestro',
+      src: '/assets/images/home-page/payment-providers/MaestroLogo.png',
+      width: 160,
+      height: 100,
+    },
+    {
+      name: 'Visa',
+      src: '/assets/images/home-page/payment-providers/VisaLogo.png',
+      width: 102,
+      height: 44,
+    },
+    {
+      name: 'Revolut',
+      src: '/assets/images/home-page/payment-providers/RevolutLogo.png',
+      width: 137,
+      height: 160,
+    },
+    {
+      name: 'Google Pay',
+      src: '/assets/images/home-page/payment-providers/GPayLogo.png',
+      width: 160,
+      height: 160,
+    },
+    {
+      name: 'Apple Pay',
+      src: '/assets/images/home-page/payment-providers/ApplePayLogo.png',
+      width: 160,
+      height: 77,
+    },
     {
       name: 'American Express',
       src: '/assets/images/home-page/payment-providers/AmricanExpressLogo.png',
+      width: 89,
+      height: 90,
     },
   ];
 

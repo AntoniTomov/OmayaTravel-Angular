@@ -4,22 +4,11 @@
 @use './styles/buttons';
 @use './styles/forms';
 @use './styles/sections';
-
-// Self-hosted Material Icons, subsetted to the icons this site actually renders by
-// scripts/generate-material-icons-subset.mjs. Google's hosted font is 128,352 bytes for the whole
-// icon set; the subset is 2,688. It also takes fonts.gstatic.com off the critical path for icons,
-// which on a slow connection were competing with the LCP image for bandwidth. These rules replace
-// the ones the build used to inline from the Material Icons stylesheet.
-//
-// `block` rather than `swap`: during a swap period the browser paints the ligature name as
-// literal text, so a slow load would flash the words "calendar_month" at the reader.
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url('./assets/fonts/material-icons-subset.woff2') format('woff2');
-}
+// Self-hosted Material Icons, subsetted to the icons this site actually renders and inlined as a
+// data URI by scripts/generate-material-icons-subset.mjs. Google's hosted font is 128,352 bytes
+// for the whole icon set; the subset is 2,688, which is less than a round trip costs — a
+// production audit found the separate request sitting at 1,037 ms in the critical chain.
+@use './styles/material-icons';
 
 .material-icons {
   font-family: 'Material Icons';
