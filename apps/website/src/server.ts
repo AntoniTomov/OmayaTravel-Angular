@@ -14,7 +14,9 @@ import {
   buildRobotsTxt,
   buildSitemapIndexXml,
   buildSitemapPagesXml,
+  buildUnpublishedHostRobotsTxt,
   canonicalHostForRequestHost,
+  isPublishedSiteHost,
 } from './app/shared/seo/sitemap';
 
 loadLocalEnv();
@@ -59,6 +61,25 @@ const app = express();
 const angularApp = new AngularNodeAppEngine({ allowedHosts, trustProxyHeaders });
 
 app.disable('x-powered-by');
+
+/**
+ * Keep hosts that are not published site domains out of the index. Staging is a complete, stable,
+ * linkable copy of the site on its own origin, so without this it competes with the real one for
+ * the same queries — the duplicate-content problem canonical tags exist to prevent, except here
+ * the duplicate is the entire site. The deployment plan asks for `X-Robots-Tag: noindex, nofollow`
+ * on staging; this is that, applied to every unpublished host rather than a hardcoded subdomain,
+ * so previews and stray `Host` headers are covered by the same rule.
+ *
+ * It sits before everything else deliberately: the header has to reach error pages and assets too,
+ * not only the routes that render successfully.
+ */
+app.use((req, res, next) => {
+  if (!isPublishedSiteHost(req.get('host'))) {
+    res.set('X-Robots-Tag', 'noindex, nofollow');
+  }
+
+  next();
+});
 
 /**
  * `www` and the bare domain both served HTTP 200, which splits every page's ranking signals across
@@ -108,7 +129,13 @@ app.use((req, res, next) => {
 
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain').set('Cache-Control', 'public, max-age=3600');
-  res.send(buildRobotsTxt(canonicalHostFor(req)));
+  // An unpublished host must not invite crawling at all, and must not advertise the real
+  // sitemap: doing so would hand Googlebot a list of staging URLs to fetch.
+  res.send(
+    isPublishedSiteHost(req.get('host'))
+      ? buildRobotsTxt(canonicalHostFor(req))
+      : buildUnpublishedHostRobotsTxt(),
+  );
 });
 
 app.get('/sitemap.xml', (req, res) => {
