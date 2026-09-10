@@ -20,6 +20,26 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/655ce45fb8bc7fa5.avif',
   '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp':
     '/assets/images/tour-web/4e18ce1efb9aaad6.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp':
+    '/assets/images/tour-web/3ed286cf47a7e131.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp':
+    '/assets/images/tour-web/07e67f1ac18affa8.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp':
+    '/assets/images/tour-web/39adc444923e6e5d.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp':
+    '/assets/images/tour-web/e14720922e5b936d.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp':
+    '/assets/images/tour-web/a9ea33ff8e77b1c1.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp':
+    '/assets/images/tour-web/dc37eaf4d3e2c25a.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp':
+    '/assets/images/tour-web/248e92e1b49546c2.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp':
+    '/assets/images/tour-web/e5f0780fce67f3f9.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp':
+    '/assets/images/tour-web/4843216e4c856e84.avif',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp':
+    '/assets/images/tour-web/e42bd2d504d52362.avif',
   '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp':
     '/assets/images/tour-web/84a6ace9a6cf0aee.avif',
   '/assets/images/destinations/Marocco/morocco-bgr.webp':
@@ -37,27 +57,57 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
-    '/assets/images/tour-web/92d0f5e08ba781e1.avif 640w, /assets/images/tour-web/3f9edd21a59a34e7.avif 960w, /assets/images/tour-web/14dacba2195a1ff7.avif 1440w, /assets/images/tour-web/b1c5d1d34924924e.avif 1920w, /assets/images/tour-web/9d728a095e2e6cf0.avif 2560w',
+    '/assets/images/tour-web/c611ee7ba7f5b035.avif 320w, /assets/images/tour-web/f3f4dc9cfe3a7144.avif 480w, /assets/images/tour-web/92d0f5e08ba781e1.avif 640w, /assets/images/tour-web/6006fdc882a07337.avif 800w, /assets/images/tour-web/3f9edd21a59a34e7.avif 960w, /assets/images/tour-web/14dacba2195a1ff7.avif 1440w, /assets/images/tour-web/b1c5d1d34924924e.avif 1920w, /assets/images/tour-web/9d728a095e2e6cf0.avif 2560w',
+  '/assets/images/home-page/trips-carousel/Algeria-trip.webp':
+    '/assets/images/tour-web/161d85f989b149d0.avif 320w, /assets/images/tour-web/97c7a1ca890b73b1.avif 480w, /assets/images/tour-web/9fa8c652855ecbba.avif 622w',
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
+    '/assets/images/tour-web/a68de1d84ab96014.avif 320w, /assets/images/tour-web/ec07db3fea9170ab.avif 480w, /assets/images/tour-web/330c342b5e356b15.avif 632w',
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
+    '/assets/images/tour-web/e4d0eb200e34ef11.avif 320w, /assets/images/tour-web/6c1f2d13bb403cae.avif 480w, /assets/images/tour-web/6c3c7fb2b543d5b9.avif 632w',
+  '/assets/images/women-tours/bulgaria-women-only-card-bgr.webp':
+    '/assets/images/tour-web/7e1481c2b638ad1c.avif 320w, /assets/images/tour-web/a6b0538afbb9e10b.avif 400w',
+  '/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp':
+    '/assets/images/tour-web/bd7a376d6bf966a5.avif 320w, /assets/images/tour-web/cb63a0743b31e61d.avif 409w',
   '/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp':
-    '/assets/images/tour-web/64980d497651e0b2.avif 640w, /assets/images/tour-web/fa7535dd01f26129.avif 960w, /assets/images/tour-web/1b12f35750586c14.avif 1440w, /assets/images/tour-web/c5fe69b27efd7590.avif 1920w',
+    '/assets/images/tour-web/78e4e728ba2da72e.avif 320w, /assets/images/tour-web/be832cd158d67bc2.avif 480w, /assets/images/tour-web/64980d497651e0b2.avif 640w, /assets/images/tour-web/d3014e83786a7d30.avif 800w, /assets/images/tour-web/fa7535dd01f26129.avif 960w, /assets/images/tour-web/1b12f35750586c14.avif 1440w, /assets/images/tour-web/c5fe69b27efd7590.avif 1920w',
   '/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp':
-    '/assets/images/tour-web/056762ada9859ce1.avif 640w, /assets/images/tour-web/93ded0244e24b688.avif 960w, /assets/images/tour-web/a9ea33ff8e77b1c1.avif 1230w',
+    '/assets/images/tour-web/c0f4d84e5ab36f25.avif 320w, /assets/images/tour-web/2e659eb03017e0fc.avif 480w, /assets/images/tour-web/056762ada9859ce1.avif 640w, /assets/images/tour-web/5a0fc6638bc4f764.avif 800w, /assets/images/tour-web/93ded0244e24b688.avif 960w, /assets/images/tour-web/a9ea33ff8e77b1c1.avif 1230w',
   '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp':
-    '/assets/images/tour-web/86d3cb04d6857fab.avif 640w, /assets/images/tour-web/83313db3fb395ef9.avif 960w, /assets/images/tour-web/655ce45fb8bc7fa5.avif 1230w',
+    '/assets/images/tour-web/51ff96c98dcfb89c.avif 320w, /assets/images/tour-web/b304f641719d7654.avif 480w, /assets/images/tour-web/86d3cb04d6857fab.avif 640w, /assets/images/tour-web/1f6cc650625fcac9.avif 800w, /assets/images/tour-web/83313db3fb395ef9.avif 960w, /assets/images/tour-web/655ce45fb8bc7fa5.avif 1230w',
   '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp':
-    '/assets/images/tour-web/0339b92f2babb01e.avif 640w, /assets/images/tour-web/1ee4f348ebca0d2c.avif 960w, /assets/images/tour-web/4e18ce1efb9aaad6.avif 1183w',
+    '/assets/images/tour-web/2b5b8d833f936660.avif 320w, /assets/images/tour-web/c89d3cf94deaa539.avif 480w, /assets/images/tour-web/0339b92f2babb01e.avif 640w, /assets/images/tour-web/c145243e258cabc4.avif 800w, /assets/images/tour-web/1ee4f348ebca0d2c.avif 960w, /assets/images/tour-web/4e18ce1efb9aaad6.avif 1183w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp':
+    '/assets/images/tour-web/aad0b1cc7337f30a.avif 320w, /assets/images/tour-web/ad1d7bb9a5d9e7ce.avif 480w, /assets/images/tour-web/82e566455f4e09bb.avif 640w, /assets/images/tour-web/304e339bc0d59c54.avif 800w, /assets/images/tour-web/3e40a03de9eed6d6.avif 960w, /assets/images/tour-web/3ed286cf47a7e131.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp':
+    '/assets/images/tour-web/545171a6ea269629.avif 320w, /assets/images/tour-web/8eecf76207daddc3.avif 480w, /assets/images/tour-web/09b096759f5c7d52.avif 640w, /assets/images/tour-web/4f6d9dbcd855e9da.avif 800w, /assets/images/tour-web/a8fefa8071822555.avif 960w, /assets/images/tour-web/07e67f1ac18affa8.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp':
+    '/assets/images/tour-web/6d49fea5da87bad6.avif 320w, /assets/images/tour-web/95ed9b2231635913.avif 480w, /assets/images/tour-web/dabc727f450d3e1f.avif 640w, /assets/images/tour-web/680614317b786864.avif 800w, /assets/images/tour-web/7f2ceb275e0b51a3.avif 960w, /assets/images/tour-web/39adc444923e6e5d.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp':
+    '/assets/images/tour-web/ed282cf44d82d3a2.avif 320w, /assets/images/tour-web/fb97b4d156a5774d.avif 480w, /assets/images/tour-web/48943addf7f423ed.avif 640w, /assets/images/tour-web/f4cf15d9bf06dcc3.avif 800w, /assets/images/tour-web/f717ee2bc31da7c5.avif 960w, /assets/images/tour-web/e14720922e5b936d.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp':
+    '/assets/images/tour-web/c0f4d84e5ab36f25.avif 320w, /assets/images/tour-web/2e659eb03017e0fc.avif 480w, /assets/images/tour-web/056762ada9859ce1.avif 640w, /assets/images/tour-web/5a0fc6638bc4f764.avif 800w, /assets/images/tour-web/93ded0244e24b688.avif 960w, /assets/images/tour-web/a9ea33ff8e77b1c1.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp':
+    '/assets/images/tour-web/61928ed3be09afeb.avif 320w, /assets/images/tour-web/693f1a6ba7e6212e.avif 480w, /assets/images/tour-web/9c1a66b3d0c8e286.avif 640w, /assets/images/tour-web/3cda504993a2804e.avif 800w, /assets/images/tour-web/6d5a1096f90c3e08.avif 960w, /assets/images/tour-web/dc37eaf4d3e2c25a.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp':
+    '/assets/images/tour-web/c0aae8b3b5145e8a.avif 320w, /assets/images/tour-web/7a8cca4c27c416f2.avif 480w, /assets/images/tour-web/d2b2ab0726bc1a7c.avif 640w, /assets/images/tour-web/c58c40aa578d90ec.avif 800w, /assets/images/tour-web/597f0da8afb2473e.avif 960w, /assets/images/tour-web/cc95a38f11032e0a.avif 1440w, /assets/images/tour-web/248e92e1b49546c2.avif 1600w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp':
+    '/assets/images/tour-web/83d3d3469233b24c.avif 320w, /assets/images/tour-web/e3064dc3cbed050f.avif 480w, /assets/images/tour-web/f0a0cede0be8ed84.avif 640w, /assets/images/tour-web/42749c441efb57bb.avif 800w, /assets/images/tour-web/23829b0e432c3ab1.avif 960w, /assets/images/tour-web/e5f0780fce67f3f9.avif 1230w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp':
+    '/assets/images/tour-web/f9a9668c57e0caae.avif 320w, /assets/images/tour-web/5e69ce1a7af92228.avif 480w, /assets/images/tour-web/918fedc6c7bb0e09.avif 640w, /assets/images/tour-web/abbb826605f0351d.avif 800w, /assets/images/tour-web/d43a163c5d94a3ca.avif 960w, /assets/images/tour-web/4843216e4c856e84.avif 1439w',
+  '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp':
+    '/assets/images/tour-web/5c7e2da5a8d45a85.avif 320w, /assets/images/tour-web/55067ea4b485dafe.avif 480w, /assets/images/tour-web/f7127ff26ae15327.avif 640w, /assets/images/tour-web/731284b69f4c48db.avif 800w, /assets/images/tour-web/fc4fb7af6ed4be66.avif 960w, /assets/images/tour-web/84018c45beaafbc8.avif 1440w, /assets/images/tour-web/e42bd2d504d52362.avif 1600w',
   '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp':
-    '/assets/images/tour-web/14110442e634aa33.avif 640w, /assets/images/tour-web/a05eeef9f71d2b96.avif 960w, /assets/images/tour-web/734d36b0a37d97a7.avif 1440w, /assets/images/tour-web/84a6ace9a6cf0aee.avif 1600w',
+    '/assets/images/tour-web/9d58c699637d4b4b.avif 320w, /assets/images/tour-web/792b2f5c44d9333d.avif 480w, /assets/images/tour-web/14110442e634aa33.avif 640w, /assets/images/tour-web/67a2c5480a616497.avif 800w, /assets/images/tour-web/a05eeef9f71d2b96.avif 960w, /assets/images/tour-web/734d36b0a37d97a7.avif 1440w, /assets/images/tour-web/84a6ace9a6cf0aee.avif 1600w',
   '/assets/images/destinations/Marocco/morocco-bgr.webp':
-    '/assets/images/tour-web/60ce0af748220daa.avif 640w, /assets/images/tour-web/7beaf44c7d076781.avif 960w, /assets/images/tour-web/dccd3b38374acdc7.avif 1440w, /assets/images/tour-web/866efa781a95f117.avif 1600w',
+    '/assets/images/tour-web/859986046d3725e2.avif 320w, /assets/images/tour-web/bdafceb0d2b02f4f.avif 480w, /assets/images/tour-web/60ce0af748220daa.avif 640w, /assets/images/tour-web/03491f20c435df81.avif 800w, /assets/images/tour-web/7beaf44c7d076781.avif 960w, /assets/images/tour-web/dccd3b38374acdc7.avif 1440w, /assets/images/tour-web/866efa781a95f117.avif 1600w',
   '/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp':
-    '/assets/images/tour-web/2765913c37e1617f.avif 640w, /assets/images/tour-web/ac12fe4d24fa4f44.avif 960w, /assets/images/tour-web/759c0a73d79ebe69.avif 1440w, /assets/images/tour-web/8a1b2931df953f99.avif 1600w',
+    '/assets/images/tour-web/7bd0022b0c569d12.avif 320w, /assets/images/tour-web/98873db1d76ce364.avif 480w, /assets/images/tour-web/2765913c37e1617f.avif 640w, /assets/images/tour-web/a8addf952140168c.avif 800w, /assets/images/tour-web/ac12fe4d24fa4f44.avif 960w, /assets/images/tour-web/759c0a73d79ebe69.avif 1440w, /assets/images/tour-web/8a1b2931df953f99.avif 1600w',
   '/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp':
-    '/assets/images/tour-web/96c2ebe858e7d2d4.avif 640w, /assets/images/tour-web/7eb7560b4aebe711.avif 960w, /assets/images/tour-web/9f1e3634917f0363.avif 1440w, /assets/images/tour-web/510e425a0f7ec8d9.avif 1600w',
+    '/assets/images/tour-web/b486cc7a382fc20e.avif 320w, /assets/images/tour-web/ae15474620159881.avif 480w, /assets/images/tour-web/96c2ebe858e7d2d4.avif 640w, /assets/images/tour-web/7daa9c87fb7cf4be.avif 800w, /assets/images/tour-web/7eb7560b4aebe711.avif 960w, /assets/images/tour-web/9f1e3634917f0363.avif 1440w, /assets/images/tour-web/510e425a0f7ec8d9.avif 1600w',
   '/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp':
-    '/assets/images/tour-web/af2657973cac08d6.avif 640w, /assets/images/tour-web/7fe3753b487cb6a6.avif 960w, /assets/images/tour-web/65d6dbe3f0d33dbd.avif 1440w, /assets/images/tour-web/7daff3d614019f3b.avif 1600w',
+    '/assets/images/tour-web/66359502f3141b5d.avif 320w, /assets/images/tour-web/c6894d6055362c5a.avif 480w, /assets/images/tour-web/af2657973cac08d6.avif 640w, /assets/images/tour-web/b6a3a6b571eb7059.avif 800w, /assets/images/tour-web/7fe3753b487cb6a6.avif 960w, /assets/images/tour-web/65d6dbe3f0d33dbd.avif 1440w, /assets/images/tour-web/7daff3d614019f3b.avif 1600w',
   '/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp':
-    '/assets/images/tour-web/64cef172d6cc75c2.avif 640w, /assets/images/tour-web/c1374caba60ac80c.avif 960w, /assets/images/tour-web/d3d69883d43f72f1.avif 1300w',
+    '/assets/images/tour-web/4ff7f3baeeb42e53.avif 320w, /assets/images/tour-web/4ac086d644b9abe6.avif 480w, /assets/images/tour-web/64cef172d6cc75c2.avif 640w, /assets/images/tour-web/f42612e3c7804bb9.avif 800w, /assets/images/tour-web/c1374caba60ac80c.avif 960w, /assets/images/tour-web/d3d69883d43f72f1.avif 1300w',
   '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp':
-    '/assets/images/tour-web/133d997121483967.avif 640w, /assets/images/tour-web/4e2742b9eeb1be17.avif 960w, /assets/images/tour-web/a278583b0deb8df6.avif 964w',
+    '/assets/images/tour-web/ef647157a32fac6a.avif 320w, /assets/images/tour-web/5486683f41360c6d.avif 480w, /assets/images/tour-web/133d997121483967.avif 640w, /assets/images/tour-web/d9c946bd21bf9d57.avif 800w, /assets/images/tour-web/4e2742b9eeb1be17.avif 960w, /assets/images/tour-web/a278583b0deb8df6.avif 964w',
 };

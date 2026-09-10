@@ -477,3 +477,68 @@ AVIF `srcset`, so this holds on first paint and does not depend on hydration.
   real look at what the initial bundle pulls in, not a quick fix.
 
 Re-audit both URLs under the same conditions before claiming any of this improved the score.
+
+## Tour detail: the gallery was the whole problem — 10 September 2026
+
+Post-release production mobile audits. `/destinations/kyrgyzstan/` came back at **97**, so the
+previous change worked there. `/tour-item/kyrgyzstan-tour/` sat at **79**, with CLS 0 and no
+font-display finding — both of those confirmed fixed in production — and 253 KiB of flagged image
+delivery.
+
+### What the audit was actually pointing at
+
+Every flagged item was a gallery preview, not the hero.
+
+`kyrgyzstan-gallery-02.webp` is a 1183×2560 phone photograph. Its AVIF is 313 kB, and the tour
+template shipped all of it for a thumbnail, because the gallery preview used the `tourWebImage`
+pipe — one fixed AVIF, no responsive candidates — while the full gallery tab used a plain `<img>`
+with no AVIF at all.
+
+Both now go through `<picture>` with `tourWebImageSrcset`, and the generator covers the whole
+twelve-image Kyrgyzstan gallery rather than the two images that happened to be audited.
+
+### A mistake worth recording, because the fix nearly shipped blurry
+
+The first `sizes` value assumed the three-column grid held on mobile: `31vw`. It does not — the
+grid collapses to one column at `48rem`, so the thumbnails are about **327 CSS px** wide, not 116.
+The browser dutifully picked a 320w candidate and upscaled it into a 327 px slot.
+
+Caught by asserting `naturalWidth >= renderedWidth` rather than by looking at the page, which is
+the check worth keeping: a blurry image is not visible in a byte count, and at a glance the change
+looked like a large win precisely _because_ it was serving too little data. Corrected to
+`(min-width: 48.01rem) 31vw, 90vw`, and every thumbnail now measures 337 against 327 rendered.
+
+### Results, measured locally at 375 px with lazy images forced
+
+|                                  |             Bytes |
+| -------------------------------- | ----------------: |
+| Gallery image 2 thumbnail        | 313,286 → 140,476 |
+| Hero (the LCP element)           |   79,106 → 58,535 |
+| `discover-more-tours` background |   47,608 → 11,248 |
+| **Page total**                   |     **→ 363,628** |
+
+`RESPONSIVE_WIDTHS` gained 320, 480 and 800. The 800 step matters most: a 375 px hero at DPR 2
+needs 750 device px, and 960 was previously the smallest candidate that cleared it.
+
+`discover-more-tours.webp` was the item deferred from the previous change. CSS backgrounds cannot
+read the hashed manifest, so it gets a stable-named AVIF beside the original and is referenced via
+`image-set()`. The WebP declaration is repeated first, so a browser without `image-set()` keeps a
+background rather than losing it.
+
+### Verified
+
+132 tests across 15 files, formatting clean, 44 prerendered routes, initial bundle unchanged at
+574.39 kB. No thumbnail or hero upscales. The `discover-more-tours` background resolves to AVIF.
+
+### What is left on this page
+
+- **The tall gallery sources are the remaining ceiling.** `kyrgyzstan-gallery-02` is 1183×2560 and
+  the template declares `800×1100`, so `object-fit: cover` discards a large part of every byte
+  downloaded. Serving a crop would fix it properly — that is an editorial decision about
+  composition, not a delivery one, so it is raised rather than taken. Re-encoding the source
+  photographs at a sane height would do it too.
+- **~50 KiB of unused JavaScript**, unchanged and still framework code.
+- The hero is flagged for compression at quality 55. Lowering it further trades LCP sharpness for
+  bytes on the largest element on the page; not worth doing blind.
+
+Re-audit before claiming a score change.

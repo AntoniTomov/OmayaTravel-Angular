@@ -732,12 +732,24 @@
 .tour-detail__discover {
   display: block;
   height: 452px;
+  // The WebP declaration stays first as the fallback: a browser without image-set() ignores the
+  // second rule and keeps this one, rather than losing the background entirely.
   background:
     linear-gradient(
       rgb(var(--omaya-color-overlay-rgb) / 8%),
       rgb(var(--omaya-color-overlay-rgb) / 8%)
     ),
     url('/assets/images/discover-more-tours.webp') center / cover;
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 8%),
+      rgb(var(--omaya-color-overlay-rgb) / 8%)
+    ),
+    image-set(
+        url('/assets/images/discover-more-tours.avif') type('image/avif'),
+        url('/assets/images/discover-more-tours.webp') type('image/webp')
+      )
+      center / cover;
   text-decoration: none;
 }
 
