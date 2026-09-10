@@ -1724,7 +1724,7 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
     },
     groupSize: {
       min: 6,
-      max: 12,
+      max: 16,
     },
     departures: [
       { date: '2026-10-01', ageGroupLabel: 'Група 20-45 г.' },
@@ -1873,7 +1873,7 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
         {
           question: 'Какъв е размерът на групата?',
           answer: [
-            'Пътуването е организирано за малки групи до 12 души. Това ни позволява да се движим по-лесно и да имаме по-непосредствен контакт с местните хора и местата, които посещаваме.',
+            'Пътуването е организирано за малки групи до 16 души. Това ни позволява да се движим по-лесно и да имаме по-непосредствен контакт с местните хора и местата, които посещаваме.',
           ],
         },
         {
@@ -1935,7 +1935,7 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
     },
     groupSize: {
       min: 6,
-      max: 12,
+      max: 16,
     },
     departures: [
       { date: '2027-04-22', ageGroupLabel: 'Група 20-45 г.' },
@@ -2250,7 +2250,9 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
         },
         {
           question: 'На каква възраст са жените в групата?',
-          answer: ['Обикновено между 20 и 45 години.'],
+          answer: [
+            'Между 20 и 65 години. За да пътуваш с жени на сходна възраст и в сходен етап от живота, всяко пътуване предлагаме в две дати - за групи 20-45 г. и 40-65 г.',
+          ],
         },
         {
           question: 'Какво да очаквам от престоя в риад?',

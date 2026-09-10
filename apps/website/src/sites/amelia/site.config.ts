@@ -42,7 +42,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     locale: 'bg_BG',
   },
   contact: {
-    email: 'info@ameliatravel.bg',
+    email: 'info@ameliatravel.com',
     phoneNumbers: [],
     resendFrom: 'Amelia Travel <website@ameliatravel.bg>',
     resendReplyTo: 'info@ameliatravel.bg',
