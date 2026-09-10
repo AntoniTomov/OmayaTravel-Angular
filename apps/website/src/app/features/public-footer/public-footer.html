@@ -63,7 +63,13 @@
       <h2 class="public-footer__payment-title">{{ i18n.t('footer.paymentMethods') }}</h2>
       <div class="public-footer__payments">
         @for (provider of paymentProviders; track provider.name) {
-          <img [src]="provider.src" [alt]="provider.name" loading="lazy" />
+          <img
+            [src]="provider.src"
+            [alt]="provider.name"
+            [width]="provider.width"
+            [height]="provider.height"
+            loading="lazy"
+          />
         }
       </div>
     </section>

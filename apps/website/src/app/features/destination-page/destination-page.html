@@ -55,13 +55,20 @@
                 tabindex="-1"
                 aria-hidden="true"
               >
-                <img
-                  [src]="tour.heroImage.src"
-                  [alt]="tour.heroImage.alt"
-                  width="800"
-                  height="530"
-                  loading="lazy"
-                />
+                <picture style="display: contents">
+                  <source
+                    type="image/avif"
+                    [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
+                    sizes="(min-width: 60rem) 33rem, 92vw"
+                  />
+                  <img
+                    [src]="tour.heroImage.src"
+                    [alt]="tour.heroImage.alt"
+                    width="800"
+                    height="530"
+                    loading="lazy"
+                  />
+                </picture>
               </a>
               <div class="destination-page__tour-body">
                 <p class="destination-page__eyebrow">{{ tour.category }}</p>
@@ -149,13 +156,20 @@
           <div class="destination-page__guides">
             @for (guide of country.guides; track guide.slug) {
               <a [routerLink]="'/' + guide.slug + '/'">
-                <img
-                  [src]="guide.image.src"
-                  [alt]="guide.image.alt"
-                  width="600"
-                  height="400"
-                  loading="lazy"
-                />
+                <picture style="display: contents">
+                  <source
+                    type="image/avif"
+                    [attr.srcset]="guide.image.src | tourWebImageSrcset"
+                    sizes="(min-width: 60rem) 33rem, 92vw"
+                  />
+                  <img
+                    [src]="guide.image.src"
+                    [alt]="guide.image.alt"
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                  />
+                </picture>
                 <h3>{{ guide.title }}</h3>
               </a>
             }
@@ -183,13 +197,20 @@
         @for (country of destinations; track country.slug) {
           <article>
             <a [routerLink]="'/destinations/' + country.slug + '/'">
-              <img
-                [src]="country.heroImage.src"
-                [alt]="country.heroImage.alt"
-                width="800"
-                height="530"
-                loading="lazy"
-              />
+              <picture style="display: contents">
+                <source
+                  type="image/avif"
+                  [attr.srcset]="country.heroImage.src | tourWebImageSrcset"
+                  sizes="(min-width: 60rem) 33rem, 92vw"
+                />
+                <img
+                  [src]="country.heroImage.src"
+                  [alt]="country.heroImage.alt"
+                  width="800"
+                  height="530"
+                  loading="lazy"
+                />
+              </picture>
               <div>
                 <p class="destination-page__eyebrow">{{ country.theme }}</p>
                 <h2>{{ country.name }}</h2>
