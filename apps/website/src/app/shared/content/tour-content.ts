@@ -21,6 +21,13 @@ export interface TourLinkedParagraph {
 
 export type TourIntroductionParagraph = string | TourLinkedParagraph;
 
+export interface TourDepartureWithAgeGroup {
+  date: string;
+  ageGroupLabel: string;
+}
+
+export type TourDeparture = string | TourDepartureWithAgeGroup;
+
 export interface TourHighlight {
   title: TourLinkedTitle;
   image: TourImage;
@@ -64,7 +71,8 @@ export interface TourDetailContent {
     min: number;
     max: number;
   };
-  departures: readonly string[];
+  departures: readonly TourDeparture[];
+  departuresNote?: string;
   heroImage: TourImage;
   introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
@@ -1718,6 +1726,12 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
       min: 6,
       max: 12,
     },
+    departures: [
+      { date: '2026-10-01', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-04-08', ageGroupLabel: 'Група 40-65 г.' },
+    ],
+    departuresNote:
+      'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
     introduction: [
       'Представи си, че се събуждаш в юрта на 3000 метра надморска височина.',
       'Навън няма градски шум, няма трафик, няма Wi-Fi. Само тюркоазените води на Сон-Кул, заобиколени от безкрайни високопланински пасища, заснежени върхове, които се издигат над хоризонта, и коне, които препускат свободно из степите.',
@@ -1923,7 +1937,12 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
       min: 6,
       max: 12,
     },
-    departures: ['2027-04-22'],
+    departures: [
+      { date: '2027-04-22', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-20', ageGroupLabel: 'Група 40-65 г.' },
+    ],
+    departuresNote:
+      'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
     heroImage: {
       src: `${AMELIA_MOROCCO_ASSET_BASE}/morocco-hero.webp`,
       alt: 'Мароко - пътуване само за жени с Amelia Travel',

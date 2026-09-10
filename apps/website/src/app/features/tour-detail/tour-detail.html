@@ -52,9 +52,17 @@
               <mat-icon aria-hidden="true">calendar_month</mat-icon>
               <strong>{{ i18n.t('tourDetail.availableDates') }}</strong>
               @for (departure of tour.departures; track departure) {
-                <span>{{ departure | date: 'd MMMM y' }}</span>
+                <span>
+                  {{ departureDate(departure) | date: 'd MMMM y' }}
+                  @if (departureAgeGroupLabel(departure); as ageGroupLabel) {
+                    <span class="tour-detail__age-group">{{ ageGroupLabel }}</span>
+                  }
+                </span>
               }
             </p>
+            @if (tour.departuresNote) {
+              <p class="tour-detail__departures-note">{{ tour.departuresNote }}</p>
+            }
             <p class="tour-detail__fact">
               <mat-icon aria-hidden="true">groups_2</mat-icon>
               <strong>{{ i18n.t('tourDetail.groupSize') }}</strong> {{ groupSizeLabel(tour) }}

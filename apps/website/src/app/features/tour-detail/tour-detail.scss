@@ -213,6 +213,23 @@
   content: '|';
 }
 
+.tour-detail__age-group {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  color: var(--omaya-color-accent);
+  border: 1px solid var(--omaya-color-accent);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.tour-detail__departures-note {
+  margin: 0.35rem 0 0;
+  color: var(--omaya-color-muted, currentColor);
+  font-size: 0.85rem;
+}
+
 .tour-detail__gallery-subtitle {
   margin: 0;
 }

@@ -19,6 +19,7 @@ import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 import {
+  TourDeparture,
   TourDetailContent,
   TourFaqItem,
   TourHighlight,
@@ -102,13 +103,14 @@ export class TourDetail {
       ),
     ].flatMap((candidate) =>
       candidate.departures.map((departure) => {
-        const start = this.parseIsoDate(departure);
+        const iso = this.departureDate(departure);
+        const start = this.parseIsoDate(iso);
         const end = this.addDays(start, candidate.duration.days - 1);
 
         return {
           start,
           end,
-          iso: departure,
+          iso,
           tourTitle: candidate.title,
         };
       }),
@@ -460,6 +462,14 @@ export class TourDetail {
     return typeof paragraph === 'string'
       ? paragraph
       : `${paragraph.text}${paragraph.linkText}${paragraph.trailingText}`;
+  }
+
+  protected departureDate(departure: TourDeparture): string {
+    return typeof departure === 'string' ? departure : departure.date;
+  }
+
+  protected departureAgeGroupLabel(departure: TourDeparture): string | undefined {
+    return typeof departure === 'string' ? undefined : departure.ageGroupLabel;
   }
 
   protected isExternalLink(link: string): boolean {
