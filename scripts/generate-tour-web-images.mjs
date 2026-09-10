@@ -10,11 +10,13 @@ import { format, resolveConfig } from "prettier";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const assets = resolve(root, "apps/website/src/assets");
 const output = resolve(assets, "images/tour-web");
-// 640 is here for card images. Destination and listing cards render around 333 CSS px, so even at
-// a 2x device pixel ratio they need ~666 px and the old 960 floor was the smallest thing on offer —
-// an audit flagged the resulting overshoot as "larger than it needs to be". Full-width heroes still
-// resolve to 960 and above, so adding the smaller step costs them nothing.
-const RESPONSIVE_WIDTHS = [640, 960, 1440, 1920];
+// The small steps exist because audits kept flagging images as "larger than they need to be", and
+// every time the cause was the same: the smallest candidate on offer was still far bigger than the
+// slot. 320 and 480 serve gallery thumbnails, which sit three to a row and are about 116 CSS px
+// wide on a phone — roughly 280 device px at DPR 2, against a tall source that shipped 313 kB.
+// 640 serves destination and listing cards, around 333 CSS px and so ~690 px at DPR 2. The larger
+// steps serve full-width heroes, which are unaffected by the smaller ones being available.
+const RESPONSIVE_WIDTHS = [320, 480, 640, 800, 960, 1440, 1920];
 const inputs = [
   "images/destinations/classic-tours-bgr.webp",
   "images/home-page/trips-carousel/Algeria-trip.webp",
@@ -24,8 +26,13 @@ const inputs = [
   "images/women-tours/kyrgyzstan-women-only-card-bgr.webp",
   "images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
   "images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
-  "images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
-  "images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
+  // The whole Kyrgyzstan gallery, not just the two previews that were audited: the tab renders all
+  // twelve once a reader opens it, and several sources are phone photographs 2,400-2,560 px tall.
+  ...Array.from(
+    { length: 12 },
+    (_, index) =>
+      `images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-${String(index + 1).padStart(2, "0")}.webp`,
+  ),
   "images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
   "images/destinations/Marocco/morocco-bgr.webp",
   "images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
@@ -99,6 +106,36 @@ for (const relativePath of inputs) {
     srcsets[source] = candidates.join(", ");
   }
 }
+// CSS backgrounds cannot read the hashed manifest, so these get a stable name beside the original
+// and are referenced from SCSS through image-set() with the original as the fallback.
+const cssBackgrounds = ["images/discover-more-tours.webp"];
+for (const relativePath of cssBackgrounds) {
+  const original = readFileSync(resolve(assets, relativePath));
+  const before = await sharp(original).metadata();
+  const encoded = await sharp(original)
+    .avif({ quality: 55, effort: 5 })
+    .toBuffer();
+  const after = await sharp(encoded).metadata();
+  if (before.width !== after.width || before.height !== after.height) {
+    throw new Error(`Dimensions changed: ${relativePath}`);
+  }
+  if (encoded.length >= original.length) {
+    throw new Error(`AVIF is not smaller: ${relativePath}`);
+  }
+  writeFileSync(
+    resolve(assets, relativePath.replace(/\.webp$/, ".avif")),
+    encoded,
+  );
+  measurements.push({
+    source: `/assets/${relativePath}`,
+    width: before.width,
+    height: before.height,
+    variant: "css-background",
+    originalBytes: original.length,
+    webBytes: encoded.length,
+  });
+}
+
 const manifestPath = resolve(
   root,
   "apps/website/src/app/shared/content/tour-web-images.ts",

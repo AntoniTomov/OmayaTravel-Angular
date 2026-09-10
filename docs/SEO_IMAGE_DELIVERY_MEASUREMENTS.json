@@ -10,9 +10,27 @@
     },
     {
       "source": "/assets/images/destinations/classic-tours-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7436
+    },
+    {
+      "source": "/assets/images/destinations/classic-tours-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 14958
+    },
+    {
+      "source": "/assets/images/destinations/classic-tours-bgr.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 24720
+    },
+    {
+      "source": "/assets/images/destinations/classic-tours-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 35777
     },
     {
       "source": "/assets/images/destinations/classic-tours-bgr.webp",
@@ -40,11 +58,35 @@
       "webBytes": 66389
     },
     {
+      "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 17219
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 33979
+    },
+    {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
       "width": 632,
       "height": 932,
       "originalBytes": 603314,
       "webBytes": 69562
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 19532
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 37447
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
@@ -54,6 +96,18 @@
       "webBytes": 18564
     },
     {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 6867
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 11605
+    },
+    {
       "source": "/assets/images/women-tours/bulgaria-women-only-card-bgr.webp",
       "width": 400,
       "height": 800,
@@ -61,11 +115,23 @@
       "webBytes": 45184
     },
     {
+      "source": "/assets/images/women-tours/bulgaria-women-only-card-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 25753
+    },
+    {
       "source": "/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp",
       "width": 409,
       "height": 800,
       "originalBytes": 52646,
       "webBytes": 37766
+    },
+    {
+      "source": "/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 21600
     },
     {
       "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
@@ -76,9 +142,27 @@
     },
     {
       "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 5691
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 12297
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 21818
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 33205
     },
     {
       "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
@@ -101,9 +185,27 @@
     },
     {
       "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10834
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 22911
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 39396
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 58535
     },
     {
       "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
@@ -120,9 +222,27 @@
     },
     {
       "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 4900
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 10102
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 17684
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 26175
     },
     {
       "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-01.webp",
@@ -139,15 +259,415 @@
     },
     {
       "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 26036
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 57081
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 96781
     },
     {
       "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 140476
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-02.webp",
       "width": 960,
       "variant": "responsive",
       "webBytes": 183220
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 156902,
+      "webBytes": 115884
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7616
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 16365
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 28920
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 44142
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-03.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 59627
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 66452,
+      "webBytes": 53882
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 6581
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 12978
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 20940
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 29600
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-04.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 35778
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 98286,
+      "webBytes": 85335
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 6841
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 13958
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 22808
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 34416
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-05.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 44810
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 125816,
+      "webBytes": 99252
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10790
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 20877
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 33284
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 46786
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-06.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 59751
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 217994,
+      "webBytes": 151691
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10834
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 22911
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 39396
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 58535
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-07.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 79106
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 98100,
+      "webBytes": 76562
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 5734
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 11892
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 20310
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 29881
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-08.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 40021
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 1600,
+      "height": 901,
+      "originalBytes": 204418,
+      "webBytes": 160015
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 6764
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 13632
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 23301
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 38754
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 50929
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-09.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 102259
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp",
+      "width": 1230,
+      "height": 800,
+      "originalBytes": 106306,
+      "webBytes": 87386
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 4833
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 10300
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 17990
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 27305
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-10.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 37740
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp",
+      "width": 1439,
+      "height": 2560,
+      "originalBytes": 342698,
+      "webBytes": 259063
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 19428
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 39000
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 63385
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 91923
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-11.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 122918
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 1600,
+      "height": 2400,
+      "originalBytes": 311932,
+      "webBytes": 240731
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 19962
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 39106
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 61411
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 94252
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 112335
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 184824
     },
     {
       "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
@@ -158,9 +678,27 @@
     },
     {
       "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 5298
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 10992
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 19407
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 30809
     },
     {
       "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
@@ -183,9 +721,27 @@
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10990
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 24579
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 42421
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 66181
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
@@ -208,9 +764,27 @@
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 11826
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 23934
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 39414
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 63197
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Rila-Monasterry-Bulgaria-2.webp",
@@ -233,9 +807,27 @@
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10296
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 21343
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 34728
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 53290
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Buzludzha-Monument-3.webp",
@@ -258,9 +850,27 @@
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 18674
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 38901
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 68889
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 111189
     },
     {
       "source": "/assets/images/destinations/Bulgaria/gallery/Sofia-City-Tour-Bulgaria-4.webp",
@@ -283,9 +893,27 @@
     },
     {
       "source": "/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 4348
+    },
+    {
+      "source": "/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 8702
+    },
+    {
+      "source": "/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 14149
+    },
+    {
+      "source": "/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 20282
     },
     {
       "source": "/assets/images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
@@ -302,15 +930,41 @@
     },
     {
       "source": "/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 4362
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 8607
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp",
       "width": 640,
       "variant": "responsive",
       "webBytes": 13929
     },
     {
       "source": "/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 18100
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp",
       "width": 960,
       "variant": "responsive",
       "webBytes": 23380
+    },
+    {
+      "source": "/assets/images/discover-more-tours.webp",
+      "width": 343,
+      "height": 512,
+      "variant": "css-background",
+      "originalBytes": 47608,
+      "webBytes": 11248
     }
   ]
 }
