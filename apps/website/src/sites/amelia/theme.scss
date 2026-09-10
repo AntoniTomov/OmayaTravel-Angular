@@ -25,3 +25,12 @@
   --omaya-color-error: #a3261d;
   --omaya-color-overlay-rgb: 33 24 32;
 }
+
+html[data-theme='amelia'] .public-header__logo {
+  width: 190px;
+  min-height: 55px;
+}
+
+html[data-theme='amelia'] .public-header__logo img {
+  width: 190px !important;
+}
