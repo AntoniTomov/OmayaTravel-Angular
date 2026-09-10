@@ -9,7 +9,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     name: 'Amelia Travel',
     tagline: 'Пътувания за жени в малки групи.',
     homeLabel: 'Начало на Amelia Travel',
-    logoSrc: '/assets/images/amelia/brand/amelia-logo-dark-bg.jpg',
+    logoSrc: '/assets/images/amelia/brand/amelia-logo-dark-bg.webp',
     solidLogoSrc: '/assets/images/amelia/brand/amelia-logo-transparent.png',
     logoAlt: 'Amelia Travel',
   },
