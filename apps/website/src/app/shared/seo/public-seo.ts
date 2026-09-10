@@ -16,6 +16,59 @@ export class PublicSeo {
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
 
+  applyFavicon(site: SiteConfig): void {
+    if (site.id === 'amelia') {
+      const base = '/assets/favicons/amelia/';
+
+      this.removeLink("link[rel='icon'][type='image/svg+xml']");
+      this.setLink("link[rel='icon'][sizes='16x16']", 'icon', `${base}favicon-16x16.png`, {
+        type: 'image/png',
+        sizes: '16x16',
+      });
+      this.setLink("link[rel='icon'][sizes='32x32']", 'icon', `${base}favicon-32x32.png`, {
+        type: 'image/png',
+        sizes: '32x32',
+      });
+      this.setLink("link[rel='icon'][sizes='48x48']", 'icon', `${base}favicon-48x48.png`, {
+        type: 'image/png',
+        sizes: '48x48',
+      });
+      this.setLink("link[rel='icon'][sizes='512x512']", 'icon', `${base}amelia-favicon-512.png`, {
+        type: 'image/png',
+        sizes: '512x512',
+      });
+      this.setLink(
+        "link[rel='apple-touch-icon']",
+        'apple-touch-icon',
+        `${base}apple-touch-icon-180x180.png`,
+        {
+          sizes: '180x180',
+        },
+      );
+      this.setLink("link[rel='shortcut icon']", 'shortcut icon', `${base}favicon.ico`);
+      return;
+    }
+
+    this.setLink("link[rel='icon'][type='image/svg+xml']", 'icon', 'favicon.svg', {
+      type: 'image/svg+xml',
+    });
+    this.setLink("link[rel='icon'][sizes='16x16']", 'icon', 'favicon-16x16.png', {
+      type: 'image/png',
+      sizes: '16x16',
+    });
+    this.setLink("link[rel='icon'][sizes='32x32']", 'icon', 'favicon-32x32.png', {
+      type: 'image/png',
+      sizes: '32x32',
+    });
+    this.setLink("link[rel='icon'][sizes='48x48']", 'icon', 'favicon-48x48.png', {
+      type: 'image/png',
+      sizes: '48x48',
+    });
+    this.removeLink("link[rel='icon'][sizes='512x512']");
+    this.removeLink("link[rel='apple-touch-icon']");
+    this.removeLink("link[rel='shortcut icon']");
+  }
+
   apply(snapshot: RouterStateSnapshot): void {
     const site = this.activeSite.site();
     const route = this.deepestRoute(snapshot.root);
@@ -164,6 +217,31 @@ export class PublicSeo {
 
   private removeCanonical(): void {
     this.document.querySelector("link[rel='canonical']")?.remove();
+  }
+
+  private setLink(
+    selector: string,
+    rel: string,
+    href: string,
+    attrs?: Record<string, string>,
+  ): void {
+    let link = this.document.querySelector<HTMLLinkElement>(selector);
+
+    if (!link) {
+      link = this.document.createElement('link');
+      link.rel = rel;
+      this.document.head.appendChild(link);
+    }
+
+    link.href = href;
+
+    for (const [name, value] of Object.entries(attrs ?? {})) {
+      link.setAttribute(name, value);
+    }
+  }
+
+  private removeLink(selector: string): void {
+    this.document.querySelector(selector)?.remove();
   }
 
   private setTag(attribute: 'name' | 'property', key: string, content: string): void {

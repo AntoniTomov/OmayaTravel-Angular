@@ -36,6 +36,7 @@ export class App {
       this.i18n.setLocale(site.locale);
       this.document.documentElement.lang = site.locale;
       this.document.documentElement.setAttribute('data-theme', site.theme.dataTheme);
+      this.seo.applyFavicon(site);
       this.seo.apply(router.routerState.snapshot);
     });
 
