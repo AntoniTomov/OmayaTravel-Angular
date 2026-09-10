@@ -161,7 +161,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     {
       title: { text: 'Camp beneath Saharan stars', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/thumbnails/highlight-image-1.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-01.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Camping.webp',
         alt: 'Desert camping in Algeria',
         width: 150,
@@ -171,7 +171,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     {
       title: { text: 'Marvel at towering Saharan dunes', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/thumbnails/highlight-image-2.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-02.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-trip.webp',
         alt: 'Towering dunes and rock formations in Sahara',
         width: 150,
@@ -181,7 +181,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     {
       title: { text: 'Discover 8,000-year-old cave art', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/thumbnails/highlight-image-3.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-03.webp`,
         source:
           'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Tadrart-Highlights.webp',
         alt: 'Ancient rock art in Tadrart Rouge',
@@ -192,7 +192,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     {
       title: { text: 'Explore ancient rock formations', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/thumbnails/highlight-image-4.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-04.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert.webp',
         alt: 'Natural sandstone arch in Algerian Sahara',
         width: 150,
@@ -202,7 +202,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     {
       title: { text: 'Experience authentic Tuareg culture', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/thumbnails/highlight-image-5.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-05.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Tadrart.webp',
         alt: 'Tuareg tea ceremony in Sahara',
         width: 150,

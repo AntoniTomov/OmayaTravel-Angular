@@ -930,8 +930,15 @@
     object-fit: cover;
   }
 
+  // Desktop shows these at 150px. Stretching them to the full column on a phone asked a 231x150
+  // source to fill 327x327 — a 2.18x upscale at DPR 1, and the square crop threw away a third of
+  // the frame on top of that. Letting each image sit at its own size keeps every pixel honest:
+  // nothing is upscaled and nothing is cropped. Revert to a fixed width once these are re-exported
+  // at 660px square, which is what the slot actually wants at DPR 2.
   .tour-detail__highlights img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: auto;
   }
 
   .tour-detail__lightbox {
