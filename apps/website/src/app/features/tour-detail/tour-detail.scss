@@ -46,7 +46,6 @@
   z-index: 1;
   width: min(76rem, 100%);
   margin: 0;
-  font-family: tokens.$omaya-font-heading;
   font-size: 4rem;
   line-height: 1.05;
   text-align: center;
@@ -167,7 +166,6 @@
 
 .tour-detail h2 {
   margin: 0 0 1.45rem;
-  font-family: tokens.$omaya-font-heading;
   font-size: 1.75rem;
   line-height: 1.16;
 }
@@ -838,7 +836,6 @@
 .tour-detail--empty h1 {
   margin: 0 0 1rem;
   color: var(--omaya-color-heading);
-  font-family: tokens.$omaya-font-heading;
   font-size: 4rem;
   line-height: 1.1;
 }

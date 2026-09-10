@@ -959,6 +959,178 @@
       "webBytes": 23380
     },
     {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 1600,
+      "height": 667,
+      "originalBytes": 148206,
+      "webBytes": 90718
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 5715
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 11428
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 18527
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 27565
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 35640
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 65186
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 1600,
+      "height": 627,
+      "originalBytes": 28186,
+      "webBytes": 26806
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 3138
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 5403
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 8232
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 12325
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 14503
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 21948
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 1600,
+      "height": 921,
+      "originalBytes": 252674,
+      "webBytes": 176454
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8278
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 18227
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 30936
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 48225
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 62805
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 118928
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 276792,
+      "webBytes": 196972
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8867
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 18490
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 30952
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 48025
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 61410
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 121054
+    },
+    {
       "source": "/assets/images/discover-more-tours.webp",
       "width": 343,
       "height": 512,
@@ -1266,6 +1438,216 @@
       "height": 2200,
       "variant": "gallery-thumbnail",
       "webBytes": 218096
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 14396
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 28061
+    },
+    {
+      "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
+      "width": 622,
+      "variant": "hero-mobile",
+      "webBytes": 45011
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 15493
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 37093
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 67432
+    },
+    {
+      "source": "/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+      "width": 746,
+      "variant": "hero-mobile",
+      "webBytes": 104531
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 18229
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 40738
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 68758
+    },
+    {
+      "source": "/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+      "width": 746,
+      "variant": "hero-mobile",
+      "webBytes": 95545
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 16928
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 35305
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 55295
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 840,
+      "variant": "hero-mobile",
+      "webBytes": 83299
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 960,
+      "variant": "hero-mobile",
+      "webBytes": 101889
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 994,
+      "variant": "hero-mobile",
+      "webBytes": 110726
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 4480
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 7581
+    },
+    {
+      "source": "/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+      "width": 584,
+      "variant": "hero-mobile",
+      "webBytes": 9755
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 10916
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 25402
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 43171
+    },
+    {
+      "source": "/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+      "width": 702,
+      "variant": "hero-mobile",
+      "webBytes": 53672
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 16300
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 34390
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 55810
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 840,
+      "variant": "hero-mobile",
+      "webBytes": 89272
+    },
+    {
+      "source": "/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp",
+      "width": 858,
+      "variant": "hero-mobile",
+      "webBytes": 96063
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 14259
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 29402
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 49136
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 840,
+      "variant": "hero-mobile",
+      "webBytes": 82302
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 960,
+      "variant": "hero-mobile",
+      "webBytes": 106712
+    },
+    {
+      "source": "/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+      "width": 994,
+      "variant": "hero-mobile",
+      "webBytes": 125613
     }
   ]
 }

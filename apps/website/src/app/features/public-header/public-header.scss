@@ -103,7 +103,8 @@
   color: inherit;
   background: transparent;
   border: 0;
-  font: tokens.$omaya-font-body;
+  font-weight: 400;
+  line-height: 1.5;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -176,7 +177,8 @@
   color: tokens.$omaya-color-text;
   background: transparent;
   border: 0;
-  font: tokens.$omaya-font-body;
+  font-weight: 400;
+  line-height: 1.5;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -191,7 +193,8 @@
   color: tokens.$omaya-color-text;
   background: transparent;
   border: 0;
-  font: tokens.$omaya-font-body;
+  font-weight: 400;
+  line-height: 1.5;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -333,7 +336,9 @@
   color: tokens.$omaya-color-text;
   background: tokens.$omaya-color-white;
   border: 1px solid tokens.$omaya-color-soft-border;
-  font: tokens.$omaya-font-body;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
   outline: none;
 }
 

@@ -601,3 +601,118 @@ Six images upscale into their slots on the tour page: five highlight thumbnails 
 only 231 px wide against a 327 px slot, and the Visa logo at 102 px against 139. Both predate this
 change — the highlight sources are simply too small, and the payment logos are sized by CSS height.
 Worth fixing when someone regenerates those assets; not a delivery problem.
+
+## Tour heroes, self-hosted fonts and duplicate font declarations — 10 September 2026
+
+The audit that prompted this was labelled staging but measured production: it reported
+`main-ZQ6JCWXA.js` and an Algeria hero declared 1920x900, both production's. Staging runs `dev`
+(`main-LP6L3SRF.js`, hero declared 1600x667) and stays on its own host in a real browser. Worth
+checking the bundle name in any report before comparing it with a build.
+
+### The hero `sizes` bug
+
+The tour hero is a fixed 515px box with `object-fit: cover`, which scales the image until its height
+fills the box, so a wide photograph renders far wider than the screen. The hero declared
+`sizes="100vw"`, which tells the browser the opposite, so phones chose a candidate sized for the
+screen and cover stretched it 1.7-2.9x.
+
+**This corrects an earlier entry.** The Kyrgyzstan hero was recorded as not upscaled, "374 vs 375,
+a rounding artifact". That compared the file against the _box_ width, not the width cover renders
+it at. The 800 width step added for cards made it slightly worse, because heroes then picked 800w
+instead of 960w.
+
+Correct `sizes` alone would have been a mistake. Measured on Lighthouse's mobile profile (412px at
+DPR 1.75), it makes heroes sharp by downloading the full frame, which is 3.3x the bytes and would
+lower mobile scores:
+
+| Hero                  | Current `100vw` |   `sizes` fix |    Phone crop |
+| --------------------- | --------------: | ------------: | ------------: |
+| Algeria               |    27 KB, 2.70x |  89 KB, 1.35x |  44 KB, 1.35x |
+| Bulgaria              |    32 KB, 2.70x | 227 KB, 1.13x | 102 KB, 1.13x |
+| Kyrgyzstan            |    57 KB, 1.73x | 148 KB, 1.13x |  93 KB, 1.13x |
+| Morocco               |    65 KB, 1.69x | 137 KB, 0.94x |  82 KB, 1.00x |
+| Bulgaria women-only   |    12 KB, 2.87x |  26 KB, 1.44x |  10 KB, 1.44x |
+| Kyrgyzstan women-only |    30 KB, 2.39x | 131 KB, 1.20x |  52 KB, 1.20x |
+| Morocco women-only    |    47 KB, 1.96x | 172 KB, 0.98x |  87 KB, 1.00x |
+| Morocco solo          |    47 KB, 1.69x | 118 KB, 0.94x |  80 KB, 1.00x |
+| **Total**             |      **317 KB** |  **1,048 KB** |    **550 KB** |
+
+The multiplier is how far the image is stretched on screen: 1.00 is sharp, higher is softer. The
+crop matches the full frame's sharpness at about half its bytes. Nothing is both as sharp and as
+light as today's soft images; the choice here was sharpness at the lowest cost that buys it.
+
+Up to 30rem the hero shows only a centred slice of the photograph: the parallax rule that moves it
+vertically sits behind `min-width: 48.01rem`, so phones get plain centred cover. The crop is the
+widest slice any phone up to 480px can show, served through a `media="(max-width: 30rem)"`
+source ahead of the full-frame one, so it renders pixel-identically. Wider viewports keep the
+full frame with `sizes` now computed as `max(100vw, 515px x aspect)`.
+
+Four tour heroes had no AVIF at all — Algeria, Bulgaria women-only, Morocco women-only and Morocco
+solo — because the generator's input list is maintained by hand. `tour-hero-avif.spec.ts` now
+fails if any tour hero lacks an AVIF encoding or a phone crop.
+
+### Self-hosted fonts
+
+Roboto and Kristi now load from `/assets/fonts` instead of `fonts.gstatic.com`, which removes the
+last third-party origin from the critical path. The `@font-face` rules are copied verbatim from
+Google's response with only the URL rewritten. That is deliberate: Google declares Roboto once per
+weight over a single variable file, and the site asks for weight 800 in dozens of places, which
+font matching resolves to the 900 face. Collapsing the rules into one weight range would render
+true 800 instead, a visible change to headings site-wide.
+
+Subsets were chosen by scanning every prerendered page against each subset's `unicode-range`:
+
+| Characters             | Where                     | Subset                     |
+| ---------------------- | ------------------------- | -------------------------- |
+| ☎ and ✉                | Footer, nearly every page | `symbols`                  |
+| →                      | Destinations              | `symbols` (also in `math`) |
+| Bulgarian licence name | Licence and terms pages   | `cyrillic`                 |
+| Everything else        | —                         | `latin`, `latin-ext`       |
+
+`math`, Greek, Vietnamese and `cyrillic-ext` were dropped. Dropping `math` changes nothing even
+though it covers the arrow: overlapping ranges resolve to the face declared last, and `symbols`
+comes after it. Five files, 142,372 bytes on disk, and each page still downloads only the subsets
+its own text needs. The built HTML makes no reference to `fonts.googleapis.com` or
+`fonts.gstatic.com`. Latin Roboto is preloaded.
+
+`tours-list` HTML went from 98,867 to 94,935 bytes, less than hoped: Google's 36 inlined rules
+became 17, but the icon font's data URI is now inlined into the page as well.
+
+### Why `font-family` appeared several times
+
+Two causes, both removed.
+
+- **The header** used a `font:` shorthand that hardcoded the Roboto stack on 26 elements that
+  already inherited it from `body`. Every one of those declarations had no effect. They are now the
+  metrics alone, and the now-unused `$omaya-font-body` token is gone.
+- **Headings.** Thirty-seven component rules re-declared Georgia on `h1`-`h6`, duplicating the
+  global `:is(h1, h2, h3, h4, h5, h6)` rule. They are removed. Fourteen on other elements —
+  `summary`, `strong`, eyebrows — are doing real work and stay.
+
+Left alone and worth a decision: `.newsletter-popup h2` uses Arial, the only heading on the site
+that is not Georgia.
+
+### Verification
+
+The cleanup is only a cleanup if nothing renders differently, so the computed family, weight,
+size, line-height and style of 791 elements across six pages were hashed on staging before any
+change and on this build after. All six hashes match. 138 tests across 16 files, formatting and 44
+prerendered routes pass.
+
+Live, on this build in a browser:
+
+- **Phone hero, 375px at DPR 2.** The `max-width: 30rem` source matches and the browser picks the
+  622w crop. It is stretched 1.54x — exactly what the full frame would be, since the Algeria
+  photograph's own 667px height is the limit. The crop costs no sharpness.
+- **Fonts.** Every font request goes to `/assets/fonts`. The licence page fetches the Cyrillic
+  subset, Roboto reports loaded, and there are no third-party font requests.
+
+### Follow-ups, not done here
+
+- `roboto-v51-symbols.woff2`, 20.5 KB, loads on every page, because the footer's ☎ and ✉ fall in
+  that subset. That was equally true with Google's fonts. Rendering those two glyphs as icons would
+  remove the request from every page.
+- `.newsletter-popup h2` in Arial, noted above.
+- About 50 KiB of unused JavaScript, still framework code.
+- No score is claimed. Re-audit **staging** rather than production once this is merged to `dev` —
+  and check the bundle name in the report first.

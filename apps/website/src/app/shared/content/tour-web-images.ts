@@ -54,6 +54,14 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/d3d69883d43f72f1.avif',
   '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp':
     '/assets/images/tour-web/a278583b0deb8df6.avif',
+  '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp':
+    '/assets/images/tour-web/8cc58ee4a56e19ef.avif',
+  '/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp':
+    '/assets/images/tour-web/6de0321172cc5b90.avif',
+  '/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp':
+    '/assets/images/tour-web/37e6c2650b5ff271.avif',
+  '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
+    '/assets/images/tour-web/fcf0d78e913c5388.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -110,6 +118,14 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/4ff7f3baeeb42e53.avif 320w, /assets/images/tour-web/4ac086d644b9abe6.avif 480w, /assets/images/tour-web/64cef172d6cc75c2.avif 640w, /assets/images/tour-web/f42612e3c7804bb9.avif 800w, /assets/images/tour-web/c1374caba60ac80c.avif 960w, /assets/images/tour-web/d3d69883d43f72f1.avif 1300w',
   '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp':
     '/assets/images/tour-web/ef647157a32fac6a.avif 320w, /assets/images/tour-web/5486683f41360c6d.avif 480w, /assets/images/tour-web/133d997121483967.avif 640w, /assets/images/tour-web/d9c946bd21bf9d57.avif 800w, /assets/images/tour-web/4e2742b9eeb1be17.avif 960w, /assets/images/tour-web/a278583b0deb8df6.avif 964w',
+  '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp':
+    '/assets/images/tour-web/215b97ff1d4234e8.avif 320w, /assets/images/tour-web/0cffd85bf8e5119c.avif 480w, /assets/images/tour-web/6580bc27c13071be.avif 640w, /assets/images/tour-web/7bfac47d3dca1fca.avif 800w, /assets/images/tour-web/4606f1aece7ea44f.avif 960w, /assets/images/tour-web/5572b5a88542d607.avif 1440w, /assets/images/tour-web/8cc58ee4a56e19ef.avif 1600w',
+  '/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp':
+    '/assets/images/tour-web/9509421b2802a58b.avif 320w, /assets/images/tour-web/6dba5a94304f24fa.avif 480w, /assets/images/tour-web/2c508cce1a5712d9.avif 640w, /assets/images/tour-web/d04f5ecabe2d5d82.avif 800w, /assets/images/tour-web/81f0c3eae3ac7448.avif 960w, /assets/images/tour-web/e57c7b8af8eedd11.avif 1440w, /assets/images/tour-web/6de0321172cc5b90.avif 1600w',
+  '/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp':
+    '/assets/images/tour-web/e1cc9302feb8f791.avif 320w, /assets/images/tour-web/7666087c1d1390be.avif 480w, /assets/images/tour-web/139e494e0afb5de8.avif 640w, /assets/images/tour-web/9705fc8aad16f2a1.avif 800w, /assets/images/tour-web/59c08ed03248fb3c.avif 960w, /assets/images/tour-web/b2234ddd3610a577.avif 1440w, /assets/images/tour-web/37e6c2650b5ff271.avif 1600w',
+  '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
+    '/assets/images/tour-web/4f1d6ac272e3e939.avif 320w, /assets/images/tour-web/08a7956e18b0083f.avif 480w, /assets/images/tour-web/24e24791a1fa3604.avif 640w, /assets/images/tour-web/4641c2f7e7b6c601.avif 800w, /assets/images/tour-web/825a93a18a1c4b52.avif 960w, /assets/images/tour-web/872826211e5df282.avif 1440w, /assets/images/tour-web/fcf0d78e913c5388.avif 1600w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -139,4 +155,23 @@ export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/30e8947d8f414504.avif 320w, /assets/images/tour-web/9d4a7b83defe1869.avif 480w, /assets/images/tour-web/b98e0f05b076e060.avif 640w, /assets/images/tour-web/3d4f31fc22e9fcfd.avif 800w, /assets/images/tour-web/b28cdd86c47fa4f8.avif 1439w',
   '/assets/images/destinations/Kyrgystan/gallery/kyrgyzstan-gallery-12.webp':
     '/assets/images/tour-web/aadd5e0be942dc84.avif 320w, /assets/images/tour-web/73767c74e22be3a3.avif 480w, /assets/images/tour-web/5aa4c95307acf7c7.avif 640w, /assets/images/tour-web/1cad68e539a9f199.avif 800w, /assets/images/tour-web/7efd5a08386fb244.avif 1600w',
+};
+// Centred crops of each tour hero for phones up to 30rem. See HERO_SOURCES in the generator.
+export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp':
+    '/assets/images/tour-web/5be85c8f872e8152.avif 320w, /assets/images/tour-web/ecc7ea6b95198eb7.avif 480w, /assets/images/tour-web/37d0fcdb96e9e986.avif 622w',
+  '/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp':
+    '/assets/images/tour-web/c606f4cff3081c98.avif 320w, /assets/images/tour-web/fe6d7b096fd0bc14.avif 480w, /assets/images/tour-web/34628c22e54a6be1.avif 640w, /assets/images/tour-web/2768a6ef639674ee.avif 746w',
+  '/assets/images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp':
+    '/assets/images/tour-web/d50ce571d39df403.avif 320w, /assets/images/tour-web/9be5b9c55d8f1576.avif 480w, /assets/images/tour-web/4b549c0d294bbf23.avif 640w, /assets/images/tour-web/45fc4822961283d7.avif 746w',
+  '/assets/images/destinations/Marocco/morocco-bgr.webp':
+    '/assets/images/tour-web/61f90df56d170e17.avif 320w, /assets/images/tour-web/a1629797301a895e.avif 480w, /assets/images/tour-web/5bec19e9ff226dc1.avif 640w, /assets/images/tour-web/19933124377521c5.avif 840w, /assets/images/tour-web/11720367b640ad33.avif 960w, /assets/images/tour-web/38c6a1b26d14c914.avif 994w',
+  '/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp':
+    '/assets/images/tour-web/a629235fd66499ba.avif 320w, /assets/images/tour-web/887ce14a4b58188b.avif 480w, /assets/images/tour-web/3d7b5ead3c3b9db5.avif 584w',
+  '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp':
+    '/assets/images/tour-web/9f1d38a9edb42593.avif 320w, /assets/images/tour-web/e77bd1d064ec2d20.avif 480w, /assets/images/tour-web/40360f85f9d2dd86.avif 640w, /assets/images/tour-web/12814d0a96344a95.avif 702w',
+  '/assets/images/women-tours/Morocco/morocco-women-only-bgr.webp':
+    '/assets/images/tour-web/e73f3e1378dd908f.avif 320w, /assets/images/tour-web/f57ae2c3f9f66fe7.avif 480w, /assets/images/tour-web/e9eeb7ff180491d1.avif 640w, /assets/images/tour-web/8920226f6fe16c17.avif 840w, /assets/images/tour-web/ed66e12bcfc80361.avif 858w',
+  '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
+    '/assets/images/tour-web/688cd93e33784a05.avif 320w, /assets/images/tour-web/beaa5d0c304b3beb.avif 480w, /assets/images/tour-web/9adb02e444e3dcb5.avif 640w, /assets/images/tour-web/299fd66e70bc2153.avif 840w, /assets/images/tour-web/ab0309ea3ed577ff.avif 960w, /assets/images/tour-web/666f71ede6687a3e.avif 994w',
 };
