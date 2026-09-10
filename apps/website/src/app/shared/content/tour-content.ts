@@ -1728,7 +1728,7 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
       unit: 'човек',
     },
     groupSize: {
-      min: 6,
+      min: 10,
       max: 16,
     },
     departures: [
@@ -1939,7 +1939,7 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
       unit: 'човек',
     },
     groupSize: {
-      min: 6,
+      min: 10,
       max: 16,
     },
     departures: [
@@ -2417,7 +2417,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
       unit: 'човек',
     },
     groupSize: {
-      min: 6,
+      min: 10,
       max: 16,
     },
     departures: [
