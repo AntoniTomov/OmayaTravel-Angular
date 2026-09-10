@@ -14,7 +14,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
-import { TourWebImagePipe, TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
+import {
+  TourWebHeroMobileSrcsetPipe,
+  TourWebImagePipe,
+  TourWebImageSrcsetPipe,
+  TourWebThumbnailSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import {
   tourFaqHeading,
@@ -69,8 +74,10 @@ interface CalendarDay {
     RouterLink,
     FormStatus,
     PublicBreadcrumbs,
+    TourWebHeroMobileSrcsetPipe,
     TourWebImagePipe,
     TourWebImageSrcsetPipe,
+    TourWebThumbnailSrcsetPipe,
   ],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
@@ -96,6 +103,25 @@ export class TourDetail {
   protected readonly calendarWeekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
   protected readonly todayIso = this.toIsoDate(new Date());
   protected readonly tour = computed(() => findTourBySlug(this.tourSlug()));
+  /**
+   * `sizes` for the hero. The hero is a fixed 515px box with `object-fit: cover`, which scales the
+   * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen —
+   * 1,236px for a 2.4:1 image on a 375px phone. `sizes="100vw"` told the browser the opposite, so
+   * it chose a candidate sized for the screen and cover stretched it by up to three times. The
+   * width the image really renders at is the larger of the viewport and 515px times its aspect.
+   * Keep 515 in step with `.tour-detail__hero` in the stylesheet.
+   */
+  protected readonly heroSizes = computed(() => {
+    const image = this.tour()?.heroImage;
+    const width = Number(image?.width);
+    const height = Number(image?.height);
+
+    if (!width || !height) {
+      return '100vw';
+    }
+
+    return `max(100vw, ${Math.ceil((515 * width) / height)}px)`;
+  });
   protected readonly relatedGuides = computed(
     () =>
       DESTINATION_CONTENT.find(

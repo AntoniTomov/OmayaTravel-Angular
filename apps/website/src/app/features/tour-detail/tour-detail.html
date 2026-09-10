@@ -2,10 +2,21 @@
   <main class="tour-detail">
     <section class="tour-detail__hero">
       <picture style="display: contents">
+        <!--
+          First, so it wins on phones: up to 30rem the hero fills its 515px height and shows only a
+          centred slice of the photograph, and this source is exactly that slice. Drawn width is
+          480px at any viewport in that range, hence the fixed sizes.
+        -->
+        <source
+          media="(max-width: 30rem)"
+          type="image/avif"
+          [attr.srcset]="tour.heroImage.src | tourWebHeroMobileSrcset"
+          sizes="480px"
+        />
         <source
           type="image/avif"
           [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
-          sizes="100vw"
+          [attr.sizes]="heroSizes()"
         />
         <img
           [src]="tour.heroImage.src"
@@ -200,7 +211,11 @@
                   (click)="openGallery(index)"
                 >
                   <picture style="display: contents">
-                    <source type="image/avif" [attr.srcset]="image.src | tourWebImage" />
+                    <source
+                      type="image/avif"
+                      [attr.srcset]="image.src | tourWebThumbnailSrcset"
+                      sizes="(min-width: 48.01rem) 31vw, 90vw"
+                    />
                     <img
                       [src]="image.src"
                       [width]="image.width"
@@ -254,13 +269,20 @@
                   [attr.aria-label]="'Preview gallery image: ' + image.alt"
                   (click)="openGallery(index)"
                 >
-                  <img
-                    [src]="image.src"
-                    [width]="image.width"
-                    [height]="image.height"
-                    [alt]="image.alt"
-                    loading="lazy"
-                  />
+                  <picture style="display: contents">
+                    <source
+                      type="image/avif"
+                      [attr.srcset]="image.src | tourWebThumbnailSrcset"
+                      sizes="(min-width: 48.01rem) 31vw, 90vw"
+                    />
+                    <img
+                      [src]="image.src"
+                      [width]="image.width"
+                      [height]="image.height"
+                      [alt]="image.alt"
+                      loading="lazy"
+                    />
+                  </picture>
                 </button>
               }
             </div>

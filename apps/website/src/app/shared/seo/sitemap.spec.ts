@@ -7,9 +7,11 @@ import {
   SITEMAP_INDEX_PATH,
   SITEMAP_PAGES_PATH,
   buildRobotsTxt,
+  buildUnpublishedHostRobotsTxt,
   buildSitemapIndexXml,
   buildSitemapPagesXml,
   canonicalHostForRequestHost,
+  isPublishedSiteHost,
   routeIndexability,
   sitemapEntries,
 } from './sitemap';
@@ -165,5 +167,40 @@ describe('canonical host resolution', () => {
     for (const host of ['staging.example.test', 'localhost:3000', '127.0.0.1:4300', '', null]) {
       expect(canonicalHostForRequestHost(host)).toBe(PUBLIC_CANONICAL_HOST);
     }
+  });
+});
+
+// Staging is a complete, stable copy of the site on its own origin. Without a noindex it competes
+// with the real one for the same queries, so these guard the rule that keeps it out of the index.
+describe('unpublished hosts', () => {
+  it('recognises the published domain, with or without www and a port', () => {
+    expect(isPublishedSiteHost('omayatravel.com')).toBe(true);
+    expect(isPublishedSiteHost('www.omayatravel.com')).toBe(true);
+    expect(isPublishedSiteHost('OmayaTravel.com:443')).toBe(true);
+  });
+
+  it('does not recognise staging, previews, bare IPs or a missing host', () => {
+    const hosts = ['staging.omayatravel.com', 'preview.omayatravel.com', '127.0.0.1:3000', ''];
+
+    expect(hosts.filter((host) => isPublishedSiteHost(host))).toEqual([]);
+    expect(isPublishedSiteHost(null)).toBe(false);
+    expect(isPublishedSiteHost(undefined)).toBe(false);
+  });
+
+  it('serves a disallow-all robots.txt that advertises no sitemap', () => {
+    const robots = buildUnpublishedHostRobotsTxt();
+
+    expect(robots).toContain('User-agent: *');
+    expect(robots).toContain('Disallow: /');
+    // Advertising the real sitemap here would hand a crawler a list of staging URLs to fetch.
+    expect(robots).not.toContain('Sitemap:');
+  });
+
+  it('keeps the published robots.txt permissive and pointing at the sitemap', () => {
+    const robots = buildRobotsTxt();
+
+    expect(robots).toContain('Allow: /');
+    expect(robots).not.toContain('Disallow: /');
+    expect(robots).toContain(`Sitemap: ${PUBLIC_CANONICAL_HOST}${SITEMAP_INDEX_PATH}`);
   });
 });

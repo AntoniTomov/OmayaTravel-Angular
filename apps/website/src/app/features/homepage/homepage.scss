@@ -58,7 +58,6 @@
 .homepage__hero h1 {
   max-width: 58rem;
   margin: 0;
-  font-family: tokens.$omaya-font-heading;
   font-size: 4rem;
   line-height: 1.05;
 }
@@ -230,7 +229,6 @@
 
 .homepage__newsletter h2 {
   margin: 0;
-  font-family: tokens.$omaya-font-heading;
   font-size: clamp(2.7rem, 5vw, 3rem);
   line-height: 1;
 }

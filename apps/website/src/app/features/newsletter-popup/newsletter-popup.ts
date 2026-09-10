@@ -6,7 +6,7 @@ import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
 
-const POPUP_DELAY_MS = 5000;
+const POPUP_DELAY_MS = 2000;
 const DISMISSED_KEY = 'omaya-newsletter-popup-dismissed';
 const SUBSCRIBED_KEY = 'omaya-newsletter-popup-subscribed';
 

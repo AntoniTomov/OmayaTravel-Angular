@@ -477,3 +477,242 @@ AVIF `srcset`, so this holds on first paint and does not depend on hydration.
   real look at what the initial bundle pulls in, not a quick fix.
 
 Re-audit both URLs under the same conditions before claiming any of this improved the score.
+
+## Tour detail: the gallery was the whole problem — 10 September 2026
+
+Post-release production mobile audits. `/destinations/kyrgyzstan/` came back at **97**, so the
+previous change worked there. `/tour-item/kyrgyzstan-tour/` sat at **79**, with CLS 0 and no
+font-display finding — both of those confirmed fixed in production — and 253 KiB of flagged image
+delivery.
+
+### What the audit was actually pointing at
+
+Every flagged item was a gallery preview, not the hero.
+
+`kyrgyzstan-gallery-02.webp` is a 1183×2560 phone photograph. Its AVIF is 313 kB, and the tour
+template shipped all of it for a thumbnail, because the gallery preview used the `tourWebImage`
+pipe — one fixed AVIF, no responsive candidates — while the full gallery tab used a plain `<img>`
+with no AVIF at all.
+
+Both now go through `<picture>` with `tourWebImageSrcset`, and the generator covers the whole
+twelve-image Kyrgyzstan gallery rather than the two images that happened to be audited.
+
+### A mistake worth recording, because the fix nearly shipped blurry
+
+The first `sizes` value assumed the three-column grid held on mobile: `31vw`. It does not — the
+grid collapses to one column at `48rem`, so the thumbnails are about **327 CSS px** wide, not 116.
+The browser dutifully picked a 320w candidate and upscaled it into a 327 px slot.
+
+Caught by asserting `naturalWidth >= renderedWidth` rather than by looking at the page, which is
+the check worth keeping: a blurry image is not visible in a byte count, and at a glance the change
+looked like a large win precisely _because_ it was serving too little data. Corrected to
+`(min-width: 48.01rem) 31vw, 90vw`, and every thumbnail now measures 337 against 327 rendered.
+
+### Results, measured locally at 375 px with lazy images forced
+
+|                                  |             Bytes |
+| -------------------------------- | ----------------: |
+| Gallery image 2 thumbnail        | 313,286 → 140,476 |
+| Hero (the LCP element)           |   79,106 → 58,535 |
+| `discover-more-tours` background |   47,608 → 11,248 |
+| **Page total**                   |     **→ 363,628** |
+
+`RESPONSIVE_WIDTHS` gained 320, 480 and 800. The 800 step matters most: a 375 px hero at DPR 2
+needs 750 device px, and 960 was previously the smallest candidate that cleared it.
+
+`discover-more-tours.webp` was the item deferred from the previous change. CSS backgrounds cannot
+read the hashed manifest, so it gets a stable-named AVIF beside the original and is referenced via
+`image-set()`. The WebP declaration is repeated first, so a browser without `image-set()` keeps a
+background rather than losing it.
+
+### Verified
+
+132 tests across 15 files, formatting clean, 44 prerendered routes, initial bundle unchanged at
+574.39 kB. No thumbnail or hero upscales. The `discover-more-tours` background resolves to AVIF.
+
+### What is left on this page
+
+- **The tall gallery sources are the remaining ceiling.** `kyrgyzstan-gallery-02` is 1183×2560 and
+  the template declares `800×1100`, so `object-fit: cover` discards a large part of every byte
+  downloaded. Serving a crop would fix it properly — that is an editorial decision about
+  composition, not a delivery one, so it is raised rather than taken. Re-encoding the source
+  photographs at a sane height would do it too.
+- **~50 KiB of unused JavaScript**, unchanged and still framework code.
+- The hero is flagged for compression at quality 55. Lowering it further trades LCP sharpness for
+  bytes on the largest element on the page; not worth doing blind.
+
+Re-audit before claiming a score change.
+
+## Cropping gallery thumbnails, and a measured before/after — 10 September 2026
+
+### Why cropping here is not an editorial decision
+
+The gallery grid renders every image through `object-fit: cover` with **no `object-position` set**,
+so the default `50% 50%` applies. A centred crop is therefore _exactly_ the region the grid already
+displays: the rendering is pixel-identical and only the bytes change. That is what makes this safe
+to do without a conversation about composition, unlike the art-directed crops still outstanding.
+
+The originals are untouched. The lightbox shows the whole frame at `max-height: 82vh` and its
+"open full-size" link points at `image.src`, so cropping the source files themselves would have
+broken the full-size view. The crops live in a separate manifest, `TOUR_WEB_THUMBNAIL_SRCSETS`,
+consumed only by the grid.
+
+Sources that cannot fill the crop are clamped rather than skipped: a landscape 1230×800 photograph
+in a portrait slot is limited by its height and yields 582×800, which still beats leaving the
+browser to upscale a smaller candidate.
+
+### Before and after, same page, same viewport, same script
+
+`/tour-item/kyrgyzstan-tour/` at 375 px with every lazy image forced to load, measured against
+three local SSR builds:
+
+| Build                                                   | Image bytes | Requests |
+| ------------------------------------------------------- | ----------: | -------: |
+| `dev` — what production serves today, scoring 79        |     748,624 |       18 |
+| plus PR #75 (gallery srcset, 800w step, CSS background) |     363,628 |       18 |
+| plus this change (cropped thumbnails)                   | **326,260** |       18 |
+
+**Total against production: −422,364 bytes, −56.4%.** This change on its own contributes −37,368
+(−10.3%); most of it lands on the one genuinely tall photograph, 140,476 → 104,595, because the
+other two gallery previews are already close to the display ratio and have little to crop.
+
+The hero — the LCP element — is 79,106 → 58,535 across both changes, −26%.
+
+### What this will and will not do to the score
+
+**Say the quiet part plainly: most of these bytes are marked `Unscored` by Lighthouse.** The
+"Improve image delivery" insight that flagged 253 KiB is labelled Unscored, and the gallery
+previews are lazy and below the fold. Removing their weight is a real improvement for real
+visitors — less data on a metered phone, faster scrolling — but it is not what the number is
+computed from.
+
+The score comes from FCP 2.9 s, LCP 4.4 s, TBT 40 ms, CLS 0 and SI 3.2 s. The only part of this
+work that touches those is the hero, and 20.5 kB less on Slow 4G is worth roughly a tenth of a
+second. **Expect a small score movement, not a jump to 97.** The destination page reached 97
+because its problem — a 475 kB thumbnail and two uncropped card images — sat much closer to the
+metrics that count.
+
+If the goal is the tour page's number specifically, the remaining lever is LCP, and that means the
+render-blocking chain and the hero, not the gallery.
+
+### Also found, and not caused by this work
+
+Six images upscale into their slots on the tour page: five highlight thumbnails whose sources are
+only 231 px wide against a 327 px slot, and the Visa logo at 102 px against 139. Both predate this
+change — the highlight sources are simply too small, and the payment logos are sized by CSS height.
+Worth fixing when someone regenerates those assets; not a delivery problem.
+
+## Tour heroes, self-hosted fonts and duplicate font declarations — 10 September 2026
+
+The audit that prompted this was labelled staging but measured production: it reported
+`main-ZQ6JCWXA.js` and an Algeria hero declared 1920x900, both production's. Staging runs `dev`
+(`main-LP6L3SRF.js`, hero declared 1600x667) and stays on its own host in a real browser. Worth
+checking the bundle name in any report before comparing it with a build.
+
+### The hero `sizes` bug
+
+The tour hero is a fixed 515px box with `object-fit: cover`, which scales the image until its height
+fills the box, so a wide photograph renders far wider than the screen. The hero declared
+`sizes="100vw"`, which tells the browser the opposite, so phones chose a candidate sized for the
+screen and cover stretched it 1.7-2.9x.
+
+**This corrects an earlier entry.** The Kyrgyzstan hero was recorded as not upscaled, "374 vs 375,
+a rounding artifact". That compared the file against the _box_ width, not the width cover renders
+it at. The 800 width step added for cards made it slightly worse, because heroes then picked 800w
+instead of 960w.
+
+Correct `sizes` alone would have been a mistake. Measured on Lighthouse's mobile profile (412px at
+DPR 1.75), it makes heroes sharp by downloading the full frame, which is 3.3x the bytes and would
+lower mobile scores:
+
+| Hero                  | Current `100vw` |   `sizes` fix |    Phone crop |
+| --------------------- | --------------: | ------------: | ------------: |
+| Algeria               |    27 KB, 2.70x |  89 KB, 1.35x |  44 KB, 1.35x |
+| Bulgaria              |    32 KB, 2.70x | 227 KB, 1.13x | 102 KB, 1.13x |
+| Kyrgyzstan            |    57 KB, 1.73x | 148 KB, 1.13x |  93 KB, 1.13x |
+| Morocco               |    65 KB, 1.69x | 137 KB, 0.94x |  82 KB, 1.00x |
+| Bulgaria women-only   |    12 KB, 2.87x |  26 KB, 1.44x |  10 KB, 1.44x |
+| Kyrgyzstan women-only |    30 KB, 2.39x | 131 KB, 1.20x |  52 KB, 1.20x |
+| Morocco women-only    |    47 KB, 1.96x | 172 KB, 0.98x |  87 KB, 1.00x |
+| Morocco solo          |    47 KB, 1.69x | 118 KB, 0.94x |  80 KB, 1.00x |
+| **Total**             |      **317 KB** |  **1,048 KB** |    **550 KB** |
+
+The multiplier is how far the image is stretched on screen: 1.00 is sharp, higher is softer. The
+crop matches the full frame's sharpness at about half its bytes. Nothing is both as sharp and as
+light as today's soft images; the choice here was sharpness at the lowest cost that buys it.
+
+Up to 30rem the hero shows only a centred slice of the photograph: the parallax rule that moves it
+vertically sits behind `min-width: 48.01rem`, so phones get plain centred cover. The crop is the
+widest slice any phone up to 480px can show, served through a `media="(max-width: 30rem)"`
+source ahead of the full-frame one, so it renders pixel-identically. Wider viewports keep the
+full frame with `sizes` now computed as `max(100vw, 515px x aspect)`.
+
+Four tour heroes had no AVIF at all — Algeria, Bulgaria women-only, Morocco women-only and Morocco
+solo — because the generator's input list is maintained by hand. `tour-hero-avif.spec.ts` now
+fails if any tour hero lacks an AVIF encoding or a phone crop.
+
+### Self-hosted fonts
+
+Roboto and Kristi now load from `/assets/fonts` instead of `fonts.gstatic.com`, which removes the
+last third-party origin from the critical path. The `@font-face` rules are copied verbatim from
+Google's response with only the URL rewritten. That is deliberate: Google declares Roboto once per
+weight over a single variable file, and the site asks for weight 800 in dozens of places, which
+font matching resolves to the 900 face. Collapsing the rules into one weight range would render
+true 800 instead, a visible change to headings site-wide.
+
+Subsets were chosen by scanning every prerendered page against each subset's `unicode-range`:
+
+| Characters             | Where                     | Subset                     |
+| ---------------------- | ------------------------- | -------------------------- |
+| ☎ and ✉                | Footer, nearly every page | `symbols`                  |
+| →                      | Destinations              | `symbols` (also in `math`) |
+| Bulgarian licence name | Licence and terms pages   | `cyrillic`                 |
+| Everything else        | —                         | `latin`, `latin-ext`       |
+
+`math`, Greek, Vietnamese and `cyrillic-ext` were dropped. Dropping `math` changes nothing even
+though it covers the arrow: overlapping ranges resolve to the face declared last, and `symbols`
+comes after it. Five files, 142,372 bytes on disk, and each page still downloads only the subsets
+its own text needs. The built HTML makes no reference to `fonts.googleapis.com` or
+`fonts.gstatic.com`. Latin Roboto is preloaded.
+
+`tours-list` HTML went from 98,867 to 94,935 bytes, less than hoped: Google's 36 inlined rules
+became 17, but the icon font's data URI is now inlined into the page as well.
+
+### Why `font-family` appeared several times
+
+Two causes, both removed.
+
+- **The header** used a `font:` shorthand that hardcoded the Roboto stack on 26 elements that
+  already inherited it from `body`. Every one of those declarations had no effect. They are now the
+  metrics alone, and the now-unused `$omaya-font-body` token is gone.
+- **Headings.** Thirty-seven component rules re-declared Georgia on `h1`-`h6`, duplicating the
+  global `:is(h1, h2, h3, h4, h5, h6)` rule. They are removed. Fourteen on other elements —
+  `summary`, `strong`, eyebrows — are doing real work and stay.
+
+Left alone and worth a decision: `.newsletter-popup h2` uses Arial, the only heading on the site
+that is not Georgia.
+
+### Verification
+
+The cleanup is only a cleanup if nothing renders differently, so the computed family, weight,
+size, line-height and style of 791 elements across six pages were hashed on staging before any
+change and on this build after. All six hashes match. 138 tests across 16 files, formatting and 44
+prerendered routes pass.
+
+Live, on this build in a browser:
+
+- **Phone hero, 375px at DPR 2.** The `max-width: 30rem` source matches and the browser picks the
+  622w crop. It is stretched 1.54x — exactly what the full frame would be, since the Algeria
+  photograph's own 667px height is the limit. The crop costs no sharpness.
+- **Fonts.** Every font request goes to `/assets/fonts`. The licence page fetches the Cyrillic
+  subset, Roboto reports loaded, and there are no third-party font requests.
+
+### Follow-ups, not done here
+
+- `roboto-v51-symbols.woff2`, 20.5 KB, loads on every page, because the footer's ☎ and ✉ fall in
+  that subset. That was equally true with Google's fonts. Rendering those two glyphs as icons would
+  remove the request from every page.
+- `.newsletter-popup h2` in Arial, noted above.
+- About 50 KiB of unused JavaScript, still framework code.
+- No score is claimed. Re-audit **staging** rather than production once this is merged to `dev` —
+  and check the bundle name in the report first.

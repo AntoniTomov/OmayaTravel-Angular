@@ -29,15 +29,33 @@ export const SITEMAP_PAGES_PATH = '/sitemap-pages.xml';
  * the same origin the page-level canonical tags use.
  */
 export function canonicalHostForRequestHost(requestHost: string | null | undefined): string {
+  const match = matchSiteByHost(requestHost);
+
+  return match?.domain ? `https://${match.domain}` : PUBLIC_CANONICAL_HOST;
+}
+
+function matchSiteByHost(requestHost: string | null | undefined) {
   const hostname = (requestHost ?? '')
     .toLowerCase()
     .split(':')[0]
     .replace(/^www\./, '');
-  const match = Object.values(SITE_CONFIGS).find(
+
+  return Object.values(SITE_CONFIGS).find(
     (config) => config.domain && config.domain.toLowerCase() === hostname,
   );
+}
 
-  return match?.domain ? `https://${match.domain}` : PUBLIC_CANONICAL_HOST;
+/**
+ * Whether the request arrived on a domain this platform actually publishes.
+ *
+ * Everything else — the staging subdomain, a preview host, a raw IP, a stray `Host` header — is a
+ * complete copy of the site on a different origin. Left alone it is exactly the duplicate content
+ * that canonical tags exist to prevent, and staging is worse than a preview because it is stable,
+ * linkable and long-lived. Callers use this to serve `noindex` and a disallow-all robots.txt on
+ * those hosts, which is what the deployment plan asks for and what was never implemented.
+ */
+export function isPublishedSiteHost(requestHost: string | null | undefined): boolean {
+  return matchSiteByHost(requestHost) !== undefined;
 }
 
 export interface SitemapEntry {
@@ -175,6 +193,22 @@ export function buildSitemapPagesXml(canonicalHost = PUBLIC_CANONICAL_HOST): str
  * Google's guidance is explicit that robots.txt is the wrong instrument for canonicalisation:
  * https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
  */
+/**
+ * robots.txt for a host that is not a published site domain. Staging must not be crawled at all:
+ * unlike a page-level `noindex`, there is nothing here worth fetching, and a stable staging origin
+ * left open is a second complete copy of the site competing with the real one.
+ */
+export function buildUnpublishedHostRobotsTxt(): string {
+  return [
+    'User-agent: *',
+    'Disallow: /',
+    '',
+    '# This host is not a published site domain — staging, preview or an unrecognised Host header.',
+    '# The published site is served from its own domain and carries the real robots.txt.',
+    '',
+  ].join('\n');
+}
+
 export function buildRobotsTxt(canonicalHost = PUBLIC_CANONICAL_HOST): string {
   return [
     'User-agent: *',
