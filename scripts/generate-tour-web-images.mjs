@@ -55,6 +55,13 @@ const inputs = [
   // page and bigger than the hero.
   "images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
   "images/blog-posts/Kyrgystan-post-preview-bgr.webp",
+  // Tour heroes that were still WebP. The hero is the LCP element on every tour page, and these
+  // were missed because this list is maintained by hand — tour-hero-avif.spec.ts now fails if a
+  // tour hero has no AVIF, so the next tour cannot slip through the same way.
+  "images/destinations/Algiria/gallery/gallery-image-5.webp",
+  "images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+  "images/women-tours/Morocco/morocco-women-only-bgr.webp",
+  "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
 ];
 mkdirSync(output, { recursive: true });
 const manifest = {};
@@ -193,6 +200,63 @@ for (const relativePath of GALLERY_SOURCES) {
   }
 }
 
+// Phone-shaped encodings of each tour hero. Up to 30rem wide the hero is a 515px-tall box and
+// `object-fit: cover` fills it by height, so a phone only ever sees a centred slice of a wide
+// photograph — the desktop parallax rule that moves it vertically sits behind min-width: 48.01rem.
+// Shipping the whole frame to show that slice cost 3.3x the bytes of the soft images it replaced.
+// This crop is the widest slice any phone up to 480px can show, so it renders pixel-identically at
+// about half the bytes. Measured on Lighthouse's mobile profile: 551 KB across the eight heroes,
+// against 1,048 KB for the full frame at the same sharpness.
+const HERO_SOURCES = [
+  "images/destinations/Algiria/gallery/gallery-image-5.webp",
+  "images/destinations/Bulgaria/bulgaria-tour-bgr.webp",
+  "images/destinations/Kyrgystan/kyrgyzstan-tour-bgr.webp",
+  "images/destinations/Marocco/morocco-bgr.webp",
+  "images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
+  "images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
+  "images/women-tours/Morocco/morocco-women-only-bgr.webp",
+  "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+];
+const HERO_HEIGHT_PX = 515;
+const MOBILE_HERO_MAX_VIEWPORT = 480;
+const MOBILE_HERO_WIDTHS = [320, 480, 640, 840, 960];
+const heroMobile = {};
+for (const relativePath of HERO_SOURCES) {
+  const original = readFileSync(resolve(assets, relativePath));
+  const meta = await sharp(original).metadata();
+  const cropWidth = Math.min(
+    meta.width,
+    Math.round((meta.height * MOBILE_HERO_MAX_VIEWPORT) / HERO_HEIGHT_PX),
+  );
+  const left = Math.round((meta.width - cropWidth) / 2);
+  const widths = [
+    ...MOBILE_HERO_WIDTHS.filter((width) => width < cropWidth),
+    cropWidth,
+  ];
+  const candidates = [];
+  for (const width of widths) {
+    const encoded = await sharp(original)
+      .extract({ left, top: 0, width: cropWidth, height: meta.height })
+      .resize({ width })
+      .avif({ quality: 55, effort: 5 })
+      .toBuffer();
+    const hash = createHash("sha256")
+      .update(encoded)
+      .digest("hex")
+      .slice(0, 16);
+    const filename = `${hash}.avif`;
+    writeFileSync(resolve(output, filename), encoded);
+    candidates.push(`/assets/images/tour-web/${filename} ${width}w`);
+    measurements.push({
+      source: `/assets/${relativePath}`,
+      width,
+      variant: "hero-mobile",
+      webBytes: encoded.length,
+    });
+  }
+  heroMobile[`/assets/${relativePath}`] = candidates.join(", ");
+}
+
 const manifestPath = resolve(
   root,
   "apps/website/src/app/shared/content/tour-web-images.ts",
@@ -206,7 +270,9 @@ writeFileSync(
       "// Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading\n" +
       "// the parts of a tall photograph that object-fit: cover discards. The lightbox uses the\n" +
       "// original, which is why these are a separate map rather than a replacement.\n" +
-      `export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(thumbnails, null, 2)};\n`,
+      `export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(thumbnails, null, 2)};\n` +
+      "// Centred crops of each tour hero for phones up to 30rem. See HERO_SOURCES in the generator.\n" +
+      `export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(heroMobile, null, 2)};\n`,
     { ...(await resolveConfig(manifestPath)), filepath: manifestPath },
   ),
 );
