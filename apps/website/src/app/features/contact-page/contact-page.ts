@@ -10,7 +10,7 @@ interface ContactPageContent {
   title: string;
   intro: {
     heading: string;
-    text: string;
+    paragraphs: readonly string[];
   };
   location: string;
   phoneNumbers: readonly string[];
@@ -34,7 +34,9 @@ const CONTACT_PAGE: ContactPageContent = {
   title: 'Contact Us',
   intro: {
     heading: "Let's Plan Your Next Story.",
-    text: "Every great journey starts with a single conversation. Whether you have a specific destination in mind or just a wild idea and a blank calendar, we're here to help you piece it together. Reach out today, and let's turn that “someday” trip into a departure date.",
+    paragraphs: [
+      "Every great journey starts with a single conversation. Whether you have a specific destination in mind or just a wild idea and a blank calendar, we're here to help you piece it together. Reach out today, and let's turn that “someday” trip into a departure date.",
+    ],
   },
   location: 'Sofia, Bulgaria',
   phoneNumbers: ['+359 87 996 5946'],
@@ -57,7 +59,10 @@ const AMELIA_CONTACT_PAGE: ContactPageContent = {
   title: 'Свържете се с нас',
   intro: {
     heading: 'Нека планираме следващото ти пътуване.',
-    text: 'Всяко вълнуващо пътешествие започва с един разговор. Независимо дали вече имаш конкретна дестинация наум, или просто идея и свободни дати в календара, ние сме тук, за да ти помогнем да подредиш детайлите. Пиши ни още днес и нека превърнем онова пътуване „някой ден“ в истинска дата на заминаване.',
+    paragraphs: [
+      'Понякога знаеш точно къде искаш да отидеш. Друг път имаш само идея, няколко свободни дни и желание за нещо ново. И в двата случая сме тук, за да помогнем.',
+      'Пиши ни, сподели какво си представяш, а ние ще помогнем с останалото - от първата идея до последния детайл.',
+    ],
   },
   location: 'София, България',
   phoneNumbers: [],

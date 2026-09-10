@@ -114,6 +114,13 @@
   line-height: 1.15;
 }
 
+.newsletter-popup__body {
+  margin: 0;
+  color: #555555;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
 .newsletter-popup__actions,
 .newsletter-popup__form {
   display: grid;

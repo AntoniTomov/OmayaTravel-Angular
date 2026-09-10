@@ -32,7 +32,9 @@
 
     <div class="contact-page__details">
       <h2>{{ content().intro.heading }}</h2>
-      <p>{{ content().intro.text }}</p>
+      @for (paragraph of content().intro.paragraphs; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
 
       <h3>{{ content().location }}</h3>
       @for (phoneNumber of content().phoneNumbers; track phoneNumber) {
