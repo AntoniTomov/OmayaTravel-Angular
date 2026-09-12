@@ -1939,8 +1939,8 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
       max: 16,
     },
     departures: [
-      { date: '2027-04-22', ageGroupLabel: 'Група 20-45 г.' },
-      { date: '2027-05-20', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-04-21', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-26', ageGroupLabel: 'Група 40-65 г.' },
     ],
     departuresNote:
       'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
