@@ -13,7 +13,7 @@ export class MissionSection {
   protected readonly image = {
     src: '/assets/images/home-page/our-mission-image.webp',
     alt: 'Traveller sitting in a cave opening overlooking mountains',
-    width: 'auto',
-    height: 540,
+    width: 1080,
+    height: 1080,
   };
 }
