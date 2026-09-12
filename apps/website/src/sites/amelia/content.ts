@@ -98,7 +98,7 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
       'Индия не е страна, която можеш да побереш в няколко думи. Тя е шумна и тиха, цветна и семпла, хаотична и удивително подредена в собствения си ритъм. Понякога ще те накара да се усмихнеш, друг път ще те изненада, а на моменти просто ще ти се прииска да спреш и да гледаш.',
     image: '/assets/images/amelia/tours/india/india-card.webp',
     alt: 'Тадж Махал в Индия',
-    price: 'EUR1420',
+    price: 'EUR1660',
     duration: '14 дни / 13 нощувки',
     target: '/tour-item/india-tour/',
   },

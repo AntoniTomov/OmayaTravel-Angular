@@ -2043,7 +2043,7 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
       'Самолетни билети',
       'Застраховка',
       'Хранения извън описаните',
-      'Доплащане за единична стая',
+      'Доплащане за единична стая - 255 EUR',
     ],
     itinerary: [
       {
@@ -2408,7 +2408,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
       nights: 13,
     },
     price: {
-      amount: 1420,
+      amount: 1660,
       currency: 'EUR',
       unit: 'човек',
     },
@@ -2499,6 +2499,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
       'Такси за професионална фото- и видеотехника в обектите',
       'Бакшиши за водачи, шофьори и обслужващ персонал',
       'Разходи от личен характер – пране, телефон, минибар, медицински разходи',
+      'Доплащане за единична стая - 415 EUR',
       'Всичко, което не е изрично посочено в „Включено в цената“',
     ],
     itinerary: [
