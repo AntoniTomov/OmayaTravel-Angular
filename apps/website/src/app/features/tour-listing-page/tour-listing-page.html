@@ -74,13 +74,23 @@
 
     <div class="tour-listing__content" [class.tour-listing__content--full]="!isTourListPage()">
       <div class="tour-listing__grid">
-        @for (card of cards(); track card.title) {
+        @for (card of cards(); track card.title; let first = $first) {
           <article class="tour-listing__card">
             <a [routerLink]="card.target" (click)="trackTourCardClick(card)">
               <div class="tour-listing__card-image">
                 <picture style="display: contents">
                   <source type="image/avif" [attr.srcset]="card.image | tourWebImage" />
-                  <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+                  <!--
+                    The first card is partly on screen on a phone (about 240px of it on the classic,
+                    solo, all-ages and women-only listings). Lazy images are only requested after
+                    layout, so it arrived after the page had finished loading; eager lets the HTML
+                    parser request it straight away. The rest stay lazy.
+                  -->
+                  <img
+                    [src]="card.image"
+                    [alt]="card.alt"
+                    [attr.loading]="first ? 'eager' : 'lazy'"
+                  />
                 </picture>
                 <div class="tour-listing__card-overlay">
                   <span class="tour-listing__card-category">{{ card.category }}</span>
