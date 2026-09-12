@@ -85,7 +85,7 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
       'Има един момент - някъде между сините улички на Шефшауен и кехлибарената тишина на Сахара - в който Мароко спира да бъде дестинация и започва да прилича на сън, който вече си сънувала. 12 дни от Атлантическия бряг до дюните на Сахара, в малка група само от жени.',
     image: '/assets/images/amelia/tours/morocco/morocco-card.webp',
     alt: 'Сините улички на Шефшауен в Мароко',
-    price: 'EUR2300',
+    price: 'EUR2180',
     duration: '12 дни / 11 нощувки',
     target: '/tour-item/morocco-tour/',
   },

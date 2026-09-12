@@ -1930,7 +1930,7 @@ function createAmeliaMoroccoTour(): TourDetailContent | undefined {
       nights: 11,
     },
     price: {
-      amount: 2300,
+      amount: 2180,
       currency: 'EUR',
       unit: 'човек',
     },
