@@ -2418,7 +2418,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
     },
     departures: [
       { date: '2027-02-24', ageGroupLabel: 'Група 20-45 г.' },
-      { date: '2027-03-24', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-03-03', ageGroupLabel: 'Група 40-65 г.' },
     ],
     departuresNote:
       'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
