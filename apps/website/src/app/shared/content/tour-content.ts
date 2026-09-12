@@ -1732,8 +1732,8 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
       max: 16,
     },
     departures: [
-      { date: '2026-10-01', ageGroupLabel: 'Група 20-45 г.' },
-      { date: '2027-04-08', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-06-23', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-07-14', ageGroupLabel: 'Група 40-65 г.' },
     ],
     departuresNote:
       'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
