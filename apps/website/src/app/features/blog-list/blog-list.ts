@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import {
   BLOG_DISCOVER_TOURS_IMAGE,
   BLOG_LIST_HERO_IMAGE,
@@ -25,6 +26,9 @@ export class BlogList {
       : BLOG_LIST_HERO_IMAGE,
   );
   protected readonly discoverToursImage = BLOG_DISCOVER_TOURS_IMAGE;
+  protected readonly discoverToursEnabled = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
+  );
   protected readonly labels = computed(() =>
     this.activeSite.site().id === 'amelia'
       ? {

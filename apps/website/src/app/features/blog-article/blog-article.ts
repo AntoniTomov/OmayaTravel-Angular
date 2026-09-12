@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import {
   BLOG_DISCOVER_TOURS_IMAGE,
   blogPostsForSite,
@@ -29,6 +30,9 @@ export class BlogArticle {
   );
   protected readonly suggestedPosts = computed(() => this.posts().slice(0, 3));
   protected readonly discoverToursImage = BLOG_DISCOVER_TOURS_IMAGE;
+  protected readonly discoverToursEnabled = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
+  );
   protected readonly relatedPosts = computed(() =>
     this.posts()
       .filter((post) => post.slug !== this.post()?.slug)
