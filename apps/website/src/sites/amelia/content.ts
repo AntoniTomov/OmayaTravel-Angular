@@ -90,7 +90,7 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     target: '/tour-item/morocco-tour/',
   },
   {
-    title: 'Индия',
+    title: 'Северна Индия отблизо',
     category: 'Women only',
     categoryLabel: '',
     destination: 'Индия',
