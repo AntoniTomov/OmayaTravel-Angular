@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActiveSite } from '../../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../../sites/site-routes';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface TravelMatchFeature {
@@ -24,6 +25,9 @@ export class TravelMatch {
   protected readonly i18n = inject(OmayaI18n);
   private readonly activeSite = inject(ActiveSite);
   protected readonly calendarTarget = `/${new Date().getFullYear() === 2027 ? 'calendar-2027' : 'calendar'}/`;
+  protected readonly calendarLinkEnabled = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), this.calendarTarget),
+  );
   private readonly icons: readonly TravelMatchFeature['icon'][] = [
     {
       src: '/assets/images/home-page/travel-match/globe-icon.webp',

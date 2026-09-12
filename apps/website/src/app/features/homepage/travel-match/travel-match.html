@@ -9,18 +9,33 @@
 
     <div class="travel-match__grid">
       @for (feature of features(); track feature.title) {
-        <a class="travel-match__item" [routerLink]="calendarTarget">
-          <img
-            class="travel-match__icon"
-            [src]="feature.icon.src"
-            [width]="feature.icon.width"
-            [height]="feature.icon.height"
-            [alt]="feature.icon.alt"
-            loading="lazy"
-          />
-          <h3>{{ feature.title }}</h3>
-          <p>{{ feature.description }}</p>
-        </a>
+        @if (calendarLinkEnabled()) {
+          <a class="travel-match__item" [routerLink]="calendarTarget">
+            <img
+              class="travel-match__icon"
+              [src]="feature.icon.src"
+              [width]="feature.icon.width"
+              [height]="feature.icon.height"
+              [alt]="feature.icon.alt"
+              loading="lazy"
+            />
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </a>
+        } @else {
+          <div class="travel-match__item">
+            <img
+              class="travel-match__icon"
+              [src]="feature.icon.src"
+              [width]="feature.icon.width"
+              [height]="feature.icon.height"
+              [alt]="feature.icon.alt"
+              loading="lazy"
+            />
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        }
       }
     </div>
   </div>
