@@ -62,6 +62,9 @@ const inputs = [
   "images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
   "images/women-tours/Morocco/morocco-women-only-bgr.webp",
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+  // First-screen images being made eager. Eager means downloading during the initial load next to
+  // the hero, so they have to be cheap first: this one shipped 296,558 bytes of WebP.
+  "images/private-tour/private-tour-image.webp",
 ];
 mkdirSync(output, { recursive: true });
 const manifest = {};
