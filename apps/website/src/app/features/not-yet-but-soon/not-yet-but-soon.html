@@ -14,6 +14,6 @@
     <h2>
       {{ i18n.t('notYet.message') }}
     </h2>
-    <a routerLink="/tours-list/">{{ i18n.t('notYet.cta') }}</a>
+    <a [routerLink]="ctaTarget()">{{ i18n.t('notYet.cta') }}</a>
   </section>
 </main>

@@ -14,6 +14,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { FormStatus } from '../../shared/forms/form-status';
@@ -73,6 +74,9 @@ export class TourDetail {
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
   );
 
+  protected readonly discoverToursEnabled = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
+  );
   protected readonly activeTab = signal<TourTab>('information');
   protected readonly activeGalleryIndex = signal<number | null>(null);
   private galleryTouchStartX = 0;

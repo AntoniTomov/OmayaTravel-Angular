@@ -399,11 +399,13 @@
           />
         </form>
 
-        <a
-          class="tour-detail__discover"
-          routerLink="/tours-list/"
-          (click)="trackTourCta('discover_more')"
-        ></a>
+        @if (discoverToursEnabled()) {
+          <a
+            class="tour-detail__discover"
+            routerLink="/tours-list/"
+            (click)="trackTourCta('discover_more')"
+          ></a>
+        }
       </aside>
     </div>
 

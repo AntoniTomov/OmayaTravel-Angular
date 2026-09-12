@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
 @Component({
@@ -10,4 +12,9 @@ import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 })
 export class NotYetButSoon {
   protected readonly i18n = inject(OmayaI18n);
+  private readonly activeSite = inject(ActiveSite);
+
+  protected readonly ctaTarget = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), '/tours-list/') ? '/tours-list/' : '/destinations/',
+  );
 }
