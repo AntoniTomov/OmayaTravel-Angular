@@ -1764,10 +1764,6 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
         title: { text: 'Сказка - каньонът от приказките', linkText: '', link: '' },
         image: kyrgyzstanTour.highlights[4]?.image ?? kyrgyzstanTour.heroImage,
       },
-      {
-        title: { text: 'Алтин-Арашан - горещи извори високо в планината', linkText: '', link: '' },
-        image: kyrgyzstanTour.highlights[5]?.image ?? kyrgyzstanTour.heroImage,
-      },
     ],
     included: [
       'Нощувки в хотели, къщи за гости и юрти според описанието',
