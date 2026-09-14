@@ -1697,111 +1697,151 @@
       "width": 320,
       "height": 459,
       "variant": "homepage-hero-phone",
-      "webBytes": 14693
+      "quality": 70,
+      "webBytes": 24503
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
       "width": 480,
       "height": 688,
       "variant": "homepage-hero-phone",
-      "webBytes": 28151
+      "quality": 70,
+      "webBytes": 46914
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
       "width": 637,
       "height": 913,
       "variant": "homepage-hero-phone",
-      "webBytes": 45600
+      "quality": 65,
+      "webBytes": 62567
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
       "width": 640,
       "height": 573,
       "variant": "homepage-hero-tablet",
-      "webBytes": 32974
+      "quality": 70,
+      "webBytes": 55379
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
       "width": 800,
       "height": 717,
       "variant": "homepage-hero-tablet",
-      "webBytes": 47077
+      "quality": 70,
+      "webBytes": 77503
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
       "width": 960,
       "height": 860,
       "variant": "homepage-hero-tablet",
-      "webBytes": 61962
+      "quality": 65,
+      "webBytes": 84824
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
       "width": 1019,
       "height": 913,
       "variant": "homepage-hero-tablet",
-      "webBytes": 70464
+      "quality": 65,
+      "webBytes": 96617
+    },
+    {
+      "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
+      "width": 960,
+      "height": 828,
+      "variant": "homepage-hero-portrait",
+      "quality": 65,
+      "webBytes": 82508
+    },
+    {
+      "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",
+      "width": 1059,
+      "height": 913,
+      "variant": "homepage-hero-portrait",
+      "quality": 65,
+      "webBytes": 99309
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
       "width": 320,
       "height": 458,
       "variant": "homepage-hero-phone",
-      "webBytes": 10796
+      "quality": 65,
+      "webBytes": 14758
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
       "width": 480,
       "height": 687,
       "variant": "homepage-hero-phone",
-      "webBytes": 20158
+      "quality": 60,
+      "webBytes": 24186
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
       "width": 553,
       "height": 792,
       "variant": "homepage-hero-phone",
-      "webBytes": 24984
+      "quality": 60,
+      "webBytes": 30422
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
       "width": 640,
       "height": 573,
       "variant": "homepage-hero-tablet",
-      "webBytes": 22801
+      "quality": 60,
+      "webBytes": 27763
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
       "width": 800,
       "height": 717,
       "variant": "homepage-hero-tablet",
-      "webBytes": 32328
+      "quality": 60,
+      "webBytes": 38823
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
       "width": 884,
       "height": 792,
       "variant": "homepage-hero-tablet",
-      "webBytes": 37807
+      "quality": 60,
+      "webBytes": 45634
+    },
+    {
+      "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
+      "width": 919,
+      "height": 792,
+      "variant": "homepage-hero-portrait",
+      "quality": 60,
+      "webBytes": 46701
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
       "width": 320,
       "height": 458,
       "variant": "homepage-hero-phone",
-      "webBytes": 14694
+      "quality": 65,
+      "webBytes": 19680
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
       "width": 480,
       "height": 688,
       "variant": "homepage-hero-phone",
-      "webBytes": 25085
+      "quality": 60,
+      "webBytes": 29738
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
       "width": 640,
       "height": 917,
       "variant": "homepage-hero-phone",
+      "quality": 55,
       "webBytes": 35772
     },
     {
@@ -1809,6 +1849,7 @@
       "width": 744,
       "height": 1066,
       "variant": "homepage-hero-phone",
+      "quality": 55,
       "webBytes": 43169
     },
     {
@@ -1816,20 +1857,23 @@
       "width": 640,
       "height": 573,
       "variant": "homepage-hero-tablet",
-      "webBytes": 31265
+      "quality": 60,
+      "webBytes": 37493
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
       "width": 800,
       "height": 717,
       "variant": "homepage-hero-tablet",
-      "webBytes": 42152
+      "quality": 60,
+      "webBytes": 49979
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
       "width": 960,
       "height": 860,
       "variant": "homepage-hero-tablet",
+      "quality": 55,
       "webBytes": 52130
     },
     {
@@ -1837,13 +1881,39 @@
       "width": 1190,
       "height": 1066,
       "variant": "homepage-hero-tablet",
+      "quality": 55,
       "webBytes": 68495
+    },
+    {
+      "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
+      "width": 960,
+      "height": 827,
+      "variant": "homepage-hero-portrait",
+      "quality": 55,
+      "webBytes": 52200
+    },
+    {
+      "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
+      "width": 1200,
+      "height": 1034,
+      "variant": "homepage-hero-portrait",
+      "quality": 55,
+      "webBytes": 68348
+    },
+    {
+      "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp",
+      "width": 1237,
+      "height": 1066,
+      "variant": "homepage-hero-portrait",
+      "quality": 55,
+      "webBytes": 71753
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
       "width": 320,
       "height": 288,
       "variant": "featured-trip-mobile",
+      "quality": 55,
       "webBytes": 6134
     },
     {
@@ -1851,6 +1921,7 @@
       "width": 480,
       "height": 432,
       "variant": "featured-trip-mobile",
+      "quality": 55,
       "webBytes": 10414
     },
     {
@@ -1858,6 +1929,7 @@
       "width": 560,
       "height": 504,
       "variant": "featured-trip-mobile",
+      "quality": 55,
       "webBytes": 12751
     },
     {
@@ -1865,6 +1937,7 @@
       "width": 632,
       "height": 569,
       "variant": "featured-trip-mobile",
+      "quality": 55,
       "webBytes": 14908
     },
     {
@@ -1872,124 +1945,219 @@
       "width": 320,
       "height": 288,
       "variant": "featured-trip-mobile",
-      "webBytes": 15667
+      "quality": 65,
+      "webBytes": 21421
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
       "width": 480,
       "height": 432,
       "variant": "featured-trip-mobile",
-      "webBytes": 30704
+      "quality": 60,
+      "webBytes": 37292
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
       "width": 560,
       "height": 504,
       "variant": "featured-trip-mobile",
-      "webBytes": 39261
+      "quality": 60,
+      "webBytes": 47844
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
       "width": 632,
       "height": 569,
       "variant": "featured-trip-mobile",
-      "webBytes": 50015
+      "quality": 60,
+      "webBytes": 60602
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
       "width": 320,
       "height": 288,
       "variant": "featured-trip-mobile",
-      "webBytes": 13981
+      "quality": 70,
+      "webBytes": 21359
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
       "width": 480,
       "height": 432,
       "variant": "featured-trip-mobile",
-      "webBytes": 30914
+      "quality": 70,
+      "webBytes": 43671
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
       "width": 560,
       "height": 504,
       "variant": "featured-trip-mobile",
-      "webBytes": 40391
+      "quality": 70,
+      "webBytes": 56097
     },
     {
       "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
-      "width": 660,
-      "height": 594,
+      "width": 632,
+      "height": 569,
       "variant": "featured-trip-mobile",
-      "webBytes": 54431
-    },
-    {
-      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
-      "width": 760,
-      "height": 684,
-      "variant": "featured-trip-mobile",
-      "webBytes": 67980
-    },
-    {
-      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
-      "width": 880,
-      "height": 792,
-      "variant": "featured-trip-mobile",
-      "webBytes": 83370
-    },
-    {
-      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
-      "width": 1000,
-      "height": 900,
-      "variant": "featured-trip-mobile",
-      "webBytes": 102931
-    },
-    {
-      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
-      "width": 1100,
-      "height": 990,
-      "variant": "featured-trip-mobile",
-      "webBytes": 118444
-    },
-    {
-      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
-      "width": 1184,
-      "height": 1066,
-      "variant": "featured-trip-mobile",
-      "webBytes": 137496
+      "quality": 70,
+      "webBytes": 67321
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
       "width": 320,
       "height": 288,
       "variant": "featured-trip-mobile",
-      "webBytes": 10913
+      "quality": 95,
+      "webBytes": 53204
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
       "width": 480,
       "height": 432,
       "variant": "featured-trip-mobile",
-      "webBytes": 22348
+      "quality": 95,
+      "webBytes": 121979
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
       "width": 560,
       "height": 504,
       "variant": "featured-trip-mobile",
-      "webBytes": 29317
+      "quality": 95,
+      "webBytes": 172571
     },
     {
       "source": "/assets/images/home-page/trips-carousel/Algeria-trip.webp",
       "width": 622,
       "height": 560,
       "variant": "featured-trip-mobile",
-      "webBytes": 37371
+      "quality": 95,
+      "webBytes": 234359
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
+      "width": 320,
+      "height": 472,
+      "variant": "featured-trip-wide",
+      "quality": 55,
+      "originalBytes": 190830,
+      "webBytes": 6867
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
+      "width": 480,
+      "height": 708,
+      "variant": "featured-trip-wide",
+      "quality": 55,
+      "originalBytes": 190830,
+      "webBytes": 11605
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp",
+      "width": 632,
+      "height": 932,
+      "variant": "featured-trip-wide",
+      "quality": 55,
+      "originalBytes": 190830,
+      "webBytes": 18564
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
+      "width": 320,
+      "height": 472,
+      "variant": "featured-trip-wide",
+      "quality": 65,
+      "originalBytes": 603314,
+      "webBytes": 26965
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
+      "width": 480,
+      "height": 708,
+      "variant": "featured-trip-wide",
+      "quality": 60,
+      "originalBytes": 603314,
+      "webBytes": 45783
+    },
+    {
+      "source": "/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp",
+      "width": 632,
+      "height": 932,
+      "variant": "featured-trip-wide",
+      "quality": 60,
+      "originalBytes": 603314,
+      "webBytes": 82961
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 320,
+      "height": 213,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 19755
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 480,
+      "height": 320,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 42896
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 640,
+      "height": 426,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 72291
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 800,
+      "height": 533,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 114431
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 960,
+      "height": 640,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 135884
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 1200,
+      "height": 800,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 187094
+    },
+    {
+      "source": "/assets/images/destinations/Marocco/morocco-bgr.webp",
+      "width": 1600,
+      "height": 1066,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 257924,
+      "webBytes": 298822
     },
     {
       "source": "/assets/images/newsletter-popup-inner.webp",
       "width": 480,
       "variant": "popup-mobile",
+      "quality": 55,
       "originalBytes": 35054,
       "webBytes": 5804
     },
@@ -1997,6 +2165,7 @@
       "source": "/assets/images/newsletter-popup-bgr.webp",
       "width": 480,
       "variant": "css-background-mobile",
+      "quality": 55,
       "originalBytes": 43576,
       "webBytes": 6404
     }

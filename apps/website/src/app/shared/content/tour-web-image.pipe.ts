@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
   FEATURED_TRIP_MOBILE_SRCSETS,
+  FEATURED_TRIP_WIDE_SRCSETS,
   HOMEPAGE_HERO_CROP_SRCSETS,
   NEWSLETTER_POPUP_MOBILE_SRCSETS,
   TOUR_WEB_HERO_MOBILE_SRCSETS,
@@ -9,11 +10,12 @@ import {
   TOUR_WEB_THUMBNAIL_SRCSETS,
 } from './tour-web-images';
 
-// Homepage hero crops: 'phone' for viewports up to 30rem, 'tablet' up to 48rem. Null when a slide
+// Homepage hero crops: 'phone' for viewports up to 30rem, 'tablet' up to 48rem, 'portrait' for
+// wider screens no wider than 3/4 of their height. Null when a slide
 // has none, so the <source> is skipped and the browser falls through to the next one.
 @Pipe({ name: 'homepageHeroCropSrcset' })
 export class HomepageHeroCropSrcsetPipe implements PipeTransform {
-  transform(source: string | undefined, tier: 'phone' | 'tablet'): string | null {
+  transform(source: string | undefined, tier: 'phone' | 'tablet' | 'portrait'): string | null {
     return source ? (HOMEPAGE_HERO_CROP_SRCSETS[source]?.[tier] ?? null) : null;
   }
 }
@@ -24,6 +26,15 @@ export class HomepageHeroCropSrcsetPipe implements PipeTransform {
 export class FeaturedTripMobileSrcsetPipe implements PipeTransform {
   transform(source: string): string | null {
     return FEATURED_TRIP_MOBILE_SRCSETS[source] ?? null;
+  }
+}
+
+// Featured-trip card copies for wider screens, at the quality matched to the originals. Null for a
+// card without them, so the <source> is skipped and the original <img> is used.
+@Pipe({ name: 'featuredTripWideSrcset' })
+export class FeaturedTripWideSrcsetPipe implements PipeTransform {
+  transform(source: string): string | null {
+    return FEATURED_TRIP_WIDE_SRCSETS[source] ?? null;
   }
 }
 

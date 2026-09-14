@@ -1,13 +1,13 @@
 <main class="homepage">
   <section class="homepage__hero">
     <!--
-      Up to 48rem the hero shows only a centred vertical slice of each landscape slide, so phones and
-      tablets get a pre-cut crop of that slice instead of the full frame; see HOMEPAGE_HERO_TIERS in
-      scripts/generate-tour-web-images.mjs. Each size is the crop's rendered width. The hero is 688px
-      tall up to 48rem (702px at 320px), and cover fills it by height, so a crop cut for a breakpoint
-      of N px renders N/688 of that height wide: 480px for phones, with headroom for the taller 320px
-      hero, and 768px for tablets. Sources are matched in order, so a phone never reaches the tablet
-      crop.
+      Smaller and taller screens only ever see a centred vertical slice of each landscape slide, so
+      they get a pre-cut crop of that slice; the original frame still serves every other screen. See
+      HOMEPAGE_HERO_TIERS in scripts/generate-tour-web-images.mjs. Each size is the crop's rendered
+      width, since cover fills the hero by height. Up to 48rem the hero is 688px tall (702px at 320px),
+      so the phone crop renders 480px wide, with headroom for the taller 320px hero, and the tablet
+      crop 768px. The portrait crop is 1.16 times the hero's height, which is 70vh on those screens.
+      Sources are matched in order, so a phone never reaches the tablet or portrait crop.
     -->
     <picture style="display: contents">
       <source
@@ -21,6 +21,12 @@
         type="image/avif"
         [attr.srcset]="activeSlide().visualSrc | homepageHeroCropSrcset: 'tablet'"
         sizes="48rem"
+      />
+      <source
+        media="(max-aspect-ratio: 3/4)"
+        type="image/avif"
+        [attr.srcset]="activeSlide().visualSrc | homepageHeroCropSrcset: 'portrait'"
+        sizes="max(100vw, 81vh)"
       />
       <img
         class="homepage__hero-image"

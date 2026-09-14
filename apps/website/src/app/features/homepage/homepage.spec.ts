@@ -5,8 +5,8 @@ import { ActiveSite } from '../../../sites/active-site';
 import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
 import {
   FEATURED_TRIP_MOBILE_SRCSETS,
+  FEATURED_TRIP_WIDE_SRCSETS,
   HOMEPAGE_HERO_CROP_SRCSETS,
-  TOUR_WEB_IMAGE_SRCSETS,
 } from '../../shared/content/tour-web-images';
 import { Homepage } from './homepage';
 
@@ -105,7 +105,7 @@ describe('Homepage', () => {
     ]);
   });
 
-  it('serves phones and tablets a pre-cut crop of whichever hero slide is showing', () => {
+  it('serves smaller and taller screens a pre-cut crop of whichever hero slide is showing', () => {
     fixture.detectChanges();
 
     const hero = fixture.nativeElement.querySelector('.homepage__hero') as HTMLElement;
@@ -128,6 +128,7 @@ describe('Homepage', () => {
         return [
           ['(max-width: 30rem)', crops.phone],
           ['(max-width: 48rem)', crops.tablet],
+          ['(max-aspect-ratio: 3/4)', crops.portrait],
         ];
       }),
     );
@@ -148,7 +149,7 @@ describe('Homepage', () => {
     expect(rendered).toEqual(
       OMAYA_SITE_CONFIG.content.featuredTours.map((trip) => ({
         phone: FEATURED_TRIP_MOBILE_SRCSETS[trip.image],
-        wide: TOUR_WEB_IMAGE_SRCSETS[trip.image],
+        wide: FEATURED_TRIP_WIDE_SRCSETS[trip.image] ?? null,
         fallbackSrcset: null,
       })),
     );

@@ -13,7 +13,7 @@ import { ActiveSite } from '../../../../sites/active-site';
 import { OmayaAnalytics } from '../../../shared/analytics/omaya-analytics';
 import {
   FeaturedTripMobileSrcsetPipe,
-  TourWebImageSrcsetPipe,
+  FeaturedTripWideSrcsetPipe,
 } from '../../../shared/content/tour-web-image.pipe';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
@@ -37,7 +37,7 @@ interface FeaturedTrip {
 
 @Component({
   selector: 'app-featured-trips',
-  imports: [RouterLink, FeaturedTripMobileSrcsetPipe, TourWebImageSrcsetPipe],
+  imports: [RouterLink, FeaturedTripMobileSrcsetPipe, FeaturedTripWideSrcsetPipe],
   templateUrl: './featured-trips.html',
   styleUrl: './featured-trips.scss',
 })
