@@ -2168,6 +2168,129 @@
       "quality": 55,
       "originalBytes": 43576,
       "webBytes": 6404
+    },
+    {
+      "source": "/assets/images/home-page/our-mission-image.webp",
+      "width": 480,
+      "height": 480,
+      "variant": "mission-mobile",
+      "quality": 85,
+      "originalBytes": 237620,
+      "webBytes": 68682
+    },
+    {
+      "source": "/assets/images/home-page/our-mission-image.webp",
+      "width": 560,
+      "height": 560,
+      "variant": "mission-mobile",
+      "quality": 80,
+      "originalBytes": 237620,
+      "webBytes": 78217
+    },
+    {
+      "source": "/assets/images/home-page/our-mission-image.webp",
+      "width": 660,
+      "height": 660,
+      "variant": "mission-mobile",
+      "quality": 80,
+      "originalBytes": 237620,
+      "webBytes": 102681
+    },
+    {
+      "source": "/assets/images/home-page/our-mission-image.webp",
+      "width": 760,
+      "height": 760,
+      "variant": "mission-mobile",
+      "quality": 75,
+      "originalBytes": 237620,
+      "webBytes": 109971
+    },
+    {
+      "source": "/assets/images/home-page/our-mission-image.webp",
+      "width": 960,
+      "height": 960,
+      "variant": "mission-mobile",
+      "quality": 70,
+      "originalBytes": 237620,
+      "webBytes": 135761
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp",
+      "width": 100,
+      "variant": "logo-lossless",
+      "webBytes": 2382
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 100,
+      "variant": "logo-lossless-white",
+      "webBytes": 3128
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp",
+      "width": 150,
+      "variant": "logo-lossless",
+      "webBytes": 4312
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 150,
+      "variant": "logo-lossless-white",
+      "webBytes": 5400
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp",
+      "width": 200,
+      "variant": "logo-lossless",
+      "webBytes": 6574
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 200,
+      "variant": "logo-lossless-white",
+      "webBytes": 7500
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp",
+      "width": 250,
+      "variant": "logo-lossless",
+      "webBytes": 9520
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 250,
+      "variant": "logo-lossless-white",
+      "webBytes": 10304
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp",
+      "width": 300,
+      "variant": "logo-lossless",
+      "webBytes": 12618
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 300,
+      "variant": "logo-lossless-white",
+      "webBytes": 13340
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp",
+      "width": 350,
+      "variant": "logo-lossless",
+      "webBytes": 16540
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 350,
+      "variant": "logo-lossless-white",
+      "webBytes": 16304
+    },
+    {
+      "source": "/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp",
+      "width": 400,
+      "variant": "logo-lossless-white",
+      "webBytes": 16294
     }
   ]
 }

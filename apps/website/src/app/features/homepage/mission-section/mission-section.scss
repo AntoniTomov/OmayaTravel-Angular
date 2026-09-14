@@ -24,9 +24,8 @@
   width: 100%;
   // The height attribute declares the file's intrinsic 1080px, and an image's height attribute is
   // also a CSS height hint. Without height: auto that hint became the rendered height, 1080px at
-  // every width, and aspect-ratio was ignored.
+  // every width.
   height: auto;
-  aspect-ratio: 1.44 / 1;
   object-fit: contain;
 }
 

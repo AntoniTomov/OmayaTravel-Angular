@@ -232,3 +232,15 @@ export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> =
   '/assets/images/newsletter-popup-inner.webp':
     '/assets/images/tour-web/1e86e025878feac7.avif 480w',
 };
+// Mission photograph copies for viewports up to 58rem, topped by the original. See MISSION_COPY_QUALITY in the generator.
+export const MISSION_IMAGE_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/our-mission-image.webp':
+    '/assets/images/tour-web/a76c97ac47ee9702.avif 480w, /assets/images/tour-web/1abe3469f59584bd.avif 560w, /assets/images/tour-web/994d23289b4fe81a.avif 660w, /assets/images/tour-web/65ebd3301f8b933a.avif 760w, /assets/images/tour-web/e2d2e6387c7569a6.avif 960w, /assets/images/home-page/our-mission-image.webp 1080w',
+};
+// Lossless logo copies for each pixel ratio, keyed by the logo they stand in for. See LOGO_WIDTHS in the generator.
+export const LOGO_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp':
+    '/assets/images/tour-web/cb484c2e01c562a0.webp 100w, /assets/images/tour-web/bb65430223246625.webp 150w, /assets/images/tour-web/361fe207d41b1efd.webp 200w, /assets/images/tour-web/601633a2369be81f.webp 250w, /assets/images/tour-web/9ddce96af40b8454.webp 300w, /assets/images/tour-web/2bb8d8232f916616.webp 350w, /assets/images/home-page/company-logo/Black_logo-e1781169999413.webp 400w',
+  '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp':
+    '/assets/images/tour-web/f200a3aa758e3b46.webp 100w, /assets/images/tour-web/d38d2faec5dc90fb.webp 150w, /assets/images/tour-web/bd57267f4ec5dff9.webp 200w, /assets/images/tour-web/9189c48a45960aeb.webp 250w, /assets/images/tour-web/7a4541f59f1afbad.webp 300w, /assets/images/tour-web/466655830f97bbaf.webp 350w, /assets/images/tour-web/309fc1e21813d46e.webp 400w',
+};

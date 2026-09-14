@@ -41,12 +41,22 @@
       </button>
 
       <div class="newsletter-popup__content">
+        <!--
+          7.8rem wide, so each pixel ratio picks a lossless copy at its width; see LOGO_WIDTHS in
+          scripts/generate-tour-web-images.mjs. width and height are the file's own 400x267: the
+          152x83 declared before was a different shape, so the browser reserved the wrong height and the
+          buttons below moved when the logo arrived.
+        -->
         <img
           class="newsletter-popup__logo"
           src="/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp"
+          [attr.srcset]="
+            '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp' | logoSrcset
+          "
+          sizes="7.8rem"
           alt="Omaya Travel"
-          width="152"
-          height="83"
+          width="400"
+          height="267"
           loading="lazy"
           decoding="async"
         />

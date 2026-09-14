@@ -1,12 +1,26 @@
 <section class="mission-section" aria-labelledby="mission-section-title">
   <div class="mission-section__inner">
-    <img
-      [src]="image.src"
-      [width]="image.width"
-      [height]="image.height"
-      [alt]="image.alt"
-      loading="lazy"
-    />
+    <!--
+      Up to 58rem the photograph is one square column the width of the viewport less 3rem, so phones and
+      tablets choose from copies sized for their screens; see MISSION_COPY_QUALITY in
+      scripts/generate-tour-web-images.mjs. The largest candidate is the original WebP, which every
+      browser that reaches this AVIF source can also display. Wider screens keep the original.
+    -->
+    <picture style="display: contents">
+      <source
+        media="(max-width: 58rem)"
+        type="image/avif"
+        [attr.srcset]="image.src | missionImageMobileSrcset"
+        sizes="calc(100vw - 3rem)"
+      />
+      <img
+        [src]="image.src"
+        [width]="image.width"
+        [height]="image.height"
+        [alt]="image.alt"
+        loading="lazy"
+      />
+    </picture>
 
     <div class="mission-section__content">
       <h2 id="mission-section-title">{{ i18n.t('homepage.missionTitle') }}</h2>

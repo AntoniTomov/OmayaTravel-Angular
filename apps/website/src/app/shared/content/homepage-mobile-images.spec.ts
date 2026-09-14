@@ -3,6 +3,8 @@ import {
   FEATURED_TRIP_MOBILE_SRCSETS,
   FEATURED_TRIP_WIDE_SRCSETS,
   HOMEPAGE_HERO_CROP_SRCSETS,
+  LOGO_SRCSETS,
+  MISSION_IMAGE_MOBILE_SRCSETS,
   NEWSLETTER_POPUP_MOBILE_SRCSETS,
 } from './tour-web-images';
 
@@ -38,6 +40,21 @@ describe('homepage phone image copies', () => {
     expect(images.filter((src) => !FEATURED_TRIP_WIDE_SRCSETS[src])).toEqual([
       '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
     ]);
+  });
+
+  it('gives the mission photograph copies for phones and tablets, topped by the original', () => {
+    const srcset = MISSION_IMAGE_MOBILE_SRCSETS['/assets/images/home-page/our-mission-image.webp'];
+
+    expect(srcset?.endsWith('/assets/images/home-page/our-mission-image.webp 1080w')).toBe(true);
+  });
+
+  it('gives both logos lossless copies for each pixel ratio', () => {
+    const logos = [
+      '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp',
+      '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp',
+    ];
+
+    expect(logos.filter((src) => !LOGO_SRCSETS[src]?.includes(' 200w'))).toEqual([]);
   });
 
   it('gives the newsletter popup photograph a phone copy', () => {
