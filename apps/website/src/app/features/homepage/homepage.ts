@@ -15,6 +15,7 @@ import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
+import { HomepageHeroCropSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { buildMediaImageAttributes } from '../../shared/media';
 import { BlogPosts } from './blog-posts/blog-posts';
@@ -45,6 +46,7 @@ const AUTO_ADVANCE_INTERACTION_EVENTS = [
     BlogPosts,
     FormHoneypot,
     FormStatus,
+    HomepageHeroCropSrcsetPipe,
   ],
   templateUrl: './homepage.html',
   styleUrl: './homepage.scss',

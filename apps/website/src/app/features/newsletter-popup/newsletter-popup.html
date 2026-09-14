@@ -8,14 +8,27 @@
       (click)="$event.stopPropagation()"
     >
       <div class="newsletter-popup__media" aria-hidden="true">
-        <img
-          src="/assets/images/newsletter-popup-inner.webp"
-          alt=""
-          width="921"
-          height="1381"
-          loading="lazy"
-          decoding="async"
-        />
+        <!--
+          Up to 34rem phones get a 480px AVIF copy instead of the 536px WebP. See POPUP_MOBILE_WIDTH
+          in scripts/generate-tour-web-images.mjs for why it is one capped copy, not a candidate list.
+        -->
+        <picture style="display: contents">
+          <source
+            media="(max-width: 34rem)"
+            type="image/avif"
+            [attr.srcset]="
+              '/assets/images/newsletter-popup-inner.webp' | newsletterPopupMobileSrcset
+            "
+          />
+          <img
+            src="/assets/images/newsletter-popup-inner.webp"
+            alt=""
+            width="536"
+            height="318"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
 
       <button
