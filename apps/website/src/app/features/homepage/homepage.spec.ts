@@ -6,6 +6,8 @@ import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
 import { Homepage } from './homepage';
 
 describe('Homepage', () => {
+  const SLIDE_ZERO = '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp';
+  const SLIDE_ONE = '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp';
   let fixture: ComponentFixture<Homepage>;
   let component: Homepage;
   let router: Router;
@@ -154,5 +156,73 @@ describe('Homepage', () => {
     expect(navigateByUrl).toHaveBeenCalledWith('/tour-item/kyrgyzstan-tour/', {
       state: undefined,
     });
+  });
+
+  /**
+   * Rotating the hero on a timer started at hydration made the second slide the measured LCP,
+   * because nothing requested that image until the timer fired. Rotation is now gated on the
+   * first interaction, which is also the point where LCP stops updating.
+   */
+  function createHomepageAllowingMotion(): ComponentFixture<Homepage> {
+    window.matchMedia = ((query: string) => ({
+      matches: false,
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    })) as unknown as typeof window.matchMedia;
+
+    const created = TestBed.createComponent(Homepage);
+    created.detectChanges();
+
+    return created;
+  }
+
+  function heroSource(target: ComponentFixture<Homepage>): string {
+    const image = target.nativeElement.querySelector('.homepage__hero-image') as HTMLImageElement;
+
+    return image.getAttribute('src') ?? '';
+  }
+
+  it('leaves the hero on the first slide until the visitor interacts', () => {
+    const originalMatchMedia = window.matchMedia;
+    vi.useFakeTimers();
+
+    try {
+      const motionFixture = createHomepageAllowingMotion();
+      const sources = [heroSource(motionFixture)];
+
+      vi.advanceTimersByTime(30_000);
+      motionFixture.detectChanges();
+      sources.push(heroSource(motionFixture));
+
+      expect(sources).toEqual([SLIDE_ZERO, SLIDE_ZERO]);
+
+      motionFixture.destroy();
+    } finally {
+      vi.useRealTimers();
+      window.matchMedia = originalMatchMedia;
+    }
+  });
+
+  it('rotates the hero once the visitor has interacted', () => {
+    const originalMatchMedia = window.matchMedia;
+    vi.useFakeTimers();
+
+    try {
+      const motionFixture = createHomepageAllowingMotion();
+      const sources = [heroSource(motionFixture)];
+
+      window.dispatchEvent(new Event('pointerdown'));
+      vi.advanceTimersByTime(7_000);
+      motionFixture.detectChanges();
+      sources.push(heroSource(motionFixture));
+
+      expect(sources).toEqual([SLIDE_ZERO, SLIDE_ONE]);
+
+      motionFixture.destroy();
+    } finally {
+      vi.useRealTimers();
+      window.matchMedia = originalMatchMedia;
+    }
   });
 });

@@ -23,6 +23,18 @@ import { MissionSection } from './mission-section/mission-section';
 import { PrivateTours } from './private-tours/private-tours';
 import { TravelMatch } from './travel-match/travel-match';
 
+/**
+ * Largest Contentful Paint stops updating at the first user input, so starting the hero
+ * rotation from one of these keeps the carousel structurally unable to move the metric.
+ */
+const AUTO_ADVANCE_INTERACTION_EVENTS = [
+  'pointerdown',
+  'keydown',
+  'touchstart',
+  'wheel',
+  'scroll',
+] as const;
+
 @Component({
   selector: 'app-homepage',
   imports: [
@@ -43,7 +55,10 @@ export class Homepage implements OnDestroy {
   private readonly analytics = inject(OmayaAnalytics);
   private readonly activeSite = inject(ActiveSite);
   protected readonly i18n = inject(OmayaI18n);
-  private intervalId: ReturnType<typeof setInterval> | null;
+  private intervalId: ReturnType<typeof setInterval> | null = null;
+  private autoAdvanceStarted = false;
+  private autoAdvanceStopped = false;
+  private readonly releaseListeners: Array<() => void> = [];
   private readonly reducedMotion = this.prefersReducedMotion();
 
   protected readonly hero = computed(() => this.activeSite.site().content.hero);
@@ -65,7 +80,7 @@ export class Homepage implements OnDestroy {
     const attributes = buildMediaImageAttributes(slide.image, {
       use: 'hero',
       sizes: '100vw',
-      priority: this.activeSlideIndex() === 0,
+      priority: true,
     });
 
     if (!slide.visualSrc) {
@@ -91,7 +106,7 @@ export class Homepage implements OnDestroy {
   }
 
   constructor() {
-    this.intervalId = this.reducedMotion ? null : this.createAutoAdvance();
+    this.armAutoAdvance();
 
     effect(() => {
       if (this.selectedDestination()) {
@@ -101,9 +116,9 @@ export class Homepage implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    this.clearAutoAdvance();
+    this.releaseListeners.forEach((release) => release());
+    this.releaseListeners.length = 0;
   }
 
   protected setSlide(index: number): void {
@@ -211,6 +226,67 @@ export class Homepage implements OnDestroy {
     this.newsletterMessage.set(result.message ?? 'We could not subscribe you right now.');
   }
 
+  /**
+   * The hero image is the page LCP element, and rotating it on a timer started at hydration
+   * made the second slide the measured LCP: nothing requested that image until the timer fired
+   * about seven seconds in, which showed up as an eight second LCP resource load delay. Waiting
+   * for a real interaction moves the first swap past the point where LCP is already settled.
+   */
+  private armAutoAdvance(): void {
+    const defaultView = this.document.defaultView;
+
+    if (this.reducedMotion || !defaultView) {
+      return;
+    }
+
+    const start = () => this.beginAutoAdvance();
+
+    for (const eventName of AUTO_ADVANCE_INTERACTION_EVENTS) {
+      defaultView.addEventListener(eventName, start, { passive: true });
+      this.releaseListeners.push(() => defaultView.removeEventListener(eventName, start));
+    }
+  }
+
+  private beginAutoAdvance(): void {
+    if (this.autoAdvanceStarted || this.autoAdvanceStopped) {
+      return;
+    }
+
+    this.autoAdvanceStarted = true;
+    this.releaseListeners.forEach((release) => release());
+    this.releaseListeners.length = 0;
+    this.intervalId = this.createAutoAdvance();
+    this.watchVisibility();
+  }
+
+  /**
+   * A backgrounded tab should not keep cycling slides and pulling images nobody is looking at.
+   */
+  private watchVisibility(): void {
+    const onVisibilityChange = () => {
+      if (this.document.visibilityState === 'hidden') {
+        this.clearAutoAdvance();
+        return;
+      }
+
+      if (!this.autoAdvanceStopped && !this.intervalId) {
+        this.intervalId = this.createAutoAdvance();
+      }
+    };
+
+    this.document.addEventListener('visibilitychange', onVisibilityChange);
+    this.releaseListeners.push(() =>
+      this.document.removeEventListener('visibilitychange', onVisibilityChange),
+    );
+  }
+
+  private clearAutoAdvance(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
   private createAutoAdvance(): ReturnType<typeof setInterval> {
     return setInterval(() => {
       this.activeSlideIndex.update((index) => (index + 1) % this.hero().slides.length);
@@ -218,10 +294,8 @@ export class Homepage implements OnDestroy {
   }
 
   private pauseAutoAdvance(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+    this.autoAdvanceStopped = true;
+    this.clearAutoAdvance();
   }
 
   private trackTripSearch(status: 'success' | 'missing_destination'): void {
