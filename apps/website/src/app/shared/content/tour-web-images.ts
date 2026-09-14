@@ -179,3 +179,42 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/688cd93e33784a05.avif 320w, /assets/images/tour-web/beaa5d0c304b3beb.avif 480w, /assets/images/tour-web/9adb02e444e3dcb5.avif 640w, /assets/images/tour-web/299fd66e70bc2153.avif 840w, /assets/images/tour-web/ab0309ea3ed577ff.avif 960w, /assets/images/tour-web/666f71ede6687a3e.avif 994w',
 };
+// Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem. See HOMEPAGE_HERO_TIERS in the generator.
+export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<
+  Record<string, { phone: string; tablet: string }>
+> = {
+  '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp': {
+    phone:
+      '/assets/images/tour-web/3d831ad988307fd5.avif 320w, /assets/images/tour-web/8abbb62cf6976e17.avif 480w, /assets/images/tour-web/8a8da44cc14dd8c9.avif 637w',
+    tablet:
+      '/assets/images/tour-web/373a12f52cb091cf.avif 640w, /assets/images/tour-web/28a70e01dc99b835.avif 800w, /assets/images/tour-web/a93e3d5def221e1f.avif 960w, /assets/images/tour-web/51a6a546e3fee3cc.avif 1019w',
+  },
+  '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp': {
+    phone:
+      '/assets/images/tour-web/4eb009a9fe796074.avif 320w, /assets/images/tour-web/909090fe2dfb8a41.avif 480w, /assets/images/tour-web/a020352c9f38b495.avif 553w',
+    tablet:
+      '/assets/images/tour-web/fb1c7e9d2a199db0.avif 640w, /assets/images/tour-web/03e7933c589fa2f5.avif 800w, /assets/images/tour-web/2905d4a827477cc9.avif 884w',
+  },
+  '/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp': {
+    phone:
+      '/assets/images/tour-web/0df8c878cd019997.avif 320w, /assets/images/tour-web/dd52dc3aa6a258d3.avif 480w, /assets/images/tour-web/658a50d934f86b73.avif 640w, /assets/images/tour-web/7dca5b2487eff0da.avif 744w',
+    tablet:
+      '/assets/images/tour-web/62623380435b4275.avif 640w, /assets/images/tour-web/a83d32e79fab195b.avif 800w, /assets/images/tour-web/c3332bff95677443.avif 960w, /assets/images/tour-web/b12e94be53a6b46b.avif 1190w',
+  },
+};
+// Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.
+export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
+    '/assets/images/tour-web/c9a32fb08b9aab33.avif 320w, /assets/images/tour-web/25feb049e0d66801.avif 480w, /assets/images/tour-web/5f4e9168ddf61417.avif 560w, /assets/images/tour-web/ba2a65c29ea0f18e.avif 632w',
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
+    '/assets/images/tour-web/a48385e71a3f331f.avif 320w, /assets/images/tour-web/61c979ab0340d935.avif 480w, /assets/images/tour-web/be87678dc942bd4a.avif 560w, /assets/images/tour-web/1ac389b0afb3f0bc.avif 632w',
+  '/assets/images/destinations/Marocco/morocco-bgr.webp':
+    '/assets/images/tour-web/806140f6bd712f5b.avif 320w, /assets/images/tour-web/ddf62e9c78d5fa9f.avif 480w, /assets/images/tour-web/968cede59c76c2f7.avif 560w, /assets/images/tour-web/bb49d2b0a5b44dab.avif 660w, /assets/images/tour-web/7a073c5d17cdaf84.avif 760w, /assets/images/tour-web/b8851251ccecbcd0.avif 880w, /assets/images/tour-web/6fb7102105bc7b00.avif 1000w, /assets/images/tour-web/d1c442975aa0dcce.avif 1100w, /assets/images/tour-web/30f576cb883c513e.avif 1184w',
+  '/assets/images/home-page/trips-carousel/Algeria-trip.webp':
+    '/assets/images/tour-web/f7f3fce742952d21.avif 320w, /assets/images/tour-web/82e67e3854b28285.avif 480w, /assets/images/tour-web/84ee8369d4c9639f.avif 560w, /assets/images/tour-web/c91e1a7de3c5b95f.avif 622w',
+};
+// A 480px copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH in the generator.
+export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/newsletter-popup-inner.webp':
+    '/assets/images/tour-web/1e86e025878feac7.avif 480w',
+};

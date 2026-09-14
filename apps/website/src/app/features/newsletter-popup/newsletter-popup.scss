@@ -199,6 +199,19 @@
 
   .newsletter-popup__media {
     min-height: 16rem;
+    // A 480px copy of the frame for phones. A browser without image-set() drops this declaration and
+    // keeps the full WebP from the base rule. See POPUP_MOBILE_WIDTH in the image generator.
+    background:
+      linear-gradient(
+        rgb(var(--omaya-color-overlay-rgb) / 18%),
+        rgb(var(--omaya-color-overlay-rgb) / 18%)
+      ),
+      image-set(
+          url('/assets/images/newsletter-popup-bgr-mobile.avif') type('image/avif'),
+          url('/assets/images/newsletter-popup-bgr.webp') type('image/webp')
+        )
+        center 50% / cover,
+      tokens.$omaya-color-dark;
   }
 
   .newsletter-popup__media img {

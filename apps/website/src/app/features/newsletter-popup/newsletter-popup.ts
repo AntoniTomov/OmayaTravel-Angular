@@ -2,6 +2,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
 
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { NewsletterPopupMobileSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
@@ -12,7 +13,7 @@ const SUBSCRIBED_KEY = 'omaya-newsletter-popup-subscribed';
 
 @Component({
   selector: 'app-newsletter-popup',
-  imports: [FormHoneypot, FormStatus],
+  imports: [FormHoneypot, FormStatus, NewsletterPopupMobileSrcsetPipe],
   templateUrl: './newsletter-popup.html',
   styleUrl: './newsletter-popup.scss',
 })

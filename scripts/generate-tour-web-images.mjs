@@ -260,6 +260,168 @@ for (const relativePath of HERO_SOURCES) {
   heroMobile[`/assets/${relativePath}`] = candidates.join(", ");
 }
 
+// Encodes one AVIF candidate, names it by content hash and writes it beside the other encodings.
+// Returns the public path and the encoded size for the measurement record.
+async function writeHashedAvif(pipeline) {
+  const encoded = await pipeline.avif({ quality: 55, effort: 5 }).toBuffer();
+  const hash = createHash("sha256").update(encoded).digest("hex").slice(0, 16);
+  const filename = `${hash}.avif`;
+  writeFileSync(resolve(output, filename), encoded);
+  return { path: `/assets/images/tour-web/${filename}`, bytes: encoded.length };
+}
+
+// Phone- and tablet-shaped encodings of the homepage hero slides, on the same principle as the tour
+// heroes above. Up to 48rem the hero fills the viewport width and is 43rem (688px) tall, measured at
+// every width from 375px to 768px; at 320px the heading wraps once more and it is 702px, which only
+// narrows what shows. object-fit: cover fills that box by height at the centre position, so up to
+// 48rem a screen only ever sees a centred vertical slice of each landscape slide, never wider than
+// the viewport. Each tier's crop is the widest slice any viewport up to its breakpoint shows, so it
+// renders identically. Cropping stops at 48rem because the parallax rule that moves the image sits
+// behind min-width: 48.01rem. Without these crops a phone or tablet picks a candidate for 100vw that
+// cover then displays up to 3.2 times wider than the width it was chosen for.
+const HOMEPAGE_HERO_SOURCES = [
+  "images/home-page/carousel/HomePageCoverPhoto-5.webp",
+  "images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
+  "images/home-page/carousel/HomePageCoverPhoto-3.webp",
+];
+const HOMEPAGE_HERO_HEIGHT_PX = 688;
+const HOMEPAGE_HERO_TIERS = [
+  { name: "phone", maxViewport: 480, widths: [320, 480, 640, 960] },
+  { name: "tablet", maxViewport: 768, widths: [640, 800, 960] },
+];
+const homepageHeroCrops = {};
+for (const relativePath of HOMEPAGE_HERO_SOURCES) {
+  const original = readFileSync(resolve(assets, relativePath));
+  const meta = await sharp(original).metadata();
+  const source = `/assets/${relativePath}`;
+  homepageHeroCrops[source] = {};
+  for (const tier of HOMEPAGE_HERO_TIERS) {
+    const cropWidth = Math.min(
+      meta.width,
+      Math.round((meta.height * tier.maxViewport) / HOMEPAGE_HERO_HEIGHT_PX),
+    );
+    const left = Math.round((meta.width - cropWidth) / 2);
+    const widths = [
+      ...tier.widths.filter((width) => width < cropWidth),
+      cropWidth,
+    ];
+    const candidates = [];
+    for (const width of widths) {
+      const { path, bytes } = await writeHashedAvif(
+        sharp(original)
+          .extract({ left, top: 0, width: cropWidth, height: meta.height })
+          .resize({ width }),
+      );
+      candidates.push(`${path} ${width}w`);
+      measurements.push({
+        source,
+        width,
+        height: Math.round((width * meta.height) / cropWidth),
+        variant: `homepage-hero-${tier.name}`,
+        webBytes: bytes,
+      });
+    }
+    homepageHeroCrops[source][tier.name] = candidates.join(", ");
+  }
+}
+
+// Featured-trip card images on phones. Up to 44rem each card fills the carousel and its image is a
+// 1 / 0.9 box filled through object-fit: cover at the default centre position, at every width, so a
+// centred crop to that ratio is exactly what a phone shows. The portrait trip photographs stop
+// downloading the roughly 40% of their height that cover discards; the Morocco card reuses a
+// landscape tour hero and loses its sides instead.
+const FEATURED_TRIP_SOURCES = [
+  "images/home-page/trips-carousel/Tour-feature-image-1.webp",
+  "images/home-page/trips-carousel/Tour-feature-image-2.webp",
+  "images/destinations/Marocco/morocco-bgr.webp",
+  "images/home-page/trips-carousel/Algeria-trip.webp",
+];
+const FEATURED_TRIP_MOBILE_RATIO = 1 / 0.9;
+// The steps follow what phones actually ask for rather than round numbers. The card is the viewport
+// less 48px wide, so a 375px phone at DPR 2 needs 654px and a 390px phone at DPR 3 needs 1,026px.
+// With 640 and 960 as neighbouring steps the first of those took the 960, 96.5 KB for the Morocco
+// card where 660 is enough. The portrait trip photographs are only about 630px wide, so for them the
+// list stops at their own width.
+const FEATURED_TRIP_MOBILE_WIDTHS = [320, 480, 560, 660, 760, 880, 1000, 1100];
+const featuredTripMobile = {};
+for (const relativePath of FEATURED_TRIP_SOURCES) {
+  const original = readFileSync(resolve(assets, relativePath));
+  const meta = await sharp(original).metadata();
+  const wide = meta.width / meta.height > FEATURED_TRIP_MOBILE_RATIO;
+  const cropWidth = wide
+    ? Math.round(meta.height * FEATURED_TRIP_MOBILE_RATIO)
+    : meta.width;
+  const cropHeight = wide
+    ? meta.height
+    : Math.round(meta.width / FEATURED_TRIP_MOBILE_RATIO);
+  const left = Math.round((meta.width - cropWidth) / 2);
+  const top = Math.round((meta.height - cropHeight) / 2);
+  const widths = [
+    ...FEATURED_TRIP_MOBILE_WIDTHS.filter((width) => width < cropWidth),
+    cropWidth,
+  ];
+  const candidates = [];
+  for (const width of widths) {
+    const { path, bytes } = await writeHashedAvif(
+      sharp(original)
+        .extract({ left, top, width: cropWidth, height: cropHeight })
+        .resize({ width }),
+    );
+    candidates.push(`${path} ${width}w`);
+    measurements.push({
+      source: `/assets/${relativePath}`,
+      width,
+      height: Math.round(width / FEATURED_TRIP_MOBILE_RATIO),
+      variant: "featured-trip-mobile",
+      webBytes: bytes,
+    });
+  }
+  featuredTripMobile[`/assets/${relativePath}`] = candidates.join(", ");
+}
+
+// The newsletter popup on phones up to 34rem. Its photograph renders 340-420 CSS px wide there,
+// never narrower than its 12.6rem height times the source ratio, so at DPR 2 or more a phone wants
+// more pixels than the 536px source has and would always take the full image from any candidate
+// list. Phones get a single 480px copy instead. The frame behind it is a CSS background, mostly
+// hidden under the photograph and an 18% overlay, and gets the same width under a stable name that
+// SCSS can reference.
+const POPUP_MOBILE_WIDTH = 480;
+const popupMobile = {};
+{
+  const relativePath = "images/newsletter-popup-inner.webp";
+  const original = readFileSync(resolve(assets, relativePath));
+  const { path, bytes } = await writeHashedAvif(
+    sharp(original).resize({ width: POPUP_MOBILE_WIDTH }),
+  );
+  popupMobile[`/assets/${relativePath}`] = `${path} ${POPUP_MOBILE_WIDTH}w`;
+  measurements.push({
+    source: `/assets/${relativePath}`,
+    width: POPUP_MOBILE_WIDTH,
+    variant: "popup-mobile",
+    originalBytes: original.length,
+    webBytes: bytes,
+  });
+}
+{
+  const relativePath = "images/newsletter-popup-bgr.webp";
+  const original = readFileSync(resolve(assets, relativePath));
+  const encoded = await sharp(original)
+    .resize({ width: POPUP_MOBILE_WIDTH })
+    .avif({ quality: 55, effort: 5 })
+    .toBuffer();
+  writeFileSync(
+    resolve(assets, relativePath.replace(/\.webp$/, "-mobile.avif")),
+    encoded,
+  );
+  measurements.push({
+    source: `/assets/${relativePath}`,
+    width: POPUP_MOBILE_WIDTH,
+    variant: "css-background-mobile",
+    originalBytes: original.length,
+    webBytes: encoded.length,
+  });
+}
+
 const manifestPath = resolve(
   root,
   "apps/website/src/app/shared/content/tour-web-images.ts",
@@ -275,7 +437,13 @@ writeFileSync(
       "// original, which is why these are a separate map rather than a replacement.\n" +
       `export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(thumbnails, null, 2)};\n` +
       "// Centred crops of each tour hero for phones up to 30rem. See HERO_SOURCES in the generator.\n" +
-      `export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(heroMobile, null, 2)};\n`,
+      `export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(heroMobile, null, 2)};\n` +
+      "// Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem. See HOMEPAGE_HERO_TIERS in the generator.\n" +
+      `export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = ${JSON.stringify(homepageHeroCrops, null, 2)};\n` +
+      "// Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.\n" +
+      `export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(featuredTripMobile, null, 2)};\n` +
+      "// A 480px copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH in the generator.\n" +
+      `export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(popupMobile, null, 2)};\n`,
     { ...(await resolveConfig(manifestPath)), filepath: manifestPath },
   ),
 );

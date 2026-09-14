@@ -1,16 +1,39 @@
 <main class="homepage">
   <section class="homepage__hero">
-    <img
-      class="homepage__hero-image"
-      [src]="activeSlideImage().src"
-      [srcset]="activeSlideImage().srcset"
-      [sizes]="activeSlideImage().sizes"
-      [width]="activeSlideImage().width"
-      [height]="activeSlideImage().height"
-      [alt]="activeSlideImage().alt"
-      [attr.loading]="activeSlideImage().loading"
-      [attr.fetchpriority]="activeSlideImage().fetchPriority"
-    />
+    <!--
+      Up to 48rem the hero shows only a centred vertical slice of each landscape slide, so phones and
+      tablets get a pre-cut crop of that slice instead of the full frame; see HOMEPAGE_HERO_TIERS in
+      scripts/generate-tour-web-images.mjs. Each size is the crop's rendered width. The hero is 688px
+      tall up to 48rem (702px at 320px), and cover fills it by height, so a crop cut for a breakpoint
+      of N px renders N/688 of that height wide: 480px for phones, with headroom for the taller 320px
+      hero, and 768px for tablets. Sources are matched in order, so a phone never reaches the tablet
+      crop.
+    -->
+    <picture style="display: contents">
+      <source
+        media="(max-width: 30rem)"
+        type="image/avif"
+        [attr.srcset]="activeSlide().visualSrc | homepageHeroCropSrcset: 'phone'"
+        sizes="31rem"
+      />
+      <source
+        media="(max-width: 48rem)"
+        type="image/avif"
+        [attr.srcset]="activeSlide().visualSrc | homepageHeroCropSrcset: 'tablet'"
+        sizes="48rem"
+      />
+      <img
+        class="homepage__hero-image"
+        [src]="activeSlideImage().src"
+        [srcset]="activeSlideImage().srcset"
+        [sizes]="activeSlideImage().sizes"
+        [width]="activeSlideImage().width"
+        [height]="activeSlideImage().height"
+        [alt]="activeSlideImage().alt"
+        [attr.loading]="activeSlideImage().loading"
+        [attr.fetchpriority]="activeSlideImage().fetchPriority"
+      />
+    </picture>
     <div class="homepage__hero-content">
       <h1>{{ hero().title }}</h1>
       <p>{{ hero().subtitle }}</p>

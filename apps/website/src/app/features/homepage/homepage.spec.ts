@@ -3,6 +3,11 @@ import { provideRouter, Router } from '@angular/router';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
+import {
+  FEATURED_TRIP_MOBILE_SRCSETS,
+  HOMEPAGE_HERO_CROP_SRCSETS,
+  TOUR_WEB_IMAGE_SRCSETS,
+} from '../../shared/content/tour-web-images';
 import { Homepage } from './homepage';
 
 describe('Homepage', () => {
@@ -98,6 +103,55 @@ describe('Homepage', () => {
       '/assets/images/destinations/Marocco/morocco-bgr.webp',
       '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
     ]);
+  });
+
+  it('serves phones and tablets a pre-cut crop of whichever hero slide is showing', () => {
+    fixture.detectChanges();
+
+    const hero = fixture.nativeElement.querySelector('.homepage__hero') as HTMLElement;
+    const read = () =>
+      [...hero.querySelectorAll('source')].map((source) => [
+        source.getAttribute('media'),
+        source.getAttribute('srcset'),
+      ]);
+    const slides = OMAYA_SITE_CONFIG.content.hero.slides;
+    const rendered = [read()];
+
+    component['setSlide'](1);
+    fixture.detectChanges();
+    rendered.push(read());
+
+    expect(rendered).toEqual(
+      [slides[0], slides[1]].map((slide) => {
+        const crops = HOMEPAGE_HERO_CROP_SRCSETS[slide.visualSrc ?? ''];
+
+        return [
+          ['(max-width: 30rem)', crops.phone],
+          ['(max-width: 48rem)', crops.tablet],
+        ];
+      }),
+    );
+  });
+
+  it('serves featured trip cards a phone crop, and the AVIF encoding on wider screens', () => {
+    fixture.detectChanges();
+
+    const cards = [
+      ...fixture.nativeElement.querySelectorAll('.featured-trips__image-link'),
+    ] as HTMLElement[];
+    const rendered = cards.map((card) => ({
+      phone: card.querySelector('source[media="(max-width: 44rem)"]')?.getAttribute('srcset'),
+      wide: card.querySelector('source:not([media])')?.getAttribute('srcset'),
+      fallbackSrcset: card.querySelector('img')?.getAttribute('srcset'),
+    }));
+
+    expect(rendered).toEqual(
+      OMAYA_SITE_CONFIG.content.featuredTours.map((trip) => ({
+        phone: FEATURED_TRIP_MOBILE_SRCSETS[trip.image],
+        wide: TOUR_WEB_IMAGE_SRCSETS[trip.image],
+        fallbackSrcset: null,
+      })),
+    );
   });
 
   it('renders the featured trips carousel with all offered tours', () => {

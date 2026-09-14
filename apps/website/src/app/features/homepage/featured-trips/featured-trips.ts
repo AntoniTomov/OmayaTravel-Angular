@@ -11,6 +11,10 @@ import {
 import { RouterLink } from '@angular/router';
 import { ActiveSite } from '../../../../sites/active-site';
 import { OmayaAnalytics } from '../../../shared/analytics/omaya-analytics';
+import {
+  FeaturedTripMobileSrcsetPipe,
+  TourWebImageSrcsetPipe,
+} from '../../../shared/content/tour-web-image.pipe';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 interface FeaturedTrip {
@@ -22,7 +26,6 @@ interface FeaturedTrip {
   target: string;
   image: {
     src: string;
-    srcset: string;
     sizes: string;
     width: number;
     height: number;
@@ -34,7 +37,7 @@ interface FeaturedTrip {
 
 @Component({
   selector: 'app-featured-trips',
-  imports: [RouterLink],
+  imports: [RouterLink, FeaturedTripMobileSrcsetPipe, TourWebImageSrcsetPipe],
   templateUrl: './featured-trips.html',
   styleUrl: './featured-trips.scss',
 })
@@ -217,7 +220,6 @@ export class FeaturedTrips {
       alt,
       width: 1200,
       height: 900,
-      srcset: `${src} 1200w`,
       sizes: '(min-width: 70rem) 32vw, (min-width: 44rem) 48vw, 100vw',
       loading: 'lazy',
       fetchPriority: 'auto',
