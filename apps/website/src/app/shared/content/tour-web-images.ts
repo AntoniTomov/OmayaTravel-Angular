@@ -62,6 +62,8 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/37e6c2650b5ff271.avif',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/fcf0d78e913c5388.avif',
+  '/assets/images/private-tour/private-tour-image.webp':
+    '/assets/images/tour-web/68a303e2b1e1df16.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -126,6 +128,8 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/e1cc9302feb8f791.avif 320w, /assets/images/tour-web/7666087c1d1390be.avif 480w, /assets/images/tour-web/139e494e0afb5de8.avif 640w, /assets/images/tour-web/9705fc8aad16f2a1.avif 800w, /assets/images/tour-web/59c08ed03248fb3c.avif 960w, /assets/images/tour-web/b2234ddd3610a577.avif 1440w, /assets/images/tour-web/37e6c2650b5ff271.avif 1600w',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/4f1d6ac272e3e939.avif 320w, /assets/images/tour-web/08a7956e18b0083f.avif 480w, /assets/images/tour-web/24e24791a1fa3604.avif 640w, /assets/images/tour-web/4641c2f7e7b6c601.avif 800w, /assets/images/tour-web/825a93a18a1c4b52.avif 960w, /assets/images/tour-web/872826211e5df282.avif 1440w, /assets/images/tour-web/fcf0d78e913c5388.avif 1600w',
+  '/assets/images/private-tour/private-tour-image.webp':
+    '/assets/images/tour-web/723e222464aa8d20.avif 320w, /assets/images/tour-web/470033ae9d95fc21.avif 480w, /assets/images/tour-web/6ca085536fd36470.avif 640w, /assets/images/tour-web/e59b0188d48c3937.avif 800w, /assets/images/tour-web/d8f03285b5730130.avif 960w, /assets/images/tour-web/d589b814d9fa2cf4.avif 1440w, /assets/images/tour-web/68a303e2b1e1df16.avif 1600w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the

@@ -9,16 +9,29 @@
 
   <div class="blog-list__layout">
     <section class="blog-list__posts" aria-label="Blog posts">
-      @for (post of posts; track post.slug) {
+      @for (post of posts; track post.slug; let first = $first) {
         <article class="blog-list__card">
           <a [routerLink]="'/' + post.slug + '/'" class="blog-list__image">
-            <img
-              [src]="post.image.src"
-              width="1200"
-              height="760"
-              [alt]="post.image.alt"
-              loading="lazy"
-            />
+            <!--
+              The first card is partly in the first screen on every device — about 220px of it on a
+              phone, 270px on a desktop — so it loads eagerly. It also goes through the AVIF srcset:
+              as a plain <img> it shipped the full 257,924-byte WebP, too heavy to put in the
+              initial load next to the hero. As AVIF sized for the column it is about 66kB.
+            -->
+            <picture style="display: contents">
+              <source
+                type="image/avif"
+                [attr.srcset]="post.image.src | tourWebImageSrcset"
+                sizes="(min-width: 58.01rem) 60vw, 92vw"
+              />
+              <img
+                [src]="post.image.src"
+                width="1200"
+                height="760"
+                [alt]="post.image.alt"
+                [attr.loading]="first ? 'eager' : 'lazy'"
+              />
+            </picture>
           </a>
           <div class="blog-list__card-body">
             <h2>

@@ -1131,6 +1131,49 @@
       "webBytes": 121054
     },
     {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 1600,
+      "height": 2000,
+      "originalBytes": 296558,
+      "webBytes": 222166
+    },
+    {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 14591
+    },
+    {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 28937
+    },
+    {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 46816
+    },
+    {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 74645
+    },
+    {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 92309
+    },
+    {
+      "source": "/assets/images/private-tour/private-tour-image.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 163312
+    },
+    {
       "source": "/assets/images/discover-more-tours.webp",
       "width": 343,
       "height": 512,

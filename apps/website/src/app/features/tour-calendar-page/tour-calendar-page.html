@@ -12,13 +12,22 @@
 
   <section class="tour-calendar__body" aria-label="Tour calendar months">
     <div class="tour-calendar__grid">
-      @for (month of months(); track month.name) {
+      @for (month of months(); track month.name; let index = $index) {
         <a
           [href]="month.resultPath"
           class="tour-calendar__month"
           [class.tour-calendar__month--empty]="month.tours.length === 0"
         >
-          <img [src]="month.image" [alt]="month.name + ' tour preview'" loading="lazy" />
+          <!--
+            The first row is in the first screen: one month on a phone, four on a desktop. They are
+            cheap to load early — 4kB each for 2026, and the 2027 months reuse the hero image,
+            which is already loading. Months further down stay lazy.
+          -->
+          <img
+            [src]="month.image"
+            [alt]="month.name + ' tour preview'"
+            [attr.loading]="index < 4 ? 'eager' : 'lazy'"
+          />
           <span>{{ month.name }}</span>
           @if (month.tours.length > 0) {
             <small>{{ month.tours.length }} tour{{ month.tours.length === 1 ? '' : 's' }}</small>
