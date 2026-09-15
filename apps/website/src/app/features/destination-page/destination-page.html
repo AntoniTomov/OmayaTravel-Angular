@@ -194,7 +194,7 @@
         </p>
       </section>
       <div class="destination-page__destinations">
-        @for (country of destinations; track country.slug) {
+        @for (country of destinations; track country.slug; let first = $first) {
           <article>
             <a [routerLink]="'/destinations/' + country.slug + '/'">
               <picture style="display: contents">
@@ -203,12 +203,16 @@
                   [attr.srcset]="country.heroImage.src | tourWebImageSrcset"
                   sizes="(min-width: 60rem) 33rem, 92vw"
                 />
+                <!--
+                  The first card starts inside the first screen (140px of it on a desktop). On a
+                  phone it resolves to the same file as the page hero, so eager costs nothing there.
+                -->
                 <img
                   [src]="country.heroImage.src"
                   [alt]="country.heroImage.alt"
                   width="800"
                   height="530"
-                  loading="lazy"
+                  [attr.loading]="first ? 'eager' : 'lazy'"
                 />
               </picture>
               <div>

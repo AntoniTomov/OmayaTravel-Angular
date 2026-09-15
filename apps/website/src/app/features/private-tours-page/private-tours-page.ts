@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 
 @Component({
   selector: 'app-private-tours-page',
-  imports: [RouterLink],
+  imports: [RouterLink, TourWebImageSrcsetPipe],
   templateUrl: './private-tours-page.html',
   styleUrl: './private-tours-page.scss',
 })

@@ -3,9 +3,16 @@ import { provideRouter, Router } from '@angular/router';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
+import {
+  FEATURED_TRIP_MOBILE_SRCSETS,
+  FEATURED_TRIP_WIDE_SRCSETS,
+  HOMEPAGE_HERO_CROP_SRCSETS,
+} from '../../shared/content/tour-web-images';
 import { Homepage } from './homepage';
 
 describe('Homepage', () => {
+  const SLIDE_ZERO = '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp';
+  const SLIDE_ONE = '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp';
   let fixture: ComponentFixture<Homepage>;
   let component: Homepage;
   let router: Router;
@@ -98,6 +105,56 @@ describe('Homepage', () => {
     ]);
   });
 
+  it('serves smaller and taller screens a pre-cut crop of whichever hero slide is showing', () => {
+    fixture.detectChanges();
+
+    const hero = fixture.nativeElement.querySelector('.homepage__hero') as HTMLElement;
+    const read = () =>
+      [...hero.querySelectorAll('source')].map((source) => [
+        source.getAttribute('media'),
+        source.getAttribute('srcset'),
+      ]);
+    const slides = OMAYA_SITE_CONFIG.content.hero.slides;
+    const rendered = [read()];
+
+    component['setSlide'](1);
+    fixture.detectChanges();
+    rendered.push(read());
+
+    expect(rendered).toEqual(
+      [slides[0], slides[1]].map((slide) => {
+        const crops = HOMEPAGE_HERO_CROP_SRCSETS[slide.visualSrc ?? ''];
+
+        return [
+          ['(max-width: 30rem)', crops.phone],
+          ['(max-width: 48rem)', crops.tablet],
+          ['(max-aspect-ratio: 3/4)', crops.portrait],
+        ];
+      }),
+    );
+  });
+
+  it('serves featured trip cards a phone crop, and the AVIF encoding on wider screens', () => {
+    fixture.detectChanges();
+
+    const cards = [
+      ...fixture.nativeElement.querySelectorAll('.featured-trips__image-link'),
+    ] as HTMLElement[];
+    const rendered = cards.map((card) => ({
+      phone: card.querySelector('source[media="(max-width: 44rem)"]')?.getAttribute('srcset'),
+      wide: card.querySelector('source:not([media])')?.getAttribute('srcset'),
+      fallbackSrcset: card.querySelector('img')?.getAttribute('srcset'),
+    }));
+
+    expect(rendered).toEqual(
+      OMAYA_SITE_CONFIG.content.featuredTours.map((trip) => ({
+        phone: FEATURED_TRIP_MOBILE_SRCSETS[trip.image],
+        wide: FEATURED_TRIP_WIDE_SRCSETS[trip.image] ?? null,
+        fallbackSrcset: null,
+      })),
+    );
+  });
+
   it('renders the featured trips carousel with all offered tours', () => {
     fixture.detectChanges();
 
@@ -154,5 +211,73 @@ describe('Homepage', () => {
     expect(navigateByUrl).toHaveBeenCalledWith('/tour-item/kyrgyzstan-tour/', {
       state: undefined,
     });
+  });
+
+  /**
+   * Rotating the hero on a timer started at hydration made the second slide the measured LCP,
+   * because nothing requested that image until the timer fired. Rotation is now gated on the
+   * first interaction, which is also the point where LCP stops updating.
+   */
+  function createHomepageAllowingMotion(): ComponentFixture<Homepage> {
+    window.matchMedia = ((query: string) => ({
+      matches: false,
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    })) as unknown as typeof window.matchMedia;
+
+    const created = TestBed.createComponent(Homepage);
+    created.detectChanges();
+
+    return created;
+  }
+
+  function heroSource(target: ComponentFixture<Homepage>): string {
+    const image = target.nativeElement.querySelector('.homepage__hero-image') as HTMLImageElement;
+
+    return image.getAttribute('src') ?? '';
+  }
+
+  it('leaves the hero on the first slide until the visitor interacts', () => {
+    const originalMatchMedia = window.matchMedia;
+    vi.useFakeTimers();
+
+    try {
+      const motionFixture = createHomepageAllowingMotion();
+      const sources = [heroSource(motionFixture)];
+
+      vi.advanceTimersByTime(30_000);
+      motionFixture.detectChanges();
+      sources.push(heroSource(motionFixture));
+
+      expect(sources).toEqual([SLIDE_ZERO, SLIDE_ZERO]);
+
+      motionFixture.destroy();
+    } finally {
+      vi.useRealTimers();
+      window.matchMedia = originalMatchMedia;
+    }
+  });
+
+  it('rotates the hero once the visitor has interacted', () => {
+    const originalMatchMedia = window.matchMedia;
+    vi.useFakeTimers();
+
+    try {
+      const motionFixture = createHomepageAllowingMotion();
+      const sources = [heroSource(motionFixture)];
+
+      window.dispatchEvent(new Event('pointerdown'));
+      vi.advanceTimersByTime(7_000);
+      motionFixture.detectChanges();
+      sources.push(heroSource(motionFixture));
+
+      expect(sources).toEqual([SLIDE_ZERO, SLIDE_ONE]);
+
+      motionFixture.destroy();
+    } finally {
+      vi.useRealTimers();
+      window.matchMedia = originalMatchMedia;
+    }
   });
 });

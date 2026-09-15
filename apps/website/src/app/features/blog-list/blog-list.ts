@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 
 import {
   BLOG_DISCOVER_TOURS_IMAGE,
@@ -9,7 +10,7 @@ import {
 
 @Component({
   selector: 'app-blog-list',
-  imports: [RouterLink],
+  imports: [RouterLink, TourWebImageSrcsetPipe],
   templateUrl: './blog-list.html',
   styleUrl: './blog-list.scss',
 })

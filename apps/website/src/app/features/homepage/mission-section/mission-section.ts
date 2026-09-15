@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MissionImageMobileSrcsetPipe } from '../../../shared/content/tour-web-image.pipe';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 @Component({
   selector: 'app-mission-section',
-  imports: [RouterLink],
+  imports: [RouterLink, MissionImageMobileSrcsetPipe],
   templateUrl: './mission-section.html',
   styleUrl: './mission-section.scss',
 })
@@ -13,7 +14,7 @@ export class MissionSection {
   protected readonly image = {
     src: '/assets/images/home-page/our-mission-image.webp',
     alt: 'Traveller sitting in a cave opening overlooking mountains',
-    width: 'auto',
-    height: 540,
+    width: 1080,
+    height: 1080,
   };
 }

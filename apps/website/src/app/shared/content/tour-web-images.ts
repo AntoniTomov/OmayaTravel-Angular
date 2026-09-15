@@ -62,6 +62,8 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/37e6c2650b5ff271.avif',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/fcf0d78e913c5388.avif',
+  '/assets/images/private-tour/private-tour-image.webp':
+    '/assets/images/tour-web/68a303e2b1e1df16.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -126,6 +128,8 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/e1cc9302feb8f791.avif 320w, /assets/images/tour-web/7666087c1d1390be.avif 480w, /assets/images/tour-web/139e494e0afb5de8.avif 640w, /assets/images/tour-web/9705fc8aad16f2a1.avif 800w, /assets/images/tour-web/59c08ed03248fb3c.avif 960w, /assets/images/tour-web/b2234ddd3610a577.avif 1440w, /assets/images/tour-web/37e6c2650b5ff271.avif 1600w',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/4f1d6ac272e3e939.avif 320w, /assets/images/tour-web/08a7956e18b0083f.avif 480w, /assets/images/tour-web/24e24791a1fa3604.avif 640w, /assets/images/tour-web/4641c2f7e7b6c601.avif 800w, /assets/images/tour-web/825a93a18a1c4b52.avif 960w, /assets/images/tour-web/872826211e5df282.avif 1440w, /assets/images/tour-web/fcf0d78e913c5388.avif 1600w',
+  '/assets/images/private-tour/private-tour-image.webp':
+    '/assets/images/tour-web/723e222464aa8d20.avif 320w, /assets/images/tour-web/470033ae9d95fc21.avif 480w, /assets/images/tour-web/6ca085536fd36470.avif 640w, /assets/images/tour-web/e59b0188d48c3937.avif 800w, /assets/images/tour-web/d8f03285b5730130.avif 960w, /assets/images/tour-web/d589b814d9fa2cf4.avif 1440w, /assets/images/tour-web/68a303e2b1e1df16.avif 1600w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -174,4 +178,69 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/e73f3e1378dd908f.avif 320w, /assets/images/tour-web/f57ae2c3f9f66fe7.avif 480w, /assets/images/tour-web/e9eeb7ff180491d1.avif 640w, /assets/images/tour-web/8920226f6fe16c17.avif 840w, /assets/images/tour-web/ed66e12bcfc80361.avif 858w',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/688cd93e33784a05.avif 320w, /assets/images/tour-web/beaa5d0c304b3beb.avif 480w, /assets/images/tour-web/9adb02e444e3dcb5.avif 640w, /assets/images/tour-web/299fd66e70bc2153.avif 840w, /assets/images/tour-web/ab0309ea3ed577ff.avif 960w, /assets/images/tour-web/666f71ede6687a3e.avif 994w',
+};
+// Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem, portrait for screens no wider than 3/4 of their height. See HOMEPAGE_HERO_TIERS in the generator.
+export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<
+  Record<string, { phone: string; tablet: string; portrait: string }>
+> = {
+  '/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp': {
+    phone:
+      '/assets/images/tour-web/145ee50b1f2850e6.avif 320w, /assets/images/tour-web/af16fbc7d6323587.avif 480w, /assets/images/tour-web/551fd175ac14e794.avif 637w',
+    tablet:
+      '/assets/images/tour-web/b5f6ffeb47924d61.avif 640w, /assets/images/tour-web/ba9caff4fe953b14.avif 800w, /assets/images/tour-web/d8fd0da6fc99012c.avif 960w, /assets/images/tour-web/d5cda5614c3227b4.avif 1019w',
+    portrait:
+      '/assets/images/tour-web/ad351b8b6bd28f10.avif 960w, /assets/images/tour-web/ca2b0a73c1631472.avif 1059w',
+  },
+  '/assets/images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp': {
+    phone:
+      '/assets/images/tour-web/3e28fe8b3b9a5098.avif 320w, /assets/images/tour-web/123df938b5f31333.avif 480w, /assets/images/tour-web/ec14a7450f8f4903.avif 553w',
+    tablet:
+      '/assets/images/tour-web/d16a73f36a181640.avif 640w, /assets/images/tour-web/80e292fff8ab2454.avif 800w, /assets/images/tour-web/961dcfd567a7f2ee.avif 884w',
+    portrait: '/assets/images/tour-web/85d55629c834746d.avif 919w',
+  },
+  '/assets/images/home-page/carousel/HomePageCoverPhoto-3.webp': {
+    phone:
+      '/assets/images/tour-web/befe5849d541d71c.avif 320w, /assets/images/tour-web/969f21f6b1b9adce.avif 480w, /assets/images/tour-web/658a50d934f86b73.avif 640w, /assets/images/tour-web/7dca5b2487eff0da.avif 744w',
+    tablet:
+      '/assets/images/tour-web/6f17ef80e962a5e4.avif 640w, /assets/images/tour-web/91986ae71d025beb.avif 800w, /assets/images/tour-web/c3332bff95677443.avif 960w, /assets/images/tour-web/b12e94be53a6b46b.avif 1190w',
+    portrait:
+      '/assets/images/tour-web/97fdd62bc874cb48.avif 960w, /assets/images/tour-web/ff1f57329576d5de.avif 1200w, /assets/images/tour-web/55a3373156b80868.avif 1237w',
+  },
+};
+// Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.
+export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
+    '/assets/images/tour-web/c9a32fb08b9aab33.avif 320w, /assets/images/tour-web/25feb049e0d66801.avif 480w, /assets/images/tour-web/5f4e9168ddf61417.avif 560w, /assets/images/tour-web/ba2a65c29ea0f18e.avif 632w',
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
+    '/assets/images/tour-web/7363b01765af5639.avif 320w, /assets/images/tour-web/848d0033cbe6e976.avif 480w, /assets/images/tour-web/934edf6935b6fde8.avif 560w, /assets/images/tour-web/1b14463ec854328f.avif 632w',
+  '/assets/images/destinations/Marocco/morocco-bgr.webp':
+    '/assets/images/tour-web/bf90f8995423f4f4.avif 320w, /assets/images/tour-web/d21fcf1efc16e1a3.avif 480w, /assets/images/tour-web/eb161c0f70c827dd.avif 560w, /assets/images/tour-web/0aa5d8cc44a9dda5.avif 632w',
+  '/assets/images/home-page/trips-carousel/Algeria-trip.webp':
+    '/assets/images/tour-web/8caaea7094aa1277.avif 320w, /assets/images/tour-web/0e601d42895adfa4.avif 480w, /assets/images/tour-web/9f78dfdf2ae23213.avif 560w, /assets/images/tour-web/7bae068d78998d21.avif 622w',
+};
+// Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
+export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
+    '/assets/images/tour-web/e4d0eb200e34ef11.avif 320w, /assets/images/tour-web/6c1f2d13bb403cae.avif 480w, /assets/images/tour-web/6c3c7fb2b543d5b9.avif 632w',
+  '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
+    '/assets/images/tour-web/3c556323d2fcd1c4.avif 320w, /assets/images/tour-web/e031d1ebedcd3b6a.avif 480w, /assets/images/tour-web/61abcc3e715e04af.avif 632w',
+  '/assets/images/destinations/Marocco/morocco-bgr.webp':
+    '/assets/images/tour-web/d3e8eb34e6eb925c.avif 320w, /assets/images/tour-web/e9c2fb593a3607a2.avif 480w, /assets/images/tour-web/316b286c7da08684.avif 640w, /assets/images/tour-web/a42808e2d4d5d7d8.avif 800w, /assets/images/tour-web/766df0085f8d7c6c.avif 960w, /assets/images/tour-web/8aed1d364d20422b.avif 1200w, /assets/images/tour-web/03fcbb5dcf276b69.avif 1600w',
+};
+// A 480px copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH in the generator.
+export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/newsletter-popup-inner.webp':
+    '/assets/images/tour-web/1e86e025878feac7.avif 480w',
+};
+// Mission photograph copies for viewports up to 58rem, topped by the original. See MISSION_COPY_QUALITY in the generator.
+export const MISSION_IMAGE_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/our-mission-image.webp':
+    '/assets/images/tour-web/a76c97ac47ee9702.avif 480w, /assets/images/tour-web/1abe3469f59584bd.avif 560w, /assets/images/tour-web/994d23289b4fe81a.avif 660w, /assets/images/tour-web/65ebd3301f8b933a.avif 760w, /assets/images/tour-web/e2d2e6387c7569a6.avif 960w, /assets/images/home-page/our-mission-image.webp 1080w',
+};
+// Lossless logo copies for each pixel ratio, keyed by the logo they stand in for. See LOGO_WIDTHS in the generator.
+export const LOGO_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp':
+    '/assets/images/tour-web/cb484c2e01c562a0.webp 100w, /assets/images/tour-web/bb65430223246625.webp 150w, /assets/images/tour-web/361fe207d41b1efd.webp 200w, /assets/images/tour-web/601633a2369be81f.webp 250w, /assets/images/tour-web/9ddce96af40b8454.webp 300w, /assets/images/tour-web/2bb8d8232f916616.webp 350w, /assets/images/home-page/company-logo/Black_logo-e1781169999413.webp 400w',
+  '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp':
+    '/assets/images/tour-web/f200a3aa758e3b46.webp 100w, /assets/images/tour-web/d38d2faec5dc90fb.webp 150w, /assets/images/tour-web/bd57267f4ec5dff9.webp 200w, /assets/images/tour-web/9189c48a45960aeb.webp 250w, /assets/images/tour-web/7a4541f59f1afbad.webp 300w, /assets/images/tour-web/466655830f97bbaf.webp 350w, /assets/images/tour-web/309fc1e21813d46e.webp 400w',
 };

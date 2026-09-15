@@ -160,3 +160,11 @@ details[open]::details-content {
     right: 1rem;
   }
 }
+
+// A <source> never renders, but inside <picture style="display: contents"> it becomes a child of the
+// picture's parent, and a grid or flex parent turns it into an empty item that takes a cell. The
+// homepage hero's three sources pushed its text off centre, and the mission photograph's source moved
+// the image into the text column. Hiding it has no effect on which image the browser chooses.
+picture > source {
+  display: none;
+}

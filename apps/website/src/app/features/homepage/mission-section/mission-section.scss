@@ -22,8 +22,11 @@
 .mission-section img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.44 / 1;
-  object-fit: cover;
+  // The height attribute declares the file's intrinsic 1080px, and an image's height attribute is
+  // also a CSS height hint. Without height: auto that hint became the rendered height, 1080px at
+  // every width.
+  height: auto;
+  object-fit: contain;
 }
 
 .mission-section__content {
