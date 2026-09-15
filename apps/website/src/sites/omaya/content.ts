@@ -33,4 +33,20 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
   }),
   searchIndex: SITE_SEARCH_INDEX,
   enabledRoutes: ['*'],
+  // Amelia-only Bulgarian articles/pages must stay off Omaya and out of its sitemap.
+  // Routes in the shared table that only Amelia publishes.
+  excludedRoutes: [
+    '/maroko-za-zheni-pateshestvenichki/',
+    '/ezeroto-song-kul-kirgistan/',
+    '/india-otblizo/',
+    '/standarten-formulyar/',
+    '/tour-item/india-tour/',
+  ],
+  pageSeo: [
+    {
+      canonicalPath: '/contact/',
+      title: 'Contact Us',
+      description: 'Get in touch with Omaya Travel to discuss your next small-group journey.',
+    },
+  ],
 };

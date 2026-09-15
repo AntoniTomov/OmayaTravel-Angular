@@ -100,7 +100,8 @@
                 </p>
                 <h4>Scheduled departures</h4>
                 <ul class="destination-page__dates">
-                  @for (date of tour.departures; track date) {
+                  @for (departure of tour.departures; track departure) {
+                    @let date = departureDate(departure);
                     <li>
                       <time [attr.datetime]="date">{{
                         date + 'T00:00:00Z' | date: 'd MMM y' : 'UTC'

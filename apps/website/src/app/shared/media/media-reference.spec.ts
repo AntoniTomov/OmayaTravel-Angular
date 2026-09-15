@@ -110,6 +110,7 @@ describe('media reference helper', () => {
     'blog/silk-road-guide/bishkek-market.jpg',
     'company/about-us/omaya-travel-team.webp',
     'shared/logo/omaya-travel-mark.png',
+    'amelia/home/hero-3.avif',
   ])('accepts approved media key %s', (key) => {
     expect(() => buildTransformedMediaUrl(key, 1200, 84)).not.toThrow();
   });

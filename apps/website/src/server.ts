@@ -9,6 +9,8 @@ import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { SITE_CONFIGS, siteConfigForHostname } from './sites';
+import type { SiteConfig } from './sites/site.types';
 import { findRedirect, trailingSlashRedirectTarget } from './app/shared/routing/public-routes';
 import {
   buildRobotsTxt,
@@ -24,16 +26,19 @@ loadLocalEnv();
 const browserDistFolder = join(import.meta.dirname, '../browser');
 const FORM_CONTRACT_VERSION = 'public-forms.v1';
 const FORMS_RATE_LIMIT_WINDOW_MS = Number(
-  process.env['OMAYA_FORMS_RATE_LIMIT_WINDOW_MS'] ?? 600_000,
+  process.env['PLATFORM_FORMS_RATE_LIMIT_WINDOW_MS'] ??
+    process.env['OMAYA_FORMS_RATE_LIMIT_WINDOW_MS'] ??
+    600_000,
 );
-const FORMS_RATE_LIMIT_MAX = Number(process.env['OMAYA_FORMS_RATE_LIMIT_MAX'] ?? 5);
-const OMAYA_MAIL_TO = process.env['OMAYA_MAIL_TO'] ?? 'info@omayatravel.com';
-const OMAYA_MAIL_FROM = process.env['OMAYA_MAIL_FROM'] ?? 'Omaya Travel <website@omayatravel.com>';
-const OMAYA_MAIL_REPLY_TO_FALLBACK = process.env['OMAYA_MAIL_REPLY_TO_FALLBACK'] ?? OMAYA_MAIL_TO;
+const FORMS_RATE_LIMIT_MAX = Number(
+  process.env['PLATFORM_FORMS_RATE_LIMIT_MAX'] ?? process.env['OMAYA_FORMS_RATE_LIMIT_MAX'] ?? 5,
+);
 const MAILCHIMP_SUBSCRIBE_STATUS = process.env['MAILCHIMP_SUBSCRIBE_STATUS'] ?? 'subscribed';
+const configuredSiteHosts = Object.values(SITE_CONFIGS).flatMap((site) =>
+  site.domain ? [site.domain, `www.${site.domain}`] : [],
+);
 const allowedHosts = [
-  'omayatravel.com',
-  'www.omayatravel.com',
+  ...configuredSiteHosts,
   'localhost',
   '127.0.0.1',
   ...(process.env['NG_ALLOWED_HOSTS'] ?? '')
@@ -44,7 +49,7 @@ const allowedHosts = [
     .split(',')
     .map((host) => host.trim())
     .filter(Boolean),
-];
+].map((host) => host.toLowerCase());
 const formLabels = {
   contact: 'Contact request',
   'faq-question': 'FAQ question',
@@ -153,6 +158,7 @@ app.use('/api/newsletter', express.json({ limit: '8kb', type: 'application/json'
 
 app.post('/api/forms', async (req, res) => {
   const requestId = `frm_${randomUUID()}`;
+  const site = getRequestSite(req);
 
   res.setHeader('Cache-Control', 'no-store');
 
@@ -213,7 +219,7 @@ app.post('/api/forms', async (req, res) => {
       .json(apiError(requestId, 'turnstile_failed', 'Please refresh the page and try again.'));
   }
 
-  const emailResult = await sendFormEmails(payload, requestId);
+  const emailResult = await sendFormEmails(payload, requestId, site);
 
   if (!emailResult.ok) {
     console.error('Public form email failed', {
@@ -228,7 +234,7 @@ app.post('/api/forms', async (req, res) => {
         apiError(
           requestId,
           'send_failed',
-          'We could not send your request right now. Please try again or email info@omayatravel.com.',
+          `We could not send your request right now. Please try again or email ${site.contact.email}.`,
         ),
       );
   }
@@ -238,6 +244,7 @@ app.post('/api/forms', async (req, res) => {
 
 app.post('/api/newsletter', async (req, res) => {
   const requestId = `nws_${randomUUID()}`;
+  const site = getRequestSite(req);
 
   res.setHeader('Cache-Control', 'no-store');
 
@@ -271,7 +278,7 @@ app.post('/api/newsletter', async (req, res) => {
     return res.status(200).json({ ok: true, requestId });
   }
 
-  const result = await subscribeToMailchimp(payload.email, payload.source);
+  const result = await subscribeToMailchimp(payload.email, payload.source, site);
 
   if (!result.ok) {
     console.error('Newsletter subscription failed', {
@@ -528,10 +535,37 @@ function isAllowedOrigin(req: express.Request): boolean {
   }
 
   try {
-    return allowedHosts.includes(new URL(origin).hostname);
+    return allowedHosts.includes(new URL(origin).hostname.toLowerCase());
   } catch {
     return false;
   }
+}
+
+function getRequestSite(req: express.Request): SiteConfig {
+  return siteConfigForHostname(getRequestHostname(req));
+}
+
+function getRequestHostname(req: express.Request): string {
+  const host =
+    (process.env['OMAYA_TRUST_PROXY_HEADERS'] === 'true' ? req.get('x-forwarded-host') : '') ||
+    req.get('host') ||
+    req.hostname;
+
+  return host.split(',')[0]?.trim().split(':')[0]?.toLowerCase() ?? '';
+}
+
+function siteEnv(site: SiteConfig, suffix: string): string | undefined {
+  const siteSpecific = process.env[`${site.id.toUpperCase()}_${suffix}`];
+
+  if (siteSpecific) {
+    return siteSpecific;
+  }
+
+  if (site.id === 'omaya') {
+    return process.env[`OMAYA_${suffix}`];
+  }
+
+  return undefined;
 }
 
 function checkRateLimit(key: string): { ok: true } | { ok: false; retryAfterMs: number } {
@@ -592,6 +626,7 @@ async function verifyTurnstileToken(
 async function sendFormEmails(
   payload: PublicFormPayload,
   requestId: string,
+  site: SiteConfig,
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
   const apiKey = process.env['RESEND_API_KEY'] ?? process.env['resendApiKey'];
 
@@ -599,18 +634,21 @@ async function sendFormEmails(
     return { ok: false, reason: 'missing_resend_api_key' };
   }
 
-  const visitorEmail = payload.fields['email'] || OMAYA_MAIL_REPLY_TO_FALLBACK;
+  const mailTo = siteEnv(site, 'MAIL_TO') ?? site.contact.email;
+  const mailFrom = siteEnv(site, 'MAIL_FROM') ?? site.contact.resendFrom;
+  const replyToFallback = siteEnv(site, 'MAIL_REPLY_TO_FALLBACK') ?? site.contact.resendReplyTo;
+  const visitorEmail = payload.fields['email'] || replyToFallback;
   const visitorName = payload.fields['name'] || 'traveller';
   const label = formLabels[payload.formType];
   const timestamp = new Date().toISOString();
-  const internalText = buildInternalText(payload, requestId, timestamp);
-  const autoReplyText = buildAutoReplyText(visitorName);
+  const internalText = buildInternalText(payload, requestId, timestamp, site);
+  const autoReplyText = buildAutoReplyText(visitorName, site);
 
   const internal = await sendResendEmail(apiKey, {
-    from: OMAYA_MAIL_FROM,
-    to: [OMAYA_MAIL_TO],
+    from: mailFrom,
+    to: [mailTo],
     reply_to: visitorEmail,
-    subject: `[Omaya Travel] ${label}: ${visitorName}`,
+    subject: `[${site.brand.name}] ${label}: ${visitorName}`,
     text: internalText,
     html: textToHtml(internalText),
   });
@@ -620,10 +658,10 @@ async function sendFormEmails(
   }
 
   return sendResendEmail(apiKey, {
-    from: OMAYA_MAIL_FROM,
+    from: mailFrom,
     to: [visitorEmail],
-    reply_to: OMAYA_MAIL_TO,
-    subject: 'We received your Omaya Travel enquiry',
+    reply_to: mailTo,
+    subject: `We received your ${site.brand.name} enquiry`,
     text: autoReplyText,
     html: textToHtml(autoReplyText),
   });
@@ -659,9 +697,12 @@ async function sendResendEmail(
 async function subscribeToMailchimp(
   email: string,
   source: 'home page' | 'popup',
+  site: SiteConfig,
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
   const apiKey = process.env['MAILCHIMP_API_KEY'];
-  const audienceId = process.env['MAILCHIMP_AUDIENCE_ID'];
+  const audienceId =
+    process.env[site.newsletter.mailchimpAudienceIdEnvVar] ??
+    (site.id === 'omaya' ? process.env['MAILCHIMP_AUDIENCE_ID'] : undefined);
   const serverPrefix = process.env['MAILCHIMP_SERVER_PREFIX'];
 
   if (!apiKey || !audienceId || !serverPrefix) {
@@ -682,7 +723,7 @@ async function subscribeToMailchimp(
         email_address: email,
         status_if_new: MAILCHIMP_SUBSCRIBE_STATUS,
         status: MAILCHIMP_SUBSCRIBE_STATUS,
-        tags: [source],
+        tags: [...site.newsletter.tags, source],
       }),
     });
 
@@ -709,10 +750,12 @@ function buildInternalText(
   payload: PublicFormPayload,
   requestId: string,
   timestamp: string,
+  site: SiteConfig,
 ): string {
   return [
     formLabels[payload.formType],
     '',
+    `Site: ${site.brand.name} (${site.id})`,
     `Request ID: ${requestId}`,
     `Submitted: ${timestamp}`,
     `Page: ${payload.meta.pagePath || 'Unknown'}`,
@@ -721,16 +764,16 @@ function buildInternalText(
   ].join('\n');
 }
 
-function buildAutoReplyText(visitorName: string): string {
+function buildAutoReplyText(visitorName: string, site: SiteConfig): string {
   return [
     `Hi ${visitorName},`,
     '',
-    'Thank you for contacting Omaya Travel. We received your enquiry and will get back to you as soon as possible.',
+    `Thank you for contacting ${site.brand.name}. We received your enquiry and will get back to you as soon as possible.`,
     '',
-    'If you need to add anything in the meantime, you can reply to this email or contact us at info@omayatravel.com.',
+    `If you need to add anything in the meantime, you can reply to this email or contact us at ${site.contact.email}.`,
     '',
     'Warm regards,',
-    'Omaya Travel',
+    site.brand.name,
   ].join('\n');
 }
 

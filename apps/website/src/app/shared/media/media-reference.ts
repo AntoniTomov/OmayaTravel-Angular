@@ -39,7 +39,14 @@ export const MEDIA_VARIANT_WIDTHS = [320, 480, 720, 960, 1200, 1600, 1920] as co
 
 export type MediaVariantWidth = (typeof MEDIA_VARIANT_WIDTHS)[number];
 
-const MEDIA_KEY_TOP_LEVEL_FOLDERS = new Set(['destinations', 'tours', 'blog', 'company', 'shared']);
+const MEDIA_KEY_TOP_LEVEL_FOLDERS = new Set([
+  'destinations',
+  'tours',
+  'blog',
+  'company',
+  'shared',
+  'amelia',
+]);
 
 const MEDIA_KEY_PATH_SEGMENT_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MEDIA_KEY_FILENAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+$/;

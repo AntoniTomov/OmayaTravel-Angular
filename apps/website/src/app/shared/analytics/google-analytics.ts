@@ -1,7 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 
-import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from './google-analytics.config';
+import { ActiveSite } from '../../../sites/active-site';
 
 type GtagCommand = 'config' | 'event' | 'js';
 type Gtag = (command: GtagCommand, target: string | Date, params?: Record<string, unknown>) => void;
@@ -17,8 +17,8 @@ declare global {
 export class GoogleAnalytics {
   private readonly document = inject(DOCUMENT);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly measurementId = GOOGLE_ANALYTICS_MEASUREMENT_ID.trim();
-  private initialized = false;
+  private readonly activeSite = inject(ActiveSite);
+  private initializedMeasurementId = '';
   private scriptReady = false;
   private pendingPageView: { path: string; title: string } | null = null;
 
@@ -37,7 +37,7 @@ export class GoogleAnalytics {
 
   private sendPageView(path: string, title: string): void {
     this.gtag('event', 'page_view', {
-      send_to: this.measurementId,
+      send_to: this.measurementId(),
       page_path: path,
       page_title: title,
       page_location: this.document.location?.href,
@@ -53,11 +53,13 @@ export class GoogleAnalytics {
   }
 
   private ensureInitialized(): boolean {
-    if (!this.isBrowser || !this.measurementId) {
+    const measurementId = this.measurementId();
+
+    if (!this.isBrowser || !measurementId) {
       return false;
     }
 
-    if (this.initialized) {
+    if (this.initializedMeasurementId === measurementId) {
       return true;
     }
 
@@ -75,9 +77,9 @@ export class GoogleAnalytics {
       };
 
     this.gtag('js', new Date());
-    this.gtag('config', this.measurementId, { send_page_view: false });
+    this.gtag('config', measurementId, { send_page_view: false });
     this.appendScript();
-    this.initialized = true;
+    this.initializedMeasurementId = measurementId;
 
     return true;
   }
@@ -94,7 +96,7 @@ export class GoogleAnalytics {
     script.id = scriptId;
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
-      this.measurementId,
+      this.measurementId(),
     )}`;
     script.addEventListener(
       'load',
@@ -116,5 +118,9 @@ export class GoogleAnalytics {
 
   private gtag(...args: Parameters<Gtag>): void {
     this.document.defaultView?.gtag?.(...args);
+  }
+
+  private measurementId(): string {
+    return this.activeSite.site().analytics.gaMeasurementId.trim();
   }
 }

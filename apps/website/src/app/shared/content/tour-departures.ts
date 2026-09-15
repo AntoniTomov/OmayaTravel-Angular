@@ -1,11 +1,13 @@
-import { TourDetailContent, findTourBySlug } from './tour-content';
+import { TourDetailContent, findTourBySlug, tourDepartureDate } from './tour-content';
 import { PUBLIC_TOUR_SLUGS } from '../routing/public-routes';
 
-// Includes the Morocco variants resolved by findTourBySlug, not just the base content array.
-export const PUBLIC_TOURS: readonly TourDetailContent[] = PUBLIC_TOUR_SLUGS.map((slug) => {
+// Omaya's public tours, including the Morocco variants resolved by findTourBySlug, not just the base
+// content array. The route table also carries tours only another brand publishes, which are skipped.
+export const PUBLIC_TOURS: readonly TourDetailContent[] = PUBLIC_TOUR_SLUGS.flatMap((slug) => {
   const tour = findTourBySlug(slug);
-  if (!tour) throw new Error('Missing public tour: ' + slug);
-  return tour;
+  if (tour) return [tour];
+  if (findTourBySlug(slug, 'amelia')) return [];
+  throw new Error('Missing public tour: ' + slug);
 });
 
 export const DEPARTURE_MONTH_NAMES = [
@@ -29,11 +31,13 @@ export function departuresInMonth(
   month: number,
   year?: number,
 ): readonly string[] {
-  return tour.departures.filter(
-    (date) =>
-      Number(date.slice(5, 7)) === month &&
-      (year === undefined || Number(date.slice(0, 4)) === year),
-  );
+  return tour.departures
+    .map(tourDepartureDate)
+    .filter(
+      (date) =>
+        Number(date.slice(5, 7)) === month &&
+        (year === undefined || Number(date.slice(0, 4)) === year),
+    );
 }
 
 export function toursInMonth(month: number, year?: number): readonly TourDetailContent[] {

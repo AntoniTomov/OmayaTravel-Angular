@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import { PublicBreadcrumbs, PublicBreadcrumb } from '../../shared/breadcrumbs/public-breadcrumbs';
+import { tourDepartureDate } from '../../shared/content/tour-content';
 import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 
 @Component({
@@ -18,6 +19,7 @@ export class DestinationPage {
     initialValue: this.route.snapshot.paramMap,
   });
   protected readonly destinations = DESTINATION_CONTENT;
+  protected readonly departureDate = tourDepartureDate;
   protected readonly destination = computed(() =>
     this.destinations.find((item) => item.slug === this.params().get('destinationSlug')),
   );

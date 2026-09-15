@@ -9,9 +9,13 @@ import { findTourListingPage, TOUR_CARDS } from './tour-list-content';
 import { PUBLIC_TOUR_SLUGS } from '../routing/public-routes';
 import { DESTINATION_CONTENT } from './destination-content';
 
+/** The route table also carries tours only Amelia publishes; Omaya's data covers the rest. */
+const AMELIA_ONLY_TOUR_SLUGS = ['india-tour'];
+const OMAYA_TOUR_SLUGS = PUBLIC_TOUR_SLUGS.filter((slug) => !AMELIA_ONLY_TOUR_SLUGS.includes(slug));
+
 describe('public tour departure data', () => {
   it('includes every public variant, including both derived Morocco tours', () => {
-    expect(PUBLIC_TOURS.map((tour) => tour.slug)).toEqual([...PUBLIC_TOUR_SLUGS]);
+    expect(PUBLIC_TOURS.map((tour) => tour.slug)).toEqual(OMAYA_TOUR_SLUGS);
     expect(PUBLIC_TOURS).toHaveLength(8);
     expect(
       TOUR_CARDS.every((card) =>
@@ -63,6 +67,6 @@ describe('public tour departure data', () => {
     ]);
     expect(
       DESTINATION_CONTENT.flatMap((country) => country.tours.map((tour) => tour.slug)).sort(),
-    ).toEqual([...PUBLIC_TOUR_SLUGS].sort());
+    ).toEqual([...OMAYA_TOUR_SLUGS].sort());
   });
 });

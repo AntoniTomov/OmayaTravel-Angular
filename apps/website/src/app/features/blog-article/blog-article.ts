@@ -2,9 +2,11 @@ import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import {
   BLOG_DISCOVER_TOURS_IMAGE,
-  BLOG_POSTS,
+  blogPostsForSite,
   findBlogPostBySlug,
 } from '../../shared/content/blog-content';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
@@ -18,22 +20,30 @@ import { BlogPostSection } from './blog-post-section/blog-post-section';
 })
 export class BlogArticle {
   private readonly route = inject(ActivatedRoute);
+  private readonly activeSite = inject(ActiveSite);
   private readonly routeData = toSignal(this.route.data, {
     initialValue: this.route.snapshot.data,
   });
 
+  protected readonly posts = computed(() => blogPostsForSite(this.activeSite.site().id));
   protected readonly post = computed(() =>
-    findBlogPostBySlug(String(this.routeData()['articleSlug'] ?? '')),
+    findBlogPostBySlug(String(this.routeData()['articleSlug'] ?? ''), this.activeSite.site().id),
   );
   protected readonly discoverToursImage = BLOG_DISCOVER_TOURS_IMAGE;
+  protected readonly discoverToursEnabled = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
+  );
+  // Only a destination page the active site publishes is linked from its articles.
   protected readonly destination = computed(() =>
-    DESTINATION_CONTENT.find((destination) =>
-      destination.guides.some((guide) => guide.slug === this.post()?.slug),
+    DESTINATION_CONTENT.find(
+      (destination) =>
+        destination.guides.some((guide) => guide.slug === this.post()?.slug) &&
+        isSiteRouteEnabled(this.activeSite.site(), '/destinations/' + destination.slug + '/'),
     ),
   );
   protected readonly relatedPosts = computed(() => {
     const sameCountrySlugs = new Set(this.destination()?.guides.map((guide) => guide.slug));
-    const otherPosts = BLOG_POSTS.filter((post) => post.slug !== this.post()?.slug);
+    const otherPosts = this.posts().filter((post) => post.slug !== this.post()?.slug);
 
     return [
       ...otherPosts.filter((post) => sameCountrySlugs.has(post.slug)),
@@ -42,8 +52,29 @@ export class BlogArticle {
   });
   protected readonly previousPost = computed(() => {
     const post = this.post();
-    const index = BLOG_POSTS.findIndex((candidate) => candidate.slug === post?.slug);
+    const posts = this.posts();
+    const index = posts.findIndex((candidate) => candidate.slug === post?.slug);
 
-    return index >= 0 ? (BLOG_POSTS[index + 1] ?? BLOG_POSTS[0]) : undefined;
+    return posts.length > 1 && index >= 0 ? (posts[index + 1] ?? posts[0]) : undefined;
   });
+
+  protected readonly labels = computed(() =>
+    this.activeSite.site().id === 'amelia'
+      ? {
+          relatedPosts: 'Подобни публикации',
+          suggestedPosts: 'Препоръчани публикации',
+          backToStories: 'Към всички истории',
+          followUs: 'Последвай ни',
+          followText: 'За още вдъхновение за пътувания, последвай Amelia Travel.',
+          discoverAlt: 'Открий още пътувания',
+        }
+      : {
+          relatedPosts: 'Related Posts',
+          suggestedPosts: 'Suggested Blog Posts',
+          backToStories: 'Back to all stories',
+          followUs: 'Follow Us',
+          followText: 'For more travel inspiration, follow us on Instagram: @omayatravel',
+          discoverAlt: 'Discover more tours',
+        },
+  );
 }

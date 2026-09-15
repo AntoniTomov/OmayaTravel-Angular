@@ -22,10 +22,19 @@ export interface SiteBrand {
   homeLabel: string;
   logoSrc: string;
   solidLogoSrc: string;
+  /** Intrinsic size of each logo file, so width and height reserve the right shape before it loads. */
+  logoSize: SiteImageSize;
+  solidLogoSize: SiteImageSize;
   logoAlt: string;
 }
 
+export interface SiteImageSize {
+  width: number;
+  height: number;
+}
+
 export interface SiteFeatureFlags {
+  showHeroSearch: boolean;
   showTravelMatch: boolean;
   showFeaturedTrips: boolean;
   showMission: boolean;
@@ -35,7 +44,40 @@ export interface SiteFeatureFlags {
 }
 
 export interface SiteAnalytics {
+  gaMeasurementId: string;
   metaPixelId: string;
+}
+
+export interface SiteSeo {
+  canonicalHost: string;
+  defaultTitle: string;
+  defaultDescription: string;
+  ogImage: string;
+  locale: string;
+}
+
+export interface SiteContact {
+  email: string;
+  phoneNumbers: readonly string[];
+  resendFrom: string;
+  resendReplyTo: string;
+}
+
+export interface SiteNewsletter {
+  mailchimpAudienceIdEnvVar: string;
+  tags: readonly string[];
+}
+
+export interface SiteSocialLink {
+  label: string;
+  url: string;
+  icon: 'social-facebook' | 'social-instagram' | 'social-linkedin';
+}
+
+export interface SitePageSeo {
+  canonicalPath: string;
+  title: string;
+  description?: string;
 }
 
 /**
@@ -69,13 +111,41 @@ export interface SiteContent {
     subtitle: string;
     slides: readonly HeroSlide[];
   };
+  travelMatchSection?: {
+    title: string;
+    subtitle: string;
+    backgroundImage?: string;
+    items: readonly {
+      title: string;
+      description: string;
+    }[];
+  };
+  missionSection?: {
+    title: string;
+    copy: string;
+    cta: string;
+    image: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    };
+  };
   navigationGroups: readonly NavigationGroup[];
   navigationLinks: readonly NavigationLink[];
   tripSearchDestinations: readonly TripSearchDestination[];
   tripSearchMonths: readonly string[];
+  featuredToursTitle?: string;
   featuredTours: readonly TourCardContent[];
   searchIndex: readonly SearchIndexItem[];
   enabledRoutes: readonly string[];
+  /**
+   * Routes that must never be served or indexed for this site, even when
+   * `enabledRoutes` contains the `*` wildcard. Keeps brand-specific pages
+   * (for example Amelia-only Bulgarian articles) out of the other brand.
+   */
+  excludedRoutes?: readonly string[];
+  pageSeo?: readonly SitePageSeo[];
 }
 
 export interface SiteConfig {
@@ -87,6 +157,10 @@ export interface SiteConfig {
   content: SiteContent;
   features: SiteFeatureFlags;
   analytics: SiteAnalytics;
+  seo: SiteSeo;
+  contact: SiteContact;
+  newsletter: SiteNewsletter;
+  socialLinks: readonly SiteSocialLink[];
   /** Omitted until a brand's registered details are confirmed; the schema simply drops the fields. */
   organisation?: SiteOrganisation;
 }

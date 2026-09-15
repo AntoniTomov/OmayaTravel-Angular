@@ -10,22 +10,22 @@
       <source
         media="(max-width: 58rem)"
         type="image/avif"
-        [attr.srcset]="image.src | missionImageMobileSrcset"
+        [attr.srcset]="image().src | missionImageMobileSrcset"
         sizes="calc(100vw - 3rem)"
       />
       <img
-        [src]="image.src"
-        [width]="image.width"
-        [height]="image.height"
-        [alt]="image.alt"
+        [src]="image().src"
+        [width]="image().width"
+        [height]="image().height"
+        [alt]="image().alt"
         loading="lazy"
       />
     </picture>
 
     <div class="mission-section__content">
-      <h2 id="mission-section-title">{{ i18n.t('homepage.missionTitle') }}</h2>
-      <p>{{ i18n.t('homepage.missionCopy') }}</p>
-      <a routerLink="/our-story/">{{ i18n.t('homepage.missionCta') }}</a>
+      <h2 id="mission-section-title">{{ title() }}</h2>
+      <p>{{ copy() }}</p>
+      <a routerLink="/our-story/">{{ cta() }}</a>
     </div>
   </div>
 </section>
