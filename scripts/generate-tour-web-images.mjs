@@ -551,6 +551,114 @@ const popupMobile = {};
   });
 }
 
+// Phone and tablet copies of the mission photograph. Up to 58rem it is one square column the width of
+// the viewport less 3rem, 272-880 CSS px, so depending on its pixel ratio a device wants anything from
+// 272 to about 1,760 pixels across. Each width is a step a common device lands on, and the largest
+// candidate is the original itself, so a screen that needs more than the copies offer loads the
+// untouched 1080px file rather than a softer one. The photograph has film grain, which costs quality
+// steps to keep: each width uses the lowest quality at which it clears the same bar as the other
+// homepage copies (see MATCHED_QUALITY). 880 was left out because at the quality it needs it came out
+// larger than the 960 copy.
+const MISSION_SOURCE = "images/home-page/our-mission-image.webp";
+const MISSION_COPY_QUALITY = { 480: 85, 560: 80, 660: 80, 760: 75, 960: 70 };
+const missionMobile = {};
+{
+  const original = readFileSync(resolve(assets, MISSION_SOURCE));
+  const meta = await sharp(original).metadata();
+  const candidates = [];
+  for (const [key, quality] of Object.entries(MISSION_COPY_QUALITY)) {
+    const width = Number(key);
+    const { path, bytes } = await writeHashedAvif(
+      sharp(original).resize({ width }),
+      quality,
+    );
+    candidates.push(`${path} ${width}w`);
+    measurements.push({
+      source: `/assets/${MISSION_SOURCE}`,
+      width,
+      height: Math.round((width * meta.height) / meta.width),
+      variant: "mission-mobile",
+      quality,
+      originalBytes: original.length,
+      webBytes: bytes,
+    });
+  }
+  candidates.push(`/assets/${MISSION_SOURCE} ${meta.width}w`);
+  missionMobile[`/assets/${MISSION_SOURCE}`] = candidates.join(", ");
+}
+
+// Copies of the brand logos for each pixel ratio. The header shows the logo 5.8rem (92.8 CSS px) wide
+// and the newsletter popup 7.8rem (124.8px), so screens from DPR 1 to 3 want 93 to 374 pixels
+// across. The white header logo was a 100px file, stretched on every phone. It is the same artwork as
+// the 400px black logo with white lettering, so the white copies are made from the black file by
+// turning its neutral lettering pixels white and leaving the gold and the transparency untouched.
+// Logos are flat artwork where compression shows on every edge, so every copy is lossless WebP and
+// resizing to the width a device displays is the only change. The black logo's largest candidate is
+// the original file itself.
+const BLACK_LOGO = "images/home-page/company-logo/Black_logo-e1781169999413.webp";
+const WHITE_LOGO =
+  "images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp";
+const LOGO_WIDTHS = [100, 150, 200, 250, 300, 350];
+// Pixels whose red, green and blue are within this of each other are the lettering, black or its
+// anti-aliased grey edge; the gold sun and wave are far more saturated.
+const LOGO_NEUTRAL_SATURATION = 40;
+
+async function writeHashedLosslessWebp(pipeline) {
+  const encoded = await pipeline.webp({ lossless: true, effort: 6 }).toBuffer();
+  const hash = createHash("sha256").update(encoded).digest("hex").slice(0, 16);
+  const filename = `${hash}.webp`;
+  writeFileSync(resolve(output, filename), encoded);
+  return { path: `/assets/images/tour-web/${filename}`, bytes: encoded.length };
+}
+
+const logoSrcsets = {};
+{
+  const black = readFileSync(resolve(assets, BLACK_LOGO));
+  const { data, info } = await sharp(black)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const white = Buffer.from(data);
+  for (let i = 0; i < white.length; i += 4) {
+    const saturation =
+      Math.max(white[i], white[i + 1], white[i + 2]) -
+      Math.min(white[i], white[i + 1], white[i + 2]);
+    if (white[i + 3] > 0 && saturation < LOGO_NEUTRAL_SATURATION) {
+      white[i] = 255;
+      white[i + 1] = 255;
+      white[i + 2] = 255;
+    }
+  }
+  const whiteFull = await sharp(white, { raw: info }).png().toBuffer();
+  const blackCandidates = [];
+  const whiteCandidates = [];
+  for (const width of LOGO_WIDTHS) {
+    const blackCopy = await writeHashedLosslessWebp(
+      sharp(black).resize({ width }),
+    );
+    const whiteCopy = await writeHashedLosslessWebp(
+      sharp(whiteFull).resize({ width }),
+    );
+    blackCandidates.push(`${blackCopy.path} ${width}w`);
+    whiteCandidates.push(`${whiteCopy.path} ${width}w`);
+    measurements.push(
+      { source: `/assets/${BLACK_LOGO}`, width, variant: "logo-lossless", webBytes: blackCopy.bytes },
+      { source: `/assets/${WHITE_LOGO}`, width, variant: "logo-lossless-white", webBytes: whiteCopy.bytes },
+    );
+  }
+  const whiteLargest = await writeHashedLosslessWebp(sharp(whiteFull));
+  measurements.push({
+    source: `/assets/${WHITE_LOGO}`,
+    width: info.width,
+    variant: "logo-lossless-white",
+    webBytes: whiteLargest.bytes,
+  });
+  blackCandidates.push(`/assets/${BLACK_LOGO} ${info.width}w`);
+  whiteCandidates.push(`${whiteLargest.path} ${info.width}w`);
+  logoSrcsets[`/assets/${BLACK_LOGO}`] = blackCandidates.join(", ");
+  logoSrcsets[`/assets/${WHITE_LOGO}`] = whiteCandidates.join(", ");
+}
+
 const manifestPath = resolve(
   root,
   "apps/website/src/app/shared/content/tour-web-images.ts",
@@ -574,7 +682,11 @@ writeFileSync(
       "// Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.\n" +
       `export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(featuredTripWide, null, 2)};\n` +
       "// A 480px copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH in the generator.\n" +
-      `export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(popupMobile, null, 2)};\n`,
+      `export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(popupMobile, null, 2)};\n` +
+      "// Mission photograph copies for viewports up to 58rem, topped by the original. See MISSION_COPY_QUALITY in the generator.\n" +
+      `export const MISSION_IMAGE_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(missionMobile, null, 2)};\n` +
+      "// Lossless logo copies for each pixel ratio, keyed by the logo they stand in for. See LOGO_WIDTHS in the generator.\n" +
+      `export const LOGO_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(logoSrcsets, null, 2)};\n`,
     { ...(await resolveConfig(manifestPath)), filepath: manifestPath },
   ),
 );

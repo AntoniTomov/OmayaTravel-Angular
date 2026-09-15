@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
 import { PublicHeader } from './public-header';
+import { LOGO_SRCSETS } from '../../shared/content/tour-web-images';
 
 describe('PublicHeader', () => {
   let fixture: ComponentFixture<PublicHeader>;
@@ -43,11 +44,12 @@ describe('PublicHeader', () => {
       '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp',
     );
     expect(logo.getAttribute('srcset')).toBe(
-      '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp 150w',
+      LOGO_SRCSETS['/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp'],
     );
+    expect(logo.getAttribute('sizes')).toBe('5.8rem');
     expect(logo.getAttribute('alt')).toBe('Omaya Travel');
-    expect(logo.getAttribute('width')).toBe('150');
-    expect(logo.getAttribute('height')).toBe('84');
+    expect(logo.getAttribute('width')).toBe('400');
+    expect(logo.getAttribute('height')).toBe('267');
   });
 
   it('renders the site search icon button', () => {

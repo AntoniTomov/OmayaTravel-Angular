@@ -3,6 +3,8 @@ import {
   FEATURED_TRIP_MOBILE_SRCSETS,
   FEATURED_TRIP_WIDE_SRCSETS,
   HOMEPAGE_HERO_CROP_SRCSETS,
+  LOGO_SRCSETS,
+  MISSION_IMAGE_MOBILE_SRCSETS,
   NEWSLETTER_POPUP_MOBILE_SRCSETS,
   TOUR_WEB_HERO_MOBILE_SRCSETS,
   TOUR_WEB_IMAGES,
@@ -43,6 +45,22 @@ export class FeaturedTripWideSrcsetPipe implements PipeTransform {
 export class NewsletterPopupMobileSrcsetPipe implements PipeTransform {
   transform(source: string): string | null {
     return NEWSLETTER_POPUP_MOBILE_SRCSETS[source] ?? null;
+  }
+}
+
+// Mission photograph copies for viewports up to 58rem. Null without them, so the <source> is skipped.
+@Pipe({ name: 'missionImageMobileSrcset' })
+export class MissionImageMobileSrcsetPipe implements PipeTransform {
+  transform(source: string): string | null {
+    return MISSION_IMAGE_MOBILE_SRCSETS[source] ?? null;
+  }
+}
+
+// Lossless logo copies for each pixel ratio. Null for a logo without them, which leaves the plain src.
+@Pipe({ name: 'logoSrcset' })
+export class LogoSrcsetPipe implements PipeTransform {
+  transform(source: string): string | null {
+    return LOGO_SRCSETS[source] ?? null;
   }
 }
 
