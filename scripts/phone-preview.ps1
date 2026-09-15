@@ -7,7 +7,9 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $websiteRoot = Join-Path $repoRoot 'apps\website'
 $ngLog = Join-Path $repoRoot "omaya-phone-preview-ng-$Port.log"
+$ngErrLog = Join-Path $repoRoot "omaya-phone-preview-ng-$Port.err.log"
 $tunnelLog = Join-Path $repoRoot "omaya-phone-preview-tunnel-$Port.log"
+$tunnelErrLog = Join-Path $repoRoot "omaya-phone-preview-tunnel-$Port.err.log"
 
 function Stop-PreviewProcess {
   param([System.Diagnostics.Process]$Process)
@@ -27,7 +29,7 @@ $ngProcess = Start-Process `
   -ArgumentList @('run', 'start', '--', '--host', '127.0.0.1', '--port', "$Port") `
   -WorkingDirectory $websiteRoot `
   -RedirectStandardOutput $ngLog `
-  -RedirectStandardError $ngLog `
+  -RedirectStandardError $ngErrLog `
   -WindowStyle Hidden `
   -PassThru
 
@@ -54,7 +56,7 @@ try {
     -ArgumentList @('localtunnel', '--port', "$Port", '--local-host', '127.0.0.1') `
     -WorkingDirectory $websiteRoot `
     -RedirectStandardOutput $tunnelLog `
-    -RedirectStandardError $tunnelLog `
+    -RedirectStandardError $tunnelErrLog `
     -WindowStyle Hidden `
     -PassThru
 

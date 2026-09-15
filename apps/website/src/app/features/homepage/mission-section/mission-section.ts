@@ -1,18 +1,19 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActiveSite } from '../../../../sites/active-site';
+import { MissionImageMobileSrcsetPipe } from '../../../shared/content/tour-web-image.pipe';
 import { OmayaI18n } from '../../../shared/i18n/omaya-i18n';
 
 const OMAYA_MISSION_IMAGE = {
   src: '/assets/images/home-page/our-mission-image.webp',
   alt: 'Traveller sitting in a cave opening overlooking mountains',
-  width: 'auto' as const,
-  height: 540,
+  width: 1080,
+  height: 1080,
 };
 
 @Component({
   selector: 'app-mission-section',
-  imports: [RouterLink],
+  imports: [RouterLink, MissionImageMobileSrcsetPipe],
   templateUrl: './mission-section.html',
   styleUrl: './mission-section.scss',
 })

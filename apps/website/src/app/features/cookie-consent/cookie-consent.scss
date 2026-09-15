@@ -29,7 +29,6 @@
 }
 
 .cookie-consent h2 {
-  font-family: tokens.$omaya-font-heading;
   font-size: 1.35rem;
   font-weight: 400;
 }
@@ -58,7 +57,7 @@
   min-height: 2.6rem;
   border: 0;
   padding: 0 1rem;
-  color: tokens.$omaya-color-white;
+  color: tokens.$omaya-color-ink;
   background: var(--omaya-color-accent);
   font-weight: 800;
   text-transform: uppercase;

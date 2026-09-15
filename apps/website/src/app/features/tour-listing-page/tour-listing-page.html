@@ -7,13 +7,20 @@
 >
   @if (page().heroImage) {
     <section class="tour-listing__hero">
-      <img
-        [src]="page().heroImage"
-        [alt]="page().heroAlt ?? page().title"
-        width="1600"
-        height="900"
-        fetchpriority="high"
-      />
+      <picture style="display: contents">
+        <source
+          type="image/avif"
+          [attr.srcset]="page().heroImage! | tourWebImageSrcset"
+          sizes="100vw"
+        />
+        <img
+          [src]="page().heroImage"
+          [alt]="page().heroAlt ?? page().title"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+        />
+      </picture>
       <div>
         <h1>{{ page().title }}</h1>
         @if (page().subtitle) {
@@ -30,6 +37,9 @@
   }
 
   <section class="tour-listing__body">
+    @if (calendarYear()) {
+      <p>Showing scheduled departures in {{ calendarYear() }}. Enquire to confirm places.</p>
+    }
     @if (shouldShowSortTabs()) {
       <nav class="tour-listing__filters" aria-label="Tour sorting">
         @for (sort of sorts; track sort.id) {
@@ -64,11 +74,24 @@
 
     <div class="tour-listing__content" [class.tour-listing__content--full]="!isTourListPage()">
       <div class="tour-listing__grid">
-        @for (card of cards(); track card.title) {
+        @for (card of cards(); track card.title; let first = $first) {
           <article class="tour-listing__card">
             <a [routerLink]="card.target" (click)="trackTourCardClick(card)">
               <div class="tour-listing__card-image">
-                <img [src]="card.image" [alt]="card.alt" loading="lazy" />
+                <picture style="display: contents">
+                  <source type="image/avif" [attr.srcset]="card.image | tourWebImage" />
+                  <!--
+                    The first card is partly on screen on a phone (about 240px of it on the classic,
+                    solo, all-ages and women-only listings). Lazy images are only requested after
+                    layout, so it arrived after the page had finished loading; eager lets the HTML
+                    parser request it straight away. The rest stay lazy.
+                  -->
+                  <img
+                    [src]="card.image"
+                    [alt]="card.alt"
+                    [attr.loading]="first ? 'eager' : 'lazy'"
+                  />
+                </picture>
                 <div class="tour-listing__card-overlay">
                   <span class="tour-listing__card-category">{{ card.category }}</span>
                   @if (isTourListPage()) {
@@ -128,7 +151,7 @@
               @if (isMonthDropdownOpen()) {
                 <div class="tour-listing__month-dropdown" role="listbox">
                   <button type="button" role="option" (click)="selectMonth('')">Month</button>
-                  @for (month of months; track month) {
+                  @for (month of months(); track month) {
                     <button type="button" role="option" (click)="selectMonth(month)">
                       {{ month }}
                     </button>
@@ -139,6 +162,7 @@
             <div class="tour-listing__price-range">
               <span>Price range</span>
               <div class="tour-listing__range-controls">
+                <span>Minimum price</span>
                 <input
                   aria-label="Minimum price"
                   type="range"
@@ -147,6 +171,7 @@
                   [value]="pendingFilters().minPrice"
                   (input)="updateFilter('minPrice', +$any($event.target).value)"
                 />
+                <span>Maximum price</span>
                 <input
                   aria-label="Maximum price"
                   type="range"
@@ -172,7 +197,11 @@
               Search
             </button>
           </div>
-          <a class="tour-listing__discover" routerLink="/tours-list/"></a>
+          <a
+            class="tour-listing__discover"
+            routerLink="/tours-list/"
+            aria-label="Discover more tours"
+          ></a>
         </aside>
       }
     </div>

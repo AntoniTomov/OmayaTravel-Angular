@@ -16,6 +16,7 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { LOGO_SRCSETS } from '../../shared/content/tour-web-images';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 
@@ -37,6 +38,7 @@ const SOLID_HEADER_PATHS = new Set([
   '/contact',
   '/private-tours-your-trip-your-rules/describe',
   '/omaya-travel-license',
+  '/calendar-2027/september',
 ]);
 
 @Component({
@@ -84,15 +86,20 @@ export class PublicHeader implements AfterViewInit {
   );
   protected readonly logo = computed(() => {
     const brand = this.activeSite.site().brand;
-    const visualSrc =
-      this.isSolidHeader() || this.isMobileMenuOpen() ? brand.solidLogoSrc : brand.logoSrc;
+    const solid = this.isSolidHeader() || this.isMobileMenuOpen();
+    const visualSrc = solid ? brand.solidLogoSrc : brand.logoSrc;
+    const size = solid ? brand.solidLogoSize : brand.logoSize;
 
+    // The logo is 5.8rem wide, and each pixel ratio picks a lossless copy at its width. The srcset
+    // used to describe both logos as 150px wide, when the white file was 100px and the black 400px,
+    // and sizes was never bound, so phones stretched the white file. width and height declare the
+    // logo file's own shape, which differs between brands and between a brand's two logos.
     return {
       src: visualSrc,
-      srcset: `${visualSrc} 150w`,
-      sizes: '92px',
-      width: 150,
-      height: 84,
+      srcset: LOGO_SRCSETS[visualSrc] ?? visualSrc,
+      sizes: '5.8rem',
+      width: size.width,
+      height: size.height,
       alt: brand.logoAlt,
       homeLabel: brand.homeLabel,
       loading: 'eager',

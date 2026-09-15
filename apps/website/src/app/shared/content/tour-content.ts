@@ -28,6 +28,11 @@ export interface TourDepartureWithAgeGroup {
 
 export type TourDeparture = string | TourDepartureWithAgeGroup;
 
+/** The ISO start date of a departure, whether or not it carries an age group. */
+export function tourDepartureDate(departure: TourDeparture): string {
+  return typeof departure === 'string' ? departure : departure.date;
+}
+
 export interface TourHighlight {
   title: TourLinkedTitle;
   image: TourImage;
@@ -58,6 +63,7 @@ export interface TourDetailContent {
     endLocation: string;
   };
   category: string;
+  fitnessLevel: 'Easy';
   duration: {
     days: number;
     nights: number;
@@ -73,6 +79,15 @@ export interface TourDetailContent {
   };
   departures: readonly TourDeparture[];
   departuresNote?: string;
+  departureNotes?: Readonly<Record<string, string>>;
+  /**
+   * Departures confirmed to run regardless of how many people book, as ISO dates matching
+   * `departures`. A guaranteed departure is the single strongest reassurance for someone booking
+   * flights around a trip, so it is surfaced next to the date rather than buried in terms.
+   *
+   * Note this is not the same as availability — it says the trip runs, not that places remain.
+   */
+  guaranteedDepartures?: readonly string[];
   heroImage: TourImage;
   introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
@@ -129,6 +144,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     endLocation: 'Algiers',
   },
   category: 'Classic Tours',
+  fitnessLevel: 'Easy',
   duration: {
     days: 9,
     nights: 8,
@@ -143,13 +159,15 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     max: 12,
   },
   departures: ['2026-11-05', '2027-02-24', '2027-10-28'],
+  departureNotes: { '2027-02-24': 'All ages departure' },
+  guaranteedDepartures: ['2027-02-24'],
   heroImage: {
     src: `${ALGERIA_ASSET_BASE}/gallery/gallery-image-5.webp`,
     source:
       'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Expedition-Omaya-Travel.webp',
     alt: 'Rock formations and dunes in Tadrart Rouge, Algeria',
-    width: 1920,
-    height: 900,
+    width: 1600,
+    height: 667,
   },
   introduction: [
     'Join us on an expedition to one of the Sahara’s most dramatic corners – sleeping in the dunes, walking among Neolithic rock art, and sharing tea with Tuareg nomads who have called this wilderness home for generations. The Tadrart is a landscape of extremes: towering red dunes that glow ember-red at sunrise, vast black sand plains, and canyon walls etched with paintings made long before recorded history. Out here, the silence is broken only by the wind – and at night, a sky so dense with stars it feels close enough to touch. This is the Sahara as it has always been, and rarely is seen.',
@@ -158,52 +176,52 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     {
       title: { text: 'Camp beneath Saharan stars', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/highlights/highlight-image-1.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-01.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Camping.webp',
         alt: 'Desert camping in Algeria',
-        width: 420,
-        height: 320,
+        width: 150,
+        height: 150,
       },
     },
     {
       title: { text: 'Marvel at towering Saharan dunes', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/highlights/highlight-image-2.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-02.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-trip.webp',
         alt: 'Towering dunes and rock formations in Sahara',
-        width: 420,
-        height: 320,
+        width: 150,
+        height: 150,
       },
     },
     {
       title: { text: 'Discover 8,000-year-old cave art', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/highlights/highlight-image-3.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-03.webp`,
         source:
           'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Tadrart-Highlights.webp',
         alt: 'Ancient rock art in Tadrart Rouge',
-        width: 420,
-        height: 320,
+        width: 150,
+        height: 150,
       },
     },
     {
       title: { text: 'Explore ancient rock formations', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/highlights/highlight-image-4.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-04.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert.webp',
         alt: 'Natural sandstone arch in Algerian Sahara',
-        width: 420,
-        height: 320,
+        width: 150,
+        height: 150,
       },
     },
     {
       title: { text: 'Experience authentic Tuareg culture', linkText: '', link: '' },
       image: {
-        src: `${ALGERIA_ASSET_BASE}/highlights/highlight-image-5.webp`,
+        src: `${ALGERIA_ASSET_BASE}/thumbnails/algeria-thumbnail-05.webp`,
         source: 'https://omayatravel.com/wp-content/uploads/2026/05/Algeria-Desert-Tadrart.webp',
         alt: 'Tuareg tea ceremony in Sahara',
-        width: 420,
-        height: 320,
+        width: 150,
+        height: 150,
       },
     },
   ],
@@ -309,7 +327,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   seo: {
     title: 'Algeria Desert Expedition (Tadrart Rouge) | Omaya Travel',
     description:
-      '8-day Algeria desert expedition through Tadrart Rouge with Saharan camping, ancient rock art, Tuareg culture and spectacular dunes.',
+      '9-day Algeria desert expedition through Tadrart Rouge with Saharan camping, ancient rock art, Tuareg culture and spectacular dunes.',
   },
   source: {
     legacyUrl: 'https://omayatravel.com/tour-item/algeria-desert-expedition-tadrart-rouge/',
@@ -329,6 +347,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Sofia',
     },
     category: 'Classic Tours',
+    fitnessLevel: 'Easy',
     duration: {
       days: 8,
       nights: 7,
@@ -347,7 +366,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       src: `${BULGARIA_ASSET_BASE}/bulgaria-tour-bgr.webp`,
       alt: 'Monument in the Bulgarian mountains',
       width: 1920,
-      height: 900,
+      height: 800,
     },
     introduction: [
       'Bulgaria does not announce itself – it reveals itself slowly, layer by layer. A monastery hidden in a mountain valley. A tiny town carved into sandstone cliffs where the wine has been flowing since before memory. A village in the Rhodopes where an ancient bridal ritual is still performed with the same devotion as a thousand years ago. A brutalist monument abandoned on a mountaintop, swallowed by clouds and silence.',
@@ -363,8 +382,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-01.webp`,
           alt: 'Frescoes at Rila Monastery',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -372,8 +391,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-02.webp`,
           alt: 'Vineyards and rural scenery near Melnik, Bulgaria',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -381,8 +400,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-03.webp`,
           alt: 'Traditional bridal face painting from the Rhodope region',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -394,8 +413,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-04.webp`,
           alt: 'Historic Plovdiv, Bulgaria',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -403,8 +422,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-05.webp`,
           alt: 'Buzludzha monument in Bulgaria',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
     ],
@@ -618,6 +637,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Bishkek',
     },
     category: 'Classic Tours',
+    fitnessLevel: 'Easy',
     duration: {
       days: 10,
       nights: 9,
@@ -635,26 +655,26 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     heroImage: {
       src: `${KYRGYZSTAN_ASSET_BASE}/kyrgyzstan-tour-bgr.webp`,
       alt: 'Mountain landscape in Kyrgyzstan',
-      width: 1920,
-      height: 900,
+      width: 1230,
+      height: 800,
     },
     introduction: [
       'Kyrgyzstan is one of the last places on earth where nomadic life is not a memory – it is the present. Its people still move with the seasons, still build their homes by hand, still trust the eagle and the horse as partners in daily life.',
       'This 10-day journey takes you from Bishkek’s Soviet-tinged streets deep into landscapes that feel like they belong to another century – Song Kul’s high pastures, Skazka’s red canyons, Altyn Arashan’s hidden hot springs. Every day brings a different face of this extraordinary country.',
-      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for nine days, so will you.',
+      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for ten days, so will you.',
     ],
     highlights: [
       {
         title: {
-          text: 'Sleeping in a at ',
+          text: 'Sleeping in a yurt at ',
           linkText: 'Song Kul Lake',
           link: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
         },
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-01.webp`,
           alt: 'Yurt near Song Kul Lake',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -662,8 +682,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-02.webp`,
           alt: 'Traditional eagle hunting demonstration in Kyrgyzstan',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -671,8 +691,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-03.webp`,
           alt: 'Horses on Kyrgyz alpine grassland',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -680,8 +700,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-04.webp`,
           alt: 'Mountain valley at Altyn Arashan',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -689,8 +709,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-05.webp`,
           alt: 'Traditional hospitality in Kyrgyzstan',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
     ],
@@ -833,6 +853,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Marrakech',
     },
     category: 'Classic Tours',
+    fitnessLevel: 'Easy',
     duration: {
       days: 12,
       nights: 11,
@@ -850,8 +871,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     heroImage: {
       src: `${MOROCCO_ASSET_BASE}/morocco-bgr.webp`,
       alt: 'Traditional Moroccan architecture and decorative tilework',
-      width: 1920,
-      height: 900,
+      width: 1600,
+      height: 1066,
     },
     introduction: [
       'There is a moment, somewhere between the blue-washed alleys of Chefchaouen and the amber silence of the Sahara, when Morocco stops feeling like a destination and starts feeling like a dream you’ve had before. This 12-day journey is built around that feeling.',
@@ -875,8 +896,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-1.webp`,
           alt: 'Blue alleyway in Chefchaouen',
-          width: 800,
-          height: 1100,
+          width: 150,
+          height: 150,
         },
         icon: 'favorite',
       },
@@ -889,8 +910,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-2.webp`,
           alt: 'Hassan II Mosque in Casablanca',
-          width: 800,
-          height: 1100,
+          width: 300,
+          height: 300,
         },
         icon: 'mosque',
       },
@@ -903,8 +924,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-3.webp`,
           alt: 'Roman ruins at Volubilis',
-          width: 800,
-          height: 1100,
+          width: 300,
+          height: 300,
         },
         icon: 'account_balance',
       },
@@ -917,8 +938,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${MOROCCO_ASSET_BASE}/thumbnails/morocco-thumbnail-4.webp`,
           alt: 'Historic medina and tanneries in Fes',
-          width: 800,
-          height: 1100,
+          width: 300,
+          height: 300,
         },
         icon: 'temple_buddhist',
       },
@@ -931,8 +952,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${MOROCCO_ASSET_BASE}/thumbnails/marocco-thumbnail-5.webp`,
           alt: 'Aït Ben Haddou at sunrise',
-          width: 800,
-          height: 1100,
+          width: 300,
+          height: 300,
         },
         icon: 'wb_twilight',
       },
@@ -1084,7 +1105,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         {
           question: 'How physically demanding is this tour?',
           answer: [
-            "The trip involves a mix of walking, hiking and long drives. Some days — like exploring Fes el Bali or hiking up to the Spanish Mosque in Chefchaouen — require a reasonable level of fitness and comfort on uneven, cobbled surfaces. The camel trek into the Sahara is gentle and short. Overall, a moderate level of fitness is recommended, but nothing on this itinerary requires athletic ability. If you have any specific concerns, speak to our team before booking and we'll give you an honest assessment.",
+            "The trip involves a mix of walking, hiking and long drives. Some days — like exploring Fes el Bali or hiking up to the Spanish Mosque in Chefchaouen — require a reasonable level of fitness and comfort on uneven, cobbled surfaces. The camel trek into the Sahara is gentle and short. Omaya rates this tour as easy; nothing on this itinerary requires athletic ability. If you have any specific concerns, speak to our team before booking and we'll give you an honest assessment.",
           ],
         },
         {
@@ -1177,6 +1198,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Sofia',
     },
     category: 'Women only',
+    fitnessLevel: 'Easy',
     duration: {
       days: 8,
       nights: 7,
@@ -1194,8 +1216,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     heroImage: {
       src: `${BULGARIA_WOMEN_ASSET_BASE}/bulgaria-women-only-bgr.webp`,
       alt: 'Women travelling through the mountains and villages of Bulgaria',
-      width: 1920,
-      height: 900,
+      width: 1600,
+      height: 627,
     },
     introduction: [
       'This women-only tour Bulgaria does not announce itself — it reveals itself slowly, layer by layer. A monastery hidden in a mountain valley. A tiny town carved into sandstone cliffs where the wine has been flowing since before memory. A village in the Rhodopes where an ancient bridal ritual is still performed with the same devotion as a thousand years ago. A brutalist monument abandoned on a mountaintop, swallowed by clouds and silence.',
@@ -1211,8 +1233,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-01.webp`,
           alt: 'Rila Monastery in Bulgaria',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1220,8 +1242,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-02.webp`,
           alt: 'Wine tasting in Melnik',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1229,8 +1251,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-03.webp`,
           alt: 'Traditional bridal face painting ritual in Ribnovo',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1242,8 +1264,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-04.webp`,
           alt: 'Plovdiv old town in Bulgaria',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1251,8 +1273,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${BULGARIA_ASSET_BASE}/thumbnails/bulgaria-thumbnail-05.webp`,
           alt: 'Buzludzha monument in Bulgaria',
-          width: 800,
-          height: 1100,
+          width: 231,
+          height: 150,
         },
       },
     ],
@@ -1478,6 +1500,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       endLocation: 'Bishkek',
     },
     category: 'Women only',
+    fitnessLevel: 'Easy',
     duration: {
       days: 10,
       nights: 9,
@@ -1495,26 +1518,26 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     heroImage: {
       src: `${KYRGYZSTAN_WOMEN_ASSET_BASE}/kyrgyzstan-women-only-bgr.webp`,
       alt: 'Women-only tour group in Kyrgyzstan mountain landscape',
-      width: 1920,
-      height: 900,
+      width: 1600,
+      height: 753,
     },
     introduction: [
       'This women-only tour Kyrgyzstan invites a small group of women into a landscape where nomadic life is not a memory — it is the present. Its people still move with the seasons, still build their homes by hand, still trust the eagle and the horse as partners in daily life.',
       'This 10-day journey takes you from Bishkek’s Soviet-tinged streets deep into landscapes that feel like they belong to another century – Song Kul’s high pastures, Skazka’s red canyons, Altyn Arashan’s hidden hot springs. Every day brings a different face of this extraordinary country.',
-      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for nine days, so will you.',
+      'But what stays with you longest will not be the scenery. It will be the evenings in a yurt camp, the bread in a homestay kitchen, the music drifting across a still lake at dusk. Kyrgyzstan does not perform its culture for tourists – it simply lives it, and for ten days, so will you.',
     ],
     highlights: [
       {
         title: {
-          text: 'Sleeping in a at ',
+          text: 'Sleeping in a yurt at ',
           linkText: 'Song Kul Lake',
           link: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
         },
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-01.webp`,
           alt: 'Traditional yurt camp in Kyrgyzstan',
-          width: 150,
-          height: 'auto',
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1522,8 +1545,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-02.webp`,
           alt: 'Traditional eagle hunting demonstration in Kyrgyzstan',
-          width: 150,
-          height: 'auto',
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1531,8 +1554,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-03.webp`,
           alt: 'Horses on Kyrgyz alpine grassland',
-          width: 150,
-          height: 'auto',
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1544,8 +1567,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-04.webp`,
           alt: 'Mountain valley at Altyn Arashan in Kyrgyzstan',
-          width: 150,
-          height: 'auto',
+          width: 231,
+          height: 150,
         },
       },
       {
@@ -1553,8 +1576,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         image: {
           src: `${KYRGYZSTAN_ASSET_BASE}/thumbnails/kyrgyzstan-thumbnail-05.webp`,
           alt: 'Mountain pass in Kyrgyzstan',
-          width: 150,
-          height: 'auto',
+          width: 231,
+          height: 150,
         },
       },
     ],
@@ -2396,6 +2419,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
     id: 'amelia-india-tour',
     slug: 'india-tour',
     title: 'Северна Индия отблизо',
+    fitnessLevel: 'Easy',
     destination: {
       country: 'Индия',
       region: 'Варанаси, Ню Делхи, Джайпур, Агра',
@@ -2870,10 +2894,14 @@ function createMoroccoWomenOnlyTour(): TourDetailContent | undefined {
     slug: MOROCCO_WOMEN_ONLY_TOUR_SLUG,
     title: 'Morocco – Blue Cities & Golden Dunes | Women only',
     category: 'Women only',
+    fitnessLevel: 'Easy',
     heroImage: {
       ...moroccoTour.heroImage,
       src: `${MOROCCO_WOMEN_ASSET_BASE}/morocco-women-only-bgr.webp`,
       alt: 'Women-only Morocco tour landscape',
+      // The spread carries Morocco's dimensions, but this is a different file.
+      width: 1600,
+      height: 921,
     },
     gallery: moroccoTour.gallery.map((image, index) =>
       index === 2
@@ -2908,10 +2936,14 @@ function createMoroccoSoloTravellersTour(): TourDetailContent | undefined {
     slug: MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG,
     title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only',
     category: 'Solo Traveller Only',
+    fitnessLevel: 'Easy',
     heroImage: {
       ...moroccoTour.heroImage,
       src: `${MOROCCO_SOLO_ASSET_BASE}/Morocco-Solo-Travelers-bgr.webp`,
       alt: 'Solo travellers Morocco tour landscape',
+      // The spread carries Morocco's dimensions, but this is a different file.
+      width: 1600,
+      height: 1067,
     },
     price: {
       ...moroccoTour.price,

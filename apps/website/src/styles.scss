@@ -4,6 +4,27 @@
 @use './styles/buttons';
 @use './styles/forms';
 @use './styles/sections';
+// Self-hosted Material Icons, subsetted to the icons this site actually renders and inlined as a
+// data URI by scripts/generate-material-icons-subset.mjs. Google's hosted font is 128,352 bytes
+// for the whole icon set; the subset is 2,688, which is less than a round trip costs — a
+// production audit found the separate request sitting at 1,037 ms in the critical chain.
+@use './styles/material-icons';
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
 
 html {
   height: 100%;
@@ -66,7 +87,9 @@ details[open]::details-content {
       .why-book__hero
     )
     > img,
-  .homepage__hero-image {
+  .homepage__hero-image,
+  .tour-detail__hero > picture > img,
+  .tour-listing__hero > picture > img {
     object-position: center var(--omaya-hero-background-y, 0px) !important;
   }
 }
@@ -136,4 +159,12 @@ details[open]::details-content {
   .tour-detail__gallery-arrow--next {
     right: 1rem;
   }
+}
+
+// A <source> never renders, but inside <picture style="display: contents"> it becomes a child of the
+// picture's parent, and a grid or flex parent turns it into an empty item that takes a cell. The
+// homepage hero's three sources pushed its text off centre, and the mission photograph's source moved
+// the image into the text column. Hiding it has no effect on which image the browser chooses.
+picture > source {
+  display: none;
 }

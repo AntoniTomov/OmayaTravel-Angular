@@ -46,16 +46,33 @@
               [routerLink]="trip.target"
               (click)="handleFeaturedTripClick($event, trip)"
             >
-              <img
-                [src]="trip.image.src"
-                [srcset]="trip.image.srcset"
-                [sizes]="trip.image.sizes"
-                [width]="trip.image.width"
-                [height]="trip.image.height"
-                [alt]="trip.image.alt"
-                [attr.loading]="trip.image.loading"
-                [attr.fetchpriority]="trip.image.fetchPriority"
-              />
+              <!--
+                Up to 44rem the card image is a 1 / 0.9 box, so phones get a centred crop to exactly
+                that shape; see FEATURED_TRIP_SOURCES in scripts/generate-tour-web-images.mjs. The
+                card spans the carousel less its 24px padding on each side. Wider viewports get
+                uncropped copies at a quality matched to the originals; see FEATURED_TRIP_WIDE_WIDTHS.
+              -->
+              <picture style="display: contents">
+                <source
+                  media="(max-width: 44rem)"
+                  type="image/avif"
+                  [attr.srcset]="trip.image.src | featuredTripMobileSrcset"
+                  sizes="calc(100vw - 48px)"
+                />
+                <source
+                  type="image/avif"
+                  [attr.srcset]="trip.image.src | featuredTripWideSrcset"
+                  [attr.sizes]="trip.image.sizes"
+                />
+                <img
+                  [src]="trip.image.src"
+                  [width]="trip.image.width"
+                  [height]="trip.image.height"
+                  [alt]="trip.image.alt"
+                  [attr.loading]="trip.image.loading"
+                  [attr.fetchpriority]="trip.image.fetchPriority"
+                />
+              </picture>
               @if (trip.eyebrow) {
                 <span>{{ trip.eyebrow }}</span>
               }

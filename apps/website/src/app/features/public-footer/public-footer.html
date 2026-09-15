@@ -2,7 +2,12 @@
   <div class="public-footer__columns">
     <section class="public-footer__contact" aria-labelledby="footer-contact-title">
       <a class="public-footer__brand" routerLink="/" [attr.aria-label]="brand().homeLabel">
-        <img [src]="brand().logoSrc" width="150" height="84" [alt]="brand().logoAlt" />
+        <img
+          [src]="brand().logoSrc"
+          [width]="brand().logoSize.width"
+          [height]="brand().logoSize.height"
+          [alt]="brand().logoAlt"
+        />
       </a>
       <h2 id="footer-contact-title">{{ tagline() }}</h2>
       <p class="public-footer__label">{{ i18n.t('footer.contactUs') }}</p>
@@ -52,7 +57,13 @@
       <h2 class="public-footer__payment-title">{{ i18n.t('footer.paymentMethods') }}</h2>
       <div class="public-footer__payments">
         @for (provider of paymentProviders; track provider.name) {
-          <img [src]="provider.src" [alt]="provider.name" loading="lazy" />
+          <img
+            [src]="provider.src"
+            [alt]="provider.name"
+            [width]="provider.width"
+            [height]="provider.height"
+            loading="lazy"
+          />
         }
       </div>
     </section>

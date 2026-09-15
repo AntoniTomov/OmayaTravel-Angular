@@ -157,8 +157,8 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     image: {
       src: '/assets/images/amelia/our-story/our-mission.jpg',
       alt: 'Жени пътешественички, седнали заедно край морето',
-      width: 'auto',
-      height: 540,
+      width: 1232,
+      height: 816,
     },
   },
   navigationGroups: AMELIA_NAVIGATION_GROUPS,

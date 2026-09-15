@@ -10,9 +10,16 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { SITE_CONFIGS, siteConfigForHostname } from './sites';
-import { isSiteRouteEnabled } from './sites/site-routes';
 import type { SiteConfig } from './sites/site.types';
-import { canonicalUrl, PUBLIC_INDEXABLE_ROUTES } from './app/shared/routing/public-routes';
+import { findRedirect, trailingSlashRedirectTarget } from './app/shared/routing/public-routes';
+import {
+  buildRobotsTxt,
+  buildSitemapIndexXml,
+  buildSitemapPagesXml,
+  buildUnpublishedHostRobotsTxt,
+  canonicalHostForRequestHost,
+  isPublishedSiteHost,
+} from './app/shared/seo/sitemap';
 
 loadLocalEnv();
 
@@ -27,7 +34,6 @@ const FORMS_RATE_LIMIT_MAX = Number(
   process.env['PLATFORM_FORMS_RATE_LIMIT_MAX'] ?? process.env['OMAYA_FORMS_RATE_LIMIT_MAX'] ?? 5,
 );
 const MAILCHIMP_SUBSCRIBE_STATUS = process.env['MAILCHIMP_SUBSCRIBE_STATUS'] ?? 'subscribed';
-const NOINDEX_CANONICAL_PATHS = new Set(['/not-yet-but-soon/']);
 const configuredSiteHosts = Object.values(SITE_CONFIGS).flatMap((site) =>
   site.domain ? [site.domain, `www.${site.domain}`] : [],
 );
@@ -60,42 +66,95 @@ const app = express();
 const angularApp = new AngularNodeAppEngine({ allowedHosts, trustProxyHeaders });
 
 app.disable('x-powered-by');
-app.use('/api/forms', express.json({ limit: '32kb', type: 'application/json' }));
-app.use('/api/newsletter', express.json({ limit: '8kb', type: 'application/json' }));
+
+/**
+ * Keep hosts that are not published site domains out of the index. Staging is a complete, stable,
+ * linkable copy of the site on its own origin, so without this it competes with the real one for
+ * the same queries — the duplicate-content problem canonical tags exist to prevent, except here
+ * the duplicate is the entire site. The deployment plan asks for `X-Robots-Tag: noindex, nofollow`
+ * on staging; this is that, applied to every unpublished host rather than a hardcoded subdomain,
+ * so previews and stray `Host` headers are covered by the same rule.
+ *
+ * It sits before everything else deliberately: the header has to reach error pages and assets too,
+ * not only the routes that render successfully.
+ */
+app.use((req, res, next) => {
+  if (!isPublishedSiteHost(req.get('host'))) {
+    res.set('X-Robots-Tag', 'noindex, nofollow');
+  }
+
+  next();
+});
+
+/**
+ * `www` and the bare domain both served HTTP 200, which splits every page's ranking signals across
+ * two URLs. The canonical form is the bare domain, matching `PUBLIC_CANONICAL_HOST`.
+ */
+app.use((req, res, next) => {
+  const host = req.get('host');
+
+  if (!host?.toLowerCase().startsWith('www.')) {
+    return next();
+  }
+
+  return res.redirect(301, `https://${host.slice(4)}${req.originalUrl}`);
+});
+
+/**
+ * Legacy URL redirects. `PUBLIC_REDIRECTS` had been declared but never applied, so the old
+ * WordPress query URLs answered 200 with the homepage and the retired tour paths answered 404.
+ */
+app.use((req, res, next) => {
+  const redirect = findRedirect(req.originalUrl);
+
+  if (!redirect) {
+    return next();
+  }
+
+  res.set('Cache-Control', 'public, max-age=3600');
+
+  return res.redirect(redirect.statusCode, redirect.to);
+});
+
+/**
+ * Canonicalise public HTML URLs onto their trailing-slash form. Runs after the legacy redirects so
+ * an old URL reaches its mapped target in one hop rather than two.
+ */
+app.use((req, res, next) => {
+  const target = trailingSlashRedirectTarget(req.originalUrl);
+
+  if (!target) {
+    return next();
+  }
+
+  res.set('Cache-Control', 'public, max-age=3600');
+
+  return res.redirect(301, target);
+});
 
 app.get('/robots.txt', (req, res) => {
-  const site = getRequestSite(req);
-
-  res
-    .type('text/plain')
-    .setHeader('Cache-Control', 'public, max-age=3600')
-    .send(
-      ['User-agent: *', 'Allow: /', `Sitemap: ${canonicalUrl('/sitemap.xml', site)}`].join('\n'),
-    );
+  res.type('text/plain').set('Cache-Control', 'public, max-age=3600');
+  // An unpublished host must not invite crawling at all, and must not advertise the real
+  // sitemap: doing so would hand Googlebot a list of staging URLs to fetch.
+  res.send(
+    isPublishedSiteHost(req.get('host'))
+      ? buildRobotsTxt(canonicalHostFor(req))
+      : buildUnpublishedHostRobotsTxt(),
+  );
 });
 
 app.get('/sitemap.xml', (req, res) => {
-  const site = getRequestSite(req);
-  const urls = PUBLIC_INDEXABLE_ROUTES.filter(
-    (route) =>
-      isSiteRouteEnabled(site, route.canonicalPath) &&
-      !NOINDEX_CANONICAL_PATHS.has(route.canonicalPath),
-  )
-    .map((route) => `  <url><loc>${escapeXml(canonicalUrl(route.canonicalPath, site))}</loc></url>`)
-    .join('\n');
-
-  res
-    .type('application/xml')
-    .setHeader('Cache-Control', 'public, max-age=3600')
-    .send(
-      [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-        urls,
-        '</urlset>',
-      ].join('\n'),
-    );
+  res.type('application/xml').set('Cache-Control', 'public, max-age=3600');
+  res.send(buildSitemapIndexXml(canonicalHostFor(req)));
 });
+
+app.get('/sitemap-pages.xml', (req, res) => {
+  res.type('application/xml').set('Cache-Control', 'public, max-age=3600');
+  res.send(buildSitemapPagesXml(canonicalHostFor(req)));
+});
+
+app.use('/api/forms', express.json({ limit: '32kb', type: 'application/json' }));
+app.use('/api/newsletter', express.json({ limit: '8kb', type: 'application/json' }));
 
 app.post('/api/forms', async (req, res) => {
   const requestId = `frm_${randomUUID()}`;
@@ -746,6 +805,15 @@ function getClientIp(req: express.Request): string {
   return cfIp || forwardedFor || req.ip || req.socket.remoteAddress || 'unknown';
 }
 
+/**
+ * Origin to advertise in robots.txt and the sitemaps. Resolution lives in the SEO module so it is
+ * matched against the configured site domains and unit tested, rather than echoing back whatever
+ * `Host` header arrived.
+ */
+function canonicalHostFor(req: express.Request): string {
+  return canonicalHostForRequestHost(req.get('host'));
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -772,15 +840,6 @@ function escapeHtml(value: string): string {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
-}
-
-function escapeXml(value: string): string {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&apos;');
 }
 
 function loadLocalEnv(): void {

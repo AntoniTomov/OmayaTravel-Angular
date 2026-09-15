@@ -53,10 +53,10 @@ describe('Amelia tour content', () => {
     expect(ameliaTour?.destination.startLocation).toBe('София');
     expect(ameliaTour?.duration).toEqual({ days: 12, nights: 11 });
     expect(ameliaTour?.departures).toEqual([
-      { date: '2027-04-22', ageGroupLabel: 'Група 20-45 г.' },
-      { date: '2027-05-20', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-04-21', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-26', ageGroupLabel: 'Група 40-65 г.' },
     ]);
-    expect(ameliaTour?.price).toEqual({ amount: 2300, currency: 'EUR', unit: 'човек' });
+    expect(ameliaTour?.price).toEqual({ amount: 2180, currency: 'EUR', unit: 'човек' });
     expect(ameliaTour?.itinerary).toHaveLength(12);
     expect(ameliaTour?.seo.title).toContain('Amelia Travel');
 

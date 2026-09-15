@@ -1,3 +1,5 @@
+import { toursInMonth } from './tour-departures';
+
 export interface TourCardContent {
   title: string;
   category: 'Classic Tours' | 'Women only' | 'Solo Traveller Only' | 'Private Tours' | 'All Ages';
@@ -24,6 +26,7 @@ export interface TourListingPageContent {
   heroAlt?: string;
   cards: readonly TourCardContent[];
   showFilters: boolean;
+  departurePeriod?: { month: number; year: number };
   introSections?: readonly {
     title: string;
     body: string;
@@ -38,11 +41,11 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Classic Tours',
     destination: 'EUR1450 / per person',
     excerpt:
-      "Explore Algeria's Tassili n'Ajjer on an 9-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
+      "Explore Algeria's Tassili n'Ajjer on a 9-day guided desert expedition into the Tadrart - one of the Sahara's most remote and spectacular landscapes. Walk among 8,000-year-old Neolithic rock art, cross towering red dune fields, and camp under an extraordinary star-filled sky with Tuareg guides who know this wilderness intimately.",
     image: '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
     alt: 'Red dunes and rock formations in Algeria',
     price: 'EUR1450',
-    duration: '8 Days 7 Nights',
+    duration: '9 Days 8 Nights',
     target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
   },
   {
@@ -62,7 +65,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Classic Tours',
     destination: 'Kyrgyzstan',
     excerpt:
-      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
+      "Ten days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
     image: '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp',
     alt: 'Kyrgyzstan mountain landscape',
     price: 'EUR1320',
@@ -76,7 +79,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     excerpt:
       "Somewhere between the blue-washed walls of Chefchaouen and a Berber family's tent deep in the Sahara, this journey becomes something more than travel. Twelve days through the imperial cities, cedar forests, desert dunes, and mountain passes of the most intoxicating country on earth.",
     image: '/assets/images/destinations/Marocco/morocco-bgr.webp',
-    alt: 'Travellers in a desert landscape',
+    alt: 'Traditional Moroccan architecture and decorative tilework',
     price: 'EUR2300',
     duration: '12 Days 11 Nights',
     target: '/tour-item/morocco-tour/',
@@ -98,7 +101,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Women only',
     destination: 'Kyrgyzstan',
     excerpt:
-      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
+      "Ten days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive. Sleep in yurts by Song Kul Lake, ride horses at dawn, share meals in family homestays, and witness eagle hunting and Kok Boru – the fierce horseback game that has united these people for generations.",
     image: '/assets/images/women-tours/kyrgyzstan-women-only-card-bgr.webp',
     alt: 'Kyrgyzstan women-only tour preview',
     price: 'EUR1320',
@@ -138,7 +141,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     subtitle:
       "Somewhere on this page is a journey you'll spend the next year dreaming about. Take your time.",
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
-    heroAlt: 'Small group travellers on a remote road',
+    heroAlt: 'Hillside town and wooded landscape in Bulgaria',
     cards: TOUR_CARDS,
     showFilters: true,
   },
@@ -147,7 +150,7 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     title: 'Classic Tours',
     subtitle: '',
     heroImage: '/assets/images/destinations/classic-tours-bgr.webp',
-    heroAlt: 'Classic tours landscape',
+    heroAlt: 'Hillside town and wooded landscape in Bulgaria',
     cards: TOUR_CARDS.filter((card) => card.category === 'Classic Tours'),
     showFilters: false,
   },
@@ -207,6 +210,10 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
       },
     ],
   },
+  // Unrouted. /private-tour-planning/ now 301s to /private-tours-your-trip-your-rules/, which owns
+  // this intent — the two pages shared a hero image, section images, card source and purpose, and
+  // this one had no inbound links. The copy is kept rather than deleted: restoring the page means
+  // putting the slug back in PUBLIC_STATIC_PAGE_SLUGS and app.routes.ts, and removing the redirect.
   {
     slug: 'private-tour-planning',
     title: 'Private Tour Planning',
@@ -231,27 +238,13 @@ export const TOUR_LISTING_PAGES: readonly TourListingPageContent[] = [
     ],
   },
   {
-    slug: 'september-2027',
-    title: 'September 2027 Tours',
-    subtitle: 'Available departures for September 2027.',
-    cards: TOUR_CARDS.filter(
-      (card) =>
-        card.target === '/tour-item/women-only-tour-bulgaria/' ||
-        card.target === '/tour-item/bulgaria-beyond-the-ordinary/' ||
-        card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
-    ),
-    showFilters: true,
-  },
-  {
     slug: 'calendar-2027/september',
     title: 'September 2027 Tours',
-    subtitle: 'Available departures for September 2027.',
-    cards: TOUR_CARDS.filter(
-      (card) =>
-        card.target === '/tour-item/women-only-tour-bulgaria/' ||
-        card.target === '/tour-item/bulgaria-beyond-the-ordinary/' ||
-        card.target === '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    subtitle: 'Scheduled departures for September 2027. Enquire to confirm places.',
+    cards: TOUR_CARDS.filter((card) =>
+      toursInMonth(9, 2027).some((tour) => card.target === '/tour-item/' + tour.slug + '/'),
     ),
+    departurePeriod: { month: 9, year: 2027 },
     showFilters: true,
   },
 ];

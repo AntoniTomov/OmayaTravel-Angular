@@ -11,18 +11,22 @@ import {
 
 import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import {
+  LogoSrcsetPipe,
+  NewsletterPopupMobileSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
-const POPUP_DELAY_MS = 5000;
+const POPUP_DELAY_MS = 2000;
 const DISMISSED_KEY = 'omaya-newsletter-popup-dismissed';
 const SUBSCRIBED_KEY = 'omaya-newsletter-popup-subscribed';
 
 @Component({
   selector: 'app-newsletter-popup',
-  imports: [FormHoneypot, FormStatus],
+  imports: [FormHoneypot, FormStatus, LogoSrcsetPipe, NewsletterPopupMobileSrcsetPipe],
   templateUrl: './newsletter-popup.html',
   styleUrl: './newsletter-popup.scss',
 })
@@ -40,7 +44,7 @@ export class NewsletterPopup implements OnDestroy {
 
     return site.id === 'amelia'
       ? { src: site.content.hero.slides[0]?.visualSrc ?? '', width: 1920, height: 1080 }
-      : { src: '/assets/images/newsletter-popup.webp', width: 921, height: 1381 };
+      : { src: '/assets/images/newsletter-popup-inner.webp', width: 536, height: 318 };
   });
 
   protected readonly isOpen = signal(false);

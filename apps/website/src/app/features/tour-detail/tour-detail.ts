@@ -15,6 +15,19 @@ import { map } from 'rxjs';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
+import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
+import {
+  TourWebHeroMobileSrcsetPipe,
+  TourWebImagePipe,
+  TourWebImageSrcsetPipe,
+  TourWebThumbnailSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
+import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
+import {
+  tourFaqHeading,
+  tourFaqIntro,
+  tourFaqItems,
+} from '../../shared/content/booking-conditions';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { FormStatus } from '../../shared/forms/form-status';
@@ -27,7 +40,6 @@ import {
   TourImage,
   TourIntroductionParagraph,
   TourItineraryDay,
-  TOUR_DETAIL_CONTENT,
   findTourBySlug,
 } from '../../shared/content/tour-content';
 
@@ -59,7 +71,18 @@ interface CalendarDay {
 
 @Component({
   selector: 'app-tour-detail',
-  imports: [DatePipe, NgClass, MatIconModule, RouterLink, FormStatus],
+  imports: [
+    DatePipe,
+    NgClass,
+    MatIconModule,
+    RouterLink,
+    FormStatus,
+    PublicBreadcrumbs,
+    TourWebHeroMobileSrcsetPipe,
+    TourWebImagePipe,
+    TourWebImageSrcsetPipe,
+    TourWebThumbnailSrcsetPipe,
+  ],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
 })
@@ -77,6 +100,15 @@ export class TourDetail {
   protected readonly discoverToursEnabled = computed(() =>
     isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
   );
+  // The breadcrumb trail runs through the destination page, so it only shows where that page exists.
+  protected readonly destinationPageEnabled = computed(() => {
+    const country = this.tour()?.destination.country;
+
+    return (
+      Boolean(country) &&
+      isSiteRouteEnabled(this.activeSite.site(), '/destinations/' + country!.toLowerCase() + '/')
+    );
+  });
   protected readonly activeTab = signal<TourTab>('information');
   protected readonly activeGalleryIndex = signal<number | null>(null);
   private galleryTouchStartX = 0;
@@ -91,34 +123,54 @@ export class TourDetail {
   protected readonly tour = computed(() =>
     findTourBySlug(this.tourSlug(), this.activeSite.site().id),
   );
-  protected readonly destinationDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
+  /**
+   * `sizes` for the hero. The hero is a fixed 515px box with `object-fit: cover`, which scales the
+   * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen —
+   * 1,236px for a 2.4:1 image on a 375px phone. `sizes="100vw"` told the browser the opposite, so
+   * it chose a candidate sized for the screen and cover stretched it by up to three times. The
+   * width the image really renders at is the larger of the viewport and 515px times its aspect.
+   * Keep 515 in step with `.tour-detail__hero` in the stylesheet.
+   */
+  protected readonly heroSizes = computed(() => {
+    const image = this.tour()?.heroImage;
+    const width = Number(image?.width);
+    const height = Number(image?.height);
+
+    if (!width || !height) {
+      return '100vw';
+    }
+
+    return `max(100vw, ${Math.ceil((515 * width) / height)}px)`;
+  });
+  // Guides are articles, so a site only links the ones it publishes.
+  protected readonly relatedGuides = computed(() =>
+    (
+      DESTINATION_CONTENT.find(
+        (destination) => destination.name === this.tour()?.destination.country,
+      )?.guides ?? []
+    ).filter((guide) => isSiteRouteEnabled(this.activeSite.site(), '/' + guide.slug + '/')),
+  );
+  protected readonly tourDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
     const tour = this.tour();
 
     if (!tour) {
       return [];
     }
 
-    return [
-      tour,
-      ...TOUR_DETAIL_CONTENT.filter(
-        (candidate) =>
-          candidate.slug !== tour.slug &&
-          candidate.destination.country === tour.destination.country,
-      ),
-    ].flatMap((candidate) =>
-      candidate.departures.map((departure) => {
-        const iso = this.departureDate(departure);
-        const start = this.parseIsoDate(iso);
-        const end = this.addDays(start, candidate.duration.days - 1);
+    return tour.departures
+      .map((departure) => this.departureDate(departure))
+      .sort()
+      .map((departure) => {
+        const start = this.parseIsoDate(departure);
+        const end = this.addDays(start, tour.duration.days - 1);
 
         return {
           start,
           end,
-          iso,
-          tourTitle: candidate.title,
+          iso: departure,
+          tourTitle: tour.title,
         };
-      }),
-    );
+      });
   });
   protected readonly calendarMonthLabel = computed(() =>
     this.calendarMonth().toLocaleDateString(this.dateLocale(), {
@@ -136,9 +188,9 @@ export class TourDetail {
     return Array.from({ length: 42 }, (_, index) => {
       const date = this.addDays(gridStart, index);
       const iso = this.toIsoDate(date);
-      const matchingStart = this.destinationDepartureWindows().find((window) => window.iso === iso);
+      const matchingStart = this.tourDepartureWindows().find((window) => window.iso === iso);
       const isPast = date < today;
-      const isTourPeriod = this.destinationDepartureWindows().some(
+      const isTourPeriod = this.tourDepartureWindows().some(
         (window) => date >= window.start && date <= window.end,
       );
       const isCurrentMonth = date.getMonth() === month.getMonth();
@@ -195,11 +247,67 @@ export class TourDetail {
       { id: 'gallery', label: this.i18n.t('tourDetail.tabGallery'), icon: 'photo_camera' },
     ];
 
-    if (this.tour()?.faq) {
+    // Always available: every tour has at least the booking conditions entry, even when the
+    // content team has not authored destination-specific questions yet.
+    if (this.tour()) {
       tabs.push({ id: 'faq', label: this.i18n.t('tourDetail.tabFaq'), icon: 'help_outline' });
     }
 
     return tabs;
+  });
+  /**
+   * FAQ state as computed signals rather than template methods.
+   *
+   * A template method runs on every change detection pass, and `tourFaqItems` builds a new array
+   * each call — so `@for` would see a fresh reference every cycle. These recompute only when the
+   * tour changes and hand back a stable reference.
+   */
+  protected readonly faqItems = computed<readonly TourFaqItem[]>(() => {
+    const tour = this.tour();
+
+    return tour ? tourFaqItems(tour) : [];
+  });
+  protected readonly faqHeading = computed(() => {
+    const tour = this.tour();
+
+    return tour ? tourFaqHeading(tour) : '';
+  });
+  protected readonly faqIntro = computed(() => {
+    const tour = this.tour();
+
+    return tour ? tourFaqIntro(tour) : '';
+  });
+  /** Empty unless the tour has a guaranteed departure that is still in its departure list. */
+  protected readonly guaranteedDeparture = computed(() => {
+    const tour = this.tour();
+    const departureDates = tour?.departures.map((departure) => this.departureDate(departure)) ?? [];
+    const guaranteed = (tour?.guaranteedDepartures ?? []).filter((date) =>
+      departureDates.includes(date),
+    );
+
+    return guaranteed.length ? 'Guaranteed departure' : '';
+  });
+  /** Departure date to its combined note, so the template does no work per row. */
+  protected readonly departureNotes = computed<ReadonlyMap<string, string>>(() => {
+    const tour = this.tour();
+
+    if (!tour) {
+      return new Map();
+    }
+
+    return new Map(
+      tour.departures
+        .map((departure) => this.departureDate(departure))
+        .map((date) => [
+          date,
+          [
+            tour.departureNotes?.[date],
+            tour.guaranteedDepartures?.includes(date) ? 'Guaranteed' : '',
+          ]
+            .filter(Boolean)
+            .join(' · '),
+        ]),
+    );
   });
   protected readonly contentClasses = computed(() => ({
     'tour-detail__content--gallery': this.activeTab() === 'gallery',
@@ -215,10 +323,14 @@ export class TourDetail {
       this.isBookingCalendarOpen.set(false);
       this.selectedBookingDate.set(null);
 
-      const firstDeparture = this.destinationDepartureWindows()[0];
+      const firstDeparture = this.tourDepartureWindows().find(
+        (departure) => departure.iso >= this.todayIso,
+      );
 
       if (firstDeparture) {
         this.calendarMonth.set(this.startOfMonth(firstDeparture.start));
+      } else {
+        this.calendarMonth.set(this.startOfMonth(this.parseIsoDate(this.todayIso)));
       }
     });
 
@@ -343,7 +455,7 @@ export class TourDetail {
     const tickets = String(formData.get('tickets') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
 
-    if (!selectedDate) {
+    if (!tour?.departures.includes(selectedDate) || selectedDate < this.todayIso) {
       this.bookingSubmitStatus.set('error');
       this.bookingSubmitMessage.set(this.i18n.t('tourDetail.bookingDateRequired'));
       return;

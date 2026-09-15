@@ -46,10 +46,33 @@
   z-index: 1;
   width: min(76rem, 100%);
   margin: 0;
-  font-family: tokens.$omaya-font-heading;
   font-size: 4rem;
   line-height: 1.05;
   text-align: center;
+}
+
+.tour-detail__hero-facts {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.tour-detail__hero-facts li + li::before {
+  content: '·';
+  margin-right: 1.5rem;
+  opacity: 0.7;
+}
+
+.tour-detail__hero-facts--guaranteed {
+  font-weight: 700;
 }
 
 .tour-detail__tabs {
@@ -143,7 +166,6 @@
 
 .tour-detail h2 {
   margin: 0 0 1.45rem;
-  font-family: tokens.$omaya-font-heading;
   font-size: 1.75rem;
   line-height: 1.16;
 }
@@ -725,12 +747,24 @@
 .tour-detail__discover {
   display: block;
   height: 452px;
+  // The WebP declaration stays first as the fallback: a browser without image-set() ignores the
+  // second rule and keeps this one, rather than losing the background entirely.
   background:
     linear-gradient(
       rgb(var(--omaya-color-overlay-rgb) / 8%),
       rgb(var(--omaya-color-overlay-rgb) / 8%)
     ),
     url('/assets/images/discover-more-tours.webp') center / cover;
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 8%),
+      rgb(var(--omaya-color-overlay-rgb) / 8%)
+    ),
+    image-set(
+        url('/assets/images/discover-more-tours.avif') type('image/avif'),
+        url('/assets/images/discover-more-tours.webp') type('image/webp')
+      )
+      center / cover;
   text-decoration: none;
 }
 
@@ -819,7 +853,6 @@
 .tour-detail--empty h1 {
   margin: 0 0 1rem;
   color: var(--omaya-color-heading);
-  font-family: tokens.$omaya-font-heading;
   font-size: 4rem;
   line-height: 1.1;
 }
@@ -911,8 +944,15 @@
     object-fit: cover;
   }
 
+  // Desktop shows these at 150px. Stretching them to the full column on a phone asked a 231x150
+  // source to fill 327x327 — a 2.18x upscale at DPR 1, and the square crop threw away a third of
+  // the frame on top of that. Letting each image sit at its own size keeps every pixel honest:
+  // nothing is upscaled and nothing is cropped. Revert to a fixed width once these are re-exported
+  // at 660px square, which is what the slot actually wants at DPR 2.
   .tour-detail__highlights img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: auto;
   }
 
   .tour-detail__lightbox {
@@ -964,4 +1004,10 @@
   .tour-detail__highlights {
     grid-template-columns: 1fr;
   }
+}
+
+.tour-detail__breadcrumbs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
 }

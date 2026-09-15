@@ -12,13 +12,26 @@
 
   <section class="private-tours-page__intro">
     <div class="private-tours-page__media">
-      <img
-        src="/assets/images/private-tour/private-tour-image.webp"
-        alt="Private tour inspiration"
-        width="900"
-        height="1100"
-        loading="lazy"
-      />
+      <!--
+        In the first screen on every device, so it loads eagerly — but it has to be cheap first: as a
+        plain <img> it shipped 296,558 bytes of WebP. It sits in a 650px-tall box with
+        object-fit: cover, so the 0.8:1 photograph renders about 520px wide even in a phone's
+        narrower column. `sizes` says so; the column width would pick a candidate cover then stretches.
+      -->
+      <picture style="display: contents">
+        <source
+          type="image/avif"
+          [attr.srcset]="'/assets/images/private-tour/private-tour-image.webp' | tourWebImageSrcset"
+          sizes="34rem"
+        />
+        <img
+          src="/assets/images/private-tour/private-tour-image.webp"
+          alt="Private tour inspiration"
+          width="900"
+          height="1100"
+          loading="eager"
+        />
+      </picture>
     </div>
 
     <div class="private-tours-page__copy">

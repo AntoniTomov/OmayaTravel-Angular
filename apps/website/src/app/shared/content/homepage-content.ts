@@ -53,21 +53,22 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
   {
     label: 'Destinations',
     links: [
+      { label: 'All destinations', target: '/destinations/' },
       {
         label: 'Algeria',
-        target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+        target: '/destinations/algeria/',
       },
       {
         label: 'Bulgaria',
-        target: '/tour-item/bulgaria-beyond-the-ordinary/',
+        target: '/destinations/bulgaria/',
       },
       {
         label: 'Kyrgyzstan',
-        target: '/tour-item/kyrgyzstan-tour/',
+        target: '/destinations/kyrgyzstan/',
       },
       {
         label: 'Morocco',
-        target: '/tour-item/morocco-tour/',
+        target: '/destinations/morocco/',
       },
     ],
   },
@@ -288,7 +289,7 @@ export const SITE_SEARCH_INDEX: readonly SearchIndexItem[] = [
     type: 'Tour',
     title: 'Kyrgyzstan Discovery Tour | Women only',
     excerpt:
-      "Nine days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive.",
+      "Ten days across Kyrgyzstan's mountains and steppes, where ancient nomadic traditions are still very much alive.",
     canonicalPath: '/tour-item/women-only-tour-kyrgyzstan/',
     thumbnail: {
       key: 'tours/women-only-tour-kyrgyzstan/song-kul-lake.webp',

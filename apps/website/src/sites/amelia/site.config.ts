@@ -11,6 +11,8 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     homeLabel: 'Начало на Amelia Travel',
     logoSrc: '/assets/images/amelia/brand/amelia-logo-dark-bg.webp',
     solidLogoSrc: '/assets/images/amelia/brand/amelia-logo-transparent.png',
+    logoSize: { width: 1370, height: 819 },
+    solidLogoSize: { width: 1354, height: 396 },
     logoAlt: 'Amelia Travel',
   },
   theme: {
