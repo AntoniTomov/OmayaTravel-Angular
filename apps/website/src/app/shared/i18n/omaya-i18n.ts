@@ -125,6 +125,11 @@ const EN: TranslationDictionary = {
     blogCopyMiddle: 'Discover more about',
     blogCopyStrongTwo: 'local food, tradition and history',
     blogCopySuffix: 'Read the stories that make you want to travel.',
+    newsletterTitle: 'Join Newsletter',
+    newsletterSubtitle: 'To receive our best deals',
+    newsletterSubmit: 'Subscribe',
+    newsletterEmail: 'Email address',
+    newsletterEmailPlaceholder: 'Email address',
   },
   tourDetail: {
     sectionsLabel: 'Tour detail sections',
@@ -399,6 +404,11 @@ const BG: TranslationDictionary = {
     blogCopyMiddle: 'Открийте повече за',
     blogCopyStrongTwo: 'местната храна, традиции и история',
     blogCopySuffix: 'Прочетете историите, които събуждат желание за път.',
+    newsletterTitle: 'Абонирайте се',
+    newsletterSubtitle: 'За да получавате най-добрите ни оферти',
+    newsletterSubmit: 'Абонирайте се',
+    newsletterEmail: 'Имейл адрес',
+    newsletterEmailPlaceholder: 'Вашият имейл',
   },
   tourDetail: {
     sectionsLabel: 'Секции на пътуването',

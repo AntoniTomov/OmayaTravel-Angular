@@ -9,7 +9,7 @@
       crop 768px. The portrait crop is 1.16 times the hero's height, which is 70vh on those screens.
       Sources are matched in order, so a phone never reaches the tablet or portrait crop.
     -->
-    <picture style="display: contents">
+    <picture class="homepage__hero-media">
       <source
         media="(max-width: 30rem)"
         type="image/avif"
@@ -142,23 +142,27 @@
       <section class="homepage__newsletter" aria-labelledby="homepage-newsletter-title">
         <div class="homepage__newsletter-inner">
           <div>
-            <h2 id="homepage-newsletter-title">Join Newsletter</h2>
-            <p>To receive our best deals</p>
+            <h2 id="homepage-newsletter-title">{{ i18n.t('homepage.newsletterTitle') }}</h2>
+            <p>{{ i18n.t('homepage.newsletterSubtitle') }}</p>
           </div>
 
           <form class="homepage__newsletter-form" (submit)="submitNewsletterForm($event)">
-            <label for="homepage-newsletter-email">Email address</label>
+            <label for="homepage-newsletter-email">{{ i18n.t('homepage.newsletterEmail') }}</label>
             <input
               id="homepage-newsletter-email"
               type="email"
               name="email"
-              placeholder="Email address"
+              [placeholder]="i18n.t('homepage.newsletterEmailPlaceholder')"
               autocomplete="email"
               required
             />
             <app-form-honeypot />
             <button type="submit" [disabled]="newsletterStatus() === 'sending'">
-              {{ newsletterStatus() === 'sending' ? 'Joining...' : 'Subscribe' }}
+              {{
+                newsletterStatus() === 'sending'
+                  ? 'Joining...'
+                  : i18n.t('homepage.newsletterSubmit')
+              }}
             </button>
             <app-form-status
               [message]="newsletterMessage()"

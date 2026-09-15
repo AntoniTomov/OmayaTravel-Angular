@@ -9,9 +9,11 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     name: 'Amelia Travel',
     tagline: 'Пътувания за жени в малки групи.',
     homeLabel: 'Начало на Amelia Travel',
-    logoSrc: '/assets/images/amelia/brand/amelia-logo-dark-bg.webp',
+    // The solid logo with its "by Omaya Travel" line turned white for dark backgrounds, so both header
+    // states are the same artwork and the same size.
+    logoSrc: '/assets/images/amelia/brand/amelia-logo-transparent-white.png',
     solidLogoSrc: '/assets/images/amelia/brand/amelia-logo-transparent.png',
-    logoSize: { width: 1370, height: 819 },
+    logoSize: { width: 1354, height: 396 },
     solidLogoSize: { width: 1354, height: 396 },
     logoAlt: 'Amelia Travel',
   },

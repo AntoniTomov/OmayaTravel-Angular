@@ -7,6 +7,13 @@ import { SiteConfig, SiteId } from './site.types';
 const SITE_PREVIEW_QUERY_PARAM = 'site';
 const SITE_PREVIEW_STORAGE_KEY = 'omaya-active-site-preview';
 
+/**
+ * Site a local dev server opens without a `?site=` param. Defined only by the `amelia` serve
+ * configuration (`npm run start:amelia`), so a plain `ng serve` and every real build keep the
+ * hostname rules.
+ */
+declare const NG_LOCAL_PREVIEW_SITE: string | undefined;
+
 @Injectable({ providedIn: 'root' })
 export class ActiveSite {
   private readonly document = inject(DOCUMENT);
@@ -32,6 +39,10 @@ export class ActiveSite {
     if (querySite) {
       this.localStorage()?.setItem(SITE_PREVIEW_STORAGE_KEY, querySite);
       return siteConfigForId(querySite);
+    }
+
+    if (isLocalPreview && typeof NG_LOCAL_PREVIEW_SITE !== 'undefined') {
+      return siteConfigForId(NG_LOCAL_PREVIEW_SITE);
     }
 
     const hostname = url.hostname.toLowerCase();

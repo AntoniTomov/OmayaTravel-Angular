@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, HostListener, PLATFORM_ID, effect, inject } from '@angular/core';
+import { Component, PLATFORM_ID, effect, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { PublicHeader } from './features/public-header/public-header';
@@ -26,7 +26,6 @@ export class App {
   private readonly activeSite = inject(ActiveSite);
   private readonly i18n = inject(OmayaI18n);
   private readonly seo = inject(OmayaSeo);
-  private parallaxFrame: number | null = null;
   private lastTrackedPageView = '';
 
   constructor(router: Router) {
@@ -54,33 +53,9 @@ export class App {
       .subscribe((event) => {
         if (this.isBrowser) {
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          this.updateHeroBackgroundPosition();
           this.trackCurrentPageView(event.urlAfterRedirects);
         }
       });
-  }
-
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    if (!this.isBrowser || this.parallaxFrame !== null) {
-      return;
-    }
-
-    this.parallaxFrame = window.requestAnimationFrame(() => {
-      this.updateHeroBackgroundPosition();
-      this.parallaxFrame = null;
-    });
-  }
-
-  private updateHeroBackgroundPosition(): void {
-    if (!window.matchMedia('(min-width: 48.01rem)').matches) {
-      this.document.documentElement.style.removeProperty('--omaya-hero-background-y');
-      return;
-    }
-
-    const offset = -Math.round(window.scrollY * 0.08);
-
-    this.document.documentElement.style.setProperty('--omaya-hero-background-y', `${offset}px`);
   }
 
   private trackCurrentPageView(path: string): void {

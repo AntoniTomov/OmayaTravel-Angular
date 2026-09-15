@@ -114,4 +114,10 @@
   .legal-page__content {
     padding-top: 7rem;
   }
+
+  // Scales down on narrow phones, where a long Bulgarian word at 4rem is wider than the screen.
+  .legal-page .legal-page__hero h1 {
+    padding-inline: 1rem;
+    font-size: clamp(1.9rem, 9vw, 4rem);
+  }
 }

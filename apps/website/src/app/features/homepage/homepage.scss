@@ -21,6 +21,7 @@
   display: grid;
   min-height: 70svh;
   place-items: center;
+  justify-content: center;
   padding: 10.5rem 1.5rem 6rem;
   color: tokens.$omaya-color-white;
   background-color: tokens.$omaya-color-dark;
@@ -36,6 +37,14 @@
   content: '';
 }
 
+// Clips the held hero photograph (see styles.scss). The hero itself cannot clip, because the trip
+// search menus hang below it.
+.homepage__hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+}
+
 .homepage__hero-image {
   position: absolute;
   inset: 0;
@@ -43,12 +52,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-@media (min-width: 48.01rem) {
-  .homepage__hero-image {
-    object-position: center 70%;
-  }
 }
 
 .homepage__hero-content {
@@ -321,8 +324,10 @@
     padding: 1rem;
   }
 
+  // Scales down on narrow phones, where a long Bulgarian word at 3rem is wider than the screen.
   .homepage__hero h1 {
-    font-size: 3rem;
+    padding-inline: 1rem;
+    font-size: clamp(1.9rem, 9vw, 3rem);
   }
 
   .homepage__newsletter-inner,
