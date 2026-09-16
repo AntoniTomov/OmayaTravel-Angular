@@ -165,6 +165,7 @@ export const routes: Routes = [
       routeKey: 'static-not-yet-but-soon',
       routeType: 'static-page',
       canonicalPath: '/not-yet-but-soon/',
+      noindex: true,
     },
   }),
   ...withStaticPathAccess({
@@ -295,6 +296,17 @@ export const routes: Routes = [
       routeType: 'static-page',
       canonicalPath: '/cookie-policy/',
       pageSlug: 'cookie-policy',
+    },
+  }),
+  withSiteAccess({
+    matcher: staticPageMatcher('standarten-formulyar'),
+    loadComponent: () =>
+      import('./features/legal-page/legal-page').then((module) => module.LegalPage),
+    data: {
+      routeKey: 'static-standarten-formulyar',
+      routeType: 'static-page',
+      canonicalPath: '/standarten-formulyar/',
+      pageSlug: 'standarten-formulyar',
     },
   }),
   ...withStaticPathAccess({

@@ -1,3 +1,4 @@
+import type { SiteId } from '../../../sites/site.types';
 import type { BlogPostContent } from './blog-content';
 
 export type BlogArticleMetadata = Omit<BlogPostContent, 'sections' | 'sources'>;
@@ -173,8 +174,92 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
   },
 ];
 
+export const AMELIA_BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
+  {
+    slug: 'maroko-za-zheni-pateshestvenichki',
+    title: 'Мароко за жени пътешественички: безопасност, облекло и какво да очакваш',
+    publishedAt: '2026-09-01',
+    date: '1 септември 2026',
+    category: 'Мароко',
+    comments: 0,
+    excerpt:
+      'Практичен пътеводител за жени, които планират пътуване до Мароко: безопасност, облекло, сезони, местни обичаи, пустиня и пътуване в малка женска група.',
+    preview:
+      'Има пътувания, които започват още с кацането. Мароко е точно такова: сетивно, цветно, шумно и различно. Ето какво е добре да знаеш, когато пътуваш като жена.',
+    image: {
+      src: '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-1.avif',
+      alt: 'Цветни детайли от Мароко',
+    },
+    heroImage: {
+      src: '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif',
+      alt: 'Пейзаж и архитектура от Мароко',
+    },
+    sidebarImage: {
+      src: '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-3.avif',
+      alt: 'Мароко като дестинация за жени пътешественички',
+    },
+    relatedTour: {
+      title: 'Morocco - Blue Cities & Golden Dunes',
+      url: '/tour-item/morocco-tour/',
+    },
+  },
+  {
+    slug: 'ezeroto-song-kul-kirgistan',
+    title: 'Езерото Сонг-Кул: мястото, което ще те накара да се почувстваш свободен',
+    publishedAt: '2026-09-08',
+    date: '8 септември 2026',
+    category: 'Киргистан',
+    comments: 0,
+    excerpt:
+      'Практичен гид за езерото Сонг-Кул в Киргизстан: кога да пътуваш, как да стигнеш, къде да спиш и какво да очакваш от живота на 3016 метра надморска височина.',
+    preview:
+      'В сърцето на Киргизстан, на 3016 метра надморска височина, ще откриете Сонг-Кул – езеро, което пази духа на номадския живот. Тук времето тече по различен ритъм, а безкрайните пасища и величествените планини създават усещане за пълна свобода.',
+    image: {
+      src: '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp',
+      alt: 'Юртен лагер край езерото Сонг-Кул в Киргизстан',
+    },
+    heroImage: {
+      src: '/assets/images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp',
+      alt: 'Пейзаж на езерото Сонг-Кул в Киргизстан',
+    },
+    sidebarImage: {
+      src: '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-tour-img-1.webp',
+      alt: 'Юрти и открити пасища около Сонг-Кул',
+    },
+    relatedTour: {
+      title: 'Киргистан - юрти, коне и високи планини',
+      url: '/tour-item/kyrgyzstan-tour/',
+    },
+  },
+  {
+    slug: 'india-otblizo',
+    title: 'Индия отблизо: между хаоса, цветовете и тишината',
+    publishedAt: '2026-09-08',
+    date: '8 септември 2026',
+    category: 'Индия',
+    comments: 0,
+    excerpt:
+      'Впечатления от Северна Индия – контрастите между шумните улици и тихите дворове, цветовете, храната и малките моменти, които остават след едно пътуване дотам.',
+    preview:
+      'Има места, за които можеш да прочетеш десетки статии, да изгледаш безброй видеа и да разгледаш стотици снимки, но въпреки това да не си представиш какво е да бъдеш там. Индия е едно от тях.',
+    image: {
+      src: '/assets/images/amelia/blog/india-otblizo/india-otblizo-01.webp',
+      alt: 'Колонада в Агра Форт, Индия',
+    },
+    relatedTour: {
+      title: 'Северна Индия отблизо',
+      url: '/tour-item/india-tour/',
+    },
+  },
+];
+
+export function blogMetadataForSite(siteId: SiteId): readonly BlogArticleMetadata[] {
+  return siteId === 'amelia' ? AMELIA_BLOG_ARTICLE_METADATA : BLOG_ARTICLE_METADATA;
+}
+
 export function findBlogMetadataBySlug(
   slug: string | null | undefined,
+  siteId: SiteId = 'omaya',
 ): BlogArticleMetadata | undefined {
-  return BLOG_ARTICLE_METADATA.find((post) => post.slug === slug);
+  return blogMetadataForSite(siteId).find((post) => post.slug === slug);
 }

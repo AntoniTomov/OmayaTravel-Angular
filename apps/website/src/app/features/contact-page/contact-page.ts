@@ -1,19 +1,85 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 
+import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 
-const CONTACT_PAGE = {
+interface ContactPageContent {
+  title: string;
+  intro: {
+    heading: string;
+    paragraphs: readonly string[];
+  };
+  location: string;
+  phoneNumbers: readonly string[];
+  email: string;
+  backgroundImage?: string;
+  labels: {
+    name: string;
+    email: string;
+    subject: string;
+    comment: string;
+    submit: string;
+    sending: string;
+    phone: string;
+    emailLabel: string;
+    success: string;
+    error: string;
+  };
+}
+
+const CONTACT_PAGE: ContactPageContent = {
   title: 'Contact Us',
   intro: {
     heading: "Let's Plan Your Next Story.",
-    text: "Every great journey starts with a single conversation. Whether you have a specific destination in mind or just a wild idea and a blank calendar, we're here to help you piece it together. Reach out today, and let's turn that “someday” trip into a departure date.",
+    paragraphs: [
+      "Every great journey starts with a single conversation. Whether you have a specific destination in mind or just a wild idea and a blank calendar, we're here to help you piece it together. Reach out today, and let's turn that “someday” trip into a departure date.",
+    ],
   },
   location: 'Sofia, Bulgaria',
-  phone: '+359 87 996 5946',
+  phoneNumbers: ['+359 87 996 5946'],
   email: 'info@omayatravel.com',
+  labels: {
+    name: 'Name*',
+    email: 'Email Address*',
+    subject: 'Subject',
+    comment: 'Comment',
+    submit: 'Submit',
+    sending: 'Sending...',
+    phone: 'Phone/WhatsApp:',
+    emailLabel: 'Email:',
+    success: 'Thank you. We received your message and will reply as soon as possible.',
+    error: 'We could not send your message right now.',
+  },
+};
+
+const AMELIA_CONTACT_PAGE: ContactPageContent = {
+  title: 'Свържете се с нас',
+  intro: {
+    heading: 'Нека планираме следващото ти пътуване.',
+    paragraphs: [
+      'Понякога знаеш точно къде искаш да отидеш. Друг път имаш само идея, няколко свободни дни и желание за нещо ново. И в двата случая сме тук, за да помогнем.',
+      'Пиши ни, сподели какво си представяш, а ние ще помогнем с останалото - от първата идея до последния детайл.',
+    ],
+  },
+  location: 'София, България',
+  phoneNumbers: ['+359 88 973 5274', '+359 87 996 5946'],
+  email: 'info@ameliatravel.com',
+  backgroundImage: '/assets/images/amelia/home/h1-background-coral.webp',
+  labels: {
+    name: 'Име*',
+    email: 'Имейл адрес*',
+    subject: 'Тема',
+    comment: 'Съобщение',
+    submit: 'Изпрати',
+    sending: 'Изпращане...',
+    phone: 'Телефон/WhatsApp:',
+    emailLabel: 'Имейл:',
+    success: 'Благодарим ти. Получихме съобщението и ще отговорим възможно най-скоро.',
+    error: 'Не успяхме да изпратим съобщението в момента.',
+  },
 };
 
 @Component({
@@ -24,8 +90,16 @@ const CONTACT_PAGE = {
 })
 export class ContactPage {
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly activeSite = inject(ActiveSite);
 
-  protected readonly content = CONTACT_PAGE;
+  protected readonly content = computed(() =>
+    this.activeSite.site().id === 'amelia' ? AMELIA_CONTACT_PAGE : CONTACT_PAGE,
+  );
+  protected readonly backgroundImage = computed(() => {
+    const backgroundImage = this.content().backgroundImage;
+
+    return backgroundImage ? `url("${backgroundImage}")` : null;
+  });
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly submitMessage = signal('');
 
@@ -64,9 +138,7 @@ export class ContactPage {
     if (result.ok) {
       form.reset();
       this.submitStatus.set('sent');
-      this.submitMessage.set(
-        'Thank you. We received your message and will reply as soon as possible.',
-      );
+      this.submitMessage.set(this.content().labels.success);
       this.analytics.trackEvent('generate_lead', {
         form_type: 'contact',
       });
@@ -74,6 +146,10 @@ export class ContactPage {
     }
 
     this.submitStatus.set('error');
-    this.submitMessage.set(result.message ?? 'We could not send your message right now.');
+    this.submitMessage.set(result.message ?? this.content().labels.error);
+  }
+
+  protected phoneHref(phoneNumber: string): string {
+    return `tel:${phoneNumber.replace(/[^\d+]/g, '')}`;
   }
 }

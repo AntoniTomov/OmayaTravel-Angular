@@ -53,44 +53,68 @@ details[open]::details-content {
   box-sizing: border-box;
 }
 
-@media (min-width: 48.01rem) {
-  :where(
-    .homepage__hero,
-    .tour-detail__hero,
-    .tour-listing__hero,
-    .tour-calendar__hero,
-    .blog-list__hero,
-    .blog-article__hero,
-    .enquire-page__hero,
-    .legal-page__hero,
-    .faq-page__hero,
-    .our-story__hero,
-    .private-tours-page__hero,
-    .not-yet__hero,
-    .why-book__hero
-  ) {
-    background-position: center var(--omaya-hero-background-y, 0px) !important;
+// A single word wider than a phone screen wraps rather than pushing the heading off the edge.
+h1,
+h2 {
+  overflow-wrap: break-word;
+}
+
+/*
+ * Top-of-page hero photographs hold still while the page scrolls up over them.
+ *
+ * Each hero names its own view timeline. Across the scroll that takes the hero from the top of the
+ * screen to fully off it (exit-crossing, which is exactly the hero's height whatever its size), the
+ * photograph moves down by its own height, which is the hero's, so it stays put on screen, and the
+ * hero's overflow clipping hides the part pushed out through its bottom. The homepage hero cannot clip,
+ * because its trip search menus hang below it, so its picture element clips instead.
+ *
+ * Only transform is animated. A scroll-driven transform runs on the compositor in step with the
+ * scroll; animating clip-path as well, which an earlier version did, put the animation on the main
+ * thread, where it trailed the scroll by a frame and the photograph visibly jumped. Browsers without scroll-driven animations scroll the photograph with
+ * the page. Photographs set as a CSS background (the FAQ hero) get the same treatment through a
+ * ::before layer that inherits the background.
+ */
+$omaya-held-heroes: '.homepage__hero, .tour-detail__hero, .tour-listing__hero, .tour-calendar__hero, .blog-list__hero, .blog-article__hero, .enquire-page__hero, .legal-page__hero, .faq-page__hero, .our-story__hero, .private-tours-page__hero, .not-yet__hero, .why-book__hero, .destination-page__hero';
+
+@supports (animation-timeline: view()) and (animation-range: exit-crossing 0% exit-crossing 100%) {
+  :where(#{$omaya-held-heroes}) {
+    view-timeline-name: --omaya-hero;
   }
 
-  :where(
-      .homepage__hero,
-      .tour-detail__hero,
-      .tour-listing__hero,
-      .tour-calendar__hero,
-      .blog-list__hero,
-      .blog-article__hero,
-      .enquire-page__hero,
-      .legal-page__hero,
-      .our-story__hero,
-      .private-tours-page__hero,
-      .not-yet__hero,
-      .why-book__hero
-    )
-    > img,
-  .homepage__hero-image,
-  .tour-detail__hero > picture > img,
-  .tour-listing__hero > picture > img {
-    object-position: center var(--omaya-hero-background-y, 0px) !important;
+  :where(#{$omaya-held-heroes}) > img,
+  :where(#{$omaya-held-heroes}) > picture > img,
+  .faq-page__hero::before {
+    animation: omaya-hero-hold linear both;
+    animation-timeline: --omaya-hero;
+    animation-range: exit-crossing 0% exit-crossing 100%;
+  }
+
+  .faq-page__hero,
+  .destination-page__hero {
+    overflow: clip;
+  }
+
+  .faq-page__hero {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .faq-page__hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: inherit;
+    content: '';
+  }
+}
+
+@keyframes omaya-hero-hold {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
   }
 }
 

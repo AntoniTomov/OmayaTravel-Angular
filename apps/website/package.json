@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:amelia": "ng serve --configuration amelia --port 4200",
     "build": "ng build --progress=false",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

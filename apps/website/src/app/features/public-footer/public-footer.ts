@@ -1,4 +1,3 @@
-import { BLOG_POST_SUMMARIES } from '../../shared/content/blog-summary-content';
 import { Component, computed, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -8,6 +7,7 @@ import { filter, map, startWith } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { blogPostSummariesForSite } from '../../shared/content/blog-summary-content';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
@@ -55,13 +55,21 @@ export class PublicFooter {
   );
   protected readonly isHomepage = computed(() => this.currentUrl() === '/');
   protected readonly brand = computed(() => this.activeSite.site().brand);
+  protected readonly contact = computed(() => this.activeSite.site().contact);
+  protected readonly socialLinks = computed(() => this.activeSite.site().socialLinks);
   protected readonly tagline = computed(() => this.activeSite.site().brand.tagline);
+  protected readonly copyright = computed(
+    () => `© 2026 ${this.activeSite.site().brand.name}, All Rights Reserved`,
+  );
 
   protected readonly aboutLinks = computed<readonly FooterLink[]>(() =>
     [
-      { label: this.i18n.t('footer.whyBook'), target: '/why-book-with-us/' },
-      { label: this.i18n.t('footer.ourStory'), target: '/our-story/' },
-      { label: this.i18n.t('footer.faqs'), target: '/faq/' },
+      {
+        label: this.linkLabel('/why-book-with-us/', 'footer.whyBook'),
+        target: '/why-book-with-us/',
+      },
+      { label: this.linkLabel('/our-story/', 'footer.ourStory'), target: '/our-story/' },
+      { label: this.linkLabel('/faq/', 'footer.faqs'), target: '/faq/' },
     ].filter((link) => this.isRouteEnabled(link.target)),
   );
 
@@ -70,16 +78,20 @@ export class PublicFooter {
       { label: this.i18n.t('footer.cookiePolicy'), target: '/cookie-policy/' },
       { label: this.i18n.t('footer.privacyPolicy'), target: '/privacy-policy/' },
       { label: this.i18n.t('footer.terms'), target: '/termsconditions/' },
+      ...(this.activeSite.site().id === 'amelia'
+        ? [{ label: 'Стандартен формуляр', target: '/standarten-formulyar/' }]
+        : []),
       { label: this.i18n.t('footer.license'), target: '/omaya-travel-license/' },
     ].filter((link) => this.isRouteEnabled(link.target)),
   );
 
   protected readonly latestPosts = computed<readonly FooterPost[]>(() =>
-    BLOG_POST_SUMMARIES.map((post) => ({
-      title: post.title,
-      date: post.date,
-      target: '/' + post.slug + '/',
-    }))
+    blogPostSummariesForSite(this.activeSite.site().id)
+      .map((post) => ({
+        title: post.title,
+        date: post.date,
+        target: '/' + post.slug + '/',
+      }))
       .filter((post) => this.isRouteEnabled(post.target))
       .slice(0, 2),
   );
@@ -149,5 +161,21 @@ export class PublicFooter {
 
   private isRouteEnabled(target: string): boolean {
     return isSiteRouteEnabled(this.activeSite.site(), target);
+  }
+
+  /**
+   * Prefer the active site's own page title so footer labels stay in step with the
+   * page they link to (Amelia renames `/our-story/` to "За нас", for example).
+   */
+  private linkLabel(canonicalPath: string, translationKey: `footer.${string}`): string {
+    const pageSeo = this.activeSite
+      .site()
+      .content.pageSeo?.find((entry) => entry.canonicalPath === canonicalPath);
+
+    return pageSeo?.title ?? this.i18n.t(translationKey);
+  }
+
+  protected phoneHref(phoneNumber: string): string {
+    return `tel:${phoneNumber.replace(/[^\d+]/g, '')}`;
   }
 }

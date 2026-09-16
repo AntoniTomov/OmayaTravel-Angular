@@ -11,20 +11,19 @@
         <!--
           Up to 34rem phones get a 480px AVIF copy instead of the 536px WebP. See POPUP_MOBILE_WIDTH
           in scripts/generate-tour-web-images.mjs for why it is one capped copy, not a candidate list.
+          An image without copies leaves the <source> without a srcset, so the browser skips it.
         -->
         <picture style="display: contents">
           <source
             media="(max-width: 34rem)"
             type="image/avif"
-            [attr.srcset]="
-              '/assets/images/newsletter-popup-inner.webp' | newsletterPopupMobileSrcset
-            "
+            [attr.srcset]="mediaImage().src | newsletterPopupMobileSrcset"
           />
           <img
-            src="/assets/images/newsletter-popup-inner.webp"
+            [src]="mediaImage().src"
             alt=""
-            width="536"
-            height="318"
+            [width]="mediaImage().width"
+            [height]="mediaImage().height"
             loading="lazy"
             decoding="async"
           />
@@ -34,7 +33,7 @@
       <button
         type="button"
         class="newsletter-popup__close"
-        aria-label="Close newsletter signup"
+        [attr.aria-label]="i18n.t('newsletterPopup.close')"
         (click)="close()"
       >
         <span aria-hidden="true"></span>
@@ -43,52 +42,55 @@
       <div class="newsletter-popup__content">
         <!--
           7.8rem wide, so each pixel ratio picks a lossless copy at its width; see LOGO_WIDTHS in
-          scripts/generate-tour-web-images.mjs. width and height are the file's own 400x267: the
+          scripts/generate-tour-web-images.mjs. width and height are the logo file's own shape: the
           152x83 declared before was a different shape, so the browser reserved the wrong height and the
           buttons below moved when the logo arrived.
         -->
         <img
           class="newsletter-popup__logo"
-          src="/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp"
-          [attr.srcset]="
-            '/assets/images/home-page/company-logo/Black_logo-e1781169999413.webp' | logoSrcset
-          "
+          [src]="brand().solidLogoSrc"
+          [attr.srcset]="brand().solidLogoSrc | logoSrcset"
           sizes="7.8rem"
-          alt="Omaya Travel"
-          width="400"
-          height="267"
+          [alt]="brand().logoAlt"
+          [width]="brand().solidLogoSize.width"
+          [height]="brand().solidLogoSize.height"
           loading="lazy"
           decoding="async"
         />
-        <p class="newsletter-popup__eyebrow">SEE THE WORLD. MEET ITS PEOPLE</p>
+        <p class="newsletter-popup__eyebrow">{{ brand().tagline }}</p>
         <h2 id="newsletter-popup-title">
-          Wanderlust detected<span aria-hidden="true">👀</span><br />
-          Let's stay connected
+          {{ i18n.t('newsletterPopup.title') }}<span aria-hidden="true">👀</span><br />
+          {{ i18n.t('newsletterPopup.titleSecondLine') }}
         </h2>
+        <p class="newsletter-popup__body">{{ i18n.t('newsletterPopup.body') }}</p>
 
         @if (!isSignupOpen()) {
           <div class="newsletter-popup__actions">
             <button type="button" class="newsletter-popup__primary" (click)="openSignup()">
-              SIGN UP
+              {{ i18n.t('newsletterPopup.signUp') }}
             </button>
             <button type="button" class="newsletter-popup__secondary" (click)="close()">
-              NO, THANKS
+              {{ i18n.t('newsletterPopup.noThanks') }}
             </button>
           </div>
         } @else {
           <form class="newsletter-popup__form" (submit)="submitPopup($event)">
-            <label for="newsletter-popup-email">Email address</label>
+            <label for="newsletter-popup-email">{{ i18n.t('newsletterPopup.emailLabel') }}</label>
             <input
               id="newsletter-popup-email"
               type="email"
               name="email"
-              placeholder="Email address"
+              [placeholder]="i18n.t('newsletterPopup.emailLabel')"
               autocomplete="email"
               required
             />
             <app-form-honeypot />
             <button type="submit" [disabled]="submitStatus() === 'sending'">
-              {{ submitStatus() === 'sending' ? 'JOINING...' : 'SIGN UP' }}
+              {{
+                submitStatus() === 'sending'
+                  ? i18n.t('newsletterPopup.joining')
+                  : i18n.t('newsletterPopup.signUp')
+              }}
             </button>
             <app-form-status [message]="submitMessage()" [isError]="submitStatus() === 'error'" />
           </form>

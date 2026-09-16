@@ -1,3 +1,5 @@
+import { SITE_CONFIGS } from '../../../sites';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import {
   PUBLIC_CANONICAL_HOST,
   PUBLIC_INDEXABLE_ROUTES,
@@ -59,18 +61,44 @@ describe('sitemap generation', () => {
   it('resolves indexability for every route, with no silent registry gaps', () => {
     // A route no metadata source claims is a gap, not a decision — it must surface here rather
     // than quietly defaulting to indexable and landing in the sitemap.
-    const unresolved = PUBLIC_INDEXABLE_ROUTES.filter(
-      (route) => !routeIndexability(route).resolved,
-    ).map((route) => `${route.key} (${route.canonicalPath})`);
+    // Each site is checked against the routes it publishes, since the route table is shared.
+    const unresolved = Object.values(SITE_CONFIGS).flatMap((site) =>
+      PUBLIC_INDEXABLE_ROUTES.filter(
+        (route) =>
+          isSiteRouteEnabled(site, route.canonicalPath) && !routeIndexability(route, site).resolved,
+      ).map((route) => `${site.id}: ${route.key} (${route.canonicalPath})`),
+    );
 
     expect(unresolved).toEqual([]);
   });
 
   it('stays in step with the route table as routes are added', () => {
-    const excluded = PUBLIC_INDEXABLE_ROUTES.filter((route) => routeIndexability(route).noIndex);
+    for (const site of Object.values(SITE_CONFIGS)) {
+      const published = PUBLIC_INDEXABLE_ROUTES.filter((route) =>
+        isSiteRouteEnabled(site, route.canonicalPath),
+      );
+      const excluded = published.filter((route) => routeIndexability(route, site).noIndex);
 
-    expect(sitemapEntries().length).toBe(PUBLIC_INDEXABLE_ROUTES.length - excluded.length);
-    expect(excluded.length).toBeGreaterThan(0);
+      expect(sitemapEntries(site.seo.canonicalHost).length).toBe(
+        published.length - excluded.length,
+      );
+    }
+
+    expect(
+      PUBLIC_INDEXABLE_ROUTES.filter((route) => routeIndexability(route).noIndex).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("lists only the routes each site publishes, on that site's own origin", () => {
+    const amelia = sitemapEntries(SITE_CONFIGS.amelia.seo.canonicalHost).map((entry) => entry.loc);
+    const omaya = sitemapEntries(PUBLIC_CANONICAL_HOST).map((entry) => entry.loc);
+
+    expect(amelia).toContain('https://ameliatravel.bg/maroko-za-zheni-pateshestvenichki/');
+    expect(amelia).toContain('https://ameliatravel.bg/tour-item/india-tour/');
+    expect(amelia).not.toContain('https://ameliatravel.bg/tours-list/');
+    expect(amelia.every((loc) => loc.startsWith('https://ameliatravel.bg/'))).toBe(true);
+    expect(omaya).not.toContain(`${PUBLIC_CANONICAL_HOST}/maroko-za-zheni-pateshestvenichki/`);
+    expect(omaya).not.toContain(`${PUBLIC_CANONICAL_HOST}/tour-item/india-tour/`);
   });
 
   it('resolves the routes whose table key and router key disagree', () => {

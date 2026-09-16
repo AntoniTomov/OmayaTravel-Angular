@@ -21,6 +21,7 @@
   display: grid;
   min-height: 70svh;
   place-items: center;
+  justify-content: center;
   padding: 10.5rem 1.5rem 6rem;
   color: tokens.$omaya-color-white;
   background-color: tokens.$omaya-color-dark;
@@ -34,6 +35,14 @@
   z-index: 1;
   background: rgb(var(--omaya-color-overlay-rgb) / 46%);
   content: '';
+}
+
+// Clips the held hero photograph (see styles.scss). The hero itself cannot clip, because the trip
+// search menus hang below it.
+.homepage__hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
 }
 
 .homepage__hero-image {
@@ -154,8 +163,8 @@
 .homepage__trip-search > button {
   color: tokens.$omaya-color-white;
   font-size: 0.86rem;
-  background: tokens.$omaya-color-gold;
-  border: 1px solid tokens.$omaya-color-gold;
+  background: var(--omaya-color-accent);
+  border: 1px solid var(--omaya-color-accent);
   border-radius: 2px;
   transition:
     color tokens.$omaya-transition-fast,
@@ -199,7 +208,7 @@
 }
 
 .homepage__carousel-button--active {
-  background: tokens.$omaya-color-gold !important;
+  background: var(--omaya-color-accent) !important;
 }
 
 .homepage__newsletter {
@@ -271,7 +280,7 @@
 }
 
 .homepage__newsletter-form button {
-  border: 1px solid tokens.$omaya-color-gold;
+  border: 1px solid var(--omaya-color-accent);
   padding: 0 1.35rem;
   color: tokens.$omaya-color-white;
   background: var(--omaya-color-heading);
@@ -315,8 +324,10 @@
     padding: 1rem;
   }
 
+  // Scales down on narrow phones, where a long Bulgarian word at 3rem is wider than the screen.
   .homepage__hero h1 {
-    font-size: 3rem;
+    padding-inline: 1rem;
+    font-size: clamp(1.9rem, 9vw, 3rem);
   }
 
   .homepage__newsletter-inner,

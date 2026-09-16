@@ -5,8 +5,11 @@
 }
 
 .travel-match {
+  padding: 4.5rem 0 5rem;
   color: tokens.$omaya-color-ink;
-  background: tokens.$omaya-color-white;
+  background:
+    var(--travel-match-background-image, none) center top / cover no-repeat,
+    var(--omaya-color-page, #{tokens.$omaya-color-white});
 }
 
 .travel-match__inner {
@@ -65,7 +68,7 @@
 }
 
 .travel-match__item:is(:hover, :focus-visible) h3 {
-  color: tokens.$omaya-color-gold;
+  color: var(--omaya-color-accent);
 }
 
 .travel-match__item:focus-visible {
