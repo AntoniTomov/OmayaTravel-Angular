@@ -26,6 +26,10 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     title: 'Kyrgyzstan for Women Travellers: What to Expect',
     date: 'September 8, 2026',
     image: {
+      src: '/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp',
+      alt: 'Kyrgyz woman and children in traditional dress in a mountain pasture',
+    },
+    heroImage: {
       src: '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp',
       alt: 'Mountain landscape on a Kyrgyzstan journey',
     },
