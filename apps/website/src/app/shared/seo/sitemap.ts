@@ -1,4 +1,6 @@
-import { SITE_CONFIGS } from '../../../sites';
+import { DEFAULT_SITE_ID, SITE_CONFIGS } from '../../../sites';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
+import type { SiteConfig } from '../../../sites/site.types';
 import { findBlogMetadataBySlug } from '../content/blog-metadata-content';
 import { findTourBySlug } from '../content/tour-content';
 import {
@@ -42,6 +44,14 @@ function matchSiteByHost(requestHost: string | null | undefined) {
 
   return Object.values(SITE_CONFIGS).find(
     (config) => config.domain && config.domain.toLowerCase() === hostname,
+  );
+}
+
+/** The site whose canonical origin this is; an unknown origin is treated as the default site. */
+export function siteForCanonicalHost(canonicalHost: string): SiteConfig {
+  return (
+    Object.values(SITE_CONFIGS).find((config) => config.seo.canonicalHost === canonicalHost) ??
+    SITE_CONFIGS[DEFAULT_SITE_ID]
   );
 }
 
@@ -102,14 +112,20 @@ export interface RouteIndexability {
  * runtime: authored tour content, then blog content, then the destination registry, then the static
  * registry. Exported so specs assert against this rather than a copy that can drift.
  */
-export function routeIndexability(route: PublicRouteDefinition): RouteIndexability {
+export function routeIndexability(
+  route: PublicRouteDefinition,
+  site: SiteConfig = SITE_CONFIGS[DEFAULT_SITE_ID],
+): RouteIndexability {
   if (route.type === 'tour-detail') {
     // Tours carry their own authored `seo` copy and are always indexable.
-    return { resolved: Boolean(findTourBySlug(route.path.split('/').pop())), noIndex: false };
+    return {
+      resolved: Boolean(findTourBySlug(route.path.split('/').pop(), site.id)),
+      noIndex: false,
+    };
   }
 
   if (route.type === 'blog-article') {
-    return { resolved: Boolean(findBlogMetadataBySlug(route.path)), noIndex: false };
+    return { resolved: Boolean(findBlogMetadataBySlug(route.path, site.id)), noIndex: false };
   }
 
   if (route.type === 'destination-detail') {
@@ -121,28 +137,42 @@ export function routeIndexability(route: PublicRouteDefinition): RouteIndexabili
 
   const metadata = STATIC_PAGE_METADATA[registryKey(route)];
 
+  // Other brands title their pages from their own `pageSeo` or site defaults, so every page
+  // resolves; the registry still decides which kinds of page stay out of the index.
+  if (site.id !== DEFAULT_SITE_ID) {
+    return { resolved: true, noIndex: Boolean(metadata?.noIndex) };
+  }
+
   return { resolved: Boolean(metadata), noIndex: Boolean(metadata?.noIndex) };
 }
 
-function isIndexable(route: PublicRouteDefinition): boolean {
-  const { resolved, noIndex } = routeIndexability(route);
+function isIndexable(route: PublicRouteDefinition, site: SiteConfig): boolean {
+  const { resolved, noIndex } = routeIndexability(route, site);
 
   return resolved && !noIndex;
 }
 
-function lastModified(route: PublicRouteDefinition): string | undefined {
+function lastModified(route: PublicRouteDefinition, site: SiteConfig): string | undefined {
   if (route.type !== 'blog-article') {
     return undefined;
   }
 
-  const post = findBlogMetadataBySlug(route.path);
+  const post = findBlogMetadataBySlug(route.path, site.id);
   return post?.modifiedAt ?? post?.publishedAt;
 }
 
+/**
+ * Every brand is served from the same route table, so each site's sitemap lists only the routes
+ * that site publishes, resolved against that site's own tours and articles.
+ */
 export function sitemapEntries(canonicalHost = PUBLIC_CANONICAL_HOST): readonly SitemapEntry[] {
-  return PUBLIC_INDEXABLE_ROUTES.filter(isIndexable).map((route) => ({
+  const site = siteForCanonicalHost(canonicalHost);
+
+  return PUBLIC_INDEXABLE_ROUTES.filter(
+    (route) => isSiteRouteEnabled(site, route.canonicalPath) && isIndexable(route, site),
+  ).map((route) => ({
     loc: `${canonicalHost}${route.canonicalPath}`,
-    lastmod: lastModified(route),
+    lastmod: lastModified(route, site),
   }));
 }
 

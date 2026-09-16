@@ -8,6 +8,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { destinationDetailCanMatch, routes, tourDetailCanMatch } from './app.routes';
 import { serverRoutes } from './app.routes.server';
+import { SITE_CONFIGS } from '../sites';
+import { isSiteRouteEnabled } from '../sites/site-routes';
 import { ContactPage } from './features/contact-page/contact-page';
 import { DmcPartnerBulgaria } from './features/dmc-partner-bulgaria/dmc-partner-bulgaria';
 import { EnquirePage } from './features/enquire-page/enquire-page';
@@ -78,17 +80,25 @@ describe('app routes', () => {
     expect(routes.at(-1)?.data?.['routeStatus']).toBe(404);
   });
 
-  it('prerenders approved static public routes on the server route config', () => {
-    const prerenderedPaths = serverRoutes
-      .filter((route) => route.renderMode === RenderMode.Prerender)
-      .map((route) => route.path);
+  it('prerenders the approved static routes Omaya publishes and renders the rest on request', () => {
+    const renderModes = new Map(serverRoutes.map((route) => [route.path, route.renderMode]));
+    const omaya = SITE_CONFIGS.omaya;
 
-    for (const route of PUBLIC_STATIC_PRERENDER_ROUTES) {
-      expect(prerenderedPaths).toContain(route.path);
-    }
+    // Prerendering renders as the default site, so a route only another brand publishes has to be
+    // rendered per request, where the host picks the site, or it would be baked as a redirect.
+    const mismatched = PUBLIC_STATIC_PRERENDER_ROUTES.filter(
+      (route) =>
+        renderModes.get(route.path) !==
+        (isSiteRouteEnabled(omaya, route.canonicalPath) ? RenderMode.Prerender : RenderMode.Server),
+    ).map((route) => route.path);
+
+    expect(mismatched).toEqual([]);
+    expect(renderModes.get('standarten-formulyar')).toBe(RenderMode.Server);
+    expect(renderModes.get('india-otblizo')).toBe(RenderMode.Server);
+    expect(renderModes.get('contact')).toBe(RenderMode.Prerender);
   });
 
-  it('prerenders approved destination and tour params without fallback', async () => {
+  it('prerenders approved destination and Omaya tour params, rendering other tours on request', async () => {
     const destinationRoute = serverRoutes.find(
       (route) => route.path === 'destinations/:destinationSlug',
     );
@@ -107,10 +117,14 @@ describe('app routes', () => {
       PUBLIC_DESTINATION_SLUGS.map((destinationSlug) => ({ destinationSlug })),
     );
     await expect(tourRoute.getPrerenderParams()).resolves.toEqual(
-      PUBLIC_TOUR_SLUGS.map((tourSlug) => ({ tourSlug })),
+      PUBLIC_TOUR_SLUGS.filter((tourSlug) => tourSlug !== 'india-tour').map((tourSlug) => ({
+        tourSlug,
+      })),
     );
     expect(destinationRoute.fallback).toBe(PrerenderFallback.None);
-    expect(tourRoute.fallback).toBe(PrerenderFallback.None);
+    // Amelia's India tour is not prerendered, so it renders on request; an unknown slug still
+    // answers 404 because the not-found page sets the status itself.
+    expect(tourRoute.fallback).toBe(PrerenderFallback.Server);
   });
 
   it('does not use a prerendered wildcard that would mask unknown route handling', () => {

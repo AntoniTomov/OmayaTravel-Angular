@@ -23,15 +23,20 @@ interface TravelMatchText {
 
 interface TranslationDictionary {
   common: Record<string, string>;
+  cookieConsent: Record<string, string>;
+  newsletterPopup: Record<string, string>;
   header: Record<string, string>;
   footer: Record<string, string>;
   homepage: Record<string, string>;
+  tourDetail: Record<string, string>;
+  notYet: Record<string, string>;
   navigationGroups: readonly NavigationGroup[];
   navigationLinks: readonly NavigationLink[];
   destinations: readonly TripSearchDestination[];
   months: readonly string[];
   travelMatch: readonly TravelMatchText[];
   featuredTrips: readonly FeaturedTripText[];
+  weekdays: readonly string[];
 }
 
 const EN: TranslationDictionary = {
@@ -39,12 +44,30 @@ const EN: TranslationDictionary = {
     english: 'English',
     bulgarian: 'Bulgarian',
   },
+  cookieConsent: {
+    label: 'Cookie consent',
+    title: 'Cookie Policy',
+    body: 'We use essential cookies to run the website and optional analytics/marketing cookies to understand visits and improve our travel offers.',
+    policyLink: 'Cookie Policy',
+    reject: 'Reject',
+    accept: 'Accept',
+  },
+  newsletterPopup: {
+    close: 'Close newsletter signup',
+    title: 'Wanderlust detected',
+    titleSecondLine: "Let's stay connected",
+    body: "We'll only send travel inspiration and new programs — no spam, we promise.",
+    signUp: 'SIGN UP',
+    noThanks: 'NO, THANKS',
+    emailLabel: 'Email address',
+    joining: 'JOINING...',
+  },
   header: {
     followUs: 'Follow us:',
     homeLabel: 'Omaya Travel home',
     openMenu: 'Open navigation menu',
     openSearch: 'Open site search',
-    searchTitle: 'Search Omaya Travel',
+    searchTitlePrefix: 'Search',
     closeSearch: 'Close',
     searchLabel: 'Search term',
     searchButton: 'Search',
@@ -102,6 +125,77 @@ const EN: TranslationDictionary = {
     blogCopyMiddle: 'Discover more about',
     blogCopyStrongTwo: 'local food, tradition and history',
     blogCopySuffix: 'Read the stories that make you want to travel.',
+    newsletterTitle: 'Join Newsletter',
+    newsletterSubtitle: 'To receive our best deals',
+    newsletterSubmit: 'Subscribe',
+    newsletterEmail: 'Email address',
+    newsletterEmailPlaceholder: 'Email address',
+  },
+  tourDetail: {
+    sectionsLabel: 'Tour detail sections',
+    discoverMoreTours: 'Discover more tours',
+    tabInformation: 'Information',
+    tabTourPlan: 'Tour Plan',
+    tabGallery: 'Gallery',
+    tabFaq: 'FAQ',
+    durationDays: 'Days',
+    durationNights: 'Nights',
+    availableDates: 'Available dates:',
+    priceUnitPrefix: '/ per',
+    groupSize: 'Group size:',
+    people: 'people',
+    highlightsTitle: 'Tour Highlights',
+    highlightsTitleBulgaria: 'Highlights of our Bulgaria Tour',
+    departureReturnTitle: 'Departure/Return Location',
+    includedTitle: 'Included',
+    notIncludedTitle: 'Not Included',
+    tourPlanTitle: 'Tour Plan',
+    galleryLabel: 'Tour gallery',
+    galleryPreviewPrefix: 'Preview gallery image: ',
+    bookingLabel: 'Tour booking',
+    bookingTitle: 'Book this tour',
+    fieldName: 'Name*',
+    fieldEmail: 'Email*',
+    fieldConfirmEmail: 'Confirm Email*',
+    fieldPhone: 'Phone*',
+    fieldPeople: 'Number of people',
+    fieldMessage: 'Message',
+    selectStartDate: 'Select start date*',
+    calendarLabel: 'Available tour dates',
+    previousMonth: 'Previous month',
+    nextMonth: 'Next month',
+    calendarLegendLabel: 'Calendar legend',
+    legendStart: 'Start of tour',
+    legendPeriod: 'Following tour dates',
+    dayStartDate: 'start date',
+    dayPastStartDate: 'past start date',
+    dayFor: 'for',
+    dayTourPeriod: 'tour period',
+    dayUnavailable: 'unavailable',
+    termsPrefix: 'I agree to the',
+    termsLink: 'Terms and Conditions',
+    bookNow: 'Book Now',
+    sending: 'Sending...',
+    bookingSuccess:
+      'Thank you. We received your booking request and will reply as soon as possible.',
+    bookingError: 'We could not send your booking request right now.',
+    bookingEmailMismatch: 'Please make sure both email fields match.',
+    bookingDateRequired: 'Please select a tour start date.',
+    lightboxLabel: 'Tour gallery preview',
+    lightboxClose: 'Close gallery preview',
+    lightboxPrevious: 'Show previous gallery image',
+    lightboxNext: 'Show next gallery image',
+    lightboxOpenFullSizePrefix: 'Open full-size image: ',
+    emptyTitle: 'Tour details coming soon',
+    emptyBody:
+      'This tour route is ready, and the reusable tour page will render here once its content object is added.',
+    emptyHomeLink: 'Return home',
+  },
+  notYet: {
+    heroTitle: 'Not Yet, But Soon',
+    message:
+      'Not every month holds an adventure - but the next one is never far. See all available tours.',
+    cta: 'See all tours',
   },
   navigationGroups: [
     {
@@ -167,6 +261,7 @@ const EN: TranslationDictionary = {
     'November',
     'December',
   ],
+  weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   travelMatch: [
     {
       title: 'Curious about the world',
@@ -229,12 +324,30 @@ const BG: TranslationDictionary = {
     english: 'Английски',
     bulgarian: 'Български',
   },
+  cookieConsent: {
+    label: 'Съгласие за бисквитки',
+    title: 'Политика за бисквитки',
+    body: 'Използваме задължителни бисквитки, за да работи сайтът, и по избор аналитични и маркетингови бисквитки, за да разбираме посещенията и да подобряваме предложенията си.',
+    policyLink: 'Политика за бисквитки',
+    reject: 'Откажи',
+    accept: 'Приемам',
+  },
+  newsletterPopup: {
+    close: 'Затвори',
+    title: 'Готова за твоето следващо приключение?',
+    titleSecondLine: 'Присъедини се към Amelia Travel',
+    body: 'Ще изпращаме само вдъхновение за пътешествия и нови програми - без спам, обещаваме.',
+    signUp: 'ЗАПИШИ МЕ',
+    noThanks: 'НЕ, БЛАГОДАРЯ',
+    emailLabel: 'Имейл адрес',
+    joining: 'ЗАПИСВАНЕ...',
+  },
   header: {
     followUs: 'Последвайте ни:',
     homeLabel: 'Начало на Omaya Travel',
     openMenu: 'Отвори менюто',
     openSearch: 'Отвори търсенето',
-    searchTitle: 'Търсене в Omaya Travel',
+    searchTitlePrefix: 'Търсене в',
     closeSearch: 'Затвори',
     searchLabel: 'Търсене',
     searchButton: 'Търси',
@@ -251,11 +364,11 @@ const BG: TranslationDictionary = {
     ourStory: 'Нашата история',
     faqs: 'Често задавани въпроси',
     paymentMethods: 'Начини на плащане',
-    legalPrivacy: 'Правна информация',
+    legalPrivacy: 'Общи условия',
     cookiePolicy: 'Политика за бисквитки',
     privacyPolicy: 'Политика за поверителност',
     terms: 'Общи условия',
-    license: 'Лиценз на Omaya Travel',
+    license: 'Лиценз',
     copyright: '© 2026 Omaya Travel, всички права запазени',
     backToTop: 'Обратно нагоре',
   },
@@ -291,6 +404,76 @@ const BG: TranslationDictionary = {
     blogCopyMiddle: 'Открийте повече за',
     blogCopyStrongTwo: 'местната храна, традиции и история',
     blogCopySuffix: 'Прочетете историите, които събуждат желание за път.',
+    newsletterTitle: 'Абонирайте се',
+    newsletterSubtitle: 'За да получавате най-добрите ни оферти',
+    newsletterSubmit: 'Абонирайте се',
+    newsletterEmail: 'Имейл адрес',
+    newsletterEmailPlaceholder: 'Вашият имейл',
+  },
+  tourDetail: {
+    sectionsLabel: 'Секции на пътуването',
+    discoverMoreTours: 'Открий още пътувания',
+    tabInformation: 'Информация',
+    tabTourPlan: 'Програма',
+    tabGallery: 'Галерия',
+    tabFaq: 'Въпроси',
+    durationDays: 'дни',
+    durationNights: 'нощувки',
+    availableDates: 'Дати:',
+    priceUnitPrefix: '/ на',
+    groupSize: 'Група:',
+    people: 'души',
+    highlightsTitle: 'Акценти',
+    highlightsTitleBulgaria: 'Акценти от пътуването в България',
+    departureReturnTitle: 'Начало и край на пътуването',
+    includedTitle: 'Включено в цената',
+    notIncludedTitle: 'Не е включено',
+    tourPlanTitle: 'Програма',
+    galleryLabel: 'Галерия на пътуването',
+    galleryPreviewPrefix: 'Преглед на снимка: ',
+    bookingLabel: 'Резервация на пътуването',
+    bookingTitle: 'Резервирай мястото си',
+    fieldName: 'Име*',
+    fieldEmail: 'Имейл*',
+    fieldConfirmEmail: 'Потвърди имейла*',
+    fieldPhone: 'Телефон*',
+    fieldPeople: 'Брой пътуващи',
+    fieldMessage: 'Съобщение',
+    selectStartDate: 'Избери начална дата*',
+    calendarLabel: 'Свободни дати за пътуването',
+    previousMonth: 'Предишен месец',
+    nextMonth: 'Следващ месец',
+    calendarLegendLabel: 'Легенда на календара',
+    legendStart: 'Начало на пътуването',
+    legendPeriod: 'Следващи дни от пътуването',
+    dayStartDate: 'начална дата',
+    dayPastStartDate: 'отминала начална дата',
+    dayFor: 'за',
+    dayTourPeriod: 'ден от пътуването',
+    dayUnavailable: 'няма пътуване',
+    termsPrefix: 'Съгласна съм с',
+    termsLink: 'Общите условия',
+    bookNow: 'Изпрати заявка',
+    sending: 'Изпращане...',
+    bookingSuccess: 'Благодарим ти. Получихме заявката и ще отговорим възможно най-скоро.',
+    bookingError: 'Не успяхме да изпратим заявката в момента.',
+    bookingEmailMismatch: 'Моля, увери се, че двата имейл адреса съвпадат.',
+    bookingDateRequired: 'Моля, избери начална дата на пътуването.',
+    lightboxLabel: 'Преглед на галерията',
+    lightboxClose: 'Затвори прегледа',
+    lightboxPrevious: 'Покажи предишната снимка',
+    lightboxNext: 'Покажи следващата снимка',
+    lightboxOpenFullSizePrefix: 'Отвори снимката в пълен размер: ',
+    emptyTitle: 'Скоро тук ще има повече информация',
+    emptyBody:
+      'Страницата на това пътуване е готова и ще се зареди тук веднага щом добавим съдържанието ѝ.',
+    emptyHomeLink: 'Обратно към началото',
+  },
+  notYet: {
+    heroTitle: 'Все още не, но скоро',
+    message:
+      'Не всеки месец крие приключение - но следващото никога не е далеч. Разгледай всички налични пътувания.',
+    cta: 'Виж всички пътувания',
   },
   navigationGroups: [
     {
@@ -356,6 +539,7 @@ const BG: TranslationDictionary = {
     'Ноември',
     'Декември',
   ],
+  weekdays: ['Пон', 'Вто', 'Сря', 'Чет', 'Пет', 'Съб', 'Нед'],
   travelMatch: [
     {
       title: 'Пътувайте с хора на вашата възраст',
@@ -465,5 +649,9 @@ export class OmayaI18n {
 
   featuredTrips(): readonly FeaturedTripText[] {
     return TRANSLATIONS[this.locale()].featuredTrips;
+  }
+
+  weekdays(): readonly string[] {
+    return TRANSLATIONS[this.locale()].weekdays;
   }
 }

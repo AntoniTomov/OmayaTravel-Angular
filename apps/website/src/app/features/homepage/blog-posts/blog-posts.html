@@ -13,7 +13,7 @@
     </header>
 
     <div class="blog-posts__grid">
-      @for (post of posts; track post.slug) {
+      @for (post of posts(); track post.slug) {
         <article class="blog-posts__card">
           <a [routerLink]="'/' + post.slug + '/'" class="blog-posts__card-link">
             <span class="blog-posts__image">

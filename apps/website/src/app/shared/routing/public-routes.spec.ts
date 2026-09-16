@@ -1,4 +1,5 @@
 import {
+  canonicalHost,
   findRedirect,
   trailingSlashRedirectTarget,
   canonicalUrl,
@@ -8,11 +9,15 @@ import {
   PUBLIC_ROUTE_PATTERNS,
   withTrailingSlash,
 } from './public-routes';
+import { AMELIA_SITE_CONFIG } from '../../../sites/amelia/site.config';
+import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
 
 describe('public route definitions', () => {
   it('uses the approved canonical host', () => {
     expect(PUBLIC_CANONICAL_HOST).toBe('https://omayatravel.com');
     expect(canonicalUrl('/destinations/')).toBe('https://omayatravel.com/destinations/');
+    expect(canonicalHost(OMAYA_SITE_CONFIG)).toBe('https://omayatravel.com');
+    expect(canonicalUrl('/contact/', AMELIA_SITE_CONFIG)).toBe('https://ameliatravel.bg/contact/');
   });
 
   it('keeps trailing slash canonicals for public HTML routes', () => {

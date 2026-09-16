@@ -76,21 +76,30 @@ export class PublicHeader implements AfterViewInit {
   protected readonly navigationLinks = computed(
     () => this.activeSite.site().content.navigationLinks,
   );
+  protected readonly contact = computed(() => this.activeSite.site().contact);
+  protected readonly searchTitle = computed(
+    () => `${this.i18n.t('header.searchTitlePrefix')} ${this.activeSite.site().brand.name}`,
+  );
+  protected readonly socialLinks = computed(() => this.activeSite.site().socialLinks);
+  protected readonly hasTopBarLinks = computed(
+    () => this.contact().phoneNumbers.length > 0 || this.socialLinks().length > 0,
+  );
   protected readonly logo = computed(() => {
     const brand = this.activeSite.site().brand;
-    const visualSrc =
-      this.isSolidHeader() || this.isMobileMenuOpen() ? brand.solidLogoSrc : brand.logoSrc;
+    const solid = this.isSolidHeader() || this.isMobileMenuOpen();
+    const visualSrc = solid ? brand.solidLogoSrc : brand.logoSrc;
+    const size = solid ? brand.solidLogoSize : brand.logoSize;
 
     // The logo is 5.8rem wide, and each pixel ratio picks a lossless copy at its width. The srcset
     // used to describe both logos as 150px wide, when the white file was 100px and the black 400px,
-    // and sizes was never bound, so phones stretched the white file. Both logos are the same 400x267
-    // artwork, which is the shape width and height declare.
+    // and sizes was never bound, so phones stretched the white file. width and height declare the
+    // logo file's own shape, which differs between brands and between a brand's two logos.
     return {
       src: visualSrc,
       srcset: LOGO_SRCSETS[visualSrc] ?? visualSrc,
       sizes: '5.8rem',
-      width: 400,
-      height: 267,
+      width: size.width,
+      height: size.height,
       alt: brand.logoAlt,
       homeLabel: brand.homeLabel,
       loading: 'eager',
@@ -299,5 +308,9 @@ export class PublicHeader implements AfterViewInit {
     const path = url.split(/[?#]/)[0]?.replace(/\/+$/, '') || '/';
 
     return path === '' ? '/' : path;
+  }
+
+  protected phoneHref(phoneNumber: string): string {
+    return `tel:${phoneNumber.replace(/[^\d+]/g, '')}`;
   }
 }

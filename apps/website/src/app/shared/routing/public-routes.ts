@@ -1,3 +1,5 @@
+import type { SiteConfig } from '../../../sites/site.types';
+
 export const PUBLIC_CANONICAL_HOST = 'https://omayatravel.com';
 
 export type PublicRouteType =
@@ -28,6 +30,7 @@ export const PUBLIC_DESTINATION_SLUGS = ['algeria', 'bulgaria', 'kyrgyzstan', 'm
 export const PUBLIC_TOUR_SLUGS = [
   'algeria-desert-expedition-tadrart-rouge',
   'bulgaria-beyond-the-ordinary',
+  'india-tour',
   'kyrgyzstan-tour',
   'morocco-tour',
   'tour-item-morocco-solo-travellers-tour',
@@ -49,6 +52,9 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'song-kul-yurt-stay-packing-guide',
   'bulgaria-classic-women-only-tour-comparison',
   '10-unmissable-places-to-visit-on-your-bulgaria-trip',
+  'maroko-za-zheni-pateshestvenichki',
+  'ezeroto-song-kul-kirgistan',
+  'india-otblizo',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
   'the-complete-visitor-guide-to-rila-monastery',
@@ -73,6 +79,7 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'privacy-policy',
   'cookie-policy',
   'termsconditions',
+  'standarten-formulyar',
 ] as const;
 
 export const PUBLIC_ROUTE_PATTERNS = {
@@ -147,8 +154,12 @@ export const PUBLIC_REDIRECTS: readonly PublicRedirectDefinition[] = [
   ...PUBLIC_EXACT_REDIRECTS,
 ];
 
-export function canonicalUrl(canonicalPath: string): string {
-  return `${PUBLIC_CANONICAL_HOST}${canonicalPath}`;
+export function canonicalUrl(canonicalPath: string, site?: Pick<SiteConfig, 'seo'>): string {
+  return `${canonicalHost(site)}${canonicalPath}`;
+}
+
+export function canonicalHost(site?: Pick<SiteConfig, 'seo'>): string {
+  return site?.seo.canonicalHost ?? PUBLIC_CANONICAL_HOST;
 }
 
 /**

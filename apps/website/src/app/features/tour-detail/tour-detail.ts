@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
+import { ActiveSite } from '../../../sites/active-site';
+import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { PublicBreadcrumbs } from '../../shared/breadcrumbs/public-breadcrumbs';
 import {
   TourWebHeroMobileSrcsetPipe,
@@ -27,9 +29,11 @@ import {
   tourFaqItems,
 } from '../../shared/content/booking-conditions';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 import {
+  TourDeparture,
   TourDetailContent,
   TourFaqItem,
   TourHighlight,
@@ -86,11 +90,25 @@ export class TourDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly analytics = inject(OmayaAnalytics);
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly activeSite = inject(ActiveSite);
+  protected readonly i18n = inject(OmayaI18n);
   private readonly tourSlug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('tourSlug'))),
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
   );
 
+  protected readonly discoverToursEnabled = computed(() =>
+    isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
+  );
+  // The breadcrumb trail runs through the destination page, so it only shows where that page exists.
+  protected readonly destinationPageEnabled = computed(() => {
+    const country = this.tour()?.destination.country;
+
+    return (
+      Boolean(country) &&
+      isSiteRouteEnabled(this.activeSite.site(), '/destinations/' + country!.toLowerCase() + '/')
+    );
+  });
   protected readonly activeTab = signal<TourTab>('information');
   protected readonly activeGalleryIndex = signal<number | null>(null);
   private galleryTouchStartX = 0;
@@ -100,9 +118,11 @@ export class TourDetail {
   protected readonly bookingSubmitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly bookingSubmitMessage = signal('');
   protected readonly calendarMonth = signal(this.startOfMonth(new Date()));
-  protected readonly calendarWeekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
+  protected readonly calendarWeekdays = computed(() => this.i18n.weekdays());
   protected readonly todayIso = this.toIsoDate(new Date());
-  protected readonly tour = computed(() => findTourBySlug(this.tourSlug()));
+  protected readonly tour = computed(() =>
+    findTourBySlug(this.tourSlug(), this.activeSite.site().id),
+  );
   /**
    * `sizes` for the hero. The hero is a fixed 515px box with `object-fit: cover`, which scales the
    * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen —
@@ -122,11 +142,13 @@ export class TourDetail {
 
     return `max(100vw, ${Math.ceil((515 * width) / height)}px)`;
   });
-  protected readonly relatedGuides = computed(
-    () =>
+  // Guides are articles, so a site only links the ones it publishes.
+  protected readonly relatedGuides = computed(() =>
+    (
       DESTINATION_CONTENT.find(
         (destination) => destination.name === this.tour()?.destination.country,
-      )?.guides ?? [],
+      )?.guides ?? []
+    ).filter((guide) => isSiteRouteEnabled(this.activeSite.site(), '/' + guide.slug + '/')),
   );
   protected readonly tourDepartureWindows = computed<readonly TourDepartureWindow[]>(() => {
     const tour = this.tour();
@@ -135,20 +157,23 @@ export class TourDetail {
       return [];
     }
 
-    return [...tour.departures].sort().map((departure) => {
-      const start = this.parseIsoDate(departure);
-      const end = this.addDays(start, tour.duration.days - 1);
+    return tour.departures
+      .map((departure) => this.departureDate(departure))
+      .sort()
+      .map((departure) => {
+        const start = this.parseIsoDate(departure);
+        const end = this.addDays(start, tour.duration.days - 1);
 
-      return {
-        start,
-        end,
-        iso: departure,
-        tourTitle: tour.title,
-      };
-    });
+        return {
+          start,
+          end,
+          iso: departure,
+          tourTitle: tour.title,
+        };
+      });
   });
   protected readonly calendarMonthLabel = computed(() =>
-    this.calendarMonth().toLocaleDateString('en-GB', {
+    this.calendarMonth().toLocaleDateString(this.dateLocale(), {
       month: 'long',
       year: 'numeric',
     }),
@@ -174,10 +199,16 @@ export class TourDetail {
         date,
         iso,
         label: matchingStart
-          ? `${date.toLocaleDateString('en-GB')}, ${
-              isPast ? 'past start date' : 'start date'
-            } for ${matchingStart.tourTitle}`
-          : `${date.toLocaleDateString('en-GB')}${isTourPeriod ? ', tour period' : ', unavailable'}`,
+          ? `${date.toLocaleDateString(this.dateLocale())}, ${
+              isPast
+                ? this.i18n.t('tourDetail.dayPastStartDate')
+                : this.i18n.t('tourDetail.dayStartDate')
+            } ${this.i18n.t('tourDetail.dayFor')} ${matchingStart.tourTitle}`
+          : `${date.toLocaleDateString(this.dateLocale())}, ${
+              isTourPeriod
+                ? this.i18n.t('tourDetail.dayTourPeriod')
+                : this.i18n.t('tourDetail.dayUnavailable')
+            }`,
         isCurrentMonth,
         isTourPeriod,
         isStartDate: Boolean(matchingStart),
@@ -190,10 +221,10 @@ export class TourDetail {
     const selectedDate = this.selectedBookingDate();
 
     if (!selectedDate) {
-      return 'Select start date*';
+      return this.i18n.t('tourDetail.selectStartDate');
     }
 
-    return this.parseIsoDate(selectedDate).toLocaleDateString('en-GB', {
+    return this.parseIsoDate(selectedDate).toLocaleDateString(this.dateLocale(), {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
@@ -211,15 +242,15 @@ export class TourDetail {
   });
   protected readonly tabs = computed<readonly TourTabDefinition[]>(() => {
     const tabs: TourTabDefinition[] = [
-      { id: 'information', label: 'Information', icon: 'info' },
-      { id: 'tour-plan', label: 'Tour Plan', icon: 'menu_book' },
-      { id: 'gallery', label: 'Gallery', icon: 'photo_camera' },
+      { id: 'information', label: this.i18n.t('tourDetail.tabInformation'), icon: 'info' },
+      { id: 'tour-plan', label: this.i18n.t('tourDetail.tabTourPlan'), icon: 'menu_book' },
+      { id: 'gallery', label: this.i18n.t('tourDetail.tabGallery'), icon: 'photo_camera' },
     ];
 
     // Always available: every tour has at least the booking conditions entry, even when the
     // content team has not authored destination-specific questions yet.
     if (this.tour()) {
-      tabs.push({ id: 'faq', label: 'FAQ', icon: 'help_outline' });
+      tabs.push({ id: 'faq', label: this.i18n.t('tourDetail.tabFaq'), icon: 'help_outline' });
     }
 
     return tabs;
@@ -249,8 +280,9 @@ export class TourDetail {
   /** Empty unless the tour has a guaranteed departure that is still in its departure list. */
   protected readonly guaranteedDeparture = computed(() => {
     const tour = this.tour();
+    const departureDates = tour?.departures.map((departure) => this.departureDate(departure)) ?? [];
     const guaranteed = (tour?.guaranteedDepartures ?? []).filter((date) =>
-      tour?.departures.includes(date),
+      departureDates.includes(date),
     );
 
     return guaranteed.length ? 'Guaranteed departure' : '';
@@ -264,15 +296,17 @@ export class TourDetail {
     }
 
     return new Map(
-      tour.departures.map((departure) => [
-        departure,
-        [
-          tour.departureNotes?.[departure],
-          tour.guaranteedDepartures?.includes(departure) ? 'Guaranteed' : '',
-        ]
-          .filter(Boolean)
-          .join(' · '),
-      ]),
+      tour.departures
+        .map((departure) => this.departureDate(departure))
+        .map((date) => [
+          date,
+          [
+            tour.departureNotes?.[date],
+            tour.guaranteedDepartures?.includes(date) ? 'Guaranteed' : '',
+          ]
+            .filter(Boolean)
+            .join(' · '),
+        ]),
     );
   });
   protected readonly contentClasses = computed(() => ({
@@ -412,7 +446,7 @@ export class TourDetail {
 
     if (email.toLowerCase() !== confirmEmail.toLowerCase()) {
       this.bookingSubmitStatus.set('error');
-      this.bookingSubmitMessage.set('Please make sure both email fields match.');
+      this.bookingSubmitMessage.set(this.i18n.t('tourDetail.bookingEmailMismatch'));
       return;
     }
 
@@ -423,7 +457,7 @@ export class TourDetail {
 
     if (!tour?.departures.includes(selectedDate) || selectedDate < this.todayIso) {
       this.bookingSubmitStatus.set('error');
-      this.bookingSubmitMessage.set('Please select a tour start date.');
+      this.bookingSubmitMessage.set(this.i18n.t('tourDetail.bookingDateRequired'));
       return;
     }
 
@@ -455,9 +489,7 @@ export class TourDetail {
       form.reset();
       this.selectedBookingDate.set(null);
       this.bookingSubmitStatus.set('sent');
-      this.bookingSubmitMessage.set(
-        'Thank you. We received your booking request and will reply as soon as possible.',
-      );
+      this.bookingSubmitMessage.set(this.i18n.t('tourDetail.bookingSuccess'));
       this.analytics.trackEvent('generate_lead', {
         form_type: 'tour-booking',
         tour_slug: tour?.slug ?? '(unknown)',
@@ -466,9 +498,7 @@ export class TourDetail {
     }
 
     this.bookingSubmitStatus.set('error');
-    this.bookingSubmitMessage.set(
-      result.message ?? 'We could not send your booking request right now.',
-    );
+    this.bookingSubmitMessage.set(result.message ?? this.i18n.t('tourDetail.bookingError'));
   }
 
   protected showPreviousGalleryImage(): void {
@@ -498,12 +528,16 @@ export class TourDetail {
     return `${tour.price.currency}${tour.price.amount}`;
   }
 
+  protected priceUnitLabel(tour: TourDetailContent): string {
+    return `${this.i18n.t('tourDetail.priceUnitPrefix')} ${tour.price.unit}`;
+  }
+
   protected durationLabel(tour: TourDetailContent): string {
-    return `${tour.duration.days} Days ${tour.duration.nights} Nights`;
+    return `${tour.duration.days} ${this.i18n.t('tourDetail.durationDays')} ${tour.duration.nights} ${this.i18n.t('tourDetail.durationNights')}`;
   }
 
   protected groupSizeLabel(tour: TourDetailContent): string {
-    return `${tour.groupSize.min} - ${tour.groupSize.max} people`;
+    return `${tour.groupSize.min} - ${tour.groupSize.max} ${this.i18n.t('tourDetail.people')}`;
   }
 
   protected departureReturnLabel(tour: TourDetailContent): string {
@@ -522,8 +556,12 @@ export class TourDetail {
 
   protected highlightsHeading(tour: TourDetailContent): string {
     return tour.slug === 'bulgaria-beyond-the-ordinary'
-      ? 'Highlights of our Bulgaria Tour'
-      : 'Tour Highlights';
+      ? this.i18n.t('tourDetail.highlightsTitleBulgaria')
+      : this.i18n.t('tourDetail.highlightsTitle');
+  }
+
+  private dateLocale(): string {
+    return this.activeSite.site().locale === 'bg' ? 'bg-BG' : 'en-GB';
   }
 
   protected highlightTitleText(highlight: TourHighlight): string {
@@ -540,6 +578,14 @@ export class TourDetail {
     return typeof paragraph === 'string'
       ? paragraph
       : `${paragraph.text}${paragraph.linkText}${paragraph.trailingText}`;
+  }
+
+  protected departureDate(departure: TourDeparture): string {
+    return typeof departure === 'string' ? departure : departure.date;
+  }
+
+  protected departureAgeGroupLabel(departure: TourDeparture): string | undefined {
+    return typeof departure === 'string' ? undefined : departure.ageGroupLabel;
   }
 
   protected isExternalLink(link: string): boolean {

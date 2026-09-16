@@ -56,7 +56,7 @@ export class FeaturedTrips {
 
   protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
     this.activeSite.site().content.featuredTours.map((trip) => ({
-      eyebrow: trip.category,
+      eyebrow: trip.categoryLabel ?? trip.category,
       title: trip.title,
       price: trip.price,
       duration: trip.duration,
@@ -64,6 +64,11 @@ export class FeaturedTrips {
       target: trip.target,
       image: this.buildCardImage(trip.image, trip.alt),
     })),
+  );
+  protected readonly title = computed(
+    () =>
+      this.activeSite.site().content.featuredToursTitle ??
+      this.i18n.t('homepage.featuredTripsTitle'),
   );
   protected readonly activeTripIndex = signal(0);
 

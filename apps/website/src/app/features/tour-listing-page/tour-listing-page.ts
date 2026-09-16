@@ -11,6 +11,7 @@ import {
   departuresInMonth,
   tourForPath,
 } from '../../shared/content/tour-departures';
+import { tourDepartureDate } from '../../shared/content/tour-content';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import {
   TOUR_CARDS,
@@ -247,7 +248,11 @@ export class TourListingPage {
       const matchesMonth =
         monthNumber === 0
           ? year === undefined ||
-            Boolean(tour?.departures.some((date) => Number(date.slice(0, 4)) === year))
+            Boolean(
+              tour?.departures.some(
+                (departure) => Number(tourDepartureDate(departure).slice(0, 4)) === year,
+              ),
+            )
           : Boolean(tour && departuresInMonth(tour, monthNumber, year).length);
 
       return matchesSearch && matchesLocation && matchesCategory && matchesPrice && matchesMonth;

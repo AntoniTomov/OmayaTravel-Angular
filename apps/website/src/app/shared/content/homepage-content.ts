@@ -3,6 +3,7 @@ import { MediaReference } from '../media';
 export interface NavigationLink {
   label: string;
   target: string;
+  badge?: string;
   children?: readonly NavigationLink[];
 }
 

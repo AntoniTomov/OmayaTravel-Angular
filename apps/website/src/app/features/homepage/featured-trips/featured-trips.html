@@ -1,7 +1,7 @@
 <section class="featured-trips" aria-labelledby="featured-trips-title">
   <div class="featured-trips__inner">
     <div class="featured-trips__heading">
-      <h2 id="featured-trips-title">{{ i18n.t('homepage.featuredTripsTitle') }}</h2>
+      <h2 id="featured-trips-title">{{ title() }}</h2>
       <div
         class="featured-trips__controls"
         [attr.aria-label]="i18n.t('homepage.featuredTripsControls')"
@@ -73,7 +73,9 @@
                   [attr.fetchpriority]="trip.image.fetchPriority"
                 />
               </picture>
-              <span>{{ trip.eyebrow }}</span>
+              @if (trip.eyebrow) {
+                <span>{{ trip.eyebrow }}</span>
+              }
             </a>
 
             <div class="featured-trips__content">
@@ -82,10 +84,14 @@
                   trip.title
                 }}</a>
               </h3>
-              <p class="featured-trips__price">
-                {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
-              </p>
-              <p class="featured-trips__duration">{{ trip.duration }}</p>
+              @if (trip.price) {
+                <p class="featured-trips__price">
+                  {{ trip.price }} <span>{{ i18n.t('homepage.perPerson') }}</span>
+                </p>
+              }
+              @if (trip.duration) {
+                <p class="featured-trips__duration">{{ trip.duration }}</p>
+              }
               <p class="featured-trips__description">{{ trip.description }}</p>
             </div>
           </article>
