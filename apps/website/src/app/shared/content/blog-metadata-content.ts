@@ -23,19 +23,24 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
   },
   {
     slug: 'women-only-kyrgyzstan-what-to-expect',
-    title: 'A Women-only Journey Through Kyrgyzstan: What to Expect',
+    title: 'Kyrgyzstan for Women Travellers: What to Expect',
     date: 'September 8, 2026',
     image: {
+      src: '/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp',
+      alt: 'Kyrgyz woman and children in traditional dress in a mountain pasture',
+    },
+    heroImage: {
       src: '/assets/images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp',
       alt: 'Mountain landscape on a Kyrgyzstan journey',
     },
     publishedAt: '2026-09-08',
+    modifiedAt: '2026-09-16',
     category: 'Kyrgyzstan',
     comments: 0,
     excerpt:
-      'The group format, route and easy fitness rating of Omaya’s ten-day women-only Kyrgyzstan journey, from Bishkek to Song Kul and Issyk-Kul.',
+      'What to expect travelling in Kyrgyzstan as a woman: safety, what to wear, meeting Kyrgyz women, and how Omaya’s women-only group journey works.',
     preview:
-      'A city welcome, evenings at yurt camps and a route through lakes and mountain valleys give this women-only journey its changing rhythm. It is a ten-day trip from Bishkek back to Bishkek, with a small group of 6–12 travellers.',
+      'Kyrgyzstan is one of those countries people rarely consider until they see a photograph of Song Kul at dusk. Then the questions start, and for women planning the trip they tend to be the same ones: is it safe, what should I wear, what are the nights in a yurt camp actually like? Here is an honest answer to each, alongside how Omaya’s ten-day women-only journey from Bishkek is put together.',
   },
   {
     slug: 'song-kul-yurt-stay-packing-guide',

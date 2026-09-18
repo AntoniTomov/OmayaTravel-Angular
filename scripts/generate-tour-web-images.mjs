@@ -55,6 +55,7 @@ const inputs = [
   // page and bigger than the hero.
   "images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
   "images/blog-posts/Kyrgystan-post-preview-bgr.webp",
+  "images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
   // Tour heroes that were still WebP. The hero is the LCP element on every tour page, and these
   // were missed because this list is maintained by hand — tour-hero-avif.spec.ts now fails if a
   // tour hero has no AVIF, so the next tour cannot slip through the same way.
