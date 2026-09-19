@@ -69,6 +69,10 @@ interface CalendarDay {
   isSelectable: boolean;
 }
 
+const FITNESS_LEVEL_KEYS: Readonly<Record<string, `tourDetail.${string}`>> = {
+  Easy: 'tourDetail.fitnessEasy',
+};
+
 @Component({
   selector: 'app-tour-detail',
   imports: [
@@ -538,6 +542,14 @@ export class TourDetail {
 
   protected groupSizeLabel(tour: TourDetailContent): string {
     return `${tour.groupSize.min} - ${tour.groupSize.max} ${this.i18n.t('tourDetail.people')}`;
+  }
+
+  // Tours are authored with an English fitness rating; the dictionary holds the reading for each
+  // one, so the Bulgarian site shows "Физическа натовареност: Лека".
+  protected fitnessLevelLabel(tour: TourDetailContent): string {
+    const key = FITNESS_LEVEL_KEYS[tour.fitnessLevel];
+
+    return key ? this.i18n.t(key) : tour.fitnessLevel;
   }
 
   protected departureReturnLabel(tour: TourDetailContent): string {
