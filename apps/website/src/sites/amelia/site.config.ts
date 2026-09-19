@@ -61,5 +61,10 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
       url: 'https://www.instagram.com/ameliatravelbg/',
       icon: 'social-instagram',
     },
+    {
+      label: 'Facebook',
+      url: 'https://www.facebook.com/profile.php?id=61594041052662',
+      icon: 'social-facebook',
+    },
   ],
 };
