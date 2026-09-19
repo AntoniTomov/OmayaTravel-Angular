@@ -269,7 +269,7 @@ export class TourDetail {
   protected readonly faqItems = computed<readonly TourFaqItem[]>(() => {
     const tour = this.tour();
 
-    return tour ? tourFaqItems(tour) : [];
+    return tour ? tourFaqItems(tour, this.activeSite.site().id) : [];
   });
   protected readonly faqHeading = computed(() => {
     const tour = this.tour();
