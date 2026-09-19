@@ -112,7 +112,11 @@
                   </div>
                 </div>
               } @else {
-                <a [routerLink]="link.target" (click)="closeMenus()">
+                <a
+                  [routerLink]="link.target"
+                  [queryParams]="link.queryParams ?? null"
+                  (click)="closeMenus()"
+                >
                   {{ link.label }}
                   @if (link.badge) {
                     <span class="public-header__badge">{{ link.badge }}</span>

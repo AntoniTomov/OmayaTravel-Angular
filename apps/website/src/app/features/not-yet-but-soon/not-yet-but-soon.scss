@@ -13,8 +13,8 @@
   position: relative;
   display: grid;
   box-sizing: border-box;
-  height: 515px;
-  max-height: 515px;
+  height: 400px;
+  max-height: 400px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;
@@ -36,13 +36,29 @@
   content: '';
 }
 
-.not-yet__hero h1 {
+// The hero copy is one block so the eyebrow and the title travel together; the top margin clears
+// the fixed header, which overlaps the photograph.
+.not-yet__hero-copy {
   position: relative;
   z-index: 1;
-  margin: 5rem 1.5rem 0;
+  margin: 4rem 1.5rem 0;
+}
+
+// Names the destination that was clicked, on the pages reached from a coming-soon menu entry.
+.not-yet__eyebrow {
+  margin: 0 0 0.9rem;
   color: tokens.$omaya-color-white;
-  font-size: 4rem;
-  line-height: 1.06;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.not-yet__hero h1 {
+  margin: 0;
+  color: tokens.$omaya-color-white;
+  font-size: 3.4rem;
+  line-height: 1.08;
 }
 
 .not-yet__message {
@@ -52,7 +68,7 @@
   width: 100%;
   max-width: 58rem;
   margin: 0 auto;
-  padding: clamp(3.5rem, 7vw, 6rem) 1.5rem clamp(5.5rem, 10vw, 9rem);
+  padding: clamp(3.5rem, 7vw, 6rem) 1.5rem clamp(3.5rem, 6vw, 5rem);
   text-align: center;
 }
 
@@ -174,14 +190,22 @@
   cursor: not-allowed;
 }
 
+// Small print under the field, saying what the address is used for.
+.not-yet__note {
+  max-width: 34rem;
+  margin: 0.9rem 0 0;
+  color: var(--omaya-color-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
 @media (max-width: 48rem) {
   .not-yet__hero {
-    height: 515px;
-    max-height: 515px;
+    height: 400px;
+    max-height: 400px;
   }
 
   .not-yet__message {
-    padding: 5rem 1.5rem 6.25rem;
+    padding: 3rem 1.5rem 4rem;
   }
 
   .not-yet__message h2 {

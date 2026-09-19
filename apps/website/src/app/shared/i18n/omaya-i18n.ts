@@ -201,6 +201,7 @@ const EN: TranslationDictionary = {
     message:
       'Not every month holds an adventure - but the next one is never far. See all available tours.',
     cta: 'See all tours',
+    newsletterNote: 'No spam - we write only when there is something new.',
   },
   navigationGroups: [
     {
@@ -484,6 +485,7 @@ const BG: TranslationDictionary = {
     message:
       'Някои пътувания искат малко повече време, за да станат красиви. Остави имейла си и ще ти пишем първа, щом историята е готова.',
     cta: 'Виж всички пътувания',
+    newsletterNote: 'Без спам. Пишем ти само когато има нещо ново.',
   },
   navigationGroups: [
     {

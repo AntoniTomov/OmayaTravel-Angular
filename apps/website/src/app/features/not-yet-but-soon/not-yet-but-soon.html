@@ -7,7 +7,12 @@
       alt=""
       fetchpriority="high"
     />
-    <h1 id="not-yet-title">{{ i18n.t('notYet.heroTitle') }}</h1>
+    <div class="not-yet__hero-copy">
+      @if (destination(); as destinationName) {
+        <p class="not-yet__eyebrow">{{ destinationName }}</p>
+      }
+      <h1 id="not-yet-title">{{ i18n.t('notYet.heroTitle') }}</h1>
+    </div>
   </section>
 
   <section
@@ -43,6 +48,8 @@
           [isError]="newsletterStatus() === 'error'"
         />
       </form>
+
+      <p class="not-yet__note">{{ i18n.t('notYet.newsletterNote') }}</p>
     } @else {
       <a [routerLink]="ctaTarget()">{{ i18n.t('notYet.cta') }}</a>
     }

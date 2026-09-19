@@ -1,5 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { map } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
@@ -18,6 +20,11 @@ export class NotYetButSoon {
   protected readonly i18n = inject(OmayaI18n);
   private readonly activeSite = inject(ActiveSite);
   private readonly analytics = inject(OmayaAnalytics);
+  private readonly route = inject(ActivatedRoute);
+  private readonly requestedDestination = toSignal(
+    this.route.queryParamMap.pipe(map((params) => params.get('d') ?? '')),
+    { initialValue: '' },
+  );
 
   protected readonly newsletterStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly newsletterMessage = signal('');
@@ -25,6 +32,23 @@ export class NotYetButSoon {
   protected readonly showNewsletter = computed(
     () => this.activeSite.site().features.showNotYetNewsletter,
   );
+
+  /**
+   * Amelia's nine coming-soon destinations all link here, so the page names the one that was asked
+   * for. The value is matched against the site's own destination list rather than printed as it
+   * arrives, so a hand-edited URL cannot put arbitrary words in the hero.
+   */
+  protected readonly destination = computed(() => {
+    const requested = (this.requestedDestination() ?? '').trim();
+
+    if (!requested) {
+      return '';
+    }
+
+    const destinations = this.activeSite.site().content.tripSearchDestinations;
+
+    return destinations.find((entry) => entry.label === requested)?.label ?? '';
+  });
 
   protected readonly ctaTarget = computed(() =>
     isSiteRouteEnabled(this.activeSite.site(), '/tours-list/') ? '/tours-list/' : '/destinations/',

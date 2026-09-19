@@ -4,6 +4,8 @@ export interface NavigationLink {
   label: string;
   target: string;
   badge?: string;
+  /** Extra query parameters for the link, such as which destination a shared page was reached from. */
+  queryParams?: Readonly<Record<string, string>>;
   children?: readonly NavigationLink[];
 }
 
