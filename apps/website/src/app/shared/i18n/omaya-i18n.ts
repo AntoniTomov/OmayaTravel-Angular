@@ -130,6 +130,9 @@ const EN: TranslationDictionary = {
     newsletterSubmit: 'Subscribe',
     newsletterEmail: 'Email address',
     newsletterEmailPlaceholder: 'Email address',
+    newsletterSending: 'Joining...',
+    newsletterThanks: 'Thank you for joining our newsletter.',
+    newsletterError: 'We could not subscribe you right now.',
   },
   tourDetail: {
     sectionsLabel: 'Tour detail sections',
@@ -411,6 +414,9 @@ const BG: TranslationDictionary = {
     newsletterSubmit: 'Абонирайте се',
     newsletterEmail: 'Имейл адрес',
     newsletterEmailPlaceholder: 'Вашият имейл',
+    newsletterSending: 'Записваме те...',
+    newsletterThanks: 'Благодарим ти, че се абонира за бюлетина ни.',
+    newsletterError: 'В момента не можем да те абонираме.',
   },
   tourDetail: {
     sectionsLabel: 'Секции на пътуването',
@@ -474,9 +480,9 @@ const BG: TranslationDictionary = {
     emptyHomeLink: 'Обратно към началото',
   },
   notYet: {
-    heroTitle: 'Все още не, но скоро',
+    heroTitle: 'Скоро ще ти разкрием едно ново място за сърцето',
     message:
-      'Не всеки месец крие приключение - но следващото никога не е далеч. Разгледай всички налични пътувания.',
+      'Някои пътувания искат малко повече време, за да станат красиви. Остави имейла си и ще ти пишем първа, щом историята е готова.',
     cta: 'Виж всички пътувания',
   },
   navigationGroups: [

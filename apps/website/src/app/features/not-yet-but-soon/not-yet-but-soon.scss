@@ -52,7 +52,7 @@
   width: 100%;
   max-width: 58rem;
   margin: 0 auto;
-  padding: clamp(5rem, 10vw, 8.25rem) 1.5rem clamp(5.5rem, 10vw, 9rem);
+  padding: clamp(3.5rem, 7vw, 6rem) 1.5rem clamp(5.5rem, 10vw, 9rem);
   text-align: center;
 }
 
@@ -63,6 +63,18 @@
   font-size: clamp(2.6rem, 6.2vw, 2.35rem);
   font-weight: 800;
   line-height: 1.55;
+}
+
+// When the page asks for an email, the text above the field is an invitation rather than a
+// headline: it reads as body copy so the field is what the eye lands on. The brands that keep the
+// tour-list link keep the heading treatment, where the line is short and carries the page.
+.not-yet__message--invite h2 {
+  max-width: 36rem;
+  color: var(--omaya-color-text);
+  font-family: var(--omaya-font-body-family);
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 .not-yet__message a {
@@ -85,6 +97,81 @@
 .not-yet__message a:focus-visible {
   outline: tokens.$omaya-border-focus;
   outline-offset: 3px;
+}
+
+// The signup that replaces the tour-list link on the brands whose coming-soon destinations point
+// here. It sits on the page's own white background rather than carrying the homepage band's
+// photograph, so the field is outlined instead of relying on a dark backdrop for contrast.
+.not-yet__newsletter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  width: min(34rem, 100%);
+  margin-top: 2rem;
+  text-align: left;
+}
+
+// The honeypot and the status line are children of the form, so each would otherwise take a grid
+// cell of its own and push the button onto a second row. The honeypot hands its cell back - its
+// label is out of flow already - and the status line spans both columns under the field.
+.not-yet__newsletter app-form-honeypot {
+  display: contents;
+}
+
+.not-yet__newsletter app-form-status {
+  grid-column: 1 / -1;
+}
+
+.not-yet__newsletter label:not(.form-honeypot) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.not-yet__newsletter input,
+.not-yet__newsletter button {
+  min-height: 3.1rem;
+  border-radius: 2px;
+  font: inherit;
+}
+
+.not-yet__newsletter input {
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--omaya-color-border-soft);
+  padding: 0 1rem;
+  color: var(--omaya-color-text);
+  background: var(--omaya-color-surface-alt);
+}
+
+.not-yet__newsletter button {
+  border: 1px solid var(--omaya-color-accent);
+  padding: 0 1.2rem;
+  color: tokens.$omaya-color-white;
+  background: var(--omaya-color-heading);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.not-yet__newsletter button:is(:hover, :focus-visible) {
+  background: var(--omaya-color-dark);
+}
+
+.not-yet__newsletter button:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 3px;
+}
+
+.not-yet__newsletter button:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
 }
 
 @media (max-width: 48rem) {

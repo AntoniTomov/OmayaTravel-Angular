@@ -10,10 +10,41 @@
     <h1 id="not-yet-title">{{ i18n.t('notYet.heroTitle') }}</h1>
   </section>
 
-  <section class="not-yet__message" aria-label="No tours available for this month">
+  <section
+    class="not-yet__message"
+    [class.not-yet__message--invite]="showNewsletter()"
+    aria-label="No tours available for this month"
+  >
     <h2>
       {{ i18n.t('notYet.message') }}
     </h2>
-    <a [routerLink]="ctaTarget()">{{ i18n.t('notYet.cta') }}</a>
+
+    @if (showNewsletter()) {
+      <form class="not-yet__newsletter" (submit)="submitNewsletterForm($event)">
+        <label for="not-yet-newsletter-email">{{ i18n.t('homepage.newsletterEmail') }}</label>
+        <input
+          id="not-yet-newsletter-email"
+          type="email"
+          name="email"
+          [placeholder]="i18n.t('homepage.newsletterEmailPlaceholder')"
+          autocomplete="email"
+          required
+        />
+        <app-form-honeypot />
+        <button type="submit" [disabled]="newsletterStatus() === 'sending'">
+          {{
+            newsletterStatus() === 'sending'
+              ? i18n.t('homepage.newsletterSending')
+              : i18n.t('homepage.newsletterSubmit')
+          }}
+        </button>
+        <app-form-status
+          [message]="newsletterMessage()"
+          [isError]="newsletterStatus() === 'error'"
+        />
+      </form>
+    } @else {
+      <a [routerLink]="ctaTarget()">{{ i18n.t('notYet.cta') }}</a>
+    }
   </section>
 </main>

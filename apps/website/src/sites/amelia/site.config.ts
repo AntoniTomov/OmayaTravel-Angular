@@ -31,6 +31,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     showPrivateTours: false,
     showBlogPosts: false,
     showNewsletter: true,
+    showNotYetNewsletter: true,
   },
   analytics: {
     // TODO_AMELIA_GA4: replace after the Amelia GA4 property is created.

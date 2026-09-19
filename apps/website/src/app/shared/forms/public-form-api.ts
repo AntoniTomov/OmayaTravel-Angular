@@ -15,7 +15,7 @@ export interface PublicFormSubmitResult {
 
 export interface NewsletterSubmitPayload {
   email: string;
-  source: 'home page' | 'popup';
+  source: 'home page' | 'popup' | 'not yet but soon page';
   honeypot?: string;
 }
 

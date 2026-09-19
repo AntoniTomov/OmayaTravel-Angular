@@ -374,10 +374,18 @@ interface NormalizedFieldRule {
   message?: string;
 }
 
+/**
+ * The signup forms, as Mailchimp tags. An unknown value from a request falls back to 'home page'
+ * rather than tagging a subscriber with whatever was posted.
+ */
+const NEWSLETTER_SOURCES = ['home page', 'popup', 'not yet but soon page'] as const;
+
+type NewsletterSource = (typeof NEWSLETTER_SOURCES)[number];
+
 function normalizeNewsletterPayload(
   value: unknown,
 ):
-  | { ok: true; email: string; honeypot: string; source: 'home page' | 'popup' }
+  | { ok: true; email: string; honeypot: string; source: NewsletterSource }
   | { ok: false; message: string } {
   if (!isRecord(value)) {
     return { ok: false, message: 'Enter a valid email address.' };
@@ -385,7 +393,10 @@ function normalizeNewsletterPayload(
 
   const email = stringValue(value['email']).trim().toLowerCase();
   const honeypot = stringValue(value['website']);
-  const source = stringValue(value['source']) === 'popup' ? 'popup' : 'home page';
+  const requestedSource = stringValue(value['source']);
+  const source: NewsletterSource = NEWSLETTER_SOURCES.includes(requestedSource as NewsletterSource)
+    ? (requestedSource as NewsletterSource)
+    : 'home page';
 
   if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { ok: false, message: 'Enter a valid email address.' };
@@ -696,7 +707,7 @@ async function sendResendEmail(
 
 async function subscribeToMailchimp(
   email: string,
-  source: 'home page' | 'popup',
+  source: NewsletterSource,
   site: SiteConfig,
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
   const apiKey = process.env['MAILCHIMP_API_KEY'];
