@@ -26,6 +26,46 @@
   box-shadow: 0 2px 9px rgb(var(--omaya-color-overlay-rgb) / 22%);
 }
 
+/**
+ * The dialog scrolls whenever the viewport is too short for it, so its scrollbar is part of the
+ * popup rather than incidental. The thumb takes the brand accent, which each site's theme
+ * overrides, so Amelia and Omaya each get their own colour from these rules.
+ *
+ * Note these must not be paired with `scrollbar-width` or `scrollbar-color` on the same element.
+ * Chromium supports both APIs but not together: setting either standard property makes it ignore
+ * every `::-webkit-scrollbar` rule here, which costs the rounded corners and the width while still
+ * looking almost right — the thumb keeps its colour, so the regression is easy to miss.
+ */
+.newsletter-popup__dialog::-webkit-scrollbar {
+  width: 12px;
+}
+
+// Chrome and Edge draw stepper arrows at both ends by default.
+.newsletter-popup__dialog::-webkit-scrollbar-button {
+  display: none;
+}
+
+.newsletter-popup__dialog::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.newsletter-popup__dialog::-webkit-scrollbar-thumb {
+  background: var(--omaya-color-accent);
+  border-radius: 12px;
+}
+
+/**
+ * Firefox is the engine that has no `::-webkit-scrollbar` support, so it needs the standard
+ * properties — and only it may have them, for the reason above. It draws no stepper arrows and
+ * rounds its own thumb, so colour is all that is left to ask for.
+ */
+@supports not selector(::-webkit-scrollbar) {
+  .newsletter-popup__dialog {
+    scrollbar-width: thin;
+    scrollbar-color: var(--omaya-color-accent) transparent;
+  }
+}
+
 .newsletter-popup__media {
   position: relative;
   min-height: 18.2rem;
