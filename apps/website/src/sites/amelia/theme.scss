@@ -71,3 +71,23 @@ html[data-theme='amelia'] .homepage__newsletter {
     url('/assets/images/amelia/home/newsletter-bgr.webp') center / cover,
     var(--omaya-color-dark);
 }
+
+/**
+ * The newsletter popup's backdrop. Omaya frames its inner photo against a separate backdrop, and
+ * without this Amelia inherits that Omaya photograph behind its own image — two brands in one
+ * dialog. Amelia uses the same picture behind and in front instead, so the frame reads as one image.
+ *
+ * This is the first hero slide, which `NewsletterPopup.mediaImage` also picks for Amelia. The two
+ * are set in different places and only agree by hand: if the hero slides are reordered, change this
+ * with them. It also overrides the component's phone-sized `image-set()`, so Amelia serves the full
+ * photograph on mobile.
+ */
+html[data-theme='amelia'] .newsletter-popup__media {
+  background:
+    linear-gradient(
+      rgb(var(--omaya-color-overlay-rgb) / 18%),
+      rgb(var(--omaya-color-overlay-rgb) / 18%)
+    ),
+    url('/assets/images/amelia/home/hero-3.avif') center / cover,
+    var(--omaya-color-dark);
+}
