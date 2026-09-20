@@ -4,6 +4,8 @@ import { AMELIA_SITE_CONTENT } from './content';
 export const AMELIA_SITE_CONFIG: SiteConfig = {
   id: 'amelia',
   domain: 'ameliatravel.bg',
+  devPort: 4200,
+  additionalHosts: ['staging.ameliatravel.bg'],
   locale: 'bg',
   brand: {
     name: 'Amelia Travel',
@@ -31,6 +33,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     showPrivateTours: false,
     showBlogPosts: false,
     showNewsletter: true,
+    showNotYetNewsletter: true,
   },
   analytics: {
     // TODO_AMELIA_GA4: replace after the Amelia GA4 property is created.
@@ -60,6 +63,11 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
       label: 'Instagram',
       url: 'https://www.instagram.com/ameliatravelbg/',
       icon: 'social-instagram',
+    },
+    {
+      label: 'Facebook',
+      url: 'https://www.facebook.com/profile.php?id=61594041052662',
+      icon: 'social-facebook',
     },
   ],
 };

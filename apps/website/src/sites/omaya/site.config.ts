@@ -4,6 +4,10 @@ import { OMAYA_SITE_CONTENT } from './content';
 export const OMAYA_SITE_CONFIG: SiteConfig = {
   id: 'omaya',
   domain: 'omayatravel.com',
+  devPort: 4201,
+  // Omaya is the default site, so staging resolves here anyway. Listed all the same, so the
+  // staging origins are declared in one place rather than one brand relying on the fallback.
+  additionalHosts: ['staging.omayatravel.com'],
   locale: 'en',
   brand: {
     name: 'Omaya Travel',
@@ -29,6 +33,7 @@ export const OMAYA_SITE_CONFIG: SiteConfig = {
     showPrivateTours: true,
     showBlogPosts: true,
     showNewsletter: true,
+    showNotYetNewsletter: false,
   },
   analytics: {
     gaMeasurementId: 'G-2F24XF4XZ8',

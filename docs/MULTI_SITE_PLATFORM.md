@@ -25,7 +25,8 @@ apps/website/src/sites/
 
 - `site.types.ts` defines the shared contracts for site config, brand, feature flags, theme, and content.
 - `index.ts` registers all known sites and sets Omaya as the default site.
-- `active-site.ts` detects which site should be active. It currently supports domain detection, an `amelia` hostname fallback, and local preview with `?site=amelia`.
+- `active-site.ts` detects which site should be active, in this order: a `?site=` preview param on a local host, the site a build was made for (`build-site.ts`), the dev server port, then the hostname.
+- `build-site.ts` reads the `NG_BUILD_SITE` define — the site a build prerenders as. Prerendering has no host to read a brand from, so without it every snapshot bakes as the default site.
 - `omaya/site.config.ts` contains Omaya brand, domain, locale, theme metadata, and feature flags.
 - `omaya/content.ts` points Omaya to the existing production content.
 - `amelia/site.config.ts` contains Amelia brand, Bulgarian locale, theme metadata, and homepage feature flags.
@@ -50,19 +51,30 @@ Omaya remains the default and should keep the current public behavior.
 
 ## Amelia Preview
 
-Run the website locally, then open:
+Each site owns a dev server port, so the port decides the brand and no query parameter is needed:
 
 ```text
-http://localhost:4123/?site=amelia
+http://localhost:4200/    Amelia   (npm --workspace website run start:amelia)
+http://localhost:4201/    Omaya    (npm --workspace website run start)
 ```
 
-The preview choice is stored in local storage so navigation keeps using Amelia. To return to Omaya, clear local storage or open:
+The ports come from `devPort` in each site config. A `?site=` parameter still overrides them on a local host, and that choice is stored in local storage; clear it to go back to what the port says.
 
-```text
-http://localhost:4123/?site=omaya
-```
+In production, Amelia is activated by the exact configured domain `ameliatravel.bg` or `www.ameliatravel.bg`, or by a host listed in its `additionalHosts` (the staging origin). The host must also be allowed by the SSR server, either through configured site domains, `NG_ALLOWED_HOSTS`, or `OMAYA_ALLOWED_HOSTS`; `additionalHosts` are allowed automatically.
 
-In production, Amelia is activated by the exact configured domain `ameliatravel.bg` or `www.ameliatravel.bg`. The host must also be allowed by the SSR server, either through configured site domains, `NG_ALLOWED_HOSTS`, or `OMAYA_ALLOWED_HOSTS`.
+A host in `additionalHosts` decides **rendering only**. `isPublishedSiteHost` and `canonicalHostForRequestHost` match on `domain` alone, so a staging origin still answers `noindex, nofollow`, still serves a disallow-all `robots.txt`, and still canonicalises to the real domain.
+
+## Prerendering Across Sites
+
+A prerendered page has no host, so it bakes as whichever site its build named. One pass therefore cannot serve two brands — this is why `ameliatravel.bg` served Omaya HTML on every prerendered route while its own routes rendered correctly through SSR.
+
+`npm run build` runs one pass per site and merges them:
+
+- The default pass writes `dist/website/browser/`, and the Angular engine serves those snapshots.
+- Each further pass (`npm run build:site:amelia`) runs with `NG_BUILD_SITE` set, and `scripts/merge-site-builds.mjs` copies its snapshots to `dist/website/sites/<siteId>/` and its hashed chunks alongside the primary bundle's.
+- `server.ts` serves a request the snapshot belonging to its host's site, ahead of the Angular engine. Where that site publishes no such route it answers its own 404, rather than letting the engine serve the other brand's page.
+
+Rebuilding only the default pass drops the merged snapshots, so run the full `npm run build` rather than `ng build` alone when you need a complete bundle.
 
 The `?site=` preview switch only works on local hosts such as `localhost` and `127.0.0.1`. Production users cannot switch sites with a query parameter.
 

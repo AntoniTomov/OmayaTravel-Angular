@@ -215,6 +215,21 @@ describe('unpublished hosts', () => {
     expect(isPublishedSiteHost(undefined)).toBe(false);
   });
 
+  // A site config lists its staging origins in `additionalHosts` so they render the right brand
+  // rather than falling through to the default site. That must not promote them to real domains:
+  // publishing a second indexable copy of a brand is the very thing this rule exists to stop.
+  it("keeps a site's additional hosts unpublished and canonicalised to the real domain", () => {
+    const additionalHosts = Object.values(SITE_CONFIGS).flatMap(
+      (config) => config.additionalHosts ?? [],
+    );
+
+    expect(additionalHosts.length).toBeGreaterThan(0);
+    expect(additionalHosts.filter((host) => isPublishedSiteHost(host))).toEqual([]);
+    expect(additionalHosts.map((host) => canonicalHostForRequestHost(host))).toEqual(
+      additionalHosts.map(() => PUBLIC_CANONICAL_HOST),
+    );
+  });
+
   it('serves a disallow-all robots.txt that advertises no sitemap', () => {
     const robots = buildUnpublishedHostRobotsTxt();
 

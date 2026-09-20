@@ -39,18 +39,63 @@ const AMELIA_HERO_SLIDES: readonly HeroSlide[] = [
 const AMELIA_COMING_SOON_BADGE = 'Очаквайте скоро';
 
 const AMELIA_DESTINATION_LINKS = [
-  { label: 'Армения', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Грузия', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  {
+    label: 'Армения',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Армения' },
+  },
+  {
+    label: 'Грузия',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Грузия' },
+  },
   { label: 'Индия', target: '/tour-item/india-tour/' },
   { label: 'Киргистан', target: '/tour-item/kyrgyzstan-tour/' },
   { label: 'Мароко', target: '/tour-item/morocco-tour/' },
-  { label: 'Намибия', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Оман', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Перу', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Саудитска Арабия', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Узбекистан', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Южна Корея', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
-  { label: 'Япония', target: '/not-yet-but-soon/', badge: AMELIA_COMING_SOON_BADGE },
+  {
+    label: 'Намибия',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Намибия' },
+  },
+  {
+    label: 'Оман',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Оман' },
+  },
+  {
+    label: 'Перу',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Перу' },
+  },
+  {
+    label: 'Саудитска Арабия',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Саудитска Арабия' },
+  },
+  {
+    label: 'Узбекистан',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Узбекистан' },
+  },
+  {
+    label: 'Южна Корея',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Южна Корея' },
+  },
+  {
+    label: 'Япония',
+    target: '/not-yet-but-soon/',
+    badge: AMELIA_COMING_SOON_BADGE,
+    queryParams: { d: 'Япония' },
+  },
 ] as const;
 
 const AMELIA_NAVIGATION_GROUPS: readonly NavigationGroup[] = [

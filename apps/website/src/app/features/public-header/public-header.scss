@@ -152,6 +152,18 @@
   box-shadow: var(--omaya-shadow-dropdown);
 }
 
+// A long list - Amelia's twelve destinations, say - can run past the bottom of a short laptop
+// screen, and because the header is fixed the page cannot be scrolled to reach the last entries.
+// The panel is capped at the room left under the header (measured by the component, since CSS
+// cannot read the header's own height) and scrolls inside itself. Panels whose items open a flyout
+// submenu are left alone: a scroll container would clip the flyout, and those lists are short.
+.public-header__dropdown--scrollable {
+  max-height: var(--public-header-dropdown-max-height, none);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
 .public-header:not(.public-header--scrolled):not(.public-header--menu-open)
   .public-header__dropdown,
 .public-header:not(.public-header--scrolled):not(.public-header--menu-open)

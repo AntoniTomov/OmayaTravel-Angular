@@ -103,4 +103,20 @@ describe('PublicHeader', () => {
       },
     });
   });
+
+  it('lets only the dropdowns without a flyout submenu scroll', () => {
+    fixture.detectChanges();
+
+    const panels = [...fixture.nativeElement.querySelectorAll('.public-header__group')].map(
+      (group: HTMLElement) => ({
+        label: group.querySelector('.public-header__link')?.textContent?.trim(),
+        scrollable: group
+          .querySelector('.public-header__dropdown')
+          ?.classList.contains('public-header__dropdown--scrollable'),
+      }),
+    );
+
+    expect(panels).toContainEqual({ label: 'Destinations', scrollable: true });
+    expect(panels).toContainEqual({ label: 'Tours', scrollable: false });
+  });
 });
