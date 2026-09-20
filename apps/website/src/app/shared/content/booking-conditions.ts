@@ -19,6 +19,21 @@ export const BOOKING_CONDITIONS_FAQ: TourFaqItem = {
 };
 
 /**
+ * The same summary for Amelia, whose terms are Bulgarian and are not a translation of Omaya's:
+ * the refund ladder differs (29–15 days and under 14, against 29–20 and under 20), so each brand's
+ * entry is kept against its own Terms page. **If the Общи условия page changes, change this too.**
+ */
+export const AMELIA_BOOKING_CONDITIONS_FAQ: TourFaqItem = {
+  question: 'Какви са условията за резервация и анулиране?',
+  answer: [
+    'За потвърждаване на резервацията е необходим депозит, 25% на човек, дължим до 7 дни след писменото потвърждение.',
+    'Депозитът не подлежи на възстановяване. В случай че анулирате резервацията повече от 45 дни преди датата на отпътуване, пълният му размер може да бъде използван като кредит за бъдещо пътуване, след приспадане на административна такса от 100 евро.',
+    'Пълното плащане се дължи най-късно 60 дни преди началото на пътуването. Някои услуги, като вътрешни полети, разрешителни или хотели в пиков сезон, може да изискват пълно предплащане и да не се възстановяват.',
+    'При анулиране 45–30 дни преди отпътуване се възстановява платената сума без депозита, при 29–15 дни се възстановяват 30%, а при по-малко от 14 дни сумата не се възстановява.',
+  ],
+};
+
+/**
  * The FAQ shown on a tour page: whatever the content team authored, followed by the booking
  * conditions. Every tour therefore has at least one entry, which is why the FAQ tab is always
  * available.
@@ -26,8 +41,14 @@ export const BOOKING_CONDITIONS_FAQ: TourFaqItem = {
  * Both the rendered accordion and the `FAQPage` structured data read from here, so what a visitor
  * sees and what search engines are told cannot drift apart.
  */
-export function tourFaqItems(tour: TourDetailContent): readonly TourFaqItem[] {
-  return [...(tour.faq?.items ?? []), BOOKING_CONDITIONS_FAQ];
+export function tourFaqItems(
+  tour: TourDetailContent,
+  siteId: 'omaya' | 'amelia' = 'omaya',
+): readonly TourFaqItem[] {
+  const bookingConditions =
+    siteId === 'amelia' ? AMELIA_BOOKING_CONDITIONS_FAQ : BOOKING_CONDITIONS_FAQ;
+
+  return [...(tour.faq?.items ?? []), bookingConditions];
 }
 
 export function tourFaqHeading(tour: TourDetailContent): string {

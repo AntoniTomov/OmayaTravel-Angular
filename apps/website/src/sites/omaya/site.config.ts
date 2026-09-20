@@ -29,6 +29,7 @@ export const OMAYA_SITE_CONFIG: SiteConfig = {
     showPrivateTours: true,
     showBlogPosts: true,
     showNewsletter: true,
+    showNotYetNewsletter: false,
   },
   analytics: {
     gaMeasurementId: 'G-2F24XF4XZ8',

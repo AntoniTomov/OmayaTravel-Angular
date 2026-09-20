@@ -13,8 +13,8 @@
   position: relative;
   display: grid;
   box-sizing: border-box;
-  height: 515px;
-  max-height: 515px;
+  height: 400px;
+  max-height: 400px;
   place-items: center;
   overflow: hidden;
   color: tokens.$omaya-color-white;
@@ -36,13 +36,29 @@
   content: '';
 }
 
-.not-yet__hero h1 {
+// The hero copy is one block so the eyebrow and the title travel together; the top margin clears
+// the fixed header, which overlaps the photograph.
+.not-yet__hero-copy {
   position: relative;
   z-index: 1;
-  margin: 5rem 1.5rem 0;
+  margin: 4rem 1.5rem 0;
+}
+
+// Names the destination that was clicked, on the pages reached from a coming-soon menu entry.
+.not-yet__eyebrow {
+  margin: 0 0 0.9rem;
   color: tokens.$omaya-color-white;
-  font-size: 4rem;
-  line-height: 1.06;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.not-yet__hero h1 {
+  margin: 0;
+  color: tokens.$omaya-color-white;
+  font-size: 3.4rem;
+  line-height: 1.08;
 }
 
 .not-yet__message {
@@ -52,7 +68,7 @@
   width: 100%;
   max-width: 58rem;
   margin: 0 auto;
-  padding: clamp(5rem, 10vw, 8.25rem) 1.5rem clamp(5.5rem, 10vw, 9rem);
+  padding: clamp(3.5rem, 7vw, 6rem) 1.5rem clamp(3.5rem, 6vw, 5rem);
   text-align: center;
 }
 
@@ -63,6 +79,18 @@
   font-size: clamp(2.6rem, 6.2vw, 2.35rem);
   font-weight: 800;
   line-height: 1.55;
+}
+
+// When the page asks for an email, the text above the field is an invitation rather than a
+// headline: it reads as body copy so the field is what the eye lands on. The brands that keep the
+// tour-list link keep the heading treatment, where the line is short and carries the page.
+.not-yet__message--invite h2 {
+  max-width: 36rem;
+  color: var(--omaya-color-text);
+  font-family: var(--omaya-font-body-family);
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 .not-yet__message a {
@@ -87,14 +115,97 @@
   outline-offset: 3px;
 }
 
+// The signup that replaces the tour-list link on the brands whose coming-soon destinations point
+// here. It sits on the page's own white background rather than carrying the homepage band's
+// photograph, so the field is outlined instead of relying on a dark backdrop for contrast.
+.not-yet__newsletter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  width: min(34rem, 100%);
+  margin-top: 2rem;
+  text-align: left;
+}
+
+// The honeypot and the status line are children of the form, so each would otherwise take a grid
+// cell of its own and push the button onto a second row. The honeypot hands its cell back - its
+// label is out of flow already - and the status line spans both columns under the field.
+.not-yet__newsletter app-form-honeypot {
+  display: contents;
+}
+
+.not-yet__newsletter app-form-status {
+  grid-column: 1 / -1;
+}
+
+.not-yet__newsletter label:not(.form-honeypot) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.not-yet__newsletter input,
+.not-yet__newsletter button {
+  min-height: 3.1rem;
+  border-radius: 2px;
+  font: inherit;
+}
+
+.not-yet__newsletter input {
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--omaya-color-border-soft);
+  padding: 0 1rem;
+  color: var(--omaya-color-text);
+  background: var(--omaya-color-surface-alt);
+}
+
+.not-yet__newsletter button {
+  border: 1px solid var(--omaya-color-accent);
+  padding: 0 1.2rem;
+  color: tokens.$omaya-color-white;
+  background: var(--omaya-color-heading);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.not-yet__newsletter button:is(:hover, :focus-visible) {
+  background: var(--omaya-color-dark);
+}
+
+.not-yet__newsletter button:focus-visible {
+  outline: tokens.$omaya-border-focus;
+  outline-offset: 3px;
+}
+
+.not-yet__newsletter button:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+}
+
+// Small print under the field, saying what the address is used for.
+.not-yet__note {
+  max-width: 34rem;
+  margin: 0.9rem 0 0;
+  color: var(--omaya-color-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
 @media (max-width: 48rem) {
   .not-yet__hero {
-    height: 515px;
-    max-height: 515px;
+    height: 400px;
+    max-height: 400px;
   }
 
   .not-yet__message {
-    padding: 5rem 1.5rem 6.25rem;
+    padding: 3rem 1.5rem 4rem;
   }
 
   .not-yet__message h2 {

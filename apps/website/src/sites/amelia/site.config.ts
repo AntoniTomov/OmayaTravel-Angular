@@ -31,6 +31,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     showPrivateTours: false,
     showBlogPosts: false,
     showNewsletter: true,
+    showNotYetNewsletter: true,
   },
   analytics: {
     // TODO_AMELIA_GA4: replace after the Amelia GA4 property is created.
@@ -60,6 +61,11 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
       label: 'Instagram',
       url: 'https://www.instagram.com/ameliatravelbg/',
       icon: 'social-instagram',
+    },
+    {
+      label: 'Facebook',
+      url: 'https://www.facebook.com/profile.php?id=61594041052662',
+      icon: 'social-facebook',
     },
   ],
 };

@@ -216,7 +216,7 @@ export class Homepage implements OnDestroy {
     if (result.ok) {
       form.reset();
       this.newsletterStatus.set('sent');
-      this.newsletterMessage.set('Thank you for joining our newsletter.');
+      this.newsletterMessage.set(this.i18n.t('homepage.newsletterThanks'));
       this.analytics.trackEvent('sign_up', {
         method: 'newsletter',
         source: 'home page',
@@ -225,7 +225,7 @@ export class Homepage implements OnDestroy {
     }
 
     this.newsletterStatus.set('error');
-    this.newsletterMessage.set(result.message ?? 'We could not subscribe you right now.');
+    this.newsletterMessage.set(result.message ?? this.i18n.t('homepage.newsletterError'));
   }
 
   /**

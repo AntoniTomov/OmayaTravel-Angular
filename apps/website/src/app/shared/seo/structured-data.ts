@@ -165,8 +165,11 @@ export function tourJsonLd(
  * by reading the same helper the template does. Marking up a different set from the visible one is
  * worse than marking up nothing.
  */
-export function faqJsonLd(tour: TourDetailContent): JsonLd | null {
-  const items = tourFaqItems(tour);
+export function faqJsonLd(
+  tour: TourDetailContent,
+  siteId: 'omaya' | 'amelia' = 'omaya',
+): JsonLd | null {
+  const items = tourFaqItems(tour, siteId);
 
   if (!items.length) {
     return null;
