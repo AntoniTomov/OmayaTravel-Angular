@@ -126,6 +126,41 @@ Once the three steps are done:
 4. One enquiry submits successfully and arrives at the **test** inbox, not the real one.
 5. `https://staging.omayatravel.com/sitemap.xml` is reachable but **not** advertised in robots.txt.
 
+## Amelia staging
+
+`staging.ameliatravel.bg` runs on the **same Node application** as `staging.omayatravel.com`. One
+app serves both brands, mirroring production, so there is no second deploy and no second set of
+environment variables.
+
+The code side is already done: `staging.ameliatravel.bg` is listed in Amelia's `additionalHosts`,
+so it resolves to the Amelia brand and is allowed by the SSR engine without `OMAYA_ALLOWED_HOSTS`
+being touched. It is deliberately **not** a published domain, so it keeps `noindex, nofollow` and
+canonicalises to `https://ameliatravel.bg`.
+
+What is left is hPanel work:
+
+1. **DNS.** `ameliatravel.bg` uses Hostinger nameservers (`byte.dns-parking.com`,
+   `pixel.dns-parking.com`), so the record is added in hPanel's DNS manager rather than at the
+   registrar. Point `staging` at the same target `staging.omayatravel.com` already uses.
+2. **TLS.** Issue a certificate for the new hostname. Read §1 above first — an hPanel record showing
+   Active is not evidence the handshake works, and this exact subdomain pattern failed silently
+   before. Verify from a terminal, not a browser.
+3. **Bind the hostname** to the existing staging Node application. Nothing about the app changes.
+
+Optional, to keep Amelia's staging enquiries out of the real inbox: `AMELIA_MAIL_TO` and
+`AMELIA_MAIL_FROM`. Without them, Amelia forms fall back to the address in its site config. Leave
+`AMELIA_MAILCHIMP_AUDIENCE_ID` unset so newsletter tests cannot reach the live audience.
+
+Verify with the checklist below, plus:
+
+```bash
+curl -sS -H "Host: staging.ameliatravel.bg" https://staging.ameliatravel.bg/ | grep -o "<title>[^<]*"
+```
+
+Expect the Bulgarian Amelia title. An English Omaya title means the host is not resolving to Amelia
+— check the deployed bundle actually contains `sites/amelia/`, which only a full `npm run build`
+produces.
+
 ## The release flow this enables
 
 ```

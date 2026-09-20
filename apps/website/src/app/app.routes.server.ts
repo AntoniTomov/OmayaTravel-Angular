@@ -1,6 +1,6 @@
 import { PrerenderFallback, RenderMode, ServerRoute } from '@angular/ssr';
 
-import { DEFAULT_SITE_ID, SITE_CONFIGS } from '../sites';
+import { BUILD_SITE } from '../sites/build-site';
 import { isSiteRouteEnabled } from '../sites/site-routes';
 import {
   PUBLIC_DESTINATION_SLUGS,
@@ -9,12 +9,15 @@ import {
 } from './shared/routing/public-routes';
 
 /**
- * Prerendering renders each page once, as the default site, whatever host later serves it. A route
- * the default site does not publish would be baked as its redirect to /404/, so another brand could
- * never serve it. Those routes render per request instead, where the host decides the site.
+ * Prerendering renders each page once, as whichever site the build names, and the server later
+ * serves each site the snapshots from its own pass.
+ *
+ * The route set has to follow the build's site, not the default one. A route the build's site does
+ * not publish bakes as its redirect to /404/ — a client-side `<title>Redirecting</title>` stub
+ * rather than an honest 404 status — so those routes are left out and render per request instead,
+ * where the host decides the site.
  */
-const defaultSite = SITE_CONFIGS[DEFAULT_SITE_ID];
-const isPrerendered = (canonicalPath: string) => isSiteRouteEnabled(defaultSite, canonicalPath);
+const isPrerendered = (canonicalPath: string) => isSiteRouteEnabled(BUILD_SITE, canonicalPath);
 
 const prerenderedStaticRoutes: ServerRoute[] = PUBLIC_STATIC_PRERENDER_ROUTES.map(
   (route): ServerRoute =>

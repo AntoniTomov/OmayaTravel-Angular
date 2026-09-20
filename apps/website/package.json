@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:amelia": "ng serve --configuration amelia --port 4200",
+    "start": "ng serve --port 4201",
+    "start:amelia": "ng serve --port 4200",
     "build": "ng build --progress=false",
+    "build:amelia": "ng build --progress=false --configuration production,amelia --output-path dist/website-amelia",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "watch": "ng build --watch --configuration development",

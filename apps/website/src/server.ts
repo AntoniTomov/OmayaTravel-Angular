@@ -7,9 +7,10 @@ import {
 import express from 'express';
 import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve, sep } from 'node:path';
 
 import { SITE_CONFIGS, siteConfigForHostname } from './sites';
+import { BUILD_SITE } from './sites/build-site';
 import type { SiteConfig } from './sites/site.types';
 import { findRedirect, trailingSlashRedirectTarget } from './app/shared/routing/public-routes';
 import {
@@ -24,6 +25,16 @@ import {
 loadLocalEnv();
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
+/**
+ * Prerendered snapshots for the sites that are not the one the main build rendered.
+ *
+ * Kept outside `browser/` on purpose: anything in there is served as a static file on every host,
+ * so an Amelia snapshot sitting under it would also answer on `omayatravel.com` — publishing the
+ * Bulgarian pages on the English domain as duplicates. Only {@link siteSnapshotPath} reads these.
+ */
+const siteSnapshotFolder = join(import.meta.dirname, '../sites');
+/** Rendered with a 404 status by the `404` server route, so the status follows the page. */
+const NOT_FOUND_PATH = '/404/';
 const FORM_CONTRACT_VERSION = 'public-forms.v1';
 const FORMS_RATE_LIMIT_WINDOW_MS = Number(
   process.env['PLATFORM_FORMS_RATE_LIMIT_WINDOW_MS'] ??
@@ -34,9 +45,13 @@ const FORMS_RATE_LIMIT_MAX = Number(
   process.env['PLATFORM_FORMS_RATE_LIMIT_MAX'] ?? process.env['OMAYA_FORMS_RATE_LIMIT_MAX'] ?? 5,
 );
 const MAILCHIMP_SUBSCRIBE_STATUS = process.env['MAILCHIMP_SUBSCRIBE_STATUS'] ?? 'subscribed';
-const configuredSiteHosts = Object.values(SITE_CONFIGS).flatMap((site) =>
-  site.domain ? [site.domain, `www.${site.domain}`] : [],
-);
+// Hosts the SSR engine will render for. Staging origins are included so a staging deploy renders
+// without needing `OMAYA_ALLOWED_HOSTS` set by hand; this list governs rendering only, and says
+// nothing about whether a host is a published, indexable domain.
+const configuredSiteHosts = Object.values(SITE_CONFIGS).flatMap((site) => [
+  ...(site.domain ? [site.domain, `www.${site.domain}`] : []),
+  ...(site.additionalHosts ?? []),
+]);
 const allowedHosts = [
   ...configuredSiteHosts,
   'localhost',
@@ -312,6 +327,47 @@ app.use(
 );
 
 /**
+ * Serve the prerendered snapshot belonging to the requested host's site.
+ *
+ * The build prerenders each site separately, because a snapshot has no host to read a brand from
+ * and would otherwise bake as the default site — which is how `ameliatravel.bg` came to serve Omaya
+ * HTML on every prerendered route. The main build's snapshots stay in `browser/` and the Angular
+ * engine serves them; every other site's are served from here, ahead of it.
+ *
+ * Anything without a snapshot falls through and renders per request, where the host decides the
+ * site, so a route only one brand publishes still gets an honest 404 rather than a stale stub.
+ */
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return next();
+  }
+
+  const site = getRequestSite(req);
+  const snapshot = siteSnapshotPath(site, req.path);
+
+  if (snapshot) {
+    return res.sendFile(snapshot, (error) => {
+      if (error) {
+        next(error);
+      }
+    });
+  }
+
+  // This site has no snapshot here. If the main build has one, the Angular engine would answer with
+  // it — the other brand's page, on this brand's host, at HTTP 200. A path in that position is one
+  // this site does not publish, because a route it publishes is prerendered in its own pass, so the
+  // honest answer is this site's own 404 rather than a page belonging to someone else.
+  if (site.id !== BUILD_SITE.id && buildSiteSnapshotExists(req.path)) {
+    // Both, because `@angular/ssr` builds its URL from `originalUrl ?? url`: rewriting only `url`
+    // leaves the engine still looking at the path it was asked for, and still serving the snapshot.
+    req.url = NOT_FOUND_PATH;
+    req.originalUrl = NOT_FOUND_PATH;
+  }
+
+  return next();
+});
+
+/**
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
@@ -543,6 +599,49 @@ function isAllowedOrigin(req: express.Request): boolean {
 
 function getRequestSite(req: express.Request): SiteConfig {
   return siteConfigForHostname(getRequestHostname(req));
+}
+
+/**
+ * Absolute path of `site`'s prerendered snapshot for `urlPath`, or `null` when there is not one.
+ *
+ * The build's own site always answers `null`: its snapshots live in `browser/` and the Angular
+ * engine already serves them.
+ */
+function siteSnapshotPath(site: SiteConfig, urlPath: string): string | null {
+  if (site.id === BUILD_SITE.id) {
+    return null;
+  }
+
+  return snapshotPathIn(join(siteSnapshotFolder, site.id), urlPath);
+}
+
+/** Whether the main build prerendered this path, and so would answer it on any host. */
+function buildSiteSnapshotExists(urlPath: string): boolean {
+  return snapshotPathIn(browserDistFolder, urlPath) !== null;
+}
+
+/**
+ * Path of the snapshot `root` holds for `urlPath`, or `null` when it holds none.
+ *
+ * Only public HTML URLs have snapshots, and those all carry a trailing slash by the time they reach
+ * here, so assets and API paths never look one up.
+ */
+function snapshotPathIn(root: string, urlPath: string): string | null {
+  if (!urlPath.endsWith('/')) {
+    return null;
+  }
+
+  // Both sides resolved, so the containment check compares like with like.
+  const base = resolve(root);
+  const candidate = resolve(base, `.${urlPath}index.html`);
+
+  // `decodeURIComponent` upstream can turn an encoded path into `..`, so confirm the resolved file
+  // is genuinely inside the folder rather than trusting the URL it came from.
+  if (!candidate.startsWith(base + sep)) {
+    return null;
+  }
+
+  return existsSync(candidate) ? candidate : null;
 }
 
 function getRequestHostname(req: express.Request): string {

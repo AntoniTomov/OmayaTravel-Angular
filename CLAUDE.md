@@ -18,16 +18,22 @@ Tests use **Vitest**, not Jasmine — `withContext()` is not available; pass con
 collected arrays instead.
 
 Do not start dev servers with raw shell commands — use `.claude/launch.json` (gitignored, so each
-machine keeps its own). Two configurations are worth having: `website` running `ng serve` on port
-4300, and `website-ssr` running `npm --workspace website run serve:ssr:website` on port 3000. The
-`www` redirect and the robots/sitemap routes only exercise properly on the SSR build, because
-`ng serve` rejects custom `Host` headers before Express sees them.
+machine keeps its own). Three configurations are worth having: `website` running
+`npm --workspace website run start` on port **4201** (Omaya), `website-amelia` running
+`npm --workspace website run start:amelia` on port **4200** (Amelia), and `website-ssr` running
+`npm --workspace website run serve:ssr:website` on port 3000. The `www` redirect and the
+robots/sitemap routes only exercise properly on the SSR build, because `ng serve` rejects custom
+`Host` headers before Express sees them.
+
+The ports are not arbitrary: each site config carries a `devPort` and `localhost` resolves the
+brand from it, so the port a dev server runs on is what decides which site you get.
 
 ## Multi-site platform
 
 One codebase serves multiple brands. `apps/website/src/sites/` holds one config per site
-(`omaya`, `amelia`), each with its own `domain`, `locale`, brand, theme, content and feature flags.
-`ActiveSite` resolves the site from the hostname, with a `?site=` query override on localhost.
+(`omaya`, `amelia`), each with its own `domain`, `devPort`, `locale`, brand, theme, content and
+feature flags. `ActiveSite` resolves the site from the hostname in production, and on localhost
+from the dev server port (`4201` Omaya, `4200` Amelia), with a `?site=` query override on top.
 
 `SiteLocale` is currently `'en' | 'bg'` and each site carries exactly one locale, so the platform
 models **brands, not languages**. Adding a language to an existing brand needs a new locale axis —
