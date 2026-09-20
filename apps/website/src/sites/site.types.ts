@@ -157,6 +157,22 @@ export interface SiteContent {
 export interface SiteConfig {
   id: SiteId;
   domain: string | null;
+  /**
+   * Port this site answers on when a dev server runs it locally, where there is no domain to
+   * resolve from. Each site owns a distinct port so `localhost` serves one brand per port rather
+   * than needing a build configuration or a `?site=` param to tell them apart.
+   */
+  devPort: number;
+  /**
+   * Further hostnames that serve this site — staging and preview origins.
+   *
+   * These decide **rendering only**. They are deliberately not published domains: `robots.txt`,
+   * `X-Robots-Tag` and canonical tags all key off `domain`, so a host listed here still answers
+   * `noindex, nofollow` and still points its canonicals at the real site. Without this a staging
+   * subdomain would fall through to the default site and serve the wrong brand, which is exactly
+   * the bug it exists to prevent.
+   */
+  additionalHosts?: readonly string[];
   locale: SiteLocale;
   brand: SiteBrand;
   theme: SiteTheme;

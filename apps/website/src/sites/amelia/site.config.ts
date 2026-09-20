@@ -4,6 +4,8 @@ import { AMELIA_SITE_CONTENT } from './content';
 export const AMELIA_SITE_CONFIG: SiteConfig = {
   id: 'amelia',
   domain: 'ameliatravel.bg',
+  devPort: 4200,
+  additionalHosts: ['staging.ameliatravel.bg'],
   locale: 'bg',
   brand: {
     name: 'Amelia Travel',

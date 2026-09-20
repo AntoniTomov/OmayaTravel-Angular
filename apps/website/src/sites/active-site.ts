@@ -1,18 +1,18 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 
-import { DEFAULT_SITE_ID, SITE_CONFIGS, siteConfigForHostname, siteConfigForId } from '.';
+import {
+  DEFAULT_SITE_ID,
+  SITE_CONFIGS,
+  siteConfigForHostname,
+  siteConfigForId,
+  siteConfigForPort,
+} from '.';
+import { BUILD_SITE_OVERRIDE } from './build-site';
 import { SiteConfig, SiteId } from './site.types';
 
 const SITE_PREVIEW_QUERY_PARAM = 'site';
 const SITE_PREVIEW_STORAGE_KEY = 'omaya-active-site-preview';
-
-/**
- * Site a local dev server opens without a `?site=` param. Defined only by the `amelia` serve
- * configuration (`npm run start:amelia`), so a plain `ng serve` and every real build keep the
- * hostname rules.
- */
-declare const NG_LOCAL_PREVIEW_SITE: string | undefined;
 
 @Injectable({ providedIn: 'root' })
 export class ActiveSite {
@@ -41,8 +41,19 @@ export class ActiveSite {
       return siteConfigForId(querySite);
     }
 
-    if (isLocalPreview && typeof NG_LOCAL_PREVIEW_SITE !== 'undefined') {
-      return siteConfigForId(NG_LOCAL_PREVIEW_SITE);
+    // A build made for one site stays that site wherever it is served locally, which is what makes
+    // prerendering resolve a brand at all: there is no host and no port to read from.
+    if (isLocalPreview && BUILD_SITE_OVERRIDE) {
+      return BUILD_SITE_OVERRIDE;
+    }
+
+    // Each site's dev server owns a port, so `localhost:4200` and `localhost:4201` are as good as
+    // two domains. Prerendering renders against `http://localhost` with no port, so this is inert
+    // there and the build's own site still decides.
+    const portMatch = isLocalPreview ? siteConfigForPort(url.port) : null;
+
+    if (portMatch) {
+      return portMatch;
     }
 
     const hostname = url.hostname.toLowerCase();

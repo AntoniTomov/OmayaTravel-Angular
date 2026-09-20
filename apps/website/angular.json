@@ -66,12 +66,9 @@
               "extractLicenses": false,
               "sourceMap": true
             },
-            "development-amelia": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true,
+            "amelia": {
               "define": {
-                "NG_LOCAL_PREVIEW_SITE": "'amelia'"
+                "NG_BUILD_SITE": "'amelia'"
               }
             }
           },
@@ -85,9 +82,6 @@
             },
             "development": {
               "buildTarget": "website:build:development"
-            },
-            "amelia": {
-              "buildTarget": "website:build:development-amelia"
             }
           },
           "defaultConfiguration": "development"
