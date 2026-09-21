@@ -1,4 +1,5 @@
 import { DESTINATION_CONTENT } from '../content/destination-content';
+import { HOMEPAGE_HERO } from '../content/homepage-content';
 import { ogImageFor } from './og-images';
 
 /**
@@ -36,8 +37,10 @@ const BRAND_SUFFIX = 'Omaya Travel';
 export const STATIC_PAGE_METADATA: Readonly<Record<string, PageMetadata>> = {
   home: {
     title: `Small Group Adventure Tours & Holidays | ${BRAND_SUFFIX}`,
-    description:
-      'Small group adventure tours and holidays to Bulgaria, Kyrgyzstan, Morocco and Algeria. Women-only and solo traveller departures, led in English by local guides.',
+    // The hero subtitle itself, so the snippet Google shows for the brand is the words on the page.
+    // Read from the content rather than copied, so the two cannot drift apart. Google preferred the
+    // private-tours paragraph over the earlier destination list; that block is now data-nosnippet.
+    description: `${HOMEPAGE_HERO.subtitle}.`,
   },
   search: {
     title: `Search | ${BRAND_SUFFIX}`,
