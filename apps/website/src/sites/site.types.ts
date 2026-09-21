@@ -25,6 +25,8 @@ export interface SiteBrand {
   /** Intrinsic size of each logo file, so width and height reserve the right shape before it loads. */
   logoSize: SiteImageSize;
   solidLogoSize: SiteImageSize;
+  /** CSS width the header draws the logo at, when a theme changes it from the default 5.8rem. */
+  headerLogoWidth?: string;
   logoAlt: string;
 }
 

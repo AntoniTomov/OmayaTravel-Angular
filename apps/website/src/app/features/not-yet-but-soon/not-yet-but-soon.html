@@ -1,12 +1,25 @@
 <main class="not-yet">
   <section class="not-yet__hero" aria-labelledby="not-yet-title">
-    <img
-      src="/assets/images/home-page/private-tours-right-bgr.webp"
-      width="1920"
-      height="1080"
-      alt=""
-      fetchpriority="high"
-    />
+    <!--
+      Phone and tablet crops, then full-frame copies; see PAGE_HERO_SOURCES in
+      scripts/generate-tour-web-images.mjs. The square photograph never draws wider than the viewport.
+    -->
+    <picture style="display: contents">
+      <source
+        media="(max-width: 30rem)"
+        type="image/avif"
+        [attr.srcset]="heroImage | pageHeroCropSrcset: 'phone'"
+        sizes="480px"
+      />
+      <source
+        media="(max-width: 48rem)"
+        type="image/avif"
+        [attr.srcset]="heroImage | pageHeroCropSrcset: 'tablet'"
+        sizes="768px"
+      />
+      <source type="image/avif" [attr.srcset]="heroImage | tourWebImageSrcset" sizes="100vw" />
+      <img [src]="heroImage" width="1920" height="1080" alt="" fetchpriority="high" />
+    </picture>
     <h1 id="not-yet-title">{{ i18n.t('notYet.heroTitle') }}</h1>
   </section>
 

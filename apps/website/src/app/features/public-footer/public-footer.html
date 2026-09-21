@@ -4,6 +4,8 @@
       <a class="public-footer__brand" routerLink="/" [attr.aria-label]="brand().homeLabel">
         <img
           [src]="brand().logoSrc"
+          [attr.srcset]="brand().logoSrc | logoSrcset"
+          sizes="calc(5.5rem + 45px)"
           [width]="brand().logoSize.width"
           [height]="brand().logoSize.height"
           [alt]="brand().logoAlt"

@@ -66,12 +66,20 @@
   }
 
   @if (section.image) {
-    <img
-      [src]="section.image.src"
-      width="1920"
-      height="1080"
-      [alt]="section.image.alt"
-      loading="lazy"
-    />
+    <!-- The article column: the viewport less its padding, and at most 872px on a desktop. -->
+    <picture style="display: contents">
+      <source
+        type="image/avif"
+        [attr.srcset]="section.image.src | tourWebImageSrcset"
+        sizes="(min-width: 58.01rem) 872px, calc(100vw - 2rem)"
+      />
+      <img
+        [src]="section.image.src"
+        width="1920"
+        height="1080"
+        [alt]="section.image.alt"
+        loading="lazy"
+      />
+    </picture>
   }
 </section>

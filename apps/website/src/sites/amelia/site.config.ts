@@ -17,6 +17,8 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     solidLogoSrc: '/assets/images/amelia/brand/amelia-logo-transparent.png',
     logoSize: { width: 1354, height: 396 },
     solidLogoSize: { width: 1354, height: 396 },
+    // The Amelia theme widens the header logo; see .public-header__logo in its theme.scss.
+    headerLogoWidth: '190px',
     logoAlt: 'Amelia Travel',
   },
   theme: {

@@ -1,6 +1,30 @@
 <main class="blog-list">
   <section class="blog-list__hero" aria-labelledby="blog-list-title">
-    <img [src]="heroImage()" alt="" width="1920" height="1080" fetchpriority="high" />
+    <!--
+      Phones and tablets get centred crops of the slice this 515px-tall hero shows; see
+      PAGE_HERO_SOURCES in scripts/generate-tour-web-images.mjs. Wider screens choose from full-frame
+      copies. The widest hero in use, 2.4:1, draws 1236px wide in its box, hence the sizes floor.
+    -->
+    <picture style="display: contents">
+      <source
+        media="(max-width: 30rem)"
+        type="image/avif"
+        [attr.srcset]="heroImage() | pageHeroCropSrcset: 'phone'"
+        sizes="480px"
+      />
+      <source
+        media="(max-width: 48rem)"
+        type="image/avif"
+        [attr.srcset]="heroImage() | pageHeroCropSrcset: 'tablet'"
+        sizes="768px"
+      />
+      <source
+        type="image/avif"
+        [attr.srcset]="heroImage() | tourWebImageSrcset"
+        sizes="max(100vw, 1236px)"
+      />
+      <img [src]="heroImage()" alt="" width="1920" height="1080" fetchpriority="high" />
+    </picture>
     <div>
       <h1 id="blog-list-title">{{ labels().title }}</h1>
       <p>{{ labels().subtitle }}</p>
@@ -55,13 +79,21 @@
         <h2>{{ labels().suggestedPosts }}</h2>
         @for (post of featuredPosts(); track post.slug) {
           <a [routerLink]="'/' + post.slug + '/'" class="blog-list__suggestion">
-            <img
-              [src]="post.sidebarImage?.src ?? post.image.src"
-              width="92"
-              height="64"
-              [alt]="post.sidebarImage?.alt ?? post.image.alt"
-              loading="lazy"
-            />
+            <!-- A 64px-tall thumbnail, about 96px wide once cover fills it by height. -->
+            <picture style="display: contents">
+              <source
+                type="image/avif"
+                [attr.srcset]="post.sidebarImage?.src ?? post.image.src | tourWebImageSrcset"
+                sizes="96px"
+              />
+              <img
+                [src]="post.sidebarImage?.src ?? post.image.src"
+                width="92"
+                height="64"
+                [alt]="post.sidebarImage?.alt ?? post.image.alt"
+                loading="lazy"
+              />
+            </picture>
             <span>
               <strong>{{ post.title }}</strong>
               <small>{{ post.date }}</small>

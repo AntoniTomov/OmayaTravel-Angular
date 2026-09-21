@@ -64,6 +64,89 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/fcf0d78e913c5388.avif',
   '/assets/images/private-tour/private-tour-image.webp':
     '/assets/images/tour-web/68a303e2b1e1df16.avif',
+  '/assets/images/our-story/Our-story-16.webp': '/assets/images/tour-web/3dca3ff23b3b67b5.avif',
+  '/assets/images/home-page/private-tours-right-bgr.webp':
+    '/assets/images/tour-web/4b8e2f1253b0dbb8.avif',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp':
+    '/assets/images/tour-web/3308a3c70ae6cc78.avif',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-tour-img-1.webp':
+    '/assets/images/tour-web/15866f1bfc7b89b6.avif',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-2.webp':
+    '/assets/images/tour-web/fe9edab029cac169.avif',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-3.webp':
+    '/assets/images/tour-web/89b5799519694051.avif',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-4.webp':
+    '/assets/images/tour-web/1ab5400ff1821359.avif',
+  '/assets/images/amelia/tours/india/india-hero.webp':
+    '/assets/images/tour-web/200d62c728f12ebb.avif',
+  '/assets/images/amelia/tours/morocco/morocco-hero.webp':
+    '/assets/images/tour-web/37e6c2650b5ff271.avif',
+  '/assets/images/amelia/tours/india/gallery/01_jahangiri_arch_interior.webp':
+    '/assets/images/tour-web/5cafb5860f3f0bc6.avif',
+  '/assets/images/amelia/tours/india/gallery/02_rickshaws_sunset.webp':
+    '/assets/images/tour-web/6170c45969c3f79d.avif',
+  '/assets/images/amelia/tours/india/gallery/03_henna_hand.webp':
+    '/assets/images/tour-web/a459331e48ae4764.avif',
+  '/assets/images/amelia/tours/india/gallery/04_india_gate.webp':
+    '/assets/images/tour-web/573e7233ab1046e0.avif',
+  '/assets/images/amelia/tours/india/gallery/05_hawa_mahal_horses.webp':
+    '/assets/images/tour-web/394e58af9dbdf062.avif',
+  '/assets/images/amelia/tours/india/gallery/06_stepwell.webp':
+    '/assets/images/tour-web/bfbc05bf6137a89d.avif',
+  '/assets/images/amelia/tours/india/gallery/07_qutub_minar.webp':
+    '/assets/images/tour-web/bab35ed23ae6e4d0.avif',
+  '/assets/images/amelia/tours/india/gallery/08_taj_mahal_domes.webp':
+    '/assets/images/tour-web/9ea2d3a270129fac.avif',
+  '/assets/images/amelia/tours/india/gallery/09_varanasi_ghats.webp':
+    '/assets/images/tour-web/a41cbb20d4923ac9.avif',
+  '/assets/images/amelia/tours/india/gallery/10_jahangiri_mahal_fort.webp':
+    '/assets/images/tour-web/d6e8eab36ab1a7ac.avif',
+  '/assets/images/amelia/tours/india/gallery/11_block_printing_woman.webp':
+    '/assets/images/tour-web/117ce5a3204ad667.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-01.webp':
+    '/assets/images/tour-web/1ac3ab633448b471.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-02.webp':
+    '/assets/images/tour-web/de47373427a82879.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-03.webp':
+    '/assets/images/tour-web/c360b907e6701056.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-04.webp':
+    '/assets/images/tour-web/eb04d19e5b8ef5ac.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-05.webp':
+    '/assets/images/tour-web/44f4cb285900ad38.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-06.webp':
+    '/assets/images/tour-web/63eaab4ab44301bd.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-07.webp':
+    '/assets/images/tour-web/0cae7e511d470e74.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-08.webp':
+    '/assets/images/tour-web/92dfd2d5ec8bbe13.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-09.webp':
+    '/assets/images/tour-web/df584d7f02891f94.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-10.webp':
+    '/assets/images/tour-web/8c3fa72e5f126013.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-11.webp':
+    '/assets/images/tour-web/d573e029ce435e71.avif',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-12.webp':
+    '/assets/images/tour-web/6dd097bdb7562ac1.avif',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-1.avif':
+    '/assets/images/tour-web/62450c44a6eeb11f.avif',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif':
+    '/assets/images/tour-web/947bcfbc6e9c348a.avif',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-3.avif':
+    '/assets/images/tour-web/4ad8951ffe16d584.avif',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-4.avif':
+    '/assets/images/tour-web/5edfd6c5b9a6fb86.avif',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-01.webp':
+    '/assets/images/tour-web/35ba4aea74dc4d4e.avif',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-02.webp':
+    '/assets/images/tour-web/ced1eb83ec1d3b76.avif',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-03.webp':
+    '/assets/images/tour-web/65ee8104aca94434.avif',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-04.webp':
+    '/assets/images/tour-web/635b01aadeca420c.avif',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-05.webp':
+    '/assets/images/tour-web/8e7132b54b64c1b6.avif',
+  '/assets/images/amelia/our-story/nesi.webp': '/assets/images/tour-web/71fa41c944979cf5.avif',
+  '/assets/images/amelia/our-story/vesislava.jpg': '/assets/images/tour-web/0e9c19e4f0135d33.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -130,6 +213,88 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/4f1d6ac272e3e939.avif 320w, /assets/images/tour-web/08a7956e18b0083f.avif 480w, /assets/images/tour-web/24e24791a1fa3604.avif 640w, /assets/images/tour-web/4641c2f7e7b6c601.avif 800w, /assets/images/tour-web/825a93a18a1c4b52.avif 960w, /assets/images/tour-web/872826211e5df282.avif 1440w, /assets/images/tour-web/fcf0d78e913c5388.avif 1600w',
   '/assets/images/private-tour/private-tour-image.webp':
     '/assets/images/tour-web/723e222464aa8d20.avif 320w, /assets/images/tour-web/470033ae9d95fc21.avif 480w, /assets/images/tour-web/6ca085536fd36470.avif 640w, /assets/images/tour-web/e59b0188d48c3937.avif 800w, /assets/images/tour-web/d8f03285b5730130.avif 960w, /assets/images/tour-web/d589b814d9fa2cf4.avif 1440w, /assets/images/tour-web/68a303e2b1e1df16.avif 1600w',
+  '/assets/images/our-story/Our-story-16.webp':
+    '/assets/images/tour-web/102d832f26189915.avif 320w, /assets/images/tour-web/49ad405c5fc75b34.avif 480w, /assets/images/tour-web/6606e59a62f7df63.avif 640w, /assets/images/tour-web/6526e80401318bd2.avif 800w, /assets/images/tour-web/c698d40834413921.avif 960w, /assets/images/tour-web/cc88d0395dadca4b.avif 1440w, /assets/images/tour-web/3dca3ff23b3b67b5.avif 1600w',
+  '/assets/images/home-page/private-tours-right-bgr.webp':
+    '/assets/images/tour-web/42698698e9f5646e.avif 320w, /assets/images/tour-web/b431ac39571cefc2.avif 480w, /assets/images/tour-web/1fc26de6942c0415.avif 640w, /assets/images/tour-web/648cce5b99fb80b8.avif 800w, /assets/images/tour-web/0ead340962360c9b.avif 960w, /assets/images/tour-web/4b8e2f1253b0dbb8.avif 1080w',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp':
+    '/assets/images/tour-web/846f9b5cd1603220.avif 320w, /assets/images/tour-web/928301e50c5c5020.avif 480w, /assets/images/tour-web/4d7b5053e60f3c23.avif 640w, /assets/images/tour-web/519cd068740be067.avif 800w, /assets/images/tour-web/37b4728c5fe2e986.avif 960w, /assets/images/tour-web/c6f61ad920865a62.avif 1440w, /assets/images/tour-web/3308a3c70ae6cc78.avif 1600w',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-tour-img-1.webp':
+    '/assets/images/tour-web/fb2a4ceef0ac1807.avif 320w, /assets/images/tour-web/e73f39e2530eca7a.avif 480w, /assets/images/tour-web/c05e7a59f11ab31d.avif 640w, /assets/images/tour-web/5445c42d44b5216e.avif 800w, /assets/images/tour-web/3cdcbe651d7fea4c.avif 960w, /assets/images/tour-web/15866f1bfc7b89b6.avif 964w',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-2.webp':
+    '/assets/images/tour-web/f6fce10bf579d812.avif 320w, /assets/images/tour-web/59fc3884b85e0af0.avif 480w, /assets/images/tour-web/f0df8f893c5a97b4.avif 640w, /assets/images/tour-web/8921f4a3b1c80fb1.avif 800w, /assets/images/tour-web/a8488b417e25533c.avif 960w, /assets/images/tour-web/fe9edab029cac169.avif 964w',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-3.webp':
+    '/assets/images/tour-web/7dea17b9362d27e1.avif 320w, /assets/images/tour-web/7b888bac43aa6fbd.avif 480w, /assets/images/tour-web/365d3a50ef50a1a1.avif 640w, /assets/images/tour-web/f3f3ff28399a991c.avif 800w, /assets/images/tour-web/0b186bde297c0d19.avif 960w, /assets/images/tour-web/89b5799519694051.avif 964w',
+  '/assets/images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-4.webp':
+    '/assets/images/tour-web/98c1539b7329f76c.avif 320w, /assets/images/tour-web/cdceaf08638ea8c4.avif 480w, /assets/images/tour-web/78a6da85c2b5cb97.avif 640w, /assets/images/tour-web/b69eeac352ba9bf8.avif 800w, /assets/images/tour-web/c8ae34a4e9ecd725.avif 960w, /assets/images/tour-web/1ab5400ff1821359.avif 964w',
+  '/assets/images/amelia/tours/india/india-hero.webp':
+    '/assets/images/tour-web/7f1c046540f722ee.avif 320w, /assets/images/tour-web/bb4e8b0c8cd87ad5.avif 480w, /assets/images/tour-web/22783ecb0cd40a19.avif 640w, /assets/images/tour-web/18e0ec76cbbeaa3c.avif 800w, /assets/images/tour-web/66e4e297533e88f3.avif 960w, /assets/images/tour-web/4a8f5b9fccb75718.avif 1440w, /assets/images/tour-web/8bf4423b3162798f.avif 1920w, /assets/images/tour-web/200d62c728f12ebb.avif 2560w',
+  '/assets/images/amelia/tours/morocco/morocco-hero.webp':
+    '/assets/images/tour-web/e1cc9302feb8f791.avif 320w, /assets/images/tour-web/7666087c1d1390be.avif 480w, /assets/images/tour-web/139e494e0afb5de8.avif 640w, /assets/images/tour-web/9705fc8aad16f2a1.avif 800w, /assets/images/tour-web/59c08ed03248fb3c.avif 960w, /assets/images/tour-web/b2234ddd3610a577.avif 1440w, /assets/images/tour-web/37e6c2650b5ff271.avif 1600w',
+  '/assets/images/amelia/tours/india/gallery/01_jahangiri_arch_interior.webp':
+    '/assets/images/tour-web/fc98cf6623e370d1.avif 320w, /assets/images/tour-web/65cee85666f97d41.avif 480w, /assets/images/tour-web/240ed23c2015acba.avif 640w, /assets/images/tour-web/5cafb5860f3f0bc6.avif 800w',
+  '/assets/images/amelia/tours/india/gallery/02_rickshaws_sunset.webp':
+    '/assets/images/tour-web/8fed03845ae2478b.avif 320w, /assets/images/tour-web/c4506d974b6c5bca.avif 480w, /assets/images/tour-web/226b681004629f42.avif 640w, /assets/images/tour-web/6170c45969c3f79d.avif 800w',
+  '/assets/images/amelia/tours/india/gallery/03_henna_hand.webp':
+    '/assets/images/tour-web/f7baff0acbb81885.avif 320w, /assets/images/tour-web/d8264dda99f9be9c.avif 480w, /assets/images/tour-web/06e8090051e22c7d.avif 640w, /assets/images/tour-web/a459331e48ae4764.avif 800w',
+  '/assets/images/amelia/tours/india/gallery/04_india_gate.webp':
+    '/assets/images/tour-web/19c43e0b925c15fb.avif 320w, /assets/images/tour-web/235d56017cfba08f.avif 480w, /assets/images/tour-web/40f45571ba63b39d.avif 640w, /assets/images/tour-web/573e7233ab1046e0.avif 800w',
+  '/assets/images/amelia/tours/india/gallery/05_hawa_mahal_horses.webp':
+    '/assets/images/tour-web/6f7dac1e3ef626e2.avif 320w, /assets/images/tour-web/c042db6854d43b34.avif 480w, /assets/images/tour-web/202a8112c37d33bc.avif 640w, /assets/images/tour-web/daca827d299cebb8.avif 800w, /assets/images/tour-web/585c47b6554ac2ec.avif 960w, /assets/images/tour-web/d81acb3509651312.avif 1440w, /assets/images/tour-web/394e58af9dbdf062.avif 1600w',
+  '/assets/images/amelia/tours/india/gallery/06_stepwell.webp':
+    '/assets/images/tour-web/c92f1635199c1f85.avif 320w, /assets/images/tour-web/89a716f2385ac512.avif 480w, /assets/images/tour-web/5957939117ddc629.avif 640w, /assets/images/tour-web/67982234e6ad20b5.avif 800w, /assets/images/tour-web/25274184edf12d5e.avif 960w, /assets/images/tour-web/d1ca74fe1e4995a7.avif 1440w, /assets/images/tour-web/bfbc05bf6137a89d.avif 1600w',
+  '/assets/images/amelia/tours/india/gallery/07_qutub_minar.webp':
+    '/assets/images/tour-web/726b646562908a55.avif 320w, /assets/images/tour-web/d73bc3d8b384eebe.avif 480w, /assets/images/tour-web/ff67f397911ce8c5.avif 640w, /assets/images/tour-web/bab35ed23ae6e4d0.avif 800w',
+  '/assets/images/amelia/tours/india/gallery/08_taj_mahal_domes.webp':
+    '/assets/images/tour-web/797377e109555285.avif 320w, /assets/images/tour-web/7928e30e1de94ba5.avif 480w, /assets/images/tour-web/de99075ecce07255.avif 640w, /assets/images/tour-web/9ea2d3a270129fac.avif 800w',
+  '/assets/images/amelia/tours/india/gallery/09_varanasi_ghats.webp':
+    '/assets/images/tour-web/8c60c9ae83f84a24.avif 320w, /assets/images/tour-web/2c607e9e7a8219f5.avif 480w, /assets/images/tour-web/e5e8a703f1942a1c.avif 640w, /assets/images/tour-web/072ec7882c5bbf76.avif 800w, /assets/images/tour-web/328c61049c1e43da.avif 960w, /assets/images/tour-web/1bec539d7096e4f1.avif 1440w, /assets/images/tour-web/a41cbb20d4923ac9.avif 1600w',
+  '/assets/images/amelia/tours/india/gallery/10_jahangiri_mahal_fort.webp':
+    '/assets/images/tour-web/f5291d4c565a1bb6.avif 320w, /assets/images/tour-web/38a3a80f04af9e1d.avif 480w, /assets/images/tour-web/a27e4dc71a58cb7e.avif 640w, /assets/images/tour-web/b3b88daa70216591.avif 800w, /assets/images/tour-web/f581a957f3306331.avif 960w, /assets/images/tour-web/4129ea156f5d319d.avif 1440w, /assets/images/tour-web/d6e8eab36ab1a7ac.avif 1600w',
+  '/assets/images/amelia/tours/india/gallery/11_block_printing_woman.webp':
+    '/assets/images/tour-web/19dbf664c3a59ab7.avif 320w, /assets/images/tour-web/7c8c3fbc33b99844.avif 480w, /assets/images/tour-web/f9c5fd9e56babb33.avif 640w, /assets/images/tour-web/117ce5a3204ad667.avif 800w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-01.webp':
+    '/assets/images/tour-web/76889b97be1170fa.avif 320w, /assets/images/tour-web/ab5d9000da23eb2c.avif 480w, /assets/images/tour-web/1ac3ab633448b471.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-02.webp':
+    '/assets/images/tour-web/74ef4bfadaaf10d2.avif 320w, /assets/images/tour-web/72be3b2fba5328af.avif 480w, /assets/images/tour-web/9da10312fee7f0c6.avif 640w, /assets/images/tour-web/2645407a7118dead.avif 800w, /assets/images/tour-web/7a57a75d48206a80.avif 960w, /assets/images/tour-web/de47373427a82879.avif 1045w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-03.webp':
+    '/assets/images/tour-web/81e503b65845b596.avif 320w, /assets/images/tour-web/f9daa95966b63a0a.avif 480w, /assets/images/tour-web/c360b907e6701056.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-04.webp':
+    '/assets/images/tour-web/2f1b6549d530ec4d.avif 320w, /assets/images/tour-web/2d2878289bd0d8ec.avif 480w, /assets/images/tour-web/eb04d19e5b8ef5ac.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-05.webp':
+    '/assets/images/tour-web/5d4b48df531610db.avif 320w, /assets/images/tour-web/8524219b3275db8b.avif 480w, /assets/images/tour-web/44f4cb285900ad38.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-06.webp':
+    '/assets/images/tour-web/10e3d2521c00274c.avif 320w, /assets/images/tour-web/1db0a4599a4bc6ea.avif 480w, /assets/images/tour-web/63eaab4ab44301bd.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-07.webp':
+    '/assets/images/tour-web/51beb42fb6266215.avif 320w, /assets/images/tour-web/3200e9e2a4029fcf.avif 480w, /assets/images/tour-web/b4ca3e23e33d2112.avif 640w, /assets/images/tour-web/ca097177b12ea321.avif 800w, /assets/images/tour-web/47de02e3b2a6f3d5.avif 960w, /assets/images/tour-web/0cae7e511d470e74.avif 1100w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-08.webp':
+    '/assets/images/tour-web/4a6e50191c8260ed.avif 320w, /assets/images/tour-web/2d20b4c8503d45d3.avif 480w, /assets/images/tour-web/92dfd2d5ec8bbe13.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-09.webp':
+    '/assets/images/tour-web/b6aee8a398e681c7.avif 320w, /assets/images/tour-web/2c86f7aa3a7cd77f.avif 480w, /assets/images/tour-web/df584d7f02891f94.avif 550w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-10.webp':
+    '/assets/images/tour-web/c708fd8c6fc96531.avif 320w, /assets/images/tour-web/ab6984ad179d7131.avif 480w, /assets/images/tour-web/80a45a8f9e0e19ed.avif 640w, /assets/images/tour-web/9cc6f1dc61b5bbd6.avif 800w, /assets/images/tour-web/fc763e9baf63ec27.avif 960w, /assets/images/tour-web/8c3fa72e5f126013.avif 1100w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-11.webp':
+    '/assets/images/tour-web/762524f68e204dd5.avif 320w, /assets/images/tour-web/bf703fd513f03aa7.avif 480w, /assets/images/tour-web/58ba32ccc9483238.avif 640w, /assets/images/tour-web/899c677dfd84b33e.avif 800w, /assets/images/tour-web/4603b41b70059783.avif 960w, /assets/images/tour-web/d573e029ce435e71.avif 1100w',
+  '/assets/images/amelia/tours/morocco/gallery/morocco-gallery-12.webp':
+    '/assets/images/tour-web/2f242baeb55f05dc.avif 320w, /assets/images/tour-web/0882bddcf4075cfb.avif 480w, /assets/images/tour-web/6dd097bdb7562ac1.avif 550w',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-1.avif':
+    '/assets/images/tour-web/15c6f3d05b945882.avif 320w, /assets/images/tour-web/2a93bb7677d270bf.avif 480w, /assets/images/tour-web/e09fb1696f74d5d9.avif 640w, /assets/images/tour-web/68ba70d0ab2bc9e4.avif 800w, /assets/images/tour-web/3fce1f88ca797885.avif 960w, /assets/images/tour-web/88b0cc747dfa16c1.avif 1440w, /assets/images/tour-web/b81724722de337a3.avif 1920w, /assets/images/tour-web/62450c44a6eeb11f.avif 5464w',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif':
+    '/assets/images/tour-web/f1f8302bb7259bfe.avif 320w, /assets/images/tour-web/1b869bb7f5e508b1.avif 480w, /assets/images/tour-web/f8938ec9264aeb55.avif 640w, /assets/images/tour-web/3d5a1c2133339adb.avif 800w, /assets/images/tour-web/d256fca639cfc3cb.avif 960w, /assets/images/tour-web/d0948d1ed5ce391c.avif 1440w, /assets/images/tour-web/99b7719974eeadb7.avif 1920w, /assets/images/tour-web/947bcfbc6e9c348a.avif 5143w',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-3.avif':
+    '/assets/images/tour-web/73e7beb3159b8a62.avif 320w, /assets/images/tour-web/bd7400e2369318d4.avif 480w, /assets/images/tour-web/e27719d649ad2570.avif 640w, /assets/images/tour-web/3f73e53b20be1b6c.avif 800w, /assets/images/tour-web/fbfb7a234cc6b6f8.avif 960w, /assets/images/tour-web/64b755762302c4d9.avif 1440w, /assets/images/tour-web/620bd89ebc801af5.avif 1920w, /assets/images/tour-web/4ad8951ffe16d584.avif 3888w',
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-4.avif':
+    '/assets/images/tour-web/13c6423138833ca1.avif 320w, /assets/images/tour-web/1a3ad61eadda76b6.avif 480w, /assets/images/tour-web/3b66f14bd8402909.avif 640w, /assets/images/tour-web/836a218121bba50f.avif 800w, /assets/images/tour-web/c18ebf6a6529f0d9.avif 960w, /assets/images/tour-web/26bfec5aa42bad22.avif 1440w, /assets/images/tour-web/5edfd6c5b9a6fb86.avif 1800w',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-01.webp':
+    '/assets/images/tour-web/3dbb290f541b56d4.avif 320w, /assets/images/tour-web/4023624085957b41.avif 480w, /assets/images/tour-web/b5b91e90b4185bbc.avif 640w, /assets/images/tour-web/35ba4aea74dc4d4e.avif 757w',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-02.webp':
+    '/assets/images/tour-web/c967207d8fa7330b.avif 320w, /assets/images/tour-web/4105d3d67c38c210.avif 480w, /assets/images/tour-web/9045df8b42170a59.avif 640w, /assets/images/tour-web/ced1eb83ec1d3b76.avif 678w',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-03.webp':
+    '/assets/images/tour-web/c428dd9f4097507d.avif 320w, /assets/images/tour-web/21db12b5a84ffb63.avif 480w, /assets/images/tour-web/aa5a07ce04f20dba.avif 640w, /assets/images/tour-web/65ee8104aca94434.avif 678w',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-04.webp':
+    '/assets/images/tour-web/2252b76ca703e4fe.avif 320w, /assets/images/tour-web/817797911b92c84c.avif 480w, /assets/images/tour-web/537ae1c7c5c3c9fe.avif 640w, /assets/images/tour-web/635b01aadeca420c.avif 678w',
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-05.webp':
+    '/assets/images/tour-web/7ab95fa18f77c01e.avif 320w, /assets/images/tour-web/89446ab6bc3c2d70.avif 480w, /assets/images/tour-web/16d40229e17d7d6f.avif 640w, /assets/images/tour-web/8e7132b54b64c1b6.avif 678w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -178,6 +343,41 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/e73f3e1378dd908f.avif 320w, /assets/images/tour-web/f57ae2c3f9f66fe7.avif 480w, /assets/images/tour-web/e9eeb7ff180491d1.avif 640w, /assets/images/tour-web/8920226f6fe16c17.avif 840w, /assets/images/tour-web/ed66e12bcfc80361.avif 858w',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/688cd93e33784a05.avif 320w, /assets/images/tour-web/beaa5d0c304b3beb.avif 480w, /assets/images/tour-web/9adb02e444e3dcb5.avif 640w, /assets/images/tour-web/299fd66e70bc2153.avif 840w, /assets/images/tour-web/ab0309ea3ed577ff.avif 960w, /assets/images/tour-web/666f71ede6687a3e.avif 994w',
+  '/assets/images/amelia/tours/india/india-hero.webp':
+    '/assets/images/tour-web/d6e026604918b8c8.avif 320w, /assets/images/tour-web/7f713c3e0966ab5e.avif 480w',
+  '/assets/images/amelia/tours/morocco/morocco-hero.webp':
+    '/assets/images/tour-web/e73f3e1378dd908f.avif 320w, /assets/images/tour-web/f57ae2c3f9f66fe7.avif 480w, /assets/images/tour-web/e9eeb7ff180491d1.avif 640w, /assets/images/tour-web/8920226f6fe16c17.avif 840w, /assets/images/tour-web/ed66e12bcfc80361.avif 858w',
+};
+// Centred crops of the blog, our-story and not-yet-but-soon heroes: phone up to 30rem, tablet up to 48rem. See PAGE_HERO_SOURCES in the generator.
+export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = {
+  '/assets/images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif': {
+    phone:
+      '/assets/images/tour-web/2cdecb0bcb1ff183.avif 480w, /assets/images/tour-web/8d71ed0ff5f54e67.avif 720w, /assets/images/tour-web/c9f342e96335b1d2.avif 960w, /assets/images/tour-web/298fc41691d7d415.avif 1440w',
+    tablet:
+      '/assets/images/tour-web/425db7c9f583177b.avif 768w, /assets/images/tour-web/a3d52ef6937d6cf7.avif 1152w, /assets/images/tour-web/85724e2d01b313b5.avif 1536w',
+  },
+  '/assets/images/amelia/blog/india-otblizo/india-otblizo-01.webp': {
+    phone: '/assets/images/tour-web/9898259ad49dae44.avif 391w',
+    tablet: '/assets/images/tour-web/cd78949e8b471625.avif 626w',
+  },
+  '/assets/images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp': {
+    phone:
+      '/assets/images/tour-web/e44ccff9307a3a6c.avif 480w, /assets/images/tour-web/a40fb8aa6647c7c1.avif 720w, /assets/images/tour-web/9931b5a7ad5fe276.avif 826w',
+    tablet:
+      '/assets/images/tour-web/798cd34a9c602372.avif 768w, /assets/images/tour-web/309dd557db91fe0a.avif 1152w, /assets/images/tour-web/3fee1961442158c6.avif 1321w',
+  },
+  '/assets/images/our-story/Our-story-16.webp': {
+    phone:
+      '/assets/images/tour-web/33a61dbcb064cd66.avif 480w, /assets/images/tour-web/83e1441d37a49333.avif 622w',
+    tablet:
+      '/assets/images/tour-web/3e98097f0225b37d.avif 768w, /assets/images/tour-web/c55f360ed9dfb8a2.avif 995w',
+  },
+  '/assets/images/home-page/private-tours-right-bgr.webp': {
+    phone:
+      '/assets/images/tour-web/53b20c958a967127.avif 480w, /assets/images/tour-web/69b2bf4a9682676f.avif 720w, /assets/images/tour-web/42c4b57d0773f26f.avif 960w, /assets/images/tour-web/60a83e1b88283fcf.avif 1007w',
+    tablet:
+      '/assets/images/tour-web/dbe67f38210edd57.avif 768w, /assets/images/tour-web/4b8e2f1253b0dbb8.avif 1080w',
+  },
 };
 // Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem, portrait for screens no wider than 3/4 of their height. See HOMEPAGE_HERO_TIERS in the generator.
 export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<
@@ -206,6 +406,30 @@ export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<
     portrait:
       '/assets/images/tour-web/97fdd62bc874cb48.avif 960w, /assets/images/tour-web/ff1f57329576d5de.avif 1200w, /assets/images/tour-web/55a3373156b80868.avif 1237w',
   },
+  '/assets/images/amelia/home/hero-3.avif': {
+    phone:
+      '/assets/images/tour-web/1b5c85390bbd081e.avif 320w, /assets/images/tour-web/361179ebb4f0e5b7.avif 480w, /assets/images/tour-web/c59b41edda5e0474.avif 640w, /assets/images/tour-web/a1e36387743671e2.avif 960w, /assets/images/tour-web/40783b9682771854.avif 987w',
+    tablet:
+      '/assets/images/tour-web/2b947329f5acdcc5.avif 640w, /assets/images/tour-web/1115d749ed551aa7.avif 800w, /assets/images/tour-web/2aa107cba44c9e91.avif 960w, /assets/images/tour-web/7a438369adfd1d97.avif 1578w',
+    portrait:
+      '/assets/images/tour-web/c5bc35def1d28c1d.avif 960w, /assets/images/tour-web/50121fd54a8c90eb.avif 1200w, /assets/images/tour-web/9bdfe086285aae5b.avif 1640w',
+  },
+  '/assets/images/amelia/home/hero-4.avif': {
+    phone:
+      '/assets/images/tour-web/a240e6f61d4683e4.avif 320w, /assets/images/tour-web/ad4a7971c064f10b.avif 480w, /assets/images/tour-web/18739081594b3438.avif 640w, /assets/images/tour-web/81c77dc188f47ac1.avif 960w, /assets/images/tour-web/34bd8753ada846be.avif 987w',
+    tablet:
+      '/assets/images/tour-web/119ffe6c107aceaa.avif 640w, /assets/images/tour-web/af9d26b8b7650764.avif 800w, /assets/images/tour-web/32bae1bab3fc39c8.avif 960w, /assets/images/tour-web/efee1de4aec391c9.avif 1578w',
+    portrait:
+      '/assets/images/tour-web/7120c39a9def0275.avif 960w, /assets/images/tour-web/9b4190fd0aca604f.avif 1200w, /assets/images/tour-web/9d3f811be038d2f9.avif 1640w',
+  },
+  '/assets/images/amelia/home/hero-5.avif': {
+    phone:
+      '/assets/images/tour-web/56c5ffd1fd2042e9.avif 320w, /assets/images/tour-web/4db34849c554ccf9.avif 480w, /assets/images/tour-web/68a49dc1ee8d8b7e.avif 640w, /assets/images/tour-web/3ae9e5cd528a50bc.avif 960w, /assets/images/tour-web/3607118ac80d432d.avif 987w',
+    tablet:
+      '/assets/images/tour-web/7941e68e815d8791.avif 640w, /assets/images/tour-web/56b9814edd619209.avif 800w, /assets/images/tour-web/85289204273102f4.avif 960w, /assets/images/tour-web/27009de2d8f66994.avif 1578w',
+    portrait:
+      '/assets/images/tour-web/279301cf945cbc40.avif 960w, /assets/images/tour-web/9e535fef16950279.avif 1200w, /assets/images/tour-web/eb549ef1af986185.avif 1640w',
+  },
 };
 // Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.
 export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
@@ -217,6 +441,10 @@ export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/bf90f8995423f4f4.avif 320w, /assets/images/tour-web/d21fcf1efc16e1a3.avif 480w, /assets/images/tour-web/eb161c0f70c827dd.avif 560w, /assets/images/tour-web/0aa5d8cc44a9dda5.avif 632w',
   '/assets/images/home-page/trips-carousel/Algeria-trip.webp':
     '/assets/images/tour-web/8caaea7094aa1277.avif 320w, /assets/images/tour-web/0e601d42895adfa4.avif 480w, /assets/images/tour-web/9f78dfdf2ae23213.avif 560w, /assets/images/tour-web/7bae068d78998d21.avif 622w',
+  '/assets/images/amelia/tours/india/india-card.webp':
+    '/assets/images/tour-web/ba2800b9fa7e9398.avif 320w, /assets/images/tour-web/3ac504b697aad53c.avif 480w, /assets/images/tour-web/2ad5be86b2890713.avif 560w, /assets/images/tour-web/97bd670d4290e927.avif 712w',
+  '/assets/images/amelia/tours/morocco/morocco-card.webp':
+    '/assets/images/tour-web/2acb5791ffbf55cc.avif 320w, /assets/images/tour-web/35c65eea400cd773.avif 400w',
 };
 // Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
 export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
@@ -226,6 +454,8 @@ export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/3c556323d2fcd1c4.avif 320w, /assets/images/tour-web/e031d1ebedcd3b6a.avif 480w, /assets/images/tour-web/61abcc3e715e04af.avif 632w',
   '/assets/images/destinations/Marocco/morocco-bgr.webp':
     '/assets/images/tour-web/d3e8eb34e6eb925c.avif 320w, /assets/images/tour-web/e9c2fb593a3607a2.avif 480w, /assets/images/tour-web/316b286c7da08684.avif 640w, /assets/images/tour-web/a42808e2d4d5d7d8.avif 800w, /assets/images/tour-web/766df0085f8d7c6c.avif 960w, /assets/images/tour-web/8aed1d364d20422b.avif 1200w, /assets/images/tour-web/03fcbb5dcf276b69.avif 1600w',
+  '/assets/images/amelia/tours/india/india-card.webp':
+    '/assets/images/tour-web/6485d77dedddb3ff.avif 320w, /assets/images/tour-web/8cce08a24f9bb1a1.avif 480w, /assets/images/tour-web/d7042b9c318a50a9.avif 640w, /assets/images/tour-web/7ca84698cadf4569.avif 712w',
 };
 // A capped copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in the generator.
 export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
@@ -243,6 +473,8 @@ export const NEWSLETTER_POPUP_TABLET_SRCSETS: Readonly<Record<string, string>> =
 export const MISSION_IMAGE_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/home-page/our-mission-image.webp':
     '/assets/images/tour-web/a76c97ac47ee9702.avif 480w, /assets/images/tour-web/1abe3469f59584bd.avif 560w, /assets/images/tour-web/994d23289b4fe81a.avif 660w, /assets/images/tour-web/65ebd3301f8b933a.avif 760w, /assets/images/tour-web/e2d2e6387c7569a6.avif 960w, /assets/images/home-page/our-mission-image.webp 1080w',
+  '/assets/images/amelia/our-story/our-mission.jpg':
+    '/assets/images/tour-web/42fda0159da52b67.avif 480w, /assets/images/tour-web/eccb3b437b1dbf78.avif 560w, /assets/images/tour-web/e22903a9a817cdbc.avif 660w, /assets/images/tour-web/897c8c6e184a79ca.avif 760w, /assets/images/tour-web/f565763a1296412e.avif 960w, /assets/images/amelia/our-story/our-mission.jpg 1232w',
 };
 // Lossless logo copies for each pixel ratio, keyed by the logo they stand in for. See LOGO_WIDTHS in the generator.
 export const LOGO_SRCSETS: Readonly<Record<string, string>> = {
@@ -250,4 +482,8 @@ export const LOGO_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/cb484c2e01c562a0.webp 100w, /assets/images/tour-web/bb65430223246625.webp 150w, /assets/images/tour-web/361fe207d41b1efd.webp 200w, /assets/images/tour-web/601633a2369be81f.webp 250w, /assets/images/tour-web/9ddce96af40b8454.webp 300w, /assets/images/tour-web/2bb8d8232f916616.webp 350w, /assets/images/home-page/company-logo/Black_logo-e1781169999413.webp 400w',
   '/assets/images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp':
     '/assets/images/tour-web/f200a3aa758e3b46.webp 100w, /assets/images/tour-web/d38d2faec5dc90fb.webp 150w, /assets/images/tour-web/bd57267f4ec5dff9.webp 200w, /assets/images/tour-web/9189c48a45960aeb.webp 250w, /assets/images/tour-web/7a4541f59f1afbad.webp 300w, /assets/images/tour-web/466655830f97bbaf.webp 350w, /assets/images/tour-web/309fc1e21813d46e.webp 400w',
+  '/assets/images/amelia/brand/amelia-logo-transparent.png':
+    '/assets/images/tour-web/f5287a4f9cddd189.webp 150w, /assets/images/tour-web/d7501814c31934f8.webp 200w, /assets/images/tour-web/7bde94541ef5fc09.webp 300w, /assets/images/tour-web/8ce97cdeb428bbf9.webp 400w, /assets/images/tour-web/9f221594f4d6c910.webp 600w, /assets/images/amelia/brand/amelia-logo-transparent.png 1354w',
+  '/assets/images/amelia/brand/amelia-logo-transparent-white.png':
+    '/assets/images/tour-web/faf320427dfa103c.webp 150w, /assets/images/tour-web/a63d195f81448103.webp 200w, /assets/images/tour-web/b07f49137cc97d71.webp 300w, /assets/images/tour-web/38610ccdc26b76e1.webp 400w, /assets/images/tour-web/b6ef353b282bab0b.webp 600w, /assets/images/amelia/brand/amelia-logo-transparent-white.png 1354w',
 };

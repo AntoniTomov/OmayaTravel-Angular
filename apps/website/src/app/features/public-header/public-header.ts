@@ -90,14 +90,15 @@ export class PublicHeader implements AfterViewInit {
     const visualSrc = solid ? brand.solidLogoSrc : brand.logoSrc;
     const size = solid ? brand.solidLogoSize : brand.logoSize;
 
-    // The logo is 5.8rem wide, and each pixel ratio picks a lossless copy at its width. The srcset
-    // used to describe both logos as 150px wide, when the white file was 100px and the black 400px,
-    // and sizes was never bound, so phones stretched the white file. width and height declare the
-    // logo file's own shape, which differs between brands and between a brand's two logos.
+    // The logo is 5.8rem wide unless the brand's theme says otherwise, and each pixel ratio picks a
+    // lossless copy at its width. The srcset used to describe both logos as 150px wide, when the
+    // white file was 100px and the black 400px, and sizes was never bound, so phones stretched the
+    // white file. width and height declare the logo file's own shape, which differs between brands
+    // and between a brand's two logos.
     return {
       src: visualSrc,
       srcset: LOGO_SRCSETS[visualSrc] ?? visualSrc,
-      sizes: '5.8rem',
+      sizes: brand.headerLogoWidth ?? '5.8rem',
       width: size.width,
       height: size.height,
       alt: brand.logoAlt,
