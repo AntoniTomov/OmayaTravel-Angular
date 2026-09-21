@@ -494,10 +494,6 @@
   padding: 1.2rem 0;
 }
 
-.tour-detail__faq details:last-child {
-  border-bottom: 1px solid var(--omaya-color-border-light);
-}
-
 .tour-detail__faq summary {
   display: flex;
   justify-content: space-between;
@@ -524,6 +520,11 @@
 
 .tour-detail__faq details p {
   margin: 1rem 0 0;
+}
+
+.tour-detail__faq ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
 }
 
 .tour-detail__sidebar {
@@ -1027,4 +1028,9 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 24px;
+}
+
+/** The section's own border closes the accordion, so it sits right under the last question. */
+.tour-detail__faq {
+  padding-bottom: 0;
 }

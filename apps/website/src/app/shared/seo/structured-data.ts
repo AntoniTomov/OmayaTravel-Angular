@@ -183,7 +183,7 @@ export function faqJsonLd(
       name: item.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.answer.join(' '),
+        text: [...item.answer, ...(item.bullets ?? [])].join(' '),
       },
     })),
   };
