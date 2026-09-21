@@ -26,8 +26,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+ * The page grows with its content and is never shorter than the screen. It must not be pinned to the
+ * screen height: WebKit 26 (Safari and every iOS browser) clips body's overflow-x: clip vertically
+ * as well, at body's own box, so with html and body at height: 100% nothing below the first screen
+ * or so was painted on iPhones. The overflow-x: clip itself stays, to stop sideways scrolling.
+ */
 html {
-  height: 100%;
+  min-height: 100%;
   overflow-x: clip;
 }
 

@@ -80,6 +80,9 @@ export const PUBLIC_STATIC_PAGE_SLUGS = [
   'cookie-policy',
   'termsconditions',
   'standarten-formulyar',
+  // The trip enquiry form the main menu and homepage link to. It was missing here, so the server
+  // answered it through the catch-all 404 route even though the page rendered.
+  'enquire-now',
 ] as const;
 
 export const PUBLIC_ROUTE_PATTERNS = {
@@ -116,6 +119,16 @@ export const PUBLIC_STATIC_PRERENDER_ROUTES: readonly PublicRouteDefinition[] = 
   ...PUBLIC_TOUR_CATEGORY_ROUTES,
   ...PUBLIC_BLOG_ARTICLE_ROUTES,
   ...PUBLIC_STATIC_PAGE_ROUTES,
+];
+
+/**
+ * Pages that exist but depend on the request, so they are rendered on each request rather than
+ * prerendered, and are never indexed. Search reads its query from the URL: a prerendered snapshot
+ * would be one empty result page for every query. Without an entry here such a page would fall
+ * through to the catch-all server route and answer 404.
+ */
+export const PUBLIC_SERVER_RENDERED_ROUTES: readonly PublicRouteDefinition[] = [
+  { ...defineRoute('search', 'static-page', 'search'), prerender: false },
 ];
 
 export const PUBLIC_INDEXABLE_ROUTES: readonly PublicRouteDefinition[] = [
