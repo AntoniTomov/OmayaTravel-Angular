@@ -328,6 +328,13 @@
                   @for (paragraph of item.answer; track paragraph) {
                     <p>{{ paragraph }}</p>
                   }
+                  @if (item.bullets?.length) {
+                    <ul>
+                      @for (bullet of item.bullets; track bullet) {
+                        <li>{{ bullet }}</li>
+                      }
+                    </ul>
+                  }
                 </details>
               }
             </div>
