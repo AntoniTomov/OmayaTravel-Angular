@@ -104,4 +104,26 @@ describe('itinerary highlight terms', () => {
       'https://whc.unesco.org/en/list/252/',
     ]);
   });
+
+  it('marks up the Amelia Kyrgyzstan itinerary, with the three external references', () => {
+    const kyrgyzstan = findTourBySlug('kyrgyzstan-tour', 'amelia');
+    const days = kyrgyzstan?.itinerary ?? [];
+    const terms = days.flatMap((day) => day.descriptionHighlights ?? []);
+
+    expect(days.filter((day) => day.descriptionHighlights?.length).map((day) => day.day)).toEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9,
+    ]);
+    expect(terms.length).toBe(13);
+    expect(terms.filter((term) => term.href).map((term) => term.href)).toEqual([
+      'https://ameliatravel.bg/ezeroto-song-kul-kirgistan/',
+      'https://en.wikipedia.org/wiki/Holy_Trinity_Church,_Karakol',
+      'https://ich.unesco.org/en/RL/kok-boru-traditional-horse-game-01294',
+    ]);
+  });
+
+  it('leaves the English Omaya Kyrgyzstan itinerary unhighlighted', () => {
+    const omaya = TOUR_DETAIL_CONTENT.find((tour) => tour.slug === 'kyrgyzstan-tour');
+
+    expect(omaya?.itinerary.some((day) => day.descriptionHighlights?.length)).toBe(false);
+  });
 });
