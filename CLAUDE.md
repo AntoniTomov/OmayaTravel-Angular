@@ -12,7 +12,13 @@ npm run build        # production build + prerender
 npm test             # Vitest unit tests
 npm run lint         # prettier --check
 npm run type-check   # development build, type errors only
+npm run test:webkit  # iPhone 14 WebKit check: no blank or sideways-scrolling pages
 ```
+
+`test:webkit` crawls both sites from the running dev servers (4201, 4200), or from any base URLs passed
+after `--`, in Playwright's WebKit; install it once with `npx playwright install webkit`. Run it after
+changing global layout CSS: iPhones render with WebKit whatever the browser, and WebKit bugs do not
+show in Chrome.
 
 Tests use **Vitest**, not Jasmine — `withContext()` is not available; pass context by asserting on
 collected arrays instead.

@@ -16,7 +16,8 @@
     "preview:phone": "powershell -ExecutionPolicy Bypass -File scripts/phone-preview.ps1",
     "type-check": "cd apps/website && npm run build -- --configuration development",
     "test": "cd apps/website && npm run test",
-    "og:generate": "node scripts/generate-og-images.mjs"
+    "og:generate": "node scripts/generate-og-images.mjs",
+    "test:webkit": "node scripts/webkit-iphone-smoke.mjs"
   },
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0",
@@ -29,6 +30,7 @@
     "@parcel/watcher@2.6.0": true
   },
   "devDependencies": {
+    "playwright": "^1.63.0",
     "subset-font": "^2.7.0"
   }
 }
