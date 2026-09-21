@@ -86,6 +86,7 @@ const ROUTE_KEY_ALIASES: Readonly<Record<string, string>> = {
   'static-calendar': 'tour-calendar-calendar',
   'static-calendar-2027': 'tour-calendar-calendar-2027',
   'static-private-tours-your-trip-your-rules/describe': 'static-private-tour-form',
+  'static-enquire-now': 'enquire-now',
 };
 
 function registryKey(route: PublicRouteDefinition): string {

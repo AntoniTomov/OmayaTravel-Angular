@@ -101,6 +101,16 @@ describe('sitemap generation', () => {
     expect(omaya).not.toContain(`${PUBLIC_CANONICAL_HOST}/tour-item/india-tour/`);
   });
 
+  it('lists the enquiry page where it is published and never the search page', () => {
+    const amelia = sitemapEntries(SITE_CONFIGS.amelia.seo.canonicalHost).map((entry) => entry.loc);
+    const omaya = sitemapEntries(PUBLIC_CANONICAL_HOST).map((entry) => entry.loc);
+
+    expect(omaya).toContain(`${PUBLIC_CANONICAL_HOST}/enquire-now/`);
+    // Amelia does not publish the enquiry page, so its sitemap leaves it out.
+    expect(amelia).not.toContain('https://ameliatravel.bg/enquire-now/');
+    expect([...omaya, ...amelia].some((loc) => loc.includes('/search/'))).toBe(false);
+  });
+
   it('resolves the routes whose table key and router key disagree', () => {
     // These eight resolved to nothing before the alias map existed, so the sitemap treated them
     // as indexable by accident rather than by decision.
@@ -112,6 +122,7 @@ describe('sitemap generation', () => {
         'static-calendar-2027',
         'static-private-tour-planning',
         'static-private-tours-your-trip-your-rules/describe',
+        'static-enquire-now',
       ].includes(route.key),
     );
 

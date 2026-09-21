@@ -4,6 +4,7 @@ import { BUILD_SITE } from '../sites/build-site';
 import { isSiteRouteEnabled } from '../sites/site-routes';
 import {
   PUBLIC_DESTINATION_SLUGS,
+  PUBLIC_SERVER_RENDERED_ROUTES,
   PUBLIC_STATIC_PRERENDER_ROUTES,
   PUBLIC_TOUR_SLUGS,
 } from './shared/routing/public-routes';
@@ -33,6 +34,10 @@ export const serverRoutes: ServerRoute[] = [
     status: 301,
   },
   ...prerenderedStaticRoutes,
+  ...PUBLIC_SERVER_RENDERED_ROUTES.map((route): ServerRoute => ({
+    path: route.path,
+    renderMode: RenderMode.Server,
+  })),
   {
     path: 'destinations/:destinationSlug',
     renderMode: RenderMode.Prerender,
