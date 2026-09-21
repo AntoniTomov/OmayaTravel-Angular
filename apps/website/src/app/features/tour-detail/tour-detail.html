@@ -247,7 +247,23 @@
                   <span class="tour-detail__day">{{ day.day }}</span>
                   <div>
                     <h3>{{ day.title }}</h3>
-                    <p>{{ day.description }}</p>
+                    <p>
+                      @for (segment of descriptionSegments(day); track $index) {
+                        @if (segment.href) {
+                          <a
+                            class="tour-detail__term"
+                            [href]="segment.href"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >{{ segment.text }}</a
+                          >
+                        } @else if (segment.highlighted) {
+                          <strong class="tour-detail__term">{{ segment.text }}</strong>
+                        } @else {
+                          <span>{{ segment.text }}</span>
+                        }
+                      }
+                    </p>
                     @if (day.accommodation) {
                       <p class="tour-detail__day-detail">
                         <mat-icon aria-hidden="true">home</mat-icon>

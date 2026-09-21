@@ -24,6 +24,10 @@ import {
 } from '../../shared/content/tour-web-image.pipe';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import {
+  TourDescriptionSegment,
+  splitHighlightedDescription,
+} from '../../shared/content/description-highlights';
+import {
   tourFaqHeading,
   tourFaqIntro,
   tourFaqItems,
@@ -96,6 +100,10 @@ export class TourDetail {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly activeSite = inject(ActiveSite);
   protected readonly i18n = inject(OmayaI18n);
+  private readonly descriptionSegmentCache = new WeakMap<
+    TourItineraryDay,
+    readonly TourDescriptionSegment[]
+  >();
   private readonly tourSlug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('tourSlug'))),
     { initialValue: this.route.snapshot.paramMap.get('tourSlug') },
@@ -590,6 +598,18 @@ export class TourDetail {
     return typeof paragraph === 'string'
       ? paragraph
       : `${paragraph.text}${paragraph.linkText}${paragraph.trailingText}`;
+  }
+
+  /** Itinerary prose split into plain and highlighted runs, cached per day. */
+  protected descriptionSegments(day: TourItineraryDay): readonly TourDescriptionSegment[] {
+    const cached = this.descriptionSegmentCache.get(day);
+    if (cached) {
+      return cached;
+    }
+
+    const segments = splitHighlightedDescription(day.description, day.descriptionHighlights);
+    this.descriptionSegmentCache.set(day, segments);
+    return segments;
   }
 
   protected departureDate(departure: TourDeparture): string {
