@@ -7,6 +7,7 @@ import {
   MISSION_IMAGE_MOBILE_SRCSETS,
   NEWSLETTER_POPUP_MOBILE_SRCSETS,
   NEWSLETTER_POPUP_TABLET_SRCSETS,
+  PAGE_HERO_CROP_SRCSETS,
   TOUR_WEB_HERO_MOBILE_SRCSETS,
   TOUR_WEB_IMAGES,
   TOUR_WEB_IMAGE_SRCSETS,
@@ -20,6 +21,15 @@ import {
 export class HomepageHeroCropSrcsetPipe implements PipeTransform {
   transform(source: string | undefined, tier: 'phone' | 'tablet' | 'portrait'): string | null {
     return source ? (HOMEPAGE_HERO_CROP_SRCSETS[source]?.[tier] ?? null) : null;
+  }
+}
+
+// Page hero crops: 'phone' for viewports up to 30rem, 'tablet' up to 48rem. Null when a hero has
+// none, so the <source> is skipped and the browser falls through to the full-frame srcset.
+@Pipe({ name: 'pageHeroCropSrcset' })
+export class PageHeroCropSrcsetPipe implements PipeTransform {
+  transform(source: string | undefined, tier: 'phone' | 'tablet'): string | null {
+    return source ? (PAGE_HERO_CROP_SRCSETS[source]?.[tier] ?? null) : null;
   }
 }
 

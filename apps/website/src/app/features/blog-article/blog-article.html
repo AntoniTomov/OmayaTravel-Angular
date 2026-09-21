@@ -1,13 +1,33 @@
 @if (post(); as post) {
   <main class="blog-article">
     <section class="blog-article__hero" aria-labelledby="blog-article-title">
-      <img
-        [src]="post.heroImage?.src ?? post.image.src"
-        width="1920"
-        height="1080"
-        [alt]="post.heroImage?.alt ?? post.image.alt"
-        fetchpriority="high"
-      />
+      <!-- Phone and tablet crops, then full-frame copies; see the blog list hero. -->
+      <picture style="display: contents">
+        <source
+          media="(max-width: 30rem)"
+          type="image/avif"
+          [attr.srcset]="post.heroImage?.src ?? post.image.src | pageHeroCropSrcset: 'phone'"
+          sizes="480px"
+        />
+        <source
+          media="(max-width: 48rem)"
+          type="image/avif"
+          [attr.srcset]="post.heroImage?.src ?? post.image.src | pageHeroCropSrcset: 'tablet'"
+          sizes="768px"
+        />
+        <source
+          type="image/avif"
+          [attr.srcset]="post.heroImage?.src ?? post.image.src | tourWebImageSrcset"
+          sizes="max(100vw, 1236px)"
+        />
+        <img
+          [src]="post.heroImage?.src ?? post.image.src"
+          width="1920"
+          height="1080"
+          [alt]="post.heroImage?.alt ?? post.image.alt"
+          fetchpriority="high"
+        />
+      </picture>
       <div>
         <h1 id="blog-article-title">{{ post.title }}</h1>
       </div>
@@ -99,13 +119,23 @@
           <h2>{{ labels().suggestedPosts }}</h2>
           @for (suggestedPost of relatedPosts(); track suggestedPost.slug) {
             <a [routerLink]="'/' + suggestedPost.slug + '/'" class="blog-article__suggestion">
-              <img
-                [src]="suggestedPost.sidebarImage?.src ?? suggestedPost.image.src"
-                width="92"
-                height="64"
-                [alt]="suggestedPost.sidebarImage?.alt ?? suggestedPost.image.alt"
-                loading="lazy"
-              />
+              <!-- A 64px-tall thumbnail, about 96px wide once cover fills it by height. -->
+              <picture style="display: contents">
+                <source
+                  type="image/avif"
+                  [attr.srcset]="
+                    suggestedPost.sidebarImage?.src ?? suggestedPost.image.src | tourWebImageSrcset
+                  "
+                  sizes="96px"
+                />
+                <img
+                  [src]="suggestedPost.sidebarImage?.src ?? suggestedPost.image.src"
+                  width="92"
+                  height="64"
+                  [alt]="suggestedPost.sidebarImage?.alt ?? suggestedPost.image.alt"
+                  loading="lazy"
+                />
+              </picture>
               <span>
                 <strong>{{ suggestedPost.title }}</strong>
                 <small>{{ suggestedPost.date }}</small>

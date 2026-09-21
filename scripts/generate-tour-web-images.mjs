@@ -1,7 +1,7 @@
 // Run: node scripts/generate-tour-web-images.mjs
 // Deterministic web encodings for the measured tour-image delivery work. Originals stay intact.
 import { createHash } from "node:crypto";
-import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -10,6 +10,16 @@ import { format, resolveConfig } from "prettier";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const assets = resolve(root, "apps/website/src/assets");
 const output = resolve(assets, "images/tour-web");
+// Amelia Travel's images live under public/assets rather than src/assets. Both are served from
+// /assets/, so every list below names a source by that one relative path and this reads it from
+// whichever folder holds it.
+const publicAssets = resolve(root, "apps/website/public/assets");
+function readSource(relativePath) {
+  const inAssets = resolve(assets, relativePath);
+  return readFileSync(
+    existsSync(inAssets) ? inAssets : resolve(publicAssets, relativePath),
+  );
+}
 // The small steps exist because audits kept flagging images as "larger than they need to be", and
 // every time the cause was the same: the smallest candidate on offer was still far bigger than the
 // slot. 320 and 480 serve gallery thumbnails, which sit three to a row and are about 116 CSS px
@@ -34,6 +44,44 @@ const GALLERY_SOURCES = Array.from(
 // which shows the whole frame.
 const THUMBNAIL_RATIO = 800 / 1100;
 const THUMBNAIL_WIDTHS = [320, 480, 640, 800];
+
+// Amelia Travel shipped every photograph as uploaded: the blog hero was a 5,143px, 2.5 MB AVIF on a
+// 375px phone, and a 3,888px one filled a 58px sidebar thumbnail. These get the same site-wide AVIF
+// encoding and responsive candidates as Omaya's, which the templates already look up by source path.
+// Tour galleries get no cropped thumbnails: on a phone their preview slot is landscape, not the
+// 800x1100 THUMBNAIL_RATIO assumes, so the uncropped candidates are the ones that render the same.
+const AMELIA_TOUR_GALLERY = [
+  "01_jahangiri_arch_interior",
+  "02_rickshaws_sunset",
+  "03_henna_hand",
+  "04_india_gate",
+  "05_hawa_mahal_horses",
+  "06_stepwell",
+  "07_qutub_minar",
+  "08_taj_mahal_domes",
+  "09_varanasi_ghats",
+  "10_jahangiri_mahal_fort",
+  "11_block_printing_woman",
+].map((name) => `images/amelia/tours/india/gallery/${name}.webp`);
+const AMELIA_SOURCES = [
+  "images/amelia/tours/india/india-hero.webp",
+  "images/amelia/tours/morocco/morocco-hero.webp",
+  ...AMELIA_TOUR_GALLERY,
+  ...Array.from(
+    { length: 12 },
+    (_, index) =>
+      `images/amelia/tours/morocco/gallery/morocco-gallery-${String(index + 1).padStart(2, "0")}.webp`,
+  ),
+  ...[1, 2, 3, 4].map(
+    (index) =>
+      `images/amelia/blog/morocco-for-women-travel-guide/morocco-${index}.avif`,
+  ),
+  ...[1, 2, 3, 4, 5].map(
+    (index) => `images/amelia/blog/india-otblizo/india-otblizo-0${index}.webp`,
+  ),
+  "images/amelia/our-story/nesi.webp",
+  "images/amelia/our-story/vesislava.jpg",
+];
 
 const inputs = [
   "images/destinations/classic-tours-bgr.webp",
@@ -66,13 +114,25 @@ const inputs = [
   // First-screen images being made eager. Eager means downloading during the initial load next to
   // the hero, so they have to be cheap first: this one shipped 296,558 bytes of WebP.
   "images/private-tour/private-tour-image.webp",
+  // Page heroes that were a bare <img>. Their phone and tablet crops come from PAGE_HERO_SOURCES;
+  // these are the full-frame copies wider screens choose from.
+  "images/our-story/Our-story-16.webp",
+  "images/home-page/private-tours-right-bgr.webp",
+  // The Song Kul article, which both sites publish. Its first photograph is also the thumbnail in
+  // every blog sidebar, where it shipped 29 kB for a 58px slot.
+  "images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp",
+  "images/blog-posts/Kyrgystan/Kyrgyzstan-tour-img-1.webp",
+  "images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-2.webp",
+  "images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-3.webp",
+  "images/blog-posts/Kyrgystan/Kyrgyzstan-SongKul-Lake-img-4.webp",
+  ...AMELIA_SOURCES,
 ];
 mkdirSync(output, { recursive: true });
 const manifest = {};
 const srcsets = {};
 const measurements = [];
 for (const relativePath of inputs) {
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const before = await sharp(original).metadata();
   const encoded = await sharp(original)
     .avif({ quality: 55, effort: 5 })
@@ -133,7 +193,7 @@ for (const relativePath of inputs) {
 // and are referenced from SCSS through image-set() with the original as the fallback.
 const cssBackgrounds = ["images/discover-more-tours.webp"];
 for (const relativePath of cssBackgrounds) {
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const before = await sharp(original).metadata();
   const encoded = await sharp(original)
     .avif({ quality: 55, effort: 5 })
@@ -162,7 +222,7 @@ for (const relativePath of cssBackgrounds) {
 // Cropped thumbnails for the gallery grid. See THUMBNAIL_RATIO above for why cropping is safe here.
 const thumbnails = {};
 for (const relativePath of GALLERY_SOURCES) {
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const before = await sharp(original).metadata();
   const source = `/assets/${relativePath}`;
   // The widest crop this source can fill without inventing pixels. A landscape photograph in a
@@ -220,13 +280,15 @@ const HERO_SOURCES = [
   "images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
   "images/women-tours/Morocco/morocco-women-only-bgr.webp",
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+  "images/amelia/tours/india/india-hero.webp",
+  "images/amelia/tours/morocco/morocco-hero.webp",
 ];
 const HERO_HEIGHT_PX = 515;
 const MOBILE_HERO_MAX_VIEWPORT = 480;
 const MOBILE_HERO_WIDTHS = [320, 480, 640, 840, 960];
 const heroMobile = {};
 for (const relativePath of HERO_SOURCES) {
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const meta = await sharp(original).metadata();
   const cropWidth = Math.min(
     meta.width,
@@ -261,6 +323,66 @@ for (const relativePath of HERO_SOURCES) {
   heroMobile[`/assets/${relativePath}`] = candidates.join(", ");
 }
 
+// Phone and tablet crops of the page heroes that were a bare <img>: the blog list and articles and
+// our story. Each is a full-width box 515px tall at every viewport, like the tour hero, so
+// object-fit: cover fills it by height. Up to 30rem the widest slice any phone shows is height x
+// 480/515 of the source and draws 480 CSS px wide; up to 48rem it is height x 768/515 and draws
+// 768px. Candidates stop at what a DPR 3 phone and a DPR 2 tablet need, so a 3,429px-tall blog
+// photograph does not offer its whole 3,196px phone slice.
+//
+// Each crop sits where the hero's object-position puts the visible slice. With the slice at x across
+// the spare width, a crop starting at x of the width it leaves out shows the same pixels at every
+// viewport, so the our-story crop keeps its 34% framing rather than drifting to the centre. The
+// not-yet-but-soon hero is 400px tall and square, which cover fills by width, so it has no slice to
+// crop and only gets the full-frame copies.
+const PAGE_HERO_SOURCES = {
+  "images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif": 0.5,
+  "images/amelia/blog/india-otblizo/india-otblizo-01.webp": 0.5,
+  "images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp": 0.5,
+  "images/our-story/Our-story-16.webp": 0.34,
+};
+const PAGE_HERO_TIERS = [
+  { name: "phone", maxViewport: 480, widths: [480, 720, 960, 1440] },
+  { name: "tablet", maxViewport: 768, widths: [768, 1152, 1536] },
+];
+const pageHeroCrops = {};
+for (const [relativePath, position] of Object.entries(PAGE_HERO_SOURCES)) {
+  const original = readSource(relativePath);
+  const meta = await sharp(original).metadata();
+  const source = `/assets/${relativePath}`;
+  pageHeroCrops[source] = {};
+  for (const tier of PAGE_HERO_TIERS) {
+    const cropWidth = Math.min(
+      meta.width,
+      Math.round((meta.height * tier.maxViewport) / HERO_HEIGHT_PX),
+    );
+    const left = Math.round((meta.width - cropWidth) * position);
+    const widths = tier.widths.filter((width) => width < cropWidth);
+    if (widths.length < tier.widths.length) {
+      widths.push(cropWidth);
+    }
+    const candidates = [];
+    for (const width of widths) {
+      const { path, bytes } = await writeHashedAvif(
+        sharp(original)
+          .extract({ left, top: 0, width: cropWidth, height: meta.height })
+          .resize({ width }),
+        55,
+      );
+      candidates.push(`${path} ${width}w`);
+      measurements.push({
+        source,
+        width,
+        height: Math.round((width * meta.height) / cropWidth),
+        variant: `page-hero-${tier.name}`,
+        quality: 55,
+        webBytes: bytes,
+      });
+    }
+    pageHeroCrops[source][tier.name] = candidates.join(", ");
+  }
+}
+
 // AVIF quality for the homepage copies below, per original. Each value is the lowest quality, in
 // steps of 5, at which every copy made from that original scores SSIM of at least 0.97 on luma and
 // 0.96 on each of red, green and blue against the original cropped and resized the same way but never
@@ -280,6 +402,13 @@ const MATCHED_QUALITY = {
   "images/home-page/trips-carousel/Algeria-trip.webp": 95,
   "images/newsletter-popup-inner.webp": 55,
   "images/newsletter-popup-bgr.webp": 55,
+  // Amelia. The hero-4 street scene is grainy and needs 75-80; hero-5 clears the bar at 50, the
+  // lowest step measured.
+  "images/amelia/home/hero-3.avif": 60,
+  "images/amelia/home/hero-4.avif": 75,
+  "images/amelia/home/hero-5.avif": 50,
+  "images/amelia/tours/india/india-card.webp": 70,
+  "images/amelia/tours/morocco/morocco-card.webp": 60,
 };
 
 // Narrower copies of the same original pack more detail into each pixel and lose more at the same
@@ -300,6 +429,22 @@ const MATCHED_QUALITY_OVERRIDES = {
   "images/home-page/trips-carousel/Tour-feature-image-2.webp": {
     "featured-trip-mobile": { 320: 65 },
     "featured-trip-wide": { 320: 65 },
+  },
+  "images/amelia/home/hero-3.avif": {
+    "homepage-hero-tablet": { 640: 65 },
+  },
+  "images/amelia/home/hero-4.avif": {
+    "homepage-hero-phone": { 320: 80, 987: 80 },
+    "homepage-hero-tablet": { 1578: 80 },
+  },
+  "images/amelia/home/hero-5.avif": {
+    "homepage-hero-phone": { 987: 60 },
+  },
+  "images/amelia/tours/india/india-card.webp": {
+    "featured-trip-wide": { 320: 75, 480: 75, 640: 75, 712: 75 },
+  },
+  "images/amelia/tours/morocco/morocco-card.webp": {
+    "featured-trip-mobile": { 320: 65 },
   },
 };
 
@@ -342,6 +487,9 @@ const HOMEPAGE_HERO_SOURCES = [
   "images/home-page/carousel/HomePageCoverPhoto-5.webp",
   "images/home-page/carousel/HomePageCoverPhoto-2-e1785918980400.webp",
   "images/home-page/carousel/HomePageCoverPhoto-3.webp",
+  "images/amelia/home/hero-3.avif",
+  "images/amelia/home/hero-4.avif",
+  "images/amelia/home/hero-5.avif",
 ];
 const HOMEPAGE_HERO_HEIGHT_PX = 688;
 const HOMEPAGE_HERO_TIERS = [
@@ -351,7 +499,7 @@ const HOMEPAGE_HERO_TIERS = [
 ];
 const homepageHeroCrops = {};
 for (const relativePath of HOMEPAGE_HERO_SOURCES) {
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const meta = await sharp(original).metadata();
   const source = `/assets/${relativePath}`;
   homepageHeroCrops[source] = {};
@@ -403,6 +551,8 @@ const FEATURED_TRIP_SOURCES = [
   "images/home-page/trips-carousel/Tour-feature-image-2.webp",
   "images/destinations/Marocco/morocco-bgr.webp",
   "images/home-page/trips-carousel/Algeria-trip.webp",
+  "images/amelia/tours/india/india-card.webp",
+  "images/amelia/tours/morocco/morocco-card.webp",
 ];
 const FEATURED_TRIP_MOBILE_RATIO = 1 / 0.9;
 // Every phone copy tops out at 632px wide, the width of the trip photographs. A phone at DPR 2 or
@@ -425,7 +575,7 @@ const FEATURED_TRIP_PHONE_CROPS = {
 };
 const featuredTripMobile = {};
 for (const relativePath of FEATURED_TRIP_SOURCES) {
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const meta = await sharp(original).metadata();
   const wide = meta.width / meta.height > FEATURED_TRIP_MOBILE_RATIO;
   const centredWidth = wide
@@ -473,15 +623,17 @@ for (const relativePath of FEATURED_TRIP_SOURCES) {
 const FEATURED_TRIP_WIDE_WIDTHS = [320, 480, 640, 800, 960, 1200];
 // Originals that get no wide-screen copy. Algeria only meets the quality bar at 90, where its copy is
 // 309 KB against a 352 KB original, so the carousel keeps loading the original instead.
+// Amelia's Morocco card is a 400px, 31 KB file already, and its copy at the matched quality was no smaller.
 const FEATURED_TRIP_WIDE_KEEP_ORIGINAL = new Set([
   "images/home-page/trips-carousel/Algeria-trip.webp",
+  "images/amelia/tours/morocco/morocco-card.webp",
 ]);
 const featuredTripWide = {};
 for (const relativePath of FEATURED_TRIP_SOURCES) {
   if (FEATURED_TRIP_WIDE_KEEP_ORIGINAL.has(relativePath)) {
     continue;
   }
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const meta = await sharp(original).metadata();
   const widths = [
     ...FEATURED_TRIP_WIDE_WIDTHS.filter((width) => width < meta.width),
@@ -518,7 +670,7 @@ const POPUP_MOBILE_WIDTH = 480;
 const popupMobile = {};
 {
   const relativePath = "images/newsletter-popup-inner.webp";
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const { path, bytes } = await writeHashedAvif(
     sharp(original).resize({ width: POPUP_MOBILE_WIDTH }),
     MATCHED_QUALITY[relativePath],
@@ -535,7 +687,7 @@ const popupMobile = {};
 }
 {
   const relativePath = "images/newsletter-popup-bgr.webp";
-  const original = readFileSync(resolve(assets, relativePath));
+  const original = readSource(relativePath);
   const encoded = await sharp(original)
     .resize({ width: POPUP_MOBILE_WIDTH })
     .avif({ quality: MATCHED_QUALITY[relativePath], effort: 5 })
@@ -560,7 +712,6 @@ const popupMobile = {};
 // dialog at DPR 2. Each copy has a stable name because the Amelia theme's CSS background references
 // the same file as the <img>, so a device downloads it once for both. Quality is the lowest step of
 // 5 clearing the MATCHED_QUALITY bar, measured per copy.
-const publicAssets = resolve(root, "apps/website/public/assets");
 const AMELIA_POPUP_SOURCE = "images/amelia/home/hero-3.avif";
 const AMELIA_POPUP_COPIES = [
   { tier: "mobile", width: 640, quality: 65 },
@@ -568,7 +719,7 @@ const AMELIA_POPUP_COPIES = [
 ];
 const popupTablet = {};
 {
-  const original = readFileSync(resolve(publicAssets, AMELIA_POPUP_SOURCE));
+  const original = readSource(AMELIA_POPUP_SOURCE);
   const source = `/assets/${AMELIA_POPUP_SOURCE}`;
   for (const { tier, width, quality } of AMELIA_POPUP_COPIES) {
     const encoded = await sharp(original)
@@ -593,6 +744,45 @@ const popupTablet = {};
   }
 }
 
+// Phone and tablet crops of Amelia's CSS background bands, under stable names the theme can reference.
+// Each source is far wider than any phone or tablet shows, and at those widths cover fills the band
+// by height, so a centred full-height slice at least as wide as the widest box in a tier renders the
+// same. Measured from 320 to 768px wide: the newsletter band shows at most 498 source pixels across up
+// to 30rem and 783 up to 48rem; the coral band behind the homepage stories and the contact page shows
+// at most 525 and 921. The widths leave room for text that wraps into a shorter box.
+const AMELIA_BACKGROUND_CROPS = {
+  "images/amelia/home/newsletter-bgr.webp": { phone: 640, tablet: 960 },
+  "images/amelia/home/h1-background-coral.webp": { phone: 640, tablet: 1200 },
+};
+for (const [relativePath, tiers] of Object.entries(AMELIA_BACKGROUND_CROPS)) {
+  const original = readSource(relativePath);
+  const meta = await sharp(original).metadata();
+  for (const [tier, width] of Object.entries(tiers)) {
+    const encoded = await sharp(original)
+      .extract({
+        left: Math.round((meta.width - width) / 2),
+        top: 0,
+        width,
+        height: meta.height,
+      })
+      .avif({ quality: 55, effort: 5 })
+      .toBuffer();
+    writeFileSync(
+      resolve(publicAssets, relativePath.replace(/\.webp$/, `-${tier}.avif`)),
+      encoded,
+    );
+    measurements.push({
+      source: `/assets/${relativePath}`,
+      width,
+      height: meta.height,
+      variant: `css-background-${tier}`,
+      quality: 55,
+      originalBytes: original.length,
+      webBytes: encoded.length,
+    });
+  }
+}
+
 // Phone and tablet copies of the mission photograph. Up to 58rem it is one square column the width of
 // the viewport less 3rem, 272-880 CSS px, so depending on its pixel ratio a device wants anything from
 // 272 to about 1,760 pixels across. Each width is a step a common device lands on, and the largest
@@ -601,14 +791,29 @@ const popupTablet = {};
 // steps to keep: each width uses the lowest quality at which it clears the same bar as the other
 // homepage copies (see MATCHED_QUALITY). 880 was left out because at the quality it needs it came out
 // larger than the 960 copy.
-const MISSION_SOURCE = "images/home-page/our-mission-image.webp";
-const MISSION_COPY_QUALITY = { 480: 85, 560: 80, 660: 80, 760: 75, 960: 70 };
+// Amelia's photograph has no grain and clears the same bar at 55-60, measured copy by copy.
+const MISSION_COPY_QUALITY = {
+  "images/home-page/our-mission-image.webp": {
+    480: 85,
+    560: 80,
+    660: 80,
+    760: 75,
+    960: 70,
+  },
+  "images/amelia/our-story/our-mission.jpg": {
+    480: 60,
+    560: 60,
+    660: 60,
+    760: 55,
+    960: 55,
+  },
+};
 const missionMobile = {};
-{
-  const original = readFileSync(resolve(assets, MISSION_SOURCE));
+for (const [missionSource, qualities] of Object.entries(MISSION_COPY_QUALITY)) {
+  const original = readSource(missionSource);
   const meta = await sharp(original).metadata();
   const candidates = [];
-  for (const [key, quality] of Object.entries(MISSION_COPY_QUALITY)) {
+  for (const [key, quality] of Object.entries(qualities)) {
     const width = Number(key);
     const { path, bytes } = await writeHashedAvif(
       sharp(original).resize({ width }),
@@ -616,7 +821,7 @@ const missionMobile = {};
     );
     candidates.push(`${path} ${width}w`);
     measurements.push({
-      source: `/assets/${MISSION_SOURCE}`,
+      source: `/assets/${missionSource}`,
       width,
       height: Math.round((width * meta.height) / meta.width),
       variant: "mission-mobile",
@@ -625,8 +830,8 @@ const missionMobile = {};
       webBytes: bytes,
     });
   }
-  candidates.push(`/assets/${MISSION_SOURCE} ${meta.width}w`);
-  missionMobile[`/assets/${MISSION_SOURCE}`] = candidates.join(", ");
+  candidates.push(`/assets/${missionSource} ${meta.width}w`);
+  missionMobile[`/assets/${missionSource}`] = candidates.join(", ");
 }
 
 // Copies of the brand logos for each pixel ratio. The header shows the logo 5.8rem (92.8 CSS px) wide
@@ -656,7 +861,7 @@ async function writeHashedLosslessWebp(pipeline) {
 
 const logoSrcsets = {};
 {
-  const black = readFileSync(resolve(assets, BLACK_LOGO));
+  const black = readSource(BLACK_LOGO);
   const { data, info } = await sharp(black)
     .ensureAlpha()
     .raw()
@@ -712,6 +917,34 @@ const logoSrcsets = {};
   logoSrcsets[`/assets/${WHITE_LOGO}`] = whiteCandidates.join(", ");
 }
 
+// Amelia's logos are 1,354px PNGs drawn 190px wide in the header, 7.8rem in the newsletter popup and
+// about 133px in the footer, so screens from DPR 1 to 3 want 125 to 570 pixels across. The two are
+// separate artwork files, so each is only resized, losslessly; the original PNG stays the largest.
+const AMELIA_LOGOS = [
+  "images/amelia/brand/amelia-logo-transparent.png",
+  "images/amelia/brand/amelia-logo-transparent-white.png",
+];
+const AMELIA_LOGO_WIDTHS = [150, 200, 300, 400, 600];
+for (const logo of AMELIA_LOGOS) {
+  const original = readSource(logo);
+  const meta = await sharp(original).metadata();
+  const candidates = [];
+  for (const width of AMELIA_LOGO_WIDTHS) {
+    const copy = await writeHashedLosslessWebp(
+      sharp(original).resize({ width }),
+    );
+    candidates.push(`${copy.path} ${width}w`);
+    measurements.push({
+      source: `/assets/${logo}`,
+      width,
+      variant: "logo-lossless",
+      webBytes: copy.bytes,
+    });
+  }
+  candidates.push(`/assets/${logo} ${meta.width}w`);
+  logoSrcsets[`/assets/${logo}`] = candidates.join(", ");
+}
+
 const manifestPath = resolve(
   root,
   "apps/website/src/app/shared/content/tour-web-images.ts",
@@ -728,6 +961,8 @@ writeFileSync(
       `export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(thumbnails, null, 2)};\n` +
       "// Centred crops of each tour hero for phones up to 30rem. See HERO_SOURCES in the generator.\n" +
       `export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(heroMobile, null, 2)};\n` +
+      "// Centred crops of the blog, our-story and not-yet-but-soon heroes: phone up to 30rem, tablet up to 48rem. See PAGE_HERO_SOURCES in the generator.\n" +
+      `export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = ${JSON.stringify(pageHeroCrops, null, 2)};\n` +
       "// Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem, portrait for screens no wider than 3/4 of their height. See HOMEPAGE_HERO_TIERS in the generator.\n" +
       `export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string; portrait: string }>> = ${JSON.stringify(homepageHeroCrops, null, 2)};\n` +
       "// Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.\n" +

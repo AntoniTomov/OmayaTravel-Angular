@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
@@ -12,12 +13,13 @@ import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
 @Component({
   selector: 'app-not-yet-but-soon',
-  imports: [RouterLink, FormHoneypot, FormStatus],
+  imports: [RouterLink, FormHoneypot, FormStatus, TourWebImageSrcsetPipe],
   templateUrl: './not-yet-but-soon.html',
   styleUrl: './not-yet-but-soon.scss',
 })
 export class NotYetButSoon {
   protected readonly i18n = inject(OmayaI18n);
+  protected readonly heroImage = '/assets/images/home-page/private-tours-right-bgr.webp';
   private readonly activeSite = inject(ActiveSite);
   private readonly analytics = inject(OmayaAnalytics);
   private readonly route = inject(ActivatedRoute);

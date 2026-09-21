@@ -1,12 +1,35 @@
 <main class="our-story">
   <section class="our-story__hero">
-    <img
-      [src]="story().hero.image.src"
-      [width]="story().hero.image.width"
-      [height]="story().hero.image.height"
-      [alt]="story().hero.image.alt"
-      fetchpriority="high"
-    />
+    <!--
+      Phone and tablet crops, then full-frame copies; see PAGE_HERO_SOURCES in
+      scripts/generate-tour-web-images.mjs. This 2.4:1 photograph draws 1236px wide in its 515px box.
+    -->
+    <picture style="display: contents">
+      <source
+        media="(max-width: 30rem)"
+        type="image/avif"
+        [attr.srcset]="story().hero.image.src | pageHeroCropSrcset: 'phone'"
+        sizes="480px"
+      />
+      <source
+        media="(max-width: 48rem)"
+        type="image/avif"
+        [attr.srcset]="story().hero.image.src | pageHeroCropSrcset: 'tablet'"
+        sizes="768px"
+      />
+      <source
+        type="image/avif"
+        [attr.srcset]="story().hero.image.src | tourWebImageSrcset"
+        sizes="max(100vw, 1236px)"
+      />
+      <img
+        [src]="story().hero.image.src"
+        [width]="story().hero.image.width"
+        [height]="story().hero.image.height"
+        [alt]="story().hero.image.alt"
+        fetchpriority="high"
+      />
+    </picture>
     <div class="our-story__hero-copy">
       <h1>{{ story().title }}</h1>
     </div>
@@ -45,13 +68,20 @@
         <div class="our-story__members">
           @for (member of team.members; track member.id) {
             <article class="our-story__member">
-              <img
-                [src]="member.image.src"
-                [width]="member.image.width"
-                [height]="member.image.height"
-                [alt]="member.image.alt"
-                loading="lazy"
-              />
+              <picture style="display: contents">
+                <source
+                  type="image/avif"
+                  [attr.srcset]="member.image.src | tourWebImageSrcset"
+                  sizes="288px"
+                />
+                <img
+                  [src]="member.image.src"
+                  [width]="member.image.width"
+                  [height]="member.image.height"
+                  [alt]="member.image.alt"
+                  loading="lazy"
+                />
+              </picture>
               <div>
                 <h3>{{ member.heading }}</h3>
                 @for (paragraph of member.paragraphs; track paragraph) {

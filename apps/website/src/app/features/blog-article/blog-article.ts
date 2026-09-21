@@ -10,11 +10,15 @@ import {
   findBlogPostBySlug,
 } from '../../shared/content/blog-content';
 import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
+import {
+  PageHeroCropSrcsetPipe,
+  TourWebImageSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
 import { BlogPostSection } from './blog-post-section/blog-post-section';
 
 @Component({
   selector: 'app-blog-article',
-  imports: [BlogPostSection, RouterLink],
+  imports: [BlogPostSection, PageHeroCropSrcsetPipe, RouterLink, TourWebImageSrcsetPipe],
   templateUrl: './blog-article.html',
   styleUrl: './blog-article.scss',
 })
