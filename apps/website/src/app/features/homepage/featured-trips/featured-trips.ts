@@ -136,7 +136,6 @@ export class FeaturedTrips {
     this.didDrag = false;
     this.dragStartX = event.clientX;
     this.dragStartScrollLeft = carousel.scrollLeft;
-    carousel.setPointerCapture(event.pointerId);
     carousel.classList.add('featured-trips__carousel--dragging');
   }
 
@@ -149,8 +148,12 @@ export class FeaturedTrips {
 
     const dragDistance = event.clientX - this.dragStartX;
 
-    if (Math.abs(dragDistance) > 6) {
+    if (Math.abs(dragDistance) > 6 && !this.didDrag) {
       this.didDrag = true;
+      // Capture only once the pointer has actually travelled. Capturing on pointerdown retargets
+      // the follow-up click to the carousel, so a plain tap on a card never reached the card's
+      // link and the tour page never opened.
+      carousel.setPointerCapture(event.pointerId);
     }
 
     if (this.didDrag) {
