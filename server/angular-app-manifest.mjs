@@ -18,7 +18,7 @@ export default {
   {
     "renderMode": 0,
     "preload": [
-      "chunk-yLGYBub3.js"
+      "chunk-DmlvM1S4.js"
     ],
     "route": "/search"
   },
@@ -26,7 +26,7 @@ export default {
     "renderMode": 0,
     "status": 404,
     "preload": [
-      "chunk-BKL7XqqO.js",
+      "chunk-YkkEsvxH.js",
       "chunk-DW2LmWkC.js"
     ],
     "route": "/**"
@@ -34,7 +34,7 @@ export default {
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BKL7XqqO.js",
+      "chunk-YkkEsvxH.js",
       "chunk-DW2LmWkC.js"
     ],
     "route": "/enquire-now"
@@ -42,57 +42,57 @@ export default {
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DIVZbZKn.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-CFovuSHw.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/blog-list"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-B8wn7Zso.js"
+      "chunk-BlLp6aw9.js"
     ],
     "route": "/contact"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-6TJSkboN.js"
+      "chunk-DVv_26vv.js"
     ],
     "route": "/faq"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-B2oHB3sD.js"
+      "chunk-C3CeOOpl.js"
     ],
     "route": "/our-story"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-C4tST1-5.js"
+      "chunk-oVOiX5ad.js"
     ],
     "route": "/your-dmc-partner-in-bulgaria"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-CDWRvLNj.js"
+      "chunk-BzB1gTFt.js"
     ],
     "route": "/why-book-with-us"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-B0sOIanJ.js"
+      "chunk-B0C4eugD.js"
     ],
     "route": "/private-tours-your-trip-your-rules"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-ByWUGyp2.js",
+      "chunk-D6ADbnO8.js",
       "chunk-DW2LmWkC.js"
     ],
     "route": "/private-tours-your-trip-your-rules/describe"
@@ -105,256 +105,256 @@ export default {
   {
     "renderMode": 2,
     "preload": [
-      "chunk-Ci6PIibT.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-nxrde5ka.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/destinations"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-Ci6PIibT.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-nxrde5ka.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/destinations/algeria"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-Ci6PIibT.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-nxrde5ka.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/destinations/bulgaria"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-Ci6PIibT.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-nxrde5ka.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/destinations/kyrgyzstan"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-Ci6PIibT.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-nxrde5ka.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/destinations/morocco"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DUI6infK.js"
+      "chunk-Dn5UxYl2.js"
     ],
     "route": "/tours-list"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DUI6infK.js"
+      "chunk-Dn5UxYl2.js"
     ],
     "route": "/classic-tours"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DUI6infK.js"
+      "chunk-Dn5UxYl2.js"
     ],
     "route": "/women-only-tours"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DUI6infK.js"
+      "chunk-Dn5UxYl2.js"
     ],
     "route": "/solo-travellers-tours"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DUI6infK.js"
+      "chunk-Dn5UxYl2.js"
     ],
     "route": "/all-ages-tours"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-CvtCpDeH.js"
+      "chunk-BEBqUdVR.js"
     ],
     "route": "/calendar-2027"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-DUI6infK.js"
+      "chunk-Dn5UxYl2.js"
     ],
     "route": "/calendar-2027/september"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-CvtCpDeH.js"
+      "chunk-BEBqUdVR.js"
     ],
     "route": "/calendar"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/algeria-desert-expedition-tadrart-rouge"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/bulgaria-beyond-the-ordinary"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/kyrgyzstan-tour"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/morocco-tour"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/tour-item-morocco-solo-travellers-tour"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/tour-item-morocco-women-only-tour"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/women-only-tour-bulgaria"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/women-only-tour-kyrgyzstan"
   },
   {
     "renderMode": 0,
     "preload": [
-      "chunk-BnMaORCB.js",
-      "chunk-BDfNOBLe.js"
+      "chunk-BSVEr9U6.js",
+      "chunk-B8vPwO_P.js"
     ],
     "route": "/tour-item/*"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/morocco-casablanca-marrakech-route-guide"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/women-only-kyrgyzstan-what-to-expect"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/song-kul-yurt-stay-packing-guide"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/bulgaria-classic-women-only-tour-comparison"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/10-unmissable-places-to-visit-on-your-bulgaria-trip"
   },
   {
     "renderMode": 0,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/maroko-za-zheni-pateshestvenichki"
   },
   {
     "renderMode": 0,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/ezeroto-song-kul-kirgistan"
   },
   {
     "renderMode": 0,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/india-otblizo"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/how-to-visit-song-kul-lake-in-kyrgyzstan"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/tassili-najjer-national-park-algeria-guide"
   },
   {
     "renderMode": 2,
     "preload": [
-      "chunk-BEb5GFjB.js",
-      "chunk-rKRs8zbK.js"
+      "chunk-Dprruu-M.js",
+      "chunk-DK83O8t7.js"
     ],
     "route": "/the-complete-visitor-guide-to-rila-monastery"
   },
@@ -393,52 +393,52 @@ export default {
 ],
   entryPointToBrowserMapping: undefined,
   assets: {
-    'index.csr.html': {size: 16193, hash: 'bc19af9aa4b636ecd1d03315566694bd8b250f6048a3e61efcdfa82fd390bf5c', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 15210, hash: 'e5318e9ba541b4253517c5075efc8cf24800de172cc57ed54b19c915700a62bc', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
-    'private-tours-your-trip-your-rules/index.html': {size: 63816, hash: '86baaab8d76b08da4c01f6423fcb8cafdfeefbf553c6b59fe2dd46c0d3c716f7', text: () => import('./assets-chunks/private-tours-your-trip-your-rules_index_html.mjs').then(m => m.default)},
-    'private-tours-your-trip-your-rules/describe/index.html': {size: 76925, hash: '7b149d45c0e9000593b1b7097de0ae09814382a054f7c32be6829b9ba0fe8497', text: () => import('./assets-chunks/private-tours-your-trip-your-rules_describe_index_html.mjs').then(m => m.default)},
-    'destinations/index.html': {size: 74470, hash: '0c6d4905a504a31b817d1e2df607b93b3a9e6b7f9cde841f2854db5ea85f3ab2', text: () => import('./assets-chunks/destinations_index_html.mjs').then(m => m.default)},
-    'destinations/algeria/index.html': {size: 75945, hash: 'e19f50f83cac91e1ea996d730eee589b2b652f6b039feb6b7b2299ab0089f239', text: () => import('./assets-chunks/destinations_algeria_index_html.mjs').then(m => m.default)},
-    'faq/index.html': {size: 77884, hash: '43642626bda4236c9d194f369b36fe17f00a034239bf5a2f5f4615e579fee85a', text: () => import('./assets-chunks/faq_index_html.mjs').then(m => m.default)},
-    'our-story/index.html': {size: 73437, hash: 'f3611768ade50c010d6225be4c7039138d7d96ed1a1b754f1bff5be196b29381', text: () => import('./assets-chunks/our-story_index_html.mjs').then(m => m.default)},
-    'your-dmc-partner-in-bulgaria/index.html': {size: 72951, hash: '01a909b0225e1e784a3162e9f8f288aec7f7d889cca6f2ab953c8ff5243a3890', text: () => import('./assets-chunks/your-dmc-partner-in-bulgaria_index_html.mjs').then(m => m.default)},
-    'why-book-with-us/index.html': {size: 71061, hash: '0961fe0bc9063702a4c6eda271ec4e3db0046f0cb8aba205881085ad877473b9', text: () => import('./assets-chunks/why-book-with-us_index_html.mjs').then(m => m.default)},
-    'index.html': {size: 105776, hash: 'd5cd753678642dcd3ade015093d3a3709ca0027e328fadae7dcdfc99b2b51acb', text: () => import('./assets-chunks/index_html.mjs').then(m => m.default)},
-    'enquire-now/index.html': {size: 76563, hash: '9f04352653eaca7c766a783e96bf3efefcc6940894eaa141e08f097901694409', text: () => import('./assets-chunks/enquire-now_index_html.mjs').then(m => m.default)},
-    'blog-list/index.html': {size: 85892, hash: '2f227aa2ea2142342f93b444857551a838be65c608e30f920f71277b7e13f8c1', text: () => import('./assets-chunks/blog-list_index_html.mjs').then(m => m.default)},
-    'contact/index.html': {size: 63846, hash: '32e68e52f72d6e83e072d1e5e49b8cff9a45875558bdfeb0e30a0ff5fe52a20f', text: () => import('./assets-chunks/contact_index_html.mjs').then(m => m.default)},
-    'tour-item/bulgaria-beyond-the-ordinary/index.html': {size: 114732, hash: 'b8c63f1aa7afbbe3703e7ed09843b03485bc0186bd6d651ee24b7193dba99fe0', text: () => import('./assets-chunks/tour-item_bulgaria-beyond-the-ordinary_index_html.mjs').then(m => m.default)},
-    'tour-item/kyrgyzstan-tour/index.html': {size: 108208, hash: '15e6664ab3318b52523b86ca5591a6d5c318a2ac6592b521268dc9e7c7ec509e', text: () => import('./assets-chunks/tour-item_kyrgyzstan-tour_index_html.mjs').then(m => m.default)},
-    'tour-item/morocco-tour/index.html': {size: 118061, hash: 'bb16c0ed5d1b42ea07fcb09af5eb5eabb7842a9800f0b5c43776c3d48e5c47ad', text: () => import('./assets-chunks/tour-item_morocco-tour_index_html.mjs').then(m => m.default)},
-    'tour-item/tour-item-morocco-solo-travellers-tour/index.html': {size: 118300, hash: 'ffa6d84d0f1236690f8c8f2e0f163e2713ec65d0f8dfb9dba0c1cb216030d2aa', text: () => import('./assets-chunks/tour-item_tour-item-morocco-solo-travellers-tour_index_html.mjs').then(m => m.default)},
-    'omaya-travel-license/index.html': {size: 63830, hash: 'a5bebfe2ccbd848e089305536f52ec6a030be0c0b220877b557273e8f5e2f02e', text: () => import('./assets-chunks/omaya-travel-license_index_html.mjs').then(m => m.default)},
-    'privacy-policy/index.html': {size: 73042, hash: 'aeaa508d555cf768e5676a3fcf37611c94daa4eaf41e5358bc3e012b34b62fdb', text: () => import('./assets-chunks/privacy-policy_index_html.mjs').then(m => m.default)},
-    'cookie-policy/index.html': {size: 70393, hash: '07086f70e746f5fe3920067a0351086f9424382dd29266ffc26848eb594e6c9d', text: () => import('./assets-chunks/cookie-policy_index_html.mjs').then(m => m.default)},
-    'termsconditions/index.html': {size: 78779, hash: '1da749c6dca3f7ddea5df36a53c7ca3531c4f605a40749fb0d92500910ff03b0', text: () => import('./assets-chunks/termsconditions_index_html.mjs').then(m => m.default)},
-    'women-only-kyrgyzstan-what-to-expect/index.html': {size: 99955, hash: '836c1642c6504ba9518e8c9cd6ef4b5b0f3bca223452f65f3e7462c9ea351733', text: () => import('./assets-chunks/women-only-kyrgyzstan-what-to-expect_index_html.mjs').then(m => m.default)},
-    'song-kul-yurt-stay-packing-guide/index.html': {size: 88009, hash: '80edf27c8209b8d5136a36c5564d7209ffaab88fea50c9be38d6ca32776c1b5a', text: () => import('./assets-chunks/song-kul-yurt-stay-packing-guide_index_html.mjs').then(m => m.default)},
-    'bulgaria-classic-women-only-tour-comparison/index.html': {size: 87233, hash: '26cf82c14e5da2076da757db2d492ac916c95c7b9597257d57ec63a2daeba0d0', text: () => import('./assets-chunks/bulgaria-classic-women-only-tour-comparison_index_html.mjs').then(m => m.default)},
-    '10-unmissable-places-to-visit-on-your-bulgaria-trip/index.html': {size: 106090, hash: '2f2e2ec76766c3b73e7b4609dc23f6152e87f2426b1c8bf9c63ce93a12365a8e', text: () => import('./assets-chunks/10-unmissable-places-to-visit-on-your-bulgaria-trip_index_html.mjs').then(m => m.default)},
-    'classic-tours/index.html': {size: 89152, hash: 'a208eb6527762f20ca4d2915463303acf89b31be54dee1bb552544937417260b', text: () => import('./assets-chunks/classic-tours_index_html.mjs').then(m => m.default)},
-    'women-only-tours/index.html': {size: 87217, hash: '0de82eb434d68c643a525915f98689fb682ec762755810794edb31b658c7535d', text: () => import('./assets-chunks/women-only-tours_index_html.mjs').then(m => m.default)},
-    'solo-travellers-tours/index.html': {size: 84109, hash: 'd00b2923c986b335caca881441764963415c9abaccd8213f2c3994aa275b4c69', text: () => import('./assets-chunks/solo-travellers-tours_index_html.mjs').then(m => m.default)},
-    'all-ages-tours/index.html': {size: 83886, hash: 'f897541e65fed1378fd0b033078e0b6f3c22db6ca0dac994427b67215c2af5b2', text: () => import('./assets-chunks/all-ages-tours_index_html.mjs').then(m => m.default)},
-    'destinations/bulgaria/index.html': {size: 79752, hash: 'dcd3737088b778728e66393fce2792fe8daaaaa84951ba07e9bdfa0128608104', text: () => import('./assets-chunks/destinations_bulgaria_index_html.mjs').then(m => m.default)},
-    'destinations/kyrgyzstan/index.html': {size: 80200, hash: '3da1b7397bc9fa9d039a0913ccfd5de3fbd651db5298dce7e55fb9cc47b3fcdb', text: () => import('./assets-chunks/destinations_kyrgyzstan_index_html.mjs').then(m => m.default)},
-    'destinations/morocco/index.html': {size: 81348, hash: '9e61519afa36ce360874363fac532f530d9ff6efe6088e938adbdd69ef52c5cc', text: () => import('./assets-chunks/destinations_morocco_index_html.mjs').then(m => m.default)},
-    'tours-list/index.html': {size: 96990, hash: '0a507bd54e6f5054da8ac56080c6c46463a4b10605777c65b4ef668bdfeabe19', text: () => import('./assets-chunks/tours-list_index_html.mjs').then(m => m.default)},
-    'how-to-visit-song-kul-lake-in-kyrgyzstan/index.html': {size: 96828, hash: 'fef39866565f07f0f967a5eb8b87144e926456c59a8a690b9ff1cd63714f230e', text: () => import('./assets-chunks/how-to-visit-song-kul-lake-in-kyrgyzstan_index_html.mjs').then(m => m.default)},
-    'tassili-najjer-national-park-algeria-guide/index.html': {size: 99594, hash: 'e9cd84f5c3ef2d5482163ad2c222d2713a2397621400673d4535f1b1edb902a6', text: () => import('./assets-chunks/tassili-najjer-national-park-algeria-guide_index_html.mjs').then(m => m.default)},
-    'the-complete-visitor-guide-to-rila-monastery/index.html': {size: 104409, hash: 'bc2430e7ea9542ac859b456d0f958bef4d95e29bb4352500457537d24bf71066', text: () => import('./assets-chunks/the-complete-visitor-guide-to-rila-monastery_index_html.mjs').then(m => m.default)},
-    'not-yet-but-soon/index.html': {size: 64650, hash: 'fed113c58e8e855b854639c321159c4fddaead3fb8ae2b8b617effc32b6bc239', text: () => import('./assets-chunks/not-yet-but-soon_index_html.mjs').then(m => m.default)},
-    'tour-item/tour-item-morocco-women-only-tour/index.html': {size: 118106, hash: '2470113b93f0ca7dfa8aefffe3b865d1995f612b1cba083a38a705e380d5f550', text: () => import('./assets-chunks/tour-item_tour-item-morocco-women-only-tour_index_html.mjs').then(m => m.default)},
-    'tour-item/women-only-tour-bulgaria/index.html': {size: 115250, hash: '3dc368a059a628d1971549e1fcebf1887c930933b8c2169dff2c471d961cef56', text: () => import('./assets-chunks/tour-item_women-only-tour-bulgaria_index_html.mjs').then(m => m.default)},
-    'tour-item/women-only-tour-kyrgyzstan/index.html': {size: 108908, hash: 'd1f9d8cd1ae81e85d773db33769291a0c3451ed9a97d762bc33f2d14165a7d34', text: () => import('./assets-chunks/tour-item_women-only-tour-kyrgyzstan_index_html.mjs').then(m => m.default)},
-    'morocco-casablanca-marrakech-route-guide/index.html': {size: 87965, hash: 'f1752a8fb6f74b37bd750aa677cab98107d4f731e1246baaf8bb40fd89d0a247', text: () => import('./assets-chunks/morocco-casablanca-marrakech-route-guide_index_html.mjs').then(m => m.default)},
-    'calendar-2027/index.html': {size: 66996, hash: '377eeb9686ad1b9c2211e72f32f060a6b7d7c406f3769013793636ec7a01d5bb', text: () => import('./assets-chunks/calendar-2027_index_html.mjs').then(m => m.default)},
-    'calendar-2027/september/index.html': {size: 88773, hash: '7891e659da6a33bc62be6175dd32eb1399b5be0a59255ea0bb4a3832f79a0a27', text: () => import('./assets-chunks/calendar-2027_september_index_html.mjs').then(m => m.default)},
-    'calendar/index.html': {size: 66566, hash: 'b30ae036b0ffe350b439bb38b68b7dc13f834849fbf3bfefed586341be37eb56', text: () => import('./assets-chunks/calendar_index_html.mjs').then(m => m.default)},
-    'tour-item/algeria-desert-expedition-tadrart-rouge/index.html': {size: 107154, hash: '494f36949518a19ac4ea9d41d02fe876e7493e28ad66f7dc02d130648977021e', text: () => import('./assets-chunks/tour-item_algeria-desert-expedition-tadrart-rouge_index_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 16193, hash: '91e615fa57140366ba34e258f628dbb7bf743defbfcf5a61160e79680118967f', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 15210, hash: 'd446d2bc843b6551a599fe8be22f2a68e58045fa42be145927eae40980739373', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'faq/index.html': {size: 77884, hash: '4d76a47ba3e46b76dbf56a82c3a4244ac5dce7a5e3bad53cd6787e28aed7d016', text: () => import('./assets-chunks/faq_index_html.mjs').then(m => m.default)},
+    'our-story/index.html': {size: 73437, hash: '095f11a3d6f3d873d4f83c02f1dc62ed4a6cf5f5ddb4e2ea13fdaf8870d2bace', text: () => import('./assets-chunks/our-story_index_html.mjs').then(m => m.default)},
+    'your-dmc-partner-in-bulgaria/index.html': {size: 72951, hash: '211d3e7dcacd2e5a8d668be3455c60a0358c4ac1fd1d00fa5abdde074ac99222', text: () => import('./assets-chunks/your-dmc-partner-in-bulgaria_index_html.mjs').then(m => m.default)},
+    'why-book-with-us/index.html': {size: 71061, hash: '866b7c181aa728bf525d33fbba1c8ef3113c20a079ca14377d9e04162e870594', text: () => import('./assets-chunks/why-book-with-us_index_html.mjs').then(m => m.default)},
+    'private-tours-your-trip-your-rules/index.html': {size: 63816, hash: 'a2da5cb12eedfb442e77b84d1be64b1af6ed31d39b4dcdd05533f6066bfdcb6f', text: () => import('./assets-chunks/private-tours-your-trip-your-rules_index_html.mjs').then(m => m.default)},
+    'private-tours-your-trip-your-rules/describe/index.html': {size: 76925, hash: '3fedbbc096968f952fc8c863d1a55dc904a70105e962930d865e85acf8d1c8b1', text: () => import('./assets-chunks/private-tours-your-trip-your-rules_describe_index_html.mjs').then(m => m.default)},
+    'destinations/index.html': {size: 74470, hash: 'a1b2a807733b75e8ef75e96c868c919ffd3a19abf908e3b69f75c75f6fa40ad8', text: () => import('./assets-chunks/destinations_index_html.mjs').then(m => m.default)},
+    'destinations/algeria/index.html': {size: 75945, hash: '0fcf76d4a872fc417000e6e9d715a60866084ef76cb152e587a377b87ffd95c1', text: () => import('./assets-chunks/destinations_algeria_index_html.mjs').then(m => m.default)},
+    'index.html': {size: 105776, hash: 'cbc30caa6c51765dfd9d9c94fce4cdb841a0ae78328e55dbc6a44e5d6a1fdc50', text: () => import('./assets-chunks/index_html.mjs').then(m => m.default)},
+    'enquire-now/index.html': {size: 76563, hash: 'a5901c47ab2fdbcce038128110ab2ea8bcffd743287bfca69e16de855aec339b', text: () => import('./assets-chunks/enquire-now_index_html.mjs').then(m => m.default)},
+    'blog-list/index.html': {size: 85892, hash: '2d57de9e6bad8f7a7d7e614a7eef28e9d83176046020ebd411dbe68cda787ea4', text: () => import('./assets-chunks/blog-list_index_html.mjs').then(m => m.default)},
+    'contact/index.html': {size: 63846, hash: '93112d8ebb7111044135f52b074b36df6968e322cff56471119658ad52a22253', text: () => import('./assets-chunks/contact_index_html.mjs').then(m => m.default)},
+    'tour-item/bulgaria-beyond-the-ordinary/index.html': {size: 114732, hash: 'fbf23f8f4d8b1f70640ec02164c71a3838b2ea79793fbf3db770d8f87c5c767a', text: () => import('./assets-chunks/tour-item_bulgaria-beyond-the-ordinary_index_html.mjs').then(m => m.default)},
+    'tour-item/kyrgyzstan-tour/index.html': {size: 108208, hash: 'bdd6b13a486f1605171eaa3ec868c574f4d61431525c35a30eac2e39cea1a17a', text: () => import('./assets-chunks/tour-item_kyrgyzstan-tour_index_html.mjs').then(m => m.default)},
+    'tour-item/morocco-tour/index.html': {size: 118061, hash: '657860f11147802d781b5514660026d73623710c14767e496d39f3d3a04849b8', text: () => import('./assets-chunks/tour-item_morocco-tour_index_html.mjs').then(m => m.default)},
+    'tour-item/tour-item-morocco-solo-travellers-tour/index.html': {size: 118300, hash: '76a5ed361e841cf669937d0404111799868f04760ab420cec0b743a7575a7fe4', text: () => import('./assets-chunks/tour-item_tour-item-morocco-solo-travellers-tour_index_html.mjs').then(m => m.default)},
+    'women-only-kyrgyzstan-what-to-expect/index.html': {size: 99955, hash: '9e4a62c495bb35a37d7b90cb671fcfa81e902123f797e18fa5919d1e5cc8d53d', text: () => import('./assets-chunks/women-only-kyrgyzstan-what-to-expect_index_html.mjs').then(m => m.default)},
+    'song-kul-yurt-stay-packing-guide/index.html': {size: 88009, hash: '0ac4d29549f6f6d15a9fc490177ef5e779e6dd2661831ec039d3ff05602f33ae', text: () => import('./assets-chunks/song-kul-yurt-stay-packing-guide_index_html.mjs').then(m => m.default)},
+    'bulgaria-classic-women-only-tour-comparison/index.html': {size: 87233, hash: '707855ccbd2c9d9b1b2dc1cbe04341a2d91e09464aac5ed90cd082138a9f9d48', text: () => import('./assets-chunks/bulgaria-classic-women-only-tour-comparison_index_html.mjs').then(m => m.default)},
+    '10-unmissable-places-to-visit-on-your-bulgaria-trip/index.html': {size: 106090, hash: 'e22b8bb18d99c32dd2d5ab3ecb9ea62abf3b6b37e871788a929c141567133404', text: () => import('./assets-chunks/10-unmissable-places-to-visit-on-your-bulgaria-trip_index_html.mjs').then(m => m.default)},
+    'classic-tours/index.html': {size: 89152, hash: '0e346beb6fa9b1df021b825cb410bc7c83f6a0c8b40d92b1079532d0b292ca72', text: () => import('./assets-chunks/classic-tours_index_html.mjs').then(m => m.default)},
+    'women-only-tours/index.html': {size: 87217, hash: '2df5689a924659232e61c3ce5f4b70c06c43c0aa7eb25c2d58d38acce52295f8', text: () => import('./assets-chunks/women-only-tours_index_html.mjs').then(m => m.default)},
+    'solo-travellers-tours/index.html': {size: 84109, hash: '66dea2f189b718fccd02a7c76838921e34b64cc94e671ae6ce447c3b2bc80abd', text: () => import('./assets-chunks/solo-travellers-tours_index_html.mjs').then(m => m.default)},
+    'all-ages-tours/index.html': {size: 83886, hash: '52860b47831f1885506b2f4b5cbf57ce34f680738252add18189b8d11b89eaaf', text: () => import('./assets-chunks/all-ages-tours_index_html.mjs').then(m => m.default)},
+    'omaya-travel-license/index.html': {size: 63830, hash: 'd9fa8bdf7e76a1d7120f60ea857523b3cfe3b68fb19efddb6df80dc9bb018c58', text: () => import('./assets-chunks/omaya-travel-license_index_html.mjs').then(m => m.default)},
+    'privacy-policy/index.html': {size: 73042, hash: 'eef0641e61f7a3a7f663a2dd6b857f98c1f595c220133cbb5865e152b784e5f8', text: () => import('./assets-chunks/privacy-policy_index_html.mjs').then(m => m.default)},
+    'cookie-policy/index.html': {size: 70393, hash: '8f7a282460f90ee03f191e572cb3a3b03fc1f88d2246b3d84106ed62b4b1a61c', text: () => import('./assets-chunks/cookie-policy_index_html.mjs').then(m => m.default)},
+    'termsconditions/index.html': {size: 78779, hash: '83f8361432f9b3efde8eef330c403919cacd3dd0604566fb0a6fcfa6728cfb5b', text: () => import('./assets-chunks/termsconditions_index_html.mjs').then(m => m.default)},
+    'how-to-visit-song-kul-lake-in-kyrgyzstan/index.html': {size: 96811, hash: '1504298613df2c6a89db4f81a07e0e043cb90da2842a4b49594201f45da3c5e4', text: () => import('./assets-chunks/how-to-visit-song-kul-lake-in-kyrgyzstan_index_html.mjs').then(m => m.default)},
+    'tassili-najjer-national-park-algeria-guide/index.html': {size: 99578, hash: '06d164820a09a8ae1883502f9f9f18aefe998d98424fb176f9c5295737c8e422', text: () => import('./assets-chunks/tassili-najjer-national-park-algeria-guide_index_html.mjs').then(m => m.default)},
+    'the-complete-visitor-guide-to-rila-monastery/index.html': {size: 104386, hash: '3a17f630d39020e05cfb7f6ada2bc0eec3e102c6fe47bf69758d06ba1637ee96', text: () => import('./assets-chunks/the-complete-visitor-guide-to-rila-monastery_index_html.mjs').then(m => m.default)},
+    'not-yet-but-soon/index.html': {size: 64646, hash: 'b0ce86eabe16fa59e6590ce92ccb131e87356d220e3da1dfce1c2660a56e779f', text: () => import('./assets-chunks/not-yet-but-soon_index_html.mjs').then(m => m.default)},
+    'destinations/bulgaria/index.html': {size: 79752, hash: '91154d4f24b0f4bbfe51d6dec5bd32e0211667d2d6c4541112777f43f647350b', text: () => import('./assets-chunks/destinations_bulgaria_index_html.mjs').then(m => m.default)},
+    'destinations/kyrgyzstan/index.html': {size: 80200, hash: '1363580669603eb933f6fa46c1a6234b46aa2fa031d1154b35e42086462955ef', text: () => import('./assets-chunks/destinations_kyrgyzstan_index_html.mjs').then(m => m.default)},
+    'destinations/morocco/index.html': {size: 81348, hash: '64b972b21fb17917e20e567800ed4a03ddb0aaa8da4e6f622edecebceb89ec06', text: () => import('./assets-chunks/destinations_morocco_index_html.mjs').then(m => m.default)},
+    'tours-list/index.html': {size: 96992, hash: 'e9e63780d5a740b9eb49c02736b1661139d653b177e34951d04180cccad5e55b', text: () => import('./assets-chunks/tours-list_index_html.mjs').then(m => m.default)},
+    'tour-item/tour-item-morocco-women-only-tour/index.html': {size: 118107, hash: '5a31bfc9451c99edd5cd52b0867c40650bdf885a54491e799386d9bacd9c6a6c', text: () => import('./assets-chunks/tour-item_tour-item-morocco-women-only-tour_index_html.mjs').then(m => m.default)},
+    'tour-item/women-only-tour-bulgaria/index.html': {size: 115251, hash: 'b6d4a67c6cb9a28d0af402c1becddf1ee70a7993500f03be5bebe19eaa0962d4', text: () => import('./assets-chunks/tour-item_women-only-tour-bulgaria_index_html.mjs').then(m => m.default)},
+    'tour-item/women-only-tour-kyrgyzstan/index.html': {size: 108909, hash: '7639c5b142000bfe005e30cb4e1a6beeff3c057dda673afa203c75db4ce99aae', text: () => import('./assets-chunks/tour-item_women-only-tour-kyrgyzstan_index_html.mjs').then(m => m.default)},
+    'morocco-casablanca-marrakech-route-guide/index.html': {size: 87931, hash: '1d048a46725ff07c154927074cdea9775c459442f13a0e12050ae619eb28b422', text: () => import('./assets-chunks/morocco-casablanca-marrakech-route-guide_index_html.mjs').then(m => m.default)},
+    'calendar-2027/index.html': {size: 66996, hash: '0cd05525e0444d6a5ec72a53971dfe93ef00fda901683a21198ae7c5499122ec', text: () => import('./assets-chunks/calendar-2027_index_html.mjs').then(m => m.default)},
+    'calendar-2027/september/index.html': {size: 88776, hash: 'd829a6a5a38d361426dea6075d25ba1fa52111a5a259ee78b1ec2a07bc9c0a08', text: () => import('./assets-chunks/calendar-2027_september_index_html.mjs').then(m => m.default)},
+    'calendar/index.html': {size: 66566, hash: '7233bd3e273fa2ae9fd8bc3a1412399f8551c594375822a44afdc3f2ccf58294', text: () => import('./assets-chunks/calendar_index_html.mjs').then(m => m.default)},
+    'tour-item/algeria-desert-expedition-tadrart-rouge/index.html': {size: 107169, hash: 'db60b615afe4d427c39eac3e8631cc3005d4c17c302fd0266e3af9b73639b795', text: () => import('./assets-chunks/tour-item_algeria-desert-expedition-tadrart-rouge_index_html.mjs').then(m => m.default)},
     'styles-SJXF7BOE.css': {size: 14133, hash: 'RNxJHEF3Jbk', text: () => import('./assets-chunks/styles-SJXF7BOE_css.mjs').then(m => m.default)}
   },
 };
