@@ -121,6 +121,22 @@ describe('itinerary highlight terms', () => {
     ]);
   });
 
+  it('marks up the Amelia Morocco itinerary, with the three external references', () => {
+    const morocco = findTourBySlug('morocco-tour', 'amelia');
+    const days = morocco?.itinerary ?? [];
+    const terms = days.flatMap((day) => day.descriptionHighlights ?? []);
+
+    expect(days.filter((day) => day.descriptionHighlights?.length).map((day) => day.day)).toEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+    ]);
+    expect(terms.length).toBe(30);
+    expect(terms.filter((term) => term.href).map((term) => term.href)).toEqual([
+      'https://whc.unesco.org/en/list/170/',
+      'https://en.wikipedia.org/wiki/Chouara_Tannery',
+      'https://whc.unesco.org/en/list/444/',
+    ]);
+  });
+
   it('leaves the English Omaya Kyrgyzstan itinerary unhighlighted', () => {
     const omaya = TOUR_DETAIL_CONTENT.find((tour) => tour.slug === 'kyrgyzstan-tour');
 
