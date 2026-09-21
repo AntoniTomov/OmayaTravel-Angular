@@ -14,6 +14,7 @@ import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import {
   LogoSrcsetPipe,
   NewsletterPopupMobileSrcsetPipe,
+  NewsletterPopupTabletSrcsetPipe,
 } from '../../shared/content/tour-web-image.pipe';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
@@ -26,7 +27,13 @@ const SUBSCRIBED_KEY = 'omaya-newsletter-popup-subscribed';
 
 @Component({
   selector: 'app-newsletter-popup',
-  imports: [FormHoneypot, FormStatus, LogoSrcsetPipe, NewsletterPopupMobileSrcsetPipe],
+  imports: [
+    FormHoneypot,
+    FormStatus,
+    LogoSrcsetPipe,
+    NewsletterPopupMobileSrcsetPipe,
+    NewsletterPopupTabletSrcsetPipe,
+  ],
   templateUrl: './newsletter-popup.html',
   styleUrl: './newsletter-popup.scss',
 })

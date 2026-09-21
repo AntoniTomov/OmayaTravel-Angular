@@ -79,8 +79,9 @@ html[data-theme='amelia'] .homepage__newsletter {
  *
  * This is the first hero slide, which `NewsletterPopup.mediaImage` also picks for Amelia. The two
  * are set in different places and only agree by hand: if the hero slides are reordered, change this
- * with them. It also overrides the component's phone-sized `image-set()`, so Amelia serves the full
- * photograph on mobile.
+ * with them. It also overrides the component's phone-sized `image-set()` with Amelia's own copies:
+ * the same files the popup's <picture> picks at each breakpoint, so the photograph and the frame
+ * are one download. See AMELIA_POPUP_COPIES in the image generator.
  */
 html[data-theme='amelia'] .newsletter-popup__media {
   background:
@@ -90,4 +91,26 @@ html[data-theme='amelia'] .newsletter-popup__media {
     ),
     url('/assets/images/amelia/home/hero-3.avif') center / cover,
     var(--omaya-color-dark);
+}
+
+@media (max-width: 64rem) {
+  html[data-theme='amelia'] .newsletter-popup__media {
+    background-image:
+      linear-gradient(
+        rgb(var(--omaya-color-overlay-rgb) / 18%),
+        rgb(var(--omaya-color-overlay-rgb) / 18%)
+      ),
+      url('/assets/images/amelia/home/hero-3-popup-tablet.avif');
+  }
+}
+
+@media (max-width: 34rem) {
+  html[data-theme='amelia'] .newsletter-popup__media {
+    background-image:
+      linear-gradient(
+        rgb(var(--omaya-color-overlay-rgb) / 18%),
+        rgb(var(--omaya-color-overlay-rgb) / 18%)
+      ),
+      url('/assets/images/amelia/home/hero-3-popup-mobile.avif');
+  }
 }

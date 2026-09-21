@@ -227,10 +227,17 @@ export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/Marocco/morocco-bgr.webp':
     '/assets/images/tour-web/d3e8eb34e6eb925c.avif 320w, /assets/images/tour-web/e9c2fb593a3607a2.avif 480w, /assets/images/tour-web/316b286c7da08684.avif 640w, /assets/images/tour-web/a42808e2d4d5d7d8.avif 800w, /assets/images/tour-web/766df0085f8d7c6c.avif 960w, /assets/images/tour-web/8aed1d364d20422b.avif 1200w, /assets/images/tour-web/03fcbb5dcf276b69.avif 1600w',
 };
-// A 480px copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH in the generator.
+// A capped copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in the generator.
 export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/newsletter-popup-inner.webp':
     '/assets/images/tour-web/1e86e025878feac7.avif 480w',
+  '/assets/images/amelia/home/hero-3.avif':
+    '/assets/images/amelia/home/hero-3-popup-mobile.avif 640w',
+};
+// A copy of the newsletter popup photograph for tablets up to 64rem. See AMELIA_POPUP_COPIES in the generator.
+export const NEWSLETTER_POPUP_TABLET_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/amelia/home/hero-3.avif':
+    '/assets/images/amelia/home/hero-3-popup-tablet.avif 960w',
 };
 // Mission photograph copies for viewports up to 58rem, topped by the original. See MISSION_COPY_QUALITY in the generator.
 export const MISSION_IMAGE_MOBILE_SRCSETS: Readonly<Record<string, string>> = {

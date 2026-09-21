@@ -6,6 +6,7 @@ import {
   LOGO_SRCSETS,
   MISSION_IMAGE_MOBILE_SRCSETS,
   NEWSLETTER_POPUP_MOBILE_SRCSETS,
+  NEWSLETTER_POPUP_TABLET_SRCSETS,
   TOUR_WEB_HERO_MOBILE_SRCSETS,
   TOUR_WEB_IMAGES,
   TOUR_WEB_IMAGE_SRCSETS,
@@ -45,6 +46,15 @@ export class FeaturedTripWideSrcsetPipe implements PipeTransform {
 export class NewsletterPopupMobileSrcsetPipe implements PipeTransform {
   transform(source: string): string | null {
     return NEWSLETTER_POPUP_MOBILE_SRCSETS[source] ?? null;
+  }
+}
+
+// The newsletter popup photograph for viewports up to 64rem. Null without one, so the <source> is
+// skipped.
+@Pipe({ name: 'newsletterPopupTabletSrcset' })
+export class NewsletterPopupTabletSrcsetPipe implements PipeTransform {
+  transform(source: string): string | null {
+    return NEWSLETTER_POPUP_TABLET_SRCSETS[source] ?? null;
   }
 }
 
