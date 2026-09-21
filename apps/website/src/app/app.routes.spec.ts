@@ -96,6 +96,22 @@ describe('app routes', () => {
     expect(renderModes.get('standarten-formulyar')).toBe(RenderMode.Server);
     expect(renderModes.get('india-otblizo')).toBe(RenderMode.Server);
     expect(renderModes.get('contact')).toBe(RenderMode.Prerender);
+    expect(renderModes.get('enquire-now')).toBe(RenderMode.Prerender);
+    // Search results depend on the query, so the page renders per request instead.
+    expect(renderModes.get('search')).toBe(RenderMode.Server);
+  });
+
+  it('gives every page route a server route, so none answers through the catch-all 404', () => {
+    // A page the router renders but the server routes do not list falls through to '**', which
+    // answers 404 while still rendering the page. /enquire-now/ and /search/ both shipped that way.
+    const serverPaths = new Set(serverRoutes.map((route) => route.path));
+    const unserved = routes
+      .flatMap((route) =>
+        route.path && (route.loadComponent || route.component) ? [route.path] : [],
+      )
+      .filter((path) => path !== '**' && path !== '404' && !serverPaths.has(path));
+
+    expect(unserved).toEqual([]);
   });
 
   it('prerenders approved destination and Omaya tour params, rendering other tours on request', async () => {
