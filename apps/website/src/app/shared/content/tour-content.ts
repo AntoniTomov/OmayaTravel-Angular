@@ -1762,6 +1762,7 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
     },
     price: {
       ...kyrgyzstanTour.price,
+      amount: 1420,
       unit: 'човек',
     },
     groupSize: {
@@ -2567,7 +2568,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
       nights: 13,
     },
     price: {
-      amount: 1660,
+      amount: 1690,
       currency: 'EUR',
       unit: 'човек',
     },
