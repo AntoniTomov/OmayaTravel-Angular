@@ -43,6 +43,12 @@ export interface SiteFeatureFlags {
   showPrivateTours: boolean;
   showBlogPosts: boolean;
   showNewsletter: boolean;
+  /**
+   * The "not yet, but soon" page invites an email instead of pointing at the tour list. Amelia
+   * sends its coming-soon destinations there, where a signup is the only useful next step; Omaya
+   * reaches the page from its calendar, where the tour list is.
+   */
+  showNotYetNewsletter: boolean;
 }
 
 export interface SiteAnalytics {

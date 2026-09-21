@@ -103,6 +103,7 @@ const inputs = [
   // page and bigger than the hero.
   "images/home-page/blog-posts/Yurt-Camp-at-SongKul-Lake-Opt.webp",
   "images/blog-posts/Kyrgystan-post-preview-bgr.webp",
+  "images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
   // Tour heroes that were still WebP. The hero is the LCP element on every tour page, and these
   // were missed because this list is maintained by hand — tour-hero-avif.spec.ts now fails if a
   // tour hero has no AVIF, so the next tour cannot slip through the same way.
@@ -322,25 +323,30 @@ for (const relativePath of HERO_SOURCES) {
   heroMobile[`/assets/${relativePath}`] = candidates.join(", ");
 }
 
-// Phone and tablet crops of the page heroes that were a bare <img>: the blog list and articles, our
-// story and not-yet-but-soon. Each is a full-width box 515px tall at every viewport, like the tour
-// hero, so object-fit: cover fills it by height. Up to 30rem the widest slice any phone shows is
-// height x 480/515 of the source and draws 480 CSS px wide; up to 48rem it is height x 768/515 and
-// draws 768px. Candidates stop at what a DPR 3 phone and a DPR 2 tablet need, so a 3,429px-tall blog
+// Phone and tablet crops of the page heroes that were a bare <img>: the blog list and articles and
+// our story. Each is a full-width box 515px tall at every viewport, like the tour hero, so
+// object-fit: cover fills it by height. Up to 30rem the widest slice any phone shows is height x
+// 480/515 of the source and draws 480 CSS px wide; up to 48rem it is height x 768/515 and draws
+// 768px. Candidates stop at what a DPR 3 phone and a DPR 2 tablet need, so a 3,429px-tall blog
 // photograph does not offer its whole 3,196px phone slice.
-const PAGE_HERO_SOURCES = [
-  "images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif",
-  "images/amelia/blog/india-otblizo/india-otblizo-01.webp",
-  "images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp",
-  "images/our-story/Our-story-16.webp",
-  "images/home-page/private-tours-right-bgr.webp",
-];
+//
+// Each crop sits where the hero's object-position puts the visible slice. With the slice at x across
+// the spare width, a crop starting at x of the width it leaves out shows the same pixels at every
+// viewport, so the our-story crop keeps its 34% framing rather than drifting to the centre. The
+// not-yet-but-soon hero is 400px tall and square, which cover fills by width, so it has no slice to
+// crop and only gets the full-frame copies.
+const PAGE_HERO_SOURCES = {
+  "images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif": 0.5,
+  "images/amelia/blog/india-otblizo/india-otblizo-01.webp": 0.5,
+  "images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp": 0.5,
+  "images/our-story/Our-story-16.webp": 0.34,
+};
 const PAGE_HERO_TIERS = [
   { name: "phone", maxViewport: 480, widths: [480, 720, 960, 1440] },
   { name: "tablet", maxViewport: 768, widths: [768, 1152, 1536] },
 ];
 const pageHeroCrops = {};
-for (const relativePath of PAGE_HERO_SOURCES) {
+for (const [relativePath, position] of Object.entries(PAGE_HERO_SOURCES)) {
   const original = readSource(relativePath);
   const meta = await sharp(original).metadata();
   const source = `/assets/${relativePath}`;
@@ -350,7 +356,7 @@ for (const relativePath of PAGE_HERO_SOURCES) {
       meta.width,
       Math.round((meta.height * tier.maxViewport) / HERO_HEIGHT_PX),
     );
-    const left = Math.round((meta.width - cropWidth) / 2);
+    const left = Math.round((meta.width - cropWidth) * position);
     const widths = tier.widths.filter((width) => width < cropWidth);
     if (widths.length < tier.widths.length) {
       widths.push(cropWidth);

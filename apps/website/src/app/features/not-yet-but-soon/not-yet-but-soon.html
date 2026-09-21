@@ -1,32 +1,63 @@
 <main class="not-yet">
   <section class="not-yet__hero" aria-labelledby="not-yet-title">
     <!--
-      Phone and tablet crops, then full-frame copies; see PAGE_HERO_SOURCES in
-      scripts/generate-tour-web-images.mjs. The square photograph never draws wider than the viewport.
+      Full-frame copies sized to the screen; see the site-wide encodings in
+      scripts/generate-tour-web-images.mjs. The hero is 400px tall and the photograph square, so it
+      draws the width of the viewport and never narrower than 400px.
     -->
     <picture style="display: contents">
       <source
-        media="(max-width: 30rem)"
         type="image/avif"
-        [attr.srcset]="heroImage | pageHeroCropSrcset: 'phone'"
-        sizes="480px"
+        [attr.srcset]="heroImage | tourWebImageSrcset"
+        sizes="max(100vw, 400px)"
       />
-      <source
-        media="(max-width: 48rem)"
-        type="image/avif"
-        [attr.srcset]="heroImage | pageHeroCropSrcset: 'tablet'"
-        sizes="768px"
-      />
-      <source type="image/avif" [attr.srcset]="heroImage | tourWebImageSrcset" sizes="100vw" />
       <img [src]="heroImage" width="1920" height="1080" alt="" fetchpriority="high" />
     </picture>
-    <h1 id="not-yet-title">{{ i18n.t('notYet.heroTitle') }}</h1>
+    <div class="not-yet__hero-copy">
+      @if (destination(); as destinationName) {
+        <p class="not-yet__eyebrow">{{ destinationName }}</p>
+      }
+      <h1 id="not-yet-title">{{ i18n.t('notYet.heroTitle') }}</h1>
+    </div>
   </section>
 
-  <section class="not-yet__message" aria-label="No tours available for this month">
+  <section
+    class="not-yet__message"
+    [class.not-yet__message--invite]="showNewsletter()"
+    aria-label="No tours available for this month"
+  >
     <h2>
       {{ i18n.t('notYet.message') }}
     </h2>
-    <a [routerLink]="ctaTarget()">{{ i18n.t('notYet.cta') }}</a>
+
+    @if (showNewsletter()) {
+      <form class="not-yet__newsletter" (submit)="submitNewsletterForm($event)">
+        <label for="not-yet-newsletter-email">{{ i18n.t('homepage.newsletterEmail') }}</label>
+        <input
+          id="not-yet-newsletter-email"
+          type="email"
+          name="email"
+          [placeholder]="i18n.t('homepage.newsletterEmailPlaceholder')"
+          autocomplete="email"
+          required
+        />
+        <app-form-honeypot />
+        <button type="submit" [disabled]="newsletterStatus() === 'sending'">
+          {{
+            newsletterStatus() === 'sending'
+              ? i18n.t('homepage.newsletterSending')
+              : i18n.t('homepage.newsletterSubmit')
+          }}
+        </button>
+        <app-form-status
+          [message]="newsletterMessage()"
+          [isError]="newsletterStatus() === 'error'"
+        />
+      </form>
+
+      <p class="not-yet__note">{{ i18n.t('notYet.newsletterNote') }}</p>
+    } @else {
+      <a [routerLink]="ctaTarget()">{{ i18n.t('notYet.cta') }}</a>
+    }
   </section>
 </main>

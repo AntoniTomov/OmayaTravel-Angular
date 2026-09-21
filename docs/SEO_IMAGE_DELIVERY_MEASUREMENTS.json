@@ -959,6 +959,37 @@
       "webBytes": 23380
     },
     {
+      "source": "/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
+      "width": 848,
+      "height": 552,
+      "originalBytes": 84256,
+      "webBytes": 32291
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7279
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 13282
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 20173
+    },
+    {
+      "source": "/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 26988
+    },
+    {
       "source": "/assets/images/destinations/Algiria/gallery/gallery-image-5.webp",
       "width": 1600,
       "height": 667,
@@ -3199,7 +3230,7 @@
       "height": 515,
       "variant": "page-hero-phone",
       "quality": 55,
-      "webBytes": 5693
+      "webBytes": 8468
     },
     {
       "source": "/assets/images/our-story/Our-story-16.webp",
@@ -3207,7 +3238,7 @@
       "height": 667,
       "variant": "page-hero-phone",
       "quality": 55,
-      "webBytes": 8683
+      "webBytes": 12568
     },
     {
       "source": "/assets/images/our-story/Our-story-16.webp",
@@ -3215,7 +3246,7 @@
       "height": 515,
       "variant": "page-hero-tablet",
       "quality": 55,
-      "webBytes": 8834
+      "webBytes": 8833
     },
     {
       "source": "/assets/images/our-story/Our-story-16.webp",
@@ -3223,55 +3254,7 @@
       "height": 667,
       "variant": "page-hero-tablet",
       "quality": 55,
-      "webBytes": 13412
-    },
-    {
-      "source": "/assets/images/home-page/private-tours-right-bgr.webp",
-      "width": 480,
-      "height": 515,
-      "variant": "page-hero-phone",
-      "quality": 55,
-      "webBytes": 24672
-    },
-    {
-      "source": "/assets/images/home-page/private-tours-right-bgr.webp",
-      "width": 720,
-      "height": 772,
-      "variant": "page-hero-phone",
-      "quality": 55,
-      "webBytes": 48833
-    },
-    {
-      "source": "/assets/images/home-page/private-tours-right-bgr.webp",
-      "width": 960,
-      "height": 1030,
-      "variant": "page-hero-phone",
-      "quality": 55,
-      "webBytes": 79031
-    },
-    {
-      "source": "/assets/images/home-page/private-tours-right-bgr.webp",
-      "width": 1007,
-      "height": 1080,
-      "variant": "page-hero-phone",
-      "quality": 55,
-      "webBytes": 90476
-    },
-    {
-      "source": "/assets/images/home-page/private-tours-right-bgr.webp",
-      "width": 768,
-      "height": 768,
-      "variant": "page-hero-tablet",
-      "quality": 55,
-      "webBytes": 51035
-    },
-    {
-      "source": "/assets/images/home-page/private-tours-right-bgr.webp",
-      "width": 1080,
-      "height": 1080,
-      "variant": "page-hero-tablet",
-      "quality": 55,
-      "webBytes": 100966
+      "webBytes": 13075
     },
     {
       "source": "/assets/images/home-page/carousel/HomePageCoverPhoto-5.webp",

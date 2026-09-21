@@ -64,17 +64,87 @@ export const PLANNING_GUIDES: readonly BlogPostContent[] = [
     ...findBlogMetadataBySlug('women-only-kyrgyzstan-what-to-expect')!,
     sections: [
       {
-        title: 'A women-only group, with a shared route',
+        title: 'Is Kyrgyzstan safe for women travellers?',
         text: [
-          'The women-only format describes the travelling group. It offers a way to join a planned journey without organising every move independently. It does not, by itself, specify the gender of the guide or the allocation of bedrooms and yurts.',
-          'For someone arriving on her own, the welcome briefing in Bishkek is the first point where the itinerary becomes a shared experience. The published first evening includes dinner and a folklore concert; the next day pairs Ala Archa with a Bishkek city tour.',
+          'Broadly, yes. Kyrgyzstan is a well-established destination for independent travellers, including women travelling alone, though as anywhere there are situations that call for extra care.',
+          'Bishkek feels like a lively post-Soviet city, with women working, running businesses, driving, teaching and running guesthouses. Petty theft happens in crowded places, and unwanted attention is possible, particularly at night. The usual precautions apply: keeping an eye on your belongings, being cautious around alcohol, avoiding isolated areas late in the evening and trusting your instincts.',
+          'Alcohol changes the atmosphere. Most uncomfortable encounters travellers describe involve people who have been drinking, usually late at night. It is not a reason to worry about the country, only a reason to apply the judgement you would anywhere unfamiliar.',
+          'The south is more conservative than the north. Osh and parts of the Fergana Valley have a stronger visible Muslim influence than Bishkek or Karakol. There is no need to dress conservatively everywhere, but in villages and more traditional communities, covering your shoulders and knees is a respectful choice.',
+          'Researching the country also turns up ala kachuu, the term used for bride kidnapping. It is a real social issue, it is illegal, and Kyrgyz women have been at the forefront of the activism challenging it. It is a domestic issue affecting Kyrgyz women rather than something that targets foreign visitors, but knowing a little about it adds useful context to the conversations you will have along the way.',
+          'Mobile coverage is good in towns and along most main roads, and disappears entirely up in the high pastures, which is part of the appeal.',
         ],
       },
       {
-        title: 'From the capital to Song Kul',
+        title: 'What to wear',
         text: [
-          'Day three leaves Bishkek for Kochkor and Song Kul. The following day stays at the lake, with a planned two-hour horse ride in the morning and an afternoon that allows time to rest or take an optional walk. This full day is a different kind of pause from the city time at the beginning.',
-          'Riding experience and personal comfort around horses are useful things to discuss with the team. An easy overall fitness rating is not a statement about a particular traveller’s riding confidence or an assurance that every activity has the same alternatives.',
+          'There is no general dress code for women in Kyrgyzstan. In Bishkek there are jeans, dresses, trainers and heels, much as in any modern city.',
+          'What matters more is the landscape. Kyrgyzstan is overwhelmingly mountainous and temperatures shift sharply with altitude. A warm summer afternoon can turn into a cold, wet evening surprisingly quickly, particularly at around 3,000 metres. Layers serve better than a carefully planned wardrobe.',
+        ],
+        list: [
+          'A warm fleece or jacket, whatever the month',
+          'Comfortable walking shoes, already broken in',
+          'Something genuinely waterproof',
+          'Sun protection, which matters more at altitude than most people expect',
+          'For villages and more traditional communities, something that covers your shoulders and knees',
+        ],
+      },
+      {
+        title: 'Where you’ll actually meet Kyrgyz women',
+        text: [
+          'This is the part most itineraries skip, and one of the more rewarding sides of travelling here.',
+        ],
+        items: [
+          {
+            name: 'In the felt workshops',
+            details:
+              'Shyrdak and ala-kiyiz, the traditional felt carpets made from wool in intricate patterns, have long been part of Kyrgyz domestic and cultural life. Women play a major role in keeping the craft alive, passing techniques and designs down through generations. Time with local makers is a glimpse of a tradition still in everyday use, rather than one kept going for visitors.',
+          },
+          {
+            name: 'In the guesthouses',
+            details:
+              'Community-based tourism in Kyrgyzstan has grown up around family-run homestays, and women are often at the heart of them, cooking, welcoming guests and keeping everything running. Meals are usually shared, often around a low table, and the conversation tends to outlast the food.',
+          },
+          {
+            name: 'Around the kymyz',
+            details:
+              'Fermented mare’s milk is a traditional drink: tart, slightly fizzy and, for most first-time visitors, an acquired taste. Whether it becomes a favourite or a polite single bowl, being offered it is part of rural Kyrgyz hospitality.',
+          },
+          {
+            name: 'In the national story',
+            details:
+              'Kurmanjan Datka, the nineteenth-century leader known as the Queen of Alai, played a significant role in the history of southern Kyrgyzstan and remains one of the country’s best-known historical figures.',
+          },
+        ],
+      },
+      {
+        title: 'The route, from Bishkek to Song Kul and Issyk-Kul',
+        text: [
+          'The journey runs ten days, Bishkek to Bishkek, with a small group of 6–12 travellers. Its shape changes as it goes: city time at the start, lake and pasture in the middle, valleys and mountains towards the end.',
+        ],
+        boldList: [
+          {
+            label: 'Bishkek, to begin.',
+            text: 'For someone arriving on her own, the welcome briefing in Bishkek is the first point where the itinerary becomes a shared experience. The published first evening includes dinner and a folklore concert; the next day pairs Ala Archa with a Bishkek city tour.',
+          },
+          {
+            label: 'Kochkor and Song Kul.',
+            text: 'Day three leaves Bishkek for Kochkor and Song Kul. The following day stays at the lake, with a planned two-hour horse ride in the morning and an afternoon that allows time to rest or take an optional walk. This full day is a different kind of pause from the city time at the beginning.',
+          },
+          {
+            label: 'Around Issyk-Kul.',
+            text: 'After Song Kul, the route returns through Kochkor and continues towards Bokonbaevo. A yurt-building demonstration, an eagle-hunting demonstration and Skazka Canyon are among the experiences described in the itinerary.',
+          },
+          {
+            label: 'Karakol, Altyn Arashan and Cholpon-Ata.',
+            text: 'Karakol and Altyn Arashan bring another change of setting before the journey continues towards Cholpon-Ata and back to Bishkek.',
+          },
+        ],
+      },
+      {
+        title: 'Yurt nights, and what to ask about your departure',
+        text: [
+          'The accommodation sequence includes hotels, yurt camps and a guesthouse or homestay. Those labels describe different kinds of stay, not a single standard of facilities throughout. Current arrangements for a particular departure are best discussed before booking.',
+          'A head torch, wet wipes and a small bag for personal waste are useful wherever you stay, and period products are worth bringing with you: supplies can be hard to find away from the towns.',
         ],
         cta: {
           before: 'For a focused preparation list, see ',
@@ -84,17 +154,40 @@ export const PLANNING_GUIDES: readonly BlogPostContent[] = [
         },
       },
       {
-        title: 'Around Issyk-Kul and into the valleys',
+        title: 'When to go',
         text: [
-          'After Song Kul, the route returns through Kochkor and continues towards Bokonbaevo. A yurt-building demonstration, an eagle-hunting demonstration and Skazka Canyon are among the experiences described in the itinerary. Karakol and Altyn Arashan bring another change of setting before the journey continues towards Cholpon-Ata and back to Bishkek.',
-          'The accommodation sequence includes hotels, yurt camps and a guesthouse or homestay. Those labels describe different kinds of stay, not a single standard of facilities throughout. Current arrangements for a particular departure are best discussed before booking.',
+          'For the high pastures, mid-June to early September is the main season. Yurt camps open as herders move their animals up to the summer pastures and close again as the weather turns, so access depends on snow and road conditions as much as on the calendar. September brings fewer people and clearer light, and nights at altitude that are genuinely cold.',
+        ],
+        cta: {
+          before: 'Season, access routes and conditions at the lake are covered in more detail in ',
+          linkText: 'our guide to visiting Song Kul',
+          linkUrl: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
+          after: '.',
+        },
+      },
+      {
+        title: 'Getting around',
+        text: [
+          'Shared minibuses, known as marshrutkas, and shared taxis connect towns cheaply, but they leave when full rather than to a timetable, journeys over mountain passes take longer than expected, and English is not widely spoken outside the main tourist centres. Russian is useful, Kyrgyz is everywhere, and English is increasingly common in tourist areas.',
+          'None of that makes independent travel impossible, and plenty of women do it. But Song Kul, Tash Rabat and the high jailoos around Karakol are difficult to reach on public transport, which is the practical argument for travelling with a group and a driver who knows the roads.',
         ],
       },
       {
-        title: 'What easy fitness means for planning',
+        title: 'What an easy fitness rating means, and how rooms work',
         text: [
           'Omaya rates this tour as easy. Walking, riding, changes of base and time in mountain surroundings are still part of the itinerary. The most useful conversation is about the individual days and anything that affects your comfort, rather than relying on the rating alone.',
+          'Riding experience and personal comfort around horses are useful things to discuss with the team. An easy overall fitness rating is not a statement about a particular traveller’s riding confidence or an assurance that every activity has the same alternatives.',
+          'Altitude sits slightly apart from fitness. Song Kul is above 3,000 metres, and altitude can affect anyone regardless of age or condition: some people notice nothing, others have a headache, feel tired or sleep badly the first night. Taking the first day slowly and drinking more water than usual helps, and telling your guide is more useful than pushing through. Anyone with medical concerns or regular medication is best served by a conversation with a GP or travel clinic before booking.',
           'Room allocation and private-room requests are separate from the women-only group format. The team can discuss your needs alongside the specific departure. There is no need to assume a particular room-sharing arrangement simply because you are joining independently.',
+        ],
+      },
+      {
+        title: 'Why some women choose a women-only group',
+        text: [
+          'Kyrgyzstan is perfectly possible to travel independently as a woman, and plenty of women do. A women-only group is simply a different experience.',
+          'Part of it is practical: the transfers, the mountain roads and the yurt bookings are already worked out. The more interesting part is what happens inside the group. Conversations in a homestay kitchen go somewhere unexpected. Time with local women can feel more relaxed. And there is something steadying about travelling among people who understand the same practical realities, whether that is sharing a yurt, feeling the altitude on the first night or getting thoroughly muddy on a mountain trail.',
+          'The women-only format describes the travelling group. It offers a way to join a planned journey without organising every move independently. It does not, by itself, specify the gender of the guide or the allocation of bedrooms and yurts.',
+          'A women-only group is not a requirement for visiting Kyrgyzstan. But for meeting local women, sleeping in a yurt, riding out into the mountains and sharing meals around a family table alongside other curious travellers, it is a different way to do it.',
         ],
         cta: {
           before: 'The full ten-day route and current departures are on the ',
@@ -102,6 +195,12 @@ export const PLANNING_GUIDES: readonly BlogPostContent[] = [
           linkUrl: '/tour-item/women-only-tour-kyrgyzstan/',
           after: '.',
         },
+      },
+      {
+        title: 'A practical note on visas',
+        text: [
+          'Visa requirements for Kyrgyzstan depend on nationality and do change. A number of passport holders, including citizens of many European countries, the UK and the US, can enter visa-free for eligible stays, though the permitted period and the conditions vary. Current requirements for your own passport are worth confirming before flights are booked.',
+        ],
       },
     ],
   },

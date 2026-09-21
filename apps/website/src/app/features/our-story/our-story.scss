@@ -30,7 +30,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 34% center;
+  // Anchored to the top of the frame: on wide screens cover crops the height, and centring the
+  // crop pushed the founders' faces up behind the fixed header. The photo carries empty studio
+  // background above their heads, so that band sits behind the header instead.
+  object-position: 34% top;
 }
 
 .our-story__hero-copy p,

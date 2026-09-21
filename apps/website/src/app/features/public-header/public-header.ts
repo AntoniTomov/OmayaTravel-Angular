@@ -1,9 +1,10 @@
-import { DOCUMENT, NgClass } from '@angular/common';
+import { DOCUMENT, NgClass, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
   HostListener,
+  PLATFORM_ID,
   computed,
   inject,
   signal,
@@ -16,6 +17,7 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { NavigationGroup } from '../../shared/content/homepage-content';
 import { LOGO_SRCSETS } from '../../shared/content/tour-web-images';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
@@ -41,6 +43,12 @@ const SOLID_HEADER_PATHS = new Set([
   '/calendar-2027/september',
 ]);
 
+// The dropdown hangs below a fixed header, so it is capped at the space left under the header and
+// scrolls inside itself rather than running off the bottom of a short screen. The gap keeps its
+// last item clear of the viewport edge; the floor keeps a few rows reachable on very short screens.
+const DROPDOWN_VIEWPORT_GAP = 16;
+const DROPDOWN_MIN_HEIGHT = 160;
+
 @Component({
   selector: 'app-public-header',
   imports: [NgClass, RouterLink, MatIconModule],
@@ -51,6 +59,7 @@ export class PublicHeader implements AfterViewInit {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly analytics = inject(OmayaAnalytics);
@@ -118,6 +127,7 @@ export class PublicHeader implements AfterViewInit {
   }));
 
   private readonly searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
+  private readonly headerElement = viewChild<ElementRef<HTMLElement>>('headerElement');
   private lastFocusedElement: HTMLElement | null = null;
 
   constructor() {
@@ -129,12 +139,18 @@ export class PublicHeader implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.updateDropdownMaxHeight();
     this.updateScrolledState();
   }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
     this.updateScrolledState();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.updateDropdownMaxHeight();
   }
 
   @HostListener('document:click', ['$event'])
@@ -186,6 +202,8 @@ export class PublicHeader implements AfterViewInit {
   }
 
   private openDropdown(label: string): void {
+    this.updateDropdownMaxHeight();
+
     setTimeout(() => {
       if (this.activeDropdown() !== label) {
         this.activeSubmenu.set(null);
@@ -201,6 +219,8 @@ export class PublicHeader implements AfterViewInit {
   }
 
   protected toggleDropdown(label: string): void {
+    this.updateDropdownMaxHeight();
+
     this.activeDropdown.update((activeLabel) => {
       const nextLabel = activeLabel === label ? null : label;
 
@@ -210,6 +230,12 @@ export class PublicHeader implements AfterViewInit {
 
       return nextLabel;
     });
+  }
+
+  // Asked per group by the template: a dropdown whose items fly a submenu out sideways must not
+  // become a scroll container, or the flyout is clipped at its edge.
+  protected hasFlyoutSubmenu(group: NavigationGroup): boolean {
+    return group.links.some((link) => (link.children?.length ?? 0) > 0);
   }
 
   protected openSubmenuOnHover(event: PointerEvent, label: string): void {
@@ -303,6 +329,27 @@ export class PublicHeader implements AfterViewInit {
 
   private updateScrolledState(): void {
     this.isScrolled.set((this.document.defaultView?.scrollY ?? 0) !== 0);
+  }
+
+  private updateDropdownMaxHeight(): void {
+    const view = this.document.defaultView;
+    const header = this.headerElement()?.nativeElement;
+
+    if (!this.isBrowser || !view || !header) {
+      return;
+    }
+
+    const spaceBelowHeader =
+      view.innerHeight - header.getBoundingClientRect().bottom - DROPDOWN_VIEWPORT_GAP;
+
+    if (!Number.isFinite(spaceBelowHeader)) {
+      return;
+    }
+
+    header.style.setProperty(
+      '--public-header-dropdown-max-height',
+      `${Math.max(spaceBelowHeader, DROPDOWN_MIN_HEIGHT)}px`,
+    );
   }
 
   private normalizedPath(url: string): string {

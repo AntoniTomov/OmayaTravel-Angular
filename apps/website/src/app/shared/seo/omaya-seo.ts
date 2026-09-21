@@ -214,7 +214,7 @@ export class OmayaSeo {
 
     if (tour) {
       const canonical = absoluteUrl(identity.canonicalHost, canonicalPath);
-      const faq = faqJsonLd(tour);
+      const faq = faqJsonLd(tour, site.id);
       const destinationPath = '/destinations/' + tour.destination.country.toLowerCase() + '/';
 
       return {

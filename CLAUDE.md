@@ -71,8 +71,8 @@ Strategy, market targeting and phased rollout: **[docs/SEO_STRATEGY_PLAN.md](doc
 Read it before changing anything under `shared/seo/` or adding public routes.
 
 Omaya is **English only** — tours are guided in English and there is no German site and no `.de`
-domain. Target markets are the **USA and UK first**, then Germany and the rest of the world *in
-English*. Because the UK is primary, keep the British spelling the existing copy already uses, and
+domain. Target markets are the **USA and UK first**, then Germany and the rest of the world _in
+English_. Because the UK is primary, keep the British spelling the existing copy already uses, and
 title destination and listing pages with both "tours" and "holidays" — UK searchers use "holidays"
 as heavily as "tours". No hreflang is needed while the site is single-language on one domain; do
 not add it speculatively.
@@ -92,6 +92,30 @@ translation of Omaya, so the two are not hreflang alternates. Its SEO is a separ
 - `AMELIA_TRAVEL_ROLLOUT_PLAN.md` — the Bulgarian-language Amelia brand
 - `OMAYA_WEBSITE_REBUILD_PLAN.md` — the rebuild this repo came from
 - `PROJECT_STATUS.md`, `DECISIONS.md`, `ISSUE_BACKLOG.md` — current state and history
+
+## Branches and pull requests
+
+Work happens on a branch off `dev`. Neither `dev` nor `master` is committed to directly.
+
+```bash
+git checkout dev && git pull
+git checkout -b fix/<what-it-fixes>
+```
+
+Finished work reaches `dev` through a pull request, never a local merge:
+
+```bash
+gh pr create --base dev --title "<title>" --body "<what changed and why>"
+```
+
+`dev` deploys to staging. Give it about ten minutes, test there, and only then does a `dev` →
+`master` pull request follow — and only when someone asks for one. Nothing goes to `master` on its
+own initiative.
+
+This needs the GitHub CLI installed and authenticated (`winget install --id GitHub.cli`, then
+`gh auth login`). Without it a branch can still be pushed, but no PR can be opened or merged. The
+gh commands that read PRs, and `gh pr create`, are allowlisted in `.claude/settings.json`;
+`gh pr merge` deliberately is not, so merging always asks first.
 
 ## Conventions
 

@@ -54,6 +54,8 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/d3d69883d43f72f1.avif',
   '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp':
     '/assets/images/tour-web/a278583b0deb8df6.avif',
+  '/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp':
+    '/assets/images/tour-web/90c3488c8acfc444.avif',
   '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp':
     '/assets/images/tour-web/8cc58ee4a56e19ef.avif',
   '/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp':
@@ -203,6 +205,8 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/4ff7f3baeeb42e53.avif 320w, /assets/images/tour-web/4ac086d644b9abe6.avif 480w, /assets/images/tour-web/64cef172d6cc75c2.avif 640w, /assets/images/tour-web/f42612e3c7804bb9.avif 800w, /assets/images/tour-web/c1374caba60ac80c.avif 960w, /assets/images/tour-web/d3d69883d43f72f1.avif 1300w',
   '/assets/images/blog-posts/Kyrgystan-post-preview-bgr.webp':
     '/assets/images/tour-web/ef647157a32fac6a.avif 320w, /assets/images/tour-web/5486683f41360c6d.avif 480w, /assets/images/tour-web/133d997121483967.avif 640w, /assets/images/tour-web/d9c946bd21bf9d57.avif 800w, /assets/images/tour-web/4e2742b9eeb1be17.avif 960w, /assets/images/tour-web/a278583b0deb8df6.avif 964w',
+  '/assets/images/blog-posts/Kyrgystan Women only blog/Blog_Kyrgystan-women.webp':
+    '/assets/images/tour-web/c1bfaf0c2dc78e0f.avif 320w, /assets/images/tour-web/0a05d8d4fab897bb.avif 480w, /assets/images/tour-web/5378c558de5e7c23.avif 640w, /assets/images/tour-web/24387fefeab6c25b.avif 800w, /assets/images/tour-web/90c3488c8acfc444.avif 848w',
   '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp':
     '/assets/images/tour-web/215b97ff1d4234e8.avif 320w, /assets/images/tour-web/0cffd85bf8e5119c.avif 480w, /assets/images/tour-web/6580bc27c13071be.avif 640w, /assets/images/tour-web/7bfac47d3dca1fca.avif 800w, /assets/images/tour-web/4606f1aece7ea44f.avif 960w, /assets/images/tour-web/5572b5a88542d607.avif 1440w, /assets/images/tour-web/8cc58ee4a56e19ef.avif 1600w',
   '/assets/images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp':
@@ -368,15 +372,9 @@ export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; ta
   },
   '/assets/images/our-story/Our-story-16.webp': {
     phone:
-      '/assets/images/tour-web/33a61dbcb064cd66.avif 480w, /assets/images/tour-web/83e1441d37a49333.avif 622w',
+      '/assets/images/tour-web/4bc303618632b499.avif 480w, /assets/images/tour-web/4c1a0e3c45c73829.avif 622w',
     tablet:
-      '/assets/images/tour-web/3e98097f0225b37d.avif 768w, /assets/images/tour-web/c55f360ed9dfb8a2.avif 995w',
-  },
-  '/assets/images/home-page/private-tours-right-bgr.webp': {
-    phone:
-      '/assets/images/tour-web/53b20c958a967127.avif 480w, /assets/images/tour-web/69b2bf4a9682676f.avif 720w, /assets/images/tour-web/42c4b57d0773f26f.avif 960w, /assets/images/tour-web/60a83e1b88283fcf.avif 1007w',
-    tablet:
-      '/assets/images/tour-web/dbe67f38210edd57.avif 768w, /assets/images/tour-web/4b8e2f1253b0dbb8.avif 1080w',
+      '/assets/images/tour-web/e3708c3e144bb493.avif 768w, /assets/images/tour-web/d41aa117f4beedac.avif 995w',
   },
 };
 // Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem, portrait for screens no wider than 3/4 of their height. See HOMEPAGE_HERO_TIERS in the generator.
