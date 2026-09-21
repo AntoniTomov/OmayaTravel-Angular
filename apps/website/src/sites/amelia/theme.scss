@@ -73,14 +73,61 @@ html[data-theme='amelia'] .homepage__newsletter {
 }
 
 /**
+ * Phone and tablet crops of the coral and newsletter bands, and of the coral behind the contact
+ * page, from AMELIA_BACKGROUND_CROPS in the image generator: the slice those screens show, and
+ * nothing either side of it. Only the image layers change, so position and size come from the rules
+ * above. A browser without image-set() drops these declarations and keeps the full images.
+ */
+@mixin amelia-band-crops($tier) {
+  html[data-theme='amelia'] .homepage__stories-band {
+    background-image: image-set(
+      url('/assets/images/amelia/home/h1-background-coral-#{$tier}.avif') type('image/avif'),
+      url('/assets/images/amelia/home/h1-background-coral.webp') type('image/webp')
+    );
+  }
+
+  html[data-theme='amelia'] .homepage__newsletter {
+    background-image:
+      linear-gradient(
+        rgb(var(--omaya-color-overlay-rgb) / 0%),
+        rgb(var(--omaya-color-overlay-rgb) / 35%)
+      ),
+      image-set(
+        url('/assets/images/amelia/home/newsletter-bgr-#{$tier}.avif') type('image/avif'),
+        url('/assets/images/amelia/home/newsletter-bgr.webp') type('image/webp')
+      );
+  }
+
+  // The contact page sets its background through --contact-page-background; this replaces the
+  // image layer and keeps its white wash.
+  html[data-theme='amelia'] .contact-page {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.9)),
+      image-set(
+        url('/assets/images/amelia/home/h1-background-coral-#{$tier}.avif') type('image/avif'),
+        url('/assets/images/amelia/home/h1-background-coral.webp') type('image/webp')
+      );
+  }
+}
+
+@media (max-width: 48rem) {
+  @include amelia-band-crops('tablet');
+}
+
+@media (max-width: 30rem) {
+  @include amelia-band-crops('phone');
+}
+
+/**
  * The newsletter popup's backdrop. Omaya frames its inner photo against a separate backdrop, and
  * without this Amelia inherits that Omaya photograph behind its own image — two brands in one
  * dialog. Amelia uses the same picture behind and in front instead, so the frame reads as one image.
  *
  * This is the first hero slide, which `NewsletterPopup.mediaImage` also picks for Amelia. The two
  * are set in different places and only agree by hand: if the hero slides are reordered, change this
- * with them. It also overrides the component's phone-sized `image-set()`, so Amelia serves the full
- * photograph on mobile.
+ * with them. It also overrides the component's phone-sized `image-set()` with Amelia's own copies:
+ * the same files the popup's <picture> picks at each breakpoint, so the photograph and the frame
+ * are one download. See AMELIA_POPUP_COPIES in the image generator.
  */
 html[data-theme='amelia'] .newsletter-popup__media {
   background:
@@ -90,4 +137,26 @@ html[data-theme='amelia'] .newsletter-popup__media {
     ),
     url('/assets/images/amelia/home/hero-3.avif') center / cover,
     var(--omaya-color-dark);
+}
+
+@media (max-width: 64rem) {
+  html[data-theme='amelia'] .newsletter-popup__media {
+    background-image:
+      linear-gradient(
+        rgb(var(--omaya-color-overlay-rgb) / 18%),
+        rgb(var(--omaya-color-overlay-rgb) / 18%)
+      ),
+      url('/assets/images/amelia/home/hero-3-popup-tablet.avif');
+  }
+}
+
+@media (max-width: 34rem) {
+  html[data-theme='amelia'] .newsletter-popup__media {
+    background-image:
+      linear-gradient(
+        rgb(var(--omaya-color-overlay-rgb) / 18%),
+        rgb(var(--omaya-color-overlay-rgb) / 18%)
+      ),
+      url('/assets/images/amelia/home/hero-3-popup-mobile.avif');
+  }
 }

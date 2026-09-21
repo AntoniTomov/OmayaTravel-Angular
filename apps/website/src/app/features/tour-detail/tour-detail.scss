@@ -456,6 +456,23 @@
   line-height: 1;
 }
 
+.tour-detail__itinerary .tour-detail__term {
+  color: tokens.$omaya-color-ink;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/** Only the terms that lead somewhere are underlined, so the rule reads as a link. */
+.tour-detail__itinerary a.tour-detail__term {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.tour-detail__itinerary a.tour-detail__term:hover,
+.tour-detail__itinerary a.tour-detail__term:focus-visible {
+  color: var(--omaya-color-accent);
+}
+
 .tour-detail__day-detail {
   display: flex;
   align-items: center;

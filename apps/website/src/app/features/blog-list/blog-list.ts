@@ -1,6 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
+import {
+  PageHeroCropSrcsetPipe,
+  TourWebImageSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
@@ -12,7 +15,7 @@ import {
 
 @Component({
   selector: 'app-blog-list',
-  imports: [RouterLink, TourWebImageSrcsetPipe],
+  imports: [PageHeroCropSrcsetPipe, RouterLink, TourWebImageSrcsetPipe],
   templateUrl: './blog-list.html',
   styleUrl: './blog-list.scss',
 })

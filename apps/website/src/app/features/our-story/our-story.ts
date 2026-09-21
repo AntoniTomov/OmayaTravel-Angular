@@ -1,6 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
 
 import { ActiveSite } from '../../../sites/active-site';
+import {
+  PageHeroCropSrcsetPipe,
+  TourWebImageSrcsetPipe,
+} from '../../shared/content/tour-web-image.pipe';
 
 interface StoryImage {
   src: string;
@@ -247,6 +251,7 @@ const AMELIA_OUR_STORY: StoryPageContent = {
 
 @Component({
   selector: 'app-our-story',
+  imports: [PageHeroCropSrcsetPipe, TourWebImageSrcsetPipe],
   templateUrl: './our-story.html',
   styleUrl: './our-story.scss',
 })

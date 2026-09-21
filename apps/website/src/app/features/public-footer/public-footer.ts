@@ -7,6 +7,7 @@ import { filter, map, startWith } from 'rxjs';
 import { ActiveSite } from '../../../sites/active-site';
 import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
+import { LogoSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 import { blogPostSummariesForSite } from '../../shared/content/blog-summary-content';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
@@ -35,7 +36,7 @@ interface FooterLink {
 
 @Component({
   selector: 'app-public-footer',
-  imports: [RouterLink, MatIconModule],
+  imports: [LogoSrcsetPipe, MatIconModule, RouterLink],
   templateUrl: './public-footer.html',
   styleUrl: './public-footer.scss',
 })

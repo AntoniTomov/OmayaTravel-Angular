@@ -1,12 +1,18 @@
 <main class="not-yet">
   <section class="not-yet__hero" aria-labelledby="not-yet-title">
-    <img
-      src="/assets/images/home-page/private-tours-right-bgr.webp"
-      width="1920"
-      height="1080"
-      alt=""
-      fetchpriority="high"
-    />
+    <!--
+      Full-frame copies sized to the screen; see the site-wide encodings in
+      scripts/generate-tour-web-images.mjs. The hero is 400px tall and the photograph square, so it
+      draws the width of the viewport and never narrower than 400px.
+    -->
+    <picture style="display: contents">
+      <source
+        type="image/avif"
+        [attr.srcset]="heroImage | tourWebImageSrcset"
+        sizes="max(100vw, 400px)"
+      />
+      <img [src]="heroImage" width="1920" height="1080" alt="" fetchpriority="high" />
+    </picture>
     <div class="not-yet__hero-copy">
       @if (destination(); as destinationName) {
         <p class="not-yet__eyebrow">{{ destinationName }}</p>
