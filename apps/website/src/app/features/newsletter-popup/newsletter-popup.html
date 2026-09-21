@@ -9,8 +9,9 @@
     >
       <div class="newsletter-popup__media" aria-hidden="true">
         <!--
-          Up to 34rem phones get a 480px AVIF copy instead of the 536px WebP. See POPUP_MOBILE_WIDTH
-          in scripts/generate-tour-web-images.mjs for why it is one capped copy, not a candidate list.
+          Up to 34rem phones get a capped AVIF copy instead of the full image, and Amelia also has
+          one for tablets up to 64rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in
+          scripts/generate-tour-web-images.mjs for why each is one capped copy, not a candidate list.
           An image without copies leaves the <source> without a srcset, so the browser skips it.
         -->
         <picture style="display: contents">
@@ -18,6 +19,11 @@
             media="(max-width: 34rem)"
             type="image/avif"
             [attr.srcset]="mediaImage().src | newsletterPopupMobileSrcset"
+          />
+          <source
+            media="(max-width: 64rem)"
+            type="image/avif"
+            [attr.srcset]="mediaImage().src | newsletterPopupTabletSrcset"
           />
           <img
             [src]="mediaImage().src"

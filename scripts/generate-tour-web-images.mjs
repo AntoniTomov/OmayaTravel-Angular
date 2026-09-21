@@ -359,7 +359,9 @@ for (const relativePath of HOMEPAGE_HERO_SOURCES) {
       meta.width,
       tier.ratio
         ? Math.round(meta.height * tier.ratio)
-        : Math.round((meta.height * tier.maxViewport) / HOMEPAGE_HERO_HEIGHT_PX),
+        : Math.round(
+            (meta.height * tier.maxViewport) / HOMEPAGE_HERO_HEIGHT_PX,
+          ),
     );
     const left = Math.round((meta.width - cropWidth) / 2);
     const widths = [
@@ -551,6 +553,45 @@ const popupMobile = {};
   });
 }
 
+// Amelia's popup shows its first hero slide both as the photograph and as the frame behind it, and
+// shipped the 2000px original to every screen. The dialog is never wider than 29.5rem (472 CSS px),
+// so phones up to 34rem get a 640px copy and tablets up to 64rem a 960px one, which covers the
+// dialog at DPR 2. Each copy has a stable name because the Amelia theme's CSS background references
+// the same file as the <img>, so a device downloads it once for both. Quality is the lowest step of
+// 5 clearing the MATCHED_QUALITY bar, measured per copy.
+const publicAssets = resolve(root, "apps/website/public/assets");
+const AMELIA_POPUP_SOURCE = "images/amelia/home/hero-3.avif";
+const AMELIA_POPUP_COPIES = [
+  { tier: "mobile", width: 640, quality: 65 },
+  { tier: "tablet", width: 960, quality: 60 },
+];
+const popupTablet = {};
+{
+  const original = readFileSync(resolve(publicAssets, AMELIA_POPUP_SOURCE));
+  const source = `/assets/${AMELIA_POPUP_SOURCE}`;
+  for (const { tier, width, quality } of AMELIA_POPUP_COPIES) {
+    const encoded = await sharp(original)
+      .resize({ width })
+      .avif({ quality, effort: 5 })
+      .toBuffer();
+    const relativePath = AMELIA_POPUP_SOURCE.replace(
+      /\.avif$/,
+      `-popup-${tier}.avif`,
+    );
+    writeFileSync(resolve(publicAssets, relativePath), encoded);
+    (tier === "mobile" ? popupMobile : popupTablet)[source] =
+      `/assets/${relativePath} ${width}w`;
+    measurements.push({
+      source,
+      width,
+      variant: `amelia-popup-${tier}`,
+      quality,
+      originalBytes: original.length,
+      webBytes: encoded.length,
+    });
+  }
+}
+
 // Phone and tablet copies of the mission photograph. Up to 58rem it is one square column the width of
 // the viewport less 3rem, 272-880 CSS px, so depending on its pixel ratio a device wants anything from
 // 272 to about 1,760 pixels across. Each width is a step a common device lands on, and the largest
@@ -595,7 +636,8 @@ const missionMobile = {};
 // Logos are flat artwork where compression shows on every edge, so every copy is lossless WebP and
 // resizing to the width a device displays is the only change. The black logo's largest candidate is
 // the original file itself.
-const BLACK_LOGO = "images/home-page/company-logo/Black_logo-e1781169999413.webp";
+const BLACK_LOGO =
+  "images/home-page/company-logo/Black_logo-e1781169999413.webp";
 const WHITE_LOGO =
   "images/home-page/company-logo/Omaya-Travel-Logo-e1780484928941.webp";
 const LOGO_WIDTHS = [100, 150, 200, 250, 300, 350];
@@ -642,8 +684,18 @@ const logoSrcsets = {};
     blackCandidates.push(`${blackCopy.path} ${width}w`);
     whiteCandidates.push(`${whiteCopy.path} ${width}w`);
     measurements.push(
-      { source: `/assets/${BLACK_LOGO}`, width, variant: "logo-lossless", webBytes: blackCopy.bytes },
-      { source: `/assets/${WHITE_LOGO}`, width, variant: "logo-lossless-white", webBytes: whiteCopy.bytes },
+      {
+        source: `/assets/${BLACK_LOGO}`,
+        width,
+        variant: "logo-lossless",
+        webBytes: blackCopy.bytes,
+      },
+      {
+        source: `/assets/${WHITE_LOGO}`,
+        width,
+        variant: "logo-lossless-white",
+        webBytes: whiteCopy.bytes,
+      },
     );
   }
   const whiteLargest = await writeHashedLosslessWebp(sharp(whiteFull));
@@ -681,8 +733,10 @@ writeFileSync(
       `export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(featuredTripMobile, null, 2)};\n` +
       "// Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.\n" +
       `export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(featuredTripWide, null, 2)};\n` +
-      "// A 480px copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH in the generator.\n" +
+      "// A capped copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in the generator.\n" +
       `export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(popupMobile, null, 2)};\n` +
+      "// A copy of the newsletter popup photograph for tablets up to 64rem. See AMELIA_POPUP_COPIES in the generator.\n" +
+      `export const NEWSLETTER_POPUP_TABLET_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(popupTablet, null, 2)};\n` +
       "// Mission photograph copies for viewports up to 58rem, topped by the original. See MISSION_COPY_QUALITY in the generator.\n" +
       `export const MISSION_IMAGE_MOBILE_SRCSETS: Readonly<Record<string, string>> = ${JSON.stringify(missionMobile, null, 2)};\n` +
       "// Lossless logo copies for each pixel ratio, keyed by the logo they stand in for. See LOGO_WIDTHS in the generator.\n" +

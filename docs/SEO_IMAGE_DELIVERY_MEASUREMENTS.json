@@ -2170,6 +2170,22 @@
       "webBytes": 6404
     },
     {
+      "source": "/assets/images/amelia/home/hero-3.avif",
+      "width": 640,
+      "variant": "amelia-popup-mobile",
+      "quality": 65,
+      "originalBytes": 279281,
+      "webBytes": 42477
+    },
+    {
+      "source": "/assets/images/amelia/home/hero-3.avif",
+      "width": 960,
+      "variant": "amelia-popup-tablet",
+      "quality": 60,
+      "originalBytes": 279281,
+      "webBytes": 65766
+    },
+    {
       "source": "/assets/images/home-page/our-mission-image.webp",
       "width": 480,
       "height": 480,
