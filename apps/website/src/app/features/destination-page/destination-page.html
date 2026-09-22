@@ -56,10 +56,17 @@
                 aria-hidden="true"
               >
                 <picture style="display: contents">
+                  <!--
+                    The image column stretches to match the row height of the text column next to
+                    it (object-fit: cover), so its real resolution need tracks that unpredictable
+                    height, not the column's own width. `sizes` can only describe a width, so it
+                    asks for the full viewport width here to stay ahead of the crop rather than
+                    risk an undersized, upscaled-looking candidate.
+                  -->
                   <source
                     type="image/avif"
                     [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
-                    sizes="(min-width: 60rem) 33rem, 92vw"
+                    sizes="100vw"
                   />
                   <img
                     [src]="tour.heroImage.src"
