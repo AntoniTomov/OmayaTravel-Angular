@@ -56,17 +56,11 @@
                 aria-hidden="true"
               >
                 <picture style="display: contents">
-                  <!--
-                    The image column stretches to match the row height of the text column next to
-                    it (object-fit: cover), so its real resolution need tracks that unpredictable
-                    height, not the column's own width. `sizes` can only describe a width, so it
-                    asks for the full viewport width here to stay ahead of the crop rather than
-                    risk an undersized, upscaled-looking candidate.
-                  -->
+                  <!-- `cardSizes` explains why this is derived from the photograph's own ratio. -->
                   <source
                     type="image/avif"
                     [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
-                    sizes="100vw"
+                    [attr.sizes]="cardSizes(tour.heroImage)"
                   />
                   <img
                     [src]="tour.heroImage.src"
