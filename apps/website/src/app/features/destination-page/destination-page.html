@@ -47,7 +47,7 @@
           to confirm places and room arrangements.
         </p>
         <div class="destination-page__tours">
-          @for (tour of country.tours; track tour.slug) {
+          @for (tour of country.tours; track tour.slug; let first = $first) {
             <article class="destination-page__tour">
               <a
                 [routerLink]="'/tour-item/' + tour.slug + '/'"
@@ -66,7 +66,8 @@
                     [alt]="tour.heroImage.alt"
                     width="800"
                     height="530"
-                    loading="lazy"
+                    [attr.loading]="first ? 'eager' : 'lazy'"
+                    [attr.fetchpriority]="first ? 'high' : null"
                   />
                 </picture>
               </a>
