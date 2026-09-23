@@ -923,7 +923,7 @@ const AMELIA_COOKIE_POLICY_SECTIONS: readonly LegalSection[] = [
       'Удостоверение за регистрация като туроператор и туристически агент № РК-01-8706',
       'Адрес: гр. Кърджали, ул. „Христо Ботев“ № 61',
       'Телефон: 0892 905 526',
-      'E-mail: info@ameliatravel.com',
+      'E-mail: info@ameliatravel.bg',
     ],
   },
 ];
@@ -1079,7 +1079,7 @@ const AMELIA_PRIVACY_POLICY_SECTIONS: readonly LegalSection[] = [
       'Име на компанията: „Омая Травел“ ЕООД (Amelia Travel)',
       'ЕИК: 208663654',
       'Удостоверение за регистрация № РК-01-8706',
-      'Имейл: info@ameliatravel.com',
+      'Имейл: info@ameliatravel.bg',
     ],
   },
 ];

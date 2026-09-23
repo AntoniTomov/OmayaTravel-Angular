@@ -242,7 +242,7 @@ const AMELIA_OUR_STORY: StoryPageContent = {
   tagline: 'Общност за жени пътешественички',
   contact: {
     phoneNumbers: [],
-    email: 'info@ameliatravel.com',
+    email: 'info@ameliatravel.bg',
   },
   seo: {
     title: 'За нас - Amelia Travel',
