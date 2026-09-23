@@ -47,7 +47,7 @@
           to confirm places and room arrangements.
         </p>
         <div class="destination-page__tours">
-          @for (tour of country.tours; track tour.slug) {
+          @for (tour of country.tours; track tour.slug; let first = $first) {
             <article class="destination-page__tour">
               <a
                 [routerLink]="'/tour-item/' + tour.slug + '/'"
@@ -56,17 +56,19 @@
                 aria-hidden="true"
               >
                 <picture style="display: contents">
+                  <!-- `cardSizes` explains why this is derived from the photograph's own ratio. -->
                   <source
                     type="image/avif"
                     [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
-                    sizes="(min-width: 60rem) 33rem, 92vw"
+                    [attr.sizes]="cardSizes(tour.heroImage)"
                   />
                   <img
                     [src]="tour.heroImage.src"
                     [alt]="tour.heroImage.alt"
                     width="800"
                     height="530"
-                    loading="lazy"
+                    [attr.loading]="first ? 'eager' : 'lazy'"
+                    [attr.fetchpriority]="first ? 'high' : null"
                   />
                 </picture>
               </a>
