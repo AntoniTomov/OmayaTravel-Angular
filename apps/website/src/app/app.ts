@@ -59,7 +59,9 @@ export class App {
   }
 
   private trackCurrentPageView(path: string): void {
-    if (!this.isBrowser) {
+    // Without consent nothing is sent, so the page must not be remembered as tracked either —
+    // otherwise accepting the banner would skip the very page the visitor accepted on.
+    if (!this.isBrowser || !this.cookieConsent.canUseAnalytics()) {
       return;
     }
 
