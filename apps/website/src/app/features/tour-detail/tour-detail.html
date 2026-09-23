@@ -477,14 +477,16 @@
               >.
             </span>
           </label>
-          <button
-            class="tour-detail__availability"
-            type="button"
-            [disabled]="bookingSubmitStatus() === 'sending'"
-            (click)="trackTourCta('check_availability')"
-          >
-            {{ tour.enquiry.cta }}
-          </button>
+          @if (tour.enquiry.enabled) {
+            <button
+              class="tour-detail__availability"
+              type="button"
+              [disabled]="bookingSubmitStatus() === 'sending'"
+              (click)="trackTourCta('check_availability')"
+            >
+              {{ tour.enquiry.cta }}
+            </button>
+          }
           <button
             class="tour-detail__book"
             type="submit"
