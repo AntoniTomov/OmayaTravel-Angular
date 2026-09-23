@@ -38,8 +38,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     showNotYetNewsletter: true,
   },
   analytics: {
-    // TODO_AMELIA_GA4: replace after the Amelia GA4 property is created.
-    gaMeasurementId: '',
+    gaMeasurementId: 'G-DBH8SX69TB',
     metaPixelId: '1088639487435953',
   },
   seo: {

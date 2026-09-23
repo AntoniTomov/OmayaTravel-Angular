@@ -2009,7 +2009,7 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
       ],
     },
     enquiry: {
-      enabled: true,
+      enabled: false,
       cta: 'Изпрати запитване',
     },
     seo: {
@@ -3082,7 +3082,7 @@ function createAmeliaIndiaTour(): TourDetailContent {
       ],
     },
     enquiry: {
-      enabled: true,
+      enabled: false,
       cta: 'Изпрати запитване',
     },
     seo: {
