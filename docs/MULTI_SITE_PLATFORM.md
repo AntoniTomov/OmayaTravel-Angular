@@ -83,7 +83,6 @@ The `?site=` preview switch only works on local hosts such as `localhost` and `1
 These are intentionally obvious in code:
 
 - `TODO_DUMMY_AMELIA_LOGO` in `amelia/site.config.ts`: replace Omaya's temporary logo with Amelia logo files.
-- `TODO_AMELIA_GA4` in `amelia/site.config.ts`: replace the empty GA4 measurement ID after the Amelia property is created.
 - `TODO_DUMMY_AMELIA_MOROCCO_ROUTE` in `amelia/content.ts`: replace the shared Morocco route with a dedicated Morocco women-only detail page when that page exists.
 
 ## Site-Aware Runtime Services
