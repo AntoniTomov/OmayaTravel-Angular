@@ -467,7 +467,12 @@ export class TourDetail {
     const tickets = String(formData.get('tickets') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
 
-    if (!tour?.departures.includes(selectedDate) || selectedDate < this.todayIso) {
+    // Departures can carry an age group, so compare their dates rather than the entries themselves.
+    const isScheduledDeparture = Boolean(
+      tour?.departures.some((departure) => this.departureDate(departure) === selectedDate),
+    );
+
+    if (!isScheduledDeparture || selectedDate < this.todayIso) {
       this.bookingSubmitStatus.set('error');
       this.bookingSubmitMessage.set(this.i18n.t('tourDetail.bookingDateRequired'));
       return;
