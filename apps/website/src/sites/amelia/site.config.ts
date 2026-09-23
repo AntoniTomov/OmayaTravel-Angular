@@ -51,7 +51,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     locale: 'bg_BG',
   },
   contact: {
-    email: 'info@ameliatravel.com',
+    email: 'info@ameliatravel.bg',
     phoneNumbers: ['+359 88 973 5274', '+359 87 996 5946'],
     resendFrom: 'Amelia Travel <website@ameliatravel.bg>',
     resendReplyTo: 'info@ameliatravel.bg',
