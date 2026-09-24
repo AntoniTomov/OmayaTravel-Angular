@@ -1,4 +1,3 @@
-import { DESTINATION_CONTENT } from '../content/destination-content';
 import { HOMEPAGE_HERO } from '../content/homepage-content';
 import { ogImageFor } from './og-images';
 
@@ -221,9 +220,8 @@ export function staticPageMetadata(routeKey: string | null | undefined): PageMet
 
 export function destinationPageMetadata(slug: string | null | undefined): PageMetadata | undefined {
   const metadata = slug ? DESTINATION_PAGE_METADATA[slug] : undefined;
-  const destination = DESTINATION_CONTENT.find((item) => item.slug === slug);
 
-  return metadata
-    ? { ...metadata, image: ogImageFor(`destination-${slug}`) ?? destination?.heroImage.src }
-    : undefined;
+  // Every destination has a generated share image. A new one without it takes the site default
+  // rather than a tour hero, which would mean importing the tour catalogue into every page.
+  return metadata ? { ...metadata, image: ogImageFor(`destination-${slug}`) } : undefined;
 }

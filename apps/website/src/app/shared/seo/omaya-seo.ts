@@ -9,8 +9,9 @@ import { isSiteRouteEnabled } from '../../../sites/site-routes';
 import type { SiteConfig } from '../../../sites/site.types';
 import { articlePageTitle } from './page-title';
 import { findBlogMetadataBySlug } from '../content/blog-metadata-content';
-import { findTourBySlug } from '../content/tour-content';
-import { findTourListingPage } from '../content/tour-list-content';
+// Type only: the catalogue reaches this service through the route's `tour` resolver, so importing
+// it here would put every tour's copy back into the bundle every page loads.
+import type { TourDetailContent } from '../content/tour-content';
 import { ogImageFor } from './og-images';
 import { withTrailingSlash } from '../routing/public-routes';
 import {
@@ -209,8 +210,7 @@ export class OmayaSeo {
     const routeKey = data['routeKey'] as string | undefined;
     const canonicalPath = this.canonicalPath(snapshot);
 
-    const tourSlug = (data['tourSlug'] as string | undefined) ?? snapshot.params['tourSlug'];
-    const tour = findTourBySlug(tourSlug, site.id);
+    const tour = data['tour'] as TourDetailContent | undefined;
 
     if (tour) {
       const canonical = absoluteUrl(identity.canonicalHost, canonicalPath);
@@ -301,12 +301,11 @@ export class OmayaSeo {
     }
 
     const metadata = staticPageMetadata(routeKey) ?? FALLBACK_METADATA;
-    // Listing pages carry their own hero image, so a shared link previews the page it points at
-    // rather than the generic site fallback.
+    // Listing pages have generated share images, so a shared link previews the page it points at
+    // rather than the generic site fallback. A listing without one takes the site default.
     const listingSlug = data['listingSlug'] as string | undefined;
     const listingImage = listingSlug
-      ? (ogImageFor(`listing-${listingSlug.replaceAll('/', '-')}`) ??
-        findTourListingPage(listingSlug).heroImage)
+      ? ogImageFor(`listing-${listingSlug.replaceAll('/', '-')}`)
       : undefined;
 
     return {
