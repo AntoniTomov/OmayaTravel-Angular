@@ -236,6 +236,10 @@
               }
             </div>
           </section>
+
+          @if (isOmaya()) {
+            <omaya-trustpilot-reviews [destination]="tour.destination.country" />
+          }
         }
 
         @if (activeTab() === 'tour-plan') {

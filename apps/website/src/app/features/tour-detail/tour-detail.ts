@@ -34,6 +34,7 @@ import {
 } from '../../shared/content/booking-conditions';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
+import { TrustpilotReviews } from '../../shared/reviews/trustpilot-reviews';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitPublicForm } from '../../shared/forms/public-form-api';
 import {
@@ -90,6 +91,7 @@ const FITNESS_LEVEL_KEYS: Readonly<Record<string, `tourDetail.${string}`>> = {
     TourWebImagePipe,
     TourWebImageSrcsetPipe,
     TourWebThumbnailSrcsetPipe,
+    TrustpilotReviews,
   ],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
@@ -100,6 +102,8 @@ export class TourDetail {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly activeSite = inject(ActiveSite);
   protected readonly i18n = inject(OmayaI18n);
+  // Trustpilot reviews belong to the Omaya brand, not Amelia.
+  protected readonly isOmaya = computed(() => this.activeSite.site().id === 'omaya');
   private readonly descriptionSegmentCache = new WeakMap<
     TourItineraryDay,
     readonly TourDescriptionSegment[]
