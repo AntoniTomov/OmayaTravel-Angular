@@ -153,6 +153,8 @@
         </div>
       </section>
 
+      <omaya-trustpilot-reviews [destination]="country.slug" />
+
       @if (country.guides.length) {
         <section aria-labelledby="destination-guides-heading">
           <h2 id="destination-guides-heading">Read more about {{ country.name }}</h2>

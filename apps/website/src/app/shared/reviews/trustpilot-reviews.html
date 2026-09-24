@@ -1,0 +1,32 @@
+@if (reviews().length) {
+  <section class="trustpilot-reviews" aria-labelledby="trustpilot-reviews-heading">
+    <h2 id="trustpilot-reviews-heading">Your words, not ours</h2>
+    <div class="trustpilot-reviews__grid">
+      @for (review of reviews(); track review.author) {
+        <article class="trustpilot-reviews__card">
+          <p class="trustpilot-reviews__trip">{{ review.trip }}</p>
+          <div
+            class="trustpilot-reviews__stars"
+            role="img"
+            [attr.aria-label]="review.rating + ' out of 5 stars'"
+          >
+            @for (star of stars; track star) {
+              <span
+                class="trustpilot-reviews__star"
+                [class.trustpilot-reviews__star--empty]="star > review.rating"
+                aria-hidden="true"
+                >★</span
+              >
+            }
+          </div>
+          <h3>“{{ review.title }}”</h3>
+          <p class="trustpilot-reviews__text">{{ review.text }}</p>
+          <p class="trustpilot-reviews__author">{{ review.author }} · verified on Trustpilot</p>
+        </article>
+      }
+    </div>
+    <a class="trustpilot-reviews__more" [href]="profileUrl" target="_blank" rel="noopener"
+      >Read more reviews</a
+    >
+  </section>
+}

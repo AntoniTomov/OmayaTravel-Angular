@@ -6,6 +6,7 @@ import { DESTINATION_CONTENT } from '../../shared/content/destination-content';
 import { PublicBreadcrumbs, PublicBreadcrumb } from '../../shared/breadcrumbs/public-breadcrumbs';
 import { TourImage, tourDepartureDate } from '../../shared/content/tour-content';
 import { TourWebImageSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
+import { TrustpilotReviews } from '../../shared/reviews/trustpilot-reviews';
 
 // A tour card puts the photograph in a grid column beside the text, and the row is as tall as the
 // text makes it — 555 to 642px measured across every destination. `object-fit: cover` then fills
@@ -25,7 +26,7 @@ const WIDEST_HERO_RATIO = 2.6;
 
 @Component({
   selector: 'app-destination-page',
-  imports: [DatePipe, RouterLink, PublicBreadcrumbs, TourWebImageSrcsetPipe],
+  imports: [DatePipe, RouterLink, PublicBreadcrumbs, TourWebImageSrcsetPipe, TrustpilotReviews],
   templateUrl: './destination-page.html',
   styleUrl: './destination-page.scss',
 })
