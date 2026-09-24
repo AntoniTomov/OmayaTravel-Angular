@@ -3,7 +3,7 @@ import {
   NavigationGroup,
   NavigationLink,
 } from '../../app/shared/content/homepage-content';
-import { TourCardContent } from '../../app/shared/content/tour-list-content';
+import { TourCardContent } from '../../app/shared/content/tour-cards';
 import { SiteContent } from '../site.types';
 
 const AMELIA_HERO_SLIDES: readonly HeroSlide[] = [

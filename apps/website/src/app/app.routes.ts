@@ -13,6 +13,7 @@ import { Homepage } from './features/homepage/homepage';
 import { PublicRoutePlaceholder } from './features/public-route-placeholder/public-route-placeholder';
 import { ActiveSite } from '../sites/active-site';
 import { isSiteRouteEnabled } from '../sites/site-routes';
+import { tourResolver } from './shared/content/tour-resolver';
 import {
   PUBLIC_BLOG_ARTICLE_ROUTES,
   PUBLIC_DESTINATION_SLUGS,
@@ -353,6 +354,7 @@ export const routes: Routes = [
     matcher: tourDetailCanonicalMatcher,
     loadComponent: () =>
       import('./features/tour-detail/tour-detail').then((module) => module.TourDetail),
+    resolve: { tour: tourResolver },
     data: {
       routeKey: 'tour-detail',
       routeType: 'tour-detail',
@@ -368,6 +370,7 @@ export const routes: Routes = [
         pathMatch: 'full',
         loadComponent: () =>
           import('./features/tour-detail/tour-detail').then((module) => module.TourDetail),
+        resolve: { tour: tourResolver },
         data: {
           routeKey: 'tour-detail',
           routeType: 'tour-detail',
