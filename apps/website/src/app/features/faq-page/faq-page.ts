@@ -65,7 +65,7 @@ const FAQ_PAGE = {
       id: 'age-range',
       question: 'What is the typical age range of an Omaya traveller?',
       answer: [
-        "We welcome anyone 16 and older - there's no upper age limit. If you have curiosity and a love for exploring, you'll fit right in on an Omaya journey.",
+        "Our group tours are typically joined by travellers aged 20-45. We can also arrange private trips for all ages. If you have curiosity and a love for exploring, you'll fit right in on an Omaya journey.",
       ],
     },
     {
@@ -167,7 +167,7 @@ const FAQ_PAGE = {
       id: 'group-size',
       question: 'On your group tours, what is the maximum group size?',
       answer: [
-        'Our group tours are intimate, with a maximum of 8 people, allowing for a personal, relaxed, and immersive travel experience.',
+        'Our group tours are intimate, with a maximum of 12 people, allowing for a personal, relaxed, and immersive travel experience.',
       ],
     },
     {
