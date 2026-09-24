@@ -5,7 +5,7 @@ import {
   SearchIndexItem,
   TripSearchDestination,
 } from '../app/shared/content/homepage-content';
-import { TourCardContent } from '../app/shared/content/tour-list-content';
+import { TourCardContent } from '../app/shared/content/tour-cards';
 
 export type SiteId = 'omaya' | 'amelia';
 export type SiteLocale = 'en' | 'bg';

@@ -6,7 +6,7 @@ import {
   TRIP_SEARCH_DESTINATIONS,
   TRIP_SEARCH_MONTHS,
 } from '../../app/shared/content/homepage-content';
-import { TOUR_CARDS } from '../../app/shared/content/tour-list-content';
+import { TOUR_CARDS } from '../../app/shared/content/tour-cards';
 import { SiteContent } from '../site.types';
 
 const OMAYA_FEATURED_TOUR_TARGETS = [
