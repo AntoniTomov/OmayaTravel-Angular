@@ -3131,6 +3131,20 @@ function createMoroccoWomenOnlyTour(): TourDetailContent | undefined {
           }
         : image,
     ),
+    faq: moroccoTour.faq && {
+      ...moroccoTour.faq,
+      items: [
+        {
+          question: 'What makes this a women-only tour, and who will be leading the group?',
+          answer: [
+            "This tour is designed exclusively for women, creating a relaxed, supportive atmosphere where you can travel freely and connect with like-minded women along the way. You'll be guided by a local female guide and accompanied by a woman from the Omaya Travel team throughout the trip, so female support is with you at every stage.",
+            "The one exception is transport: local drivers, who are contracted separately for ground transport, may be men. They're experienced, vetted professionals, but are not part of the core guiding team you'll be spending your days with.",
+            'Not sure if this is the right fit for you? Our team is happy to talk it through and help you find the best tour for your trip.',
+          ],
+        },
+        ...moroccoTour.faq.items.slice(1),
+      ],
+    },
     seo: {
       title: 'Morocco – Blue Cities & Golden Dunes | Women only | Omaya Travel',
       description:
