@@ -1791,20 +1791,25 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
         image: kyrgyzstanTour.highlights[0]?.image ?? kyrgyzstanTour.heroImage,
       },
       {
-        title: { text: 'С коне през Тяншан', linkText: '', link: '' },
+        title: { text: 'Лов с орли', linkText: '', link: '' },
         image: kyrgyzstanTour.highlights[1]?.image ?? kyrgyzstanTour.heroImage,
       },
       {
-        title: { text: 'Лов с орли', linkText: '', link: '' },
+        title: { text: 'С коне през Тяншан', linkText: '', link: '' },
         image: kyrgyzstanTour.highlights[2]?.image ?? kyrgyzstanTour.heroImage,
       },
       {
-        title: { text: 'Исък-Кул - морето в планината', linkText: '', link: '' },
+        title: { text: 'Алтън Арашан', linkText: '', link: '' },
         image: kyrgyzstanTour.highlights[3]?.image ?? kyrgyzstanTour.heroImage,
       },
       {
         title: { text: 'Сказка - каньонът от приказките', linkText: '', link: '' },
-        image: kyrgyzstanTour.highlights[4]?.image ?? kyrgyzstanTour.heroImage,
+        image: {
+          src: '/assets/images/amelia/tours/kyrgyzstan/skazka.webp',
+          alt: 'Каньонът Сказка в Киргизстан',
+          width: 231,
+          height: 150,
+        },
       },
     ],
     included: [
