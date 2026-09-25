@@ -1755,6 +1755,10 @@ function createAmeliaKyrgyzstanTour(): TourDetailContent | undefined {
       startLocation: 'Бишкек',
       endLocation: 'Бишкек',
     },
+    departureReturn: {
+      departure: 'Бишкек',
+      return: 'Бишкек',
+    },
     category: 'Само за жени',
     duration: {
       days: 10,
