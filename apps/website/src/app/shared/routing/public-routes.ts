@@ -159,6 +159,9 @@ export const PUBLIC_EXACT_REDIRECTS: readonly PublicRedirectDefinition[] = [
   defineRedirect('/private-tour-planning/', '/private-tours-your-trip-your-rules/'),
   defineRedirect('/september-2027/', '/calendar-2027/september/'),
   defineRedirect('/tour-checkout/', '/contact/'),
+  // The conventional About URLs, which people type and other sites guess; the page is /our-story/.
+  defineRedirect('/about-us/', '/our-story/'),
+  defineRedirect('/about/', '/our-story/'),
 ];
 
 export const PUBLIC_REDIRECTS: readonly PublicRedirectDefinition[] = [

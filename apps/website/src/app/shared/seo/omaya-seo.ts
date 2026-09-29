@@ -24,6 +24,7 @@ import {
   BreadcrumbEntry,
   JsonLd,
   SeoSiteIdentity,
+  aboutPageJsonLd,
   absoluteUrl,
   blogPostingJsonLd,
   breadcrumbJsonLd,
@@ -296,7 +297,7 @@ export class OmayaSeo {
         metadata,
         canonicalPath,
         breadcrumbs: this.staticBreadcrumbs(metadata, canonicalPath, labels.home),
-        jsonLd: [],
+        jsonLd: this.staticJsonLd(identity, routeKey, canonicalPath),
       };
     }
 
@@ -312,8 +313,19 @@ export class OmayaSeo {
       metadata: listingImage ? { ...metadata, image: listingImage } : metadata,
       canonicalPath,
       breadcrumbs: this.staticBreadcrumbs(metadata, canonicalPath, labels.home),
-      jsonLd: [],
+      jsonLd: this.staticJsonLd(identity, routeKey, canonicalPath),
     };
+  }
+
+  /** Page-type schema for static pages; only the story page has one. */
+  private staticJsonLd(
+    identity: SeoSiteIdentity,
+    routeKey: string | undefined,
+    canonicalPath: string,
+  ): JsonLd[] {
+    return routeKey === 'static-our-story'
+      ? [aboutPageJsonLd(identity, absoluteUrl(identity.canonicalHost, canonicalPath))]
+      : [];
   }
 
   /**
