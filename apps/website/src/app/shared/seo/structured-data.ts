@@ -99,6 +99,21 @@ export function webSiteJsonLd(identity: SeoSiteIdentity): JsonLd {
   };
 }
 
+/**
+ * Marks the brand's story page as its About page and ties it to the `TravelAgency` entity, so the
+ * page reads to Google as the organisation's own account of itself.
+ */
+export function aboutPageJsonLd(identity: SeoSiteIdentity, canonical: string): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    url: canonical,
+    inLanguage: identity.locale,
+    isPartOf: { '@id': `${identity.canonicalHost}/#website` },
+    about: { '@id': `${identity.canonicalHost}/#organization` },
+  };
+}
+
 export interface BreadcrumbEntry {
   name: string;
   path: string;
