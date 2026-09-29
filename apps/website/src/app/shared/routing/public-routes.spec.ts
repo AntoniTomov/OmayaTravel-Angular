@@ -102,6 +102,11 @@ describe('legacy redirect resolution', () => {
     expect(findRedirect('/?page_id=852')?.to).toBe('/faq/');
   });
 
+  it('sends the conventional About URLs to the story page', () => {
+    expect(findRedirect('/about-us/')?.to).toBe('/our-story/');
+    expect(findRedirect('/about/')?.to).toBe('/our-story/');
+  });
+
   it('tolerates a missing or extra trailing slash on path redirects', () => {
     expect(findRedirect('/tour-item/bulgaria-trip')?.to).toBe(
       '/tour-item/bulgaria-beyond-the-ordinary/',
