@@ -13,6 +13,40 @@ declare global {
   }
 }
 
+// GA4 treats these event parameter names as traffic-source overrides, like utm_*: sending one
+// replaces the session's real source/medium (e.g. google / cpc), which breaks attribution and
+// Google Ads conversion imports.
+const RESERVED_GA4_PARAMS: readonly string[] = [
+  'source',
+  'medium',
+  'campaign',
+  'term',
+  'content',
+  'campaign_id',
+  'campaign_source',
+  'campaign_medium',
+  'campaign_name',
+  'campaign_term',
+  'campaign_content',
+];
+
+/** `source` becomes `click_location`; any other reserved name gets a `ui_` prefix. */
+export function toGa4SafeParams(params: Record<string, unknown>): Record<string, unknown> {
+  const safe: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(params)) {
+    if (key === 'source') {
+      safe['click_location'] = value;
+    } else if (RESERVED_GA4_PARAMS.includes(key)) {
+      safe[`ui_${key}`] = value;
+    } else {
+      safe[key] = value;
+    }
+  }
+
+  return safe;
+}
+
 @Injectable({ providedIn: 'root' })
 export class GoogleAnalytics {
   private readonly document = inject(DOCUMENT);
@@ -49,7 +83,7 @@ export class GoogleAnalytics {
       return;
     }
 
-    this.gtag('event', name, params);
+    this.gtag('event', name, toGa4SafeParams(params));
   }
 
   private ensureInitialized(): boolean {
