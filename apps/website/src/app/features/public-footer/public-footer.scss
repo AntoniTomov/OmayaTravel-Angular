@@ -38,6 +38,21 @@
   color: var(--omaya-color-footer-text);
   text-decoration: none;
 }
+.public-footer__cookie-settings {
+  display: block;
+  width: fit-content;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  border: 0;
+  color: var(--omaya-color-footer-text);
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.public-footer__cookie-settings:is(:hover, :focus-visible) {
+  color: var(--omaya-color-accent);
+}
 .public-footer a:is(:hover, :focus-visible) {
   color: var(--omaya-color-accent);
 }

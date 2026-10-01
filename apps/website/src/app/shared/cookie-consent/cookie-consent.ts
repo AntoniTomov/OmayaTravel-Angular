@@ -31,6 +31,17 @@ export class CookieConsent {
     this.saveChoice('rejected');
   }
 
+  /** Forget the stored choice so the banner asks again; lets visitors withdraw consent. */
+  reopen(): void {
+    this.choice.set(null);
+
+    if (!this.isBrowser) {
+      return;
+    }
+
+    window.localStorage.removeItem(this.storageKey());
+  }
+
   private saveChoice(choice: CookieConsentChoice): void {
     this.choice.set(choice);
 
