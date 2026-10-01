@@ -526,6 +526,11 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
         ],
       },
       {
+        paragraphs: [
+          'Google Analytics and the Meta Pixel are loaded only after you accept cookies on our cookie banner. We pass your choice on to Google through Google Consent Mode. You can change your choice at any time using “Cookie settings” in the website footer. See our Cookie Policy for details.',
+        ],
+      },
+      {
         heading: '6. Sharing Your Data',
         paragraphs: ['We may share your data with:'],
         list: [
@@ -564,6 +569,11 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
           'Data portability',
           'Withdraw consent at any time (including for marketing and cookies)',
           'You also have the right to lodge a complaint with your local data protection authority.',
+        ],
+      },
+      {
+        paragraphs: [
+          'You can withdraw your consent to analytics and marketing cookies at any time by clicking “Cookie settings” in the website footer.',
         ],
       },
       {
@@ -607,7 +617,7 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
     title: 'Cookie Policy',
     heroImage: '/assets/images/legal/cookies-bgr.webp',
     sections: [
-      { paragraphs: ['Last updated: 28.03.2026'] },
+      { paragraphs: ['Last updated: 01.10.2026'] },
       {
         heading: '1. Introduction',
         paragraphs: [
@@ -669,6 +679,23 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
           'Change or withdraw your consent at any time',
           'Manage cookies through your browser settings',
           'Please note that disabling certain cookies may affect website functionality, especially booking and payment features.',
+        ],
+      },
+      {
+        heading: 'Managing and withdrawing your consent',
+        paragraphs: [
+          'Our analytics and marketing tools (Google Analytics, Google Ads measurement and the Meta Pixel) are not loaded until you click Accept on our cookie banner. If you click Reject, or make no choice, they are not loaded and no data is sent to Google or Meta through them.',
+          'When you accept, we tell Google, through Google Consent Mode, that you have agreed to analytics storage, advertising storage, the use of your data for advertising (ad user data) and personalised advertising (ad personalisation). Without these signals Google treats visitors from the European Economic Area as not having agreed.',
+          'You can change your mind at any time by clicking “Cookie settings” in the footer of any page. This switches analytics and marketing off straight away and shows the cookie banner again. Cookies already stored on your device stay there until they expire or you delete them in your browser settings.',
+        ],
+      },
+      {
+        heading: 'Cookies and storage used once you accept',
+        list: [
+          '_ga and _ga_<container ID> (Google Analytics): tell visitors and sessions apart; they typically last up to 2 years',
+          '_fbp (Meta Pixel): identifies a browser so we can measure advertising campaigns; it typically lasts up to 90 days',
+          'Google may set further related advertising cookies where Google Analytics is linked to Google Ads',
+          'travel_site_cookie_consent_omaya (stored in your browser’s local storage, not a cookie): remembers your choice until you change it or clear your browser data',
         ],
       },
       {
@@ -796,7 +823,7 @@ const AMELIA_STANDARD_FORM_SECTIONS: readonly LegalSection[] = [
 
 const AMELIA_COOKIE_POLICY_SECTIONS: readonly LegalSection[] = [
   {
-    paragraphs: ['Последна актуализация: 10.09.2026 г.'],
+    paragraphs: ['Последна актуализация: 01.10.2026 г.'],
   },
   {
     heading: '1. Въведение',
@@ -878,6 +905,23 @@ const AMELIA_COOKIE_POLICY_SECTIONS: readonly LegalSection[] = [
   {
     paragraphs: [
       'Моля, имайте предвид, че деактивирането на определени бисквитки може да повлияе на функционалността на уебсайта, особено на функциите за резервация и плащане.',
+    ],
+  },
+  {
+    heading: 'Управление и оттегляне на съгласието',
+    paragraphs: [
+      'Нашите инструменти за анализ и маркетинг (Google Analytics, измерване на Google Ads и Meta Pixel) не се зареждат, докато не натиснете „Приемам“ в банера за бисквитки. Ако натиснете „Откажи“ или не направите избор, те не се зареждат и чрез тях не се изпращат данни към Google или Meta.',
+      'Когато приемете, ние уведомяваме Google чрез Google Consent Mode, че сте дали съгласие за съхранение за анализ, съхранение за реклама, използване на Вашите данни за реклама (ad user data) и персонализирана реклама (ad personalization). Без тези сигнали Google третира посетителите от Европейското икономическо пространство като недали съгласие.',
+      'Можете да промените решението си по всяко време, като натиснете „Настройки за бисквитки“ в долната част на всяка страница. Това веднага изключва анализа и маркетинга и показва банера за бисквитки отново. Бисквитките, които вече са записани на Вашето устройство, остават там до изтичането им или до изтриването им от настройките на браузъра Ви.',
+    ],
+  },
+  {
+    heading: 'Бисквитки и съхранение, използвани след като приемете',
+    list: [
+      '_ga и _ga_<ID на контейнера> (Google Analytics): разграничават посетителите и сесиите; обикновено важат до 2 години;',
+      '_fbp (Meta Pixel): идентифицира браузър, за да измерваме рекламните кампании; обикновено важи до 90 дни;',
+      'Google може да постави и други свързани рекламни бисквитки, когато Google Analytics е свързан с Google Ads;',
+      'travel_site_cookie_consent_amelia (съхранява се в локалното хранилище на браузъра, не е бисквитка): запомня Вашия избор, докато не го промените или не изчистите данните на браузъра.',
     ],
   },
   {
@@ -1001,6 +1045,11 @@ const AMELIA_PRIVACY_POLICY_SECTIONS: readonly LegalSection[] = [
     ],
   },
   {
+    paragraphs: [
+      'Google Analytics и Meta Pixel се зареждат само след като приемете бисквитките в нашия банер за бисквитки. Вашия избор предаваме на Google чрез Google Consent Mode. Можете да промените избора си по всяко време чрез „Настройки за бисквитки“ в долната част на уебсайта. Повече подробности има в нашата Политика за бисквитките.',
+    ],
+  },
+  {
     heading: '6. Споделяне на Вашите данни',
     paragraphs: ['Може да споделяме Вашите данни с:'],
     list: [
@@ -1044,6 +1093,11 @@ const AMELIA_PRIVACY_POLICY_SECTIONS: readonly LegalSection[] = [
   },
   {
     paragraphs: ['Имате право също да подадете жалба до местния орган за защита на данните.'],
+  },
+  {
+    paragraphs: [
+      'Можете да оттеглите съгласието си за аналитични и маркетингови бисквитки по всяко време, като натиснете „Настройки за бисквитки“ в долната част на уебсайта.',
+    ],
   },
   {
     heading: '10. Сигурност на данните',

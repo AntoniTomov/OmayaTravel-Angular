@@ -10,6 +10,12 @@ export class OmayaAnalytics {
   private readonly metaPixel = inject(MetaPixel);
   private readonly cookieConsent = inject(CookieConsent);
 
+  /** Forwards the cookie banner choice, so a withdrawal also stops the tags already loaded. */
+  setConsent(granted: boolean): void {
+    this.googleAnalytics.setConsent(granted);
+    this.metaPixel.setConsent(granted);
+  }
+
   trackPageView(path: string, title?: string): void {
     if (!this.cookieConsent.canUseAnalytics()) {
       return;

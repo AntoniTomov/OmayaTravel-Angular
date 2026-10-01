@@ -75,6 +75,9 @@
       @for (link of legalLinks(); track link.target) {
         <a [routerLink]="link.target">{{ link.label }}</a>
       }
+      <button type="button" class="public-footer__cookie-settings" (click)="openCookieSettings()">
+        {{ i18n.t('footer.cookieSettings') }}
+      </button>
     </section>
   </div>
 

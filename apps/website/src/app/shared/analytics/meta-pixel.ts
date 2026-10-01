@@ -4,7 +4,7 @@ import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { ActiveSite } from '../../../sites/active-site';
 import { FALLBACK_META_PIXEL_ID } from './meta-pixel.config';
 
-type MetaPixelCommand = 'init' | 'track' | 'trackCustom';
+type MetaPixelCommand = 'consent' | 'init' | 'track' | 'trackCustom';
 type MetaPixelEvent = 'Contact' | 'Lead' | 'PageView' | 'Search' | 'Subscribe' | 'ViewContent';
 type FbqFunction = (
   command: MetaPixelCommand,
@@ -39,6 +39,15 @@ export class MetaPixel {
     }
 
     this.fbq('track', 'PageView');
+  }
+
+  /** Tells an already-loaded pixel that consent was withdrawn (or given again). */
+  setConsent(granted: boolean): void {
+    if (!this.initializedPixelId) {
+      return;
+    }
+
+    this.fbq('consent', granted ? 'grant' : 'revoke');
   }
 
   trackEvent(name: string, params: Record<string, unknown> = {}): void {
