@@ -43,6 +43,10 @@ export class App {
     });
 
     effect(() => {
+      this.analytics.setConsent(this.cookieConsent.currentChoice() === 'accepted');
+    });
+
+    effect(() => {
       if (this.cookieConsent.currentChoice() === 'accepted') {
         this.trackCurrentPageView(router.url);
       }

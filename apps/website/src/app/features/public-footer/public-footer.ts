@@ -10,6 +10,7 @@ import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
 import { LogoSrcsetPipe } from '../../shared/content/tour-web-image.pipe';
 import { blogPostSummariesForSite } from '../../shared/content/blog-summary-content';
 import { registerSocialIcons } from '../../shared/icons/social-icons';
+import { CookieConsent } from '../../shared/cookie-consent/cookie-consent';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
 
 interface FooterPost {
@@ -46,6 +47,7 @@ export class PublicFooter {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly analytics = inject(OmayaAnalytics);
   private readonly activeSite = inject(ActiveSite);
+  private readonly cookieConsent = inject(CookieConsent);
   protected readonly i18n = inject(OmayaI18n);
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -144,6 +146,12 @@ export class PublicFooter {
 
   constructor() {
     registerSocialIcons(this.iconRegistry, this.sanitizer);
+  }
+
+  protected openCookieSettings(): void {
+    // Clearing the stored choice brings the banner back and switches analytics off until the
+    // visitor decides again, which is how consent is withdrawn.
+    this.cookieConsent.reopen();
   }
 
   protected scrollToTop(): void {

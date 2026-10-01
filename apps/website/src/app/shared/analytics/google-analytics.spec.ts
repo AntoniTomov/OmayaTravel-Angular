@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { TestBed } from '@angular/core/testing';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { toGa4SafeParams } from './google-analytics';
+import { ActiveSite } from '../../../sites/active-site';
+import { GoogleAnalytics, consentState, toGa4SafeParams } from './google-analytics';
 
 describe('toGa4SafeParams', () => {
   it('renames source to click_location and keeps the value', () => {
@@ -41,5 +43,93 @@ describe('toGa4SafeParams', () => {
     toGa4SafeParams(params);
 
     expect(params).toEqual({ source: 'header' });
+  });
+});
+
+describe('consentState', () => {
+  it('moves all four Consent Mode v2 signals together', () => {
+    expect(consentState(true)).toEqual({
+      ad_storage: 'granted',
+      analytics_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+    });
+    expect(consentState(false)).toEqual({
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+  });
+});
+
+describe('GoogleAnalytics consent signalling', () => {
+  let calls: unknown[][];
+  let analytics: GoogleAnalytics;
+
+  beforeEach(() => {
+    calls = [];
+    window.gtag = ((...args: unknown[]) => calls.push(args)) as Window['gtag'];
+    window.dataLayer = [];
+    document.getElementById('google-analytics-gtag')?.remove();
+
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: ActiveSite,
+          useValue: { site: () => ({ analytics: { gaMeasurementId: 'G-TEST' } }) },
+        },
+      ],
+    });
+    analytics = TestBed.inject(GoogleAnalytics);
+  });
+
+  afterEach(() => {
+    window.gtag = undefined;
+    document.getElementById('google-analytics-gtag')?.remove();
+  });
+
+  const consentCalls = () => calls.filter(([command]) => command === 'consent');
+
+  it('sends nothing to gtag until an event is tracked', () => {
+    analytics.setConsent(true);
+
+    expect(calls).toEqual([]);
+  });
+
+  it('declares consent as denied, then granted, before config', () => {
+    analytics.trackEvent('select_item', { source: 'header' });
+
+    const commands = calls.map(([command, target]) => `${command}:${String(target)}`);
+
+    expect(commands.slice(0, 4)).toEqual([
+      'js:' + String(calls[0][1]),
+      'consent:default',
+      'consent:update',
+      'config:G-TEST',
+    ]);
+    expect(consentCalls()[0][2]).toEqual(consentState(false));
+    expect(consentCalls()[1][2]).toEqual(consentState(true));
+  });
+
+  it('denies all signals when consent is withdrawn and grants them again on re-accept', () => {
+    analytics.trackEvent('select_item');
+    analytics.setConsent(false);
+    analytics.setConsent(true);
+
+    const updates = consentCalls().filter(([, target]) => target === 'update');
+
+    expect(updates.map(([, , state]) => state)).toEqual([
+      consentState(true),
+      consentState(false),
+      consentState(true),
+    ]);
+  });
+
+  it('does not repeat an update that changes nothing', () => {
+    analytics.trackEvent('select_item');
+    analytics.setConsent(true);
+
+    expect(consentCalls().filter(([, target]) => target === 'update').length).toBe(1);
   });
 });
