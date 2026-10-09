@@ -3165,7 +3165,13 @@ function createAmeliaSaudiArabiaTour(): TourDetailContent {
       min: 10,
       max: 16,
     },
-    departures: ['2027-01-29', '2027-11-19'],
+    departures: [
+      { date: '2027-01-29', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-11-05', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-11-19', ageGroupLabel: 'Група 40-65 г.' },
+    ],
+    departuresNote:
+      'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
     heroImage: saudiArabiaHeroImage,
     introduction: [
       'Саудитска Арабия е страна на контрасти, където древни цивилизации и вековни традиции се срещат с футуристични градове и бързо развиваща се модерна култура.',
