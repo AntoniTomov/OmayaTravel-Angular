@@ -63,10 +63,30 @@ const AMELIA_TOUR_GALLERY = [
   "10_jahangiri_mahal_fort",
   "11_block_printing_woman",
 ].map((name) => `images/amelia/tours/india/gallery/${name}.webp`);
+const AMELIA_SAUDI_ARABIA_GALLERY = [
+  "01_qasr_al_farid_hegra",
+  "02_riyadh_skyline",
+  "03_al_balad_alley_dusk",
+  "04_elephant_rock_alula",
+  "05_medina_mosque_palms",
+  "06_jeddah_al_balad_street",
+  "07_edge_of_the_world",
+  "08_hegra_rock_tombs",
+  "09_maraya_mirror_alula",
+  "10_dates_market",
+  "11_prophets_mosque_medina",
+  "12_floating_mosque_jeddah",
+  "13_alula_desert",
+  "14_traditional_dress",
+  "15_al_balad_roshan_windows",
+  "16_maraya_alula_desert",
+].map((name) => `images/amelia/tours/saudi-arabia/gallery/${name}.webp`);
 const AMELIA_SOURCES = [
   "images/amelia/tours/india/india-hero.webp",
   "images/amelia/tours/morocco/morocco-hero.webp",
+  "images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp",
   ...AMELIA_TOUR_GALLERY,
+  ...AMELIA_SAUDI_ARABIA_GALLERY,
   ...Array.from(
     { length: 12 },
     (_, index) =>
@@ -282,6 +302,7 @@ const HERO_SOURCES = [
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
   "images/amelia/tours/india/india-hero.webp",
   "images/amelia/tours/morocco/morocco-hero.webp",
+  "images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp",
 ];
 const HERO_HEIGHT_PX = 515;
 const MOBILE_HERO_MAX_VIEWPORT = 480;
@@ -409,6 +430,7 @@ const MATCHED_QUALITY = {
   "images/amelia/home/hero-5.avif": 50,
   "images/amelia/tours/india/india-card.webp": 70,
   "images/amelia/tours/morocco/morocco-card.webp": 60,
+  "images/amelia/tours/saudi-arabia/saudi-arabia-card.webp": 70,
 };
 
 // Narrower copies of the same original pack more detail into each pixel and lose more at the same
@@ -553,6 +575,7 @@ const FEATURED_TRIP_SOURCES = [
   "images/home-page/trips-carousel/Algeria-trip.webp",
   "images/amelia/tours/india/india-card.webp",
   "images/amelia/tours/morocco/morocco-card.webp",
+  "images/amelia/tours/saudi-arabia/saudi-arabia-card.webp",
 ];
 const FEATURED_TRIP_MOBILE_RATIO = 1 / 0.9;
 // Every phone copy tops out at 632px wide, the width of the trip photographs. A phone at DPR 2 or

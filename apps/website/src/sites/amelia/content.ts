@@ -72,12 +72,7 @@ const AMELIA_DESTINATION_LINKS = [
     badge: AMELIA_COMING_SOON_BADGE,
     queryParams: { d: 'Перу' },
   },
-  {
-    label: 'Саудитска Арабия',
-    target: '/not-yet-but-soon/',
-    badge: AMELIA_COMING_SOON_BADGE,
-    queryParams: { d: 'Саудитска Арабия' },
-  },
+  { label: 'Саудитска Арабия', target: '/tour-item/saudi-arabia-tour/' },
   {
     label: 'Узбекистан',
     target: '/not-yet-but-soon/',
@@ -159,6 +154,19 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     price: 'EUR1420',
     duration: '10 дни / 9 нощувки',
     target: '/tour-item/kyrgyzstan-tour/',
+  },
+  {
+    title: 'Саудитска Арабия: Древност и модерност',
+    category: 'Women only',
+    categoryLabel: '',
+    destination: 'Саудитска Арабия',
+    excerpt:
+      'Страна на контрасти, където древни цивилизации и вековни традиции се срещат с футуристични градове. 9 дни от динамичния Рияд до древните пейзажи на АлУла, свещената Медина и старата Джеда.',
+    image: '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-card.webp',
+    alt: 'Скална гробница в Хегра, АлУла, Саудитска Арабия',
+    price: 'EUR2300',
+    duration: '9 дни / 8 нощувки',
+    target: '/tour-item/saudi-arabia-tour/',
   },
 ];
 
@@ -248,6 +256,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/tour-item/morocco-tour/',
     },
     {
+      type: 'Tour',
+      title: 'Саудитска Арабия: Древност и модерност',
+      excerpt:
+        '9 дни в Рияд, АлУла, Медина и Джеда - Хегра, Края на света, Ал Балад и традиционна саудитска кухня в малка група.',
+      canonicalPath: '/tour-item/saudi-arabia-tour/',
+    },
+    {
       type: 'Article',
       title: 'Мароко за жени пътешественички: безопасност, облекло и какво да очакваш',
       excerpt:
@@ -303,6 +318,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/tour-item/india-tour/',
     '/tour-item/kyrgyzstan-tour/',
     '/tour-item/morocco-tour/',
+    '/tour-item/saudi-arabia-tour/',
     '/cookie-policy/',
     '/privacy-policy/',
     '/termsconditions/',
