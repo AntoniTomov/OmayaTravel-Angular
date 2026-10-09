@@ -10,7 +10,7 @@ import { PUBLIC_TOUR_SLUGS } from '../routing/public-routes';
 import { DESTINATION_CONTENT } from './destination-content';
 
 /** The route table also carries tours only Amelia publishes; Omaya's data covers the rest. */
-const AMELIA_ONLY_TOUR_SLUGS = ['india-tour'];
+const AMELIA_ONLY_TOUR_SLUGS = ['india-tour', 'saudi-arabia-tour'];
 const OMAYA_TOUR_SLUGS = PUBLIC_TOUR_SLUGS.filter((slug) => !AMELIA_ONLY_TOUR_SLUGS.includes(slug));
 
 describe('public tour departure data', () => {

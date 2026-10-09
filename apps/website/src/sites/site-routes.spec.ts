@@ -64,8 +64,21 @@ describe('Amelia tour content', () => {
     expect(omayaTour?.seo.title).toContain('Omaya Travel');
   });
 
+  it('serves the Amelia Saudi Arabia tour on Amelia only', () => {
+    const tour = findTourBySlug('saudi-arabia-tour', 'amelia');
+
+    expect(tour?.title).toBe('Саудитска Арабия: Древност и модерност');
+    expect(tour?.duration).toEqual({ days: 9, nights: 8 });
+    expect(tour?.price).toEqual({ amount: 2300, currency: 'EUR', unit: 'човек' });
+    expect(tour?.departures).toEqual(['2027-01-29', '2027-11-19']);
+    expect(tour?.itinerary).toHaveLength(9);
+    expect(findTourBySlug('saudi-arabia-tour', 'omaya')).toBeUndefined();
+    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/saudi-arabia-tour/')).toBe(true);
+    expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/saudi-arabia-tour/')).toBe(false);
+  });
+
   it('never mentions Omaya in Amelia tour copy or assets', () => {
-    for (const slug of ['morocco-tour', 'kyrgyzstan-tour']) {
+    for (const slug of ['morocco-tour', 'kyrgyzstan-tour', 'saudi-arabia-tour']) {
       const tour = findTourBySlug(slug, 'amelia');
 
       expect(JSON.stringify(tour)).not.toContain('Omaya');

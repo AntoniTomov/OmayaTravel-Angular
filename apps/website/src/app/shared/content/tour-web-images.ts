@@ -149,6 +149,40 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/8e7132b54b64c1b6.avif',
   '/assets/images/amelia/our-story/nesi.webp': '/assets/images/tour-web/71fa41c944979cf5.avif',
   '/assets/images/amelia/our-story/vesislava.jpg': '/assets/images/tour-web/0e9c19e4f0135d33.avif',
+  '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp':
+    '/assets/images/tour-web/ddce9ec08d4f21fa.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/01_qasr_al_farid_hegra.webp':
+    '/assets/images/tour-web/a264aa3f9e3e7466.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/02_riyadh_skyline.webp':
+    '/assets/images/tour-web/d621348b99cb34cf.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/03_al_balad_alley_dusk.webp':
+    '/assets/images/tour-web/b90900c82fb4b621.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/04_elephant_rock_alula.webp':
+    '/assets/images/tour-web/4f9fb4892bd00f2d.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/05_medina_mosque_palms.webp':
+    '/assets/images/tour-web/12ece5926a0adbbf.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/06_jeddah_al_balad_street.webp':
+    '/assets/images/tour-web/6f8f9a71e1ceada0.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/07_edge_of_the_world.webp':
+    '/assets/images/tour-web/fbbbd7272969d01b.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/08_hegra_rock_tombs.webp':
+    '/assets/images/tour-web/e04612dd5beeacd7.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/09_maraya_mirror_alula.webp':
+    '/assets/images/tour-web/55b5fb7d4c4c2ab9.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/10_dates_market.webp':
+    '/assets/images/tour-web/e7c519c30995adc3.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/11_prophets_mosque_medina.webp':
+    '/assets/images/tour-web/385a2292045f0c85.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/12_floating_mosque_jeddah.webp':
+    '/assets/images/tour-web/372884db87366216.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/13_alula_desert.webp':
+    '/assets/images/tour-web/7fa2f39a8d58807f.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/14_traditional_dress.webp':
+    '/assets/images/tour-web/28b74124a210a663.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/15_al_balad_roshan_windows.webp':
+    '/assets/images/tour-web/71c3cd28dc3053d0.avif',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/16_maraya_alula_desert.webp':
+    '/assets/images/tour-web/f60be9e19646afb3.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -299,6 +333,40 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/2252b76ca703e4fe.avif 320w, /assets/images/tour-web/817797911b92c84c.avif 480w, /assets/images/tour-web/537ae1c7c5c3c9fe.avif 640w, /assets/images/tour-web/635b01aadeca420c.avif 678w',
   '/assets/images/amelia/blog/india-otblizo/india-otblizo-05.webp':
     '/assets/images/tour-web/7ab95fa18f77c01e.avif 320w, /assets/images/tour-web/89446ab6bc3c2d70.avif 480w, /assets/images/tour-web/16d40229e17d7d6f.avif 640w, /assets/images/tour-web/8e7132b54b64c1b6.avif 678w',
+  '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp':
+    '/assets/images/tour-web/19766edf6935bad0.avif 320w, /assets/images/tour-web/a7076fcd444e5479.avif 480w, /assets/images/tour-web/81cbbca2f98c6819.avif 640w, /assets/images/tour-web/0a4c2b69f13f36c0.avif 800w, /assets/images/tour-web/82e96b27e55db85b.avif 960w, /assets/images/tour-web/a3f387c0f48187a8.avif 1440w, /assets/images/tour-web/b3527d2487b0d6e0.avif 1920w, /assets/images/tour-web/ddce9ec08d4f21fa.avif 2000w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/01_qasr_al_farid_hegra.webp':
+    '/assets/images/tour-web/1d06693e6da2b89e.avif 320w, /assets/images/tour-web/d75aed47eb0dbe6f.avif 480w, /assets/images/tour-web/c526b2cd441237e0.avif 640w, /assets/images/tour-web/a264aa3f9e3e7466.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/02_riyadh_skyline.webp':
+    '/assets/images/tour-web/6dd115e8fb0a66c2.avif 320w, /assets/images/tour-web/add274839614a1d3.avif 480w, /assets/images/tour-web/52c77f049b2a18b2.avif 640w, /assets/images/tour-web/08cfc731c2ed0d14.avif 800w, /assets/images/tour-web/ebf258f61349a44e.avif 960w, /assets/images/tour-web/d415dbed1ed42144.avif 1440w, /assets/images/tour-web/d621348b99cb34cf.avif 1600w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/03_al_balad_alley_dusk.webp':
+    '/assets/images/tour-web/917bbaf53a46e137.avif 320w, /assets/images/tour-web/a411869b9cfabbc2.avif 480w, /assets/images/tour-web/257288c6fe893546.avif 640w, /assets/images/tour-web/b90900c82fb4b621.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/04_elephant_rock_alula.webp':
+    '/assets/images/tour-web/b7a4449656ecaf59.avif 320w, /assets/images/tour-web/36720a8452e78de7.avif 480w, /assets/images/tour-web/214c69a87dcfff80.avif 640w, /assets/images/tour-web/b3cb7404800fa0bf.avif 800w, /assets/images/tour-web/c1bf5b1a1f319fef.avif 960w, /assets/images/tour-web/802d8be78e879530.avif 1440w, /assets/images/tour-web/4f9fb4892bd00f2d.avif 1600w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/05_medina_mosque_palms.webp':
+    '/assets/images/tour-web/8bb9cbd4ba3a5b9c.avif 320w, /assets/images/tour-web/ae40634b6ce6a711.avif 480w, /assets/images/tour-web/30bfd0ed01956e41.avif 640w, /assets/images/tour-web/12ece5926a0adbbf.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/06_jeddah_al_balad_street.webp':
+    '/assets/images/tour-web/02bd7b41a33af54b.avif 320w, /assets/images/tour-web/2fe3c826e33bda38.avif 480w, /assets/images/tour-web/d3eac1b09de646f6.avif 640w, /assets/images/tour-web/6f8f9a71e1ceada0.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/07_edge_of_the_world.webp':
+    '/assets/images/tour-web/f35ba00d5141e354.avif 320w, /assets/images/tour-web/7bedd71cf12077c4.avif 480w, /assets/images/tour-web/773a1806f6e1c6a9.avif 640w, /assets/images/tour-web/15297339e2015742.avif 800w, /assets/images/tour-web/b4e66a577e828fe4.avif 960w, /assets/images/tour-web/36e13fc22e2c4759.avif 1440w, /assets/images/tour-web/fbbbd7272969d01b.avif 1600w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/08_hegra_rock_tombs.webp':
+    '/assets/images/tour-web/461858422ef61411.avif 320w, /assets/images/tour-web/55c09b4887dd3469.avif 480w, /assets/images/tour-web/7c9423f6e57dd0ae.avif 640w, /assets/images/tour-web/e04612dd5beeacd7.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/09_maraya_mirror_alula.webp':
+    '/assets/images/tour-web/0c8d4a7159f88123.avif 320w, /assets/images/tour-web/75b38ad0b08d2743.avif 480w, /assets/images/tour-web/f67f3b55a793f666.avif 640w, /assets/images/tour-web/55b5fb7d4c4c2ab9.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/10_dates_market.webp':
+    '/assets/images/tour-web/2d8f94dcbf53e9a1.avif 320w, /assets/images/tour-web/f5eedfe8354518c5.avif 480w, /assets/images/tour-web/919edd3da3a3cc9d.avif 640w, /assets/images/tour-web/6dc42f91548a7f97.avif 800w, /assets/images/tour-web/49a4e8ec2c83d17b.avif 960w, /assets/images/tour-web/b1fbd25a7d6644e9.avif 1440w, /assets/images/tour-web/e7c519c30995adc3.avif 1600w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/11_prophets_mosque_medina.webp':
+    '/assets/images/tour-web/fb1cf496efd201fe.avif 320w, /assets/images/tour-web/0fafb76e7fd54d26.avif 480w, /assets/images/tour-web/541d0f47077768fa.avif 640w, /assets/images/tour-web/385a2292045f0c85.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/12_floating_mosque_jeddah.webp':
+    '/assets/images/tour-web/fb0b8c78f0996733.avif 320w, /assets/images/tour-web/7851fab4551371ea.avif 480w, /assets/images/tour-web/1d5119a7b6bf18e2.avif 640w, /assets/images/tour-web/3fa9339913664d35.avif 800w, /assets/images/tour-web/687a6034f4863d50.avif 960w, /assets/images/tour-web/9948f90992dc805f.avif 1440w, /assets/images/tour-web/372884db87366216.avif 1600w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/13_alula_desert.webp':
+    '/assets/images/tour-web/30b750a287b137f3.avif 320w, /assets/images/tour-web/a6769eca0fa97b3b.avif 480w, /assets/images/tour-web/ad372cc9b2d1632e.avif 640w, /assets/images/tour-web/7fa2f39a8d58807f.avif 800w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/14_traditional_dress.webp':
+    '/assets/images/tour-web/963d2c4ab0bff1ea.avif 320w, /assets/images/tour-web/09f462cf95143c0e.avif 480w, /assets/images/tour-web/630ebba713c7082a.avif 640w, /assets/images/tour-web/28b74124a210a663.avif 713w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/15_al_balad_roshan_windows.webp':
+    '/assets/images/tour-web/6a4f8d1e3d32ad0c.avif 320w, /assets/images/tour-web/284bf5ccf4a94d80.avif 480w, /assets/images/tour-web/071d229457057343.avif 640w, /assets/images/tour-web/9a0e39424ca40577.avif 800w, /assets/images/tour-web/1b4ed4b48f7b1922.avif 960w, /assets/images/tour-web/912b72a340271d58.avif 1440w, /assets/images/tour-web/71c3cd28dc3053d0.avif 1600w',
+  '/assets/images/amelia/tours/saudi-arabia/gallery/16_maraya_alula_desert.webp':
+    '/assets/images/tour-web/74e1b060d0945b66.avif 320w, /assets/images/tour-web/cdc112e7659ebfec.avif 480w, /assets/images/tour-web/0b257e556cb1dfcd.avif 640w, /assets/images/tour-web/f60be9e19646afb3.avif 800w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -351,6 +419,8 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/d6e026604918b8c8.avif 320w, /assets/images/tour-web/7f713c3e0966ab5e.avif 480w',
   '/assets/images/amelia/tours/morocco/morocco-hero.webp':
     '/assets/images/tour-web/e73f3e1378dd908f.avif 320w, /assets/images/tour-web/f57ae2c3f9f66fe7.avif 480w, /assets/images/tour-web/e9eeb7ff180491d1.avif 640w, /assets/images/tour-web/8920226f6fe16c17.avif 840w, /assets/images/tour-web/ed66e12bcfc80361.avif 858w',
+  '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp':
+    '/assets/images/tour-web/687372a7414b2069.avif 320w, /assets/images/tour-web/ac5e15f5e1d91347.avif 480w, /assets/images/tour-web/38cb6cc0ba5bf624.avif 640w, /assets/images/tour-web/213604a389d3777a.avif 840w, /assets/images/tour-web/efdda58c8af07308.avif 960w, /assets/images/tour-web/c4536c8c8854a726.avif 1165w',
 };
 // Centred crops of the blog, our-story and not-yet-but-soon heroes: phone up to 30rem, tablet up to 48rem. See PAGE_HERO_SOURCES in the generator.
 export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = {
@@ -443,6 +513,8 @@ export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/ba2800b9fa7e9398.avif 320w, /assets/images/tour-web/3ac504b697aad53c.avif 480w, /assets/images/tour-web/2ad5be86b2890713.avif 560w, /assets/images/tour-web/97bd670d4290e927.avif 712w',
   '/assets/images/amelia/tours/morocco/morocco-card.webp':
     '/assets/images/tour-web/2acb5791ffbf55cc.avif 320w, /assets/images/tour-web/35c65eea400cd773.avif 400w',
+  '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-card.webp':
+    '/assets/images/tour-web/ff6c43e1a158163e.avif 320w, /assets/images/tour-web/09cb2b5034145b1e.avif 480w, /assets/images/tour-web/0cace8d583b10270.avif 560w, /assets/images/tour-web/91301e4d4f3075e3.avif 712w',
 };
 // Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
 export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
@@ -454,6 +526,8 @@ export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/d3e8eb34e6eb925c.avif 320w, /assets/images/tour-web/e9c2fb593a3607a2.avif 480w, /assets/images/tour-web/316b286c7da08684.avif 640w, /assets/images/tour-web/a42808e2d4d5d7d8.avif 800w, /assets/images/tour-web/766df0085f8d7c6c.avif 960w, /assets/images/tour-web/8aed1d364d20422b.avif 1200w, /assets/images/tour-web/03fcbb5dcf276b69.avif 1600w',
   '/assets/images/amelia/tours/india/india-card.webp':
     '/assets/images/tour-web/6485d77dedddb3ff.avif 320w, /assets/images/tour-web/8cce08a24f9bb1a1.avif 480w, /assets/images/tour-web/d7042b9c318a50a9.avif 640w, /assets/images/tour-web/7ca84698cadf4569.avif 712w',
+  '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-card.webp':
+    '/assets/images/tour-web/9754f212fa556cfa.avif 320w, /assets/images/tour-web/644b8c08ba27e141.avif 480w, /assets/images/tour-web/3056afab8259cd4f.avif 640w, /assets/images/tour-web/69143bb246e0822d.avif 712w',
 };
 // A capped copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in the generator.
 export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {

@@ -41,6 +41,7 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
     '/india-otblizo/',
     '/standarten-formulyar/',
     '/tour-item/india-tour/',
+    '/tour-item/saudi-arabia-tour/',
   ],
   pageSeo: [
     {
