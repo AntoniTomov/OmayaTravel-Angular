@@ -133,12 +133,14 @@ describe('app routes', () => {
       PUBLIC_DESTINATION_SLUGS.map((destinationSlug) => ({ destinationSlug })),
     );
     await expect(tourRoute.getPrerenderParams()).resolves.toEqual(
-      PUBLIC_TOUR_SLUGS.filter((tourSlug) => tourSlug !== 'india-tour').map((tourSlug) => ({
+      PUBLIC_TOUR_SLUGS.filter(
+        (tourSlug) => !['india-tour', 'saudi-arabia-tour'].includes(tourSlug),
+      ).map((tourSlug) => ({
         tourSlug,
       })),
     );
     expect(destinationRoute.fallback).toBe(PrerenderFallback.None);
-    // Amelia's India tour is not prerendered, so it renders on request; an unknown slug still
+    // Amelia's India and Saudi Arabia tours are not prerendered, so they render on request; an unknown slug still
     // answers 404 because the not-found page sets the status itself.
     expect(tourRoute.fallback).toBe(PrerenderFallback.Server);
   });
