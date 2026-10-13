@@ -573,12 +573,6 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
         ],
       },
       {
-        question: 'What’s the weather like?',
-        answer: [
-          'Late March and April mark the beginning of the hot season. Expect temperatures of around 30–35°C in Mumbai, with humidity, and hot, dry conditions in Aurangabad and Kanha, where afternoon temperatures can climb higher. Early mornings on safari can feel cool, so bring a light layer.',
-        ],
-      },
-      {
         question: 'Is the Dharavi walk respectful?',
         answer: [
           'Yes. The walk is led by a local organisation and focuses on Dharavi’s people, businesses and working communities. It’s an opportunity to learn about the neighbourhood beyond the stereotypes. Groups are small, and photography is restricted out of respect for residents and workers.',

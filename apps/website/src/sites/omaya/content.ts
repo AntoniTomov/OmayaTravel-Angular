@@ -14,6 +14,7 @@ const OMAYA_FEATURED_TOUR_TARGETS = [
   '/tour-item/bulgaria-beyond-the-ordinary/',
   '/tour-item/morocco-tour/',
   '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+  '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/',
 ] as const;
 
 export const OMAYA_SITE_CONTENT: SiteContent = {
