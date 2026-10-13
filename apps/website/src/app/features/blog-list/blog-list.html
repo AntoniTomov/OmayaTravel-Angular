@@ -75,7 +75,6 @@
 
     <aside class="blog-list__sidebar" aria-label="Blog sidebar">
       <section>
-        <h2>Suggested Blog Posts</h2>
         <h2>{{ labels().suggestedPosts }}</h2>
         @for (post of featuredPosts(); track post.slug) {
           <a [routerLink]="'/' + post.slug + '/'" class="blog-list__suggestion">
