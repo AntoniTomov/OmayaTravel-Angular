@@ -34,6 +34,18 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     target: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
   },
   {
+    title: 'Deccan Discovery: Mumbai to Kanha',
+    category: 'Classic Tours',
+    destination: 'India',
+    excerpt:
+      'India is not one place to see. It is many different worlds, sometimes just a journey apart. Over 10 days, this trip takes you through three of them: the energy of the city, the stories carved into stone, and the quiet of the forest.',
+    image: '/assets/images/home-page/trips-carousel/India-trip.webp',
+    alt: 'A tiger in Kanha National Park, India',
+    price: 'EUR2400',
+    duration: '10 Days 9 Nights',
+    target: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/',
+  },
+  {
     title: 'Bulgaria Beyond the Ordinary',
     category: 'Classic Tours',
     destination: 'Bulgaria',

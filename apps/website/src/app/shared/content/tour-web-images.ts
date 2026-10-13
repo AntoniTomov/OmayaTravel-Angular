@@ -507,6 +507,8 @@ export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<
 };
 // Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.
 export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/India-trip.webp':
+    '/assets/images/tour-web/eccc5c4ae48a92fd.avif 320w, /assets/images/tour-web/bce367dae1dd2c0f.avif 480w, /assets/images/tour-web/b6378c9505fc5cb3.avif 560w, /assets/images/tour-web/a149a1b16434b0ae.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
     '/assets/images/tour-web/c9a32fb08b9aab33.avif 320w, /assets/images/tour-web/25feb049e0d66801.avif 480w, /assets/images/tour-web/5f4e9168ddf61417.avif 560w, /assets/images/tour-web/ba2a65c29ea0f18e.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
@@ -524,6 +526,8 @@ export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
 };
 // Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
 export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/India-trip.webp':
+    '/assets/images/tour-web/e85ae8a0189454f5.avif 320w, /assets/images/tour-web/8f3f67ac0e3f915b.avif 480w, /assets/images/tour-web/c4bc8e6c6a5759bf.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
     '/assets/images/tour-web/e4d0eb200e34ef11.avif 320w, /assets/images/tour-web/6c1f2d13bb403cae.avif 480w, /assets/images/tour-web/6c3c7fb2b543d5b9.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':

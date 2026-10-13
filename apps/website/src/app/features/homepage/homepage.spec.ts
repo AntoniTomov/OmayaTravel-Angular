@@ -102,6 +102,7 @@ describe('Homepage', () => {
       '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp',
       '/assets/images/destinations/Marocco/morocco-bgr.webp',
       '/assets/images/home-page/trips-carousel/Algeria-trip.webp',
+      '/assets/images/home-page/trips-carousel/India-trip.webp',
     ]);
   });
 
@@ -161,7 +162,7 @@ describe('Homepage', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelector('.featured-trips__carousel')).toBeTruthy();
-    expect(compiled.querySelectorAll('.featured-trips__card')).toHaveLength(4);
+    expect(compiled.querySelectorAll('.featured-trips__card')).toHaveLength(5);
     expect(compiled.textContent).toContain('Kyrgyzstan Discovery Tour');
     expect(compiled.textContent).toContain('Algeria Desert Expedition (Tadrart Rouge)');
     expect(compiled.textContent).toContain('8 Days 7 Nights');
