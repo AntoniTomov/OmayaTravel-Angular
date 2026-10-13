@@ -470,6 +470,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
       title: 'Dharavi and the journey inland',
       description:
         'In the morning, a local guide introduces us to Dharavi, where recycling, pottery, leather and textile workshops are part of everyday life. It’s a chance to see another side of Mumbai, through the people and businesses that keep this neighbourhood moving. On the way to the station, we stop at Chhatrapati Shivaji Maharaj Terminus, Mumbai’s striking Victorian Gothic railway station. At 13:15, we board the Vande Bharat Express for the five-hour journey inland, watching the landscapes of Maharashtra unfold along the way. We arrive in Aurangabad at 18:43.',
+      descriptionHighlights: [{ term: 'Dharavi', href: '/dharavi-mumbai-guide/' }],
       accommodation: 'Hotel in Aurangabad',
       meals: ['breakfast'],
     },

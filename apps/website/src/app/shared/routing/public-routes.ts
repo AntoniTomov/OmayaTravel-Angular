@@ -65,6 +65,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'india-otblizo',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
+  'dharavi-mumbai-guide',
   'the-complete-visitor-guide-to-rila-monastery',
 ] as const;
 

@@ -48,7 +48,7 @@ const DESTINATION_BRIEFS = [
     theme: 'City life, rock-cut caves and tiger forests',
     introduction:
       'Omaya’s India journey moves from the rush of Mumbai to the cave temples of Ellora and Ajanta, then into the sal forests of Kanha. Enjoy the lunchtime rhythm of the dabbawalas, the hush inside a temple carved from a single rock, and the stillness of the forest at dawn as the jeeps roll out in search of tigers.',
-    guideSlugs: [],
+    guideSlugs: ['dharavi-mumbai-guide'],
   },
 ] as const;
 

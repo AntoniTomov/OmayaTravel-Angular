@@ -45,6 +45,8 @@ export interface BlogSection {
 export interface BlogPostContent {
   slug: string;
   title: string;
+  /** Search title when the article heading is too long to serve as one. */
+  seoTitle?: string;
   publishedAt: string;
   modifiedAt?: string;
   sources?: readonly { title: string; url: string }[];
@@ -971,9 +973,166 @@ export const HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN: BlogPostContent = {
   ],
 };
 
+export const DHARAVI_MUMBAI_GUIDE: BlogPostContent = {
+  ...findBlogMetadataBySlug('dharavi-mumbai-guide')!,
+  sections: [
+    {
+      title: 'What is Dharavi?',
+      text: [
+        'Dharavi is a neighbourhood in central Mumbai, home to an estimated one million people on roughly 240 hectares. It lies between the city’s Western and Central railway lines, close to the airport and the Bandra-Kurla business district. It is often called one of the largest slums in Asia, but it is also one of India’s busiest centres of small-scale industry.',
+      ],
+    },
+    {
+      title: 'Dharavi at a glance',
+      items: [
+        {
+          name: 'Location',
+          details: 'Central Mumbai, between Mahim, Sion and Bandra-Kurla Complex',
+        },
+        { name: 'Area', details: 'About 240 hectares (590 acres)' },
+        { name: 'Population', details: 'Around 1 million (estimates vary)' },
+        { name: 'Main trades', details: 'Recycling, pottery, leather, textiles, food' },
+        { name: 'Annual turnover', details: 'About USD 1 billion, by some estimates' },
+        { name: 'Oldest community', details: 'The Koli fishing village (Koliwada)' },
+      ],
+    },
+    {
+      title: 'A short history of Dharavi: from fishing village to city within a city',
+      text: [
+        'Dharavi began as a Koli fishing village on a mangrove creek at the northern edge of Bombay island. The Kolis are Mumbai’s original people, and their Koliwada still stands on Dharavi’s western side.',
+        'The change came in the late 1800s, when the city started pushing its messier trades to the edge. Tanneries moved here from 1887, along with Muslim leather workers from Tamil Nadu. Potters from Saurashtra in Gujarat, who had come to Bombay escaping drought, were moved on several times before settling here in the 1930s. Their neighbourhood, Kumbharwada, still runs on shared kilns today.',
+        'Every wave of migrants after them brought a language, a skill and a trade. As Mumbai grew north, the swamp on its edge ended up in the middle of the city – and on some of its most valuable land.',
+      ],
+    },
+    {
+      title: 'Dharavi’s economy: a neighbourhood of makers',
+      text: [
+        'By some estimates, Dharavi’s small businesses turn over around a billion US dollars a year. Most of them are a single room, often with the family living upstairs. A few of the trades you’ll see:',
+      ],
+      boldList: [
+        {
+          label: 'Recycling.',
+          text: ' Plastic, metal, cardboard and glass from all over Mumbai arrive here to be sorted, washed, shredded and melted into pellets for new products. It is hard, dusty work, and a big part of why the city’s waste doesn’t simply pile up.',
+        },
+        {
+          label: 'Pottery.',
+          text: ' In Kumbharwada, families shape pots, oil lamps and festival lamps for Diwali, and fire them in kilns shared between neighbours.',
+        },
+        {
+          label: 'Leather.',
+          text: ' Workshops along 90 Feet Road cut and stitch bags, belts, jackets and wallets, sold in the shops out front and exported abroad.',
+        },
+        {
+          label: 'Textiles and embroidery.',
+          text: ' Tailors and embroiderers work for local markets and for brands you may well find in shops at home.',
+        },
+        { label: 'Food.', text: ' Papad, snacks and sweets made here are sold across the city.' },
+      ],
+    },
+    {
+      text: [
+        'What strikes most visitors is not the poverty they expected. It is the skill, the speed, and how much of the city’s daily life quietly depends on these lanes.',
+      ],
+    },
+    {
+      title: 'The Dharavi Redevelopment Project: what is changing',
+      text: [
+        'Dharavi is at a turning point. After two decades of failed plans, the Dharavi Redevelopment Project is now under way. It is run by a company in which the Adani Group holds 80% and the Maharashtra government 20%. The plan is to replace much of the current settlement with apartment towers, offices and new spaces for local industries such as leather, pottery and food processing, with completion targeted for around 2032.',
+        'Residents who settled in Dharavi before 1 January 2000 are promised a free flat of about 350 sq ft inside Dharavi. Those who arrived between 2000 and 2011 may be offered smaller flats elsewhere in the city. The first clearances and demolitions began in 2026.',
+        'Opinions in Dharavi are divided. Some residents look forward to running water and proper homes. Others worry about losing workshops that fit nowhere else, and the close-knit lanes where work and family share the same few rooms. Whatever happens, the Dharavi you can walk through today will not look the same in ten years.',
+      ],
+    },
+    {
+      title: 'Is it ethical to visit Dharavi?',
+      text: [
+        'There is a fair question behind any Dharavi tour: is this poverty tourism? It can be. It doesn’t have to be. A respectful visit is about how people work and live, led by people from the community, with the money staying in the neighbourhood.',
+      ],
+    },
+    {
+      title: 'How to visit Dharavi respectfully',
+      boldList: [
+        {
+          label: 'Go with a local guide.',
+          text: ' Choose a walk led by someone who lives or works in Dharavi, through an organisation that puts money back into the community.',
+        },
+        {
+          label: 'Come to learn, not to look.',
+          text: ' The best walks focus on work, trades and daily life. Ask questions – people are usually proud to explain what they do.',
+        },
+        {
+          label: 'Leave the camera in your bag.',
+          text: ' Many walks don’t allow photos inside homes and workshops. A conversation is worth more than a picture.',
+        },
+        {
+          label: 'Keep the group small.',
+          text: ' A handful of people can stop and talk. A crowd just blocks a lane where people are trying to work.',
+        },
+        {
+          label: 'Buy something.',
+          text: ' A leather wallet or a hand-thrown clay pot goes straight to the person who made it.',
+        },
+        {
+          label: 'Dress modestly and wear closed shoes.',
+          text: ' Lanes are narrow, busy and often wet.',
+        },
+      ],
+    },
+    {
+      title: 'Visit Dharavi on our Mumbai to Kanha tour',
+      text: [
+        'On our India Discovery Tour from Mumbai to Kanha, Dharavi is a morning walk led by a local organisation, focused on the entrepreneurs who keep its workshops running. It sits between a day with Mumbai’s dabbawalas and the train inland to the Ellora and Ajanta caves – part of a journey about the people who keep India moving.',
+      ],
+      cta: {
+        before:
+          'If you’d rather understand a place than tick it off a list, you might feel at home with us. ',
+        linkText: 'See the full India tour plan',
+        linkUrl: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/',
+        after: '.',
+      },
+    },
+    {
+      title: 'Is Dharavi the largest slum in Asia?',
+      text: [
+        'It is often described that way, though some settlements in Karachi and elsewhere are larger by some measures. It is certainly one of the largest and most densely populated.',
+      ],
+    },
+    {
+      title: 'Is Dharavi safe to visit?',
+      text: [
+        'Yes, especially with a local guide. Violent crime against visitors is rare. Watch your step in narrow lanes and keep valuables out of sight, as you would anywhere in a big city.',
+      ],
+    },
+    {
+      title: 'How long does a Dharavi tour take?',
+      text: [
+        'Most guided walks last two to three hours, usually in the morning when the workshops are busiest.',
+      ],
+    },
+    {
+      title: 'Can I take photos in Dharavi?',
+      text: [
+        'Most responsible tours ask you not to photograph people, homes or workshops. Always ask first, and accept a no.',
+      ],
+    },
+    {
+      title: 'Was Slumdog Millionaire filmed in Dharavi?',
+      text: [
+        'Parts of it were, and the film made Dharavi known worldwide. The real neighbourhood is far more varied than the film suggests.',
+      ],
+    },
+    {
+      title: 'Where is Dharavi in Mumbai?',
+      text: [
+        'In the centre of the city, between Mahim, Sion and the Bandra-Kurla Complex. The nearest stations are Mahim on the Western line and Sion on the Central line.',
+      ],
+    },
+  ],
+};
+
 export const BLOG_POSTS: readonly BlogPostContent[] = [
   ...PLANNING_GUIDES,
   TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE,
+  DHARAVI_MUMBAI_GUIDE,
   THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY,
   TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP,
   HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN,

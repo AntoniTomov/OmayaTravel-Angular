@@ -75,6 +75,27 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
       'Both Bulgaria journeys spend eight days travelling from Sofia through monasteries, mountain villages and historic towns before returning to the capital. The central choice is the group format: a classic small group or a women-only departure.',
   },
   {
+    slug: 'dharavi-mumbai-guide',
+    title: 'Dharavi, Mumbai: History, Workshops and How to Visit Respectfully',
+    seoTitle: 'Dharavi, Mumbai: History, Workshops & How to Visit',
+    publishedAt: '2026-10-12',
+    date: 'October 12, 2026',
+    category: 'India',
+    comments: 0,
+    excerpt:
+      'What Dharavi in Mumbai is really like: its history, recycling and pottery workshops, the redevelopment, and how to visit Dharavi respectfully.',
+    preview:
+      'Most people know Dharavi from a film or a headline: “Asia’s largest slum”. Walk through it for a morning and a different word keeps coming to mind – workshop. This guide covers what Dharavi is, how it grew, the trades that keep it running, the redevelopment now under way, and how to visit Dharavi in a way that respects the people who live there.',
+    image: {
+      src: '/assets/images/destinations/India/gallery/tailor-workshop.webp',
+      alt: 'A tailor at work in a Dharavi workshop',
+    },
+    relatedTour: {
+      title: 'Deccan Discovery: Mumbai to Kanha',
+      url: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/',
+    },
+  },
+  {
     slug: 'tassili-najjer-national-park-algeria-guide',
     title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
     publishedAt: '2026-07-25',
