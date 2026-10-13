@@ -77,7 +77,7 @@ export interface TourDetailContent {
     endLocation: string;
   };
   category: string;
-  fitnessLevel: 'Easy';
+  fitnessLevel: 'Easy' | 'Moderate';
   duration: {
     days: number;
     nights: number;
@@ -141,6 +141,7 @@ const KYRGYZSTAN_ASSET_BASE = '/assets/images/destinations/Kyrgystan';
 const KYRGYZSTAN_WOMEN_ASSET_BASE = '/assets/images/women-tours/Kyrgystan-women';
 const MOROCCO_ASSET_BASE = '/assets/images/destinations/Marocco';
 const AMELIA_MOROCCO_ASSET_BASE = '/assets/images/amelia/tours/morocco';
+const INDIA_ASSET_BASE = '/assets/images/destinations/India';
 const AMELIA_INDIA_ASSET_BASE = '/assets/images/amelia/tours/india';
 const AMELIA_SAUDI_ARABIA_ASSET_BASE = '/assets/images/amelia/tours/saudi-arabia';
 const MOROCCO_SOLO_ASSET_BASE = '/assets/images/solo-travellers/Morocco';
@@ -349,8 +350,295 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   },
 };
 
+const INDIA_HIGHLIGHTS = [
+  [
+    'A day with Mumbai’s dabbawalas',
+    'mumbai-dabbawala',
+    'A dabbawala carrying tiffin boxes in Mumbai',
+  ],
+  [
+    'Dharavi through the eyes of its entrepreneurs',
+    'tailor-workshop',
+    'A tailor at work in a Dharavi workshop',
+  ],
+  ['Behind the scenes of Bollywood', 'film-set', 'A Bollywood film set in Mumbai'],
+  [
+    'The rock-cut temples of Ellora and the painted caves of Ajanta',
+    'ellora-kailasa',
+    'Kailasa Temple carved from the rock at Ellora',
+  ],
+  [
+    'Jeep safaris in the core zones of Kanha National Park',
+    'tiger-kanha',
+    'A tiger in Kanha National Park',
+  ],
+  ['Three nights in a forest lodge', 'jungle-lodge', 'A forest lodge in Kanha'],
+] as const;
+
+export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
+  id: 'india-mumbai-ajanta-ellora-kanha-tour',
+  slug: 'india-mumbai-ajanta-ellora-kanha-tour',
+  title: 'Deccan Discovery: Mumbai to Kanha',
+  destination: {
+    country: 'India',
+    region: 'Mumbai, Ellora, Ajanta, Kanha',
+    startLocation: 'Mumbai',
+    endLocation: 'Mumbai',
+  },
+  category: 'Classic Tours',
+  fitnessLevel: 'Moderate',
+  duration: {
+    days: 10,
+    nights: 9,
+  },
+  price: {
+    amount: 2400,
+    currency: 'EUR',
+    unit: 'person',
+  },
+  groupSize: {
+    min: 6,
+    max: 12,
+  },
+  departures: ['2026-11-09', '2027-03-23'],
+  heroImage: {
+    src: `${INDIA_ASSET_BASE}/ajanta-hero.webp`,
+    alt: 'The Buddhist caves of Ajanta carved into a river gorge, India',
+    width: 2400,
+    height: 1000,
+  },
+  introduction: [
+    'India is not one place to see. It is many different worlds, sometimes just a journey apart. Over 10 days, this trip takes you through three of them: the energy of the city, the stories carved into stone, and the quiet of the forest.',
+    'We begin in Mumbai, getting to know the city through the people who make it what it is — from the dabbawalas delivering thousands of lunches each day to the workshop owners of Dharavi and the crews bringing Bollywood films to life. From there, a train takes us inland to the rock-cut temples of Ellora and the ancient painted caves of Ajanta. We then fly to central India, where the sal forests of Kanha offer a very different pace of life — and a chance to explore the landscapes that inspired The Jungle Book.',
+    'And while spotting a tiger would be unforgettable, it may not be the moment you remember most. It could be a morning spent with a dabbawala crew, a conversation in a Dharavi workshop, or the stillness of the forest at dawn. This is a journey that begins in the middle of the action and gradually makes room to slow down, look closer and take it all in.',
+  ],
+  highlights: INDIA_HIGHLIGHTS.map(([text, file, alt]) => ({
+    title: { text, linkText: '', link: '' },
+    image: {
+      src: `${INDIA_ASSET_BASE}/thumbnails/${file}.webp`,
+      alt,
+      width: 150,
+      height: 150,
+    },
+  })),
+  included: [
+    'Accommodation as described, in twin rooms',
+    'Meals according to the daily description',
+    'Domestic flights and the Vande Bharat train as described',
+    'Ground transport in an air-conditioned vehicle',
+    'Activities as mentioned, including 2 jeep safaris',
+    'Entry fees for the mentioned sites',
+    'Local English-speaking guides and a naturalist on every safari',
+    'Omaya Travel representative',
+  ],
+  notIncluded: [
+    'International flights',
+    'Indian visa',
+    'Insurance',
+    'Meals not mentioned',
+    'Tips',
+    'Village visit in Kanha',
+    'Single room supplement',
+  ],
+  itinerary: [
+    {
+      day: 1,
+      title: 'Mumbai',
+      description:
+        'We’ll meet you at the airport and take you to the hotel, with time to settle in after your flight. Later in the afternoon, we’ll head to the Gateway of India and walk along the waterfront as the sun begins to set - an easy first evening to get to know Mumbai and each other.',
+      accommodation: 'Hotel in Mumbai',
+      meals: [],
+    },
+    {
+      day: 2,
+      title: 'A day with the dabbawalas',
+      description:
+        'Every working day, Mumbai’s dabbawalas deliver thousands of home-cooked lunches across the city, connecting kitchens and offices through a remarkable delivery system. We visit their headquarters in Dadar, where we’ll see how the tiffin boxes are sorted before heading out on the local train with them and learning how this daily routine has been running for generations. Lunch is included. Later, we stop for a look at Mahalaxmi Dhobi Ghat, Mumbai’s vast open-air laundry. The evening is yours to spend as you wish.',
+      accommodation: 'Hotel in Mumbai',
+      meals: ['breakfast', 'lunch'],
+    },
+    {
+      day: 3,
+      title: 'Behind the scenes of Bollywood',
+      description:
+        'Step into the world of Hindi cinema, from film sets and studios to the people who bring Bollywood stories to life. Lunch is included, and the evening is yours to spend as you wish.',
+      accommodation: 'Hotel in Mumbai',
+      meals: ['breakfast', 'lunch'],
+    },
+    {
+      day: 4,
+      title: 'Dharavi and the journey inland',
+      description:
+        'In the morning, a local guide introduces us to Dharavi, where recycling, pottery, leather and textile workshops are part of everyday life. It’s a chance to see another side of Mumbai, through the people and businesses that keep this neighbourhood moving. On the way to the station, we stop at Chhatrapati Shivaji Maharaj Terminus, Mumbai’s striking Victorian Gothic railway station. At 13:15, we board the Vande Bharat Express for the five-hour journey inland, watching the landscapes of Maharashtra unfold along the way. We arrive in Aurangabad at 18:43.',
+      descriptionHighlights: [{ term: 'Dharavi', href: '/dharavi-mumbai-guide/' }],
+      accommodation: 'Hotel in Aurangabad',
+      meals: ['breakfast'],
+    },
+    {
+      day: 5,
+      title: 'Ellora, carved in stone',
+      description:
+        'We spend the day exploring Ellora, where Hindu, Buddhist and Jain temples were carved into the rock over several centuries. The highlight is Kailasa Temple, an extraordinary structure carved from a single mass of rock, from the top down. Seeing it in person makes the scale of the achievement even harder to comprehend. On the way back, we visit local Himroo weavers and stop at a market.',
+      accommodation: 'Hotel in Aurangabad',
+      meals: ['breakfast'],
+    },
+    {
+      day: 6,
+      title: 'Ajanta’s ancient paintings',
+      description:
+        'We drive to Ajanta, where around 30 Buddhist caves are carved into the rock above a river gorge. Inside, centuries-old paintings depict stories and scenes that have survived remarkably well over time. There’s plenty of walking and steps, with lunch near the site. In the evening, we fly back to Mumbai for one night.',
+      accommodation: 'Hotel in Mumbai',
+      meals: ['breakfast'],
+    },
+    {
+      day: 7,
+      title: 'Into the forest',
+      description:
+        'We take a morning flight to Jabalpur, followed by a roughly three-hour drive to Kanha. By afternoon, we arrive at the lodge and settle into a different pace. From here on, the forest sets the rhythm.',
+      accommodation: 'Forest lodge in Kanha',
+      meals: ['breakfast', 'dinner'],
+    },
+    {
+      day: 8,
+      title: 'First safari in Kanha',
+      description:
+        'We head out on our first jeep safari with a naturalist, keeping an eye out for tigers, leopards, sloth bears, gaur and the barasingha deer that Kanha has played a vital role in protecting. The rest of the day is yours. Take it slow at the lodge or join an optional visit to a Baiga or Gond village to learn more about the communities who call these forests home.',
+      accommodation: 'Forest lodge in Kanha',
+      meals: ['breakfast', 'lunch', 'dinner'],
+    },
+    {
+      day: 9,
+      title: 'Another day in Kanha',
+      description:
+        'We head out for a second safari, in the morning or afternoon, depending on the schedule. The rest of the day is yours to enjoy at your own pace: birdwatching, a walk around the lodge, a book in the shade, or simply taking in the quiet of the forest. In the evening, we come together for our last night in Kanha.',
+      accommodation: 'Forest lodge in Kanha',
+      meals: ['breakfast', 'lunch', 'dinner'],
+    },
+    {
+      day: 10,
+      title: 'Back to Mumbai',
+      description:
+        'After breakfast, we drive to Jabalpur for our flight back to Mumbai, scheduled to arrive at 14:05. This is where our journey ends, at Mumbai airport. If you’re flying home today, we recommend booking an evening departure and allowing enough time for your onward flight.',
+      accommodation: null,
+      meals: ['breakfast'],
+    },
+  ],
+  gallery: (
+    [
+      ['gateway-of-india', 'The Gateway of India on the Mumbai waterfront'],
+      ['mumbai-dabbawala', 'A dabbawala with tiffin boxes in Mumbai'],
+      ['dhobi-ghat', 'Mahalaxmi Dhobi Ghat, Mumbai’s open-air laundry'],
+      ['film-set', 'A Bollywood film set in Mumbai'],
+      ['tailor-workshop', 'A tailor at work in a Dharavi workshop'],
+      ['csmt-mumbai', 'Chhatrapati Shivaji Maharaj Terminus in Mumbai'],
+      ['ellora-kailasa', 'Kailasa Temple at Ellora'],
+      ['kailasa-temple-aerial', 'Kailasa Temple at Ellora seen from above'],
+      ['ajanta-caves', 'The Buddhist caves of Ajanta above the river gorge'],
+      ['tiger-kanha', 'A tiger in Kanha National Park'],
+      ['kanha-swamp-deer', 'Barasingha swamp deer in Kanha National Park'],
+    ] as const
+  ).map(([file, alt]) => ({
+    src: `${INDIA_ASSET_BASE}/gallery/${file}.webp`,
+    alt,
+    width: 800,
+    height: 1100,
+  })),
+  faq: {
+    heading: 'Your Journey, Simplified.',
+    intro:
+      'Got questions about your upcoming adventure? Our FAQ section covers the essentials: visa requirements, accommodation, health, safety, packing advice and cultural tips. Find the quick answers you need to get your bags packed and your itinerary set.',
+    items: [
+      {
+        question: 'I’m travelling solo. Will I pay a single supplement?',
+        answer: [
+          'Not if you’re happy to share. We’ll pair you with another solo traveller of the same gender, in a twin room with two separate beds. You’ll both pay the standard price. If you’d prefer your own room, you can add a single supplement.',
+        ],
+      },
+      {
+        question: 'Will we see a tiger?',
+        answer: [
+          'We can’t promise a sighting — tigers are wild animals, and every safari is different. We’ll have two safaris in Kanha, accompanied by a naturalist, giving us opportunities to look for tigers and other wildlife. Kanha is also home to barasingha deer, gaur, langurs and hundreds of bird species, so there’s plenty to look out for beyond tigers.',
+        ],
+      },
+      {
+        question: 'Why do you need my passport details so early?',
+        answer: [
+          'Safari permits are issued by the forest department up to 120 days before the safari and are subject to availability. Late March is a busy time, so we’ll aim to book as soon as the booking window opens. Permits are linked to your passport details, so please let us know if you renew your passport after booking.',
+        ],
+      },
+      {
+        question: 'How active is this trip?',
+        answer: [
+          'You’ll need a moderate level of fitness. The visits to Ajanta and Ellora involve several hours of walking, uneven surfaces and plenty of steps. In Mumbai, expect walking in the heat and crowds, while safaris mean early starts and travelling in open, sometimes bumpy jeeps.',
+        ],
+      },
+      {
+        question: 'What’s the weather like?',
+        answer: [
+          'Late March and April mark the beginning of the hot season. Expect temperatures of around 30–35°C in Mumbai, with humidity, and hot, dry conditions in Aurangabad and Kanha, where afternoon temperatures can climb higher. Early mornings on safari can feel cool, so bring a light layer.',
+        ],
+      },
+      {
+        question: 'Is the Dharavi walk respectful?',
+        answer: [
+          'Yes. The walk is led by a local organisation and focuses on Dharavi’s people, businesses and working communities. It’s an opportunity to learn about the neighbourhood beyond the stereotypes. Groups are small, and photography is restricted out of respect for residents and workers.',
+        ],
+      },
+      {
+        question: 'What should I pack?',
+        answer: [
+          'Bring light, breathable clothing, a hat, sunscreen and comfortable walking shoes. Clothes covering your shoulders and knees are useful for temple visits, along with footwear that’s easy to remove where required. For safaris, choose neutral colours and pack a light layer for early mornings. Keep your luggage light: the planned domestic flights allow 15 kg of checked baggage and 7 kg of hand luggage, subject to airline confirmation.',
+        ],
+      },
+      {
+        question: 'When should I arrive and leave?',
+        answer: [
+          'Ideally, arrive in Mumbai on the morning of Day 1 so you can join the welcome walk to the Gateway of India. If your flight arrives later, we’ll adjust the plan where possible. On Day 10, we expect to arrive back in Mumbai at 14:05. If you’re flying home that day, choose an evening or later departure and allow enough time for any terminal transfer and check-in.',
+        ],
+      },
+      {
+        question: 'Do I need a visa?',
+        answer: [
+          'Most travellers need a visa to enter India, and many nationalities are eligible to apply online for an e-Visa. Requirements depend on your passport, so check the official Indian visa website and apply well in advance.',
+        ],
+      },
+      {
+        question: 'What about the food?',
+        answer: [
+          'Indian food is wonderfully varied, with plenty of vegetarian options. Let us know about any dietary requirements when you book so we can communicate them to our local partners. Drink bottled or properly filtered water throughout the trip.',
+        ],
+      },
+      {
+        question: 'Who travels with the group?',
+        answer: [
+          'An Omaya Travel representative accompanies the group throughout the journey. Local English-speaking guides join us in Mumbai and Aurangabad, and each safari jeep has a naturalist.',
+        ],
+      },
+      {
+        question: 'Do I need travel insurance?',
+        answer: [
+          'Yes. Comprehensive travel insurance is required. Make sure your policy covers medical treatment, emergency evacuation and trip cancellation, and check that it covers the activities included in this itinerary.',
+        ],
+      },
+    ],
+  },
+  enquiry: {
+    enabled: true,
+    cta: 'Check Availability',
+  },
+  seo: {
+    title: 'India Small Group Tour: Mumbai, Ajanta, Ellora & Kanha',
+    description:
+      '10 days in India: Mumbai’s dabbawalas and Dharavi, the Ellora and Ajanta caves, and tiger safaris in Kanha. Small group with an Omaya tour leader.',
+  },
+  source: {
+    legacyUrl: 'https://omayatravel.com/tour-item/india-mumbai-ajanta-ellora-kanha-tour/',
+  },
+};
+
 export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
   ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE,
+  INDIA_MUMBAI_AJANTA_ELLORA_KANHA,
   {
     id: 'bulgaria-beyond-the-ordinary',
     slug: 'bulgaria-beyond-the-ordinary',

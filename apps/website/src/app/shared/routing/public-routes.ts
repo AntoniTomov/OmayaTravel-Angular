@@ -25,11 +25,18 @@ export interface PublicRedirectDefinition {
   statusCode: 301;
 }
 
-export const PUBLIC_DESTINATION_SLUGS = ['algeria', 'bulgaria', 'kyrgyzstan', 'morocco'] as const;
+export const PUBLIC_DESTINATION_SLUGS = [
+  'algeria',
+  'bulgaria',
+  'india',
+  'kyrgyzstan',
+  'morocco',
+] as const;
 
 export const PUBLIC_TOUR_SLUGS = [
   'algeria-desert-expedition-tadrart-rouge',
   'bulgaria-beyond-the-ordinary',
+  'india-mumbai-ajanta-ellora-kanha-tour',
   'india-tour',
   'kyrgyzstan-tour',
   'morocco-tour',
@@ -58,6 +65,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'india-otblizo',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
+  'dharavi-mumbai-guide',
   'the-complete-visitor-guide-to-rila-monastery',
 ] as const;
 
