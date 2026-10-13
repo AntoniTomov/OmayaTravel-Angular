@@ -585,7 +585,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
       {
         question: 'Why do you need my passport details so early?',
         answer: [
-          'Safari permits are issued by the forest department up to 120 days before the safari and are subject to availability. Late March is a busy time, so we’ll aim to book as soon as the booking window opens. Permits are linked to your passport details, so please let us know if you renew your passport after booking.',
+          'Safari permits are issued by the forest department up to 120 days before the safari and are subject to availability, so we’ll aim to book as soon as the booking window opens. Permits are linked to your passport details, so please let us know if you renew your passport after booking.',
         ],
       },
       {

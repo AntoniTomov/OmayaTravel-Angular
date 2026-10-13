@@ -280,7 +280,9 @@ export const AMELIA_BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
 ];
 
 export function blogMetadataForSite(siteId: SiteId): readonly BlogArticleMetadata[] {
-  return siteId === 'amelia' ? AMELIA_BLOG_ARTICLE_METADATA : BLOG_ARTICLE_METADATA;
+  return siteId === 'amelia'
+    ? AMELIA_BLOG_ARTICLE_METADATA
+    : [...BLOG_ARTICLE_METADATA].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
 export function findBlogMetadataBySlug(
