@@ -522,8 +522,26 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
       meals: ['breakfast'],
     },
   ],
-  // Gallery photographs to follow.
-  gallery: [],
+  gallery: (
+    [
+      ['gateway-of-india', 'The Gateway of India on the Mumbai waterfront'],
+      ['mumbai-dabbawala', 'A dabbawala with tiffin boxes in Mumbai'],
+      ['dhobi-ghat', 'Mahalaxmi Dhobi Ghat, Mumbai’s open-air laundry'],
+      ['film-set', 'A Bollywood film set in Mumbai'],
+      ['tailor-workshop', 'A tailor at work in a Dharavi workshop'],
+      ['csmt-mumbai', 'Chhatrapati Shivaji Maharaj Terminus in Mumbai'],
+      ['ellora-kailasa', 'Kailasa Temple at Ellora'],
+      ['kailasa-temple-aerial', 'Kailasa Temple at Ellora seen from above'],
+      ['ajanta-caves', 'The Buddhist caves of Ajanta above the river gorge'],
+      ['tiger-kanha', 'A tiger in Kanha National Park'],
+      ['kanha-swamp-deer', 'Barasingha swamp deer in Kanha National Park'],
+    ] as const
+  ).map(([file, alt]) => ({
+    src: `${INDIA_ASSET_BASE}/gallery/${file}.webp`,
+    alt,
+    width: 800,
+    height: 1100,
+  })),
   faq: {
     heading: 'Your Journey, Simplified.',
     intro:
