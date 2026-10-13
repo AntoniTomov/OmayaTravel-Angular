@@ -65,6 +65,10 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
         target: '/destinations/bulgaria/',
       },
       {
+        label: 'India',
+        target: '/destinations/india/',
+      },
+      {
         label: 'Kyrgyzstan',
         target: '/destinations/kyrgyzstan/',
       },
@@ -260,6 +264,10 @@ export const TRIP_SEARCH_DESTINATIONS: readonly TripSearchDestination[] = [
   {
     label: 'Bulgaria',
     target: '/tour-item/bulgaria-beyond-the-ordinary/',
+  },
+  {
+    label: 'India',
+    target: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/',
   },
   {
     label: 'Kyrgyzstan',

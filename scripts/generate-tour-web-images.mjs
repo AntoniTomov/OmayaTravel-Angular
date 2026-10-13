@@ -131,6 +131,7 @@ const inputs = [
   "images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
   "images/women-tours/Morocco/morocco-women-only-bgr.webp",
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+  "images/destinations/India/ajanta-hero.webp",
   // First-screen images being made eager. Eager means downloading during the initial load next to
   // the hero, so they have to be cheap first: this one shipped 296,558 bytes of WebP.
   "images/private-tour/private-tour-image.webp",
@@ -300,6 +301,7 @@ const HERO_SOURCES = [
   "images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
   "images/women-tours/Morocco/morocco-women-only-bgr.webp",
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+  "images/destinations/India/ajanta-hero.webp",
   "images/amelia/tours/india/india-hero.webp",
   "images/amelia/tours/morocco/morocco-hero.webp",
   "images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp",
@@ -421,6 +423,7 @@ const MATCHED_QUALITY = {
   "images/home-page/trips-carousel/Tour-feature-image-2.webp": 60,
   "images/destinations/Marocco/morocco-bgr.webp": 70,
   "images/home-page/trips-carousel/Algeria-trip.webp": 95,
+  "images/home-page/trips-carousel/India-trip.webp": 60,
   "images/newsletter-popup-inner.webp": 55,
   "images/newsletter-popup-bgr.webp": 55,
   // Amelia. The hero-4 street scene is grainy and needs 75-80; hero-5 clears the bar at 50, the
@@ -573,6 +576,7 @@ const FEATURED_TRIP_SOURCES = [
   "images/home-page/trips-carousel/Tour-feature-image-2.webp",
   "images/destinations/Marocco/morocco-bgr.webp",
   "images/home-page/trips-carousel/Algeria-trip.webp",
+  "images/home-page/trips-carousel/India-trip.webp",
   "images/amelia/tours/india/india-card.webp",
   "images/amelia/tours/morocco/morocco-card.webp",
   "images/amelia/tours/saudi-arabia/saudi-arabia-card.webp",

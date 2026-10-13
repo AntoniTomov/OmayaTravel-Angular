@@ -150,6 +150,7 @@ const EN: TranslationDictionary = {
     people: 'people',
     fitnessLevel: 'Fitness level:',
     fitnessEasy: 'Easy',
+    fitnessModerate: 'Moderate',
     highlightsTitle: 'Tour Highlights',
     highlightsTitleBulgaria: 'Highlights of our Bulgaria Tour',
     departureReturnTitle: 'Departure/Return Location',
@@ -210,6 +211,7 @@ const EN: TranslationDictionary = {
       links: [
         { label: 'Algeria', target: '/tour-item/algeria-desert-expedition-tadrart-rouge/' },
         { label: 'Bulgaria', target: '/tour-item/bulgaria-beyond-the-ordinary/' },
+        { label: 'India', target: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/' },
         { label: 'Kyrgyzstan', target: '/tour-item/kyrgyzstan-tour/' },
         { label: 'Morocco', target: '/tour-item/morocco-tour/' },
       ],
@@ -251,6 +253,7 @@ const EN: TranslationDictionary = {
   destinations: [
     { label: 'Algeria', target: '/tour-item/algeria-desert-expedition-tadrart-rouge/' },
     { label: 'Bulgaria', target: '/tour-item/bulgaria-beyond-the-ordinary/' },
+    { label: 'India', target: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/' },
     { label: 'Kyrgyzstan', target: '/tour-item/kyrgyzstan-tour/' },
     { label: 'Morocco', target: '/tour-item/morocco-tour/' },
   ],
@@ -436,6 +439,7 @@ const BG: TranslationDictionary = {
     people: 'души',
     fitnessLevel: 'Физическа натовареност:',
     fitnessEasy: 'Лека',
+    fitnessModerate: 'Средна',
     highlightsTitle: 'Акценти',
     highlightsTitleBulgaria: 'Акценти от пътуването в България',
     departureReturnTitle: 'Начало и край на пътуването',
@@ -495,6 +499,7 @@ const BG: TranslationDictionary = {
       links: [
         { label: 'Алжир', target: '/tour-item/algeria-desert-expedition-tadrart-rouge/' },
         { label: 'България', target: '/tour-item/bulgaria-beyond-the-ordinary/' },
+        { label: 'Индия', target: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/' },
         { label: 'Киргизстан', target: '/tour-item/kyrgyzstan-tour/' },
         { label: 'Мароко', target: '/tour-item/morocco-tour/' },
       ],
@@ -536,6 +541,7 @@ const BG: TranslationDictionary = {
   destinations: [
     { label: 'Алжир', target: '/tour-item/algeria-desert-expedition-tadrart-rouge/' },
     { label: 'България', target: '/tour-item/bulgaria-beyond-the-ordinary/' },
+    { label: 'Индия', target: '/tour-item/india-mumbai-ajanta-ellora-kanha-tour/' },
     { label: 'Киргизстан', target: '/tour-item/kyrgyzstan-tour/' },
     { label: 'Мароко', target: '/tour-item/morocco-tour/' },
   ],

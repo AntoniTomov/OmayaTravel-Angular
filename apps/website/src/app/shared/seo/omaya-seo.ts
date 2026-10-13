@@ -250,7 +250,7 @@ export class OmayaSeo {
 
       return {
         metadata: {
-          title: articlePageTitle(post.title, identity.name),
+          title: articlePageTitle(post.seoTitle ?? post.title, identity.name),
           description: post.excerpt,
           ...this.brandPageSeo(site, canonicalPath),
           image:

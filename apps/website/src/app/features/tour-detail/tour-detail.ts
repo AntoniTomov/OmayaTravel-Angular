@@ -76,6 +76,7 @@ interface CalendarDay {
 
 const FITNESS_LEVEL_KEYS: Readonly<Record<string, `tourDetail.${string}`>> = {
   Easy: 'tourDetail.fitnessEasy',
+  Moderate: 'tourDetail.fitnessModerate',
 };
 
 @Component({

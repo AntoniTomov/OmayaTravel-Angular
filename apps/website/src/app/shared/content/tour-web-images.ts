@@ -64,6 +64,8 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/37e6c2650b5ff271.avif',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/fcf0d78e913c5388.avif',
+  '/assets/images/destinations/India/ajanta-hero.webp':
+    '/assets/images/tour-web/2dd135d5342db614.avif',
   '/assets/images/private-tour/private-tour-image.webp':
     '/assets/images/tour-web/68a303e2b1e1df16.avif',
   '/assets/images/our-story/Our-story-16.webp': '/assets/images/tour-web/3dca3ff23b3b67b5.avif',
@@ -249,6 +251,8 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/e1cc9302feb8f791.avif 320w, /assets/images/tour-web/7666087c1d1390be.avif 480w, /assets/images/tour-web/139e494e0afb5de8.avif 640w, /assets/images/tour-web/9705fc8aad16f2a1.avif 800w, /assets/images/tour-web/59c08ed03248fb3c.avif 960w, /assets/images/tour-web/b2234ddd3610a577.avif 1440w, /assets/images/tour-web/37e6c2650b5ff271.avif 1600w',
   '/assets/images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp':
     '/assets/images/tour-web/4f1d6ac272e3e939.avif 320w, /assets/images/tour-web/08a7956e18b0083f.avif 480w, /assets/images/tour-web/24e24791a1fa3604.avif 640w, /assets/images/tour-web/4641c2f7e7b6c601.avif 800w, /assets/images/tour-web/825a93a18a1c4b52.avif 960w, /assets/images/tour-web/872826211e5df282.avif 1440w, /assets/images/tour-web/fcf0d78e913c5388.avif 1600w',
+  '/assets/images/destinations/India/ajanta-hero.webp':
+    '/assets/images/tour-web/63b0b6901aa49674.avif 320w, /assets/images/tour-web/50ab3d7f89776c1e.avif 480w, /assets/images/tour-web/f91fc58c4fd604d0.avif 640w, /assets/images/tour-web/05f789a51657802f.avif 800w, /assets/images/tour-web/bdab11748409bb51.avif 960w, /assets/images/tour-web/76e555abcf373ad1.avif 1440w, /assets/images/tour-web/ce18f5007068f14d.avif 1920w, /assets/images/tour-web/2dd135d5342db614.avif 2400w',
   '/assets/images/private-tour/private-tour-image.webp':
     '/assets/images/tour-web/723e222464aa8d20.avif 320w, /assets/images/tour-web/470033ae9d95fc21.avif 480w, /assets/images/tour-web/6ca085536fd36470.avif 640w, /assets/images/tour-web/e59b0188d48c3937.avif 800w, /assets/images/tour-web/d8f03285b5730130.avif 960w, /assets/images/tour-web/d589b814d9fa2cf4.avif 1440w, /assets/images/tour-web/68a303e2b1e1df16.avif 1600w',
   '/assets/images/our-story/Our-story-16.webp':
@@ -399,6 +403,8 @@ export const TOUR_WEB_THUMBNAIL_SRCSETS: Readonly<Record<string, string>> = {
 };
 // Centred crops of each tour hero for phones up to 30rem. See HERO_SOURCES in the generator.
 export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/destinations/India/ajanta-hero.webp':
+    '/assets/images/tour-web/193ef3b6681a063d.avif 320w, /assets/images/tour-web/18816392cadc3720.avif 480w, /assets/images/tour-web/7af838a96604c2d3.avif 640w, /assets/images/tour-web/6731fbb643a344ad.avif 840w, /assets/images/tour-web/944425d017e4b6f7.avif 932w',
   '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp':
     '/assets/images/tour-web/5be85c8f872e8152.avif 320w, /assets/images/tour-web/ecc7ea6b95198eb7.avif 480w, /assets/images/tour-web/37d0fcdb96e9e986.avif 622w',
   '/assets/images/destinations/Bulgaria/bulgaria-tour-bgr.webp':
@@ -501,6 +507,8 @@ export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<
 };
 // Centred 1 / 0.9 crops of the featured-trip card images for phones up to 44rem. See FEATURED_TRIP_SOURCES in the generator.
 export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/India-trip.webp':
+    '/assets/images/tour-web/eccc5c4ae48a92fd.avif 320w, /assets/images/tour-web/bce367dae1dd2c0f.avif 480w, /assets/images/tour-web/b6378c9505fc5cb3.avif 560w, /assets/images/tour-web/a149a1b16434b0ae.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
     '/assets/images/tour-web/c9a32fb08b9aab33.avif 320w, /assets/images/tour-web/25feb049e0d66801.avif 480w, /assets/images/tour-web/5f4e9168ddf61417.avif 560w, /assets/images/tour-web/ba2a65c29ea0f18e.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
@@ -518,6 +526,8 @@ export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
 };
 // Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
 export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
+  '/assets/images/home-page/trips-carousel/India-trip.webp':
+    '/assets/images/tour-web/e85ae8a0189454f5.avif 320w, /assets/images/tour-web/8f3f67ac0e3f915b.avif 480w, /assets/images/tour-web/c4bc8e6c6a5759bf.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-1.webp':
     '/assets/images/tour-web/e4d0eb200e34ef11.avif 320w, /assets/images/tour-web/6c1f2d13bb403cae.avif 480w, /assets/images/tour-web/6c3c7fb2b543d5b9.avif 632w',
   '/assets/images/home-page/trips-carousel/Tour-feature-image-2.webp':
