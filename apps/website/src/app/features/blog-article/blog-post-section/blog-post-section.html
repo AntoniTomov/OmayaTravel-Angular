@@ -58,6 +58,17 @@
     </div>
   }
 
+  @if (section.faq) {
+    <div class="blog-post-section__faq">
+      @for (item of section.faq; track item.question) {
+        <details>
+          <summary>{{ item.question }}</summary>
+          <p>{{ item.answer }}</p>
+        </details>
+      }
+    </div>
+  }
+
   @if (section.cta; as cta) {
     <p>
       {{ cta.before }}<a [routerLink]="cta.linkUrl">{{ cta.linkText }}</a
