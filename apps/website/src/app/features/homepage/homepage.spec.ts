@@ -178,7 +178,7 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
     expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
-      '/assets/images/destinations/Marocco/morocco-bgr.webp',
+      '/assets/images/blog-posts/Dharavi, Mumbai/dharavi-street.webp',
     );
   });
 
