@@ -525,6 +525,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
   gallery: (
     [
       ['gateway-of-india', 'The Gateway of India on the Mumbai waterfront'],
+      ['marine-drive-mumbai', 'Marine Drive along the Mumbai seafront at dusk'],
       ['mumbai-dabbawala', 'A dabbawala with tiffin boxes in Mumbai'],
       ['dhobi-ghat', 'Mahalaxmi Dhobi Ghat, Mumbai’s open-air laundry'],
       ['film-set', 'A Bollywood film set in Mumbai'],
