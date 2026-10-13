@@ -400,7 +400,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
     min: 6,
     max: 12,
   },
-  departures: ['2026-11-09', '2027-03-23'],
+  departures: ['2027-03-23', '2027-11-09'],
   heroImage: {
     src: `${INDIA_ASSET_BASE}/ajanta-hero.webp`,
     alt: 'The Buddhist caves of Ajanta carved into a river gorge, India',
@@ -429,6 +429,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
     'Activities as mentioned, including 2 jeep safaris',
     'Entry fees for the mentioned sites',
     'Local English-speaking guides and a naturalist on every safari',
+    'Village visit in Kanha',
     'Omaya Travel representative',
   ],
   notIncluded: [
@@ -437,7 +438,6 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
     'Insurance',
     'Meals not mentioned',
     'Tips',
-    'Village visit in Kanha',
     'Single room supplement',
   ],
   itinerary: [
