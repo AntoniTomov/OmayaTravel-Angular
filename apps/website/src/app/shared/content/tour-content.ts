@@ -400,7 +400,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
     min: 6,
     max: 12,
   },
-  departures: ['2026-11-09', '2027-03-23'],
+  departures: ['2027-03-23', '2027-11-09'],
   heroImage: {
     src: `${INDIA_ASSET_BASE}/ajanta-hero.webp`,
     alt: 'The Buddhist caves of Ajanta carved into a river gorge, India',
