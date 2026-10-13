@@ -372,7 +372,6 @@ const INDIA_HIGHLIGHTS = [
     'tiger-kanha',
     'A tiger in Kanha National Park',
   ],
-  ['Three nights in a forest lodge', 'jungle-lodge', 'A forest lodge in Kanha'],
 ] as const;
 
 export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
