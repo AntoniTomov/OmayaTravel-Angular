@@ -149,6 +149,22 @@ const MOROCCO_WOMEN_ASSET_BASE = '/assets/images/women-tours/Morocco';
 const MOROCCO_WOMEN_ONLY_TOUR_SLUG = 'tour-item-morocco-women-only-tour';
 const MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG = 'tour-item-morocco-solo-travellers-tour';
 
+const CLASSIC_TOUR_FAQ_HEADING = 'Your Journey, Simplified.';
+const CLASSIC_TOUR_FAQ_INTRO =
+  'Got questions about your upcoming adventure? Our FAQ section covers the essentials: visa requirements, accommodation, health, safety, packing advice and cultural tips. Find the quick answers you need to get your bags packed and your itinerary set.';
+
+/** The classic-tour explainer every classic tour's FAQ opens with, naming the tour's country. */
+function classicToursFaqItem(country: string): TourFaqItem {
+  return {
+    question: 'What are classic tours, and what other tour types does Omaya offer?',
+    answer: [
+      "Our classic tours are open to everyone - solo travellers, couples, friends and families travelling together. They're the ideal choice if you want to share the experience with a mixed group of like-minded people from all walks of life, guided by our expert local teams at a pace that works for all.",
+      `Alongside our classic tours, we also offer two specialist formats. Our solo traveller tours are designed specifically for those exploring on their own — with small groups, a carefully considered pace, and a natural setting for meeting fellow independent travellers. Our women-only tours create a warm, supportive environment for women who want to experience ${country} with the freedom and confidence that comes from travelling in an all-female group.`,
+      'Not sure which is right for you? Our team is happy to talk it through and help you find the best fit.',
+    ],
+  };
+}
+
 export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   id: 'algeria-desert-expedition-tadrart-rouge',
   slug: 'algeria-desert-expedition-tadrart-rouge',
@@ -336,6 +352,11 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     width: 800,
     height: 1100,
   })),
+  faq: {
+    heading: CLASSIC_TOUR_FAQ_HEADING,
+    intro: CLASSIC_TOUR_FAQ_INTRO,
+    items: [classicToursFaqItem('Algeria')],
+  },
   enquiry: {
     enabled: true,
     cta: 'Check Availability',
@@ -372,7 +393,6 @@ const INDIA_HIGHLIGHTS = [
     'tiger-kanha',
     'A tiger in Kanha National Park',
   ],
-  ['Three nights in a forest lodge', 'jungle-lodge', 'A forest lodge in Kanha'],
 ] as const;
 
 export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
@@ -526,6 +546,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
   gallery: (
     [
       ['gateway-of-india', 'The Gateway of India on the Mumbai waterfront'],
+      ['marine-drive-mumbai', 'Marine Drive along the Mumbai seafront at dusk'],
       ['mumbai-dabbawala', 'A dabbawala with tiffin boxes in Mumbai'],
       ['dhobi-ghat', 'Mahalaxmi Dhobi Ghat, Mumbai’s open-air laundry'],
       ['film-set', 'A Bollywood film set in Mumbai'],
@@ -548,6 +569,7 @@ export const INDIA_MUMBAI_AJANTA_ELLORA_KANHA: TourDetailContent = {
     intro:
       'Got questions about your upcoming adventure? Our FAQ section covers the essentials: visa requirements, accommodation, health, safety, packing advice and cultural tips. Find the quick answers you need to get your bags packed and your itinerary set.',
     items: [
+      classicToursFaqItem('India'),
       {
         question: 'I’m travelling solo. Will I pay a single supplement?',
         answer: [
@@ -1122,6 +1144,11 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       height: 1100,
     })),
     gallerySubtitle: "Central Asia's last great nomadic frontier, lived from the inside",
+    faq: {
+      heading: CLASSIC_TOUR_FAQ_HEADING,
+      intro: CLASSIC_TOUR_FAQ_INTRO,
+      items: [classicToursFaqItem('Kyrgyzstan')],
+    },
     enquiry: {
       enabled: true,
       cta: 'Check Availability',
