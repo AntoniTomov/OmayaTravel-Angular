@@ -45,9 +45,9 @@ const DESTINATION_BRIEFS = [
   {
     slug: 'india',
     name: 'India',
-    theme: 'Palaces, temples and the sacred Ganges',
+    theme: 'City life, rock-cut caves and tiger forests',
     introduction:
-      'Omaya’s classic India journey moves through Rajasthan’s palace cities and on to the banks of the Ganges. Enjoy the soft morning light on the Taj Mahal, the bustle of bazaars scented with spice and marigolds, and evenings on the ghats as the lamps drift out across the river.',
+      'Omaya’s India journey moves from the rush of Mumbai to the cave temples of Ellora and Ajanta, then into the sal forests of Kanha. Enjoy the lunchtime rhythm of the dabbawalas, the hush inside a temple carved from a single rock, and the stillness of the forest at dawn as the jeeps roll out in search of tigers.',
     guideSlugs: [],
   },
 ] as const;
