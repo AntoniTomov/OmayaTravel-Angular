@@ -25,11 +25,18 @@ export interface PublicRedirectDefinition {
   statusCode: 301;
 }
 
-export const PUBLIC_DESTINATION_SLUGS = ['algeria', 'bulgaria', 'kyrgyzstan', 'morocco'] as const;
+export const PUBLIC_DESTINATION_SLUGS = [
+  'algeria',
+  'bulgaria',
+  'india',
+  'kyrgyzstan',
+  'morocco',
+] as const;
 
 export const PUBLIC_TOUR_SLUGS = [
   'algeria-desert-expedition-tadrart-rouge',
   'bulgaria-beyond-the-ordinary',
+  'india-mumbai-ajanta-ellora-kanha-tour',
   'india-tour',
   'kyrgyzstan-tour',
   'morocco-tour',

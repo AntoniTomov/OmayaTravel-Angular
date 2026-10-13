@@ -212,6 +212,11 @@ export const DESTINATION_PAGE_METADATA: Readonly<Record<string, PageMetadata>> =
     description:
       'Small group desert expeditions into the Algerian Sahara: Tadrart Rouge, Tassili n’Ajjer rock art, desert camping and Tuareg hospitality.',
   },
+  india: {
+    title: `India Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
+    description:
+      'Small group tours and holidays in India: Mumbai’s dabbawalas and Dharavi, the rock-cut caves of Ellora and Ajanta, and tiger country in Kanha.',
+  },
 };
 
 export function staticPageMetadata(routeKey: string | null | undefined): PageMetadata | undefined {

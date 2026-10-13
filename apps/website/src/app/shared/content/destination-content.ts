@@ -42,6 +42,14 @@ const DESTINATION_BRIEFS = [
       'Omaya’s Algeria journey focuses on the Tadrart Rouge: red dunes, sandstone formations and desert camping. Feel the deep silence of the Sahara, sandstone arches burning red at sunset, and nights spent sleeping out beneath the stars.',
     guideSlugs: ['tassili-najjer-national-park-algeria-guide'],
   },
+  {
+    slug: 'india',
+    name: 'India',
+    theme: 'Palaces, temples and the sacred Ganges',
+    introduction:
+      'Omaya’s classic India journey moves through Rajasthan’s palace cities and on to the banks of the Ganges. Enjoy the soft morning light on the Taj Mahal, the bustle of bazaars scented with spice and marigolds, and evenings on the ghats as the lamps drift out across the river.',
+    guideSlugs: [],
+  },
 ] as const;
 
 export const DESTINATION_CONTENT = DESTINATION_BRIEFS.map((brief) => {

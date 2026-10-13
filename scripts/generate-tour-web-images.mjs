@@ -131,6 +131,7 @@ const inputs = [
   "images/women-tours/beautiful-bulgaria-women/bulgaria-women-only-bgr.webp",
   "images/women-tours/Morocco/morocco-women-only-bgr.webp",
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+  "images/destinations/India/ajanta-hero.webp",
   // First-screen images being made eager. Eager means downloading during the initial load next to
   // the hero, so they have to be cheap first: this one shipped 296,558 bytes of WebP.
   "images/private-tour/private-tour-image.webp",
@@ -300,6 +301,7 @@ const HERO_SOURCES = [
   "images/women-tours/Kyrgystan-women/kyrgyzstan-women-only-bgr.webp",
   "images/women-tours/Morocco/morocco-women-only-bgr.webp",
   "images/solo-travellers/Morocco/Morocco-Solo-Travelers-bgr.webp",
+  "images/destinations/India/ajanta-hero.webp",
   "images/amelia/tours/india/india-hero.webp",
   "images/amelia/tours/morocco/morocco-hero.webp",
   "images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp",
