@@ -29,6 +29,11 @@ export interface BlogBoldListItem {
   text: string;
 }
 
+export interface BlogFaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface BlogSection {
   title?: string;
   text?: readonly string[];
@@ -40,6 +45,8 @@ export interface BlogSection {
   items?: readonly BlogNamedItem[];
   image?: BlogSectionImage;
   cta?: BlogSectionCta;
+  /** Questions shown as a collapsed accordion, each answer opening on demand. */
+  faq?: readonly BlogFaqItem[];
 }
 
 export interface BlogPostContent {
@@ -1091,39 +1098,38 @@ export const DHARAVI_MUMBAI_GUIDE: BlogPostContent = {
       },
     },
     {
-      title: 'Is Dharavi the largest slum in Asia?',
-      text: [
-        'It is often described that way, though some settlements in Karachi and elsewhere are larger by some measures. It is certainly one of the largest and most densely populated.',
-      ],
-    },
-    {
-      title: 'Is Dharavi safe to visit?',
-      text: [
-        'Yes, especially with a local guide. Violent crime against visitors is rare. Watch your step in narrow lanes and keep valuables out of sight, as you would anywhere in a big city.',
-      ],
-    },
-    {
-      title: 'How long does a Dharavi tour take?',
-      text: [
-        'Most guided walks last two to three hours, usually in the morning when the workshops are busiest.',
-      ],
-    },
-    {
-      title: 'Can I take photos in Dharavi?',
-      text: [
-        'Most responsible tours ask you not to photograph people, homes or workshops. Always ask first, and accept a no.',
-      ],
-    },
-    {
-      title: 'Was Slumdog Millionaire filmed in Dharavi?',
-      text: [
-        'Parts of it were, and the film made Dharavi known worldwide. The real neighbourhood is far more varied than the film suggests.',
-      ],
-    },
-    {
-      title: 'Where is Dharavi in Mumbai?',
-      text: [
-        'In the centre of the city, between Mahim, Sion and the Bandra-Kurla Complex. The nearest stations are Mahim on the Western line and Sion on the Central line.',
+      title: 'Dharavi FAQ',
+      faq: [
+        {
+          question: 'Is Dharavi the largest slum in Asia?',
+          answer:
+            'It is often described that way, though some settlements in Karachi and elsewhere are larger by some measures. It is certainly one of the largest and most densely populated.',
+        },
+        {
+          question: 'Is Dharavi safe to visit?',
+          answer:
+            'Yes, especially with a local guide. Violent crime against visitors is rare. Watch your step in narrow lanes and keep valuables out of sight, as you would anywhere in a big city.',
+        },
+        {
+          question: 'How long does a Dharavi tour take?',
+          answer:
+            'Most guided walks last two to three hours, usually in the morning when the workshops are busiest.',
+        },
+        {
+          question: 'Can I take photos in Dharavi?',
+          answer:
+            'Most responsible tours ask you not to photograph people, homes or workshops. Always ask first, and accept a no.',
+        },
+        {
+          question: 'Was Slumdog Millionaire filmed in Dharavi?',
+          answer:
+            'Parts of it were, and the film made Dharavi known worldwide. The real neighbourhood is far more varied than the film suggests.',
+        },
+        {
+          question: 'Where is Dharavi in Mumbai?',
+          answer:
+            'In the centre of the city, between Mahim, Sion and the Bandra-Kurla Complex. The nearest stations are Mahim on the Western line and Sion on the Central line.',
+        },
       ],
     },
   ],
