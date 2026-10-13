@@ -87,8 +87,8 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     preview:
       'Most people know Dharavi from a film or a headline: “Asia’s largest slum”. Walk through it for a morning and a different word keeps coming to mind – workshop. This guide covers what Dharavi is, how it grew, the trades that keep it running, the redevelopment now under way, and how to visit Dharavi in a way that respects the people who live there.',
     image: {
-      src: '/assets/images/destinations/India/gallery/tailor-workshop.webp',
-      alt: 'A tailor at work in a Dharavi workshop',
+      src: '/assets/images/blog-posts/Dharavi, Mumbai/dharavi-street.webp',
+      alt: 'A street in Dharavi, Mumbai',
     },
     relatedTour: {
       title: 'Deccan Discovery: Mumbai to Kanha',
