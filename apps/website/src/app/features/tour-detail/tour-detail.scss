@@ -901,16 +901,16 @@
   .tour-detail__hero-inquiry {
     position: relative;
     z-index: 1;
-    display: inline-block;
+    display: block;
     margin-top: 1.25rem;
     padding: 0.75rem 1.75rem;
     border: 0;
-    border-radius: 999px;
-    background: #fff;
+    border-radius: 2rem;
+    background: #ffffffe0;
+    box-shadow: 0 4px 16px #0000002e;
     color: #000;
     font: inherit;
     font-weight: 700;
-    cursor: pointer;
   }
 
   .tour-detail__tabs {
