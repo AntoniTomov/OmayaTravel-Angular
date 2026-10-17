@@ -22,7 +22,8 @@
 }
 
 // Slides out to the left of the button on hover or keyboard focus. Touch screens have no hover,
-// so phones get the button alone and go straight to WhatsApp on tap.
+// so phones get the button alone and go straight to WhatsApp on tap. Touch browsers keep :hover
+// stuck on after a tap, so the label is removed there outright rather than left showing.
 .whatsapp-button__label {
   position: absolute;
   right: calc(100% + 0.6rem);
@@ -45,5 +46,9 @@
   .whatsapp-button:focus-visible & {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  @media (hover: none) {
+    display: none;
   }
 }
