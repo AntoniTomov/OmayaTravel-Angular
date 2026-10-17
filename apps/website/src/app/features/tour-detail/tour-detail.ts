@@ -415,7 +415,7 @@ export class TourDetail {
     });
   }
 
-  protected trackTourCta(action: 'check_availability' | 'book_now' | 'discover_more'): void {
+  protected trackTourCta(action: 'book_now' | 'discover_more'): void {
     const tour = this.tour();
 
     this.analytics.trackEvent('click_enquire', {

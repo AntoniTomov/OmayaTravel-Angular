@@ -181,7 +181,7 @@ const EN: TranslationDictionary = {
     dayUnavailable: 'unavailable',
     termsPrefix: 'I agree to the',
     termsLink: 'Terms and Conditions',
-    bookNow: 'Book Now',
+    bookNow: 'Send inquiry',
     sending: 'Sending...',
     bookingSuccess:
       'Thank you. We received your booking request and will reply as soon as possible.',

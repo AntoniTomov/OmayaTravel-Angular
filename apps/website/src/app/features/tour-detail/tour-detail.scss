@@ -738,19 +738,6 @@
   cursor: pointer;
 }
 
-.tour-detail__availability {
-  color: var(--omaya-color-body);
-  background: var(--omaya-color-surface-alt);
-  transition:
-    background 0.5s,
-    color 0.5s;
-}
-
-.tour-detail__availability:is(:hover, :focus-visible) {
-  color: tokens.$omaya-color-white;
-  background: var(--omaya-color-accent);
-}
-
 .tour-detail__book {
   color: tokens.$omaya-color-white;
   background: var(--omaya-color-accent);
