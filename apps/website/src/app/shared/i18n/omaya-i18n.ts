@@ -160,7 +160,7 @@ const EN: TranslationDictionary = {
     galleryLabel: 'Tour gallery',
     galleryPreviewPrefix: 'Preview gallery image: ',
     bookingLabel: 'Tour booking',
-    bookingTitle: 'Ask about this tour',
+    bookingTitle: 'Enquire now',
     fieldName: 'Name*',
     fieldEmail: 'Email*',
     fieldConfirmEmail: 'Confirm Email*',
