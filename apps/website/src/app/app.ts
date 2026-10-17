@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, PLATFORM_ID, effect, inject } from '@angular/core';
+import { Component, PLATFORM_ID, computed, effect, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { PublicHeader } from './features/public-header/public-header';
@@ -26,6 +26,14 @@ export class App {
   private readonly activeSite = inject(ActiveSite);
   private readonly i18n = inject(OmayaI18n);
   private readonly seo = inject(OmayaSeo);
+  protected readonly whatsappUrl = computed(() => {
+    const { whatsappNumber, whatsappMessage } = this.activeSite.site().contact;
+    if (!whatsappNumber) {
+      return null;
+    }
+    const text = whatsappMessage ? `?text=${encodeURIComponent(whatsappMessage)}` : '';
+    return `https://wa.me/${whatsappNumber}${text}`;
+  });
   private lastTrackedPageView = '';
 
   constructor(router: Router) {
