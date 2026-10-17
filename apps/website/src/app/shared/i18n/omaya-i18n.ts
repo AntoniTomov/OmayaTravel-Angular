@@ -160,7 +160,7 @@ const EN: TranslationDictionary = {
     galleryLabel: 'Tour gallery',
     galleryPreviewPrefix: 'Preview gallery image: ',
     bookingLabel: 'Tour booking',
-    bookingTitle: 'Book this tour',
+    bookingTitle: 'Enquire now',
     fieldName: 'Name*',
     fieldEmail: 'Email*',
     fieldConfirmEmail: 'Confirm Email*',
@@ -181,7 +181,7 @@ const EN: TranslationDictionary = {
     dayUnavailable: 'unavailable',
     termsPrefix: 'I agree to the',
     termsLink: 'Terms and Conditions',
-    bookNow: 'Book Now',
+    bookNow: 'Send an enquiry',
     sending: 'Sending...',
     bookingSuccess:
       'Thank you. We received your booking request and will reply as soon as possible.',

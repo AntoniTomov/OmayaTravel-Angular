@@ -105,6 +105,13 @@ export class TourDetail {
   protected readonly i18n = inject(OmayaI18n);
   // Trustpilot reviews belong to the Omaya brand, not Amelia.
   protected readonly isOmaya = computed(() => this.activeSite.site().id === 'omaya');
+
+  protected scrollToBooking(): void {
+    this.host.nativeElement
+      .querySelector('.tour-detail__booking')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   private readonly descriptionSegmentCache = new WeakMap<
     TourItineraryDay,
     readonly TourDescriptionSegment[]
@@ -415,7 +422,7 @@ export class TourDetail {
     });
   }
 
-  protected trackTourCta(action: 'check_availability' | 'book_now' | 'discover_more'): void {
+  protected trackTourCta(action: 'book_now' | 'discover_more'): void {
     const tour = this.tour();
 
     this.analytics.trackEvent('click_enquire', {
