@@ -1,0 +1,49 @@
+// Stacked above the footer scroll-to-top button (3rem at 1.25rem from the corner), centred on it,
+// and below the cookie banner (z-index 50) so it never covers the consent buttons.
+.whatsapp-button {
+  position: fixed;
+  right: 1.125rem;
+  bottom: 5rem;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
+  transition: transform 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.08);
+  }
+}
+
+// Slides out to the left of the button on hover or keyboard focus. Touch screens have no hover,
+// so phones get the button alone and go straight to WhatsApp on tap.
+.whatsapp-button__label {
+  position: absolute;
+  right: calc(100% + 0.6rem);
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  opacity: 0;
+  transform: translateX(0.5rem);
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+
+  .whatsapp-button:hover &,
+  .whatsapp-button:focus-visible & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
