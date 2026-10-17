@@ -51,6 +51,11 @@
   text-align: center;
 }
 
+// Omaya only, and phones only, where the booking form sits far below the hero.
+.tour-detail__hero-inquiry {
+  display: none;
+}
+
 .tour-detail__hero-facts {
   position: relative;
   z-index: 1;
@@ -891,6 +896,21 @@
 
   .tour-detail__hero h1 {
     font-size: 3rem;
+  }
+
+  .tour-detail__hero-inquiry {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 0.75rem 1.75rem;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
   }
 
   .tour-detail__tabs {

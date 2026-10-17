@@ -27,6 +27,11 @@
         />
       </picture>
       <h1>{{ tour.title }}</h1>
+      @if (isOmaya()) {
+        <button type="button" class="tour-detail__hero-inquiry" (click)="scrollToBooking()">
+          Send an inquiry
+        </button>
+      }
       <!--
         Group size and duration decide whether a trip is a fit, so they sit with the title rather
         than inside the information tab. A guaranteed departure only shows on tours that have one.
