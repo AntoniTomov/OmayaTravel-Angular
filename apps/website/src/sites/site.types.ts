@@ -67,6 +67,10 @@ export interface SiteSeo {
 export interface SiteContact {
   email: string;
   phoneNumbers: readonly string[];
+  /** Digits only, international format, for wa.me links. Omitted to hide the WhatsApp button. */
+  whatsappNumber?: string;
+  /** Pre-filled text for the WhatsApp chat the button opens. */
+  whatsappMessage?: string;
   resendFrom: string;
   resendReplyTo: string;
 }
