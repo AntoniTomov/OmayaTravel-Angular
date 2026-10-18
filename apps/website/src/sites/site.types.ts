@@ -71,6 +71,10 @@ export interface SiteContact {
   whatsappNumber?: string;
   /** Pre-filled text for the WhatsApp chat the button opens. */
   whatsappMessage?: string;
+  /** Visible text beside the WhatsApp icon. Defaults to "Chat with us". */
+  whatsappLabel?: string;
+  /** Screen-reader name for the WhatsApp button. Defaults to "Chat with us on WhatsApp". */
+  whatsappAriaLabel?: string;
   resendFrom: string;
   resendReplyTo: string;
 }

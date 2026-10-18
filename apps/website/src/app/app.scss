@@ -24,6 +24,17 @@
 // Slides out to the left of the button on hover or keyboard focus. Touch screens have no hover,
 // so phones get the button alone and go straight to WhatsApp on tap. Touch browsers keep :hover
 // stuck on after a tap, so the label is removed there outright rather than left showing.
+// Amelia's softer palette: a translucent green that firms up on hover.
+.whatsapp-button--soft {
+  background: rgb(37 211 102 / 0.7);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.12);
+
+  &:hover,
+  &:focus-visible {
+    background: rgb(37 211 102 / 0.9);
+  }
+}
+
 .whatsapp-button__label {
   position: absolute;
   right: calc(100% + 0.6rem);
