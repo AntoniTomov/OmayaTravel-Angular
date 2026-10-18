@@ -34,6 +34,13 @@ export class App {
     const text = whatsappMessage ? `?text=${encodeURIComponent(whatsappMessage)}` : '';
     return `https://wa.me/${whatsappNumber}${text}`;
   });
+  protected readonly isAmelia = computed(() => this.activeSite.site().id === 'amelia');
+  protected readonly whatsappLabel = computed(
+    () => this.activeSite.site().contact.whatsappLabel ?? 'Chat with us',
+  );
+  protected readonly whatsappAriaLabel = computed(
+    () => this.activeSite.site().contact.whatsappAriaLabel ?? 'Chat with us on WhatsApp',
+  );
   private lastTrackedPageView = '';
 
   constructor(router: Router) {
