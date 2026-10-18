@@ -52,6 +52,9 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
   contact: {
     email: 'info@ameliatravel.bg',
     phoneNumbers: ['+359 88 973 5274', '+359 87 996 5946'],
+    whatsappNumber: '359889735274',
+    whatsappLabel: 'Свържете се с нас',
+    whatsappAriaLabel: 'Свържете се с нас в WhatsApp',
     resendFrom: 'Amelia Travel <website@ameliatravel.bg>',
     resendReplyTo: 'info@ameliatravel.bg',
   },
