@@ -50,7 +50,7 @@ export const OMAYA_SITE_CONFIG: SiteConfig = {
   contact: {
     email: 'info@omayatravel.com',
     phoneNumbers: ['+359 88 973 5274', '+359 87 996 5946'],
-    whatsappNumber: '359889735274',
+    whatsappNumber: '359879965946',
     whatsappMessage: 'Hi Omaya Travel, I have a question about your tours.',
     resendFrom: 'Omaya Travel <website@omayatravel.com>',
     resendReplyTo: 'info@omayatravel.com',
