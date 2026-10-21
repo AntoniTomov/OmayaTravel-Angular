@@ -48,6 +48,7 @@
         </p>
         <div class="destination-page__tours">
           @for (tour of country.tours; track tour.slug; let first = $first) {
+            @let cardImage = tour.cardImage ?? tour.heroImage;
             <article class="destination-page__tour">
               <a
                 [routerLink]="'/tour-item/' + tour.slug + '/'"
@@ -59,12 +60,12 @@
                   <!-- `cardSizes` explains why this is derived from the photograph's own ratio. -->
                   <source
                     type="image/avif"
-                    [attr.srcset]="tour.heroImage.src | tourWebImageSrcset"
-                    [attr.sizes]="cardSizes(tour.heroImage)"
+                    [attr.srcset]="cardImage.src | tourWebImageSrcset"
+                    [attr.sizes]="cardSizes(cardImage)"
                   />
                   <img
-                    [src]="tour.heroImage.src"
-                    [alt]="tour.heroImage.alt"
+                    [src]="cardImage.src"
+                    [alt]="cardImage.alt"
                     width="800"
                     height="530"
                     [attr.loading]="first ? 'eager' : 'lazy'"

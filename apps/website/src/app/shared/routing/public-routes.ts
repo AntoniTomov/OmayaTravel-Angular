@@ -44,6 +44,7 @@ export const PUBLIC_TOUR_SLUGS = [
   'tour-item-morocco-solo-travellers-tour',
   'tour-item-morocco-women-only-tour',
   'women-only-tour-bulgaria',
+  'women-only-tour-india',
   'women-only-tour-kyrgyzstan',
 ] as const;
 

@@ -103,6 +103,8 @@ export interface TourDetailContent {
    */
   guaranteedDepartures?: readonly string[];
   heroImage: TourImage;
+  /** Photo for tour cards on destination pages, when the wide hero crops badly into a card. */
+  cardImage?: TourImage;
   introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
   included: readonly string[];
@@ -148,6 +150,44 @@ const MOROCCO_SOLO_ASSET_BASE = '/assets/images/solo-travellers/Morocco';
 const MOROCCO_WOMEN_ASSET_BASE = '/assets/images/women-tours/Morocco';
 const MOROCCO_WOMEN_ONLY_TOUR_SLUG = 'tour-item-morocco-women-only-tour';
 const MOROCCO_SOLO_TRAVELLERS_TOUR_SLUG = 'tour-item-morocco-solo-travellers-tour';
+
+// The Omaya women-only India tour shares its photography with Amelia's India tour.
+function indiaWomenHighlightImage(index: 1 | 2 | 3 | 4 | 5, alt: string): TourImage {
+  return {
+    src: `${AMELIA_INDIA_ASSET_BASE}/highlights/india-highlight-${index}.webp`,
+    alt,
+    width: 150,
+    height: 150,
+  };
+}
+
+const INDIA_WOMEN_GALLERY: readonly TourImage[] = (
+  [
+    ['08_taj_mahal_domes', 'The domes of the Taj Mahal, Agra', 800, 1100],
+    ['04_india_gate', 'India Gate, New Delhi', 800, 1100],
+    ['07_qutub_minar', 'Qutub Minar, New Delhi', 800, 1100],
+    ['02_rickshaws_sunset', 'Rickshaws at sunset in India', 800, 1100],
+    ['05_hawa_mahal_horses', 'Hawa Mahal, the Palace of Winds, Jaipur', 1600, 1067],
+    ['11_block_printing_woman', 'Block printing with a local woman in Bagru', 800, 1100],
+    ['06_stepwell', 'A stepwell in Rajasthan', 1600, 1067],
+    ['03_henna_hand', 'Henna on a hand', 800, 1100],
+    ['01_jahangiri_arch_interior', 'An arch in Jahangiri Mahal, Agra Fort', 800, 1100],
+    ['10_jahangiri_mahal_fort', 'Jahangiri Mahal, Agra Fort', 1600, 901],
+    ['09_varanasi_ghats', 'The ghats of Varanasi on the Ganga', 1600, 1067],
+  ] as const
+)
+  .map(([file, alt, width, height]): TourImage => ({
+    src: `${AMELIA_INDIA_ASSET_BASE}/gallery/${file}.webp`,
+    alt,
+    width,
+    height,
+  }))
+  .concat({
+    src: '/assets/images/women-tours/India/india-ganges-1600x1067.webp',
+    alt: 'Women in saris praying in the Ganga at sunset',
+    width: 1600,
+    height: 1067,
+  });
 
 const CLASSIC_TOUR_FAQ_HEADING = 'Your Journey, Simplified.';
 const CLASSIC_TOUR_FAQ_INTRO =
@@ -2017,6 +2057,389 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     source: {
       legacyUrl: 'https://omayatravel.com/tour-item/women-only-tour-kyrgyzstan/',
+    },
+  },
+  {
+    id: 'women-only-tour-india',
+    slug: 'women-only-tour-india',
+    title: 'She Explores – India’s Royal & Spiritual Trail | Women only',
+    destination: {
+      country: 'India',
+      region: 'New Delhi, Jaipur, Agra, Varanasi',
+      startLocation: 'New Delhi',
+      endLocation: 'New Delhi',
+    },
+    category: 'Women only',
+    fitnessLevel: 'Easy',
+    duration: {
+      days: 14,
+      nights: 13,
+    },
+    price: {
+      amount: 1690,
+      currency: 'EUR',
+      unit: 'person',
+    },
+    groupSize: {
+      min: 6,
+      max: 12,
+    },
+    departures: ['2027-02-10', '2027-11-10'],
+    heroImage: {
+      src: `${AMELIA_INDIA_ASSET_BASE}/india-hero.webp`,
+      alt: 'The Taj Mahal at Agra, India',
+      width: 2560,
+      height: 515,
+    },
+    cardImage: {
+      src: '/assets/images/women-tours/India/india-taj-mahal-2018x841.webp',
+      alt: 'A woman photographing the Taj Mahal, Agra',
+      width: 2018,
+      height: 841,
+    },
+    introduction: [
+      'Fourteen days, a small group of women, and a country that takes its time to explain itself. We start in Delhi, where the old and new cities sit side by side, then follow the road to the Pink City of Jaipur, the Taj Mahal in Agra and the ghats of Varanasi.',
+      'Some of the best moments are the small ones: walking Old Delhi’s lanes with young people who grew up on them, pressing a printing block into fabric beside the women of Bagru, and sitting quietly on the Ganga as the city wakes up.',
+      'It’s women only, all the way. A woman from the Omaya team travels with you from Delhi to Delhi, together with an English-speaking female guide, so you can relax and simply be there. Between cities we go by road, by train to Varanasi, and on a short flight back to Delhi.',
+    ],
+    highlights: [
+      {
+        title: {
+          text: 'Bagru block printing with local women',
+          linkText: '',
+          link: '',
+        },
+        image: indiaWomenHighlightImage(3, 'Block printing with local women in Bagru'),
+      },
+      {
+        title: {
+          text: 'Delhi through the eyes of Salaam Baalak Trust',
+          linkText: '',
+          link: '',
+        },
+        image: indiaWomenHighlightImage(4, 'A street walk in Old Delhi'),
+      },
+      {
+        title: {
+          text: 'Taj Mahal',
+          linkText: '',
+          link: '',
+        },
+        image: indiaWomenHighlightImage(1, 'The Taj Mahal, Agra'),
+      },
+      {
+        title: {
+          text: 'Varanasi by boat',
+          linkText: '',
+          link: '',
+        },
+        image: indiaWomenHighlightImage(2, 'The Ganga at Varanasi'),
+      },
+      {
+        title: {
+          text: 'Chand Baori stepwell',
+          linkText: '',
+          link: '',
+        },
+        image: indiaWomenHighlightImage(5, 'Chand Baori stepwell, Abhaneri'),
+      },
+    ],
+    departureReturn: {
+      departure: 'New Delhi, India',
+      return: 'New Delhi, India',
+    },
+    included: [
+      '13 nights in hotels, in a double/twin room',
+      '13 breakfasts and 1 dinner (Harsoli Haveli)',
+      'Domestic flight Varanasi – New Delhi, economy class',
+      'Train Agra – Varanasi, AC chair car',
+      'All ground transport and transfers in an air-conditioned vehicle',
+      'Entry fees for all sites in the itinerary',
+      'Jeeps up to Amber Fort',
+      'Block-printing workshop with local women',
+      'Yoga session in Jaipur',
+      'Cooking demonstration with dinner at Harsoli Haveli',
+      'Salaam Baalak Trust walk in Delhi',
+      'Henna session',
+      'E-rickshaw ride in Varanasi',
+      'Two boat rides on the Ganga – the evening aarti and sunrise, life jackets included',
+      'English-speaking female guide throughout',
+      'Omaya Travel representative',
+      '2 bottles of water (0.5 l) per person per day while travelling by road',
+      'All local taxes and fees',
+    ],
+    notIncluded: [
+      'International flights to and from New Delhi',
+      'Indian visa',
+      'Insurance',
+      'Lunches and dinners not mentioned in the itinerary',
+      'Drinks, including water, at hotels and restaurants',
+      'Fees for professional camera and video equipment at sites',
+      'Tips for guides, drivers and staff',
+      'Personal expenses – laundry, phone, minibar, medical costs',
+      'Single room supplement – EUR 415',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in New Delhi',
+        description:
+          "Welcome to India. We'll meet you at the airport and take you to the hotel to settle in. Later, an easy first taste of the city at Connaught Place, its colonnaded Georgian-style buildings curving around the heart of New Delhi, and the stalls of Janpath Market, piled with saris, embroidered bags and trinkets. Delhi, you'll soon see, is really seven cities, built and rebuilt over the centuries – and it wears all of them at once.",
+        accommodation: 'Hotel in New Delhi',
+        meals: [],
+      },
+      {
+        day: 2,
+        title: 'New Delhi',
+        description:
+          "Today we move through Delhi's layers, one century at a time. First, Qutub Minar – a 72.5-metre minaret raised in 1192 and still one of the tallest in the world. We pass India Gate and Rashtrapati Bhavan, the President's residence, then slow down at Gurudwara Bangla Sahib, one of Delhi's most important Sikh temples, with its holy pool, the Sarovar. We end the day at Humayun's Tomb, the Mughal garden tomb that set the style the Taj Mahal would perfect 80 years later.",
+        accommodation: 'Hotel in New Delhi',
+        meals: ['breakfast'],
+      },
+      {
+        day: 3,
+        title: 'Old Delhi',
+        description:
+          "Old Delhi is a day for all your senses. We drive past the great Jama Masjid, built by Shah Jahan, and step into Chandni Chowk: spices and dried fruit, silver jewellery, bright saris, and narrow side streets of tiny shops selling essential oils and Indian sweets. Then comes a walk you'll remember – a private tour with the Salaam Baalak Trust, led by young people who once lived on these streets themselves. For about two hours they'll take you through New Delhi Railway Station and Paharganj to one of the Trust's shelter homes, and show you the city as they know it.",
+        accommodation: 'Hotel in New Delhi',
+        meals: ['breakfast'],
+      },
+      {
+        day: 4,
+        title: 'New Delhi – Jaipur',
+        description:
+          "We leave Delhi behind and drive to Jaipur (297 km, about 4.5 hours). In 1876 the old city was painted rose pink to welcome the Prince of Wales, and the colour stayed – it's been the Pink City ever since.",
+        accommodation: 'Hotel in Jaipur',
+        meals: ['breakfast'],
+      },
+      {
+        day: 5,
+        title: 'Jaipur',
+        description:
+          "Start the day gently with a yoga session. Then we ride by jeep up to Amber Fort, where Hindu and Mughal styles meet behind high ramparts and cobbled paths, stopping at the Panna Meena Kund stepwell, the Anokhi Museum and Jagat Shiromani Temple along the way. We pass the Hawa Mahal, the Palace of Winds, whose latticed windows let the royal women watch the street without being seen, and Jal Mahal, the Water Palace. Then one of the moments this trip is built around: a block-printing workshop with local Rajasthani women. The craft came to Jaipur with the Chhipa community of Bagru, still known for its natural vegetable dyes and dabu mud-resist prints – and today the women show you how it's done, hands-on.",
+        accommodation: 'Hotel in Jaipur',
+        meals: ['breakfast'],
+      },
+      {
+        day: 6,
+        title: 'Jaipur',
+        description:
+          "Today is royal Jaipur. At the City Palace, courtyards and carved doorways lead from one palace to the next – Chandra Mahal, Mubarak Mahal, Diwan-i-Khas – and to the Govind Dev Ji Temple. Next door, Jantar Mantar is an 18th-century observatory of 19 stone instruments, including the world's largest stone sundial. Then it's time to sit back for henna, and the day ends at Harsoli Haveli with a cooking demonstration and dinner together.",
+        accommodation: 'Hotel in Jaipur',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 7,
+        title: 'Jaipur – Abhaneri – Agra',
+        description:
+          'On the road to Agra (256 km, about 5 hours), we stop in the village of Abhaneri at Chand Baori, a stepwell with 3,500 steps on 13 levels. Then on to Agra, on the banks of the Yamuna, the Mughal capital until Shah Jahan moved it to Delhi.',
+        accommodation: 'Hotel in Agra',
+        meals: ['breakfast'],
+      },
+      {
+        day: 8,
+        title: 'Agra – Fatehpur Sikri – Agra',
+        description:
+          'We start at Agra Fort, home to three generations of Mughal emperors, with its pavilions, gardens and royal audience halls. Later we drive to Fatehpur Sikri (71 km, about 2 hours), the red-sandstone city Emperor Akbar built as his capital and left after only a decade – still beautifully preserved today.',
+        accommodation: 'Hotel in Agra',
+        meals: ['breakfast'],
+      },
+      {
+        day: 9,
+        title: 'Agra',
+        description:
+          "Today is the Taj Mahal. You've probably seen it in photos a hundred times, but standing in front of it is something else – the marble, the perfect symmetry, the reason it's called \"a teardrop on the cheek of eternity\". Afterwards we visit Itmad-ud-Daula's Tomb on the Yamuna, built by Empress Nur Jahan for her father. It was the first Mughal building made entirely of marble, and its lattice screens are worth a close look.",
+        accommodation: 'Hotel in Agra',
+        meals: ['breakfast'],
+      },
+      {
+        day: 10,
+        title: 'Agra – Varanasi',
+        description:
+          'An early start: we take the Vande Bharat Express to Varanasi (06:00–13:00, AC chair car). Varanasi, on the banks of the Ganga, is one of the oldest continuously inhabited cities in the world, a place of pilgrimage for Hindus and the home of finely woven Banarasi saris. Its spirit tends to stay with you long after you leave.',
+        accommodation: 'Hotel in Varanasi',
+        meals: ['breakfast'],
+      },
+      {
+        day: 11,
+        title: 'Varanasi',
+        description:
+          "A day close to the river. Varanasi's 88 ghats – the steps leading down to the Ganga – are where the city bathes and prays; two are used only for cremations. We visit Kashi Vishwanath Temple, dedicated to Lord Shiva and built by the Queen of Indore, and hop on an e-rickshaw to weave through the narrow lanes near the ghats, busy with people and the occasional cow. In the evening we head out by boat to watch the aarti, the ceremony that closes the day, from the water.",
+        accommodation: 'Hotel in Varanasi',
+        meals: ['breakfast'],
+      },
+      {
+        day: 12,
+        title: 'Varanasi – Sarnath',
+        description:
+          "Set your alarm – we're back on the river at dawn. As the sun rises over the city, people come down to the ghats to bathe, pray, greet the sun or simply open their stalls for the day. Later we go to Sarnath, about 10 km away, where the Buddha gave his first sermon. We walk among the ruins of stupas and monasteries from Emperor Ashoka's time, see Chaukhandi Stupa, where the Buddha met the five ascetics who became his first disciples, and visit the Sarnath Museum, home to the Lion Capital that became India's national emblem.",
+        accommodation: 'Hotel in Varanasi',
+        meals: ['breakfast'],
+      },
+      {
+        day: 13,
+        title: 'Varanasi – New Delhi',
+        description:
+          'We fly back to New Delhi (IndiGo, 12:20–13:45) for a final night together in the city.',
+        accommodation: 'Hotel in New Delhi',
+        meals: ['breakfast'],
+      },
+      {
+        day: 14,
+        title: 'Departure',
+        description:
+          "Time to say goodbye. We'll take you to the airport for your flight home – hopefully a little more curious than when you arrived.",
+        accommodation: null,
+        meals: ['breakfast'],
+      },
+    ],
+    gallery: INDIA_WOMEN_GALLERY,
+    faq: {
+      heading: CLASSIC_TOUR_FAQ_HEADING,
+      intro: CLASSIC_TOUR_FAQ_INTRO,
+      items: [
+        {
+          question: 'What makes this a women-only tour, and who will be leading the group?',
+          answer: [
+            'This tour is designed only for women, creating a relaxed, supportive atmosphere where you can travel freely and connect with like-minded women along the way. A woman from the Omaya Travel team meets you in Delhi and stays with the group throughout the trip, so you have female support at every stage.',
+            "On the ground, an English-speaking female guide travels with the group for the whole tour, from Delhi to Delhi, including Varanasi. Local drivers may be men. They're experienced professionals, but they're not part of the Omaya team.",
+            'Not sure if this is the right fit for you? Our team is happy to talk it through and help you find the best tour for your trip.',
+          ],
+        },
+        {
+          question: 'Can I bring my son/partner/male family member?',
+          answer: [
+            "This tour is reserved for women only, so male travellers, including partners and family members, can't join, regardless of age or relationship to the traveller.",
+          ],
+        },
+        {
+          question: 'Is this tour suitable for solo women travellers?',
+          answer: [
+            "Yes, many women join solo. You'll be part of a small, supportive all-female group. You can share a twin room with two separate beds with another traveller (matched by Omaya Travel) and pay the normal twin-sharing price, or book a private room with the single supplement (EUR 415). Single rooms are limited on each departure, so it's best to book early if you'd like one.",
+          ],
+        },
+        {
+          question: 'How physically demanding is the tour?',
+          answer: [
+            'The pace is light. Expect walking at monuments, markets and the ghats, a few early mornings and some long drives.',
+          ],
+        },
+        {
+          question: 'How do we travel between cities?',
+          answer: [
+            'By air-conditioned vehicle on the road days (Delhi to Jaipur is about 4.5 hours, Jaipur to Agra about 5 hours with a stop in Abhaneri). From Agra to Varanasi we take the Vande Bharat Express train, and from Varanasi we fly back to Delhi.',
+          ],
+        },
+        {
+          question: 'Which meals are included?',
+          answer: [
+            'Breakfast every day and one dinner, at Harsoli Haveli in Jaipur after the cooking demonstration. All other meals are free for you to choose.',
+          ],
+        },
+        {
+          question: 'Can I add the optional activities?',
+          answer: [
+            'Yes. The Birla Temple visit, the Bollywood dance class in Jaipur and the yoga session facing the Taj in Agra can be added at an extra cost.',
+          ],
+        },
+        {
+          question: 'Do I need a visa for India?',
+          answer: [
+            "Yes, foreign nationals need a tourist visa to enter India. We'll also need your full passport details to book the train and the flight. Train bookings in India open 120 days before travel, so please send them early.",
+          ],
+        },
+        {
+          question: 'Do I need travel insurance?',
+          answer: ['We strongly recommend it for travel to India.'],
+        },
+        {
+          question: 'Do I need any vaccines?',
+          answer: [
+            "No vaccines are required to enter India, unless you're arriving from a country with a risk of yellow fever, in which case you'll need a yellow fever certificate. Hepatitis A and typhoid are commonly recommended, and it's worth checking your routine vaccines are up to date. Please speak to your doctor or a travel clinic 6–8 weeks before you go.",
+          ],
+        },
+        {
+          question: 'Is India safe for women travellers?',
+          answer: [
+            "You'll travel as a group, with a female guide and a woman from the Omaya team with you the whole way, and every transfer is arranged. As anywhere busy, keep valuables close in crowded markets, stations and temples. You may get curious looks or requests for photos; it's fine to politely say no. Modest clothing helps you feel more comfortable and is respectful at religious sites.",
+          ],
+        },
+        {
+          question: 'What should I pack?',
+          answer: [],
+          bullets: [
+            "Light, breathable clothes that cover shoulders and knees, plus a scarf – you'll need to cover your head at the Sikh temple and it's handy at other religious sites",
+            'A warm layer or light jacket for early mornings and evenings, especially the dawn boat ride in Varanasi',
+            "Comfortable walking shoes that are easy to slip off – you'll take them off at temples",
+            'Sun hat, sunglasses and sunscreen',
+            'Insect repellent',
+            'Hand sanitiser and tissues',
+            "A face mask if you're sensitive to dust or city air",
+            'Any personal medication, plus basic remedies for an upset stomach',
+            'A plug adapter and a power bank',
+          ],
+        },
+        {
+          question: 'Is the tap water drinkable?',
+          answer: [
+            "No, please don't drink tap water in India. Stick to bottled or filtered water, including for brushing your teeth, and avoid ice unless you're sure it's made from safe water. Two bottles of water per person per day are included during our drives.",
+          ],
+        },
+        {
+          question: 'What kind of power sockets are used in India?',
+          answer: [
+            "India uses type C, D and M sockets, at 230 V and 50 Hz. Travellers from the US and UK will need an adapter. Scandinavian plugs (type C) usually fit, but larger type F plugs may not, so a universal adapter is the safest choice. If your devices only run on 110 V, you'll also need a converter.",
+          ],
+        },
+        {
+          question: 'What currency is used, and can I pay by card?',
+          answer: [
+            'The currency is the Indian rupee (INR). Cards are accepted in hotels, restaurants and larger shops, and ATMs are easy to find in the cities. Carry some cash for markets, small purchases and tips.',
+          ],
+        },
+        {
+          question: 'Should I tip?',
+          answer: [
+            "Tipping is customary in India and isn't included in the tour price. It's usual to tip guides, drivers and hotel and restaurant staff. Your Omaya tour leader will let you know how much is usual and when.",
+          ],
+        },
+        {
+          question: 'What language is spoken?',
+          answer: [
+            'Hindi is the most widely spoken language in the north, and English is common in hotels, restaurants and tourist areas. Your guide speaks English throughout the tour.',
+          ],
+        },
+        {
+          question: 'Why do we go up to Amber Fort by jeep?',
+          answer: [
+            'We believe animals should be treated with respect and never forced into unnatural behaviour for tourism. Our partners in India share this view, so we skip animal rides.',
+          ],
+        },
+        {
+          question: 'What time can I check in and out of the hotels?',
+          answer: [
+            'Check-in is from 14:00 and check-out by 12:00. Early check-in or late check-out depends on availability on the day.',
+          ],
+        },
+        {
+          question: 'Can I smoke or vape in India?',
+          answer: [
+            "Smoking is banned in hotels, restaurants and public areas, and allowed only in designated rooms. E-cigarettes are banned in India, so please don't pack them.",
+          ],
+        },
+      ],
+    },
+    enquiry: {
+      enabled: true,
+      cta: 'Check Availability',
+    },
+    seo: {
+      title: 'Women-Only India Tour: Delhi, Jaipur, Agra & Varanasi',
+      description:
+        "A 14-day women-only tour of North India: the Taj Mahal, Jaipur's forts, Varanasi's Ganga aarti and block printing with Rajasthani women.",
+    },
+    source: {
+      legacyUrl: 'https://omayatravel.com/tour-item/women-only-tour-india/',
     },
   },
 ];

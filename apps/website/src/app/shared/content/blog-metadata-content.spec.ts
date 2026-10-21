@@ -29,7 +29,7 @@ describe('published content integrity', () => {
   });
 
   it('publishes the owner-confirmed fitness rating for every public tour and variant', () => {
-    expect(PUBLIC_TOURS).toHaveLength(9);
+    expect(PUBLIC_TOURS).toHaveLength(10);
     expect(
       PUBLIC_TOURS.map((tour) => ({ slug: tour.slug, fitness: tour.fitnessLevel })).filter(
         (tour) => tour.fitness !== 'Easy' && tour.slug !== 'india-mumbai-ajanta-ellora-kanha-tour',
