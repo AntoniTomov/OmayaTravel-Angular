@@ -217,6 +217,11 @@ export const DESTINATION_PAGE_METADATA: Readonly<Record<string, PageMetadata>> =
     description:
       'Small group tours and holidays in India: Mumbai’s dabbawalas and Dharavi, the rock-cut caves of Ellora and Ajanta, and tiger country in Kanha.',
   },
+  namibia: {
+    title: `Namibia Small Group Tours & Holidays | ${BRAND_SUFFIX}`,
+    description:
+      'Small group tours and holidays in Namibia: Fish River Canyon, the red dunes of Sossusvlei, Swakopmund on the Atlantic and the waterholes of Etosha.',
+  },
 };
 
 export function staticPageMetadata(routeKey: string | null | undefined): PageMetadata | undefined {

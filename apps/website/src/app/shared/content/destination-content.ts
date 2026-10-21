@@ -50,6 +50,14 @@ const DESTINATION_BRIEFS = [
       'India comes in two journeys with Omaya. One moves from the rush of Mumbai, with the lunchtime rhythm of its dabbawalas, to the cave temples of Ellora and Ajanta and the sal forests of Kanha, where the jeeps roll out at dawn in search of tigers. The other, for women only, crosses the north: the old lanes of Delhi, the pink walls of Jaipur, the Taj Mahal at Agra and the ghats of Varanasi, where the city wakes up slowly along the Ganga.',
     guideSlugs: ['dharavi-mumbai-guide'],
   },
+  {
+    slug: 'namibia',
+    name: 'Namibia',
+    theme: 'Canyon, red dunes, the Atlantic coast and the waterholes of Etosha',
+    introduction:
+      'Namibia is a country of very long roads and very few people, and the land does most of the talking. The Fish River Canyon drops away in folds of rock at your feet; at Sossusvlei the dunes turn from apricot to deep red as the sun climbs, and the dead camel thorn trees of Deadvlei stand on white clay where they have stood for centuries. Then the desert runs straight into the cold Atlantic at Swakopmund, the granite of Spitzkoppe glows at dusk, and in Etosha the animals come to the waterholes as the light goes. Omaya’s women-only journey begins across the border in Cape Town and follows that whole road north to Windhoek.',
+    guideSlugs: ['cape-town-to-windhoek-namibia-guide'],
+  },
 ] as const;
 
 export const DESTINATION_CONTENT = DESTINATION_BRIEFS.map((brief) => {
