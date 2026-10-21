@@ -106,6 +106,18 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     target: '/tour-item/women-only-tour-kyrgyzstan/',
   },
   {
+    title: 'She Explores – India’s Royal & Spiritual Trail | Women only',
+    category: 'Women only',
+    destination: 'India',
+    excerpt:
+      'Fourteen days, a small group of women, and a country that takes its time to explain itself. We start in Delhi, where the old and new cities sit side by side, then follow the road to the Pink City of Jaipur, the Taj Mahal in Agra and the ghats of Varanasi.',
+    image: '/assets/images/women-tours/india-women-only-card.webp',
+    alt: 'India women-only tour preview',
+    price: 'EUR1690',
+    duration: '14 Days 13 Nights',
+    target: '/tour-item/women-only-tour-india/',
+  },
+  {
     title: 'Morocco – Blue Cities & Golden Dunes | Women only',
     category: 'Women only',
     destination: 'Morocco',

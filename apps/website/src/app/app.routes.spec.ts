@@ -225,7 +225,7 @@ describe('app routes', () => {
     expect(harness.routeNativeElement?.textContent).not.toContain('Bulgaria Beyond the Ordinary');
     await harness.navigateByUrl('/tours-list/', TourListingPage);
     harness.detectChanges();
-    expect(harness.routeNativeElement?.querySelectorAll('.tour-listing__card')).toHaveLength(9);
+    expect(harness.routeNativeElement?.querySelectorAll('.tour-listing__card')).toHaveLength(10);
   });
 
   it('offers only the current tour departures and updates guides on tour navigation', async () => {
