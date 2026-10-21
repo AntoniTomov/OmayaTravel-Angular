@@ -16,7 +16,7 @@ const OMAYA_TOUR_SLUGS = PUBLIC_TOUR_SLUGS.filter((slug) => !AMELIA_ONLY_TOUR_SL
 describe('public tour departure data', () => {
   it('includes every public variant, including both derived Morocco tours', () => {
     expect(PUBLIC_TOURS.map((tour) => tour.slug)).toEqual(OMAYA_TOUR_SLUGS);
-    expect(PUBLIC_TOURS).toHaveLength(9);
+    expect(PUBLIC_TOURS).toHaveLength(10);
     expect(
       TOUR_CARDS.every((card) =>
         PUBLIC_TOURS.some((tour) => card.target === `/tour-item/${tour.slug}/`),
@@ -64,7 +64,7 @@ describe('public tour departure data', () => {
       ['kyrgyzstan', 2],
       ['morocco', 3],
       ['algeria', 1],
-      ['india', 1],
+      ['india', 2],
     ]);
     expect(
       DESTINATION_CONTENT.flatMap((country) => country.tours.map((tour) => tour.slug)).sort(),
