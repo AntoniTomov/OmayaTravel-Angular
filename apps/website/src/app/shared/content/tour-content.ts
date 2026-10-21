@@ -2258,7 +2258,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         description:
           'An early start: we take the Vande Bharat Express to Varanasi (06:00–13:00, AC chair car). Varanasi, on the banks of the Ganga, is one of the oldest continuously inhabited cities in the world, a place of pilgrimage for Hindus and the home of finely woven Banarasi saris. Its spirit tends to stay with you long after you leave.',
         accommodation: 'Hotel in Varanasi',
-        meals: [],
+        meals: ['breakfast'],
       },
       {
         day: 11,
@@ -2282,7 +2282,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         description:
           'We fly back to New Delhi (IndiGo, 12:20–13:45) for a final night together in the city.',
         accommodation: 'Hotel in New Delhi',
-        meals: [],
+        meals: ['breakfast'],
       },
       {
         day: 14,
@@ -2290,7 +2290,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         description:
           "Time to say goodbye. We'll take you to the airport for your flight home – hopefully a little more curious than when you arrived.",
         accommodation: null,
-        meals: [],
+        meals: ['breakfast'],
       },
     ],
     gallery: INDIA_WOMEN_GALLERY,
