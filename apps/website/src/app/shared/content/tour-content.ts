@@ -103,6 +103,8 @@ export interface TourDetailContent {
    */
   guaranteedDepartures?: readonly string[];
   heroImage: TourImage;
+  /** Photo for tour cards on destination pages, when the wide hero crops badly into a card. */
+  cardImage?: TourImage;
   introduction: readonly TourIntroductionParagraph[];
   highlights: readonly TourHighlight[];
   included: readonly string[];
@@ -2079,8 +2081,8 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       unit: 'person',
     },
     groupSize: {
-      min: 10,
-      max: 16,
+      min: 6,
+      max: 12,
     },
     departures: ['2027-02-10', '2027-11-10'],
     heroImage: {
@@ -2088,6 +2090,12 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       alt: 'The Taj Mahal at Agra, India',
       width: 2560,
       height: 515,
+    },
+    cardImage: {
+      src: '/assets/images/women-tours/India/india-taj-mahal-2018x841.webp',
+      alt: 'A woman photographing the Taj Mahal, Agra',
+      width: 2018,
+      height: 841,
     },
     introduction: [
       'Fourteen days, a small group of women, and a country that takes its time to explain itself. We start in Delhi, where the old and new cities sit side by side, then follow the road to the Pink City of Jaipur, the Taj Mahal in Agra and the ghats of Varanasi.',
@@ -2176,7 +2184,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 1,
         title: 'Arrival in New Delhi',
         description:
-          "Delhi isn't one city but seven, built, destroyed and rebuilt over the centuries, and today's metropolis wears all of them at once. We'll meet you on arrival and take you to the hotel. Later, a first look at Connaught Place, the ring of colonnaded Georgian buildings at the city's heart, and the stalls of Janpath Market, full of saris, embroidered bags and trinkets.",
+          "Welcome to India. We'll meet you at the airport and take you to the hotel to settle in. Later, an easy first taste of the city at Connaught Place, its colonnaded Georgian-style buildings curving around the heart of New Delhi, and the stalls of Janpath Market, piled with saris, embroidered bags and trinkets. Delhi, you'll soon see, is really seven cities, built and rebuilt over the centuries – and it wears all of them at once.",
         accommodation: 'Hotel in New Delhi',
         meals: [],
       },
@@ -2184,7 +2192,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 2,
         title: 'New Delhi',
         description:
-          "A day across Delhi's layers. We start at Qutub Minar, the 72.5-metre minaret built in 1192 and a UNESCO site. We pass India Gate and Rashtrapati Bhavan, the President's residence, on the ceremonial axis of New Delhi. At Gurudwara Bangla Sahib, one of the city's most important Sikh temples, you'll see the holy pond, the Sarovar. We finish at Humayun's Tomb, the first of the great Mughal garden tombs and the one that led, 80 years later, to the Taj Mahal.",
+          "Today we move through Delhi's layers, one century at a time. First, Qutub Minar – a 72.5-metre minaret raised in 1192 and still one of the tallest in the world. We pass India Gate and Rashtrapati Bhavan, the President's residence, then slow down at Gurudwara Bangla Sahib, one of Delhi's most important Sikh temples, with its holy pool, the Sarovar. We end the day at Humayun's Tomb, the Mughal garden tomb that set the style the Taj Mahal would perfect 80 years later.",
         accommodation: 'Hotel in New Delhi',
         meals: ['breakfast'],
       },
@@ -2192,7 +2200,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 3,
         title: 'Old Delhi',
         description:
-          "We drive past Jama Masjid, one of India's largest mosques, built by Shah Jahan, and step into Chandni Chowk – spices, dried fruit, silver jewellery, saris, and narrow lanes of tiny shops selling essential oils and Indian sweets. Then a private walk with the Salaam Baalak Trust, led by former street children. Over about two hours they'll show you New Delhi Railway Station, Paharganj and one of the Trust's shelter homes, and tell you about life on these streets.",
+          "Old Delhi is a day for all your senses. We drive past the great Jama Masjid, built by Shah Jahan, and step into Chandni Chowk: spices and dried fruit, silver jewellery, bright saris, and narrow side streets of tiny shops selling essential oils and Indian sweets. Then comes a walk you'll remember – a private tour with the Salaam Baalak Trust, led by young people who once lived on these streets themselves. For about two hours they'll take you through New Delhi Railway Station and Paharganj to one of the Trust's shelter homes, and show you the city as they know it.",
         accommodation: 'Hotel in New Delhi',
         meals: ['breakfast'],
       },
@@ -2200,7 +2208,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 4,
         title: 'New Delhi – Jaipur',
         description:
-          "We drive to Jaipur (297 km, about 4.5 hours). The old city was painted rose pink in 1876 to welcome the Prince of Wales, and it's still known as the Pink City. If you'd like, you can visit the Birla Temple (optional).",
+          "We leave Delhi behind and drive to Jaipur (297 km, about 4.5 hours). In 1876 the old city was painted rose pink to welcome the Prince of Wales, and the colour stayed – it's been the Pink City ever since.",
         accommodation: 'Hotel in Jaipur',
         meals: ['breakfast'],
       },
@@ -2208,7 +2216,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 5,
         title: 'Jaipur',
         description:
-          "The day starts with a yoga session. Then a jeep takes us up to Amber Fort, a UNESCO site where Mughal and Hindu styles meet, with stops at the Panna Meena Kund stepwell, the Anokhi Museum and Jagat Shiromani Temple. We pass the Hawa Mahal, the Palace of Winds, whose latticed windows let the royal women watch the street without being seen, and Jal Mahal, the Water Palace. In the afternoon, a block-printing workshop led by local Rajasthani women. Hand block printing with natural colours came to Jaipur with the Chhipa community of Bagru, still known for its vegetable dyes and dabu mud-resist prints. In the evening there's an optional Bollywood dance class at a studio.",
+          "Start the day gently with a yoga session. Then we ride by jeep up to Amber Fort, where Hindu and Mughal styles meet behind high ramparts and cobbled paths, stopping at the Panna Meena Kund stepwell, the Anokhi Museum and Jagat Shiromani Temple along the way. We pass the Hawa Mahal, the Palace of Winds, whose latticed windows let the royal women watch the street without being seen, and Jal Mahal, the Water Palace. Then one of the moments this trip is built around: a block-printing workshop with local Rajasthani women. The craft came to Jaipur with the Chhipa community of Bagru, still known for its natural vegetable dyes and dabu mud-resist prints – and today the women show you how it's done, hands-on.",
         accommodation: 'Hotel in Jaipur',
         meals: ['breakfast'],
       },
@@ -2216,7 +2224,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 6,
         title: 'Jaipur',
         description:
-          "We visit the City Palace, a complex of palaces, courtyards and carved doorways that includes Chandra Mahal, Mubarak Mahal, Diwan-i-Khas and the Govind Dev Ji Temple. Next door is Jantar Mantar, an 18th-century observatory of 19 stone instruments, among them the world's largest stone sundial. Then a henna session, and in the evening a cooking demonstration followed by dinner at Harsoli Haveli.",
+          "Today is royal Jaipur. At the City Palace, courtyards and carved doorways lead from one palace to the next – Chandra Mahal, Mubarak Mahal, Diwan-i-Khas – and to the Govind Dev Ji Temple. Next door, Jantar Mantar is an 18th-century observatory of 19 stone instruments, including the world's largest stone sundial. Then it's time to sit back for henna, and the day ends at Harsoli Haveli with a cooking demonstration and dinner together.",
         accommodation: 'Hotel in Jaipur',
         meals: ['breakfast', 'dinner'],
       },
@@ -2224,7 +2232,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 7,
         title: 'Jaipur – Abhaneri – Agra',
         description:
-          'On the way to Agra (256 km, about 5 hours) we stop in the village of Abhaneri to see Chand Baori, its great stepwell. Agra sits on the Yamuna River and was the Mughal capital until Shah Jahan moved it to Delhi.',
+          'On the road to Agra (256 km, about 5 hours), we stop in the village of Abhaneri at Chand Baori, a stepwell with 3,500 steps on 13 levels. Then on to Agra, on the banks of the Yamuna, the Mughal capital until Shah Jahan moved it to Delhi.',
         accommodation: 'Hotel in Agra',
         meals: ['breakfast'],
       },
@@ -2232,7 +2240,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 8,
         title: 'Agra – Fatehpur Sikri – Agra',
         description:
-          'For early risers, an optional yoga session facing the Taj on the Taj Nature Walk, a quiet forest trail full of birds. We then visit Agra Fort, home to three generations of Mughal emperors, with its pavilions, gardens, mosques and audience halls. In the afternoon we drive to Fatehpur Sikri (71 km, about 2 hours), the red-sandstone capital Emperor Akbar built and abandoned after about a decade.',
+          'We start at Agra Fort, home to three generations of Mughal emperors, with its pavilions, gardens and royal audience halls. Later we drive to Fatehpur Sikri (71 km, about 2 hours), the red-sandstone city Emperor Akbar built as his capital and left after only a decade – still beautifully preserved today.',
         accommodation: 'Hotel in Agra',
         meals: ['breakfast'],
       },
@@ -2240,7 +2248,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 9,
         title: 'Agra',
         description:
-          'The Taj Mahal, a marvel in marble, known for its perfect symmetry and called "a teardrop on the cheek of eternity". Afterwards, Itmad-ud-Daula\'s Tomb on the banks of the Yamuna, commissioned by Empress Nur Jahan for her father – the first Mughal building made entirely of marble, with fine lattice screens.',
+          "Today is the Taj Mahal. You've probably seen it in photos a hundred times, but standing in front of it is something else – the marble, the perfect symmetry, the reason it's called \"a teardrop on the cheek of eternity\". Afterwards we visit Itmad-ud-Daula's Tomb on the Yamuna, built by Empress Nur Jahan for her father. It was the first Mughal building made entirely of marble, and its lattice screens are worth a close look.",
         accommodation: 'Hotel in Agra',
         meals: ['breakfast'],
       },
@@ -2248,7 +2256,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 10,
         title: 'Agra – Varanasi',
         description:
-          'An early start for the Vande Bharat Express to Varanasi (06:00–13:00, AC chair car). Varanasi, on the Ganga, is one of the oldest continuously inhabited cities in the world, an important Hindu pilgrimage centre and the home of Banarasi silk saris.',
+          'An early start: we take the Vande Bharat Express to Varanasi (06:00–13:00, AC chair car). Varanasi, on the banks of the Ganga, is one of the oldest continuously inhabited cities in the world, a place of pilgrimage for Hindus and the home of finely woven Banarasi saris. Its spirit tends to stay with you long after you leave.',
         accommodation: 'Hotel in Varanasi',
         meals: [],
       },
@@ -2256,7 +2264,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 11,
         title: 'Varanasi',
         description:
-          'We explore the ghats, the riverfront steps that lead down to the Ganga – 88 of them, most used for bathing and prayer, two for cremation. We visit Kashi Vishwanath Temple, dedicated to Lord Shiva, built by the Queen of Indore, its spire gilded by Maharaja Ranjit Singh. An e-rickshaw takes us through the narrow lanes near the ghats. In the evening we watch the aarti from a boat, stopping where the view of the ceremony is clear.',
+          "A day close to the river. Varanasi's 88 ghats – the steps leading down to the Ganga – are where the city bathes and prays; two are used only for cremations. We visit Kashi Vishwanath Temple, dedicated to Lord Shiva and built by the Queen of Indore, and hop on an e-rickshaw to weave through the narrow lanes near the ghats, busy with people and the occasional cow. In the evening we head out by boat to watch the aarti, the ceremony that closes the day, from the water.",
         accommodation: 'Hotel in Varanasi',
         meals: ['breakfast'],
       },
@@ -2264,21 +2272,23 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 12,
         title: 'Varanasi – Sarnath',
         description:
-          "Back on the river at dawn, watching the sun rise over the city as people arrive at the ghats to pray, bathe and open their stalls. Later we go to Sarnath, about 10 km away, where the Buddha gave his first sermon. We see the ruins of stupas and monasteries from Emperor Ashoka's time, Chaukhandi Stupa, and the Sarnath Museum, home to the Lion Capital that became India's national emblem.",
+          "Set your alarm – we're back on the river at dawn. As the sun rises over the city, people come down to the ghats to bathe, pray, greet the sun or simply open their stalls for the day. Later we go to Sarnath, about 10 km away, where the Buddha gave his first sermon. We walk among the ruins of stupas and monasteries from Emperor Ashoka's time, see Chaukhandi Stupa, where the Buddha met the five ascetics who became his first disciples, and visit the Sarnath Museum, home to the Lion Capital that became India's national emblem.",
         accommodation: 'Hotel in Varanasi',
         meals: ['breakfast'],
       },
       {
         day: 13,
         title: 'Varanasi – New Delhi',
-        description: 'We fly back to New Delhi (IndiGo, 12:20–13:45). A last evening in the city.',
+        description:
+          'We fly back to New Delhi (IndiGo, 12:20–13:45) for a final night together in the city.',
         accommodation: 'Hotel in New Delhi',
         meals: [],
       },
       {
         day: 14,
         title: 'Departure',
-        description: "We'll take you to the airport for your flight home.",
+        description:
+          "Time to say goodbye. We'll take you to the airport for your flight home – hopefully a little more curious than when you arrived.",
         accommodation: null,
         meals: [],
       },

@@ -45,9 +45,9 @@ const DESTINATION_BRIEFS = [
   {
     slug: 'india',
     name: 'India',
-    theme: 'City life, rock-cut caves and tiger forests',
+    theme: 'Cities, cave temples, tiger forests and the Ganga',
     introduction:
-      'Omaya’s India journey moves from the rush of Mumbai to the cave temples of Ellora and Ajanta, then into the sal forests of Kanha. Enjoy the lunchtime rhythm of the dabbawalas, the hush inside a temple carved from a single rock, and the stillness of the forest at dawn as the jeeps roll out in search of tigers.',
+      'India comes in two journeys with Omaya. One moves from the rush of Mumbai, with the lunchtime rhythm of its dabbawalas, to the cave temples of Ellora and Ajanta and the sal forests of Kanha, where the jeeps roll out at dawn in search of tigers. The other, for women only, crosses the north: the old lanes of Delhi, the pink walls of Jaipur, the Taj Mahal at Agra and the ghats of Varanasi, where the city wakes up slowly along the Ganga.',
     guideSlugs: ['dharavi-mumbai-guide'],
   },
 ] as const;
