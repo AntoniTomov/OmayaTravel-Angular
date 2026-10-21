@@ -1135,10 +1135,247 @@ export const DHARAVI_MUMBAI_GUIDE: BlogPostContent = {
   ],
 };
 
+export const CAPE_TOWN_TO_WINDHOEK_NAMIBIA_GUIDE: BlogPostContent = {
+  ...findBlogMetadataBySlug('cape-town-to-windhoek-namibia-guide')!,
+  sources: [
+    {
+      title: 'Namibia visa changes from April 2025 (ATTA)',
+      url: 'https://atta.travel/resource/namibia-ends-visa-free-access-for-us-uk-and-over-30-countries.html',
+    },
+    {
+      title: 'Best time to visit Namibia (Lonely Planet)',
+      url: 'https://www.lonelyplanet.com/articles/best-time-to-visit-namibia',
+    },
+    {
+      title: 'Namibia weather by month (Natural Habitat)',
+      url: 'https://www.nathab.com/know-before-you-go/african-safaris/southern-africa/weather-climate/namibia',
+    },
+    {
+      title: 'When to go to Namibia (Go2Africa)',
+      url: 'https://go2africa.com/destinations/namibia/when-to-go',
+    },
+  ],
+  sections: [
+    {
+      title: 'Why Namibia stays with you',
+      text: [
+        'There’s a moment on every Namibia trip when the van goes quiet. Someone looks out at nothing but sand and sky for the hundredth kilometre in a row, and realises they haven’t checked their phone in hours.',
+        'That’s what this country does. Namibia is one of the least densely populated places on earth. Roads run straight to the horizon, towns are hours apart, and the night skies are among the clearest anywhere.',
+        'One of the best ways to see it is overland from Cape Town to Windhoek. Over about 12 days you watch the landscape change: a green coastal city, then orange sandstone, a river through the desert, a canyon, the tallest red dunes you’ll ever climb, and finally the waterholes of Etosha.',
+        'In this guide we walk through the route stop by stop, the best time to go, what to pack, and the questions people ask us most.',
+      ],
+    },
+    {
+      title: 'The route, stop by stop',
+      text: [
+        'Most overland trips between the two capitals follow the same line north, crossing the border at the Orange River. Here’s what each stop is like, and how to make the most of it.',
+      ],
+    },
+    {
+      title: 'Cederberg: the first taste of wild country',
+      text: [
+        'A few hours north of Cape Town, vineyards give way to orange sandstone, rooibos farms and strange rock formations. It’s a gentle first day on the road.',
+      ],
+      boldList: [
+        {
+          label: 'Tip:',
+          text: ' look up after dark. With almost no light pollution, this is often the first night people see the Milky Way properly.',
+        },
+      ],
+    },
+    {
+      title: 'Orange River: the border crossing',
+      text: [
+        'The Orange River is the border between South Africa and Namibia, a green ribbon through bare hills. It’s the place to slow down: swim, paddle a canoe, or just sit on the bank with a coffee.',
+      ],
+      boldList: [
+        {
+          label: 'Tip:',
+          text: ' keep your passport handy on this day. The border crossing takes a while, and it’s easier when it’s not buried in your bag.',
+        },
+      ],
+    },
+    {
+      title: 'Fish River Canyon: scale you have to see',
+      text: [
+        'Fish River Canyon is one of the largest canyons in the world, roughly 160 km long and up to 550 m deep. Photos don’t do it justice; you have to stand at the edge.',
+      ],
+      boldList: [
+        {
+          label: 'Tip:',
+          text: ' go for sunset. The walls turn from brown to deep red, and the viewpoints are far quieter than you’d expect.',
+        },
+      ],
+    },
+    {
+      title: 'Sossusvlei and Deadvlei: the red dunes',
+      text: [
+        'This is the Namibia on postcards. Climb Dune 45 at sunrise, then walk across the white clay pan of Deadvlei, where dead camelthorn trees stand against orange sand and blue sky.',
+      ],
+      boldList: [
+        {
+          label: 'Tip:',
+          text: ' the early start is worth it. The light is soft, the sand is still cool, and the crowds come later.',
+        },
+      ],
+    },
+    {
+      title: 'Swakopmund: the Atlantic coast',
+      text: [
+        'After days in the desert, the cool sea air of Swakopmund feels like another country. Think German-era buildings, good cafés and fresh seafood, plus kayaking with seals or sandboarding if you want more.',
+      ],
+      boldList: [
+        {
+          label: 'Tip:',
+          text: ' bring a warm layer. The coast is often foggy and cool, even when the desert behind it is hot.',
+        },
+      ],
+    },
+    {
+      title: 'Etosha: the waterholes',
+      text: [
+        'The road north ends in Etosha National Park, Namibia’s big-game country. A day on the game drive can bring lions, elephants, giraffes, rhinos and herds of antelope gathering at the waterholes.',
+      ],
+      boldList: [
+        {
+          label: 'Tip:',
+          text: ' stay up for the floodlit waterhole at Okaukuejo. After dark the animals keep coming to drink, and it’s often the quietest, most memorable hour of the trip.',
+        },
+      ],
+    },
+    {
+      title: 'Windhoek: the finish line',
+      text: [
+        'The capital is small and easy-going, with a few craft markets and good restaurants. It’s a calm place to end the trip before flying home from Hosea Kutako International Airport.',
+      ],
+    },
+    {
+      title: 'Best time to visit Namibia',
+      text: [
+        'The dry season, roughly May to October, is when most travellers go: almost no rain, clear skies and comfortable daytime temperatures. But “dry season” covers very different trips, so here’s how the months compare.',
+      ],
+      items: [
+        {
+          name: 'May–June',
+          details:
+            'Start of winter. Warm, sunny days; nights get cold, and can drop below freezing in the desert in June. Good for: dune climbs in cool air, crisp light, fewer crowds than peak months.',
+        },
+        {
+          name: 'September–October',
+          details:
+            'End of winter. Warmer days, hot in the desert by midday. Sharp, dust-free air. Good for: photography, warm evenings by the fire, whale season on the coast.',
+        },
+        {
+          name: 'November',
+          details:
+            'Heat builds before the rains; the odd afternoon storm. Good for: dramatic skies, quieter roads.',
+        },
+      ],
+    },
+    {
+      text: [
+        'Whichever you pick, pack layers. A desert morning at 5°C can turn into a 30°C afternoon.',
+      ],
+    },
+    {
+      title: 'Self-drive or small group?',
+      text: [
+        'Namibia is famous for self-drive trips, and they can be wonderful. But distances are long, most roads are gravel, and fuel stops are far apart. A punctured tyre 200 km from the nearest town is a very different experience with a local crew than on your own.',
+        'A small group makes sense if you:',
+      ],
+      list: [
+        'are travelling solo and want company without losing your own space',
+        'are going with a friend or relative and would rather someone else handle the logistics',
+        'prefer looking out of the window to watching the road',
+        'are visiting Africa for the first time',
+      ],
+    },
+    {
+      text: [
+        'Self-driving suits confident drivers with time to spare and a taste for planning. Either way, Namibia rewards a slow pace.',
+      ],
+    },
+    {
+      title: 'Practical things to know',
+      boldList: [
+        {
+          label: 'Entry and visas.',
+          text: ' Since April 2025, travellers from the UK, the US and a number of European countries need a visa for Namibia. Most can apply online in advance or get a visa on arrival for a fee. Rules depend on your passport, so check the official Namibian visa portal before you book flights.',
+        },
+      ],
+    },
+    {
+      title: 'What to pack',
+      list: [
+        'Warm layers and a fleece for early mornings and nights',
+        'Light, breathable clothes for the day',
+        'Sturdy walking shoes for dune climbs and canyon viewpoints',
+        'Sunhat, sunglasses and high-SPF sunscreen',
+        'A head torch and a reusable water bottle',
+        'A power bank: some stops have limited charging',
+      ],
+    },
+    {
+      boldList: [
+        {
+          label: 'Comfort level.',
+          text: ' Expect long driving days, mostly on gravel roads. You don’t need to be an athlete, but you should be comfortable with early starts, short hikes and sand underfoot.',
+        },
+      ],
+    },
+    {
+      title: 'Frequently asked questions',
+      faq: [
+        {
+          question: 'How many days do you need in Namibia?',
+          answer:
+            'Ten to fourteen days is a good length for a first visit. Twelve days from Cape Town to Windhoek covers the south, the coast and Etosha without rushing.',
+        },
+        {
+          question: 'Is Namibia safe for tourists?',
+          answer:
+            'Namibia is considered one of the more relaxed countries in southern Africa for visitors. Travelling with a group and a local crew takes care of most practical concerns, like long distances and remote roads.',
+        },
+        {
+          question: 'What is the best month to visit Sossusvlei?',
+          answer:
+            'May to September brings cooler temperatures for dune climbs. September and October offer the sharpest light for photography, but midday gets hot.',
+        },
+        {
+          question: 'Do I need a visa for Namibia?',
+          answer:
+            'It depends on your passport. Since April 2025, many Western travellers, including UK and US citizens, need a visa, available online or on arrival. Always check the official portal before travel.',
+        },
+        {
+          question: 'Will I see wildlife on this route?',
+          answer:
+            'Yes: desert-adapted animals like oryx, springbok and ostriches, plus seals on the coast. The route also reaches Etosha, Namibia’s big-game park in the north, home to lions, elephants, giraffes and rhinos.',
+        },
+      ],
+    },
+    {
+      title: 'Final thoughts',
+      text: [
+        'Namibia stays with people long after they fly home: the silence of the dunes, the colours at sunrise, the stories told around the fire. Give it time, travel light, and leave room in the plan for doing nothing at all.',
+      ],
+    },
+    {
+      cta: {
+        before:
+          'If you’d like to do this route with us, our small-group Cape Town–Windhoek trip runs in June and September. ',
+        linkText: 'See dates and the full itinerary →',
+        linkUrl: '/tour-item/women-only-tour-namibia/',
+        after: '',
+      },
+    },
+  ],
+};
+
 export const BLOG_POSTS: readonly BlogPostContent[] = [
   ...PLANNING_GUIDES,
   TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE,
   DHARAVI_MUMBAI_GUIDE,
+  CAPE_TOWN_TO_WINDHOEK_NAMIBIA_GUIDE,
   THE_COMPLETE_VISITOR_GUIDE_TO_RILA_MONASTERY,
   TEN_UNMISSABLE_PLACES_TO_VISIT_ON_YOUR_BULGARIA_TRIP,
   HOW_TO_VISIT_SONG_KUL_LAKE_IN_KYRGYZSTAN,

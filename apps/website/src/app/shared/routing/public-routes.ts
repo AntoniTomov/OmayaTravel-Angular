@@ -31,6 +31,7 @@ export const PUBLIC_DESTINATION_SLUGS = [
   'india',
   'kyrgyzstan',
   'morocco',
+  'namibia',
 ] as const;
 
 export const PUBLIC_TOUR_SLUGS = [
@@ -46,6 +47,7 @@ export const PUBLIC_TOUR_SLUGS = [
   'women-only-tour-bulgaria',
   'women-only-tour-india',
   'women-only-tour-kyrgyzstan',
+  'women-only-tour-namibia',
 ] as const;
 
 export const PUBLIC_TOUR_CATEGORY_SLUGS = [
@@ -67,6 +69,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
   'dharavi-mumbai-guide',
+  'cape-town-to-windhoek-namibia-guide',
   'the-complete-visitor-guide-to-rila-monastery',
 ] as const;
 

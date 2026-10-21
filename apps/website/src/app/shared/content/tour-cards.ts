@@ -118,6 +118,18 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     target: '/tour-item/women-only-tour-india/',
   },
   {
+    title: 'Namibia: From the Cederberg to Etosha | Women only',
+    category: 'Women only',
+    destination: 'Namibia',
+    excerpt:
+      'Over twelve days we travel from the mountains of South Africa’s Western Cape across the border into Namibia. Along the way we see one of the world’s largest canyons, the red dunes of the Namib, the Atlantic coast at Swakopmund, granite peaks covered in ancient rock art, and the waterholes of Etosha National Park.',
+    image: '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp',
+    alt: 'Namibia women-only tour preview',
+    price: 'EUR3450',
+    duration: '12 Days 11 Nights',
+    target: '/tour-item/women-only-tour-namibia/',
+  },
+  {
     title: 'Morocco – Blue Cities & Golden Dunes | Women only',
     category: 'Women only',
     destination: 'Morocco',

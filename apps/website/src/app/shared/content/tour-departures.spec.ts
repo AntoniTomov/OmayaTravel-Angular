@@ -16,7 +16,7 @@ const OMAYA_TOUR_SLUGS = PUBLIC_TOUR_SLUGS.filter((slug) => !AMELIA_ONLY_TOUR_SL
 describe('public tour departure data', () => {
   it('includes every public variant, including both derived Morocco tours', () => {
     expect(PUBLIC_TOURS.map((tour) => tour.slug)).toEqual(OMAYA_TOUR_SLUGS);
-    expect(PUBLIC_TOURS).toHaveLength(10);
+    expect(PUBLIC_TOURS).toHaveLength(11);
     expect(
       TOUR_CARDS.every((card) =>
         PUBLIC_TOURS.some((tour) => card.target === `/tour-item/${tour.slug}/`),
@@ -24,11 +24,15 @@ describe('public tour departure data', () => {
     ).toBe(true);
   });
 
-  it('keeps September 2027 restricted to the two Bulgaria itineraries', () => {
+  it('keeps September 2027 to the two Bulgaria itineraries and Namibia', () => {
     const slugs = toursInMonth(9, 2027)
       .map((tour) => tour.slug)
       .sort();
-    expect(slugs).toEqual(['bulgaria-beyond-the-ordinary', 'women-only-tour-bulgaria']);
+    expect(slugs).toEqual([
+      'bulgaria-beyond-the-ordinary',
+      'women-only-tour-bulgaria',
+      'women-only-tour-namibia',
+    ]);
     expect(
       findTourListingPage('calendar-2027/september')
         .cards.map((card) => card.target)
@@ -65,6 +69,7 @@ describe('public tour departure data', () => {
       ['morocco', 3],
       ['algeria', 1],
       ['india', 2],
+      ['namibia', 1],
     ]);
     expect(
       DESTINATION_CONTENT.flatMap((country) => country.tours.map((tour) => tour.slug)).sort(),
