@@ -1137,29 +1137,9 @@ export const DHARAVI_MUMBAI_GUIDE: BlogPostContent = {
 
 export const CAPE_TOWN_TO_WINDHOEK_NAMIBIA_GUIDE: BlogPostContent = {
   ...findBlogMetadataBySlug('cape-town-to-windhoek-namibia-guide')!,
-  sources: [
-    {
-      title: 'Namibia visa changes from April 2025 (ATTA)',
-      url: 'https://atta.travel/resource/namibia-ends-visa-free-access-for-us-uk-and-over-30-countries.html',
-    },
-    {
-      title: 'Best time to visit Namibia (Lonely Planet)',
-      url: 'https://www.lonelyplanet.com/articles/best-time-to-visit-namibia',
-    },
-    {
-      title: 'Namibia weather by month (Natural Habitat)',
-      url: 'https://www.nathab.com/know-before-you-go/african-safaris/southern-africa/weather-climate/namibia',
-    },
-    {
-      title: 'When to go to Namibia (Go2Africa)',
-      url: 'https://go2africa.com/destinations/namibia/when-to-go',
-    },
-  ],
   sections: [
     {
-      title: 'Why Namibia stays with you',
       text: [
-        'There’s a moment on every Namibia trip when the van goes quiet. Someone looks out at nothing but sand and sky for the hundredth kilometre in a row, and realises they haven’t checked their phone in hours.',
         'That’s what this country does. Namibia is one of the least densely populated places on earth. Roads run straight to the horizon, towns are hours apart, and the night skies are among the clearest anywhere.',
         'One of the best ways to see it is overland from Cape Town to Windhoek. Over about 12 days you watch the landscape change: a green coastal city, then orange sandstone, a river through the desert, a canyon, the tallest red dunes you’ll ever climb, and finally the waterholes of Etosha.',
         'In this guide we walk through the route stop by stop, the best time to go, what to pack, and the questions people ask us most.',
