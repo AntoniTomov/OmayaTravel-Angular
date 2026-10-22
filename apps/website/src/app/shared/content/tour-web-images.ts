@@ -185,6 +185,10 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/71c3cd28dc3053d0.avif',
   '/assets/images/amelia/tours/saudi-arabia/gallery/16_maraya_alula_desert.webp':
     '/assets/images/tour-web/f60be9e19646afb3.avif',
+  '/assets/images/women-tours/Namibia/Fish_River_Canyon_hero.webp':
+    '/assets/images/tour-web/991415c5539af53d.avif',
+  '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp':
+    '/assets/images/tour-web/dbd8c654ac67cb72.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -371,6 +375,10 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/6a4f8d1e3d32ad0c.avif 320w, /assets/images/tour-web/284bf5ccf4a94d80.avif 480w, /assets/images/tour-web/071d229457057343.avif 640w, /assets/images/tour-web/9a0e39424ca40577.avif 800w, /assets/images/tour-web/1b4ed4b48f7b1922.avif 960w, /assets/images/tour-web/912b72a340271d58.avif 1440w, /assets/images/tour-web/71c3cd28dc3053d0.avif 1600w',
   '/assets/images/amelia/tours/saudi-arabia/gallery/16_maraya_alula_desert.webp':
     '/assets/images/tour-web/74e1b060d0945b66.avif 320w, /assets/images/tour-web/cdc112e7659ebfec.avif 480w, /assets/images/tour-web/0b257e556cb1dfcd.avif 640w, /assets/images/tour-web/f60be9e19646afb3.avif 800w',
+  '/assets/images/women-tours/Namibia/Fish_River_Canyon_hero.webp':
+    '/assets/images/tour-web/48e1c35115e68c25.avif 320w, /assets/images/tour-web/08929ae71015d632.avif 480w, /assets/images/tour-web/6c3259167b9e9fc4.avif 640w, /assets/images/tour-web/3b1ca7e6b1beddbb.avif 800w, /assets/images/tour-web/8637141c702ac036.avif 960w, /assets/images/tour-web/690ea87c3bf44f2a.avif 1440w, /assets/images/tour-web/ed095143f861ddc9.avif 1920w, /assets/images/tour-web/991415c5539af53d.avif 2576w',
+  '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp':
+    '/assets/images/tour-web/79d480b90a7ee14e.avif 320w, /assets/images/tour-web/9c50ed130766c20c.avif 480w, /assets/images/tour-web/998f494491294665.avif 640w, /assets/images/tour-web/b1eaa7a5617e3420.avif 800w, /assets/images/tour-web/81298ef71d98fb93.avif 960w, /assets/images/tour-web/26e48a31d8562f4d.avif 1440w, /assets/images/tour-web/dbd8c654ac67cb72.avif 1717w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -427,6 +435,8 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/e73f3e1378dd908f.avif 320w, /assets/images/tour-web/f57ae2c3f9f66fe7.avif 480w, /assets/images/tour-web/e9eeb7ff180491d1.avif 640w, /assets/images/tour-web/8920226f6fe16c17.avif 840w, /assets/images/tour-web/ed66e12bcfc80361.avif 858w',
   '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp':
     '/assets/images/tour-web/687372a7414b2069.avif 320w, /assets/images/tour-web/ac5e15f5e1d91347.avif 480w, /assets/images/tour-web/38cb6cc0ba5bf624.avif 640w, /assets/images/tour-web/213604a389d3777a.avif 840w, /assets/images/tour-web/efdda58c8af07308.avif 960w, /assets/images/tour-web/c4536c8c8854a726.avif 1165w',
+  '/assets/images/women-tours/Namibia/Fish_River_Canyon_hero.webp':
+    '/assets/images/tour-web/248d3a6e7e6ddf3d.avif 320w, /assets/images/tour-web/61fcb66b61c1659a.avif 480w, /assets/images/tour-web/35da7a69a0b472fb.avif 640w, /assets/images/tour-web/6eda5bcaa0af33d2.avif 840w, /assets/images/tour-web/4f5378517ccf53d9.avif 960w, /assets/images/tour-web/65b520c921e079c6.avif 1351w',
 };
 // Centred crops of the blog, our-story and not-yet-but-soon heroes: phone up to 30rem, tablet up to 48rem. See PAGE_HERO_SOURCES in the generator.
 export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = {

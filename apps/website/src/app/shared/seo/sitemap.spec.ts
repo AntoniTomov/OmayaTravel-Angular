@@ -40,9 +40,9 @@ describe('sitemap generation', () => {
     expect(locations).not.toContain(`${PUBLIC_CANONICAL_HOST}/3122-2/`);
   });
 
-  it('includes the destination hub and all five completed country pages', () => {
+  it('includes the destination hub and every completed country page', () => {
     const locations = sitemapEntries().map((entry) => entry.loc);
-    expect(locations.filter((location) => location.includes('/destinations/'))).toHaveLength(6);
+    expect(locations.filter((location) => location.includes('/destinations/'))).toHaveLength(7);
   });
 
   it('lists only the preferred September URL', () => {

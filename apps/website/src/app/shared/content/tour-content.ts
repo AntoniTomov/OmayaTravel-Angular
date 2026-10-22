@@ -189,6 +189,43 @@ const INDIA_WOMEN_GALLERY: readonly TourImage[] = (
     height: 1067,
   });
 
+const NAMIBIA_WOMEN_ASSET_BASE = '/assets/images/women-tours/Namibia';
+
+function namibiaWomenHighlightImage(file: string, alt: string): TourImage {
+  return {
+    src: `${NAMIBIA_WOMEN_ASSET_BASE}/${file}_150.webp`,
+    alt,
+    width: 150,
+    height: 150,
+  };
+}
+
+// In route order, Cape Town to Etosha.
+const NAMIBIA_WOMEN_GALLERY: readonly TourImage[] = (
+  [
+    ['Cape_town', 'Cape Town, South Africa', 1717, 2576],
+    ['Cederberg', 'The Cederberg mountains, Western Cape', 2576, 1717],
+    ['Fish_River_Canyon2', 'The Fish River Canyon', 1717, 2576],
+    ['Quiver_Tree_Forest', 'The Quiver Tree Forest near Keetmanshoop', 1717, 2576],
+    ['Dune_45', 'Dune 45 in the Namib', 2576, 1718],
+    ['Deadvlei', 'The dead acacia trees of Deadvlei', 2576, 1717],
+    ['Sesriem_Canyon', 'Sesriem Canyon', 1940, 2576],
+    ['Namib_desert', 'The Namib desert', 2576, 1717],
+    ['Tropic_of_Capricorn', 'The Tropic of Capricorn sign', 2576, 1932],
+    ['Swakopmund', 'Swakopmund on the Atlantic coast', 2576, 1997],
+    ['Spitzkoppe', 'The granite peaks of Spitzkoppe', 2576, 1932],
+    ['Spitzkoppe2', 'Spitzkoppe', 1717, 2576],
+    ['Erongo_mountains', 'The Erongo Mountains', 2576, 1717],
+    ['Etosha', 'Wildlife in Etosha National Park', 2576, 1450],
+    ['Etosha2', 'Etosha National Park', 2576, 1506],
+  ] as const
+).map(([file, alt, width, height]): TourImage => ({
+  src: `${NAMIBIA_WOMEN_ASSET_BASE}/${file}.webp`,
+  alt,
+  width,
+  height,
+}));
+
 const CLASSIC_TOUR_FAQ_HEADING = 'Your Journey, Simplified.';
 const CLASSIC_TOUR_FAQ_INTRO =
   'Got questions about your upcoming adventure? Our FAQ section covers the essentials: visa requirements, accommodation, health, safety, packing advice and cultural tips. Find the quick answers you need to get your bags packed and your itinerary set.';
@@ -2440,6 +2477,293 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
     },
     source: {
       legacyUrl: 'https://omayatravel.com/tour-item/women-only-tour-india/',
+    },
+  },
+  {
+    id: 'women-only-tour-namibia',
+    slug: 'women-only-tour-namibia',
+    title: 'Namibia: From the Cederberg to Etosha | Women only',
+    destination: {
+      country: 'Namibia',
+      region:
+        'Cape Town, Cederberg, Orange River, Fish River Canyon, Keetmanshoop, Sossusvlei, Swakopmund, Spitzkoppe, Erongo, Etosha, Windhoek',
+      startLocation: 'Cape Town',
+      endLocation: 'Windhoek',
+    },
+    category: 'Women only',
+    fitnessLevel: 'Easy',
+    duration: {
+      days: 12,
+      nights: 11,
+    },
+    price: {
+      amount: 3450,
+      currency: 'EUR',
+      unit: 'person',
+    },
+    groupSize: {
+      min: 6,
+      max: 12,
+    },
+    departures: ['2027-06-23', '2027-09-29'],
+    heroImage: {
+      src: `${NAMIBIA_WOMEN_ASSET_BASE}/Fish_River_Canyon_hero.webp`,
+      alt: 'The Fish River Canyon, Namibia',
+      width: 2576,
+      height: 1449,
+    },
+    cardImage: {
+      src: `${NAMIBIA_WOMEN_ASSET_BASE}/Sossusvlei_dune-card.webp`,
+      alt: 'A red dune at Sossusvlei, Namibia',
+      width: 1717,
+      height: 2576,
+    },
+    introduction: [
+      'Twelve days, two countries, and a landscape that keeps changing outside the window. We start in the mountains of South Africa’s Western Cape and cross into Namibia, where the scale of things shifts – the Fish River Canyon, one of the largest on earth; the red dunes of the Namib at first light; the cool Atlantic air of Swakopmund. Further north, granite peaks hold rock art painted thousands of years ago, and the trip ends at the waterholes of Etosha, where you sit quietly and let the animals come to you.',
+    ],
+    highlights: [
+      {
+        title: { text: 'Fish River Canyon', linkText: '', link: '' },
+        image: namibiaWomenHighlightImage('Fish_River_Canyon2', 'The Fish River Canyon'),
+      },
+      {
+        title: { text: 'Deadvlei & Dune 45', linkText: '', link: '' },
+        image: namibiaWomenHighlightImage('Dune_45', 'Dune 45 in the Namib'),
+      },
+      {
+        title: { text: 'Swakopmund', linkText: '', link: '' },
+        image: namibiaWomenHighlightImage('Swakopmund', 'Swakopmund on the Atlantic coast'),
+      },
+      {
+        title: { text: 'Spitzkoppe', linkText: '', link: '' },
+        image: namibiaWomenHighlightImage('Spitzkoppe2', 'The granite peaks of Spitzkoppe'),
+      },
+      {
+        title: { text: 'Etosha National Park', linkText: '', link: '' },
+        image: namibiaWomenHighlightImage('Etosha', 'Wildlife in Etosha National Park'),
+      },
+    ],
+    departureReturn: {
+      departure: 'Cape Town, South Africa',
+      return: 'Windhoek, Namibia',
+    },
+    included: [
+      'Transport in a 20-seater Toyota Coaster with driver and guide',
+      'Fuel, tolls and transport permits',
+      'Accommodation and meals as listed',
+      'Fish River Canyon rim walk',
+      'Guided desert walk with a local expert',
+      'Guided Spitzkoppe walk',
+      'Full-day game drive in Etosha National Park',
+      'Omaya Travel representative',
+    ],
+    notIncluded: [
+      'International flights and airport taxes',
+      'Visas',
+      'Porterage',
+      'Tips',
+      'Meals not listed above',
+      'Optional activities and personal expenses',
+      'Single room supplement – EUR 450',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Cape Town',
+        description:
+          'Welcome to Cape Town. Your Omaya representative meets you on arrival, and the rest of the day is yours – time to land, unpack and settle in before the road north begins.',
+        accommodation: 'Cape Town',
+        meals: [],
+      },
+      {
+        day: 2,
+        title: 'Cape Town – Cederberg',
+        description:
+          'We leave the city behind and head north to Citrusdal, where the Cederberg begins. It’s a quiet mountain wilderness – orange rock formations, San rock art, rooibos farms and wide, open valleys. Tonight we stay at Marcuskraal, with a pool to cool off in and a braai to gather around.',
+        accommodation: 'Hotel in Cederberg',
+        meals: ['dinner'],
+      },
+      {
+        day: 3,
+        title: 'Into Namibia – Orange River',
+        description:
+          'Today we cross into Namibia. We stop at the Orange River, South Africa’s longest, which traces part of the border between the two countries. The afternoon is free – nowhere to be but by the water.',
+        accommodation: 'Lodge with air-conditioned en-suite cabanas',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 4,
+        title: 'Fish River Canyon – Keetmanshoop',
+        description:
+          'We walk the rim of the Fish River Canyon, Africa’s largest – up to 160 km long and 550 m deep. It’s the kind of scale that’s hard to take in at once. Afterwards we continue to Keetmanshoop, a small town shaped by German colonial architecture.',
+        accommodation: 'Guesthouse',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 5,
+        title: 'Quiver Tree Forest & Giant’s Playground – Sesriem',
+        description:
+          'Two strange landscapes in one morning: the Quiver Tree Forest, and the Giant’s Playground – a maze of huge dolerite boulders that look as if someone stacked them by hand. Then we drive on to Sesriem, the gateway to the dunes.',
+        accommodation: 'Desert Camp, 5 km from the Sossusvlei gate',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 6,
+        title: 'Dune 45, Deadvlei & Sesriem Canyon',
+        description:
+          'A whole day in the Namib. We begin at Dune 45, often called the most photographed dune in the world. A 4x4 shuttle carries us on to Deadvlei, a white clay pan where blackened acacia trees have stood among the red dunes for around 900 years. We end in Sesriem Canyon, a narrow gorge the Tsauchab River carved through the rock.',
+        accommodation: 'Desert Camp',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 7,
+        title: 'Desert walk – Tropic of Capricorn – Swakopmund',
+        description:
+          'A local expert takes us walking into the desert and shows us how to read it. We cross the Tropic of Capricorn and arrive in Swakopmund, where the desert runs straight into the Atlantic – a relaxed seaside town of German colonial buildings, cafés and cool coastal air.',
+        accommodation: 'Hotel at Swakopmund',
+        meals: ['breakfast'],
+      },
+      {
+        day: 8,
+        title: 'Swakopmund at leisure',
+        description:
+          'A day that’s entirely yours. Wander the town at your own pace, or choose something more adventurous – quad biking, sandboarding, or a scenic flight over the dunes and the coast.',
+        accommodation: 'Hotel at Swakopmund',
+        meals: ['breakfast'],
+      },
+      {
+        day: 9,
+        title: 'Spitzkoppe – Erongo Mountains',
+        description:
+          'We walk with a guide at Spitzkoppe, a cluster of bald granite peaks and one of Namibia’s most recognisable landmarks, where ancient rock paintings still mark the stone. Then on to the Erongo region, where we stay among palm and sycamore trees beside a waterhole.',
+        accommodation: 'Lodge',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 10,
+        title: 'Towards Etosha',
+        description:
+          'We drive north to the edge of Etosha National Park. Tonight we sleep in a mopane forest, just outside the Andersson Gate.',
+        accommodation: 'Lodge',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 11,
+        title: 'Etosha National Park',
+        description:
+          'A full day of game drives in Etosha – home to lions, elephants, giraffes, white and black rhinos and many kinds of antelope. In the evening, sit by Okaukuejo’s floodlit waterhole and wait quietly to see who comes to drink.',
+        accommodation: 'Safari lodge',
+        meals: ['breakfast', 'dinner'],
+      },
+      {
+        day: 12,
+        title: 'Windhoek – Departure',
+        description:
+          'After a last breakfast together, we drive to Windhoek, where our journey ends. Please book your flight home from Windhoek for the late afternoon.',
+        accommodation: null,
+        meals: ['breakfast'],
+      },
+    ],
+    gallery: NAMIBIA_WOMEN_GALLERY,
+    faq: {
+      heading: CLASSIC_TOUR_FAQ_HEADING,
+      intro: CLASSIC_TOUR_FAQ_INTRO,
+      items: [
+        {
+          question: 'What makes this a women-only tour, and who will be leading the group?',
+          answer: [
+            'This tour is designed only for women, creating a relaxed, supportive atmosphere where you can travel freely and connect with like-minded women along the way. A woman from the Omaya Travel team meets you in Cape Town and stays with the group throughout the trip, so you have female support at every stage.',
+            'On the ground, the group travels with a local driver and guide, who may be men. They’re experienced professionals, but they’re not part of the Omaya team.',
+            'Not sure if this is the right fit for you? Our team is happy to talk it through and help you find the best tour for your trip.',
+          ],
+        },
+        {
+          question: 'Can I bring my son/partner/male family member?',
+          answer: [
+            'This tour is reserved for women only, so male travellers, including partners and family members, can’t join, regardless of age or relationship to the traveller.',
+          ],
+        },
+        {
+          question: 'Is this tour suitable for solo women travellers?',
+          answer: [
+            'Yes, many women join solo. You’ll be part of a small, supportive all-female group. You can share a room with another traveller (matched by Omaya Travel) or book a private room with the single supplement. Single rooms are limited on each departure, so it’s best to book early if you’d like one.',
+          ],
+        },
+        {
+          question: 'Where does the tour start and end?',
+          answer: [
+            'The tour starts in Cape Town and ends in Windhoek. A woman from the Omaya team meets you on arrival in Cape Town, and the airport transfer and first night’s hotel are included. On the last day we reach Windhoek after breakfast, so please book your departing flight for the late afternoon.',
+          ],
+        },
+        {
+          question: 'How big is the group?',
+          answer: ['Up to 12 women.'],
+        },
+        {
+          question: 'How do we travel?',
+          answer: [
+            'In a 20-seater Toyota Coaster with a driver and guide, so there is plenty of space for the group.',
+          ],
+        },
+        {
+          question: 'What kind of accommodation is it?',
+          answer: [
+            'Guesthouses, lodges, desert camps, a town hotel in Swakopmund and a bush chalet in Etosha. It’s not a camping tour, so you won’t need to put up tents.',
+          ],
+        },
+        {
+          question: 'Which meals are included?',
+          answer: [
+            'Breakfast every day and dinner on most nights. In Swakopmund only breakfast is included, so you can choose where to eat in town. Lunches are not included.',
+          ],
+        },
+        {
+          question: 'What can I do on the free day in Swakopmund?',
+          answer: [
+            'You can explore the town’s cafés and museums or choose optional activities such as quad biking, sandboarding or a scenic flight over the dunes and coast. Optional activities are paid locally.',
+          ],
+        },
+        {
+          question: 'What should I pack?',
+          answer: [
+            'Bring a soft-sided bag of up to 20 kg. You’ll also need a hat, sunglasses, sunscreen, comfortable walking shoes and a warm layer for cool mornings and evenings. Namibia uses Type D, M and G plugs, and South Africa uses Type M and N.',
+          ],
+        },
+        {
+          question: 'What’s the weather like?',
+          answer: [
+            'Namibia is dry and sunny. Summer days reach around 30°C, while winter nights can drop to around 5°C. The coast around Swakopmund is cooler and often foggy.',
+          ],
+        },
+        {
+          question: 'Do I need a visa?',
+          answer: [
+            'Visa requirements depend on your nationality, for both South Africa and Namibia. Please check with the embassy or a visa service before you travel. Visas are not included in the tour price.',
+          ],
+        },
+        {
+          question: 'Is travel insurance required?',
+          answer: ['Yes. Travel and medical insurance is compulsory for this tour.'],
+        },
+        {
+          question: 'What about money and tipping?',
+          answer: [
+            'Namibia uses the Namibian dollar (N$). Cards are widely accepted and ATMs are easy to find, but American Express and Diners Club are not accepted. Tipping is customary at around 10–15% in restaurants.',
+          ],
+        },
+      ],
+    },
+    enquiry: {
+      enabled: true,
+      cta: 'Check Availability',
+    },
+    seo: {
+      title: 'Namibia Small Group Tour: Cape Town to Etosha | Omaya Travel',
+      description:
+        '12-day small group tour from Cape Town to Windhoek: Fish River Canyon, Sossusvlei, Swakopmund, Spitzkoppe and Etosha. Up to 12 travellers.',
+    },
+    source: {
+      legacyUrl: 'https://omayatravel.com/tour-item/women-only-tour-namibia/',
     },
   },
 ];

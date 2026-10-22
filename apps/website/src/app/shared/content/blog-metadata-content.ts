@@ -96,6 +96,27 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     },
   },
   {
+    slug: 'cape-town-to-windhoek-namibia-guide',
+    title: 'Cape Town to Windhoek: What 12 Days Through Namibia Are Really Like',
+    seoTitle: 'Cape Town to Windhoek: A Namibia Road Trip Guide',
+    publishedAt: '2026-10-21',
+    date: 'October 21, 2026',
+    category: 'Namibia',
+    comments: 0,
+    excerpt:
+      'Red dunes, a giant canyon and the clearest skies you’ll see. Our guide to the Cape Town–Windhoek route: what to see, when to go, what to pack.',
+    preview:
+      'There’s a moment on every Namibia trip when the van goes quiet. Someone looks out at nothing but sand and sky for the hundredth kilometre in a row, and realises they haven’t checked their phone in hours.',
+    image: {
+      src: '/assets/images/women-tours/Namibia/Tropic_of_Capricorn.webp',
+      alt: 'The Tropic of Capricorn sign on the road through Namibia',
+    },
+    relatedTour: {
+      title: 'Namibia: From the Cederberg to Etosha | Women only',
+      url: '/tour-item/women-only-tour-namibia/',
+    },
+  },
+  {
     slug: 'tassili-najjer-national-park-algeria-guide',
     title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
     publishedAt: '2026-07-25',

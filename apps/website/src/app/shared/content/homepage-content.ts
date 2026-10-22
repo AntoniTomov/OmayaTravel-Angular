@@ -76,6 +76,10 @@ export const PUBLIC_NAVIGATION_GROUPS: readonly NavigationGroup[] = [
         label: 'Morocco',
         target: '/destinations/morocco/',
       },
+      {
+        label: 'Namibia',
+        target: '/destinations/namibia/',
+      },
     ],
   },
   {
