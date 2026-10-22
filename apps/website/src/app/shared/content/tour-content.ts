@@ -2519,7 +2519,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       height: 2576,
     },
     introduction: [
-      'Over twelve days we travel from the mountains of South Africa’s Western Cape across the border into Namibia. Along the way we see one of the world’s largest canyons, the red dunes of the Namib, the Atlantic coast at Swakopmund, granite peaks covered in ancient rock art, and the waterholes of Etosha National Park.',
+      'Twelve days, two countries, and a landscape that keeps changing outside the window. We start in the mountains of South Africa’s Western Cape and cross into Namibia, where the scale of things shifts – the Fish River Canyon, one of the largest on earth; the red dunes of the Namib at first light; the cool Atlantic air of Swakopmund. Further north, granite peaks hold rock art painted thousands of years ago, and the trip ends at the waterholes of Etosha, where you sit quietly and let the animals come to you.',
     ],
     highlights: [
       {
@@ -2552,8 +2552,6 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       'Fuel, tolls and transport permits',
       'Accommodation and meals as listed',
       'Fish River Canyon rim walk',
-      'Quiver Tree Forest and Giant’s Playground',
-      'Dune 45, 4x4 shuttle to Deadvlei, Sesriem Canyon',
       'Guided desert walk with a local expert',
       'Guided Spitzkoppe walk',
       'Full-day game drive in Etosha National Park',
@@ -2573,7 +2571,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 1,
         title: 'Arrival in Cape Town',
         description:
-          'Arrive in Cape Town, where you’ll meet your Omaya representative. The rest of the day is free to settle in before the journey begins.',
+          'Arrive in Cape Town, where your Omaya representative will be waiting. The rest of the day is yours to settle in before we set off.',
         accommodation: 'Cape Town',
         meals: [],
       },
@@ -2581,7 +2579,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 2,
         title: 'Cape Town – Cederberg',
         description:
-          'We set off north to Citrusdal, at the edge of the Cederberg. This is a quiet mountain wilderness of orange rock formations, San rock art, rooibos farms and wide valleys. Tonight we stay at Marcuskraal, which has a pool and braai facilities.',
+          'We head north to Citrusdal, on the edge of the Cederberg – a quiet mountain wilderness of orange rock formations, San rock art, rooibos farms and wide valleys. Tonight we stay at Marcuskraal, with a pool and a braai to gather around.',
         accommodation: 'Hotel in Cederberg',
         meals: ['dinner'],
       },
@@ -2589,7 +2587,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 3,
         title: 'Into Namibia – Orange River',
         description:
-          'We cross the border into Namibia and reach the Orange River. It is South Africa’s longest river and forms part of the border between the two countries. The afternoon is free to relax by the water.',
+          'We cross into Namibia and reach the Orange River, South Africa’s longest river and part of the border between the two countries. The afternoon is free to slow down by the water.',
         accommodation: 'Lodge with air-conditioned en-suite cabanas',
         meals: ['breakfast', 'dinner'],
       },
@@ -2597,7 +2595,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 4,
         title: 'Fish River Canyon – Keetmanshoop',
         description:
-          'We take a scenic walk along the rim of the Fish River Canyon, Africa’s largest canyon. It is up to 160 km long and 550 m deep. We continue to Keetmanshoop, a small town with German colonial architecture.',
+          'We walk along the rim of the Fish River Canyon, Africa’s largest – up to 160 km long and 550 m deep. Then on to Keetmanshoop, a small town with German colonial architecture.',
         accommodation: 'Guesthouse',
         meals: ['breakfast', 'dinner'],
       },
@@ -2605,7 +2603,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 5,
         title: 'Quiver Tree Forest & Giant’s Playground – Sesriem',
         description:
-          'We visit the Quiver Tree Forest and the Giant’s Playground, a maze of huge dolerite boulders that look as if they were stacked by hand. Then we head to Sesriem, the gateway to the dunes.',
+          'We visit the Quiver Tree Forest and the Giant’s Playground, a maze of huge dolerite boulders that look stacked by hand. Then we drive to Sesriem, the gateway to the dunes.',
         accommodation: 'Desert Camp, 5 km from the Sossusvlei gate',
         meals: ['breakfast', 'dinner'],
       },
@@ -2613,7 +2611,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 6,
         title: 'Dune 45, Deadvlei & Sesriem Canyon',
         description:
-          'This is a full day in the Namib. We see Dune 45, often called the most photographed dune in the world. A 4x4 shuttle takes us to Deadvlei, a white clay pan where blackened acacia trees have stood for around 900 years among red dunes. We finish in Sesriem Canyon, a narrow gorge carved by the Tsauchab River.',
+          'A full day in the Namib. We start at Dune 45, often called the most photographed dune in the world. A 4x4 shuttle takes us to Deadvlei, a white clay pan where blackened acacia trees have stood among red dunes for around 900 years. We end the day in Sesriem Canyon, a narrow gorge carved by the Tsauchab River.',
         accommodation: 'Desert Camp',
         meals: ['breakfast', 'dinner'],
       },
@@ -2621,7 +2619,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 7,
         title: 'Desert walk – Tropic of Capricorn – Swakopmund',
         description:
-          'We join a local expert for a guided desert walk and stop at the Tropic of Capricorn. We arrive in Swakopmund, a relaxed seaside town where the desert meets the Atlantic, with German colonial buildings, cafés and a cool coastal climate.',
+          'A local expert walks us through the desert, and we stop at the Tropic of Capricorn on the way to Swakopmund – a relaxed seaside town where the desert meets the Atlantic, with German colonial buildings, cafés and cool coastal air.',
         accommodation: 'Hotel at Swakopmund',
         meals: ['breakfast'],
       },
@@ -2629,7 +2627,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 8,
         title: 'Swakopmund at leisure',
         description:
-          'Today is a free day. You can explore the town or choose optional activities such as quad biking, sandboarding or a scenic flight over the dunes and the coast.',
+          'A free day, at your own pace. Wander the town, or try one of the optional activities – quad biking, sandboarding or a scenic flight over the dunes and coast.',
         accommodation: 'Hotel at Swakopmund',
         meals: ['breakfast'],
       },
@@ -2637,7 +2635,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 9,
         title: 'Spitzkoppe – Erongo Mountains',
         description:
-          'We take a guided walk at Spitzkoppe, a group of bald granite peaks and one of Namibia’s most recognisable landmarks, known for its ancient rock paintings. We continue to the Erongo region and stay among palm and sycamore trees beside a waterhole.',
+          'A guided walk at Spitzkoppe, a cluster of bald granite peaks and one of Namibia’s most recognisable landmarks, known for its ancient rock paintings. We continue to the Erongo region and stay among palm and sycamore trees beside a waterhole.',
         accommodation: 'Lodge',
         meals: ['breakfast', 'dinner'],
       },
@@ -2645,7 +2643,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 10,
         title: 'Towards Etosha',
         description:
-          'We drive north to the edge of Etosha National Park and stay in a mopane forest just outside the Andersson Gate.',
+          'We drive north to the edge of Etosha National Park and spend the night in a mopane forest just outside the Andersson Gate.',
         accommodation: 'Lodge',
         meals: ['breakfast', 'dinner'],
       },
@@ -2653,7 +2651,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 11,
         title: 'Etosha National Park',
         description:
-          'We spend a full day on a game drive in Etosha, home to lions, elephants, giraffes, white and black rhinos and many kinds of antelope. In the evening you can watch wildlife at Okaukuejo’s floodlit waterhole.',
+          'A full day on game drives in Etosha, home to lions, elephants, giraffes, white and black rhinos and many kinds of antelope. In the evening you can sit by Okaukuejo’s floodlit waterhole and watch who comes to drink.',
         accommodation: 'Safari lodge',
         meals: ['breakfast', 'dinner'],
       },
@@ -2661,7 +2659,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 12,
         title: 'Windhoek – Departure',
         description:
-          'After breakfast we drive to Windhoek, where the tour ends. Please book your departing flight from Windhoek for the late afternoon.',
+          'After breakfast we drive to Windhoek, where our journey together ends. Please book your flight home from Windhoek for the late afternoon.',
         accommodation: null,
         meals: ['breakfast'],
       },

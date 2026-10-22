@@ -122,7 +122,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
     category: 'Women only',
     destination: 'Namibia',
     excerpt:
-      'Over twelve days we travel from the mountains of South Africa’s Western Cape across the border into Namibia. Along the way we see one of the world’s largest canyons, the red dunes of the Namib, the Atlantic coast at Swakopmund, granite peaks covered in ancient rock art, and the waterholes of Etosha National Park.',
+      'Twelve days, two countries, and a landscape that keeps changing outside the window. We start in the mountains of South Africa’s Western Cape and cross into Namibia, where the scale of things shifts – the Fish River Canyon, one of the largest on earth; the red dunes of the Namib at first light; the cool Atlantic air of Swakopmund. Further north, granite peaks hold rock art painted thousands of years ago, and the trip ends at the waterholes of Etosha, where you sit quietly and let the animals come to you.',
     image: '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp',
     alt: 'Namibia women-only tour preview',
     price: 'EUR3450',
