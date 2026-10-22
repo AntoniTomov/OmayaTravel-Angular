@@ -2571,7 +2571,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 1,
         title: 'Arrival in Cape Town',
         description:
-          'Arrive in Cape Town, where your Omaya representative will be waiting. The rest of the day is yours to settle in before we set off.',
+          'Welcome to Cape Town. Your Omaya representative meets you on arrival, and the rest of the day is yours – time to land, unpack and settle in before the road north begins.',
         accommodation: 'Cape Town',
         meals: [],
       },
@@ -2579,7 +2579,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 2,
         title: 'Cape Town – Cederberg',
         description:
-          'We head north to Citrusdal, on the edge of the Cederberg – a quiet mountain wilderness of orange rock formations, San rock art, rooibos farms and wide valleys. Tonight we stay at Marcuskraal, with a pool and a braai to gather around.',
+          'We leave the city behind and head north to Citrusdal, where the Cederberg begins. It’s a quiet mountain wilderness – orange rock formations, San rock art, rooibos farms and wide, open valleys. Tonight we stay at Marcuskraal, with a pool to cool off in and a braai to gather around.',
         accommodation: 'Hotel in Cederberg',
         meals: ['dinner'],
       },
@@ -2587,7 +2587,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 3,
         title: 'Into Namibia – Orange River',
         description:
-          'We cross into Namibia and reach the Orange River, South Africa’s longest river and part of the border between the two countries. The afternoon is free to slow down by the water.',
+          'Today we cross into Namibia. We stop at the Orange River, South Africa’s longest, which traces part of the border between the two countries. The afternoon is free – nowhere to be but by the water.',
         accommodation: 'Lodge with air-conditioned en-suite cabanas',
         meals: ['breakfast', 'dinner'],
       },
@@ -2595,7 +2595,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 4,
         title: 'Fish River Canyon – Keetmanshoop',
         description:
-          'We walk along the rim of the Fish River Canyon, Africa’s largest – up to 160 km long and 550 m deep. Then on to Keetmanshoop, a small town with German colonial architecture.',
+          'We walk the rim of the Fish River Canyon, Africa’s largest – up to 160 km long and 550 m deep. It’s the kind of scale that’s hard to take in at once. Afterwards we continue to Keetmanshoop, a small town shaped by German colonial architecture.',
         accommodation: 'Guesthouse',
         meals: ['breakfast', 'dinner'],
       },
@@ -2603,7 +2603,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 5,
         title: 'Quiver Tree Forest & Giant’s Playground – Sesriem',
         description:
-          'We visit the Quiver Tree Forest and the Giant’s Playground, a maze of huge dolerite boulders that look stacked by hand. Then we drive to Sesriem, the gateway to the dunes.',
+          'Two strange landscapes in one morning: the Quiver Tree Forest, and the Giant’s Playground – a maze of huge dolerite boulders that look as if someone stacked them by hand. Then we drive on to Sesriem, the gateway to the dunes.',
         accommodation: 'Desert Camp, 5 km from the Sossusvlei gate',
         meals: ['breakfast', 'dinner'],
       },
@@ -2611,7 +2611,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 6,
         title: 'Dune 45, Deadvlei & Sesriem Canyon',
         description:
-          'A full day in the Namib. We start at Dune 45, often called the most photographed dune in the world. A 4x4 shuttle takes us to Deadvlei, a white clay pan where blackened acacia trees have stood among red dunes for around 900 years. We end the day in Sesriem Canyon, a narrow gorge carved by the Tsauchab River.',
+          'A whole day in the Namib. We begin at Dune 45, often called the most photographed dune in the world. A 4x4 shuttle carries us on to Deadvlei, a white clay pan where blackened acacia trees have stood among the red dunes for around 900 years. We end in Sesriem Canyon, a narrow gorge the Tsauchab River carved through the rock.',
         accommodation: 'Desert Camp',
         meals: ['breakfast', 'dinner'],
       },
@@ -2619,7 +2619,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 7,
         title: 'Desert walk – Tropic of Capricorn – Swakopmund',
         description:
-          'A local expert walks us through the desert, and we stop at the Tropic of Capricorn on the way to Swakopmund – a relaxed seaside town where the desert meets the Atlantic, with German colonial buildings, cafés and cool coastal air.',
+          'A local expert takes us walking into the desert and shows us how to read it. We cross the Tropic of Capricorn and arrive in Swakopmund, where the desert runs straight into the Atlantic – a relaxed seaside town of German colonial buildings, cafés and cool coastal air.',
         accommodation: 'Hotel at Swakopmund',
         meals: ['breakfast'],
       },
@@ -2627,7 +2627,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 8,
         title: 'Swakopmund at leisure',
         description:
-          'A free day, at your own pace. Wander the town, or try one of the optional activities – quad biking, sandboarding or a scenic flight over the dunes and coast.',
+          'A day that’s entirely yours. Wander the town at your own pace, or choose something more adventurous – quad biking, sandboarding, or a scenic flight over the dunes and the coast.',
         accommodation: 'Hotel at Swakopmund',
         meals: ['breakfast'],
       },
@@ -2635,7 +2635,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 9,
         title: 'Spitzkoppe – Erongo Mountains',
         description:
-          'A guided walk at Spitzkoppe, a cluster of bald granite peaks and one of Namibia’s most recognisable landmarks, known for its ancient rock paintings. We continue to the Erongo region and stay among palm and sycamore trees beside a waterhole.',
+          'We walk with a guide at Spitzkoppe, a cluster of bald granite peaks and one of Namibia’s most recognisable landmarks, where ancient rock paintings still mark the stone. Then on to the Erongo region, where we stay among palm and sycamore trees beside a waterhole.',
         accommodation: 'Lodge',
         meals: ['breakfast', 'dinner'],
       },
@@ -2643,7 +2643,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 10,
         title: 'Towards Etosha',
         description:
-          'We drive north to the edge of Etosha National Park and spend the night in a mopane forest just outside the Andersson Gate.',
+          'We drive north to the edge of Etosha National Park. Tonight we sleep in a mopane forest, just outside the Andersson Gate.',
         accommodation: 'Lodge',
         meals: ['breakfast', 'dinner'],
       },
@@ -2651,7 +2651,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 11,
         title: 'Etosha National Park',
         description:
-          'A full day on game drives in Etosha, home to lions, elephants, giraffes, white and black rhinos and many kinds of antelope. In the evening you can sit by Okaukuejo’s floodlit waterhole and watch who comes to drink.',
+          'A full day of game drives in Etosha – home to lions, elephants, giraffes, white and black rhinos and many kinds of antelope. In the evening, sit by Okaukuejo’s floodlit waterhole and wait quietly to see who comes to drink.',
         accommodation: 'Safari lodge',
         meals: ['breakfast', 'dinner'],
       },
@@ -2659,7 +2659,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
         day: 12,
         title: 'Windhoek – Departure',
         description:
-          'After breakfast we drive to Windhoek, where our journey together ends. Please book your flight home from Windhoek for the late afternoon.',
+          'After a last breakfast together, we drive to Windhoek, where our journey ends. Please book your flight home from Windhoek for the late afternoon.',
         accommodation: null,
         meals: ['breakfast'],
       },
