@@ -2497,7 +2497,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       nights: 11,
     },
     price: {
-      amount: 3450,
+      amount: 3380,
       currency: 'EUR',
       unit: 'person',
     },

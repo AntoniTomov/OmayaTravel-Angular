@@ -125,7 +125,7 @@ export const TOUR_CARDS: readonly TourCardContent[] = [
       'Twelve days, two countries, and a landscape that keeps changing outside the window. We start in the mountains of South Africa’s Western Cape and cross into Namibia, where the scale of things shifts – the Fish River Canyon, one of the largest on earth; the red dunes of the Namib at first light; the cool Atlantic air of Swakopmund. Further north, granite peaks hold rock art painted thousands of years ago, and the trip ends at the waterholes of Etosha, where you sit quietly and let the animals come to you.',
     image: '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp',
     alt: 'Namibia women-only tour preview',
-    price: 'EUR3450',
+    price: 'EUR3380',
     duration: '12 Days 11 Nights',
     target: '/tour-item/women-only-tour-namibia/',
   },
