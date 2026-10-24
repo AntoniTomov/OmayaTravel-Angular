@@ -267,7 +267,7 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
     min: 6,
     max: 12,
   },
-  departures: ['2026-11-05', '2027-02-24', '2027-10-28'],
+  departures: ['2027-02-24', '2027-10-28'],
   departureNotes: { '2027-02-24': 'All ages departure' },
   guaranteedDepartures: ['2027-02-24'],
   heroImage: {
@@ -432,7 +432,97 @@ export const ALGERIA_DESERT_EXPEDITION_TADRART_ROUGE: TourDetailContent = {
   faq: {
     heading: CLASSIC_TOUR_FAQ_HEADING,
     intro: CLASSIC_TOUR_FAQ_INTRO,
-    items: [classicToursFaqItem('Algeria')],
+    items: [
+      classicToursFaqItem('Algeria'),
+      {
+        question: 'Do I need a visa for Algeria?',
+        answer: [
+          'Yes. Our local partner arranges an official invitation letter for your visa, which takes at least two months. Once you have the invitation, you receive the visa on arrival in Algeria and pay the fee directly to the immigration officers.',
+        ],
+      },
+      {
+        question: 'How late can I book?',
+        answer: [
+          'Bookings close two months before the departure date, so there is enough time to arrange your visa invitation.',
+        ],
+      },
+      {
+        question: 'Is it safe to travel to Tadrart Rouge?',
+        answer: [
+          'Yes. Tadrart Rouge is a safe and well-established Sahara destination. You travel the whole time with an experienced local team of guides and drivers who know the desert and its people well.',
+        ],
+      },
+      {
+        question: 'Where do we sleep?',
+        answer: [
+          'During the desert expedition you sleep in individual tents, so everyone has their own space. The two nights outside the desert are spent in a hotel.',
+        ],
+      },
+      {
+        question: 'What about toilets and showers?',
+        answer: [
+          'This is a wild camping trip, so there are no showers or toilets at the camps. Please bring your own hygiene products suitable for wild camping.',
+        ],
+      },
+      {
+        question: 'Can I charge my phone or camera?',
+        answer: [
+          'There is no electricity, mobile coverage or internet during the desert expedition. Bring power banks with enough capacity for your phone and camera for several days.',
+        ],
+      },
+      {
+        question: 'What food is served, and can you cater for dietary needs?',
+        answer: [
+          'Meals are simple and mostly vegetarian, with occasional meat or fish dishes. Some dietary requirements can be difficult to accommodate in the desert, so please check with us before booking.',
+        ],
+      },
+      {
+        question: 'The tour is rated Easy. How much walking is there?',
+        answer: [
+          'Walks are short, mostly on sand and to the rock art sites. Most distances are covered by 4x4.',
+        ],
+      },
+      {
+        question: 'How does the single supplement work?',
+        answer: [
+          'Tents are always individual, so you have your own tent in the desert at no extra cost. The single supplement covers a private room for the two hotel nights.',
+        ],
+      },
+      {
+        question: 'What should I wear?',
+        answer: [
+          'Loose, modest clothing is the most practical choice for the sun and is respectful of local customs. A scarf or a cheche (Tuareg headscarf) protects against sun and sand. Nights in the desert can be cold, so bring warm layers.',
+        ],
+      },
+      {
+        question: 'What luggage should I bring?',
+        answer: [
+          'Please bring a soft duffel bag rather than a hard suitcase, as it fits much better in the 4x4 vehicles.',
+        ],
+      },
+      {
+        question: 'What currency is used, and should I bring cash?',
+        answer: [
+          'The local currency is the Algerian dinar (DZD). ATMs and card payments are very limited in Djanet and don’t exist in the desert, so bring enough cash in euros for the whole trip. You can exchange money on arrival with the help of your local team. Plan for personal expenses, souvenirs, the visa fee and tips.',
+        ],
+      },
+      {
+        question: 'Should I tip the guides and drivers?',
+        answer: [
+          'Tipping is customary and much appreciated. We recommend tipping your local team, which includes the guides, drivers and cooks.',
+        ],
+      },
+      {
+        question: 'Can I photograph people?',
+        answer: [
+          'Always ask permission before photographing people, especially women. Please never touch the rock paintings or wet them for better photos, because this damages art that has survived for thousands of years.',
+        ],
+      },
+      {
+        question: 'Is alcohol available?',
+        answer: ['No. Alcohol is not available during the tour.'],
+      },
+    ],
   },
   enquiry: {
     enabled: true,
