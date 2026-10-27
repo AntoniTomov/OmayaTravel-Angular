@@ -1,0 +1,24 @@
+// MapLibre controls carry their own z-indexes; contain them so the sticky header stays on top.
+.tour-map {
+  position: relative;
+  isolation: isolate;
+}
+
+.tour-map__frame {
+  height: 520px;
+  border: 1px solid var(--omaya-color-border-light);
+  background: var(--omaya-color-surface-alt);
+}
+
+// Sits in MapLibre's own control group, below zoom in and out.
+.maplibregl-ctrl-group .tour-map__fit {
+  display: grid;
+  place-items: center;
+  color: var(--omaya-color-heading);
+}
+
+@media (max-width: 900px) {
+  .tour-map__frame {
+    height: 420px;
+  }
+}
