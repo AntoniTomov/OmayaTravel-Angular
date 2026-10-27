@@ -30,6 +30,35 @@ const MAP_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
 const FIT_PADDING = { top: 40, bottom: 60, left: 60, right: 60 };
 
 /**
+ * MapLibre's own stylesheet is ~70 kB, far over the per-component style budget, so angular.json
+ * builds it as a separate `maplibre.css` that is not injected; it is linked here the first time a
+ * map opens, so no other page pays for it.
+ */
+function loadMapLibreStyles(): Promise<void> {
+  const existing = document.querySelector<HTMLLinkElement>('link[data-maplibre-styles]');
+
+  if (existing) {
+    return existing.sheet ? Promise.resolve() : waitForLoad(existing);
+  }
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'maplibre.css';
+  link.dataset['maplibreStyles'] = '';
+  document.head.append(link);
+
+  return waitForLoad(link);
+}
+
+// Resolves on error too: an unstyled map still works better than none.
+function waitForLoad(link: HTMLLinkElement): Promise<void> {
+  return new Promise((resolve) => {
+    link.addEventListener('load', () => resolve(), { once: true });
+    link.addEventListener('error', () => resolve(), { once: true });
+  });
+}
+
+/**
  * Interactive route map for a tour. MapLibre needs WebGL and a real DOM, so it is loaded on demand
  * in the browser only; the server renders an empty frame.
  */
@@ -96,7 +125,7 @@ export class TourMap implements OnDestroy {
       return;
     }
 
-    const maplibre = await import('maplibre-gl');
+    const [maplibre] = await Promise.all([import('maplibre-gl'), loadMapLibreStyles()]);
     const frame = this.frame().nativeElement;
     const bounds = new maplibre.LngLatBounds();
 

@@ -1,5 +1,3 @@
-@use 'maplibre-gl/dist/maplibre-gl';
-
 // MapLibre controls carry their own z-indexes; contain them so the sticky header stays on top.
 .tour-map {
   position: relative;
