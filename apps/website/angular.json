@@ -43,6 +43,7 @@
                 "inject": false
               }
             ],
+            "allowedCommonJsDependencies": ["maplibre-gl"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
