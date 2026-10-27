@@ -125,7 +125,10 @@ export class TourMap implements OnDestroy {
       return;
     }
 
-    const [maplibre] = await Promise.all([import('maplibre-gl'), loadMapLibreStyles()]);
+    const [module] = await Promise.all([import('maplibre-gl'), loadMapLibreStyles()]);
+    // MapLibre ships as CommonJS. The development build hands back its exports directly, but the
+    // optimised production build wraps them in `default`, so take whichever is there.
+    const maplibre = (module as unknown as { default?: typeof MapLibre }).default ?? module;
     const frame = this.frame().nativeElement;
     const bounds = new maplibre.LngLatBounds();
 
