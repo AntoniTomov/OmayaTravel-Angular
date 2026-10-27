@@ -442,7 +442,12 @@ const LEGAL_PAGES: Record<string, LegalPageContent> = {
           'This registration confirms Omaya Travel’s compliance with the Bulgarian Tourism Act, including mandatory tour operator liability insurance and consumer protection requirements for all package travel bookings.',
           'You can verify this registration directly in Bulgaria’s National Tourist Register (Национален туристически регистър), maintained by the Ministry of Tourism.',
         ],
-        links: [{ label: 'Bulgaria’s National Tourist Register', url: 'https://tourism.egov.bg/' }],
+        links: [
+          {
+            label: 'Bulgaria’s National Tourist Register',
+            url: 'https://ntr.tourism.government.bg/Registration.nsf/alltato.xsp',
+          },
+        ],
       },
     ],
   },
