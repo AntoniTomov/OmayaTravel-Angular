@@ -10,96 +10,15 @@
   background: var(--omaya-color-surface-alt);
 }
 
-.tour-map__fit {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  padding: 0.45rem 0.8rem;
-  border: 0;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow: var(--omaya-shadow-dropdown);
+// Sits in MapLibre's own control group, below zoom in and out.
+.maplibregl-ctrl-group .tour-map__fit {
+  display: grid;
+  place-items: center;
   color: var(--omaya-color-heading);
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.tour-map__frame--far .tour-map__place {
-  visibility: hidden;
-}
-
-// A zero-size anchor on the coordinate; the dot is centred on it and the name set to one side.
-.tour-map__place {
-  width: 0;
-  height: 0;
-}
-
-.tour-map__dot {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  background: var(--omaya-color-accent);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
-  box-sizing: border-box;
-  transform: translate(-50%, -50%);
-}
-
-.tour-map__label {
-  position: absolute;
-  padding: 2px 6px;
-  border-radius: 3px;
-  background: #fff;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
-  color: var(--omaya-color-heading);
-  font-size: 0.78rem;
-  font-weight: 600;
-  line-height: 1.3;
-  white-space: nowrap;
-}
-
-.tour-map__place--top .tour-map__label {
-  bottom: 10px;
-  transform: translateX(-50%);
-}
-
-.tour-map__place--bottom .tour-map__label {
-  top: 10px;
-  transform: translateX(-50%);
-}
-
-.tour-map__place--left .tour-map__label {
-  right: 12px;
-  transform: translateY(-50%);
-}
-
-.tour-map__place--right .tour-map__label {
-  left: 12px;
-  transform: translateY(-50%);
-}
-
-.tour-map__place--via {
-  .tour-map__dot {
-    width: 9px;
-    height: 9px;
-    border-width: 1.5px;
-    background: var(--omaya-color-muted);
-  }
-
-  .tour-map__label {
-    background: rgb(255 255 255 / 80%);
-    color: var(--omaya-color-muted);
-    font-size: 0.7rem;
-    font-weight: 400;
-  }
 }
 
 @media (max-width: 900px) {
   .tour-map__frame {
-    height: 380px;
+    height: 420px;
   }
 }
