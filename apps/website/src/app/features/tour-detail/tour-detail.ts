@@ -48,7 +48,10 @@ import {
   findTourBySlug,
 } from '../../shared/content/tour-content';
 
-type TourTab = 'information' | 'tour-plan' | 'gallery' | 'faq';
+import { findTourRoute } from '../../shared/content/tour-routes';
+import { TourMap } from './tour-map/tour-map';
+
+type TourTab = 'information' | 'tour-plan' | 'map' | 'gallery' | 'faq';
 
 interface TourTabDefinition {
   id: TourTab;
@@ -93,6 +96,7 @@ const FITNESS_LEVEL_KEYS: Readonly<Record<string, `tourDetail.${string}`>> = {
     TourWebImageSrcsetPipe,
     TourWebThumbnailSrcsetPipe,
     TrustpilotReviews,
+    TourMap,
   ],
   templateUrl: './tour-detail.html',
   styleUrl: './tour-detail.scss',
@@ -149,7 +153,7 @@ export class TourDetail {
   );
   /**
    * `sizes` for the hero. The hero is a fixed 515px box with `object-fit: cover`, which scales the
-   * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen —
+   * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen â€”
    * 1,236px for a 2.4:1 image on a 375px phone. `sizes="100vw"` told the browser the opposite, so
    * it chose a candidate sized for the screen and cover stretched it by up to three times. The
    * width the image really renders at is the larger of the viewport and 515px times its aspect.
@@ -264,12 +268,20 @@ export class TourDetail {
 
     return tour.gallery[index] ?? null;
   });
+  protected readonly tourRoute = computed(() => findTourRoute(this.tour()?.slug));
+  protected readonly siteLocale = computed(() => this.activeSite.site().locale);
   protected readonly tabs = computed<readonly TourTabDefinition[]>(() => {
     const tabs: TourTabDefinition[] = [
       { id: 'information', label: this.i18n.t('tourDetail.tabInformation'), icon: 'info' },
       { id: 'tour-plan', label: this.i18n.t('tourDetail.tabTourPlan'), icon: 'menu_book' },
-      { id: 'gallery', label: this.i18n.t('tourDetail.tabGallery'), icon: 'photo_camera' },
     ];
+
+    // Only tours whose stops have been plotted get a map.
+    if (this.tourRoute()) {
+      tabs.push({ id: 'map', label: this.i18n.t('tourDetail.tabMap'), icon: 'travel_explore' });
+    }
+
+    tabs.push({ id: 'gallery', label: this.i18n.t('tourDetail.tabGallery'), icon: 'photo_camera' });
 
     // Always available: every tour has at least the booking conditions entry, even when the
     // content team has not authored destination-specific questions yet.
@@ -283,7 +295,7 @@ export class TourDetail {
    * FAQ state as computed signals rather than template methods.
    *
    * A template method runs on every change detection pass, and `tourFaqItems` builds a new array
-   * each call — so `@for` would see a fresh reference every cycle. These recompute only when the
+   * each call â€” so `@for` would see a fresh reference every cycle. These recompute only when the
    * tour changes and hand back a stable reference.
    */
   protected readonly faqItems = computed<readonly TourFaqItem[]>(() => {
@@ -329,7 +341,7 @@ export class TourDetail {
             tour.guaranteedDepartures?.includes(date) ? 'Guaranteed' : '',
           ]
             .filter(Boolean)
-            .join(' · '),
+            .join(' Â· '),
         ]),
     );
   });
@@ -570,7 +582,7 @@ export class TourDetail {
   }
 
   // Tours are authored with an English fitness rating; the dictionary holds the reading for each
-  // one, so the Bulgarian site shows "Физическа натовареност: Лека".
+  // one, so the Bulgarian site shows "Ð¤Ð¸Ð·Ð¸Ñ‡ÐµÑÐºÐ° Ð½Ð°Ñ‚Ð¾Ð²Ð°Ñ€ÐµÐ½Ð¾ÑÑ‚: Ð›ÐµÐºÐ°".
   protected fitnessLevelLabel(tour: TourDetailContent): string {
     const key = FITNESS_LEVEL_KEYS[tour.fitnessLevel];
 

@@ -30,9 +30,10 @@
     "search",
     "shield",
     "temple_buddhist",
+    "travel_explore",
     "wb_twilight"
   ],
   "originalBytes": 128352,
-  "subsetBytes": 2688,
-  "savedBytes": 125664
+  "subsetBytes": 2852,
+  "savedBytes": 125500
 }

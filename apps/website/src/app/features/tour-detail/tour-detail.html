@@ -292,6 +292,17 @@
           </section>
         }
 
+        @if (activeTab() === 'map' && tourRoute(); as route) {
+          <section class="tour-detail__section">
+            <h2>{{ i18n.t('tourDetail.mapTitle') }}</h2>
+            <app-tour-map
+              [route]="route"
+              [locale]="siteLocale()"
+              [fitLabel]="i18n.t('tourDetail.mapFitRoute')"
+            />
+          </section>
+        }
+
         @if (activeTab() === 'gallery') {
           <section class="tour-detail__section tour-detail__gallery-section">
             <div class="tour-detail__gallery" [attr.aria-label]="i18n.t('tourDetail.galleryLabel')">
