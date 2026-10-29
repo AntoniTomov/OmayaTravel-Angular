@@ -81,8 +81,26 @@ describe('Amelia tour content', () => {
     expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/saudi-arabia-tour/')).toBe(false);
   });
 
+  it('serves the Amelia Namibia tour on Amelia only', () => {
+    const tour = findTourBySlug('namibia-tour', 'amelia');
+
+    expect(tour?.title).toBe('Намибия и Южна Африка: от Седерберг до Етоша');
+    expect(tour?.duration).toEqual({ days: 13, nights: 12 });
+    expect(tour?.price).toEqual({ amount: 3050, currency: 'EUR', unit: 'човек' });
+    expect(tour?.departures).toEqual([
+      { date: '2027-05-01', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-15', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-10-16', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-11-24', ageGroupLabel: 'Група 40-65 г.' },
+    ]);
+    expect(tour?.itinerary).toHaveLength(13);
+    expect(findTourBySlug('namibia-tour', 'omaya')).toBeUndefined();
+    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/namibia-tour/')).toBe(true);
+    expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/namibia-tour/')).toBe(false);
+  });
+
   it('never mentions Omaya in Amelia tour copy or assets', () => {
-    for (const slug of ['morocco-tour', 'kyrgyzstan-tour', 'saudi-arabia-tour']) {
+    for (const slug of ['morocco-tour', 'kyrgyzstan-tour', 'saudi-arabia-tour', 'namibia-tour']) {
       const tour = findTourBySlug(slug, 'amelia');
 
       expect(JSON.stringify(tour)).not.toContain('Omaya');

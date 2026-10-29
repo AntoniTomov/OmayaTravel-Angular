@@ -206,6 +206,54 @@ const NAMIBIA_ROUTE: TourRoute = [
   { name: { en: 'Windhoek', bg: 'Виндхук' }, lat: -22.5609, lng: 17.0658, days: [12] },
 ];
 
+// Amelia's Namibia tour flies in from Sofia, so it adds a night in Windhoek and its days run one
+// later from day 12. Its lodges are named: Marcuskraal near Citrusdal, Felix Unite on the Orange
+// River, Omaruru Game Lodge outside Omaruru and Etosha Village at the Andersson Gate.
+const AMELIA_NAMIBIA_ROUTE: TourRoute = [
+  { name: { en: 'Cape Town', bg: 'Кейптаун' }, lat: -33.9249, lng: 18.4241, days: [1] },
+  { name: { en: 'Citrusdal', bg: 'Ситрусдал' }, lat: -32.589, lng: 19.015, days: [2] },
+  { name: { en: 'Orange River', bg: 'Река Ориндж' }, lat: -28.75, lng: 17.62, days: [3] },
+  {
+    name: { en: 'Fish River Canyon', bg: 'Каньонът Фиш Ривър' },
+    lat: -27.59,
+    lng: 17.61,
+    days: [],
+  },
+  { name: { en: 'Keetmanshoop', bg: 'Кетмансхуп' }, lat: -26.5833, lng: 18.1333, days: [4] },
+  {
+    name: { en: 'Quiver Tree Forest', bg: 'Гората на колчанните дървета' },
+    lat: -26.477,
+    lng: 18.24,
+    days: [],
+  },
+  {
+    name: { en: "Giant's Playground", bg: 'Игрището на великаните' },
+    lat: -26.457,
+    lng: 18.267,
+    days: [],
+  },
+  { name: { en: 'Sesriem', bg: 'Сесрием' }, lat: -24.4869, lng: 15.8014, days: [5, 6] },
+  {
+    name: { en: 'Deadvlei', bg: 'Дедвлей' },
+    lat: -24.7593,
+    lng: 15.2944,
+    days: [],
+    sideTrip: true,
+  },
+  {
+    name: { en: 'Tropic of Capricorn', bg: 'Тропикът на Козирога' },
+    lat: -23.437,
+    lng: 15.8,
+    days: [],
+  },
+  { name: { en: 'Swakopmund', bg: 'Свакопмунд' }, lat: -22.6784, lng: 14.5266, days: [7, 8] },
+  { name: { en: 'Spitzkoppe', bg: 'Шпицкопе' }, lat: -21.825, lng: 15.1917, days: [] },
+  { name: { en: 'Omaruru', bg: 'Омаруру' }, lat: -21.4167, lng: 15.9333, days: [9] },
+  { name: { en: 'Andersson Gate', bg: 'Портата Андерсон' }, lat: -19.3, lng: 15.93, days: [10] },
+  { name: { en: 'Okaukuejo', bg: 'Окаукуейо' }, lat: -19.18, lng: 15.92, days: [11] },
+  { name: { en: 'Windhoek', bg: 'Виндхук' }, lat: -22.5609, lng: 17.0658, days: [12, 13] },
+];
+
 const SAUDI_ARABIA_ROUTE: TourRoute = [
   {
     name: { en: 'Riyadh', bg: 'Рияд' },
@@ -241,6 +289,7 @@ const TOUR_ROUTES: Readonly<Record<string, TourRoute>> = {
   'women-only-tour-india': INDIA_ROUTE,
   'india-tour': INDIA_ROUTE,
   'women-only-tour-namibia': NAMIBIA_ROUTE,
+  'namibia-tour': AMELIA_NAMIBIA_ROUTE,
   'saudi-arabia-tour': SAUDI_ARABIA_ROUTE,
 };
 

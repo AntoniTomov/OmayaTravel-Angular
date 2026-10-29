@@ -43,6 +43,7 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
     '/standarten-formulyar/',
     '/tour-item/india-tour/',
     '/tour-item/saudi-arabia-tour/',
+    '/tour-item/namibia-tour/',
   ],
   pageSeo: [
     {

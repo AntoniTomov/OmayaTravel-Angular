@@ -54,12 +54,7 @@ const AMELIA_DESTINATION_LINKS = [
   { label: 'Индия', target: '/tour-item/india-tour/' },
   { label: 'Киргистан', target: '/tour-item/kyrgyzstan-tour/' },
   { label: 'Мароко', target: '/tour-item/morocco-tour/' },
-  {
-    label: 'Намибия',
-    target: '/not-yet-but-soon/',
-    badge: AMELIA_COMING_SOON_BADGE,
-    queryParams: { d: 'Намибия' },
-  },
+  { label: 'Намибия', target: '/tour-item/namibia-tour/' },
   {
     label: 'Оман',
     target: '/not-yet-but-soon/',
@@ -168,6 +163,19 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     duration: '9 дни / 8 нощувки',
     target: '/tour-item/saudi-arabia-tour/',
   },
+  {
+    title: 'Намибия и Южна Африка: от Седерберг до Етоша',
+    category: 'Women only',
+    categoryLabel: '',
+    destination: 'Намибия',
+    excerpt:
+      'Единадесет дни по суша от Кейптаун до Виндхук – през ръждиво червените скали на Седерберг и по поречието на река Ориндж, покрай величествения каньон Фиш Ривър, червените дюни на Сосусвлей и атлантическото крайбрежие при Свакопмунд, чак до саваните на Етоша.',
+    image: '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp',
+    alt: 'Червена дюна в Сосусвлей, Намибия',
+    price: 'EUR3050',
+    duration: '13 дни / 12 нощувки',
+    target: '/tour-item/namibia-tour/',
+  },
 ];
 
 export const AMELIA_SITE_CONTENT: SiteContent = {
@@ -263,6 +271,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/tour-item/saudi-arabia-tour/',
     },
     {
+      type: 'Tour',
+      title: 'Намибия и Южна Африка: от Седерберг до Етоша',
+      excerpt:
+        '13 дни от Кейптаун до Виндхук - Седерберг, каньонът Фиш Ривър, дюните на Сосусвлей и Дедвлей, Свакопмунд, Шпицкопе и сафари в Етоша.',
+      canonicalPath: '/tour-item/namibia-tour/',
+    },
+    {
       type: 'Article',
       title: 'Мароко за жени пътешественички: безопасност, облекло и какво да очакваш',
       excerpt:
@@ -318,6 +333,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/tour-item/india-tour/',
     '/tour-item/kyrgyzstan-tour/',
     '/tour-item/morocco-tour/',
+    '/tour-item/namibia-tour/',
     '/tour-item/saudi-arabia-tour/',
     '/cookie-policy/',
     '/privacy-policy/',
