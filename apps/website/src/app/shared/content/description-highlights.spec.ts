@@ -68,7 +68,13 @@ describe('splitHighlightedDescription', () => {
 });
 
 describe('itinerary highlight terms', () => {
-  const ameliaTours = ['kyrgyzstan-tour', 'morocco-tour', 'india-tour', 'saudi-arabia-tour']
+  const ameliaTours = [
+    'kyrgyzstan-tour',
+    'morocco-tour',
+    'india-tour',
+    'saudi-arabia-tour',
+    'namibia-tour',
+  ]
     .map((slug) => findTourBySlug(slug, 'amelia'))
     .filter((tour) => tour !== undefined);
 

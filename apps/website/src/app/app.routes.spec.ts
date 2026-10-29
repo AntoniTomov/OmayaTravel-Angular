@@ -134,7 +134,7 @@ describe('app routes', () => {
     );
     await expect(tourRoute.getPrerenderParams()).resolves.toEqual(
       PUBLIC_TOUR_SLUGS.filter(
-        (tourSlug) => !['india-tour', 'saudi-arabia-tour'].includes(tourSlug),
+        (tourSlug) => !['india-tour', 'namibia-tour', 'saudi-arabia-tour'].includes(tourSlug),
       ).map((tourSlug) => ({
         tourSlug,
       })),
