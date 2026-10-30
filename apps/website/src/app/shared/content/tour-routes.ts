@@ -250,7 +250,7 @@ const AMELIA_NAMIBIA_ROUTE: TourRoute = [
   { name: { en: 'Spitzkoppe', bg: 'Шпицкопе' }, lat: -21.825, lng: 15.1917, days: [] },
   { name: { en: 'Omaruru', bg: 'Омаруру' }, lat: -21.4167, lng: 15.9333, days: [9] },
   { name: { en: 'Andersson Gate', bg: 'Портата Андерсон' }, lat: -19.3, lng: 15.93, days: [10] },
-  { name: { en: 'Okaukuejo', bg: 'Окаукуейо' }, lat: -19.18, lng: 15.92, days: [11] },
+  { name: { en: 'Etosha', bg: 'Етоша' }, lat: -19.18, lng: 15.92, days: [11] },
   { name: { en: 'Windhoek', bg: 'Виндхук' }, lat: -22.5609, lng: 17.0658, days: [12, 13] },
 ];
 
