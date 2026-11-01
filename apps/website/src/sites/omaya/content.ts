@@ -40,6 +40,7 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
     '/maroko-za-zheni-pateshestvenichki/',
     '/ezeroto-song-kul-kirgistan/',
     '/india-otblizo/',
+    '/sauditska-arabiya-za-zheni/',
     '/standarten-formulyar/',
     '/tour-item/india-tour/',
     '/tour-item/saudi-arabia-tour/',

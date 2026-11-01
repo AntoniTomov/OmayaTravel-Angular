@@ -1,7 +1,8 @@
 import { OMAYA_SITE_CONFIG } from '../../../sites/omaya/site.config';
 import { SITE_CONFIGS } from '../../../sites';
 import { PUBLIC_CANONICAL_HOST } from '../routing/public-routes';
-import { SeoSiteIdentity, organizationJsonLd } from './structured-data';
+import { findBlogMetadataBySlug } from '../content/blog-metadata-content';
+import { SeoSiteIdentity, blogFaqJsonLd, organizationJsonLd } from './structured-data';
 
 const identity: SeoSiteIdentity = {
   name: OMAYA_SITE_CONFIG.brand.name,
@@ -80,5 +81,21 @@ describe('organisation structured data', () => {
     expect(json['identifier']).toBeUndefined();
     expect(json['sameAs']).toBeUndefined();
     expect(JSON.stringify(json)).not.toContain('undefined');
+  });
+});
+
+describe('blog FAQ structured data', () => {
+  it('marks up exactly the questions the article shows', () => {
+    const post = findBlogMetadataBySlug('sauditska-arabiya-za-zheni', 'amelia')!;
+    const faq = blogFaqJsonLd(post)!;
+
+    expect(faq['@type']).toBe('FAQPage');
+    expect((faq['mainEntity'] as { name: string }[]).map((item) => item.name)).toEqual(
+      post.faq!.map((item) => item.question),
+    );
+  });
+
+  it('marks up nothing for an article without an FAQ', () => {
+    expect(blogFaqJsonLd(findBlogMetadataBySlug('india-otblizo', 'amelia')!)).toBeNull();
   });
 });

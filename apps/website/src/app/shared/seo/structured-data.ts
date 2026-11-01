@@ -204,6 +204,26 @@ export function faqJsonLd(
   };
 }
 
+/** Marks up the article's FAQ, which its FAQ section renders from the same array. */
+export function blogFaqJsonLd(post: BlogArticleMetadata): JsonLd | null {
+  if (!post.faq?.length) {
+    return null;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+}
+
 export function blogPostingJsonLd(
   identity: SeoSiteIdentity,
   post: BlogArticleMetadata,
