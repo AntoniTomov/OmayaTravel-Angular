@@ -26,6 +26,7 @@ import {
   SeoSiteIdentity,
   aboutPageJsonLd,
   absoluteUrl,
+  blogFaqJsonLd,
   blogPostingJsonLd,
   breadcrumbJsonLd,
   faqJsonLd,
@@ -247,6 +248,7 @@ export class OmayaSeo {
 
     if (post) {
       const canonical = absoluteUrl(identity.canonicalHost, canonicalPath);
+      const faq = blogFaqJsonLd(post);
 
       return {
         metadata: {
@@ -265,7 +267,7 @@ export class OmayaSeo {
           { name: labels.blog, path: '/blog-list/' },
           { name: post.title, path: canonicalPath },
         ],
-        jsonLd: [blogPostingJsonLd(identity, post, canonical)],
+        jsonLd: [blogPostingJsonLd(identity, post, canonical), ...(faq ? [faq] : [])],
       };
     }
 

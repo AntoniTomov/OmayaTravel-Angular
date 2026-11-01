@@ -3,6 +3,10 @@
     <h2>{{ section.title }}</h2>
   }
 
+  @if (section.subtitle) {
+    <h3>{{ section.subtitle }}</h3>
+  }
+
   @if (section.expandable && (section.text?.length ?? 0) > 1) {
     <p>{{ section.text![0] }}</p>
     <details class="blog-post-section__more">
@@ -58,6 +62,35 @@
     </div>
   }
 
+  @if (section.table; as table) {
+    <div class="blog-post-section__table">
+      <table>
+        @if (table.head) {
+          <thead>
+            <tr>
+              @for (cell of table.head; track $index) {
+                <th scope="col">{{ cell }}</th>
+              }
+            </tr>
+          </thead>
+        }
+        <tbody>
+          @for (row of table.rows; track $index) {
+            <tr>
+              @for (cell of row; track $index) {
+                @if ($first) {
+                  <th scope="row">{{ cell }}</th>
+                } @else {
+                  <td>{{ cell }}</td>
+                }
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
   @if (section.faq) {
     <div class="blog-post-section__faq">
       @for (item of section.faq; track item.question) {
@@ -77,18 +110,23 @@
   }
 
   @if (section.image) {
-    <!-- The article column: the viewport less its padding, and at most 872px on a desktop. -->
+    <!-- The article column: the viewport less its padding, and at most 872px on a desktop; 416px when small. -->
     <picture style="display: contents">
       <source
         type="image/avif"
         [attr.srcset]="section.image.src | tourWebImageSrcset"
-        sizes="(min-width: 58.01rem) 872px, calc(100vw - 2rem)"
+        [attr.sizes]="
+          section.smallImage
+            ? '(min-width: 28rem) 416px, calc(100vw - 2rem)'
+            : '(min-width: 58.01rem) 872px, calc(100vw - 2rem)'
+        "
       />
       <img
         [src]="section.image.src"
         width="1920"
         height="1080"
         [alt]="section.image.alt"
+        [class.blog-post-section__image--small]="section.smallImage"
         loading="lazy"
       />
     </picture>

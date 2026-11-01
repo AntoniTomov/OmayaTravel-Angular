@@ -94,6 +94,35 @@
   margin-bottom: 0;
 }
 
+// Scrolls inside its own box on a narrow phone rather than widening the page.
+.blog-post-section__table {
+  overflow-x: auto;
+  margin: 0.4rem 0 1.2rem;
+}
+
+.blog-post-section__table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.blog-post-section__table th,
+.blog-post-section__table td {
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  border-bottom: 1px solid var(--omaya-color-border-warm);
+  text-align: left;
+  vertical-align: top;
+}
+
+.blog-post-section__table th {
+  color: var(--omaya-color-ink);
+  font-weight: 800;
+}
+
+.blog-post-section__table tbody th {
+  min-width: 7rem;
+}
+
 .blog-post-section__faq details {
   border-top: 1px solid var(--omaya-color-border-warm);
   padding: 0.75rem 0;
@@ -140,6 +169,15 @@
   width: 100%;
   height: auto;
   margin: 1.15rem 0 1.35rem;
+}
+
+// A short landscape frame, so a portrait photo does not push the text a screen apart.
+.blog-post-section img.blog-post-section__image--small {
+  max-width: 26rem;
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
 }
 
 @media (max-width: 38rem) {

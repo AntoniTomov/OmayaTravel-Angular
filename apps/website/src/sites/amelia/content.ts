@@ -299,6 +299,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/india-otblizo/',
     },
     {
+      type: 'Article',
+      title: 'Саудитска Арабия за жени: какво да знаеш, преди да тръгнеш',
+      excerpt:
+        'Виза (eVisa), абая, облекло, алкохол, снимане и пътуване без мъж: практичен наръчник за жени, които планират Саудитска Арабия.',
+      canonicalPath: '/sauditska-arabiya-za-zheni/',
+    },
+    {
       type: 'Tour',
       title: 'Algeria Desert Expedition (Tadrart Rouge)',
       excerpt: 'Пустинна експедиция сред червените дюни и скалното изкуство на Тадрарт Руж.',
@@ -327,6 +334,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/maroko-za-zheni-pateshestvenichki/',
     '/ezeroto-song-kul-kirgistan/',
     '/india-otblizo/',
+    '/sauditska-arabiya-za-zheni/',
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',
