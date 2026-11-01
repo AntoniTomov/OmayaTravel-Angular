@@ -113,6 +113,7 @@ describe('Amelia tour content', () => {
       'maroko-za-zheni-pateshestvenichki',
       'ezeroto-song-kul-kirgistan',
       'india-otblizo',
+      'sauditska-arabiya-za-zheni',
     ]);
     expect(blogPostsForSite('omaya').map((post) => post.slug)).not.toContain(
       'maroko-za-zheni-pateshestvenichki',

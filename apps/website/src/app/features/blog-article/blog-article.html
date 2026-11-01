@@ -40,10 +40,7 @@
           <p>{{ post.preview }}</p>
         </header>
 
-        @for (
-          section of post.sections;
-          track section.title ?? section.text?.[0] ?? section.image?.alt
-        ) {
+        @for (section of post.sections; track $index) {
           <app-blog-post-section [section]="section" />
         }
 
