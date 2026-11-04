@@ -487,6 +487,18 @@
               required
             />
           </label>
+          @if (discountCodeEnabled()) {
+            <label class="tour-detail__field">
+              <mat-icon aria-hidden="true">sell</mat-icon>
+              <input
+                type="text"
+                name="discountCode"
+                autocomplete="off"
+                [placeholder]="i18n.t('tourDetail.fieldDiscountCode')"
+                [attr.aria-label]="i18n.t('tourDetail.fieldDiscountCode')"
+              />
+            </label>
+          }
           <textarea name="message" rows="7" [placeholder]="i18n.t('tourDetail.fieldMessage')">
           </textarea>
           <label class="tour-detail__terms">

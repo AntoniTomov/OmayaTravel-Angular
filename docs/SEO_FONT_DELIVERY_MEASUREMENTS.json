@@ -28,12 +28,13 @@
     "restaurant",
     "schedule",
     "search",
+    "sell",
     "shield",
     "temple_buddhist",
     "travel_explore",
     "wb_twilight"
   ],
   "originalBytes": 128352,
-  "subsetBytes": 2852,
-  "savedBytes": 125500
+  "subsetBytes": 2832,
+  "savedBytes": 125520
 }
