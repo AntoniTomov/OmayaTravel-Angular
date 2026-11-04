@@ -178,7 +178,7 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
     expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
-      '/assets/images/women-tours/Namibia/Tropic_of_Capricorn.webp',
+      '/assets/images/blog-posts/Algeria blog post images/Algeria-Tassili-Desert-Camp-img-4.webp',
     );
   });
 
