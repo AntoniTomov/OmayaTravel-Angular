@@ -36,6 +36,7 @@ export const AMELIA_SITE_CONFIG: SiteConfig = {
     showBlogPosts: false,
     showNewsletter: true,
     showNotYetNewsletter: true,
+    showBookingDiscountCode: true,
   },
   analytics: {
     gaMeasurementId: 'G-DBH8SX69TB',

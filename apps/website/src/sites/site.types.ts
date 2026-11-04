@@ -49,6 +49,8 @@ export interface SiteFeatureFlags {
    * reaches the page from its calendar, where the tour list is.
    */
   showNotYetNewsletter: boolean;
+  /** Optional discount code field on the tour booking form, below the number of travellers. */
+  showBookingDiscountCode: boolean;
 }
 
 export interface SiteAnalytics {
