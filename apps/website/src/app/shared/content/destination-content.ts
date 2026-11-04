@@ -40,7 +40,10 @@ const DESTINATION_BRIEFS = [
     theme: 'An expedition into the Tadrart Rouge',
     introduction:
       'Omaya’s Algeria journey focuses on the Tadrart Rouge: red dunes, sandstone formations and desert camping. Feel the deep silence of the Sahara, sandstone arches burning red at sunset, and nights spent sleeping out beneath the stars.',
-    guideSlugs: ['tassili-najjer-national-park-algeria-guide'],
+    guideSlugs: [
+      'tassili-najjer-national-park-algeria-guide',
+      'how-to-choose-small-group-sahara-tour-algeria',
+    ],
   },
   {
     slug: 'india',

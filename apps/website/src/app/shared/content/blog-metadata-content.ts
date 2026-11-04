@@ -117,6 +117,62 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     },
   },
   {
+    slug: 'how-to-choose-small-group-sahara-tour-algeria',
+    title: 'How to Choose the Best Small-Group Tour in Algeria’s Sahara',
+    seoTitle: 'Best Small-Group Tour in Algeria? How to Choose (2027)',
+    publishedAt: '2026-11-03',
+    date: 'November 3, 2026',
+    category: 'Algeria',
+    comments: 0,
+    excerpt:
+      'How to choose the best small-group tour in Algeria: licensing, visas, Djanet flights, Tuareg guides, wild camping and guaranteed dates. 2027 checklist.',
+    preview:
+      'Looking for the best small-group tour in Algeria? Here’s the short answer: choose an operator that’s licensed, sorts out your visa invitation, includes the flight to Djanet, keeps the group small, works with a local Tuareg team, tells you upfront how many nights you’ll camp, and has a guaranteed departure date.',
+    image: {
+      src: '/assets/images/blog-posts/Algeria blog post images/Algeria-Tassili-Desert-Camp-img-4.webp',
+      alt: '4x4 expedition route through the Algerian Sahara',
+    },
+    heroImage: {
+      src: '/assets/images/destinations/Algiria/gallery/gallery-image-5.webp',
+      alt: 'Rock formations and dunes in Tadrart Rouge, Algeria',
+    },
+    relatedTour: {
+      title: 'Algeria Desert Expedition (Tadrart Rouge)',
+      url: '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    },
+    faq: [
+      {
+        question: 'Can you visit the Algerian Sahara without a tour?',
+        answer:
+          'Not really. Visitors to the region travel with an official guide, and the visa for the south depends on an invitation from an approved Algerian travel agency. So going with a tour is the normal way to do it.',
+      },
+      {
+        question: 'Do Americans need a visa for a Sahara tour in Algeria?',
+        answer:
+          'Yes. US citizens need a visa, and so do German and Dutch citizens. If your trip to the far south is organized through an approved agency, you can get a visa on arrival; otherwise you apply in advance at an Algerian embassy. On our Algeria Desert Expedition, we send your invitation two months before departure and you get your visa when you land. Just make sure your passport is valid for six months after you arrive.',
+      },
+      {
+        question: 'When is the best time for a Sahara desert tour in Algeria?',
+        answer:
+          'Roughly October to March. Summers are too hot for camping and walking. Winter nights get cold, so bring a warm layer to sleep in.',
+      },
+      {
+        question: 'Are domestic flights to Djanet included in Algeria tours?',
+        answer:
+          'It depends on the operator, so it’s always worth asking. On our Algeria Desert Expedition, the Algiers–Djanet flights are included. International flights to Algiers aren’t.',
+      },
+      {
+        question: 'How big are small-group tours to the Algerian Sahara?',
+        answer: 'It varies. Ours runs with 6 to 12 people.',
+      },
+      {
+        question: 'What is a guaranteed departure?',
+        answer:
+          'It’s a date the operator has committed to running, however many people book. An “offered” date only runs once enough people join. Our February 24, 2027 Algeria departure is guaranteed.',
+      },
+    ],
+  },
+  {
     slug: 'tassili-najjer-national-park-algeria-guide',
     title: 'Tassili n’Ajjer National Park: A Guide to Algeria’s Breathtaking Sahara Wilderness',
     publishedAt: '2026-07-25',

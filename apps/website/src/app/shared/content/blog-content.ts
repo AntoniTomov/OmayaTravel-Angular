@@ -1719,8 +1719,250 @@ export const CAPE_TOWN_TO_WINDHOEK_NAMIBIA_GUIDE: BlogPostContent = {
   ],
 };
 
+const HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA_METADATA = findBlogMetadataBySlug(
+  'how-to-choose-small-group-sahara-tour-algeria',
+)!;
+
+const ALGERIA_TOUR_URL = '/tour-item/algeria-desert-expedition-tadrart-rouge/';
+
+export const HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA: BlogPostContent = {
+  ...HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA_METADATA,
+  sections: [
+    {
+      text: [
+        'Looking for the best small-group tour in Algeria? Here’s the short answer: choose an operator that’s licensed, sorts out your visa invitation, includes the flight to Djanet, keeps the group small, works with a local Tuareg team, tells you upfront how many nights you’ll camp, and has a guaranteed departure date. Below we go through each one, plus a checklist you can use to compare operators, us included.',
+        'Quick note: we’re Omaya Travel, and we run an Algeria Desert Expedition. So yes, we have a stake in this. We’ll show you how our trip compares, and who we think it’s right for (and who it isn’t).',
+      ],
+    },
+    {
+      title: 'How Sahara desert tours in Algeria work',
+      text: [
+        'Most trips into Algeria’s Sahara start in Djanet, a small town in the southeast and the gateway to Tassili n’Ajjer National Park and the Tadrart Rouge. It’s about 2,000 km (1,240 miles) from Algiers, so you’ll take a domestic flight to get there. From Djanet, you travel by 4x4 with local guides and sleep out in the desert.',
+        'Visitors to this region travel with an official guide, so you’ll be going with a tour either way. The real question is which operator, and which local team they work with.',
+      ],
+    },
+    {
+      cta: {
+        before: 'New to the area? ',
+        linkText: 'Our guide to Tassili n’Ajjer National Park',
+        linkUrl: '/tassili-najjer-national-park-algeria-guide/',
+        after:
+          ' covers the basics: the park, the best time to go, money and phone signal. This post is for when you’ve picked the Sahara and you’re comparing tours.',
+      },
+    },
+    {
+      title: 'Seven questions to find the best small-group tour in Algeria for you',
+      subtitle: '1. Is the operator licensed?',
+      text: [
+        'Ask for their license number and where it’s registered. If you book a package (transport, accommodation and activities together) with an operator licensed in the EU, you’re covered by the EU Package Travel Directive. Your payments are protected if the company goes out of business, and the operator is responsible for everything in the package. That applies to American travelers booking with an EU company too.',
+      ],
+    },
+    {
+      subtitle: '2. How does the visa work?',
+      text: [
+        'US, German and Dutch citizens all need a visa for Algeria, and your passport should be valid for at least six months after you arrive. There are two ways to get one.',
+      ],
+      boldList: [
+        {
+          label: 'Visa on arrival, for the Sahara.',
+          text: ' Algeria has a scheme for travelers heading to the far south, including Djanet. An approved Algerian travel agency applies for you online, you get a confirmation with a QR code, and you pay for the visa when you land. It’s valid for up to 30 days.',
+        },
+        {
+          label: 'Visa from the embassy.',
+          text: ' You apply ahead of time at an Algerian embassy or consulate: Washington for the US, Berlin or Frankfurt for Germany (in person, at least four weeks before you go), or The Hague for the Netherlands. For trips to the south, you’ll also need an invitation from an approved local agency.',
+        },
+      ],
+    },
+    {
+      text: [
+        'Either way, ask who handles the paperwork and when they need your passport details. Giving yourself about two months is a good idea.',
+      ],
+    },
+    {
+      subtitle: '3. Is the flight to Djanet included?',
+      text: [
+        'It’s easy to miss when you’re comparing prices. Some tours start in Djanet and leave the domestic flight to you; others start in Algiers and include it. Worth a quick check.',
+      ],
+    },
+    {
+      subtitle: '4. How big is the group?',
+      text: [
+        'Ask for the maximum group size, not the average. In the desert, a smaller group means fewer cars, a quieter camp and more time to actually chat with your guides. It’s also worth asking how many people are needed for the trip to go ahead.',
+      ],
+    },
+    {
+      subtitle: '5. Who are the guides?',
+      text: [
+        'The Tadrart and Tassili are Tuareg country, and the best trips run with a Tuareg team who know the route, pick each night’s camp and do the cooking. Ask if the same team stays with you the whole way, and whether someone from the operator comes along too.',
+      ],
+    },
+    {
+      subtitle: '6. How many nights will you camp?',
+      text: [
+        '“Desert camp” can mean anything from a fixed camp with beds and showers to a tent in a new spot every night. Ask how many nights you’ll camp, whether tents and sleeping pads are provided, and what the bathroom setup is. Wild camping usually means a few days without a shower. Nights get chilly from October to March, so pack a warm layer and a hat.',
+      ],
+    },
+    {
+      subtitle: '7. Is the date guaranteed?',
+      text: [
+        'An “offered” date only runs if enough people sign up. A “guaranteed” date runs no matter what. Since you’ll be booking flights and taking time off work, it helps to know which one you’re looking at, and what happens if an offered date doesn’t fill.',
+      ],
+    },
+    {
+      title: 'One more thing before you book',
+      text: [
+        'Check your government’s travel advice for Algeria, and make sure your travel insurance covers the whole trip.',
+      ],
+    },
+    {
+      title: 'The checklist',
+      text: ['Here’s everything in one place. The last column shows our answers.'],
+      table: {
+        head: ['What to check', 'What to ask', 'Our Algeria Desert Expedition'],
+        rows: [
+          [
+            'License',
+            'License number, country, package protection',
+            'Licensed European tour operator (license PK-01-8706), covered by EU package travel rules',
+          ],
+          [
+            'Visa',
+            'Who handles it, and when',
+            'We send your invitation two months before departure; you get your visa when you land',
+          ],
+          [
+            'Djanet flight',
+            'Included or extra?',
+            'Algiers–Djanet flights included; the trip starts in Algiers',
+          ],
+          ['Group size', 'Maximum and minimum', '6–12 people'],
+          [
+            'Guides',
+            'Local team, operator on the trip',
+            'Local Tuareg team, plus someone from Omaya with you throughout',
+          ],
+          [
+            'Camping',
+            'How many nights, what’s provided',
+            'Six nights in tents (days 2–7); hotel in Djanet on nights 1 and 8',
+          ],
+          ['Fitness', 'How active is it?', 'Easy walking; simple, rustic comfort'],
+          [
+            'Departure',
+            'Guaranteed or offered',
+            'February 24, 2027 guaranteed (all ages) · October 28, 2027 offered',
+          ],
+          [
+            'Included',
+            'Meals, entry fees, transport',
+            'Accommodation, ground transport, local guide, entry fees, all meals days 2–8',
+          ],
+          [
+            'Not included',
+            'Flights, insurance, extras',
+            'International flights, travel insurance, meals not listed, single room supplement',
+          ],
+        ],
+      },
+    },
+    {
+      title: 'How our Algeria Desert Expedition compares',
+      text: [
+        'Omaya Travel is a licensed European tour operator (license PK-01-8706). We run small-group trips of 6–12 people to places like Algeria, Kyrgyzstan and Morocco. We were founded by Vesislava and Nesi, and our team has more than 12 years of experience in travel. Nesi has traveled in Algeria herself.',
+        'Our Algeria Desert Expedition is a 9-day, 8-night small-group tour of the Tadrart Rouge, in Algeria’s southeast. It costs EUR 1450 per person, starts in Algiers, and includes the flights to and from Djanet.',
+      ],
+    },
+    {
+      subtitle: 'What we think works well',
+      boldList: [
+        { label: 'Small groups.', text: ' Twelve people at most.' },
+        {
+          label: 'Djanet flights included.',
+          text: ' You just book your own flight to Algiers.',
+        },
+        {
+          label: 'A local team, plus one of us.',
+          text: ' Our Tuareg team drives, guides and cooks, and someone from Omaya travels with you the whole way.',
+        },
+        {
+          label: 'A guaranteed date.',
+          text: ' The February 24, 2027 departure is guaranteed. It’s also an all-ages departure, so it works for a parent and grown-up kid, or friends of different ages.',
+        },
+        {
+          label: 'Good timing.',
+          text: ' February sits right in the best season, which runs roughly from October to March.',
+        },
+      ],
+    },
+    {
+      subtitle: 'Good to know',
+      boldList: [
+        {
+          label: 'Six nights of camping.',
+          text: ' From day 2 to day 7 you’ll sleep in tents, and the next shower is back in Djanet. The walking is easy, but this is our most rustic trip.',
+        },
+        {
+          label: 'Visa timing.',
+          text: ' We send your invitation two months before departure and you get your visa when you land, so it helps to book early and send us your passport details in good time.',
+        },
+        {
+          label: 'You’ll be offline.',
+          text: ' There’s no phone signal from day 2 until you’re back in Djanet on day 8.',
+        },
+        {
+          label: 'October 2027 isn’t guaranteed yet.',
+          text: ' It runs once enough people join.',
+        },
+      ],
+    },
+    {
+      cta: {
+        before: 'Curious about each day? Have a look at the ',
+        linkText: 'Tadrart Rouge day by day',
+        linkUrl: ALGERIA_TOUR_URL,
+        after: '.',
+      },
+    },
+    {
+      title: 'Is this trip right for you?',
+      text: [
+        'You’ll probably love it if you want to really be in the desert: rock art older than writing, a different camp each night, tea with the team, and a group small enough that you know everyone by the second evening. It helps if you’re happy to put your phone away for a week.',
+      ],
+      cta: {
+        before:
+          'It’s probably not for you if you’d like a proper bed and a shower every night, or need to stay connected. In that case, ',
+        linkText: 'our Morocco trip',
+        linkUrl: '/tour-item/morocco-tour/',
+        after:
+          ' might suit you better. It has two nights in the Erg Chebbi dunes, with hotels on either side.',
+      },
+    },
+    {
+      cta: {
+        before: 'If it sounds like your kind of trip, you’ll find all the details on the ',
+        linkText: 'trip page',
+        linkUrl: ALGERIA_TOUR_URL,
+        after: '.',
+      },
+    },
+    {
+      cta: {
+        before: 'And if you have questions, ',
+        linkText: 'just ask us',
+        linkUrl: '/contact/',
+        after: '.',
+      },
+    },
+    {
+      title: 'Frequently asked questions',
+      faq: HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA_METADATA.faq,
+    },
+  ],
+};
+
 export const BLOG_POSTS: readonly BlogPostContent[] = [
   ...PLANNING_GUIDES,
+  HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA,
   TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE,
   DHARAVI_MUMBAI_GUIDE,
   CAPE_TOWN_TO_WINDHOEK_NAMIBIA_GUIDE,

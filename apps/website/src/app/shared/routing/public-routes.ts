@@ -70,6 +70,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'sauditska-arabiya-za-zheni',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
+  'how-to-choose-small-group-sahara-tour-algeria',
   'dharavi-mumbai-guide',
   'cape-town-to-windhoek-namibia-guide',
   'the-complete-visitor-guide-to-rila-monastery',
