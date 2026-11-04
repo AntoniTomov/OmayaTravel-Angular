@@ -128,6 +128,9 @@ export class TourDetail {
   protected readonly discoverToursEnabled = computed(() =>
     isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
   );
+  protected readonly discountCodeEnabled = computed(
+    () => this.activeSite.site().features.showBookingDiscountCode,
+  );
   // The breadcrumb trail runs through the destination page, so it only shows where that page exists.
   protected readonly destinationPageEnabled = computed(() => {
     const country = this.tour()?.destination.country;
@@ -489,6 +492,7 @@ export class TourDetail {
     const tour = this.tour();
     const selectedDate = String(formData.get('date') ?? '').trim();
     const tickets = String(formData.get('tickets') ?? '').trim();
+    const discountCode = String(formData.get('discountCode') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
 
     // Departures can carry an age group, so compare their dates rather than the entries themselves.
@@ -519,6 +523,7 @@ export class TourDetail {
           tour ? `Tour slug: ${tour.slug}` : '',
           selectedDate ? `Selected date: ${selectedDate}` : '',
           tickets ? `Number of people: ${tickets}` : '',
+          discountCode ? `Discount code: ${discountCode}` : '',
           message ? `Message: ${message}` : '',
         ]
           .filter(Boolean)

@@ -34,6 +34,7 @@ export const OMAYA_SITE_CONFIG: SiteConfig = {
     showBlogPosts: true,
     showNewsletter: true,
     showNotYetNewsletter: false,
+    showBookingDiscountCode: false,
   },
   analytics: {
     gaMeasurementId: 'G-2F24XF4XZ8',
