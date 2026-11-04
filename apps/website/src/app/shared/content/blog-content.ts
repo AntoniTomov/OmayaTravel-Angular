@@ -1730,7 +1730,6 @@ export const HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA: BlogPostContent = {
   sections: [
     {
       text: [
-        'Looking for the best small-group tour in Algeria? Here’s the short answer: choose an operator that’s licensed, sorts out your visa invitation, includes the flight to Djanet, keeps the group small, works with a local Tuareg team, tells you upfront how many nights you’ll camp, and has a guaranteed departure date. Below we go through each one, plus a checklist you can use to compare operators, us included.',
         'Quick note: we’re Omaya Travel, and we run an Algeria Desert Expedition. So yes, we have a stake in this. We’ll show you how our trip compares, and who we think it’s right for (and who it isn’t).',
       ],
     },
@@ -1868,7 +1867,7 @@ export const HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA: BlogPostContent = {
     {
       title: 'How our Algeria Desert Expedition compares',
       text: [
-        'Omaya Travel is a licensed European tour operator (license PK-01-8706). We run small-group trips of 6–12 people to places like Algeria, Kyrgyzstan and Morocco. We were founded by Vesislava and Nesi, and our team has more than 12 years of experience in travel. Nesi has traveled in Algeria herself.',
+        'Omaya Travel is a licensed European tour operator (license PK-01-8706). We run small-group trips of 6–12 people to places like Algeria, Kyrgyzstan and Morocco. We were founded by Vesislava and Nesi, and our team has more than 12 years of experience in travel.',
         'Our Algeria Desert Expedition is a 9-day, 8-night small-group tour of the Tadrart Rouge, in Algeria’s southeast. It costs EUR 1450 per person, starts in Algiers, and includes the flights to and from Djanet.',
       ],
     },

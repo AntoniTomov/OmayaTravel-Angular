@@ -127,7 +127,7 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     excerpt:
       'How to choose the best small-group tour in Algeria: licensing, visas, Djanet flights, Tuareg guides, wild camping and guaranteed dates. 2027 checklist.',
     preview:
-      'Looking for the best small-group tour in Algeria? Here’s the short answer: choose an operator that’s licensed, sorts out your visa invitation, includes the flight to Djanet, keeps the group small, works with a local Tuareg team, tells you upfront how many nights you’ll camp, and has a guaranteed departure date.',
+      'Looking for the best small-group tour in Algeria? Here’s the short answer: choose an operator that’s licensed, sorts out your visa invitation, includes the flight to Djanet, keeps the group small, works with a local Tuareg team, tells you upfront how many nights you’ll camp, and has a guaranteed departure date. Below we go through each one, plus a checklist you can use to compare operators, us included.',
     image: {
       src: '/assets/images/blog-posts/Algeria blog post images/Algeria-Tassili-Desert-Camp-img-4.webp',
       alt: '4x4 expedition route through the Algerian Sahara',
