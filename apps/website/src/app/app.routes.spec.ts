@@ -268,11 +268,14 @@ describe('app routes', () => {
         harness.routeNativeElement?.querySelector('.tour-detail__date-trigger') as HTMLButtonElement
       ).click();
       harness.detectChanges();
-      expect(
-        harness.routeNativeElement?.querySelectorAll(
+      // April 2027 has passed by August, so only the 30 September departure is bookable.
+      const moroccoDates = Array.from(
+        harness.routeNativeElement?.querySelectorAll<HTMLButtonElement>(
           '.tour-detail__calendar-grid button:not(:disabled)',
-        ),
-      ).toHaveLength(0);
+        ) ?? [],
+      );
+      expect(moroccoDates).toHaveLength(1);
+      expect(moroccoDates[0].textContent?.trim()).toBe('30');
     } finally {
       vi.useRealTimers();
     }
