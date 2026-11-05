@@ -119,4 +119,42 @@ describe('PublicHeader', () => {
     expect(panels).toContainEqual({ label: 'Destinations', scrollable: true });
     expect(panels).toContainEqual({ label: 'Tours', scrollable: false });
   });
+
+  it('keeps a hover-opened dropdown open when its label is clicked', async () => {
+    fixture.detectChanges();
+
+    const group = fixture.nativeElement.querySelector('.public-header__group') as HTMLElement;
+    const button = group.querySelector('.public-header__link') as HTMLButtonElement;
+    const states: (string | null)[] = [];
+    const record = () => {
+      fixture.detectChanges();
+      states.push(button.getAttribute('aria-expanded'));
+    };
+
+    group.dispatchEvent(new PointerEvent('pointerenter', { pointerType: 'mouse' }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    record();
+    button.click();
+    record();
+    button.click();
+    record();
+
+    expect(states).toEqual(['true', 'true', 'false']);
+  });
+
+  it('still toggles a dropdown on tap, without a hover first', () => {
+    fixture.detectChanges();
+
+    const button = fixture.nativeElement.querySelector('.public-header__link') as HTMLButtonElement;
+    const states: (string | null)[] = [];
+
+    button.click();
+    fixture.detectChanges();
+    states.push(button.getAttribute('aria-expanded'));
+    button.click();
+    fixture.detectChanges();
+    states.push(button.getAttribute('aria-expanded'));
+
+    expect(states).toEqual(['true', 'false']);
+  });
 });
