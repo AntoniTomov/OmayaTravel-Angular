@@ -1358,7 +1358,7 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       min: 6,
       max: 12,
     },
-    departures: ['2027-04-08'],
+    departures: ['2027-04-08', '2027-09-30'],
     heroImage: {
       src: `${MOROCCO_ASSET_BASE}/morocco-bgr.webp`,
       alt: 'Traditional Moroccan architecture and decorative tilework',
