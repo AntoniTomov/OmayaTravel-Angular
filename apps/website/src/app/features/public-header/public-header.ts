@@ -130,6 +130,12 @@ export class PublicHeader implements AfterViewInit {
   private readonly headerElement = viewChild<ElementRef<HTMLElement>>('headerElement');
   private lastFocusedElement: HTMLElement | null = null;
 
+  // With a mouse, a dropdown or submenu has already opened on hover by the time its label is
+  // clicked, so a plain toggle would close it under the pointer. The first click after a hover-open
+  // is swallowed instead; touch and keyboard never hover-open, so they keep the plain toggle.
+  private hoverOpenedDropdown: string | null = null;
+  private hoverOpenedSubmenu: string | null = null;
+
   constructor() {
     this.iconRegistry.addSvgIconLiteral(
       'search',
@@ -210,16 +216,26 @@ export class PublicHeader implements AfterViewInit {
       }
 
       this.activeDropdown.set(label);
+      this.hoverOpenedDropdown = label;
     }, 0);
   }
 
   private closeDropdown(): void {
     this.activeDropdown.set(null);
     this.activeSubmenu.set(null);
+    this.hoverOpenedDropdown = null;
+    this.hoverOpenedSubmenu = null;
   }
 
   protected toggleDropdown(label: string): void {
     this.updateDropdownMaxHeight();
+
+    if (this.hoverOpenedDropdown === label && this.activeDropdown() === label) {
+      this.hoverOpenedDropdown = null;
+      return;
+    }
+
+    this.hoverOpenedDropdown = null;
 
     this.activeDropdown.update((activeLabel) => {
       const nextLabel = activeLabel === label ? null : label;
@@ -256,15 +272,24 @@ export class PublicHeader implements AfterViewInit {
 
   private openSubmenu(label: string): void {
     this.activeSubmenu.set(label);
+    this.hoverOpenedSubmenu = label;
   }
 
   private closeSubmenu(): void {
     this.activeSubmenu.set(null);
+    this.hoverOpenedSubmenu = null;
   }
 
   protected toggleSubmenu(label: string, event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
+
+    if (this.hoverOpenedSubmenu === label && this.activeSubmenu() === label) {
+      this.hoverOpenedSubmenu = null;
+      return;
+    }
+
+    this.hoverOpenedSubmenu = null;
     this.activeSubmenu.update((activeLabel) => (activeLabel === label ? null : label));
   }
 
