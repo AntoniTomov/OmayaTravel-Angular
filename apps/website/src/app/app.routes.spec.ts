@@ -206,9 +206,7 @@ describe('app routes', () => {
         `https://omayatravel.com/destinations/${country}/`,
       );
       if (country === 'morocco') {
-        expect(
-          harness.routeNativeElement?.querySelector('time[datetime="2026-10-01"]')?.textContent,
-        ).toBe('1 Oct 2026');
+        expect(harness.routeNativeElement?.querySelector('time[datetime="2026-10-01"]')).toBeNull();
         expect(
           harness.routeNativeElement?.querySelector('time[datetime="2027-04-08"]')?.textContent,
         ).toBe('8 Apr 2027');
