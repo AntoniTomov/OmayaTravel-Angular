@@ -17,11 +17,16 @@ export interface BlogNamedItem {
   details: string;
 }
 
-export interface BlogSectionCta {
-  before: string;
+export interface BlogCtaLink {
   linkText: string;
   linkUrl: string;
   after: string;
+}
+
+export interface BlogSectionCta extends BlogCtaLink {
+  before: string;
+  /** Further links in the same paragraph, each followed by its own `after` text. */
+  more?: readonly BlogCtaLink[];
 }
 
 export interface BlogBoldListItem {
@@ -1959,9 +1964,256 @@ export const HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA: BlogPostContent = {
   ],
 };
 
+const WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT_METADATA = findBlogMetadataBySlug(
+  'women-only-tour-namibia-what-to-expect',
+)!;
+
+const NAMIBIA_TOUR_URL = '/tour-item/women-only-tour-namibia/';
+const NAMIBIA_ROUTE_GUIDE_URL = '/cape-town-to-windhoek-namibia-guide/';
+
+export const WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT: BlogPostContent = {
+  ...WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT_METADATA,
+  sections: [
+    {
+      text: [
+        'Below: who you’ll be traveling with, how rooming works, who looks after you, what’s included, and which of the two dates might suit you better.',
+        'Quick note: we’re Omaya Travel, and this is our trip, so we have a stake in it. We’ll be straight about who it’s right for and who it isn’t.',
+      ],
+    },
+    {
+      title: 'Who goes on a women-only tour of Namibia?',
+      text: [
+        'Mostly women who want to see Namibia without driving it alone. It’s a big country with long, quiet stretches of gravel road, and plenty of people would rather sit in the passenger seat, look out of the window and talk.',
+        'On our trip, the group is:',
+      ],
+      boldList: [
+        {
+          label: 'Women only.',
+          text: ' This route, from the Cederberg to Etosha, runs only as a women-only trip. It was designed that way.',
+        },
+        {
+          label: 'Aged 20 to 45.',
+          text: ' You’ll be with people at a similar stage of life.',
+        },
+        { label: 'Small.', text: ' Six people at least, 12 at most.' },
+        {
+          label: 'Often solo.',
+          text: ' Many women on women-only trips come on their own. Some come with a friend. Either works.',
+        },
+      ],
+    },
+    {
+      text: [
+        'What we’re hoping for is the thing small groups do well: strangers who meet in Cape Town and say goodbye in Windhoek as friends. By the time you’ve crossed a border together, stood at the edge of a canyon and waited by a waterhole after dark, you tend to know each other.',
+      ],
+    },
+    {
+      title: 'How rooming works',
+      text: [
+        'You share a twin room with another woman from the group. If you’re traveling solo, we pair you with another solo traveler, so you don’t pay extra to come alone. If you’re coming with a friend, you can share with her.',
+        'If you’d rather have your own room, the single room supplement is EUR 450.',
+        'Where you sleep changes as you go north: hotels in Cape Town and the Cederberg, a lodge with air-conditioned cabanas on the Orange River, a guesthouse in Keetmanshoop, two nights at a desert camp about 5 km from the Sossusvlei gate, two nights in a hotel in Swakopmund, then lodges in Erongo and just outside Etosha.',
+      ],
+    },
+    {
+      title: 'Who’s looking after you',
+      boldList: [
+        {
+          label: 'Your guide is a woman.',
+          text: ' She travels with the group and leads the walks and the game drive. Your driver may be a man.',
+        },
+        {
+          label: 'An Omaya representative',
+          text: ' meets you when you arrive in Cape Town and travels with the group for all 12 days, all the way to Windhoek.',
+        },
+        {
+          label: 'The vehicle',
+          text: ' is a 20-seater Toyota Coaster with a driver. For a group of 12 at most, that means room to spread out, nap, or move seats and talk to someone new. Fuel, tolls and transport permits are included.',
+        },
+      ],
+    },
+    {
+      title: 'What the 12 days look like',
+      cta: {
+        before:
+          'The trip runs one way, from Cape Town in South Africa north to Windhoek in Namibia, by way of the Cederberg, the Orange River, Fish River Canyon, Sossusvlei and Deadvlei, Swakopmund, Spitzkoppe and Etosha. We walk through each stop in ',
+        linkText: 'Cape Town to Windhoek: What 12 Days Through Namibia Are Really Like',
+        linkUrl: NAMIBIA_ROUTE_GUIDE_URL,
+        after: ', so here’s just what matters for how the trip feels:',
+      },
+    },
+    {
+      boldList: [
+        {
+          label: 'It’s a road trip.',
+          text: ' Two countries in 12 days means some days are mostly driving, broken up by stops and short walks.',
+        },
+        {
+          label: 'The walking is easy.',
+          text: ' The trip is rated Easy. The Fish River Canyon rim walk, the desert walk and the Spitzkoppe walk are all guided.',
+        },
+        {
+          label: 'There’s real downtime.',
+          text: ' A free afternoon by the Orange River and a whole free day in Swakopmund. Quad biking, sandboarding and scenic flights are there if you want them (they cost extra), or you can just walk by the sea.',
+        },
+        {
+          label: 'The big days are included.',
+          text: ' The 4x4 shuttle to Deadvlei and the full-day game drive in Etosha are both part of the price.',
+        },
+      ],
+    },
+    {
+      title: 'June or September: which departure?',
+      cta: {
+        before:
+          'Both dates fall in Namibia’s dry season, so it comes down to how you feel about the cold. For the full month-by-month picture, see the ',
+        linkText: 'best time to visit section',
+        linkUrl: NAMIBIA_ROUTE_GUIDE_URL,
+        after: ' of our route guide.',
+      },
+    },
+    {
+      boldList: [
+        {
+          label: 'June 23, 2027',
+          text: ' is southern winter. Days are mild and sunny, and nights get properly cold, especially at the desert camp, where early starts for the dunes mean you’ll want a warm jacket, a hat and gloves.',
+        },
+        {
+          label: 'September 29, 2027',
+          text: ' is warmer, with milder nights. Pack layers and good sun protection.',
+        },
+      ],
+    },
+    {
+      text: [
+        'If you hate the cold, September is probably your date. If you’d rather have cooler days on the road and don’t mind bundling up at night, June works well.',
+      ],
+    },
+    {
+      title: 'What’s included in the price',
+      table: {
+        head: ['Included', 'Not included'],
+        rows: [
+          ['11 nights’ accommodation, twin share', 'International flights and airport taxes'],
+          ['Meals as listed (most breakfasts and dinners)', 'Visas'],
+          ['20-seater Toyota Coaster with driver and female guide', 'Travel insurance'],
+          ['An Omaya representative with you all 12 days', 'Porterage and tips'],
+          ['Fuel, tolls, transport permits', 'Meals not listed'],
+          ['Fish River Canyon rim walk', 'Optional activities in Swakopmund'],
+          ['Guided desert walk with a local expert', 'Personal expenses'],
+          ['4x4 shuttle to Deadvlei', 'Single room supplement (EUR 450)'],
+          ['Guided Spitzkoppe walk', ''],
+          ['Full-day game drive in Etosha', ''],
+        ],
+      },
+    },
+    {
+      cta: {
+        before:
+          'A note on visas: since 2025, US, German and Dutch travelers need a visa for Namibia. Our ',
+        linkText: 'route guide',
+        linkUrl: NAMIBIA_ROUTE_GUIDE_URL,
+        after:
+          ' explains how to get one. Check your government’s travel advice and make sure your insurance covers the whole trip.',
+      },
+    },
+    {
+      title: 'How to choose a women-only tour of Namibia',
+      text: [
+        'There are a handful of women-only trips to Namibia, and they’re quite different from each other. Here’s what to ask any operator. The last column shows our answers.',
+      ],
+      table: {
+        head: ['What to check', 'What to ask', 'Our Namibia trip'],
+        rows: [
+          [
+            'License',
+            'License number, country, package protection',
+            'Licensed European tour operator (license PK-01-8706), covered by EU package travel rules',
+          ],
+          ['Who’s in the group', 'Women only? Age range?', 'Women only, aged 20 to 45'],
+          ['Group size', 'Maximum and minimum', '6–12 people'],
+          ['Guide', 'Is the guide a woman?', 'Yes, a female guide with the group'],
+          [
+            'Operator on the trip',
+            'Does someone from the company travel with you?',
+            'An Omaya representative with you all 12 days',
+          ],
+          [
+            'Rooming',
+            'Will I be paired if I’m solo? Cost of a single?',
+            'Paired with another solo traveler; single supplement EUR 450',
+          ],
+          ['Where it starts', 'Fly-in safari, or overland?', 'Overland, Cape Town to Windhoek'],
+          [
+            'Big-ticket extras',
+            'Deadvlei shuttle and Etosha game drive included?',
+            'Both included',
+          ],
+          ['Fitness', 'How active is it?', 'Easy'],
+          ['Dates', 'Guaranteed or offered?', 'June 23 and September 29, 2027, both offered'],
+          [
+            'Not included',
+            'Flights, visas, insurance',
+            'International flights, visas, insurance, tips, meals not listed',
+          ],
+        ],
+      },
+    },
+    {
+      title: 'About Omaya Travel',
+      cta: {
+        before:
+          'Omaya Travel is a licensed European tour operator (license PK-01-8706). We run small-group trips of 6 to 12 people to places like Namibia, Kyrgyzstan, Morocco and Algeria, several with ',
+        linkText: 'women-only departures',
+        linkUrl: '/women-only-tours/',
+        after:
+          '. We were founded by Vesislava and Nesi, and our team has more than 12 years of experience in travel.',
+      },
+    },
+    {
+      cta: {
+        before:
+          'From the Cederberg to Etosha runs only as a women-only trip. If you’re curious how women-only travel works on our other trips, have a look at ',
+        linkText: 'Kyrgyzstan for women travelers',
+        linkUrl: '/women-only-kyrgyzstan-what-to-expect/',
+        after: ', or see everything we run in Namibia on our ',
+        more: [{ linkText: 'Namibia page', linkUrl: '/destinations/namibia/', after: '.' }],
+      },
+    },
+    {
+      title: 'Is this women-only Namibia tour right for you?',
+      text: [
+        'You’ll probably love it if you want to see the canyon, the dunes and Etosha without organizing a self-drive, and you like the idea of doing it with a small group of women your age. It suits you if you’re happy with long days on the road, broken up by short walks and good stops.',
+        'It’s probably not for you if you want to hike hard every day, or you’d rather stay several nights in one place. And it isn’t a mixed trip, so if you want to travel with a partner, this one won’t work.',
+      ],
+    },
+    {
+      cta: {
+        before: 'If it sounds like your kind of trip, you’ll find all the details on the ',
+        linkText: 'trip page',
+        linkUrl: NAMIBIA_TOUR_URL,
+        after: '.',
+      },
+    },
+    {
+      cta: {
+        before: 'And if you have questions, ',
+        linkText: 'just ask us',
+        linkUrl: '/contact/',
+        after: '.',
+      },
+    },
+    {
+      title: 'Frequently asked questions',
+      faq: WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT_METADATA.faq,
+    },
+  ],
+};
+
 export const BLOG_POSTS: readonly BlogPostContent[] = [
   ...PLANNING_GUIDES,
   HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA,
+  WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT,
   TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE,
   DHARAVI_MUMBAI_GUIDE,
   CAPE_TOWN_TO_WINDHOEK_NAMIBIA_GUIDE,

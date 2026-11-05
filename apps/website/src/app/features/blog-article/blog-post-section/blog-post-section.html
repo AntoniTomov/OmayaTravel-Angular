@@ -106,6 +106,10 @@
     <p>
       {{ cta.before }}<a [routerLink]="cta.linkUrl">{{ cta.linkText }}</a
       >{{ cta.after }}
+      @for (link of cta.more ?? []; track link.linkUrl) {
+        <a [routerLink]="link.linkUrl">{{ link.linkText }}</a
+        >{{ link.after }}
+      }
     </p>
   }
 

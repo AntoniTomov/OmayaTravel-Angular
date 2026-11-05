@@ -117,6 +117,68 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     },
   },
   {
+    slug: 'women-only-tour-namibia-what-to-expect',
+    title: 'Women-Only Tour of Namibia: What to Expect',
+    seoTitle: 'Women-Only Tour of Namibia: What to Expect on a 12-Day Small-Group Trip (2027)',
+    publishedAt: '2026-10-20',
+    date: 'October 20, 2026',
+    category: 'Namibia',
+    comments: 0,
+    excerpt:
+      'Thinking about a women-only tour of Namibia? Who travels, how rooming works, your female guide, what’s included, and which 2027 date suits you.',
+    preview:
+      'A women-only tour of Namibia is a small-group road trip where everyone in the group is a woman, many of them traveling solo, and the driving, border crossing, park permits and lodges are handled for you. Ours is a 12-day trip from Cape Town to Windhoek for 6 to 12 women aged 20 to 45, with a female guide, an Omaya representative with you the whole way, and twin rooms shared with another solo traveler. It costs EUR 3380 per person and runs on June 23 and September 29, 2027.',
+    image: {
+      src: '/assets/images/blog-posts/Namibia women only blog/women-only-tour-namibia-desert-tent.webp',
+      alt: 'A woman holding a mug stands at the open door of a twin safari tent, looking out over the Namib Desert plains and mountains in Namibia',
+    },
+    relatedTour: {
+      title: 'Namibia: From the Cederberg to Etosha | Women only',
+      url: '/tour-item/women-only-tour-namibia/',
+    },
+    faq: [
+      {
+        question: 'What is a women-only tour of Namibia?',
+        answer:
+          'It’s a group trip through Namibia where everyone in the group is a woman. Ours runs 12 days from Cape Town to Windhoek with 6 to 12 women aged 20 to 45, a female guide, an Omaya representative, and transport, accommodation and most meals included.',
+      },
+      {
+        question: 'Is a women-only tour a good way to see Namibia as a solo female traveler?',
+        answer:
+          'It’s a good fit if you don’t want to self-drive. On a small-group tour, the driving, border crossing and park permits are handled, you’re paired with another solo traveler for rooms, and you have company the whole way.',
+      },
+      {
+        question: 'Will I have to share a room?',
+        answer:
+          'Yes, unless you pay for a single. Solo travelers share a twin room with another solo woman from the group. A private room costs EUR 450 extra.',
+      },
+      {
+        question: 'Can I book with a friend?',
+        answer:
+          'Yes. You can share a twin room with your friend, and you’ll travel with the rest of the group as usual.',
+      },
+      {
+        question: 'Is the guide a woman?',
+        answer:
+          'On our Namibia trip, yes. The driver may be a man. Someone from Omaya also travels with the group for all 12 days.',
+      },
+      {
+        question: 'Is there an age limit?',
+        answer: 'Yes. Our women-only Namibia trip is for travelers aged 20 to 45.',
+      },
+      {
+        question: 'How much does a women-only tour of Namibia cost?',
+        answer:
+          'Ours costs EUR 3380 per person for 12 days, twin share. International flights, visas, travel insurance, tips and optional activities are extra.',
+      },
+      {
+        question: 'How fit do I need to be?',
+        answer:
+          'Not very. The trip is rated Easy. The walks at Fish River Canyon, in the desert and at Spitzkoppe are guided, and the rest of the time you’re traveling by minibus.',
+      },
+    ],
+  },
+  {
     slug: 'how-to-choose-small-group-sahara-tour-algeria',
     title: 'How to Choose the Best Small-Group Tour in Algeria’s Sahara',
     seoTitle: 'Best Small-Group Tour in Algeria? How to Choose (2027)',
