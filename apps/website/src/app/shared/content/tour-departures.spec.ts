@@ -24,12 +24,15 @@ describe('public tour departure data', () => {
     ).toBe(true);
   });
 
-  it('keeps September 2027 to the two Bulgaria itineraries and Namibia', () => {
+  it('keeps September 2027 to the two Bulgaria itineraries, Namibia and all Morocco formats', () => {
     const slugs = toursInMonth(9, 2027)
       .map((tour) => tour.slug)
       .sort();
     expect(slugs).toEqual([
       'bulgaria-beyond-the-ordinary',
+      'morocco-tour',
+      'tour-item-morocco-solo-travellers-tour',
+      'tour-item-morocco-women-only-tour',
       'women-only-tour-bulgaria',
       'women-only-tour-namibia',
     ]);
