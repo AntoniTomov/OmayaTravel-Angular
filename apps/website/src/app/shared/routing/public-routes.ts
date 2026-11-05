@@ -73,6 +73,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'how-to-choose-small-group-sahara-tour-algeria',
   'dharavi-mumbai-guide',
   'cape-town-to-windhoek-namibia-guide',
+  'women-only-tour-namibia-what-to-expect',
   'the-complete-visitor-guide-to-rila-monastery',
 ] as const;
 
