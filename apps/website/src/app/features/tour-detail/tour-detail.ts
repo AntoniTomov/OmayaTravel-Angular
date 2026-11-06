@@ -156,7 +156,7 @@ export class TourDetail {
   );
   /**
    * `sizes` for the hero. The hero is a fixed 515px box with `object-fit: cover`, which scales the
-   * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen â€”
+   * image until its HEIGHT fills the box, so a wide photograph renders far wider than the screen —
    * 1,236px for a 2.4:1 image on a 375px phone. `sizes="100vw"` told the browser the opposite, so
    * it chose a candidate sized for the screen and cover stretched it by up to three times. The
    * width the image really renders at is the larger of the viewport and 515px times its aspect.
@@ -298,7 +298,7 @@ export class TourDetail {
    * FAQ state as computed signals rather than template methods.
    *
    * A template method runs on every change detection pass, and `tourFaqItems` builds a new array
-   * each call â€” so `@for` would see a fresh reference every cycle. These recompute only when the
+   * each call — so `@for` would see a fresh reference every cycle. These recompute only when the
    * tour changes and hand back a stable reference.
    */
   protected readonly faqItems = computed<readonly TourFaqItem[]>(() => {
@@ -344,7 +344,7 @@ export class TourDetail {
             tour.guaranteedDepartures?.includes(date) ? 'Guaranteed' : '',
           ]
             .filter(Boolean)
-            .join(' Â· '),
+            .join(' · '),
         ]),
     );
   });
