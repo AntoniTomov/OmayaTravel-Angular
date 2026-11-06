@@ -1,13 +1,18 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   Component,
+  DestroyRef,
   HostListener,
-  OnDestroy,
   PLATFORM_ID,
   computed,
+  effect,
   inject,
   signal,
+  untracked,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 import { ActiveSite } from '../../../sites/active-site';
 import { OmayaAnalytics } from '../../shared/analytics/omaya-analytics';
@@ -16,10 +21,12 @@ import {
   NewsletterPopupMobileSrcsetPipe,
   NewsletterPopupTabletSrcsetPipe,
 } from '../../shared/content/tour-web-image.pipe';
+import { CookieConsent } from '../../shared/cookie-consent/cookie-consent';
 import { FormHoneypot } from '../../shared/forms/form-honeypot';
 import { FormStatus } from '../../shared/forms/form-status';
 import { submitNewsletter } from '../../shared/forms/public-form-api';
 import { OmayaI18n } from '../../shared/i18n/omaya-i18n';
+import { AD_SESSION_KEY, isAdLanding, isTourPage } from './newsletter-popup-rules';
 
 const POPUP_DELAY_MS = 2000;
 const DISMISSED_KEY = 'omaya-newsletter-popup-dismissed';
@@ -37,13 +44,17 @@ const SUBSCRIBED_KEY = 'omaya-newsletter-popup-subscribed';
   templateUrl: './newsletter-popup.html',
   styleUrl: './newsletter-popup.scss',
 })
-export class NewsletterPopup implements OnDestroy {
+export class NewsletterPopup {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly document = inject(DOCUMENT);
   private readonly analytics = inject(OmayaAnalytics);
   private readonly activeSite = inject(ActiveSite);
+  private readonly router = inject(Router);
+  private readonly cookieConsent = inject(CookieConsent);
+  private readonly destroyRef = inject(DestroyRef);
   protected readonly i18n = inject(OmayaI18n);
-  private readonly timerId: ReturnType<typeof setTimeout> | null = this.createTimer();
+  private timerId: ReturnType<typeof setTimeout> | null = null;
+  private hasOpened = false;
 
   protected readonly brand = computed(() => this.activeSite.site().brand);
   protected readonly mediaImage = computed(() => {
@@ -59,10 +70,8 @@ export class NewsletterPopup implements OnDestroy {
   protected readonly submitStatus = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly submitMessage = signal('');
 
-  ngOnDestroy(): void {
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
+  constructor() {
+    this.watchNavigation();
   }
 
   @HostListener('document:keydown.escape')
@@ -127,17 +136,92 @@ export class NewsletterPopup implements OnDestroy {
     this.submitMessage.set(result.message ?? 'We could not subscribe you right now.');
   }
 
-  private createTimer(): ReturnType<typeof setTimeout> | null {
-    if (!this.isBrowser || this.wasHandled()) {
-      return null;
+  /**
+   * Arms the popup on every page a visitor reaches except tour pages, and never in a session that
+   * arrived from a paid click. The delay restarts on each eligible navigation, and moving on to a
+   * tour page cancels it, so the popup never opens over a tour.
+   */
+  private watchNavigation(): void {
+    if (!this.isBrowser || this.wasHandled() || this.isAdSession()) {
+      return;
     }
 
-    return setTimeout(() => {
+    this.destroyRef.onDestroy(() => this.cancelTimer());
+
+    // Runs once now and again whenever the cookie choice changes, so answering the banner starts
+    // the delay on the page the visitor is already on.
+    effect(() => {
+      this.cookieConsent.currentChoice();
+      untracked(() => {
+        if (this.router.navigated) {
+          this.schedule(this.router.url);
+        }
+      });
+    });
+
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((event) => this.schedule(event.urlAfterRedirects));
+  }
+
+  private schedule(url: string): void {
+    this.cancelTimer();
+
+    // The cookie banner sits above the popup and would cover "No, thanks", so the popup waits until
+    // the banner has been answered.
+    if (this.hasOpened || isTourPage(url) || !this.cookieConsent.hasChoice()) {
+      return;
+    }
+
+    this.timerId = setTimeout(() => {
+      this.timerId = null;
+
+      if (
+        this.hasOpened ||
+        this.wasHandled() ||
+        isTourPage(this.router.url) ||
+        !this.cookieConsent.hasChoice()
+      ) {
+        return;
+      }
+
+      this.hasOpened = true;
       this.isOpen.set(true);
       this.analytics.trackEvent('popup_view', {
         popup: 'newsletter',
       });
     }, POPUP_DELAY_MS);
+  }
+
+  private cancelTimer(): void {
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+      this.timerId = null;
+    }
+  }
+
+  /**
+   * Whether this browser session began with a paid click. The landing URL is read once and the
+   * answer kept for the session, because the click parameters leave the address bar on the first
+   * in-app navigation.
+   */
+  private isAdSession(): boolean {
+    const view = this.document.defaultView;
+    const landedFromAd = isAdLanding(view?.location.search ?? '');
+
+    try {
+      if (landedFromAd) {
+        view?.sessionStorage.setItem(AD_SESSION_KEY, 'true');
+      }
+
+      return landedFromAd || view?.sessionStorage.getItem(AD_SESSION_KEY) === 'true';
+    } catch {
+      // Storage can be unavailable in privacy modes; the landing URL is then all there is to go on.
+      return landedFromAd;
+    }
   }
 
   private wasHandled(): boolean {

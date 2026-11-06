@@ -158,6 +158,12 @@ export const PUBLIC_DUPLICATE_TOUR_REDIRECTS: readonly PublicRedirectDefinition[
   defineRedirect('/tour-item/bulgaria-trip/', '/tour-item/bulgaria-beyond-the-ordinary/'),
   defineRedirect('/tour-item/forest-adventure/', '/tour-item/bulgaria-beyond-the-ordinary/'),
   defineRedirect('/tour-item/safari-tour/', '/tour-item/kyrgyzstan-tour/'),
+  // Retired tour addresses that GA4 still records visitors landing on as "Page Not Found".
+  defineRedirect('/tour-item/algeria-tour/', '/tour-item/algeria-desert-expedition-tadrart-rouge/'),
+  defineRedirect(
+    '/tour-item/kyrgyzstan-discovery-tour-women-only/',
+    '/tour-item/women-only-tour-kyrgyzstan/',
+  ),
 ];
 
 export const PUBLIC_QUERY_REDIRECTS: readonly PublicRedirectDefinition[] = [

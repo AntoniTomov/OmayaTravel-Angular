@@ -89,6 +89,31 @@ describe('legacy redirect resolution', () => {
       });
     }
   });
+  it('redirects the retired Algeria and Kyrgyzstan tour URLs straight to their final pages', () => {
+    const cases = [
+      ['/tour-item/algeria-tour', '/tour-item/algeria-desert-expedition-tadrart-rouge/'],
+      ['/tour-item/algeria-tour/', '/tour-item/algeria-desert-expedition-tadrart-rouge/'],
+      ['/tour-item/kyrgyzstan-discovery-tour-women-only', '/tour-item/women-only-tour-kyrgyzstan/'],
+      [
+        '/tour-item/kyrgyzstan-discovery-tour-women-only/',
+        '/tour-item/women-only-tour-kyrgyzstan/',
+      ],
+    ];
+    const results = cases.map(([from]) => {
+      const redirect = findRedirect(from);
+      return [from, redirect?.to, redirect?.statusCode];
+    });
+
+    expect(results).toEqual(cases.map(([from, to]) => [from, to, 301]));
+    // The targets are live tour pages, so neither hop chains into another redirect.
+    expect(cases.map(([, to]) => findRedirect(to))).toEqual([
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+    ]);
+  });
+
   it('redirects every declared legacy URL', () => {
     const unresolved = PUBLIC_REDIRECTS.filter(
       (redirect) => findRedirect(redirect.from)?.to !== redirect.to,
