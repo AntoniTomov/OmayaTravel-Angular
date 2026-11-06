@@ -15,11 +15,19 @@
 }
 
 .newsletter-popup__dialog {
+  // Height of the image band. The close button sits just below it, so both read this one value and
+  // the short-screen rules at the end can shrink or drop the band without stranding the button.
+  --newsletter-popup-media-height: 18.2rem;
+
   position: relative;
   display: grid;
   width: min(29.5rem, calc(100vw - 2rem));
+  // The dialog never outgrows the visible screen and scrolls inside itself, so "No, thanks" is always
+  // reachable. dvh follows the phone browser toolbars as they show and hide; svh is the fallback.
   max-height: calc(100svh - 2rem);
+  max-height: calc(100dvh - 2rem);
   overflow: auto;
+  overscroll-behavior: contain;
   color: var(--omaya-color-text);
   background: #eeeeee;
   border-radius: 0;
@@ -68,7 +76,7 @@
 
 .newsletter-popup__media {
   position: relative;
-  min-height: 18.2rem;
+  min-height: var(--newsletter-popup-media-height);
   overflow: hidden;
   background:
     linear-gradient(
@@ -90,13 +98,15 @@
   transform: translateX(-50%);
 }
 
+// A 44x44px hit area (2.75rem), the minimum touch target, centred where the old 1.6rem button was
+// so the drawn cross stays put.
 .newsletter-popup__close {
   position: absolute;
-  top: 19.15rem;
-  right: 1.55rem;
+  top: calc(var(--newsletter-popup-media-height) + 0.375rem);
+  right: 0.975rem;
   z-index: 2;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
   border: 0;
   background: transparent;
@@ -241,11 +251,12 @@
   }
 
   .newsletter-popup__dialog {
+    --newsletter-popup-media-height: 16rem;
+
     width: min(29.5rem, calc(100vw - 1.5rem));
   }
 
   .newsletter-popup__media {
-    min-height: 16rem;
     // A 480px copy of the frame for phones. A browser without image-set() drops this declaration and
     // keeps the full WebP from the base rule. See POPUP_MOBILE_WIDTH in the image generator.
     background:
@@ -268,10 +279,72 @@
   }
 
   .newsletter-popup__close {
-    top: 16.9rem;
+    top: calc(var(--newsletter-popup-media-height) + 0.325rem);
   }
 
   .newsletter-popup__content {
     padding: 4.75rem 1.9rem 3.4rem;
+  }
+}
+
+/**
+ * Short screens: most phones in portrait and laptops with browser chrome. At full size the popup is
+ * about 900px tall on a phone, so "No, thanks" sat below the fold and only scrolling revealed it. Here
+ * the image band shrinks with the screen and the spacing tightens until both buttons fit; the copy is
+ * untouched. These come after the width rules so they win at any width.
+ */
+@media (max-height: 60rem) {
+  .newsletter-popup__dialog {
+    --newsletter-popup-media-height: clamp(9rem, 24dvh, 16rem);
+  }
+
+  .newsletter-popup__media img {
+    top: 1rem;
+    height: calc(100% - 2rem);
+  }
+
+  .newsletter-popup__content {
+    gap: 0.6rem;
+    padding: 1.25rem 1.9rem 1.5rem;
+  }
+
+  .newsletter-popup__logo {
+    width: 5.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .newsletter-popup__actions,
+  .newsletter-popup__form {
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+  }
+
+  .newsletter-popup__primary,
+  .newsletter-popup__secondary,
+  .newsletter-popup__form button {
+    padding: 0.95rem;
+  }
+}
+
+// Very short screens (small phones, landscape): the image band goes, and the close button moves to
+// the dialog's top corner.
+@media (max-height: 40rem) {
+  .newsletter-popup__dialog {
+    --newsletter-popup-media-height: 0rem;
+  }
+
+  .newsletter-popup__media {
+    display: none;
+  }
+
+  .newsletter-popup__close {
+    top: 0.35rem;
+  }
+}
+
+// Phones in landscape: the heading already names the brand in the tagline, so the logo gives way too.
+@media (max-height: 30rem) {
+  .newsletter-popup__logo {
+    display: none;
   }
 }
