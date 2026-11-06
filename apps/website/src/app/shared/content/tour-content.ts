@@ -5111,6 +5111,31 @@ function createMoroccoSoloTravellersTour(): TourDetailContent | undefined {
       ...moroccoTour.price,
       amount: 2550,
     },
+    departures: ['2027-04-15', '2027-10-07'],
+    // Everyone travels alone, so the single room is part of the price rather than a supplement.
+    included: [
+      'Accommodation as described',
+      'Your own room every night, and your own tent at the desert camp',
+      'Activities as mentioned',
+      'Ground transport',
+      'One local guide for all 12 days',
+      'Meals according to the daily description',
+      'Omaya Travel representative',
+    ],
+    notIncluded: moroccoTour.notIncluded.filter((item) => item !== 'Single room supplement'),
+    faq: moroccoTour.faq && {
+      ...moroccoTour.faq,
+      items: [
+        ...moroccoTour.faq.items.slice(0, 1),
+        {
+          question: 'Will I have my own room?',
+          answer: [
+            'Yes. You get your own room every night, and your own tent at the desert camp, all included in the price. There’s no single supplement to add.',
+          ],
+        },
+        ...moroccoTour.faq.items.slice(1),
+      ],
+    },
     seo: {
       title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only | Omaya Travel',
       description:

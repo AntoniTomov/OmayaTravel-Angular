@@ -179,6 +179,53 @@ export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
     ],
   },
   {
+    slug: 'solo-group-tour-morocco',
+    title: 'Solo Group Tour of Morocco: What to Check Before You Book',
+    seoTitle: 'Solo Group Tour of Morocco: What to Check Before You Book (2027)',
+    publishedAt: '2026-11-06',
+    date: 'November 6, 2026',
+    category: 'Morocco',
+    comments: 0,
+    excerpt:
+      'Planning a solo group tour of Morocco? What to check before booking: your own room, who’s in the group, arrival, free time and dates. Plus a 2027 checklist.',
+    preview:
+      'A solo group tour of Morocco is a small-group trip where everyone signs up on their own, so nobody arrives as part of a couple or a group of friends. The things to check before you book are simple: do you get your own room, and is it included in the price? Who else is in the group? Who meets you when you land? Does the trip leave you any time to yourself? Below we go through each one, with a checklist you can use to compare tours, ours included.',
+    image: {
+      src: '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp',
+      alt: 'Camels crossing the Sahara dunes in Morocco',
+    },
+    relatedTour: {
+      title: 'Morocco – Blue Cities & Golden Dunes | Solo Travellers only',
+      url: '/tour-item/tour-item-morocco-solo-travellers-tour/',
+    },
+    faq: [
+      {
+        question: 'Is Morocco good for solo travelers?',
+        answer:
+          'Yes, and a group trip makes it easier. Morocco has a lot of long distances, busy medinas and late evenings. With a guide, a driver and a small group, you get the company and the logistics handled, and you can still take free afternoons on your own.',
+      },
+      {
+        question: 'Do you have to share a room on a solo group tour of Morocco?',
+        answer:
+          'It depends on the tour. Some pair solo travelers in twin rooms, others charge a single supplement for your own room. On our Morocco solo-travelers departure, you get your own room every night, and your own tent at the desert camp, all included in the price.',
+      },
+      {
+        question: 'How much does a solo group tour of Morocco cost?',
+        answer:
+          'Prices vary with length and what’s included. Our 12-day solo departure costs EUR 2550 per person, including your own room, breakfast every day, ground transport, a local guide and an Omaya representative. Flights, insurance and entry fees aren’t included.',
+      },
+      {
+        question: 'Who goes on a solo group tour of Morocco?',
+        answer:
+          'On ours, everyone travels alone. The group is 6 to 12 people, men and women, aged 20 to 45.',
+      },
+      {
+        question: 'When does the solo Morocco tour run in 2027?',
+        answer: 'Our solo-travelers departures are on April 15 and October 7, 2027.',
+      },
+    ],
+  },
+  {
     slug: 'how-to-choose-small-group-sahara-tour-algeria',
     title: 'How to Choose the Best Small-Group Tour in Algeria’s Sahara',
     seoTitle: 'Best Small-Group Tour in Algeria? How to Choose (2027)',

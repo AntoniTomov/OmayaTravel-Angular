@@ -32,7 +32,7 @@ const DESTINATION_BRIEFS = [
     theme: 'Blue cities, medinas and desert dunes',
     introduction:
       'Follow Morocco’s Blue Cities & Golden Dunes itinerary through its cities, mountains and Sahara landscapes. Enjoy mint tea in the blue lanes of Chefchaouen, the colour and noise of the medinas, and a night under more stars than you thought the sky held.',
-    guideSlugs: ['morocco-casablanca-marrakech-route-guide'],
+    guideSlugs: ['morocco-casablanca-marrakech-route-guide', 'solo-group-tour-morocco'],
   },
   {
     slug: 'algeria',
