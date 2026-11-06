@@ -189,6 +189,8 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/991415c5539af53d.avif',
   '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp':
     '/assets/images/tour-web/dbd8c654ac67cb72.avif',
+  '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp':
+    '/assets/images/tour-web/ed68e44414322c0d.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -379,6 +381,8 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/48e1c35115e68c25.avif 320w, /assets/images/tour-web/08929ae71015d632.avif 480w, /assets/images/tour-web/6c3259167b9e9fc4.avif 640w, /assets/images/tour-web/3b1ca7e6b1beddbb.avif 800w, /assets/images/tour-web/8637141c702ac036.avif 960w, /assets/images/tour-web/690ea87c3bf44f2a.avif 1440w, /assets/images/tour-web/ed095143f861ddc9.avif 1920w, /assets/images/tour-web/991415c5539af53d.avif 2576w',
   '/assets/images/women-tours/Namibia/Sossusvlei_dune-card.webp':
     '/assets/images/tour-web/79d480b90a7ee14e.avif 320w, /assets/images/tour-web/9c50ed130766c20c.avif 480w, /assets/images/tour-web/998f494491294665.avif 640w, /assets/images/tour-web/b1eaa7a5617e3420.avif 800w, /assets/images/tour-web/81298ef71d98fb93.avif 960w, /assets/images/tour-web/26e48a31d8562f4d.avif 1440w, /assets/images/tour-web/dbd8c654ac67cb72.avif 1717w',
+  '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp':
+    '/assets/images/tour-web/ce33aab931d491f6.avif 320w, /assets/images/tour-web/5420e121de1fab41.avif 480w, /assets/images/tour-web/a23042cf9cce3029.avif 640w, /assets/images/tour-web/01f2b58ba05b85cd.avif 800w, /assets/images/tour-web/03262ef50ba6c5bc.avif 960w, /assets/images/tour-web/acc81ab19fba979a.avif 1440w, /assets/images/tour-web/ed68e44414322c0d.avif 1920w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -456,6 +460,13 @@ export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; ta
     tablet:
       '/assets/images/tour-web/798cd34a9c602372.avif 768w, /assets/images/tour-web/309dd557db91fe0a.avif 1152w, /assets/images/tour-web/3fee1961442158c6.avif 1321w',
   },
+  '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp':
+    {
+      phone:
+        '/assets/images/tour-web/cd6915fa5e36b7d1.avif 480w, /assets/images/tour-web/a63453b9eddf287f.avif 720w, /assets/images/tour-web/967433fad69d6c0d.avif 960w, /assets/images/tour-web/a258e8f9d7854851.avif 1007w',
+      tablet:
+        '/assets/images/tour-web/db97256bbf0f3678.avif 768w, /assets/images/tour-web/415f67c77c056370.avif 1152w, /assets/images/tour-web/d4fe5d0592f7ca8a.avif 1536w',
+    },
   '/assets/images/our-story/Our-story-16.webp': {
     phone:
       '/assets/images/tour-web/4bc303618632b499.avif 480w, /assets/images/tour-web/4c1a0e3c45c73829.avif 622w',

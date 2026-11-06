@@ -71,6 +71,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
   'how-to-choose-small-group-sahara-tour-algeria',
+  'solo-group-tour-morocco',
   'dharavi-mumbai-guide',
   'cape-town-to-windhoek-namibia-guide',
   'women-only-tour-namibia-what-to-expect',
