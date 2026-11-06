@@ -24,14 +24,14 @@ describe('public tour departure data', () => {
     ).toBe(true);
   });
 
-  it('keeps September 2027 to the two Bulgaria itineraries, Namibia and all Morocco formats', () => {
+  // The solo-travellers Morocco departure runs a week after the classic one, so it falls in October.
+  it('keeps September 2027 to the two Bulgaria itineraries, Namibia and the classic and women-only Morocco tours', () => {
     const slugs = toursInMonth(9, 2027)
       .map((tour) => tour.slug)
       .sort();
     expect(slugs).toEqual([
       'bulgaria-beyond-the-ordinary',
       'morocco-tour',
-      'tour-item-morocco-solo-travellers-tour',
       'tour-item-morocco-women-only-tour',
       'women-only-tour-bulgaria',
       'women-only-tour-namibia',

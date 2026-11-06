@@ -134,6 +134,7 @@ const inputs = [
   "images/destinations/India/ajanta-hero.webp",
   "images/women-tours/Namibia/Fish_River_Canyon_hero.webp",
   "images/women-tours/Namibia/Sossusvlei_dune-card.webp",
+  "images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp",
   // First-screen images being made eager. Eager means downloading during the initial load next to
   // the hero, so they have to be cheap first: this one shipped 296,558 bytes of WebP.
   "images/private-tour/private-tour-image.webp",
@@ -365,6 +366,7 @@ const PAGE_HERO_SOURCES = {
   "images/amelia/blog/morocco-for-women-travel-guide/morocco-2.avif": 0.5,
   "images/amelia/blog/india-otblizo/india-otblizo-01.webp": 0.5,
   "images/blog-posts/Kyrgystan/Kyrgystan-bgr.webp": 0.5,
+  "images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp": 0.5,
   "images/our-story/Our-story-16.webp": 0.34,
 };
 const PAGE_HERO_TIERS = [

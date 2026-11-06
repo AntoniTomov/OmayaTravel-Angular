@@ -1964,6 +1964,216 @@ export const HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA: BlogPostContent = {
   ],
 };
 
+const SOLO_GROUP_TOUR_MOROCCO_METADATA = findBlogMetadataBySlug('solo-group-tour-morocco')!;
+
+const MOROCCO_SOLO_TOUR_URL = '/tour-item/tour-item-morocco-solo-travellers-tour/';
+
+export const SOLO_GROUP_TOUR_MOROCCO: BlogPostContent = {
+  ...SOLO_GROUP_TOUR_MOROCCO_METADATA,
+  sections: [
+    {
+      text: [
+        'Quick note: we’re Omaya Travel, and we run a solo-travelers-only version of our Morocco trip. So we have a stake in this. We’ll show you how ours works, and who we think it’s not right for.',
+      ],
+    },
+    {
+      title: 'How a solo group tour of Morocco is different',
+      text: [
+        'Plenty of Morocco tours welcome solo travelers. On most of them, you’re one of a few people on your own, traveling alongside couples and friends who arrived together.',
+        'A solo-only departure flips that. Everyone in the group came alone, so nobody already has a dinner partner or someone to sit next to on the bus. Everyone starts on day one, at the same point.',
+        'There’s a practical side too. Morocco is a country of medinas, long drives and evenings that start late. Fes el Bali is a car-free maze with a 9th-century street plan. The road from Fes to the Sahara takes most of a day. Doing all of that with a guide, a driver and a group means you can spend your energy on the place instead of on logistics.',
+      ],
+    },
+    {
+      title: 'Six things to check before you book a solo group tour in Morocco',
+      subtitle: '1. Do you get your own room?',
+      text: [
+        'This is the big one. Some tours pair you with another solo traveler of the same gender. Others charge a single supplement if you want your own room. And single rooms can be limited, so the supplement isn’t always available.',
+        'Ask exactly what you’ll get each night, including any nights in a camp.',
+      ],
+    },
+    {
+      subtitle: '2. Is the single room in the price, or extra?',
+      text: [
+        'A low headline price with a single supplement added at checkout can end up costing more than a higher price that already includes your room. Compare the full cost for one person in one room.',
+      ],
+    },
+    {
+      subtitle: '3. Who’s in the group?',
+      text: [
+        'Ask how many people, what ages the trip is designed for, and whether it’s mixed or women only. A trip for travelers in their 20s to 40s feels different from one with a wide age range.',
+      ],
+    },
+    {
+      subtitle: '4. Who meets you when you land?',
+      text: [
+        'Arriving alone in a new country is easier when someone is waiting for you. Ask whether airport pickup is included, and whether it’s the guide, a driver, or someone from the company.',
+      ],
+    },
+    {
+      subtitle: '5. Is there time to yourself?',
+      text: [
+        'Twelve days with the same people is a lot if every hour is scheduled. Look for free afternoons in the itinerary. They’re when you can wander a medina on your own, or find someone from the group who wants to do the same thing.',
+      ],
+    },
+    {
+      subtitle: '6. Is the date guaranteed?',
+      text: [
+        'A guaranteed departure runs however many people book. Other dates run once enough people join. Ask which kind yours is before you book flights.',
+      ],
+    },
+    {
+      title: 'The checklist',
+      text: ['Here’s everything in one place. The last column shows our answers.'],
+      table: {
+        head: ['What to check', 'What to ask', 'Our Morocco solo-travelers departure'],
+        rows: [
+          [
+            'Room',
+            'Own room or shared?',
+            'Your own room every night, and your own tent at the desert camp',
+          ],
+          [
+            'Price',
+            'Is the single room included?',
+            'Yes. EUR 2550 per person, single room included, no extra supplement',
+          ],
+          [
+            'Group',
+            'Size, ages, mixed or women only',
+            '6–12 people, ages 20–45, men and women, everyone solo',
+          ],
+          [
+            'Guide',
+            'Same guide throughout?',
+            'Yes, one local guide for all 12 days, plus an Omaya representative with you the whole way',
+          ],
+          [
+            'Free time',
+            'Any free afternoons?',
+            'Four: Chefchaouen, Fes, the desert camp and Marrakech',
+          ],
+          ['Meals', 'What’s included?', 'Breakfast daily; lunch and dinner on the desert day'],
+          ['Entry fees', 'Included?', 'No, entry fees for the sites aren’t included on this trip'],
+          ['Dates', 'When does it run?', 'April 15 and October 7, 2027'],
+          [
+            'Not included',
+            'Flights, insurance, extras',
+            'Flights, insurance, entry fees, meals not listed',
+          ],
+        ],
+      },
+    },
+    {
+      title: 'What the 12 days look like',
+      text: ['The trip starts in Casablanca and ends in Marrakech. Here’s the shape of it:'],
+      table: {
+        head: ['Days', 'Where', 'Highlights'],
+        rows: [
+          ['1', 'Casablanca', 'Hassan II Mosque on the Atlantic, the Corniche at sunset'],
+          [
+            '2–3',
+            'Rabat, Chefchaouen',
+            'Kasbah of the Udayas, a guided walk through the blue medina, free afternoon',
+          ],
+          [
+            '4–5',
+            'Volubilis, Meknes, Fes',
+            'Roman mosaics, Chouara Tanneries, Al Quaraouiyine (founded in 859), free afternoon',
+          ],
+          [
+            '6–7',
+            'Middle Atlas, Erg Chebbi',
+            'Barbary macaques in the cedar forest, camel into the dunes at sunset, Gnawa music in Khamlia, two nights in the desert',
+          ],
+          [
+            '8–9',
+            'Todra Gorge, Dades Valley, Aït Ben Haddou',
+            '300-meter canyon walls on foot, the kasbah corridor, a night inside the old village',
+          ],
+          [
+            '10–11',
+            'High Atlas, Marrakech',
+            'Dawn at Aït Ben Haddou, the Tizi n’Tichka pass, Jardin Majorelle, lunch at the Amal Women’s Training Center',
+          ],
+          ['12', 'Marrakech', 'Departure, with transfers around your flights'],
+        ],
+      },
+    },
+    {
+      cta: {
+        before: 'For more on why the route runs this way, read our ',
+        linkText: 'twelve days in Morocco route guide',
+        linkUrl: '/morocco-casablanca-marrakech-route-guide/',
+        after: '.',
+      },
+    },
+    {
+      title: 'What being on your own looks like on this trip',
+      boldList: [
+        {
+          label: 'Arriving.',
+          text: ' Flights land at different times on day 1, and that’s fine.',
+        },
+        {
+          label: 'Your room.',
+          text: ' You have your own room every night, and your own tent at the desert camp. It’s included in the EUR 2550, so there’s no supplement to add later. You get company when you want it and a door to close when you don’t.',
+        },
+        {
+          label: 'Time together.',
+          text: ' Most of the trip happens as a group: the guided walks, the long drive south, the camel ride into the dunes, the evening the Gnawa musicians play in Khamlia. On a solo departure, that’s where the group gets to know each other.',
+        },
+        {
+          label: 'Time alone.',
+          text: ' There are four free afternoons. In Chefchaouen you can walk up to the Spanish Mosque for sunset or sit by the spring at Ras El-Ma. In Fes you can go back to a workshop you passed in the morning. In Marrakech you might want a rooftop above Djemaa el-Fna, or a quiet afternoon in your room.',
+        },
+        {
+          label: 'The early start.',
+          text: ' On day 10 there’s a pre-dawn alarm at Aït Ben Haddou. You sleep inside the old village, so you see it turn gold before the day-trip buses arrive. It’s a lot easier to get out of bed when eleven other people are doing it too.',
+        },
+      ],
+    },
+    {
+      title: 'Is a solo group tour of Morocco right for you?',
+      text: [
+        'You’ll probably love it if you want to travel alone without doing everything alone. It suits you if you like the idea of meeting people your own age who chose the same trip, and you’d rather spend your energy in a medina than on planning bus routes.',
+        'It’s probably not for you if:',
+      ],
+      list: [
+        'You’re traveling with a partner or a friend. Book the classic departure of the same trip instead (EUR 2300). It runs a week earlier, on April 8 and September 30, 2027.',
+        'You’d prefer a group of women only. There’s a women-only version on the classic dates. You’ll find both on our Morocco page.',
+        'You don’t enjoy long drives. Fes to the Sahara takes most of a day, and the route changes base several times.',
+        'You want a beach or a resort. This is a touring trip from city to desert to mountains.',
+      ],
+    },
+    {
+      title: 'Before you go',
+      text: [
+        'Check whether you need a visa for Morocco with your own government before you book flights. Make sure your passport is valid for at least six months after you arrive, and that your travel insurance covers the whole trip.',
+      ],
+    },
+    {
+      title: 'About Omaya Travel',
+      text: [
+        'Omaya Travel is a licensed European tour operator (license PK-01-8706). We run small-group trips of 6 to 12 people to places like Morocco, Kyrgyzstan and Algeria. We were founded by Vesislava and Nesi, and our team has more than 12 years of experience in travel.',
+      ],
+    },
+    {
+      cta: {
+        before: 'If this sounds like your kind of trip, you’ll find the full details on the ',
+        linkText: 'solo travelers trip page',
+        linkUrl: MOROCCO_SOLO_TOUR_URL,
+        after: '. And if you have questions, ',
+        more: [{ linkText: 'just ask us', linkUrl: '/contact/', after: '.' }],
+      },
+    },
+    {
+      title: 'Frequently asked questions',
+      faq: SOLO_GROUP_TOUR_MOROCCO_METADATA.faq,
+    },
+  ],
+};
+
 const WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT_METADATA = findBlogMetadataBySlug(
   'women-only-tour-namibia-what-to-expect',
 )!;
@@ -2212,6 +2422,7 @@ export const WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT: BlogPostContent = {
 
 export const BLOG_POSTS: readonly BlogPostContent[] = [
   ...PLANNING_GUIDES,
+  SOLO_GROUP_TOUR_MOROCCO,
   HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA,
   WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT,
   TASSILI_NAJJER_NATIONAL_PARK_ALGERIA_GUIDE,
