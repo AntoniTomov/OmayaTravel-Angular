@@ -2724,13 +2724,13 @@ export const BLOG_POST_SLUGS = BLOG_POSTS.map((post) => post.slug);
 
 export const AMELIA_BLOG_POST_SLUGS = AMELIA_BLOG_POSTS.map((post) => post.slug);
 
-/** Omaya lists its posts newest first by publish date; posts published the same day keep their listed order. */
+/** Both sites list their posts newest first by publish date; posts published the same day keep their listed order. */
 function newestFirst(posts: readonly BlogPostContent[]): readonly BlogPostContent[] {
   return [...posts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
 export function blogPostsForSite(siteId: SiteId): readonly BlogPostContent[] {
-  return siteId === 'amelia' ? AMELIA_BLOG_POSTS : newestFirst(BLOG_POSTS);
+  return newestFirst(siteId === 'amelia' ? AMELIA_BLOG_POSTS : BLOG_POSTS);
 }
 
 export function findBlogPostBySlug(

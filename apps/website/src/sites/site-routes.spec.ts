@@ -134,12 +134,13 @@ describe('Amelia tour content', () => {
   });
 
   it('serves Amelia blog posts separately from Omaya blog posts', () => {
+    // Newest first by publish date.
     expect(blogPostsForSite('amelia').map((post) => post.slug)).toEqual([
-      'maroko-za-zheni-pateshestvenichki',
+      'turoperator-indiya-kak-da-izberesh',
+      'sauditska-arabiya-za-zheni',
       'ezeroto-song-kul-kirgistan',
       'india-otblizo',
-      'sauditska-arabiya-za-zheni',
-      'turoperator-indiya-kak-da-izberesh',
+      'maroko-za-zheni-pateshestvenichki',
     ]);
     expect(blogPostsForSite('omaya').map((post) => post.slug)).not.toContain(
       'maroko-za-zheni-pateshestvenichki',
