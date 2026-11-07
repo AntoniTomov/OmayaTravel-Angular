@@ -226,6 +226,12 @@
   margin: 0;
 }
 
+.blog-list__follow a {
+  color: var(--omaya-color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .blog-list :is(a):focus-visible {
   outline: tokens.$omaya-border-focus;
   outline-offset: 4px;
