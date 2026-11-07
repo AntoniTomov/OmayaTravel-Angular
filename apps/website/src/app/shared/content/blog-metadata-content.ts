@@ -520,12 +520,68 @@ export const AMELIA_BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
       },
     ],
   },
+  {
+    slug: 'turoperator-indiya-kak-da-izberesh',
+    title: 'Как да избереш туроператор за Индия: 10 въпроса',
+    seoTitle: 'Как да избереш туроператор за Индия: 10 въпроса | Amelia',
+    publishedAt: '2026-11-07',
+    date: '7 ноември 2026',
+    category: 'Индия',
+    comments: 0,
+    excerpt:
+      'Избираш туроператор за Индия? Ето 10 въпроса, които да зададеш, преди да се запишеш: група, гид, какво е включено, виза, полет, темпо и анулация.',
+    preview:
+      'Неси и Весислава, основателки на Amelia Travel. Тук са въпросите, които си струва да зададеш на всеки туроператор, преди да платиш депозит за Индия – и нашите честни отговори.',
+    image: {
+      src: '/assets/images/amelia/tours/india/gallery/08_taj_mahal_domes.webp',
+      alt: 'Куполите на Тадж Махал в Агра, Индия',
+    },
+    sidebarImage: {
+      src: '/assets/images/amelia/tours/india/gallery/09_varanasi_ghats.webp',
+      alt: 'Гхатите на Ганг във Варанаси',
+    },
+    relatedTour: {
+      title: 'Северна Индия отблизо',
+      url: '/tour-item/india-tour/',
+    },
+    faq: [
+      {
+        question: 'Колко струва организирана екскурзия до Индия с Amelia Travel?',
+        answer:
+          'Организираната екскурзия до Индия с Amelia Travel струва EUR 1690 на човек в двойна стая за 14 дни / 13 нощувки. Доплащането за самостоятелна стая е EUR 415. Международният полет и индийската виза не са включени в цената.',
+      },
+      {
+        question: 'Включен ли е самолетният билет в екскурзията до Индия на Amelia Travel?',
+        answer:
+          'Не, международният полет София – Делхи – София не е включен в цената на Amelia Travel. Amelia Travel помага с резервацията, а групата лети заедно от София с представителка на Amelia Travel.',
+      },
+      {
+        question: 'Мога ли да тръгна сама на екскурзия до Индия с Amelia Travel?',
+        answer:
+          'Да, можеш да пътуваш до Индия с Amelia Travel сама. Ще те настаним в двойна стая с друга участничка или можеш да доплатиш EUR 415 за самостоятелна стая. Две приятелки могат да поискат обща стая.',
+      },
+      {
+        question: 'Нужна ли е виза за Индия за българските граждани?',
+        answer:
+          'Да, българските граждани имат нужда от виза за Индия, като най-лесният вариант е електронната e-Tourist виза от официалния сайт indianvisaonline.gov.in. Според МВнР се кандидатства 4–120 дни преди пътуването, а паспортът трябва да е валиден 6 месеца от датата на влизане. Визата не е включена в цената на Amelia Travel, но Amelia Travel изпраща инструкции.',
+      },
+      {
+        question: 'Кои са датите на пътуването до Индия с Amelia Travel?',
+        answer:
+          'Пътуването до Индия с Amelia Travel е на 24.02.2027 за групата 20–45 г. и на 03.03.2027 за групата 40–65 г. И двете групи тръгват и се връщат на летище София.',
+      },
+      {
+        question: 'Колко е депозитът за Индия и кога се плаща остатъкът?',
+        answer:
+          'Депозитът за пътуването до Индия с Amelia Travel е 25%, плаща се до 7 дни след писменото потвърждение на Amelia Travel и не се възстановява парично. Остатъкът се плаща най-късно 60 дни преди тръгване.',
+      },
+    ],
+  },
 ];
 
 export function blogMetadataForSite(siteId: SiteId): readonly BlogArticleMetadata[] {
-  return siteId === 'amelia'
-    ? AMELIA_BLOG_ARTICLE_METADATA
-    : [...BLOG_ARTICLE_METADATA].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const posts = siteId === 'amelia' ? AMELIA_BLOG_ARTICLE_METADATA : BLOG_ARTICLE_METADATA;
+  return [...posts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
 export function findBlogMetadataBySlug(

@@ -4,6 +4,7 @@ import {
   QueryList,
   ViewChild,
   ViewChildren,
+  afterNextRender,
   computed,
   inject,
   signal,
@@ -54,8 +55,11 @@ export class FeaturedTrips {
   private didDrag = false;
   private suppressClickUntil = 0;
 
-  protected readonly trips = computed<readonly FeaturedTrip[]>(() =>
-    this.activeSite.site().content.featuredTours.map((trip) => ({
+  /** A shuffled order of the featured tours' indexes, set in the browser; null keeps the listed order. */
+  private readonly shuffledOrder = signal<readonly number[] | null>(null);
+
+  protected readonly trips = computed<readonly FeaturedTrip[]>(() => {
+    const trips = this.activeSite.site().content.featuredTours.map((trip) => ({
       eyebrow: trip.categoryLabel ?? trip.category,
       title: trip.title,
       price: trip.price,
@@ -63,14 +67,29 @@ export class FeaturedTrips {
       description: trip.excerpt,
       target: trip.target,
       image: this.buildCardImage(trip.image, trip.alt),
-    })),
-  );
+    }));
+    const order = this.shuffledOrder();
+
+    return order?.length === trips.length ? order.map((index) => trips[index]) : trips;
+  });
   protected readonly title = computed(
     () =>
       this.activeSite.site().content.featuredToursTitle ??
       this.i18n.t('homepage.featuredTripsTitle'),
   );
   protected readonly activeTripIndex = signal(0);
+
+  constructor() {
+    // The homepage is prerendered, so shuffling on the server would bake one order into the HTML
+    // for every visitor. Shuffle after the first render in the browser instead.
+    afterNextRender(() => {
+      const content = this.activeSite.site().content;
+
+      if (content.shuffleFeaturedTours) {
+        this.shuffledOrder.set(shuffledIndexes(content.featuredTours.length));
+      }
+    });
+  }
 
   protected shiftTrip(direction: -1 | 1): void {
     const carousel = this.carousel?.nativeElement;
@@ -233,4 +252,16 @@ export class FeaturedTrips {
       fetchPriority: 'auto',
     };
   }
+}
+
+/** Fisher–Yates shuffle of `0 … length - 1`. */
+function shuffledIndexes(length: number): number[] {
+  const indexes = Array.from({ length }, (_, index) => index);
+
+  for (let i = indexes.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indexes[i], indexes[j]] = [indexes[j], indexes[i]];
+  }
+
+  return indexes;
 }
