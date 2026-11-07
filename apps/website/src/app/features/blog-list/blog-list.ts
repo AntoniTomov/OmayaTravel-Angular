@@ -33,6 +33,10 @@ export class BlogList {
   protected readonly discoverToursEnabled = computed(() =>
     isSiteRouteEnabled(this.activeSite.site(), '/tours-list/'),
   );
+  /** The site's Instagram profile, linked from the "Follow us" box. */
+  protected readonly instagramUrl = computed(
+    () => this.activeSite.site().socialLinks.find((link) => link.icon === 'social-instagram')?.url,
+  );
   protected readonly labels = computed(() =>
     this.activeSite.site().id === 'amelia'
       ? {
@@ -40,7 +44,9 @@ export class BlogList {
           subtitle: 'Истории, идеи и практични съвети за пътувания с Amelia Travel.',
           suggestedPosts: 'Препоръчани публикации',
           followUs: 'Последвай ни',
-          followText: 'За още вдъхновение за пътувания, последвай Amelia Travel.',
+          followText: 'За още вдъхновение за пътувания, последвай ',
+          followLink: 'Amelia Travel',
+          followAfter: '.',
           discoverAlt: 'Открий още пътувания',
         }
       : {
@@ -49,7 +55,9 @@ export class BlogList {
             'Dive into our collection of travel tales, destination guides, and insider advice.',
           suggestedPosts: 'Suggested Blog Posts',
           followUs: 'Follow Us',
-          followText: 'For more travel inspiration, follow us on Instagram: @omayatravel',
+          followText: 'For more travel inspiration, follow us on Instagram: ',
+          followLink: '@omayatravel',
+          followAfter: '',
           discoverAlt: 'Discover more tours',
         },
   );

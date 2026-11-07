@@ -62,6 +62,10 @@ export class BlogArticle {
     return posts.length > 1 && index >= 0 ? (posts[index + 1] ?? posts[0]) : undefined;
   });
 
+  /** The site's Instagram profile, linked from the "Follow us" box. */
+  protected readonly instagramUrl = computed(
+    () => this.activeSite.site().socialLinks.find((link) => link.icon === 'social-instagram')?.url,
+  );
   protected readonly labels = computed(() =>
     this.activeSite.site().id === 'amelia'
       ? {
@@ -69,7 +73,9 @@ export class BlogArticle {
           suggestedPosts: 'Препоръчани публикации',
           backToStories: 'Към всички истории',
           followUs: 'Последвай ни',
-          followText: 'За още вдъхновение за пътувания, последвай Amelia Travel.',
+          followText: 'За още вдъхновение за пътувания, последвай ',
+          followLink: 'Amelia Travel',
+          followAfter: '.',
           discoverAlt: 'Открий още пътувания',
         }
       : {
@@ -77,7 +83,9 @@ export class BlogArticle {
           suggestedPosts: 'Suggested Blog Posts',
           backToStories: 'Back to all stories',
           followUs: 'Follow Us',
-          followText: 'For more travel inspiration, follow us on Instagram: @omayatravel',
+          followText: 'For more travel inspiration, follow us on Instagram: ',
+          followLink: '@omayatravel',
+          followAfter: '',
           discoverAlt: 'Discover more tours',
         },
   );
