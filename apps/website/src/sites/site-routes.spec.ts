@@ -139,6 +139,7 @@ describe('Amelia tour content', () => {
       'ezeroto-song-kul-kirgistan',
       'india-otblizo',
       'sauditska-arabiya-za-zheni',
+      'turoperator-indiya-kak-da-izberesh',
     ]);
     expect(blogPostsForSite('omaya').map((post) => post.slug)).not.toContain(
       'maroko-za-zheni-pateshestvenichki',

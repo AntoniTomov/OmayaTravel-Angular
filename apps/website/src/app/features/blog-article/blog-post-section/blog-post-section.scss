@@ -180,6 +180,13 @@
   object-fit: cover;
 }
 
+// A wide, short banner across the article column, so a photo breaks the text without filling the screen.
+.blog-post-section img.blog-post-section__image--wide {
+  aspect-ratio: 21 / 9;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
 @media (max-width: 38rem) {
   .blog-post-section__timeline div {
     grid-template-columns: 1fr;

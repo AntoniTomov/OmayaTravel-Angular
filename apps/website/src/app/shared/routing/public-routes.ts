@@ -69,6 +69,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'ezeroto-song-kul-kirgistan',
   'india-otblizo',
   'sauditska-arabiya-za-zheni',
+  'turoperator-indiya-kak-da-izberesh',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
   'how-to-choose-small-group-sahara-tour-algeria',
