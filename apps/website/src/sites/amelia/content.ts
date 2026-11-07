@@ -249,6 +249,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
   ],
   featuredToursTitle: 'Популярни пътувания',
   featuredTours: AMELIA_FEATURED_TOURS,
+  shuffleFeaturedTours: true,
   searchIndex: [
     {
       type: 'Tour',

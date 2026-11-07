@@ -64,6 +64,27 @@ describe('FeaturedTrips', () => {
     }
   });
 
+  it('shuffles the featured tours after the first render when the site asks for it', async () => {
+    const listed = AMELIA_SITE_CONFIG.content.featuredTours.map((tour) => tour.title);
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0);
+    // A fresh component, so its after-render shuffle runs while Math.random() is pinned.
+    const shuffled = TestBed.createComponent(FeaturedTrips);
+
+    shuffled.detectChanges();
+    await shuffled.whenStable();
+    shuffled.detectChanges();
+    random.mockRestore();
+
+    const titles = () =>
+      Array.from(shuffled.nativeElement.querySelectorAll('.featured-trips__content h3')).map(
+        (heading) => (heading as HTMLElement).textContent?.trim(),
+      );
+
+    expect(AMELIA_SITE_CONFIG.content.shuffleFeaturedTours).toBe(true);
+    // Math.random() pinned to 0 moves each card to the front in turn: [1, 2, …, n - 1, 0].
+    expect(titles()).toEqual([...listed.slice(1), listed[0]]);
+  });
+
   // Capturing the pointer on pointerdown retargets the follow-up click to the carousel, so a tap
   // on a card never reached the card's link and the tour page never opened.
   it('leaves a tap uncaptured so the card link still receives the click', () => {
