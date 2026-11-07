@@ -227,8 +227,6 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/5f03baf1217e23a4.avif',
   '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
     '/assets/images/tour-web/7453264fb05c5b25.avif',
-  '/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp':
-    '/assets/images/tour-web/7dbebf6f3cab641f.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -457,8 +455,6 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/2ebb974718e7ac6c.avif 320w, /assets/images/tour-web/152c99624e6df258.avif 480w, /assets/images/tour-web/2e4be6fd98037edf.avif 640w, /assets/images/tour-web/82a8638831378046.avif 800w, /assets/images/tour-web/13bc8a1bd967e59d.avif 960w, /assets/images/tour-web/67e4ebb61757f8d8.avif 1440w, /assets/images/tour-web/5f03baf1217e23a4.avif 1600w',
   '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
     '/assets/images/tour-web/049fc302ba811b3b.avif 320w, /assets/images/tour-web/576beb335698f1ab.avif 480w, /assets/images/tour-web/be0454d852b036c1.avif 640w, /assets/images/tour-web/d00d8ec416d0810d.avif 800w, /assets/images/tour-web/78c18a39cdb28894.avif 960w, /assets/images/tour-web/097777a7587f5f64.avif 1440w, /assets/images/tour-web/7453264fb05c5b25.avif 1600w',
-  '/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp':
-    '/assets/images/tour-web/5c41a99203a27a5c.avif 320w, /assets/images/tour-web/0cd210a27f7216e6.avif 480w, /assets/images/tour-web/1915ddbee0b09418.avif 640w, /assets/images/tour-web/66e8ad79a750e1e4.avif 800w, /assets/images/tour-web/202fbc2b079ba926.avif 960w, /assets/images/tour-web/cfb76fed2722ea20.avif 1440w, /assets/images/tour-web/7dbebf6f3cab641f.avif 1600w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the

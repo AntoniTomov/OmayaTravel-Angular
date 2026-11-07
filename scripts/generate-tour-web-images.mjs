@@ -99,7 +99,6 @@ const AMELIA_ARMENIA_GALLERY = [
   "15_sculptures_reflection",
   "16_sevanavank_horse",
   "17_painted_ceramics",
-  "18_zvartnots_ruins",
 ].map((name) => `images/amelia/tours/armenia/gallery/${name}.webp`);
 const AMELIA_SOURCES = [
   "images/amelia/tours/india/india-hero.webp",

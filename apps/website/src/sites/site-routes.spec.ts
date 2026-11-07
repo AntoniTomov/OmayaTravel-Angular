@@ -106,7 +106,12 @@ describe('Amelia tour content', () => {
     expect(tour?.duration).toEqual({ days: 6, nights: 5 });
     expect(tour?.price).toEqual({ amount: 850, currency: 'EUR', unit: 'човек' });
     expect(tour?.groupSize).toEqual({ min: 7, max: 16 });
-    expect(tour?.departures).toEqual(['2027-04-15', '2027-05-23', '2027-09-03', '2027-09-10']);
+    expect(tour?.departures).toEqual([
+      { date: '2027-04-15', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-23', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-09-03', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-09-10', ageGroupLabel: 'Група 40-65 г.' },
+    ]);
     expect(tour?.itinerary).toHaveLength(6);
     expect(findTourBySlug('armenia-tour', 'omaya')).toBeUndefined();
     expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/armenia-tour/')).toBe(true);

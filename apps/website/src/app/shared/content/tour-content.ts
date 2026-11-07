@@ -4659,7 +4659,14 @@ function createAmeliaArmeniaTour(): TourDetailContent {
       min: 7,
       max: 16,
     },
-    departures: ['2027-04-15', '2027-05-23', '2027-09-03', '2027-09-10'],
+    departures: [
+      { date: '2027-04-15', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-23', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-09-03', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-09-10', ageGroupLabel: 'Група 40-65 г.' },
+    ],
+    departuresNote:
+      'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
     heroImage: {
       src: `${AMELIA_ARMENIA_ASSET_BASE}/armenia-hero.webp`,
       alt: 'Манастирът Хор Вирап в подножието на Арарат',
@@ -4808,7 +4815,6 @@ function createAmeliaArmeniaTour(): TourDetailContent {
       portrait('15_sculptures_reflection', 'Съвременни скулптури, отразени във водата'),
       landscape('16_sevanavank_horse', 'Бял кон пред църква на Севанаванк'),
       landscape('17_painted_ceramics', 'Ръчно рисувана арменска керамика'),
-      landscape('18_zvartnots_ruins', 'Руините на катедралата Звартноц'),
     ],
     enquiry: {
       enabled: false,
