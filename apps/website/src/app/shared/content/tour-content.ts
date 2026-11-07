@@ -4,6 +4,8 @@ export interface TourImage {
   width: number;
   height: number | string;
   source?: string;
+  /** Which part of a hero stays in view when a wide screen crops it, when the centre is wrong. */
+  objectPosition?: string;
 }
 
 export interface TourLinkedTitle {
@@ -4672,6 +4674,7 @@ function createAmeliaArmeniaTour(): TourDetailContent {
       alt: 'Манастирът Хор Вирап в подножието на Арарат',
       width: 2000,
       height: 1250,
+      objectPosition: 'center 85%',
     },
     introduction: [
       'Армения е страна на древни манастири, вулканични скали и едни от най-старите винени традиции в света. Столицата Ереван е град със спокоен ритъм, театри, кафенета и сгради от розов туф, а отвъд него започват червените скали на Вайоц Дзор и горите около Дилижан.',
