@@ -61,7 +61,7 @@
             <h2>
               <a [routerLink]="'/' + post.slug + '/'">{{ post.title }}</a>
             </h2>
-            <p>{{ post.preview }}</p>
+            <p>{{ post.listPreview ?? post.preview }}</p>
             <div class="blog-list__meta" aria-label="Post details">
               <span>
                 <span class="material-icons" aria-hidden="true">calendar_today</span>

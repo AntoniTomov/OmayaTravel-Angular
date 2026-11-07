@@ -82,6 +82,8 @@ export interface BlogPostContent {
   comments: number;
   excerpt: string;
   preview: string;
+  /** Text for the post's card on the blog list, when it should differ from the article's opening `preview`. */
+  listPreview?: string;
   image: BlogSectionImage;
   heroImage?: BlogSectionImage;
   sidebarImage?: BlogSectionImage;
