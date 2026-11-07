@@ -275,6 +275,34 @@ const SAUDI_ARABIA_ROUTE: TourRoute = [
   { name: { en: 'Riyadh', bg: 'Рияд' }, lat: 24.7136, lng: 46.6753, days: [7, 8, 9] },
 ];
 
+// Every night is in Yerevan, and each day out is a circuit from it in the order of the itinerary.
+// The Symphony of Stones lies in the gorge just below Garni, too close for a marker of its own.
+const ARMENIA_ROUTE: TourRoute = [
+  { name: { en: 'Yerevan', bg: 'Ереван' }, lat: 40.1792, lng: 44.4991, days: [1, 2] },
+  {
+    name: { en: 'Garni and Symphony of Stones', bg: 'Гарни и Симфонията на камъните' },
+    lat: 40.1123,
+    lng: 44.7303,
+    days: [],
+  },
+  { name: { en: 'Geghard', bg: 'Гегард' }, lat: 40.1403, lng: 44.8183, days: [] },
+  {
+    name: { en: 'Garni and Symphony of Stones', bg: 'Гарни и Симфонията на камъните' },
+    lat: 40.1123,
+    lng: 44.7303,
+    days: [],
+  },
+  { name: { en: 'Yerevan', bg: 'Ереван' }, lat: 40.1792, lng: 44.4991, days: [3] },
+  { name: { en: 'Khor Virap', bg: 'Хор Вирап' }, lat: 39.8783, lng: 44.576, days: [] },
+  { name: { en: 'Areni-1', bg: 'Арени-1' }, lat: 39.73, lng: 45.2, days: [] },
+  { name: { en: 'Noravank', bg: 'Нораванк' }, lat: 39.6842, lng: 45.2325, days: [] },
+  { name: { en: 'Yerevan', bg: 'Ереван' }, lat: 40.1792, lng: 44.4991, days: [4] },
+  { name: { en: 'Sevanavank', bg: 'Севанаванк' }, lat: 40.5642, lng: 45.0125, days: [] },
+  { name: { en: 'Dilijan', bg: 'Дилижан' }, lat: 40.7417, lng: 44.8631, days: [] },
+  { name: { en: 'Haghartsin', bg: 'Агарцин' }, lat: 40.8019, lng: 44.8906, days: [] },
+  { name: { en: 'Yerevan', bg: 'Ереван' }, lat: 40.1792, lng: 44.4991, days: [5, 6] },
+];
+
 /** Keyed by tour slug; tours that share an itinerary share a route. */
 const TOUR_ROUTES: Readonly<Record<string, TourRoute>> = {
   'morocco-tour': MOROCCO_ROUTE,
@@ -291,6 +319,7 @@ const TOUR_ROUTES: Readonly<Record<string, TourRoute>> = {
   'women-only-tour-namibia': NAMIBIA_ROUTE,
   'namibia-tour': AMELIA_NAMIBIA_ROUTE,
   'saudi-arabia-tour': SAUDI_ARABIA_ROUTE,
+  'armenia-tour': ARMENIA_ROUTE,
 };
 
 export function findTourRoute(slug: string | null | undefined): TourRoute | undefined {

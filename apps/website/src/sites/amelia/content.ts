@@ -39,12 +39,7 @@ const AMELIA_HERO_SLIDES: readonly HeroSlide[] = [
 const AMELIA_COMING_SOON_BADGE = 'Очаквайте скоро';
 
 const AMELIA_DESTINATION_LINKS = [
-  {
-    label: 'Армения',
-    target: '/not-yet-but-soon/',
-    badge: AMELIA_COMING_SOON_BADGE,
-    queryParams: { d: 'Армения' },
-  },
+  { label: 'Армения', target: '/tour-item/armenia-tour/' },
   {
     label: 'Грузия',
     target: '/not-yet-but-soon/',
@@ -176,6 +171,19 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     duration: '13 дни / 12 нощувки',
     target: '/tour-item/namibia-tour/',
   },
+  {
+    title: 'Армения - манастири, вино и планински езера',
+    category: 'Women only',
+    categoryLabel: '',
+    destination: 'Армения',
+    excerpt:
+      'Древни манастири, вулканични скали и едни от най-старите винени традиции в света - от Ереван през червените скали на Вайоц Дзор до езерото Севан и зеления Дилижан.',
+    image: '/assets/images/amelia/tours/armenia/armenia-card.webp',
+    alt: 'Каменна пътека към манастира Севанаванк, Армения',
+    price: 'EUR850',
+    duration: '6 дни / 5 нощувки',
+    target: '/tour-item/armenia-tour/',
+  },
 ];
 
 export const AMELIA_SITE_CONTENT: SiteContent = {
@@ -278,6 +286,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/tour-item/namibia-tour/',
     },
     {
+      type: 'Tour',
+      title: 'Армения - манастири, вино и планински езера',
+      excerpt:
+        '6 дни в Ереван, Гарни и Гегард, Вайоц Дзор, езерото Севан и Дилижан - с работилница за лаваш и дегустация на вино.',
+      canonicalPath: '/tour-item/armenia-tour/',
+    },
+    {
       type: 'Article',
       title: 'Мароко за жени пътешественички: безопасност, облекло и какво да очакваш',
       excerpt:
@@ -338,6 +353,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',
+    '/tour-item/armenia-tour/',
     '/tour-item/india-tour/',
     '/tour-item/kyrgyzstan-tour/',
     '/tour-item/morocco-tour/',

@@ -191,6 +191,42 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/dbd8c654ac67cb72.avif',
   '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp':
     '/assets/images/tour-web/ed68e44414322c0d.avif',
+  '/assets/images/amelia/tours/armenia/armenia-hero.webp':
+    '/assets/images/tour-web/7624209e4314ca6d.avif',
+  '/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp':
+    '/assets/images/tour-web/e6fc205df293d270.avif',
+  '/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp':
+    '/assets/images/tour-web/c421ce4ffdc1635d.avif',
+  '/assets/images/amelia/tours/armenia/gallery/03_lavash_baking.webp':
+    '/assets/images/tour-web/fd1bda9b7ecd5875.avif',
+  '/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp':
+    '/assets/images/tour-web/fe31fc53f04d87bd.avif',
+  '/assets/images/amelia/tours/armenia/gallery/05_geghard_rock_carvings.webp':
+    '/assets/images/tour-web/cae4313c1404cc27.avif',
+  '/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp':
+    '/assets/images/tour-web/c3f522b3cc14e7d2.avif',
+  '/assets/images/amelia/tours/armenia/gallery/07_symphony_of_stones.webp':
+    '/assets/images/tour-web/438ec3979f5fecb6.avif',
+  '/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp':
+    '/assets/images/tour-web/c5a9eb0f04a8ccc3.avif',
+  '/assets/images/amelia/tours/armenia/gallery/09_wine_cellar.webp':
+    '/assets/images/tour-web/eca951983305eec6.avif',
+  '/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp':
+    '/assets/images/tour-web/119bf946e4d4a7b1.avif',
+  '/assets/images/amelia/tours/armenia/gallery/11_cascade_yerevan.webp':
+    '/assets/images/tour-web/8a2e99164f88c04a.avif',
+  '/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp':
+    '/assets/images/tour-web/e197e74ad0c3b28f.avif',
+  '/assets/images/amelia/tours/armenia/gallery/13_garni_lawn.webp':
+    '/assets/images/tour-web/96e1bb4a3d2ba373.avif',
+  '/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp':
+    '/assets/images/tour-web/e20fb5cbd568ff87.avif',
+  '/assets/images/amelia/tours/armenia/gallery/15_sculptures_reflection.webp':
+    '/assets/images/tour-web/68bcf78b840fa37e.avif',
+  '/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp':
+    '/assets/images/tour-web/5f03baf1217e23a4.avif',
+  '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
+    '/assets/images/tour-web/7453264fb05c5b25.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -383,6 +419,42 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/79d480b90a7ee14e.avif 320w, /assets/images/tour-web/9c50ed130766c20c.avif 480w, /assets/images/tour-web/998f494491294665.avif 640w, /assets/images/tour-web/b1eaa7a5617e3420.avif 800w, /assets/images/tour-web/81298ef71d98fb93.avif 960w, /assets/images/tour-web/26e48a31d8562f4d.avif 1440w, /assets/images/tour-web/dbd8c654ac67cb72.avif 1717w',
   '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp':
     '/assets/images/tour-web/ce33aab931d491f6.avif 320w, /assets/images/tour-web/5420e121de1fab41.avif 480w, /assets/images/tour-web/a23042cf9cce3029.avif 640w, /assets/images/tour-web/01f2b58ba05b85cd.avif 800w, /assets/images/tour-web/03262ef50ba6c5bc.avif 960w, /assets/images/tour-web/acc81ab19fba979a.avif 1440w, /assets/images/tour-web/ed68e44414322c0d.avif 1920w',
+  '/assets/images/amelia/tours/armenia/armenia-hero.webp':
+    '/assets/images/tour-web/d02f57c1e5afde40.avif 320w, /assets/images/tour-web/eab9565c347d5ef5.avif 480w, /assets/images/tour-web/d93c692de21303ed.avif 640w, /assets/images/tour-web/a8fd42b231d30c39.avif 800w, /assets/images/tour-web/ae9c0cc923a528dc.avif 960w, /assets/images/tour-web/026840689afdebd1.avif 1440w, /assets/images/tour-web/d9ad382befe6ea2f.avif 1920w, /assets/images/tour-web/7624209e4314ca6d.avif 2000w',
+  '/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp':
+    '/assets/images/tour-web/d56862edb43fb3db.avif 320w, /assets/images/tour-web/541f96947ce49a0e.avif 480w, /assets/images/tour-web/fc3e2f2d72851ffe.avif 640w, /assets/images/tour-web/e6fc205df293d270.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp':
+    '/assets/images/tour-web/19fa14e90137937d.avif 320w, /assets/images/tour-web/b806f85977c4a5ba.avif 480w, /assets/images/tour-web/e6bf76181b0f5e3c.avif 640w, /assets/images/tour-web/1e2078d7ecf3a31b.avif 800w, /assets/images/tour-web/8ecae5c84939c76d.avif 960w, /assets/images/tour-web/28274a0861545776.avif 1440w, /assets/images/tour-web/c421ce4ffdc1635d.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/03_lavash_baking.webp':
+    '/assets/images/tour-web/26182c5705ae74fd.avif 320w, /assets/images/tour-web/c1cabc4e88913705.avif 480w, /assets/images/tour-web/034836aa8ce19619.avif 640w, /assets/images/tour-web/fd1bda9b7ecd5875.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp':
+    '/assets/images/tour-web/045f59be1d61c582.avif 320w, /assets/images/tour-web/7648e6a1f1d651f9.avif 480w, /assets/images/tour-web/4470602404d522b0.avif 640w, /assets/images/tour-web/9dbe982c9e0dcb13.avif 800w, /assets/images/tour-web/8d89587e3d318dc4.avif 960w, /assets/images/tour-web/ad2e819e62142d93.avif 1440w, /assets/images/tour-web/fe31fc53f04d87bd.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/05_geghard_rock_carvings.webp':
+    '/assets/images/tour-web/5ab63a8eeb02f9a4.avif 320w, /assets/images/tour-web/19a4383f28706d09.avif 480w, /assets/images/tour-web/1e57aa0c160ae2eb.avif 640w, /assets/images/tour-web/cae4313c1404cc27.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp':
+    '/assets/images/tour-web/3d6929ad492d2a3d.avif 320w, /assets/images/tour-web/32a0e4fae8cb6531.avif 480w, /assets/images/tour-web/51d165cbbc9009cd.avif 640w, /assets/images/tour-web/21f07bcb521a6938.avif 800w, /assets/images/tour-web/f68d0b245715fb0c.avif 960w, /assets/images/tour-web/3f5a27d7fc7fccb9.avif 1440w, /assets/images/tour-web/c3f522b3cc14e7d2.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/07_symphony_of_stones.webp':
+    '/assets/images/tour-web/bb03015bbb7a77e5.avif 320w, /assets/images/tour-web/c2cd317797b68787.avif 480w, /assets/images/tour-web/6e1eb3e44b46ce2c.avif 640w, /assets/images/tour-web/438ec3979f5fecb6.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp':
+    '/assets/images/tour-web/6d934c5b6064e53e.avif 320w, /assets/images/tour-web/393a4a9a606385c7.avif 480w, /assets/images/tour-web/7492e76882383acf.avif 640w, /assets/images/tour-web/a9f910bf4aaa5fa6.avif 800w, /assets/images/tour-web/2f0c228ef6f8aaef.avif 960w, /assets/images/tour-web/7ba9f2b553bc0f7b.avif 1440w, /assets/images/tour-web/c5a9eb0f04a8ccc3.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/09_wine_cellar.webp':
+    '/assets/images/tour-web/4d1b925c6f7ffa36.avif 320w, /assets/images/tour-web/326759ce35824ae8.avif 480w, /assets/images/tour-web/3dd663ff7fe2865e.avif 640w, /assets/images/tour-web/eca951983305eec6.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp':
+    '/assets/images/tour-web/0f7c30a57a983884.avif 320w, /assets/images/tour-web/cfde61bbdc9b99de.avif 480w, /assets/images/tour-web/b1475788dcb68d41.avif 640w, /assets/images/tour-web/e57ce05eeb62d7bf.avif 800w, /assets/images/tour-web/f1ed2a88864cbdc5.avif 960w, /assets/images/tour-web/26ab27c0eee3b71e.avif 1440w, /assets/images/tour-web/119bf946e4d4a7b1.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/11_cascade_yerevan.webp':
+    '/assets/images/tour-web/720a8efaca907c48.avif 320w, /assets/images/tour-web/93fc14a1162e5244.avif 480w, /assets/images/tour-web/c0ebcdf62e95959d.avif 640w, /assets/images/tour-web/8a2e99164f88c04a.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp':
+    '/assets/images/tour-web/40bb6ce8b0f0cea2.avif 320w, /assets/images/tour-web/a4f612e624cc59e0.avif 480w, /assets/images/tour-web/854a762e904b0d7c.avif 640w, /assets/images/tour-web/45f9b3eccc970a7e.avif 800w, /assets/images/tour-web/623c7ed05d380952.avif 960w, /assets/images/tour-web/fd4b5e5ba320f8f9.avif 1440w, /assets/images/tour-web/e197e74ad0c3b28f.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/13_garni_lawn.webp':
+    '/assets/images/tour-web/b06c462647072a31.avif 320w, /assets/images/tour-web/314ca22a2edd493a.avif 480w, /assets/images/tour-web/b2c14f90f73c6469.avif 640w, /assets/images/tour-web/96e1bb4a3d2ba373.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp':
+    '/assets/images/tour-web/2ea2867c52591659.avif 320w, /assets/images/tour-web/3a721226c30feb3b.avif 480w, /assets/images/tour-web/e54d3c4e9e0e8a3a.avif 640w, /assets/images/tour-web/29332c2527f3f61b.avif 800w, /assets/images/tour-web/e0387d3e4c940218.avif 960w, /assets/images/tour-web/b1c94a7f73f72066.avif 1440w, /assets/images/tour-web/e20fb5cbd568ff87.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/15_sculptures_reflection.webp':
+    '/assets/images/tour-web/333c641d2ded0bb6.avif 320w, /assets/images/tour-web/151028c67512c250.avif 480w, /assets/images/tour-web/b82ab47608f35847.avif 640w, /assets/images/tour-web/68bcf78b840fa37e.avif 800w',
+  '/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp':
+    '/assets/images/tour-web/2ebb974718e7ac6c.avif 320w, /assets/images/tour-web/152c99624e6df258.avif 480w, /assets/images/tour-web/2e4be6fd98037edf.avif 640w, /assets/images/tour-web/82a8638831378046.avif 800w, /assets/images/tour-web/13bc8a1bd967e59d.avif 960w, /assets/images/tour-web/67e4ebb61757f8d8.avif 1440w, /assets/images/tour-web/5f03baf1217e23a4.avif 1600w',
+  '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
+    '/assets/images/tour-web/049fc302ba811b3b.avif 320w, /assets/images/tour-web/576beb335698f1ab.avif 480w, /assets/images/tour-web/be0454d852b036c1.avif 640w, /assets/images/tour-web/d00d8ec416d0810d.avif 800w, /assets/images/tour-web/78c18a39cdb28894.avif 960w, /assets/images/tour-web/097777a7587f5f64.avif 1440w, /assets/images/tour-web/7453264fb05c5b25.avif 1600w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -441,6 +513,8 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/687372a7414b2069.avif 320w, /assets/images/tour-web/ac5e15f5e1d91347.avif 480w, /assets/images/tour-web/38cb6cc0ba5bf624.avif 640w, /assets/images/tour-web/213604a389d3777a.avif 840w, /assets/images/tour-web/efdda58c8af07308.avif 960w, /assets/images/tour-web/c4536c8c8854a726.avif 1165w',
   '/assets/images/women-tours/Namibia/Fish_River_Canyon_hero.webp':
     '/assets/images/tour-web/248d3a6e7e6ddf3d.avif 320w, /assets/images/tour-web/61fcb66b61c1659a.avif 480w, /assets/images/tour-web/35da7a69a0b472fb.avif 640w, /assets/images/tour-web/6eda5bcaa0af33d2.avif 840w, /assets/images/tour-web/4f5378517ccf53d9.avif 960w, /assets/images/tour-web/65b520c921e079c6.avif 1351w',
+  '/assets/images/amelia/tours/armenia/armenia-hero.webp':
+    '/assets/images/tour-web/541e084d8cefe1b0.avif 320w, /assets/images/tour-web/ed21a16075986c7b.avif 480w, /assets/images/tour-web/512f7128cc28d0a6.avif 640w, /assets/images/tour-web/164f8a40e679dd6e.avif 840w, /assets/images/tour-web/584cd93e540136e6.avif 960w, /assets/images/tour-web/c0017703b75308dd.avif 1165w',
 };
 // Centred crops of the blog, our-story and not-yet-but-soon heroes: phone up to 30rem, tablet up to 48rem. See PAGE_HERO_SOURCES in the generator.
 export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = {
@@ -544,6 +618,8 @@ export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/2acb5791ffbf55cc.avif 320w, /assets/images/tour-web/35c65eea400cd773.avif 400w',
   '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-card.webp':
     '/assets/images/tour-web/ff6c43e1a158163e.avif 320w, /assets/images/tour-web/09cb2b5034145b1e.avif 480w, /assets/images/tour-web/0cace8d583b10270.avif 560w, /assets/images/tour-web/91301e4d4f3075e3.avif 712w',
+  '/assets/images/amelia/tours/armenia/armenia-card.webp':
+    '/assets/images/tour-web/b8e93c359a4d62e8.avif 320w, /assets/images/tour-web/7c80a09ffe1e40fd.avif 480w, /assets/images/tour-web/d27106b5201e1713.avif 560w, /assets/images/tour-web/106bd67e3b70acc1.avif 712w',
 };
 // Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
 export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
@@ -559,6 +635,8 @@ export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/6485d77dedddb3ff.avif 320w, /assets/images/tour-web/8cce08a24f9bb1a1.avif 480w, /assets/images/tour-web/d7042b9c318a50a9.avif 640w, /assets/images/tour-web/7ca84698cadf4569.avif 712w',
   '/assets/images/amelia/tours/saudi-arabia/saudi-arabia-card.webp':
     '/assets/images/tour-web/9754f212fa556cfa.avif 320w, /assets/images/tour-web/644b8c08ba27e141.avif 480w, /assets/images/tour-web/3056afab8259cd4f.avif 640w, /assets/images/tour-web/69143bb246e0822d.avif 712w',
+  '/assets/images/amelia/tours/armenia/armenia-card.webp':
+    '/assets/images/tour-web/c306841bbb45103c.avif 320w, /assets/images/tour-web/718afafa69013b38.avif 480w, /assets/images/tour-web/64645fc3dac551e3.avif 640w, /assets/images/tour-web/7fb08edddd4c87de.avif 712w',
 };
 // A capped copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in the generator.
 export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
