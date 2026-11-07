@@ -4384,6 +4384,789 @@
       "width": 600,
       "variant": "logo-lossless",
       "webBytes": 14394
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 2000,
+      "height": 1250,
+      "originalBytes": 222120,
+      "webBytes": 162054
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 6052
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 12276
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 19822
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 29920
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 39656
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 80254
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 1920,
+      "variant": "responsive",
+      "webBytes": 121924
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 130664,
+      "webBytes": 76876
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 14354
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 29178
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 45672
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 177244,
+      "webBytes": 127733
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7212
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 13346
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 22983
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 36070
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 45588
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 85963
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/03_lavash_baking.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 140002,
+      "webBytes": 88652
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/03_lavash_baking.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 17806
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/03_lavash_baking.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 34878
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/03_lavash_baking.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 53924
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 199382,
+      "webBytes": 126974
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7402
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 14310
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 24961
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 38571
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 49171
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/04_yerevan_ararat_dusk.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 89992
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/05_geghard_rock_carvings.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 295246,
+      "webBytes": 165634
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/05_geghard_rock_carvings.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 26229
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/05_geghard_rock_carvings.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 54662
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/05_geghard_rock_carvings.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 90801
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 211670,
+      "webBytes": 120663
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8015
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 14044
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 23822
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 35629
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 44934
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/06_garni_temple.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 83977
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/07_symphony_of_stones.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 229666,
+      "webBytes": 126840
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/07_symphony_of_stones.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 21416
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/07_symphony_of_stones.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 43921
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/07_symphony_of_stones.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 71170
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 292850,
+      "webBytes": 169388
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9075
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 16833
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 29565
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 44980
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 58378
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/08_sevanavank_lake.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 116615
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/09_wine_cellar.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 173336,
+      "webBytes": 100898
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/09_wine_cellar.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 21557
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/09_wine_cellar.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 41182
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/09_wine_cellar.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 61396
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 506876,
+      "webBytes": 268252
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 14336
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 30277
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 50552
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 76816
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 98410
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/10_symphony_basalt.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 182649
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/11_cascade_yerevan.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 147754,
+      "webBytes": 84286
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/11_cascade_yerevan.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 16803
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/11_cascade_yerevan.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 33023
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/11_cascade_yerevan.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 50199
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 193944,
+      "webBytes": 108208
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 6951
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 14161
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 22304
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 33237
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 43546
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/12_republic_square.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 78871
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/13_garni_lawn.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 94890,
+      "webBytes": 58353
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/13_garni_lawn.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9981
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/13_garni_lawn.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 21491
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/13_garni_lawn.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 33697
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 250320,
+      "webBytes": 150604
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7065
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 14068
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 24339
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 37717
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 49635
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/14_lake_sevan.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 97885
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/15_sculptures_reflection.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 65456,
+      "webBytes": 47448
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/15_sculptures_reflection.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9791
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/15_sculptures_reflection.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 18449
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/15_sculptures_reflection.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 27841
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 286444,
+      "webBytes": 163436
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8033
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 15548
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 27548
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 41583
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 54454
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/16_sevanavank_horse.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 108411
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 426540,
+      "webBytes": 242620
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 15977
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 31710
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 52365
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 79894
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 100068
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 176716
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 284554,
+      "webBytes": 173080
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8158
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 15012
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 26101
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 40595
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 53813
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/gallery/18_zvartnots_ruins.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 110140
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 10618
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 21765
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 36533
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 840,
+      "variant": "hero-mobile",
+      "webBytes": 58310
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 960,
+      "variant": "hero-mobile",
+      "webBytes": 72877
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-hero.webp",
+      "width": 1165,
+      "variant": "hero-mobile",
+      "webBytes": 101304
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 320,
+      "height": 288,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 19615
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 480,
+      "height": 432,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 40375
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 560,
+      "height": 504,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 51988
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 712,
+      "height": 641,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 84170
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 320,
+      "height": 400,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 99886,
+      "webBytes": 23563
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 480,
+      "height": 600,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 99886,
+      "webBytes": 47426
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 640,
+      "height": 800,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 99886,
+      "webBytes": 72737
+    },
+    {
+      "source": "/assets/images/amelia/tours/armenia/armenia-card.webp",
+      "width": 712,
+      "height": 890,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 99886,
+      "webBytes": 107231
     }
   ]
 }

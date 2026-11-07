@@ -36,6 +36,7 @@ export const PUBLIC_DESTINATION_SLUGS = [
 
 export const PUBLIC_TOUR_SLUGS = [
   'algeria-desert-expedition-tadrart-rouge',
+  'armenia-tour',
   'bulgaria-beyond-the-ordinary',
   'india-mumbai-ajanta-ellora-kanha-tour',
   'india-tour',

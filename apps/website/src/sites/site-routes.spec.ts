@@ -99,8 +99,28 @@ describe('Amelia tour content', () => {
     expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/namibia-tour/')).toBe(false);
   });
 
+  it('serves the Amelia Armenia tour on Amelia only', () => {
+    const tour = findTourBySlug('armenia-tour', 'amelia');
+
+    expect(tour?.title).toBe('Армения - манастири, вино и планински езера');
+    expect(tour?.duration).toEqual({ days: 6, nights: 5 });
+    expect(tour?.price).toEqual({ amount: 850, currency: 'EUR', unit: 'човек' });
+    expect(tour?.groupSize).toEqual({ min: 7, max: 16 });
+    expect(tour?.departures).toEqual(['2027-04-15', '2027-05-23', '2027-09-03', '2027-09-10']);
+    expect(tour?.itinerary).toHaveLength(6);
+    expect(findTourBySlug('armenia-tour', 'omaya')).toBeUndefined();
+    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/armenia-tour/')).toBe(true);
+    expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/armenia-tour/')).toBe(false);
+  });
+
   it('never mentions Omaya in Amelia tour copy or assets', () => {
-    for (const slug of ['morocco-tour', 'kyrgyzstan-tour', 'saudi-arabia-tour', 'namibia-tour']) {
+    for (const slug of [
+      'morocco-tour',
+      'kyrgyzstan-tour',
+      'saudi-arabia-tour',
+      'namibia-tour',
+      'armenia-tour',
+    ]) {
       const tour = findTourBySlug(slug, 'amelia');
 
       expect(JSON.stringify(tour)).not.toContain('Omaya');

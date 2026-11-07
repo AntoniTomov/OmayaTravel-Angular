@@ -146,6 +146,7 @@ const AMELIA_MOROCCO_ASSET_BASE = '/assets/images/amelia/tours/morocco';
 const INDIA_ASSET_BASE = '/assets/images/destinations/India';
 const AMELIA_INDIA_ASSET_BASE = '/assets/images/amelia/tours/india';
 const AMELIA_SAUDI_ARABIA_ASSET_BASE = '/assets/images/amelia/tours/saudi-arabia';
+const AMELIA_ARMENIA_ASSET_BASE = '/assets/images/amelia/tours/armenia';
 const MOROCCO_SOLO_ASSET_BASE = '/assets/images/solo-travellers/Morocco';
 const MOROCCO_WOMEN_ASSET_BASE = '/assets/images/women-tours/Morocco';
 const MOROCCO_WOMEN_ONLY_TOUR_SLUG = 'tour-item-morocco-women-only-tour';
@@ -2882,6 +2883,10 @@ export function findTourBySlug(
     return createAmeliaNamibiaTour();
   }
 
+  if (siteId === 'amelia' && slug === 'armenia-tour') {
+    return createAmeliaArmeniaTour();
+  }
+
   if (slug === MOROCCO_WOMEN_ONLY_TOUR_SLUG) {
     return createMoroccoWomenOnlyTour();
   }
@@ -4605,6 +4610,221 @@ function createAmeliaSaudiArabiaTour(): TourDetailContent {
     departureReturn: {
       departure: 'Рияд',
       return: 'Рияд',
+    },
+  };
+}
+
+function createAmeliaArmeniaTour(): TourDetailContent {
+  const armeniaHighlightImage = (index: 1 | 2 | 3 | 4, alt: string): TourImage => ({
+    src: `${AMELIA_ARMENIA_ASSET_BASE}/highlights/armenia-highlight-${index}.webp`,
+    alt,
+    width: 300,
+    height: 300,
+  });
+  const portrait = (file: string, alt: string): TourImage => ({
+    src: `${AMELIA_ARMENIA_ASSET_BASE}/gallery/${file}.webp`,
+    alt,
+    width: 800,
+    height: 1100,
+  });
+  const landscape = (file: string, alt: string): TourImage => ({
+    src: `${AMELIA_ARMENIA_ASSET_BASE}/gallery/${file}.webp`,
+    alt,
+    width: 1600,
+    height: 1067,
+  });
+
+  return {
+    id: 'amelia-armenia-tour',
+    slug: 'armenia-tour',
+    title: 'Армения - манастири, вино и планински езера',
+    fitnessLevel: 'Easy',
+    destination: {
+      country: 'Армения',
+      region: 'Ереван, Котайк, Вайоц Дзор, Севан, Дилижан',
+      startLocation: 'Ереван',
+      endLocation: 'Ереван',
+    },
+    category: 'Само за жени',
+    duration: {
+      days: 6,
+      nights: 5,
+    },
+    price: {
+      amount: 850,
+      currency: 'EUR',
+      unit: 'човек',
+    },
+    groupSize: {
+      min: 7,
+      max: 16,
+    },
+    departures: ['2027-04-15', '2027-05-23', '2027-09-03', '2027-09-10'],
+    heroImage: {
+      src: `${AMELIA_ARMENIA_ASSET_BASE}/armenia-hero.webp`,
+      alt: 'Манастирът Хор Вирап в подножието на Арарат',
+      width: 2000,
+      height: 1250,
+    },
+    introduction: [
+      'Армения е страна на древни манастири, вулканични скали и едни от най-старите винени традиции в света. Столицата Ереван е град със спокоен ритъм, театри, кафенета и сгради от розов туф, а отвъд него започват червените скали на Вайоц Дзор и горите около Дилижан.',
+      'В рамките на шест дни ще преминем от манастира Хор Вирап в подножието на Арарат до брега на езерото Севан, ще приготвим традиционен лаваш и ще опитаме подбрани арменски вина.',
+    ],
+    highlights: [
+      {
+        title: {
+          text: 'Дегустация на подбрани арменски вина.',
+          linkText: '',
+          link: '',
+        },
+        image: armeniaHighlightImage(1, 'Винарна с бутилки арменско вино'),
+      },
+      {
+        title: {
+          text: 'Работилница за приготвяне на традиционен арменски лаваш.',
+          linkText: '',
+          link: '',
+        },
+        image: armeniaHighlightImage(2, 'Приготвяне на традиционен арменски лаваш'),
+      },
+      {
+        title: {
+          text: 'Манастирът Хор Вирап в подножието на Арарат – едно от най-свещените места в Армения.',
+          linkText: '',
+          link: '',
+        },
+        image: armeniaHighlightImage(3, 'Манастирът Хор Вирап пред заснежения Арарат'),
+      },
+      {
+        title: {
+          text: 'Езерото Севан и манастирът Севанаванк над брега му.',
+          linkText: '',
+          link: '',
+        },
+        image: armeniaHighlightImage(4, 'Брегът на езерото Севан'),
+      },
+    ],
+    included: [
+      'Настаняване в хотел в Ереван, 5 нощувки',
+      'Трансфери летище – хотел – летище',
+      'Транспорт с комфортен автомобил по време на пътуването',
+      'Местен сертифициран екскурзовод на английски',
+      'Всички дейности, описани в програмата, включително работилница за лаваш и една дегустация на вино в близост до Дилижан',
+      'Входни такси за включените обекти',
+      'Хранене, както е описано в програмата',
+      'Представител на Amelia Travel',
+      'Медицинска застраховка',
+    ],
+    notIncluded: [
+      'Самолетни билети',
+      'Хранене, което не е описано в програмата',
+      'Доплащане за единична стая – 200 евро',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Пристигане в Ереван',
+        description:
+          'Пристигане в Ереван и трансфер до хотела. Свободно време за разходка според часа на пристигане.',
+        accommodation: 'Хотел в Ереван',
+        meals: [],
+      },
+      {
+        day: 2,
+        title: 'Обиколка на Ереван',
+        description:
+          'Днес ще се запознаем с арменската история и култура с обиколка на столицата Ереван - град със спокоен ритъм, театри, кафенета и сгради от розов туф. Ще посетим Матенадаран, където се пазят древни ръкописи и илюстровани страници с историята на страната. Свободно време вечерта или вечеря в традиционен ресторант.',
+        descriptionHighlights: [{ term: 'Матенадаран' }],
+        accommodation: 'Хотел в Ереван',
+        meals: ['закуска'],
+      },
+      {
+        day: 3,
+        title: 'Гарни, Гегард и „Симфонията на камъните“',
+        description:
+          'Денят е посветен на област Котайк. Започваме с античния храм Гарни, кацнал над дефилето на река Азат. Продължаваме към манастира Гегард, частично изсечен в скалата. След това се включваме в работилница за приготвяне на традиционен арменски лаваш. Завършваме при „Симфонията на камъните“ – природен феномен от вулканични колони, които напомнят огромен каменен орган. Връщаме се обратно в Ереван за нощувка.',
+        descriptionHighlights: [
+          { term: 'храм Гарни' },
+          { term: 'манастира Гегард' },
+          { term: '„Симфонията на камъните“' },
+        ],
+        accommodation: 'Хотел в Ереван',
+        meals: ['закуска'],
+      },
+      {
+        day: 4,
+        title: 'Виненият регион Вайоц Дзор',
+        description:
+          'Първата спирка е манастирът Хор Вирап в подножието на Арарат – едно от най-свещените места в Армения. Оттам поемаме по стария Път на коприната към Вайоц Дзор. Посещаваме пещерата Арени-1, където е открита една от най-старите винарни в света, и манастира Нораванк сред червени скали.',
+        descriptionHighlights: [
+          { term: 'Хор Вирап' },
+          { term: 'Арени-1' },
+          { term: 'манастира Нораванк' },
+        ],
+        accommodation: 'Хотел в Ереван',
+        meals: ['закуска'],
+      },
+      {
+        day: 5,
+        title: 'Езерото Севан и зеленият Дилижан',
+        description:
+          'По-спокоен ден сред вода, гори и свеж въздух. Посещаваме езерото Севан и манастира Севанаванк над брега му. Продължаваме към малкия град Дилижан и манастира Агарцин, скрит сред гората. Денят завършва с дегустация на подбрани арменски вина в местна винарна.',
+        descriptionHighlights: [
+          { term: 'езерото Севан' },
+          { term: 'манастира Севанаванк' },
+          { term: 'Дилижан' },
+          { term: 'манастира Агарцин' },
+        ],
+        accommodation: 'Хотел в Ереван',
+        meals: ['закуска'],
+      },
+      {
+        day: 6,
+        title: 'Довиждане, Армения!',
+        description:
+          'Свободно време в зависимост от разписанието на полета за последна разходка и пазаруване на сувенири – ръчно изработена керамика, дърворезба, текстил и местни подаръци. След това трансфер до летището и отпътуване с ярки спомени от Армения.',
+        accommodation: null,
+        meals: ['закуска'],
+      },
+    ],
+    gallery: [
+      portrait('01_sevanavank_path', 'Каменна пътека към манастира Севанаванк'),
+      landscape('02_khor_virap_ararat', 'Манастирът Хор Вирап пред заснежения Арарат'),
+      portrait('03_lavash_baking', 'Приготвяне на традиционен арменски лаваш'),
+      landscape('04_yerevan_ararat_dusk', 'Ереван по здрач с Арарат на хоризонта'),
+      portrait(
+        '05_geghard_rock_carvings',
+        'Каменни кръстове, издълбани в скалата при манастира Гегард',
+      ),
+      landscape('06_garni_temple', 'Античният храм Гарни'),
+      portrait('07_symphony_of_stones', 'Вулканичните колони на „Симфонията на камъните“'),
+      landscape('08_sevanavank_lake', 'Манастирът Севанаванк над езерото Севан'),
+      portrait('09_wine_cellar', 'Винарна с бутилки арменско вино'),
+      landscape('10_symphony_basalt', 'Базалтови колони при „Симфонията на камъните“'),
+      portrait('11_cascade_yerevan', 'Каскадата в Ереван'),
+      landscape('12_republic_square', 'Площад „Република“ в Ереван, със сгради от розов туф'),
+      portrait('13_garni_lawn', 'Храмът Гарни и зелената морава пред него'),
+      landscape('14_lake_sevan', 'Брегът на езерото Севан'),
+      portrait('15_sculptures_reflection', 'Съвременни скулптури, отразени във водата'),
+      landscape('16_sevanavank_horse', 'Бял кон пред църква на Севанаванк'),
+      landscape('17_painted_ceramics', 'Ръчно рисувана арменска керамика'),
+      landscape('18_zvartnots_ruins', 'Руините на катедралата Звартноц'),
+    ],
+    enquiry: {
+      enabled: false,
+      cta: 'Изпрати запитване',
+    },
+    seo: {
+      title: 'Армения - манастири, вино и планински езера | Amelia Travel',
+      description:
+        '6-дневно пътуване до Армения: Ереван, Гарни и Гегард, виненият регион Вайоц Дзор, езерото Севан и Дилижан - с дегустация на вино и работилница за лаваш.',
+    },
+    source: {
+      legacyUrl: 'https://ameliatravel.bg/tour-item/armenia-tour/',
+    },
+    departureReturn: {
+      departure: 'Ереван',
+      return: 'Ереван',
     },
   };
 }
