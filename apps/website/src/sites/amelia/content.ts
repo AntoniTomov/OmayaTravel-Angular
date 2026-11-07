@@ -249,6 +249,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
   ],
   featuredToursTitle: 'Популярни пътувания',
   featuredTours: AMELIA_FEATURED_TOURS,
+  shuffleFeaturedTours: true,
   searchIndex: [
     {
       type: 'Tour',
@@ -321,6 +322,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/sauditska-arabiya-za-zheni/',
     },
     {
+      type: 'Article',
+      title: 'Как да избереш туроператор за Индия: 10 въпроса',
+      excerpt:
+        'Избираш туроператор за Индия? Ето 10 въпроса, които да зададеш, преди да се запишеш: група, гид, какво е включено, виза, полет, темпо и анулация.',
+      canonicalPath: '/turoperator-indiya-kak-da-izberesh/',
+    },
+    {
       type: 'Tour',
       title: 'Algeria Desert Expedition (Tadrart Rouge)',
       excerpt: 'Пустинна експедиция сред червените дюни и скалното изкуство на Тадрарт Руж.',
@@ -350,6 +358,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/ezeroto-song-kul-kirgistan/',
     '/india-otblizo/',
     '/sauditska-arabiya-za-zheni/',
+    '/turoperator-indiya-kak-da-izberesh/',
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',

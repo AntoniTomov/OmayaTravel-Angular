@@ -41,6 +41,7 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
     '/ezeroto-song-kul-kirgistan/',
     '/india-otblizo/',
     '/sauditska-arabiya-za-zheni/',
+    '/turoperator-indiya-kak-da-izberesh/',
     '/standarten-formulyar/',
     '/tour-item/india-tour/',
     '/tour-item/saudi-arabia-tour/',

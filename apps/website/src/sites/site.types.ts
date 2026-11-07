@@ -155,6 +155,8 @@ export interface SiteContent {
   tripSearchMonths: readonly string[];
   featuredToursTitle?: string;
   featuredTours: readonly TourCardContent[];
+  /** Shuffles the homepage's featured tours in the browser on every visit, so the first cards vary. */
+  shuffleFeaturedTours?: boolean;
   searchIndex: readonly SearchIndexItem[];
   enabledRoutes: readonly string[];
   /**

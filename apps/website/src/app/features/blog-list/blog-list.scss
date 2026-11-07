@@ -94,10 +94,14 @@
   background: var(--omaya-color-surface-muted);
 }
 
+// One frame for every card, so a portrait photo crops to the same size as the landscape ones
+// instead of stretching its card to twice the height.
 .blog-list__image img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1200 / 760;
+  object-fit: cover;
 }
 
 .blog-list__card-body {
@@ -220,6 +224,12 @@
 
 .blog-list__follow p {
   margin: 0;
+}
+
+.blog-list__follow a {
+  color: var(--omaya-color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .blog-list :is(a):focus-visible {

@@ -61,7 +61,7 @@
             <h2>
               <a [routerLink]="'/' + post.slug + '/'">{{ post.title }}</a>
             </h2>
-            <p>{{ post.preview }}</p>
+            <p>{{ post.listPreview ?? post.preview }}</p>
             <div class="blog-list__meta" aria-label="Post details">
               <span>
                 <span class="material-icons" aria-hidden="true">calendar_today</span>
@@ -115,7 +115,15 @@
 
       <section class="blog-list__follow">
         <h2>{{ labels().followUs }}</h2>
-        <p>{{ labels().followText }}</p>
+        <p>
+          {{ labels().followText }}
+          @if (instagramUrl(); as url) {
+            <a [href]="url" target="_blank" rel="noopener">{{ labels().followLink }}</a
+            >{{ labels().followAfter }}
+          } @else {
+            {{ labels().followLink }}{{ labels().followAfter }}
+          }
+        </p>
       </section>
     </aside>
   </div>
