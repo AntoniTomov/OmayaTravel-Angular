@@ -138,6 +138,7 @@ describe('Amelia tour content', () => {
     expect(blogPostsForSite('amelia').map((post) => post.slug)).toEqual([
       'turoperator-indiya-kak-da-izberesh',
       'sauditska-arabiya-za-zheni',
+      'patuvane-do-namibiya',
       'ezeroto-song-kul-kirgistan',
       'india-otblizo',
       'maroko-za-zheni-pateshestvenichki',

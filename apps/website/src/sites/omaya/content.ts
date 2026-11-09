@@ -42,6 +42,7 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
     '/india-otblizo/',
     '/sauditska-arabiya-za-zheni/',
     '/turoperator-indiya-kak-da-izberesh/',
+    '/patuvane-do-namibiya/',
     '/standarten-formulyar/',
     '/tour-item/india-tour/',
     '/tour-item/saudi-arabia-tour/',
