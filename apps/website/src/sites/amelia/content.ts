@@ -329,6 +329,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/turoperator-indiya-kak-da-izberesh/',
     },
     {
+      type: 'Article',
+      title: 'Пътуване до Намибия: какво да знаеш, преди да тръгнеш',
+      excerpt:
+        'Пътуване до Намибия: нужна ли е виза, кога да отидеш, с какви пари да пътуваш, какво да вземеш за пустинята и как изглежда сафарито в Етоша.',
+      canonicalPath: '/patuvane-do-namibiya/',
+    },
+    {
       type: 'Tour',
       title: 'Algeria Desert Expedition (Tadrart Rouge)',
       excerpt: 'Пустинна експедиция сред червените дюни и скалното изкуство на Тадрарт Руж.',
@@ -359,6 +366,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/india-otblizo/',
     '/sauditska-arabiya-za-zheni/',
     '/turoperator-indiya-kak-da-izberesh/',
+    '/patuvane-do-namibiya/',
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',
