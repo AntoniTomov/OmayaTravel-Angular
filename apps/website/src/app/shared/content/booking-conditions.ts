@@ -13,8 +13,8 @@ export const BOOKING_CONDITIONS_FAQ: TourFaqItem = {
   question: 'What are the booking and cancellation conditions?',
   answer: [
     'A deposit of 25% per person secures your booking, payable within seven days of written confirmation. The balance is due no later than 60 days before departure.',
-    'If you cancel 45–30 days before departure you receive a full refund minus the deposit; 29–20 days before, a 30% refund; and under 20 days before, the booking is non-refundable.',
-    'Cancel more than 45 days ahead and the deposit can be held as credit toward a future trip, less a EUR 100 administration fee. Some tours and services carry different terms, which we confirm when you book. Our Terms and Conditions page has the full detail.',
+    'If you cancel 45–30 days before departure you receive a full refund minus the deposit; 29–20 days before, 30% of the tour price after the deposit is deducted; and under 20 days before, the booking is non-refundable.',
+    'Cancel more than 45 days ahead and the deposit can be held as credit toward a future trip, less a EUR 100 administration fee, valid for 12 months from the date of cancellation. Some tours and services carry different terms, which we confirm when you book. Our Terms and Conditions page has the full detail.',
   ],
 };
 

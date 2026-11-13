@@ -31,7 +31,7 @@ const TERMS_SECTIONS: readonly LegalSection[] = [
     heading: '2. Bookings and Payments',
     paragraphs: [
       'A deposit is required to secure your booking. In general, a deposit of 25% per person is payable within seven (7) days of written confirmation, unless otherwise stated. Certain tours may require a higher deposit amount, and this will be clearly noted in the Terms and Conditions on the relevant tour page.',
-      'The deposit is non-refundable in cash. However, if you cancel your booking more than 45 days prior to departure, the full deposit amount may be used as credit toward a future trip, minus a EUR 100 administration fee.',
+      'The deposit is non-refundable in cash. However, if you cancel your booking more than 45 days prior to departure, the full deposit amount may be used as credit toward a future trip, minus a EUR 100 administration fee. The credit is valid for 12 months from the date of cancellation.',
       'Certain services (e.g. domestic flights, permits, peak-season hotels) may require full prepayment and are non-refundable. This will be communicated at the time of booking.',
       'Full payment must be received no less than 60 days before the commencement of your trip, unless otherwise specified. Some trips may require earlier payment or additional instalments, which will be communicated with the booking confirmation. Failure to pay by the due date will result in a reminder. You will also be responsible for any supplier-imposed costs due to late payment. If payment is not received within seven (7) days of the reminder, your booking will be deemed cancelled.',
       'Any fees associated with credit card payments are the responsibility of the traveller.',
@@ -41,13 +41,13 @@ const TERMS_SECTIONS: readonly LegalSection[] = [
     heading: '3. Cancellation Policy (By You)',
     paragraphs: [
       'Cancellation policies may vary depending on the destination and will be communicated at the time of reservation.',
-      'If you cancel after the deposit has been paid, the deposit may be used as credit for a future expedition, provided Omaya Travel is notified more than 45 days in advance. An administration fee of 100 EUR applies.',
+      'If you cancel after the deposit has been paid, the deposit may be used as credit for a future expedition, provided Omaya Travel is notified more than 45 days in advance. An administration fee of 100 EUR applies, and the credit is valid for 12 months from the date of cancellation.',
       'Refund structure:',
     ],
     list: [
       'Less than 20 days before departure: non-refundable.',
       '45–30 days before departure: full refund minus the deposit.',
-      '29–20 days before departure: 30% refund applicable.',
+      '29–20 days before departure: 30% refund of the tour price minus the deposit.',
     ],
   },
   {

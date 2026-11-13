@@ -85,7 +85,7 @@ const FAQ_PAGE = {
         {
           period: 'More than 45 days before departure',
           policy:
-            'Your deposit will not be refunded as cash, but will be issued as a travel credit valid for 12 months from the date of cancellation. A 100 EUR administration fee applies.',
+            'Your deposit will not be refunded as cash, but will be issued as a travel credit, minus a €100 administrative fee, valid for 12 months from the date of cancellation.',
         },
         {
           period: '45-30 days before departure',
@@ -95,7 +95,7 @@ const FAQ_PAGE = {
         {
           period: '29-20 days before departure',
           policy:
-            '30% of the total trip cost will be refunded via your original payment method. The remaining 70%, including the deposit, is forfeited.',
+            'The deposit is deducted from the total trip cost, and 30% of the remaining amount is refunded via your original payment method. The rest, including the deposit, is forfeited.',
         },
         {
           period: 'Less than 14 days before departure',
@@ -103,7 +103,7 @@ const FAQ_PAGE = {
         },
       ],
       notes: [
-        'Please note that the deposit is non-refundable under all circumstances. It covers the processing, confirmation, and consultation services provided at the time of booking, which are delivered immediately upon confirmation. In eligible cases, it is returned as credit toward a future Omaya trip only, valid for 12 months.',
+        'Please note that the deposit is non-refundable under all circumstances. It covers the processing, confirmation, and consultation services provided at the time of booking, which are delivered immediately upon confirmation. In eligible cases, the deposit, minus a €100 administrative fee, can be converted into credit toward a future Omaya trip, valid for 12 months.',
         'We strongly recommend purchasing comprehensive travel insurance at the time of paying your deposit. A good policy will cover cancellations due to illness, injury, and other unforeseen events, protecting you in situations where our standard policy cannot provide a refund.',
       ],
     },
