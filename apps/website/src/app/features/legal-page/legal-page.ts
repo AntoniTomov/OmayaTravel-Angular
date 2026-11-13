@@ -47,7 +47,7 @@ const TERMS_SECTIONS: readonly LegalSection[] = [
     list: [
       'Less than 20 days before departure: non-refundable.',
       '45–30 days before departure: full refund minus the deposit.',
-      '29–20 days before departure: 30% refund applicable.',
+      '29–20 days before departure: 30% refund of the tour price minus the deposit.',
     ],
   },
   {

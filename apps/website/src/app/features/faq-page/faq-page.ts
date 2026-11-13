@@ -95,7 +95,7 @@ const FAQ_PAGE = {
         {
           period: '29-20 days before departure',
           policy:
-            '30% of the total trip cost will be refunded via your original payment method. The remaining 70%, including the deposit, is forfeited.',
+            'The deposit is deducted from the total trip cost, and 30% of the remaining amount is refunded via your original payment method. The rest, including the deposit, is forfeited.',
         },
         {
           period: 'Less than 14 days before departure',
