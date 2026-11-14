@@ -4662,10 +4662,10 @@ function createAmeliaArmeniaTour(): TourDetailContent {
       max: 16,
     },
     departures: [
-      { date: '2027-04-15', ageGroupLabel: 'Група 20-45 г.' },
-      { date: '2027-05-23', ageGroupLabel: 'Група 40-65 г.' },
-      { date: '2027-09-03', ageGroupLabel: 'Група 20-45 г.' },
-      { date: '2027-09-10', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-04-17', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-05-22', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-09-04', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-09-11', ageGroupLabel: 'Група 40-65 г.' },
     ],
     departuresNote:
       'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
