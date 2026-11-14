@@ -113,6 +113,7 @@ describe('Amelia tour content', () => {
       { date: '2027-09-11', ageGroupLabel: 'Група 40-65 г.' },
     ]);
     expect(tour?.itinerary).toHaveLength(6);
+    expect(tour?.faq?.items).toHaveLength(8);
     expect(findTourBySlug('armenia-tour', 'omaya')).toBeUndefined();
     expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/armenia-tour/')).toBe(true);
     expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/armenia-tour/')).toBe(false);
