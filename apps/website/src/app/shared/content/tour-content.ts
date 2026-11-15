@@ -3750,6 +3750,8 @@ function createAmeliaIndiaTour(): TourDetailContent {
     departures: [
       { date: '2027-02-24', ageGroupLabel: 'Група 20-45 г.' },
       { date: '2027-03-03', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2027-10-10', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-10-14', ageGroupLabel: 'Група 40-65 г.' },
     ],
     departuresNote:
       'Организираме всяко пътуване в две дати, за да пътувате с жени на сходна възраст и в сходен етап от живота.',
@@ -3993,8 +3995,8 @@ function createAmeliaIndiaTour(): TourDetailContent {
         title: 'Варанаси → Ню Делхи',
         description:
           'Днес се връщаме в Ню Делхи. Полет Варанаси – Ню Делхи с IndiGo 2321, 12:20–13:45 ч. / Economy. След пристигането ще се отправим към хотела. Това е последната ни вечер в Индия. Време е да забавим темпото, да си припомним последните дни и вероятно да открием, че вече имаме повече снимки, истории и вътрешни шеги, отколкото сме очаквали.',
-        accommodation: 'Africa Avenue',
-        meals: [],
+        accommodation: 'Хотел в Ню Делхи',
+        meals: ['закуска'],
       },
       {
         day: 14,
