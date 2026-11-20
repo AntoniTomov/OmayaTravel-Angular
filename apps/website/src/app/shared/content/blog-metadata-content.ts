@@ -6,6 +6,64 @@ export type BlogArticleMetadata = Omit<BlogPostContent, 'sections' | 'sources'>;
 // Metadata is shared by SEO and article pages; article bodies stay in lazy feature chunks.
 export const BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
   {
+    slug: 'best-time-to-visit-kyrgyzstan',
+    title: 'Best Time to Visit Kyrgyzstan, and How Many Days You Need',
+    seoTitle: 'Best Time to Visit Kyrgyzstan & How Many Days You Need',
+    publishedAt: '2026-11-20',
+    date: 'November 20, 2026',
+    category: 'Kyrgyzstan',
+    comments: 0,
+    excerpt:
+      'The best time to visit Kyrgyzstan, month by month: when the passes and yurt camps open, why July and August suit a first trip, and how many days you need.',
+    preview:
+      'The best time to visit Kyrgyzstan is from mid-June to mid-September. That’s when the snow has cleared from the mountain passes, the yurt camps are open on the high pastures, and the days are warm enough to spend outside. July and August are the most reliable months. For a first trip that covers Song Kul, Issyk-Kul and the mountains around Karakol, plan on 10 days.',
+    image: {
+      src: '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp',
+      alt: 'Riders on horseback passing a yurt camp in a green mountain valley in Kyrgyzstan',
+    },
+    relatedTour: {
+      title: 'Kyrgyzstan Discovery Tour',
+      url: '/tour-item/kyrgyzstan-tour/',
+    },
+    faq: [
+      {
+        question: 'What is the best month to visit Kyrgyzstan?',
+        answer:
+          'July or August. The mountain passes are free of snow, the yurt camps are open, and the weather is at its most settled. June and early September also work, with colder nights and fewer people.',
+      },
+      {
+        question: 'Can you visit Song Kul in September?',
+        answer:
+          'Yes, in the first half of the month. Nights are cold and the light is clear, but camps start closing from mid-September as the herders move down. By October most have gone.',
+      },
+      {
+        question: 'Is Kyrgyzstan worth visiting in winter?',
+        answer:
+          'For skiing, yes. Karakol is the main ski area. But the high pastures, Song Kul and most yurt camps are closed, so a winter trip is a very different trip from a summer one.',
+      },
+      {
+        question: 'How cold does it get at Song Kul in summer?',
+        answer:
+          'Days are mild, but nights can drop close to freezing even in July and August. Song Kul sits at about 3,000 metres. Bring a warm fleece, thermal layers and a hat.',
+      },
+      {
+        question: 'Is 7 days enough for Kyrgyzstan?',
+        answer:
+          'It’s enough for Bishkek, Song Kul and part of Issyk-Kul, but you’ll spend a lot of it on the road. Ten days lets you add Karakol and the hot springs at Altyn Arashan without rushing.',
+      },
+      {
+        question: 'When is the rainy season in Kyrgyzstan?',
+        answer:
+          'Spring, especially April and May, is the wettest time in the lowlands. Summer is mostly dry, but mountain weather changes fast, so expect the odd storm at altitude in any month.',
+      },
+      {
+        question: 'Can you swim in Issyk-Kul?',
+        answer:
+          'Yes, in July and August. It’s a mountain lake, so the water is cool, but it’s the time of year locals head to the beaches on the north shore.',
+      },
+    ],
+  },
+  {
     slug: 'morocco-casablanca-marrakech-route-guide',
     title: 'Twelve Days in Morocco: From Casablanca to Marrakech',
     date: 'September 8, 2026',

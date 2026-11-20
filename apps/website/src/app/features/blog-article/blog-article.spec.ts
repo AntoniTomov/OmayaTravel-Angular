@@ -21,6 +21,11 @@ describe('BlogArticle discovery links', () => {
       tours: ['kyrgyzstan-tour', 'women-only-tour-kyrgyzstan'],
     },
     {
+      article: 'best-time-to-visit-kyrgyzstan',
+      country: 'kyrgyzstan',
+      tours: ['kyrgyzstan-tour', 'women-only-tour-kyrgyzstan'],
+    },
+    {
       article: 'song-kul-yurt-stay-packing-guide',
       country: 'kyrgyzstan',
       tours: ['kyrgyzstan-tour', 'women-only-tour-kyrgyzstan'],

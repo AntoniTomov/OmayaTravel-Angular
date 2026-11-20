@@ -24,6 +24,7 @@ const DESTINATION_BRIEFS = [
       'how-to-visit-song-kul-lake-in-kyrgyzstan',
       'women-only-kyrgyzstan-what-to-expect',
       'song-kul-yurt-stay-packing-guide',
+      'best-time-to-visit-kyrgyzstan',
     ],
   },
   {

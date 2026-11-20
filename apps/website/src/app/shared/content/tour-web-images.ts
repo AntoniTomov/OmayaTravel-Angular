@@ -227,6 +227,12 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/5f03baf1217e23a4.avif',
   '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
     '/assets/images/tour-web/7453264fb05c5b25.avif',
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp':
+    '/assets/images/tour-web/c76cd297fe90ab9a.avif',
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-snow-covered-mountains.webp':
+    '/assets/images/tour-web/07f118941ddd0f5c.avif',
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-horses-by-mountain-lake.webp':
+    '/assets/images/tour-web/b894bc3b91f4a99c.avif',
 };
 export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
   '/assets/images/destinations/classic-tours-bgr.webp':
@@ -455,6 +461,12 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/2ebb974718e7ac6c.avif 320w, /assets/images/tour-web/152c99624e6df258.avif 480w, /assets/images/tour-web/2e4be6fd98037edf.avif 640w, /assets/images/tour-web/82a8638831378046.avif 800w, /assets/images/tour-web/13bc8a1bd967e59d.avif 960w, /assets/images/tour-web/67e4ebb61757f8d8.avif 1440w, /assets/images/tour-web/5f03baf1217e23a4.avif 1600w',
   '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
     '/assets/images/tour-web/049fc302ba811b3b.avif 320w, /assets/images/tour-web/576beb335698f1ab.avif 480w, /assets/images/tour-web/be0454d852b036c1.avif 640w, /assets/images/tour-web/d00d8ec416d0810d.avif 800w, /assets/images/tour-web/78c18a39cdb28894.avif 960w, /assets/images/tour-web/097777a7587f5f64.avif 1440w, /assets/images/tour-web/7453264fb05c5b25.avif 1600w',
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp':
+    '/assets/images/tour-web/1a785449e79e7597.avif 320w, /assets/images/tour-web/0ac8de2e08f006b3.avif 480w, /assets/images/tour-web/ab7f07990c844b99.avif 640w, /assets/images/tour-web/6d81c30948ed0e34.avif 800w, /assets/images/tour-web/abac88d3b5e7eb25.avif 960w, /assets/images/tour-web/79ac38d334dc83c2.avif 1440w, /assets/images/tour-web/c76cd297fe90ab9a.avif 1920w',
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-snow-covered-mountains.webp':
+    '/assets/images/tour-web/defff7a498a0cc49.avif 320w, /assets/images/tour-web/cb15883e6d54707b.avif 480w, /assets/images/tour-web/669ceb34e0ed33fc.avif 640w, /assets/images/tour-web/5a18786f6abfb19e.avif 800w, /assets/images/tour-web/2206eac3bc6fc232.avif 960w, /assets/images/tour-web/f920c96bffd4cad8.avif 1440w, /assets/images/tour-web/07f118941ddd0f5c.avif 1920w',
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-horses-by-mountain-lake.webp':
+    '/assets/images/tour-web/cac677a663a2376d.avif 320w, /assets/images/tour-web/8dfeb49601eb3a34.avif 480w, /assets/images/tour-web/1436356c3422ae37.avif 640w, /assets/images/tour-web/e911af6742f6d5b7.avif 800w, /assets/images/tour-web/5b47c5fc74a9e3eb.avif 960w, /assets/images/tour-web/4c99841e2e5d5148.avif 1440w, /assets/images/tour-web/b894bc3b91f4a99c.avif 1920w',
 };
 // Centre-cropped to the ratio the gallery grid displays, so the browser stops downloading
 // the parts of a tall photograph that object-fit: cover discards. The lightbox uses the
@@ -547,6 +559,13 @@ export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; ta
     tablet:
       '/assets/images/tour-web/e3708c3e144bb493.avif 768w, /assets/images/tour-web/d41aa117f4beedac.avif 995w',
   },
+  '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp':
+    {
+      phone:
+        '/assets/images/tour-web/8f0d667777ac7366.avif 480w, /assets/images/tour-web/b5fea7e9555387ad.avif 720w, /assets/images/tour-web/281fdf5d34cdb4cb.avif 960w, /assets/images/tour-web/82f6398b277030be.avif 1186w',
+      tablet:
+        '/assets/images/tour-web/3c7d2dac031f5d12.avif 768w, /assets/images/tour-web/11f2ad3b53c20af9.avif 1152w, /assets/images/tour-web/f4a97936ea77340e.avif 1536w',
+    },
 };
 // Centred crops of the homepage hero slides: phone up to 30rem, tablet up to 48rem, portrait for screens no wider than 3/4 of their height. See HOMEPAGE_HERO_TIERS in the generator.
 export const HOMEPAGE_HERO_CROP_SRCSETS: Readonly<

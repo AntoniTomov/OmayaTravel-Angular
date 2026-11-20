@@ -178,7 +178,7 @@ describe('Homepage', () => {
     expect(compiled.textContent).toContain('Blog Posts');
     expect(compiled.querySelectorAll('.blog-posts__card')).toHaveLength(3);
     expect(compiled.querySelector('.blog-posts__card img')?.getAttribute('src')).toBe(
-      '/assets/images/blog-posts/Morocco solo travellers blog/morocco-solo-group-tour-camels-dunes.webp',
+      '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp',
     );
   });
 
