@@ -3013,8 +3013,260 @@ export const WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT: BlogPostContent = {
   ],
 };
 
+const BEST_TIME_TO_VISIT_KYRGYZSTAN_METADATA = findBlogMetadataBySlug(
+  'best-time-to-visit-kyrgyzstan',
+)!;
+
+const KYRGYZSTAN_TRAVEL_BLOG_IMAGE_BASE = `${BLOG_IMAGE_BASE}/Kyrgyzstan travel blog`;
+const KYRGYZSTAN_TOUR_URL = '/tour-item/kyrgyzstan-tour/';
+
+export const BEST_TIME_TO_VISIT_KYRGYZSTAN: BlogPostContent = {
+  ...BEST_TIME_TO_VISIT_KYRGYZSTAN_METADATA,
+  sections: [
+    {
+      cta: {
+        before: 'Quick note: we’re Omaya Travel, and we run a ',
+        linkText: '10-day small-group trip to Kyrgyzstan',
+        linkUrl: KYRGYZSTAN_TOUR_URL,
+        after:
+          ' in late July and August. So we have a view on this. Below is how the seasons work, and why we picked those dates.',
+      },
+    },
+    {
+      title: 'Kyrgyzstan’s seasons in one minute',
+      text: [
+        'Kyrgyzstan is a mountain country. Most of it sits above 1,500 metres, and the places most people come for, like Song Kul, are much higher. So the season depends less on the calendar and more on altitude.',
+        'Down in Bishkek, summer is hot and winter is cold. Up on the high pastures, summer is short. The nomadic families who herd their animals there arrive in late May and leave in early October. The yurt camps open and close with them.',
+        'That’s the main thing to plan around. If you want to sleep in a yurt by a mountain lake, you need to go when the herders are there.',
+      ],
+    },
+    {
+      title: 'Kyrgyzstan month by month',
+      table: {
+        head: ['When', 'What it’s like', 'Good for'],
+        rows: [
+          [
+            'January–March',
+            'Cold. Bishkek is around freezing; the mountains are under snow. High passes and yurt camps are closed',
+            'Skiing near Karakol, a quiet city break',
+          ],
+          [
+            'April–May',
+            'Spring in the valleys, green hills, cool nights. Snow still on the high passes, so Song Kul is usually out of reach',
+            'Lower walks, Bishkek, fewer people',
+          ],
+          [
+            'June',
+            'Pastures turn green and wildflowers come out. Herders move up, camps start opening. Nights at altitude are still cold',
+            'Early-summer trips, if you don’t mind the cold at night',
+          ],
+          [
+            'July–August',
+            'The warmest, most settled months. All the main roads and passes are open, camps are running, and Issyk-Kul is warm enough to swim',
+            'Yurt stays, horse riding, the full loop',
+          ],
+          [
+            'September',
+            'Quieter, clear light, cold nights up high. Song Kul camps start closing mid-month',
+            'Fewer people, if you go early in the month',
+          ],
+          [
+            'October',
+            'Autumn colours in the valleys, first snow on the passes. Most yurt camps have closed',
+            'Lower-altitude trips only',
+          ],
+          [
+            'November–December',
+            'Winter comes back. Short days, snow in the mountains',
+            'Not a time for the high pastures',
+          ],
+        ],
+      },
+    },
+    {
+      text: [
+        'Weather in the mountains changes fast whatever the month. A sunny morning at Song Kul can turn into hail by the afternoon, and nights can drop close to freezing even in August. Bring a warm layer and a waterproof, always.',
+      ],
+      image: {
+        src: `${KYRGYZSTAN_TRAVEL_BLOG_IMAGE_BASE}/kyrgyzstan-snow-covered-mountains.webp`,
+        alt: 'Snow-covered mountains and juniper trees in Kyrgyzstan',
+      },
+    },
+    {
+      title: 'Why July and August are the best time to visit Kyrgyzstan for a first trip',
+      text: [
+        'June and September both have fans, and for good reason. But for a first visit that takes in the whole loop, late July and August are the easiest months to get right.',
+      ],
+      boldList: [
+        {
+          label: 'No snow on the passes.',
+          text: 'The road up to Song Kul crosses a high pass. In June there can still be snow, and in late September it can come back. In July and August, the roads are clear.',
+        },
+        {
+          label: 'The weather is at its most settled.',
+          text: 'Days are warm, and cold snaps are shorter. That matters when you’re sleeping in a yurt above 3,000 metres.',
+        },
+        {
+          label: 'Everything is open.',
+          text: 'Yurt camps, guesthouses at Altyn Arashan, homestays around Issyk-Kul. You’re not hoping a camp is still running.',
+        },
+        {
+          label: 'Issyk-Kul is warm enough to swim.',
+          text: 'It’s a mountain lake, so “warm” is relative. In high summer, a swim off the north shore feels good rather than brave.',
+        },
+      ],
+    },
+    {
+      text: [
+        'That’s why our trips leave on 23 July and 6 August 2027, and the women-only departure on 13 August 2027. No snow in the mountains, and the nicest weather of the year.',
+        'The trade-off is that July and August are also the busiest months. Song Kul doesn’t really get crowded, because it’s huge and there are no towns. But popular spots near Bishkek and the Issyk-Kul beaches are livelier.',
+      ],
+      image: {
+        src: `${KYRGYZSTAN_TRAVEL_BLOG_IMAGE_BASE}/kyrgyzstan-horses-by-mountain-lake.webp`,
+        alt: 'Horses walking along the shore of a mountain lake in Kyrgyzstan',
+      },
+    },
+    {
+      cta: {
+        before: 'If you want more detail on the lake itself, our ',
+        linkText: 'guide to visiting Song Kul',
+        linkUrl: '/how-to-visit-song-kul-lake-in-kyrgyzstan/',
+        after: ' covers the season, the roads up and the yurt camps.',
+      },
+    },
+    {
+      title: 'How many days do you need in Kyrgyzstan?',
+      text: [
+        'It depends on how much you want to see, and how much time you’re happy to spend driving. Distances look small on a map, but mountain roads are slow.',
+      ],
+      table: {
+        head: ['Days', 'What fits', 'How it feels'],
+        rows: [
+          [
+            '5–6 days',
+            'Bishkek, Ala Archa, and either Song Kul or Issyk-Kul',
+            'Rushed. You’ll pick one highlight and drive a lot',
+          ],
+          [
+            '7–8 days',
+            'Bishkek, Song Kul and the south shore of Issyk-Kul',
+            'Doable, but not much time to stop',
+          ],
+          [
+            '10 days',
+            'Bishkek, Song Kul, the south shore, Karakol, Altyn Arashan, the north shore',
+            'The classic loop at a pace where you can actually stay put',
+          ],
+          [
+            '2 weeks or more',
+            'All of the above plus the south: Osh, Tash Rabat, or longer treks',
+            'For a second trip, or if you love long days on the road',
+          ],
+        ],
+      },
+    },
+    {
+      text: [
+        'Ten days is the sweet spot for a first trip. It’s long enough to give Song Kul a full day, not just one night, and to finish in the hot springs rather than in a car.',
+        'Here’s how our 10-day route uses the time:',
+      ],
+      table: {
+        head: ['Days', 'Where', 'What happens'],
+        rows: [
+          [
+            '1–2',
+            'Bishkek, Ala Archa',
+            'Arrival, a folklore concert, a morning in Ala Archa National Park, the city',
+          ],
+          [
+            '3–4',
+            'Kochkor, Song Kul',
+            'Up to the lake above 3,000 metres, two nights in a yurt camp, a two-hour horse ride, a free afternoon',
+          ],
+          [
+            '5–6',
+            'Bokonbaevo, Skazka Canyon, Karakol',
+            'A yurt-building demonstration, a night in a yurt by Issyk-Kul, an eagle-hunting demonstration, the red rocks of Skazka',
+          ],
+          ['7', 'Altyn Arashan', 'Up a forest valley to natural hot springs'],
+          ['8', 'Cholpon-Ata', 'Issyk-Kul’s north shore and the open-air petroglyphs'],
+          [
+            '9',
+            'Burana Tower, Kok Boru',
+            'An 11th-century minaret, then the horseback game at the heart of Kyrgyz culture, and back to Bishkek',
+          ],
+          ['10', 'Bishkek', 'Departure'],
+        ],
+      },
+    },
+    {
+      text: [
+        'The full day at Song Kul is the part we’d least want to cut. Most of the trip moves, and that day doesn’t. You ride in the morning, and the afternoon is yours.',
+      ],
+    },
+    {
+      title: 'Is a summer trip to Kyrgyzstan right for you?',
+      text: [
+        'You’ll probably love it if you want mountains, horses and nights in a yurt, and you’re happy with simple facilities for a few nights. It also suits you if you’d rather someone else worked out the roads, the camps and the drivers.',
+        'It’s probably not for you if:',
+      ],
+      list: [
+        'You want to ski. Come in winter instead and base yourself in Karakol.',
+        'You hate the cold. Even in August, nights at Song Kul can drop close to freezing. The yurts have stoves, but they don’t burn all night.',
+        'You want a hotel every night. Three nights on our route are in yurt camps, with up to four people in a yurt and simple facilities.',
+        'You can only travel in spring. April and May are lovely in the valleys, but you probably won’t reach Song Kul.',
+      ],
+    },
+    {
+      title: 'Before you go',
+      cta: {
+        before:
+          'Check the entry rules for your own passport with your government before you book flights, and make sure your travel insurance covers the whole trip, including horse riding and altitude. For what to bring for the yurt nights, see our ',
+        linkText: 'Song Kul packing guide',
+        linkUrl: '/song-kul-yurt-stay-packing-guide/',
+        after: '. And if you’re a woman thinking about the trip, our post on ',
+        more: [
+          {
+            linkText: 'Kyrgyzstan for women travellers',
+            linkUrl: '/women-only-kyrgyzstan-what-to-expect/',
+            after: ' covers safety, what to wear and where you’ll meet Kyrgyz women.',
+          },
+        ],
+      },
+    },
+    {
+      title: 'About Omaya Travel',
+      text: [
+        'Omaya Travel is a licensed European tour operator (licence PK-01-8706). We run small-group trips of 6 to 12 people, for travellers aged 20 to 45, to places like Kyrgyzstan, Morocco and Algeria. We were founded by Vesislava and Nesi, and our team has more than 12 years of experience in travel.',
+      ],
+    },
+    {
+      cta: {
+        before: 'Our ',
+        linkText: 'Kyrgyzstan Discovery Tour',
+        linkUrl: KYRGYZSTAN_TOUR_URL,
+        after: ' runs on 23 July and 6 August 2027, and the ',
+        more: [
+          {
+            linkText: 'women-only version',
+            linkUrl: '/tour-item/women-only-tour-kyrgyzstan/',
+            after:
+              ' on 13 August 2027. Both are 10 days, Bishkek to Bishkek, at EUR 1320 per person. More on our ',
+          },
+          { linkText: 'Kyrgyzstan page', linkUrl: '/destinations/kyrgyzstan/', after: '.' },
+        ],
+      },
+    },
+    {
+      title: 'Frequently asked questions',
+      faq: BEST_TIME_TO_VISIT_KYRGYZSTAN_METADATA.faq,
+    },
+  ],
+};
+
 export const BLOG_POSTS: readonly BlogPostContent[] = [
   ...PLANNING_GUIDES,
+  BEST_TIME_TO_VISIT_KYRGYZSTAN,
   SOLO_GROUP_TOUR_MOROCCO,
   HOW_TO_CHOOSE_SMALL_GROUP_SAHARA_TOUR_ALGERIA,
   WOMEN_ONLY_TOUR_NAMIBIA_WHAT_TO_EXPECT,
