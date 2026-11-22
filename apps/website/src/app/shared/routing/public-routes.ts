@@ -71,6 +71,7 @@ export const PUBLIC_BLOG_ARTICLE_SLUGS = [
   'sauditska-arabiya-za-zheni',
   'turoperator-indiya-kak-da-izberesh',
   'patuvane-do-namibiya',
+  'armeniya-kratko-patuvane',
   'how-to-visit-song-kul-lake-in-kyrgyzstan',
   'tassili-najjer-national-park-algeria-guide',
   'how-to-choose-small-group-sahara-tour-algeria',

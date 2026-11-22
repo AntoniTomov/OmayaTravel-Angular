@@ -336,6 +336,12 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/patuvane-do-namibiya/',
     },
     {
+      type: 'Article',
+      title: 'Армения: кратко пътуване, което остава за цял живот',
+      excerpt: 'Армения е страна на древни манастири, планини, вино и топло гостоприемство.',
+      canonicalPath: '/armeniya-kratko-patuvane/',
+    },
+    {
       type: 'Tour',
       title: 'Algeria Desert Expedition (Tadrart Rouge)',
       excerpt: 'Пустинна експедиция сред червените дюни и скалното изкуство на Тадрарт Руж.',
@@ -367,6 +373,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/sauditska-arabiya-za-zheni/',
     '/turoperator-indiya-kak-da-izberesh/',
     '/patuvane-do-namibiya/',
+    '/armeniya-kratko-patuvane/',
     '/not-yet-but-soon/',
     '/destinations/',
     '/tour-item/algeria-desert-expedition-tadrart-rouge/',

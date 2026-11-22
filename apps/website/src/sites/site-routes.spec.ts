@@ -137,6 +137,7 @@ describe('Amelia tour content', () => {
   it('serves Amelia blog posts separately from Omaya blog posts', () => {
     // Newest first by publish date.
     expect(blogPostsForSite('amelia').map((post) => post.slug)).toEqual([
+      'armeniya-kratko-patuvane',
       'turoperator-indiya-kak-da-izberesh',
       'sauditska-arabiya-za-zheni',
       'patuvane-do-namibiya',
