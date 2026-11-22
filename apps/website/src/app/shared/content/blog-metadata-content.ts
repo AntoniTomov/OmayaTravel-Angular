@@ -698,6 +698,34 @@ export const AMELIA_BLOG_ARTICLE_METADATA: readonly BlogArticleMetadata[] = [
       },
     ],
   },
+  {
+    slug: 'armeniya-kratko-patuvane',
+    title: 'Армения: кратко пътуване, което остава за цял живот',
+    publishedAt: '2026-11-14',
+    date: '14 ноември 2026',
+    category: 'Армения',
+    comments: 0,
+    excerpt:
+      'Армения е страна на древни манастири, планини, коняк и едно от най-топлите гостоприемства, които ще срещнете. Само няколко дни са достатъчни, за да се влюбите в нея.',
+    preview:
+      'Армения е страна на древни манастири, планини, коняк и едно от най-топлите гостоприемства, които ще срещнете. Само няколко дни са достатъчни, за да се влюбите в нея.',
+    image: {
+      src: '/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp',
+      alt: 'Манастирът Хор Вирап пред заснежения Арарат',
+    },
+    heroImage: {
+      src: '/assets/images/amelia/tours/armenia/armenia-hero.webp',
+      alt: 'Манастирът Хор Вирап в подножието на Арарат',
+    },
+    sidebarImage: {
+      src: '/assets/images/amelia/tours/armenia/armenia-card.webp',
+      alt: 'Каменна пътека към манастира Севанаванк над езерото Севан',
+    },
+    relatedTour: {
+      title: 'Армения - манастири, вино и планински езера',
+      url: '/tour-item/armenia-tour/',
+    },
+  },
 ];
 
 export function blogMetadataForSite(siteId: SiteId): readonly BlogArticleMetadata[] {
