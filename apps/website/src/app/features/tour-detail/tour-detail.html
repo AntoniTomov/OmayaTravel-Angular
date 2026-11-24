@@ -123,6 +123,9 @@
             <p class="tour-detail__fact">
               <mat-icon aria-hidden="true">directions_walk</mat-icon>
               <strong>{{ i18n.t('tourDetail.fitnessLevel') }}</strong> {{ fitnessLevelLabel(tour) }}
+              @if (tour.fitnessLevelNote) {
+                ({{ tour.fitnessLevelNote }})
+              }
             </p>
 
             @for (paragraph of tour.introduction; track introductionTrackText(paragraph)) {

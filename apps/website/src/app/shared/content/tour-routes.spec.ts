@@ -13,6 +13,7 @@ const PUBLISHED: readonly [string, 'omaya' | 'amelia'][] = [
   ['saudi-arabia-tour', 'amelia'],
   ['namibia-tour', 'amelia'],
   ['armenia-tour', 'amelia'],
+  ['peru-tour', 'amelia'],
   ['algeria-desert-expedition-tadrart-rouge', 'amelia'],
 ];
 

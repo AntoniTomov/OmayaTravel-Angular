@@ -100,14 +100,39 @@ const AMELIA_ARMENIA_GALLERY = [
   "16_sevanavank_horse",
   "17_painted_ceramics",
 ].map((name) => `images/amelia/tours/armenia/gallery/${name}.webp`);
+const AMELIA_PERU_GALLERY = [
+  "01_machu_picchu_llama",
+  "02_chinchero_weaver",
+  "03_uros_reed_boats",
+  "04_cusco_church",
+  "05_maras_salt_pools",
+  "06_moray_terraces",
+  "07_titicaca_puma_boat",
+  "08_machu_picchu_mist",
+  "09_andean_women_llamas",
+  "10_andes_snow_peak",
+  "11_uros_reed_house",
+  "12_cusco_plaza",
+  "13_machu_picchu_terraces",
+  "14_moray_peaks",
+  "15_ground_loom",
+  "16_titicaca_shore",
+  "17_cusco_balconies",
+  "18_lima_plaza_mayor",
+  "19_vicuna",
+  "20_maras_mountains",
+  "21_altiplano",
+].map((name) => `images/amelia/tours/peru/gallery/${name}.webp`);
 const AMELIA_SOURCES = [
   "images/amelia/tours/india/india-hero.webp",
   "images/amelia/tours/morocco/morocco-hero.webp",
   "images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp",
   "images/amelia/tours/armenia/armenia-hero.webp",
+  "images/amelia/tours/peru/peru-hero.webp",
   ...AMELIA_TOUR_GALLERY,
   ...AMELIA_SAUDI_ARABIA_GALLERY,
   ...AMELIA_ARMENIA_GALLERY,
+  ...AMELIA_PERU_GALLERY,
   ...Array.from(
     { length: 12 },
     (_, index) =>
@@ -333,6 +358,7 @@ const HERO_SOURCES = [
   "images/amelia/tours/morocco/morocco-hero.webp",
   "images/amelia/tours/saudi-arabia/saudi-arabia-hero.webp",
   "images/amelia/tours/armenia/armenia-hero.webp",
+  "images/amelia/tours/peru/peru-hero.webp",
   "images/women-tours/Namibia/Fish_River_Canyon_hero.webp",
 ];
 const HERO_HEIGHT_PX = 515;
@@ -466,6 +492,7 @@ const MATCHED_QUALITY = {
   "images/amelia/tours/morocco/morocco-card.webp": 60,
   "images/amelia/tours/saudi-arabia/saudi-arabia-card.webp": 70,
   "images/amelia/tours/armenia/armenia-card.webp": 70,
+  "images/amelia/tours/peru/peru-card.webp": 70,
 };
 
 // Narrower copies of the same original pack more detail into each pixel and lose more at the same
@@ -613,6 +640,7 @@ const FEATURED_TRIP_SOURCES = [
   "images/amelia/tours/morocco/morocco-card.webp",
   "images/amelia/tours/saudi-arabia/saudi-arabia-card.webp",
   "images/amelia/tours/armenia/armenia-card.webp",
+  "images/amelia/tours/peru/peru-card.webp",
 ];
 const FEATURED_TRIP_MOBILE_RATIO = 1 / 0.9;
 // Every phone copy tops out at 632px wide, the width of the trip photographs. A phone at DPR 2 or
