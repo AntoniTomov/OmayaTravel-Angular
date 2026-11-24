@@ -193,6 +193,8 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/ed68e44414322c0d.avif',
   '/assets/images/amelia/tours/armenia/armenia-hero.webp':
     '/assets/images/tour-web/7624209e4314ca6d.avif',
+  '/assets/images/amelia/tours/peru/peru-hero.webp':
+    '/assets/images/tour-web/51b8515e6971db31.avif',
   '/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp':
     '/assets/images/tour-web/e6fc205df293d270.avif',
   '/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp':
@@ -227,6 +229,48 @@ export const TOUR_WEB_IMAGES: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/5f03baf1217e23a4.avif',
   '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
     '/assets/images/tour-web/7453264fb05c5b25.avif',
+  '/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp':
+    '/assets/images/tour-web/e9956676db81b027.avif',
+  '/assets/images/amelia/tours/peru/gallery/02_chinchero_weaver.webp':
+    '/assets/images/tour-web/33da1df35d1f7ad0.avif',
+  '/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp':
+    '/assets/images/tour-web/397a367ba97abbf2.avif',
+  '/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp':
+    '/assets/images/tour-web/90b4d8a45a3590a4.avif',
+  '/assets/images/amelia/tours/peru/gallery/05_maras_salt_pools.webp':
+    '/assets/images/tour-web/f4b8420bb6552ace.avif',
+  '/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp':
+    '/assets/images/tour-web/d77b7513c245bd06.avif',
+  '/assets/images/amelia/tours/peru/gallery/07_titicaca_puma_boat.webp':
+    '/assets/images/tour-web/65c9056e6af68e2f.avif',
+  '/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp':
+    '/assets/images/tour-web/40c36b7c2f4544d7.avif',
+  '/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp':
+    '/assets/images/tour-web/c143ef37de22bf97.avif',
+  '/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp':
+    '/assets/images/tour-web/1aa91216d312cc35.avif',
+  '/assets/images/amelia/tours/peru/gallery/11_uros_reed_house.webp':
+    '/assets/images/tour-web/d33298a2807e57e6.avif',
+  '/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp':
+    '/assets/images/tour-web/1dca1abeb5cab2e9.avif',
+  '/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp':
+    '/assets/images/tour-web/6c82120bd833d1cf.avif',
+  '/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp':
+    '/assets/images/tour-web/051625efee1bd760.avif',
+  '/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp':
+    '/assets/images/tour-web/14cca756fbeed867.avif',
+  '/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp':
+    '/assets/images/tour-web/787892dfde1eb28b.avif',
+  '/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp':
+    '/assets/images/tour-web/f63b92697d0caa46.avif',
+  '/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp':
+    '/assets/images/tour-web/92c9c8a491d6470f.avif',
+  '/assets/images/amelia/tours/peru/gallery/19_vicuna.webp':
+    '/assets/images/tour-web/fc7c289a39beece4.avif',
+  '/assets/images/amelia/tours/peru/gallery/20_maras_mountains.webp':
+    '/assets/images/tour-web/db7ae25c19895c0a.avif',
+  '/assets/images/amelia/tours/peru/gallery/21_altiplano.webp':
+    '/assets/images/tour-web/17576a341377d3f8.avif',
   '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp':
     '/assets/images/tour-web/c76cd297fe90ab9a.avif',
   '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-snow-covered-mountains.webp':
@@ -427,6 +471,8 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/ce33aab931d491f6.avif 320w, /assets/images/tour-web/5420e121de1fab41.avif 480w, /assets/images/tour-web/a23042cf9cce3029.avif 640w, /assets/images/tour-web/01f2b58ba05b85cd.avif 800w, /assets/images/tour-web/03262ef50ba6c5bc.avif 960w, /assets/images/tour-web/acc81ab19fba979a.avif 1440w, /assets/images/tour-web/ed68e44414322c0d.avif 1920w',
   '/assets/images/amelia/tours/armenia/armenia-hero.webp':
     '/assets/images/tour-web/d02f57c1e5afde40.avif 320w, /assets/images/tour-web/eab9565c347d5ef5.avif 480w, /assets/images/tour-web/d93c692de21303ed.avif 640w, /assets/images/tour-web/a8fd42b231d30c39.avif 800w, /assets/images/tour-web/ae9c0cc923a528dc.avif 960w, /assets/images/tour-web/026840689afdebd1.avif 1440w, /assets/images/tour-web/d9ad382befe6ea2f.avif 1920w, /assets/images/tour-web/7624209e4314ca6d.avif 2000w',
+  '/assets/images/amelia/tours/peru/peru-hero.webp':
+    '/assets/images/tour-web/2b69f422f4dc6747.avif 320w, /assets/images/tour-web/677239d7d9b7ee3b.avif 480w, /assets/images/tour-web/ba67de4f1bdfa6a4.avif 640w, /assets/images/tour-web/b85103408402453d.avif 800w, /assets/images/tour-web/0ff4a5d3a4e02226.avif 960w, /assets/images/tour-web/9157c2262c467177.avif 1440w, /assets/images/tour-web/75645595ccfa1378.avif 1920w, /assets/images/tour-web/51b8515e6971db31.avif 2560w',
   '/assets/images/amelia/tours/armenia/gallery/01_sevanavank_path.webp':
     '/assets/images/tour-web/d56862edb43fb3db.avif 320w, /assets/images/tour-web/541f96947ce49a0e.avif 480w, /assets/images/tour-web/fc3e2f2d72851ffe.avif 640w, /assets/images/tour-web/e6fc205df293d270.avif 800w',
   '/assets/images/amelia/tours/armenia/gallery/02_khor_virap_ararat.webp':
@@ -461,6 +507,48 @@ export const TOUR_WEB_IMAGE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/2ebb974718e7ac6c.avif 320w, /assets/images/tour-web/152c99624e6df258.avif 480w, /assets/images/tour-web/2e4be6fd98037edf.avif 640w, /assets/images/tour-web/82a8638831378046.avif 800w, /assets/images/tour-web/13bc8a1bd967e59d.avif 960w, /assets/images/tour-web/67e4ebb61757f8d8.avif 1440w, /assets/images/tour-web/5f03baf1217e23a4.avif 1600w',
   '/assets/images/amelia/tours/armenia/gallery/17_painted_ceramics.webp':
     '/assets/images/tour-web/049fc302ba811b3b.avif 320w, /assets/images/tour-web/576beb335698f1ab.avif 480w, /assets/images/tour-web/be0454d852b036c1.avif 640w, /assets/images/tour-web/d00d8ec416d0810d.avif 800w, /assets/images/tour-web/78c18a39cdb28894.avif 960w, /assets/images/tour-web/097777a7587f5f64.avif 1440w, /assets/images/tour-web/7453264fb05c5b25.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp':
+    '/assets/images/tour-web/05b9220d499a067b.avif 320w, /assets/images/tour-web/ff3edeb84d3ee542.avif 480w, /assets/images/tour-web/cc8f57cd2a6b1436.avif 640w, /assets/images/tour-web/27c88c292c6e0663.avif 800w, /assets/images/tour-web/f32f0b1cfc4e025a.avif 960w, /assets/images/tour-web/e9956676db81b027.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/02_chinchero_weaver.webp':
+    '/assets/images/tour-web/d1275047325d6749.avif 320w, /assets/images/tour-web/aa5ecc0e133444c5.avif 480w, /assets/images/tour-web/0eca4618e1ce0e67.avif 640w, /assets/images/tour-web/33da1df35d1f7ad0.avif 800w',
+  '/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp':
+    '/assets/images/tour-web/95fcafc740ff3ad8.avif 320w, /assets/images/tour-web/9611f2c3b6e6e8af.avif 480w, /assets/images/tour-web/692c85be13ecac3c.avif 640w, /assets/images/tour-web/7c68f81b9fa8b165.avif 800w, /assets/images/tour-web/1ac5f1620416ac9a.avif 960w, /assets/images/tour-web/397a367ba97abbf2.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp':
+    '/assets/images/tour-web/69f7c1649a31edaf.avif 320w, /assets/images/tour-web/d77f0ee3f15b8a3c.avif 480w, /assets/images/tour-web/0ea2cf5afdb529a0.avif 640w, /assets/images/tour-web/0dd4a74c1081b05b.avif 800w, /assets/images/tour-web/16767c48ebd42d5a.avif 960w, /assets/images/tour-web/90b4d8a45a3590a4.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/05_maras_salt_pools.webp':
+    '/assets/images/tour-web/0b555ad6d75bfb11.avif 320w, /assets/images/tour-web/772d965bd14d5fbe.avif 480w, /assets/images/tour-web/ab476e41bcba45ad.avif 640w, /assets/images/tour-web/f4b8420bb6552ace.avif 800w',
+  '/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp':
+    '/assets/images/tour-web/f701c6e6d69b9454.avif 320w, /assets/images/tour-web/deb3e3c3ec339f4e.avif 480w, /assets/images/tour-web/c1024572ce7f586c.avif 640w, /assets/images/tour-web/f4142ea9f2f12e74.avif 800w, /assets/images/tour-web/b9f159ff2e410acd.avif 960w, /assets/images/tour-web/556716ce8323d66c.avif 1440w, /assets/images/tour-web/d77b7513c245bd06.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/07_titicaca_puma_boat.webp':
+    '/assets/images/tour-web/af7411290dec66b3.avif 320w, /assets/images/tour-web/9add4ad6625373be.avif 480w, /assets/images/tour-web/eade03bbe888ae9b.avif 640w, /assets/images/tour-web/65c9056e6af68e2f.avif 800w',
+  '/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp':
+    '/assets/images/tour-web/db489bce0b20e802.avif 320w, /assets/images/tour-web/c40d1bac80799534.avif 480w, /assets/images/tour-web/9bcab924675af628.avif 640w, /assets/images/tour-web/bb49b5aabd2ad3cb.avif 800w, /assets/images/tour-web/2e23db00276f873c.avif 960w, /assets/images/tour-web/e8941436ec39cc88.avif 1440w, /assets/images/tour-web/40c36b7c2f4544d7.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp':
+    '/assets/images/tour-web/de7415ab3fcadb05.avif 320w, /assets/images/tour-web/e68f911a5c56131c.avif 480w, /assets/images/tour-web/d848fc6783c5ebad.avif 640w, /assets/images/tour-web/8a35b4be8d95cd79.avif 800w, /assets/images/tour-web/882fc38fd9de1506.avif 960w, /assets/images/tour-web/c143ef37de22bf97.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp':
+    '/assets/images/tour-web/dde47c8e9c530904.avif 320w, /assets/images/tour-web/0093dab5cd50eb85.avif 480w, /assets/images/tour-web/71bb7c037254cd9a.avif 640w, /assets/images/tour-web/ad651d5783fa721e.avif 800w, /assets/images/tour-web/559b854596dc817d.avif 960w, /assets/images/tour-web/d0f7b6a74a76006c.avif 1440w, /assets/images/tour-web/1aa91216d312cc35.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/11_uros_reed_house.webp':
+    '/assets/images/tour-web/62a9cd858337b7a8.avif 320w, /assets/images/tour-web/90a6946389c0b25d.avif 480w, /assets/images/tour-web/7d31acc8b4ba2601.avif 640w, /assets/images/tour-web/d33298a2807e57e6.avif 800w',
+  '/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp':
+    '/assets/images/tour-web/7598362993c4dd24.avif 320w, /assets/images/tour-web/d004c3507164c213.avif 480w, /assets/images/tour-web/639687a449f1a02e.avif 640w, /assets/images/tour-web/d6bd026baead010b.avif 800w, /assets/images/tour-web/44c7425891601102.avif 960w, /assets/images/tour-web/1dca1abeb5cab2e9.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp':
+    '/assets/images/tour-web/a96bedfc3b6a402e.avif 320w, /assets/images/tour-web/3762d865425ace95.avif 480w, /assets/images/tour-web/1e1b2e18c79ca200.avif 640w, /assets/images/tour-web/fe7677597a87fa2f.avif 800w, /assets/images/tour-web/f64c5ba833a4616e.avif 960w, /assets/images/tour-web/6c82120bd833d1cf.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp':
+    '/assets/images/tour-web/a4210d42e4ff87bf.avif 320w, /assets/images/tour-web/95c102eb47393c2b.avif 480w, /assets/images/tour-web/2925f6a50e9b08f4.avif 640w, /assets/images/tour-web/2d85451f3c71c8e9.avif 800w, /assets/images/tour-web/176e1a84be041418.avif 960w, /assets/images/tour-web/f98d2df3a9710b82.avif 1440w, /assets/images/tour-web/051625efee1bd760.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp':
+    '/assets/images/tour-web/4c65afc46170603a.avif 320w, /assets/images/tour-web/8c9e2bdd52747814.avif 480w, /assets/images/tour-web/be9887f4fb27ee8b.avif 640w, /assets/images/tour-web/fead033f2b1a6fbc.avif 800w, /assets/images/tour-web/d7b742da47a023dd.avif 960w, /assets/images/tour-web/88aa422ddba2ce74.avif 1440w, /assets/images/tour-web/14cca756fbeed867.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp':
+    '/assets/images/tour-web/be1bdde2959481cc.avif 320w, /assets/images/tour-web/93742b7df1961b03.avif 480w, /assets/images/tour-web/f5521332a45f494c.avif 640w, /assets/images/tour-web/78921534f36290b6.avif 800w, /assets/images/tour-web/adad9b6b6c23ebac.avif 960w, /assets/images/tour-web/513a636d65ee451f.avif 1440w, /assets/images/tour-web/787892dfde1eb28b.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp':
+    '/assets/images/tour-web/ea1c47154f594daf.avif 320w, /assets/images/tour-web/e67341a6c56b050a.avif 480w, /assets/images/tour-web/63a00923542f9466.avif 640w, /assets/images/tour-web/c97d284400526a56.avif 800w, /assets/images/tour-web/8b7122902b3b5ab3.avif 960w, /assets/images/tour-web/f63b92697d0caa46.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp':
+    '/assets/images/tour-web/af91ca3c4d5765b6.avif 320w, /assets/images/tour-web/8b37dfc36d4b4140.avif 480w, /assets/images/tour-web/aa22d4bcf07bf7a5.avif 640w, /assets/images/tour-web/60388b611acc0d23.avif 800w, /assets/images/tour-web/d3f00014215ca2d1.avif 960w, /assets/images/tour-web/92c9c8a491d6470f.avif 1300w',
+  '/assets/images/amelia/tours/peru/gallery/19_vicuna.webp':
+    '/assets/images/tour-web/f88b0bb625efe956.avif 320w, /assets/images/tour-web/2ae24a1b5206a0d2.avif 480w, /assets/images/tour-web/9b2ea2afdad5d6ab.avif 640w, /assets/images/tour-web/80a058b62a1f9b37.avif 800w, /assets/images/tour-web/c5a2692784b1314c.avif 960w, /assets/images/tour-web/13611b0b2c48041b.avif 1440w, /assets/images/tour-web/fc7c289a39beece4.avif 1600w',
+  '/assets/images/amelia/tours/peru/gallery/20_maras_mountains.webp':
+    '/assets/images/tour-web/cd7a5d0b8b65a889.avif 320w, /assets/images/tour-web/195abd7db73d7875.avif 480w, /assets/images/tour-web/9f96a47456dea86f.avif 640w, /assets/images/tour-web/db7ae25c19895c0a.avif 800w',
+  '/assets/images/amelia/tours/peru/gallery/21_altiplano.webp':
+    '/assets/images/tour-web/4cbc70410288ddbc.avif 320w, /assets/images/tour-web/75727c622de57010.avif 480w, /assets/images/tour-web/afd5d583ee3f64e4.avif 640w, /assets/images/tour-web/5133e7e9198adf34.avif 800w, /assets/images/tour-web/fb36ba0f678e29fe.avif 960w, /assets/images/tour-web/1eac1edd2097387e.avif 1440w, /assets/images/tour-web/17576a341377d3f8.avif 1600w',
   '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-yurt-camp-mountain-valley-hero.webp':
     '/assets/images/tour-web/1a785449e79e7597.avif 320w, /assets/images/tour-web/0ac8de2e08f006b3.avif 480w, /assets/images/tour-web/ab7f07990c844b99.avif 640w, /assets/images/tour-web/6d81c30948ed0e34.avif 800w, /assets/images/tour-web/abac88d3b5e7eb25.avif 960w, /assets/images/tour-web/79ac38d334dc83c2.avif 1440w, /assets/images/tour-web/c76cd297fe90ab9a.avif 1920w',
   '/assets/images/blog-posts/Kyrgyzstan travel blog/kyrgyzstan-snow-covered-mountains.webp':
@@ -527,6 +615,8 @@ export const TOUR_WEB_HERO_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/248d3a6e7e6ddf3d.avif 320w, /assets/images/tour-web/61fcb66b61c1659a.avif 480w, /assets/images/tour-web/35da7a69a0b472fb.avif 640w, /assets/images/tour-web/6eda5bcaa0af33d2.avif 840w, /assets/images/tour-web/4f5378517ccf53d9.avif 960w, /assets/images/tour-web/65b520c921e079c6.avif 1351w',
   '/assets/images/amelia/tours/armenia/armenia-hero.webp':
     '/assets/images/tour-web/541e084d8cefe1b0.avif 320w, /assets/images/tour-web/ed21a16075986c7b.avif 480w, /assets/images/tour-web/512f7128cc28d0a6.avif 640w, /assets/images/tour-web/164f8a40e679dd6e.avif 840w, /assets/images/tour-web/584cd93e540136e6.avif 960w, /assets/images/tour-web/c0017703b75308dd.avif 1165w',
+  '/assets/images/amelia/tours/peru/peru-hero.webp':
+    '/assets/images/tour-web/016d94e8d13cc72f.avif 320w, /assets/images/tour-web/3bf15c3ea45a4932.avif 480w, /assets/images/tour-web/021beb22667ee0bb.avif 640w, /assets/images/tour-web/3195158ba80b6bd9.avif 840w, /assets/images/tour-web/197bfaea1445d195.avif 960w, /assets/images/tour-web/a2cb5879bedd7c99.avif 1103w',
 };
 // Centred crops of the blog, our-story and not-yet-but-soon heroes: phone up to 30rem, tablet up to 48rem. See PAGE_HERO_SOURCES in the generator.
 export const PAGE_HERO_CROP_SRCSETS: Readonly<Record<string, { phone: string; tablet: string }>> = {
@@ -639,6 +729,8 @@ export const FEATURED_TRIP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/ff6c43e1a158163e.avif 320w, /assets/images/tour-web/09cb2b5034145b1e.avif 480w, /assets/images/tour-web/0cace8d583b10270.avif 560w, /assets/images/tour-web/91301e4d4f3075e3.avif 712w',
   '/assets/images/amelia/tours/armenia/armenia-card.webp':
     '/assets/images/tour-web/b8e93c359a4d62e8.avif 320w, /assets/images/tour-web/7c80a09ffe1e40fd.avif 480w, /assets/images/tour-web/d27106b5201e1713.avif 560w, /assets/images/tour-web/106bd67e3b70acc1.avif 712w',
+  '/assets/images/amelia/tours/peru/peru-card.webp':
+    '/assets/images/tour-web/26fa55816fa4e162.avif 320w, /assets/images/tour-web/36420a79f1d4227a.avif 480w, /assets/images/tour-web/6ae854c21f543751.avif 560w, /assets/images/tour-web/17a2ff9e3462b6ac.avif 712w',
 };
 // Homepage carousel copies of the featured-trip card images for wider screens, at the quality matched to the originals. See FEATURED_TRIP_WIDE_WIDTHS in the generator.
 export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
@@ -656,6 +748,8 @@ export const FEATURED_TRIP_WIDE_SRCSETS: Readonly<Record<string, string>> = {
     '/assets/images/tour-web/9754f212fa556cfa.avif 320w, /assets/images/tour-web/644b8c08ba27e141.avif 480w, /assets/images/tour-web/3056afab8259cd4f.avif 640w, /assets/images/tour-web/69143bb246e0822d.avif 712w',
   '/assets/images/amelia/tours/armenia/armenia-card.webp':
     '/assets/images/tour-web/c306841bbb45103c.avif 320w, /assets/images/tour-web/718afafa69013b38.avif 480w, /assets/images/tour-web/64645fc3dac551e3.avif 640w, /assets/images/tour-web/7fb08edddd4c87de.avif 712w',
+  '/assets/images/amelia/tours/peru/peru-card.webp':
+    '/assets/images/tour-web/56a72c1c226ba0c7.avif 320w, /assets/images/tour-web/b416e683f411d7f6.avif 480w, /assets/images/tour-web/d58018473ce956b1.avif 640w, /assets/images/tour-web/689bc8c125f5f2bd.avif 712w',
 };
 // A capped copy of the newsletter popup photograph for phones up to 34rem. See POPUP_MOBILE_WIDTH and AMELIA_POPUP_COPIES in the generator.
 export const NEWSLETTER_POPUP_MOBILE_SRCSETS: Readonly<Record<string, string>> = {

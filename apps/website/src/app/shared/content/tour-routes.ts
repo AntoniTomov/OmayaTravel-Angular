@@ -303,6 +303,51 @@ const ARMENIA_ROUTE: TourRoute = [
   { name: { en: 'Yerevan', bg: 'Ереван' }, lat: 40.1792, lng: 44.4991, days: [5, 6] },
 ];
 
+const PERU_ROUTE: TourRoute = [
+  { name: { en: 'Lima', bg: 'Лима' }, lat: -12.0464, lng: -77.0428, days: [1], next: 'flight' },
+  { name: { en: 'Cusco', bg: 'Куско' }, lat: -13.517, lng: -71.9785, days: [2] },
+  { name: { en: 'Chinchero', bg: 'Чинчеро' }, lat: -13.3925, lng: -72.0483, days: [] },
+  { name: { en: 'Maras', bg: 'Марас' }, lat: -13.3037, lng: -72.1553, days: [] },
+  { name: { en: 'Moray', bg: 'Морай' }, lat: -13.3297, lng: -72.1972, days: [] },
+  { name: { en: 'Ollantaytambo', bg: 'Олянтайтамбо' }, lat: -13.2584, lng: -72.2643, days: [3] },
+  {
+    name: { en: 'Aguas Calientes', bg: 'Агуас Калиентес' },
+    lat: -13.1547,
+    lng: -72.5254,
+    days: [4],
+  },
+  {
+    name: { en: 'Machu Picchu', bg: 'Мачу Пикчу' },
+    lat: -13.1631,
+    lng: -72.545,
+    days: [],
+    sideTrip: true,
+  },
+  { name: { en: 'Ollantaytambo', bg: 'Олянтайтамбо' }, lat: -13.2584, lng: -72.2643, days: [] },
+  { name: { en: 'Cusco', bg: 'Куско' }, lat: -13.517, lng: -71.9785, days: [5] },
+  { name: { en: 'Andahuaylillas', bg: 'Андауайлияс' }, lat: -13.6731, lng: -71.6789, days: [] },
+  { name: { en: 'Raqchi', bg: 'Ракчи' }, lat: -14.1742, lng: -71.37, days: [] },
+  { name: { en: 'La Raya Pass', bg: 'Проходът Ла Рая' }, lat: -14.4869, lng: -70.9886, days: [] },
+  { name: { en: 'Pukara', bg: 'Пукара' }, lat: -15.0433, lng: -70.3669, days: [] },
+  { name: { en: 'Puno', bg: 'Пуно' }, lat: -15.8402, lng: -70.0219, days: [6, 7] },
+  {
+    name: { en: 'Uros Islands', bg: 'Острови Урос' },
+    lat: -15.8186,
+    lng: -69.97,
+    days: [],
+    sideTrip: true,
+  },
+  {
+    name: { en: 'Taquile', bg: 'Остров Такиле' },
+    lat: -15.7728,
+    lng: -69.6847,
+    days: [],
+    sideTrip: true,
+  },
+  { name: { en: 'Juliaca', bg: 'Хулиака' }, lat: -15.467, lng: -70.158, days: [], next: 'flight' },
+  { name: { en: 'Lima', bg: 'Лима' }, lat: -12.0464, lng: -77.0428, days: [8, 9] },
+];
+
 /** Keyed by tour slug; tours that share an itinerary share a route. */
 const TOUR_ROUTES: Readonly<Record<string, TourRoute>> = {
   'morocco-tour': MOROCCO_ROUTE,
@@ -320,6 +365,7 @@ const TOUR_ROUTES: Readonly<Record<string, TourRoute>> = {
   'namibia-tour': AMELIA_NAMIBIA_ROUTE,
   'saudi-arabia-tour': SAUDI_ARABIA_ROUTE,
   'armenia-tour': ARMENIA_ROUTE,
+  'peru-tour': PERU_ROUTE,
 };
 
 export function findTourRoute(slug: string | null | undefined): TourRoute | undefined {

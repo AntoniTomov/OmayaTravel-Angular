@@ -49,6 +49,7 @@ export const OMAYA_SITE_CONTENT: SiteContent = {
     '/tour-item/saudi-arabia-tour/',
     '/tour-item/namibia-tour/',
     '/tour-item/armenia-tour/',
+    '/tour-item/peru-tour/',
   ],
   pageSeo: [
     {

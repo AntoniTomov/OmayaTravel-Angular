@@ -75,6 +75,7 @@ describe('itinerary highlight terms', () => {
     'saudi-arabia-tour',
     'namibia-tour',
     'armenia-tour',
+    'peru-tour',
   ]
     .map((slug) => findTourBySlug(slug, 'amelia'))
     .filter((tour) => tour !== undefined);
