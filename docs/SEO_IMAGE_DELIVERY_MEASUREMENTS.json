@@ -5124,6 +5124,924 @@
       "quality": 70,
       "originalBytes": 99886,
       "webBytes": 107231
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 2560,
+      "height": 1183,
+      "originalBytes": 417026,
+      "webBytes": 227707
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 5823
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 11537
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 19555
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 29865
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 41618
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 85452
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 1920,
+      "variant": "responsive",
+      "webBytes": 131544
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 227834,
+      "webBytes": 120439
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9118
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 18751
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 31775
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 46150
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/01_machu_picchu_llama.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 61721
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/02_chinchero_weaver.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 53138,
+      "webBytes": 36856
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/02_chinchero_weaver.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 11325
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/02_chinchero_weaver.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 19372
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/02_chinchero_weaver.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 26564
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 192898,
+      "webBytes": 95654
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8727
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 16943
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 28302
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 40270
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/03_uros_reed_boats.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 53901
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 229208,
+      "webBytes": 113380
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 11043
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 20229
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 32996
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 47346
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/04_cusco_church.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 61131
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/05_maras_salt_pools.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 250840,
+      "webBytes": 133627
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/05_maras_salt_pools.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 27901
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/05_maras_salt_pools.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 54909
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/05_maras_salt_pools.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 83175
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 373874,
+      "webBytes": 206474
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10613
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 21814
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 38823
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 60674
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 80210
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/06_moray_terraces.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 148112
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/07_titicaca_puma_boat.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 98512,
+      "webBytes": 54911
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/07_titicaca_puma_boat.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 11948
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/07_titicaca_puma_boat.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 22566
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/07_titicaca_puma_boat.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 34698
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 425204,
+      "webBytes": 230596
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 11234
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 23964
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 42742
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 67737
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 89672
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/08_machu_picchu_mist.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 166672
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 273216,
+      "webBytes": 145049
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 13524
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 25825
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 41719
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 58632
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/09_andean_women_llamas.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 76290
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 331276,
+      "webBytes": 184421
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10809
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 21939
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 38653
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 59061
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 76753
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/10_andes_snow_peak.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 135823
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/11_uros_reed_house.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 269414,
+      "webBytes": 153243
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/11_uros_reed_house.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 26395
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/11_uros_reed_house.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 55600
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/11_uros_reed_house.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 87384
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 426122,
+      "webBytes": 208431
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 15604
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 32603
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 54844
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 79421
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/12_cusco_plaza.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 106734
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 420026,
+      "webBytes": 218542
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 13873
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 29666
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 50532
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 76284
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/13_machu_picchu_terraces.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 103895
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 359744,
+      "webBytes": 196486
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9180
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 20157
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 36264
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 57285
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 75104
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/14_moray_peaks.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 141724
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 468348,
+      "webBytes": 247422
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 10534
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 23451
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 42613
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 68377
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 92326
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/15_ground_loom.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 174774
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 259730,
+      "webBytes": 129872
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 7829
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 16606
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 28515
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 43115
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 56132
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/16_titicaca_shore.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 96211
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 221088,
+      "webBytes": 115355
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9429
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 18440
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 30480
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 44077
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/17_cusco_balconies.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 58647
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp",
+      "width": 1300,
+      "height": 867,
+      "originalBytes": 222026,
+      "webBytes": 119310
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 9932
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 19437
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 32318
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 47178
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/18_lima_plaza_mayor.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 62659
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 173924,
+      "webBytes": 112710
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8536
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 19109
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 31851
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 44593
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 54935
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/19_vicuna.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 88127
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/20_maras_mountains.webp",
+      "width": 800,
+      "height": 1100,
+      "originalBytes": 125224,
+      "webBytes": 70958
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/20_maras_mountains.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 12940
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/20_maras_mountains.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 26260
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/20_maras_mountains.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 41186
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 1600,
+      "height": 1067,
+      "originalBytes": 179498,
+      "webBytes": 112679
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 320,
+      "variant": "responsive",
+      "webBytes": 8951
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 480,
+      "variant": "responsive",
+      "webBytes": 17389
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 640,
+      "variant": "responsive",
+      "webBytes": 27954
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 800,
+      "variant": "responsive",
+      "webBytes": 41273
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 960,
+      "variant": "responsive",
+      "webBytes": 51669
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/gallery/21_altiplano.webp",
+      "width": 1440,
+      "variant": "responsive",
+      "webBytes": 85483
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 320,
+      "variant": "hero-mobile",
+      "webBytes": 12325
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 480,
+      "variant": "hero-mobile",
+      "webBytes": 28007
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 640,
+      "variant": "hero-mobile",
+      "webBytes": 48235
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 840,
+      "variant": "hero-mobile",
+      "webBytes": 76881
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 960,
+      "variant": "hero-mobile",
+      "webBytes": 94457
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-hero.webp",
+      "width": 1103,
+      "variant": "hero-mobile",
+      "webBytes": 117131
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 320,
+      "height": 288,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 23026
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 480,
+      "height": 432,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 46698
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 560,
+      "height": 504,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 60493
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 712,
+      "height": 641,
+      "variant": "featured-trip-mobile",
+      "quality": 70,
+      "webBytes": 96280
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 320,
+      "height": 400,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 163534,
+      "webBytes": 29467
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 480,
+      "height": 600,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 163534,
+      "webBytes": 59758
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 640,
+      "height": 800,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 163534,
+      "webBytes": 94565
+    },
+    {
+      "source": "/assets/images/amelia/tours/peru/peru-card.webp",
+      "width": 712,
+      "height": 890,
+      "variant": "featured-trip-wide",
+      "quality": 70,
+      "originalBytes": 163534,
+      "webBytes": 137108
     }
   ]
 }

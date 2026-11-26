@@ -1,5 +1,5 @@
 import { blogPostsForSite, findBlogPostBySlug } from '../app/shared/content/blog-content';
-import { findTourBySlug } from '../app/shared/content/tour-content';
+import { findTourBySlug, tourDepartureDate } from '../app/shared/content/tour-content';
 import { AMELIA_SITE_CONFIG } from './amelia/site.config';
 import { OMAYA_SITE_CONFIG } from './omaya/site.config';
 import { isSiteRouteEnabled, normalizeSiteRoutePath } from './site-routes';
@@ -119,6 +119,33 @@ describe('Amelia tour content', () => {
     expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/armenia-tour/')).toBe(false);
   });
 
+  it('serves the Amelia Peru tour on Amelia only', () => {
+    const tour = findTourBySlug('peru-tour', 'amelia');
+
+    expect(tour?.title).toBe('Перу – по пътя на инките');
+    expect(tour?.duration).toEqual({ days: 9, nights: 8 });
+    expect(tour?.price).toEqual({ amount: 2100, currency: 'EUR', unit: 'човек' });
+    expect(tour?.groupSize).toEqual({ min: 8, max: 16 });
+    expect(tour?.departures).toEqual([
+      { date: '2027-09-21', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2027-10-05', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2028-04-08', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2028-04-22', ageGroupLabel: 'Група 40-65 г.' },
+      { date: '2028-10-07', ageGroupLabel: 'Група 20-45 г.' },
+      { date: '2028-10-21', ageGroupLabel: 'Група 40-65 г.' },
+    ]);
+    // 2027 departures carry the headline price, 2028 ones a higher one of their own.
+    for (const departure of tour?.departures ?? []) {
+      const date = tourDepartureDate(departure);
+
+      expect(tour?.departureNotes?.[date]).toBe(date.startsWith('2027') ? 'EUR2100' : 'EUR2300');
+    }
+    expect(tour?.itinerary).toHaveLength(9);
+    expect(findTourBySlug('peru-tour', 'omaya')).toBeUndefined();
+    expect(isSiteRouteEnabled(AMELIA_SITE_CONFIG, '/tour-item/peru-tour/')).toBe(true);
+    expect(isSiteRouteEnabled(OMAYA_SITE_CONFIG, '/tour-item/peru-tour/')).toBe(false);
+  });
+
   it('never mentions Omaya in Amelia tour copy or assets', () => {
     for (const slug of [
       'morocco-tour',
@@ -126,6 +153,7 @@ describe('Amelia tour content', () => {
       'saudi-arabia-tour',
       'namibia-tour',
       'armenia-tour',
+      'peru-tour',
     ]) {
       const tour = findTourBySlug(slug, 'amelia');
 

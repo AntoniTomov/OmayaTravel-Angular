@@ -56,12 +56,7 @@ const AMELIA_DESTINATION_LINKS = [
     badge: AMELIA_COMING_SOON_BADGE,
     queryParams: { d: 'Оман' },
   },
-  {
-    label: 'Перу',
-    target: '/not-yet-but-soon/',
-    badge: AMELIA_COMING_SOON_BADGE,
-    queryParams: { d: 'Перу' },
-  },
+  { label: 'Перу', target: '/tour-item/peru-tour/' },
   { label: 'Саудитска Арабия', target: '/tour-item/saudi-arabia-tour/' },
   {
     label: 'Узбекистан',
@@ -184,6 +179,19 @@ const AMELIA_FEATURED_TOURS: readonly TourCardContent[] = [
     duration: '6 дни / 5 нощувки',
     target: '/tour-item/armenia-tour/',
   },
+  {
+    title: 'Перу – по пътя на инките',
+    category: 'Women only',
+    categoryLabel: '',
+    destination: 'Перу',
+    excerpt:
+      'Земята на инките – от Лима и Куско през Свещената долина до Мачу Пикчу и плаващите острови на езерото Титикака.',
+    image: '/assets/images/amelia/tours/peru/peru-card.webp',
+    alt: 'Лама пред Мачу Пикчу, Перу',
+    price: 'EUR2100',
+    duration: '9 дни / 8 нощувки',
+    target: '/tour-item/peru-tour/',
+  },
 ];
 
 export const AMELIA_SITE_CONTENT: SiteContent = {
@@ -294,6 +302,13 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
       canonicalPath: '/tour-item/armenia-tour/',
     },
     {
+      type: 'Tour',
+      title: 'Перу – по пътя на инките',
+      excerpt:
+        '9 дни в Лима, Куско, Свещената долина, Мачу Пикчу и езерото Титикака - с влак до Агуас Калиентес и писко вечер в Куско.',
+      canonicalPath: '/tour-item/peru-tour/',
+    },
+    {
       type: 'Article',
       title: 'Мароко за жени пътешественички: безопасност, облекло и какво да очакваш',
       excerpt:
@@ -382,6 +397,7 @@ export const AMELIA_SITE_CONTENT: SiteContent = {
     '/tour-item/kyrgyzstan-tour/',
     '/tour-item/morocco-tour/',
     '/tour-item/namibia-tour/',
+    '/tour-item/peru-tour/',
     '/tour-item/saudi-arabia-tour/',
     '/cookie-policy/',
     '/privacy-policy/',

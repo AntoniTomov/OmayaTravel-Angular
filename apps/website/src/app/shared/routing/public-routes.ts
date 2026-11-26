@@ -43,6 +43,7 @@ export const PUBLIC_TOUR_SLUGS = [
   'kyrgyzstan-tour',
   'morocco-tour',
   'namibia-tour',
+  'peru-tour',
   'saudi-arabia-tour',
   'tour-item-morocco-solo-travellers-tour',
   'tour-item-morocco-women-only-tour',
