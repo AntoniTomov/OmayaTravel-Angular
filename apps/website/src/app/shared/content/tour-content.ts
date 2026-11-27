@@ -2091,7 +2091,12 @@ export const TOUR_DETAIL_CONTENT: readonly TourDetailContent[] = [
       'Meals according to the daily description',
       'Omaya Travel representative',
     ],
-    notIncluded: ['Flights', 'Ground transport', 'Meals not mentioned', 'Single room supplement'],
+    notIncluded: [
+      'Flights',
+      'Ground transport',
+      'Meals not mentioned',
+      'Single room supplement – EUR 100',
+    ],
     itinerary: [
       {
         day: 1,
